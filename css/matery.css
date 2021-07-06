@@ -389,11 +389,11 @@ header .side-nav .social-link {
 }
 
 .cover-btns a:hover {
-    border: 1px solid #f44336;
-    background-color: #f44336;
-    box-shadow: 0 14px 26px -12px rgba(233, 30, 99, 0.42),
+    border: 1px solid #ecd2d1;
+    background-color: #0aa9b5;
+    /* box-shadow: 0 14px 26px -12px rgba(233, 30, 99, 0.42),
     0 4px 23px 0 rgba(0, 0, 0, 0.12),
-    0 8px 10px -5px rgba(233, 30, 99, 0.2);
+    0 8px 10px -5px rgba(233, 30, 99, 0.2); */
 }
 
 .cover-btns a i {
@@ -552,10 +552,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-/*.bg-cover:after {
-    -webkit-animation: rainbow 60s infinite;
-    animation: rainbow 60s infinite;
-}*/
+.bg-cover:after {
+  /*  -webkit-animation: rainbow 60s infinite;
+    animation: rainbow 60s infinite; */
+}
 
 .bg-cover:before,
 .bg-cover:after {
@@ -567,7 +567,7 @@ header .go-back i {
     left: 0;
     top: 0;
 	
-    /*content: "";*/
+    content: "";
 }
 
 .bg-cover .container {
