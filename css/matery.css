@@ -584,7 +584,7 @@ header .go-back i {
 }
 
 .bg-cover .description {
-    font-weight: 300;
+    /*font-weight: 300;*/
     font-size: 1.4rem;
     line-height: 1.4em;
     color: #141851;
