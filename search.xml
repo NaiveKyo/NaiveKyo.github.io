@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>centos7-install-jdk</title>
+      <link href="/2021/07/06/centos7-install-jdk/"/>
+      <url>/2021/07/06/centos7-install-jdk/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、卸载-Open-JDK"><a href="#一、卸载-Open-JDK" class="headerlink" title="一、卸载 Open-JDK"></a>一、卸载 Open-JDK</h2><p>有的 Linux 系统可能已经安装了 open-jdk，它是 jdk 开源之前的版本，已经不在维护了，我们可以卸载它</p><ul><li><p>使用命令 <code>rpm -qa | grep java</code> 查询系统中和 java 相关的文件，一个个删除</p></li><li><p>例如：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rpm</span> -e --nodeps java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64<span class="token function">rpm</span> -e --nodeps java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64<span class="token function">rpm</span> -e --nodeps java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64<span class="token function">rpm</span> -e --nodeps java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>检查是否已经删除成功：输入 <strong>java -version</strong></p></li><li><p>如果没有删除完，就使用 yum 删除：<strong>yum -y remove</strong></p></li></ul><h2 id="二、安装稳定的-JDK"><a href="#二、安装稳定的-JDK" class="headerlink" title="二、安装稳定的 JDK"></a>二、安装稳定的 JDK</h2><p>官网：<a href="http://www.oracle.com/">http://www.oracle.com</a></p><p>下载相应的 Linux 版本后，做好备份，开始解压</p><p>可以将 jdk 复制一份放到 <code>/usr/local/src</code> 做备份</p><p>在 <code>/usr/java</code> 中解压 jdk（创建一个 java 目录）</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">tar</span> -zxvf jdk-8u281-linux-x64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果没有权限就：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">755</span> jdk-8u281-linux-x64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果实在不行，就进入 root 用户进行操作</p><p>解压完成后开始设置系统环境变量：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/profile<span class="token comment"># 最后面添加下列</span><span class="token comment"># java environment</span><span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/java/jdk1.8.0_281<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">${JAVA_HOME}</span>/jre/lib/rt.jar:<span class="token variable">${JAVA_HOME}</span>/lib/dt.jar:<span class="token variable">${JAVA_HOME}</span>/lib/tools.jar<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>设置完成后，重新编译配置文件：<code>source /etc/profile</code></p><p>最后检查是否成功安装：<code>java -version</code> 如何输出了 java 的版本信息就说明成功了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>centos7-install-mysql</title>
       <link href="/2021/07/06/centos7-install-mysql/"/>
       <url>/2021/07/06/centos7-install-mysql/</url>

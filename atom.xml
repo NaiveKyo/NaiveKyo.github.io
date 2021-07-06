@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-06T09:43:05.769Z</updated>
+  <updated>2021-07-06T09:53:44.403Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7-install-jdk</title>
+    <link href="http://naivekyo.github.io/2021/07/06/centos7-install-jdk/"/>
+    <id>http://naivekyo.github.io/2021/07/06/centos7-install-jdk/</id>
+    <published>2021-07-06T09:46:20.000Z</published>
+    <updated>2021-07-06T09:53:44.403Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、卸载-Open-JDK&quot;&gt;&lt;a href=&quot;#一、卸载-Open-JDK&quot; class=&quot;headerlink&quot; title=&quot;一、卸载 Open-JDK&quot;&gt;&lt;/a&gt;一、卸载 Open-JDK&lt;/h2&gt;&lt;p&gt;有的 Linux 系统可能已经安装了</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    
+    <category term="Java" scheme="http://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7-install-mysql</title>
