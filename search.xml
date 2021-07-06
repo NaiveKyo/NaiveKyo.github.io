@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>centos7-install-git</title>
+      <link href="/2021/07/06/centos7-install-git/"/>
+      <url>/2021/07/06/centos7-install-git/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>CentOS 版本的 Linux，可能默认就带有 git，但是其 yum 仓库中支持的 Git 版本最高是 1.8.1。</p><p>如果直接使用命令 <code>yum -y install git</code>，则安装的是其默认的，我们需要安装最新版的。</p><p>查看版本 默认支持的版本 <code>yum info git</code></p><h2 id="二、安装最新版-Git"><a href="#二、安装最新版-Git" class="headerlink" title="二、安装最新版 Git"></a>二、安装最新版 Git</h2><h3 id="1、卸载旧的-Git、安装新的"><a href="#1、卸载旧的-Git、安装新的" class="headerlink" title="1、卸载旧的 Git、安装新的"></a>1、卸载旧的 Git、安装新的</h3><ul><li><p>如果系统中自带的有 Git，先卸载：<code>yum remove git</code></p></li><li><p>想要安装任意版本的 Git，我们可以使用 <code>wget</code> 或者 <code>curl</code> 工具到对应的仓库中获取 Git</p></li><li><p>推荐网站：<code>https://mirrors.edge.kernel.org/pub/software/scm/git/</code></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 例如这里安装的 2.18.4 版本的 git</span><span class="token function">wget</span> https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.4.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>由于我们没有使用 yum 安装，所以 Git 所需要的依赖只能自己来安装了，感兴趣可以试试查看依赖 </p></li><li><p><code>yum deplist git</code></p></li><li><p>安装依赖及下面的步骤</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装依赖</span>yum <span class="token function">install</span> -y zlib-devel bzip2-devel openssl-devel ncurses-devel gcc perl-ExtUtils-MakeMaker package<span class="token comment"># 解压 Git</span><span class="token function">tar</span> -zxvf ./git-2.18.4.tar.gz<span class="token comment"># 安装</span><span class="token builtin class-name">cd</span> ./git-2.18.4/<span class="token comment"># 这里 /usr/local/git 是我创建的放置 git 的地方 /usr/local/git/git-2.18.4</span>./configure --prefix<span class="token operator">=</span>/usr/local/git all<span class="token comment"># 编译并安装 git 注意这里需要 c++ 的编译器，如果没有就 yum install gcc-c++</span><span class="token comment"># 这里默认安装到 /usr/local 下，可以指定目录，例如</span><span class="token comment"># make install /usr/local/mygit</span><span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h3 id="2、Git-相关配置"><a href="#2、Git-相关配置" class="headerlink" title="2、Git 相关配置"></a>2、Git 相关配置</h3><ul><li><p>配置环境变量</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/profile<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token variable">${MAVEN_HOME}</span>/bin:/usr/local/git/bin<span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>如果想要卸载 Git，安装其他的版本，可以这样：<code>yum remove git</code></p></li><li><p>配置</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 配置基本信息</span><span class="token function">git</span> config --global user.name <span class="token string">"username"</span><span class="token function">git</span> config --global user.email QQ邮箱<span class="token comment"># 查看配置</span><span class="token function">git</span> config --list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h2 id="三、补充小知识"><a href="#三、补充小知识" class="headerlink" title="三、补充小知识"></a>三、补充小知识</h2><blockquote><p>Linux 安装软件源码包的流程：</p></blockquote><p>一般会涉及到三个步骤：</p><p>一般会涉及到三个步骤：</p><ol><li><p><code>./configure</code></p><ul><li><p>该步骤主要用来检测系统的配置、环境以及相关依赖，如果缺少相关依赖，该脚本会终止执行，软件安装失败</p><p>当该脚本执行完成之后，会生成一个 Makefile 文件，该文件规定了用什么编译器、编译参数等等，描述了文件编译的互相依赖关系</p></li></ul></li><li><p><code>make</code></p><p>该步骤主要用来编译源代码，make 命令会从 Makefile 文件中读取相关指令，编译完成后会生成可执行文件</p></li><li><p><code>make install</code></p><p>该步骤主要用来安装软件，make install 命令会从 Makefile 文件中读取相关指令，然后将软件安装到指定的位置， 默认安装位置是 <code>/usr/local</code></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>centos7-install-jdk</title>
       <link href="/2021/07/06/centos7-install-jdk/"/>
       <url>/2021/07/06/centos7-install-jdk/</url>
