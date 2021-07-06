@@ -588,6 +588,7 @@ header .go-back i {
     font-size: 1.4rem;
     line-height: 1.4em;
     color: #141851;
+	font-weight: bold;
 }
 
 .bg-cover .post-title {
