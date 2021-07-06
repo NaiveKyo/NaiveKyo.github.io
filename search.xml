@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>draft-test</title>
+      <link href="/2021/07/06/draft-test/"/>
+      <url>/2021/07/06/draft-test/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、测试"><a href="#一、测试" class="headerlink" title="一、测试"></a>一、测试</h2><p>测试流程：</p><ol><li>创建草稿</li><li>发布草稿</li><li>查看结果</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> BlogTest </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Test </tag>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2021/07/05/hello-world/"/>
       <url>/2021/07/05/hello-world/</url>
