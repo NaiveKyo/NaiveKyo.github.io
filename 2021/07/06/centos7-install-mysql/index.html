@@ -1,0 +1,1670 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux MySQL8">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>centos7-install-mysql | NaiveKyo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/comment_bg.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">NaiveKyo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/comment_bg.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">NaiveKyo</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">centos7-install-mysql</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-07-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2021-07-06
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    7.1k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、官方推荐"><a href="#一、官方推荐" class="headerlink" title="一、官方推荐"></a>一、官方推荐</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/mysql-installation-excerpt/5.6/en/linux-installation-yum-repo.html">https://dev.mysql.com/doc/mysql-installation-excerpt/5.6/en/linux-installation-yum-repo.html</a>    </p>
+<p>根据官网推荐安装 <code>yum 仓库</code></p>
+<p>注意自己的 Linux 版本，例如我用的 CentOS7 7.x 可以下载对应的 Oracle Linux 7 版本的 yum 仓库配置</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/yum/">https://dev.mysql.com/downloads/repo/yum/</a></p>
+<p>然后输入以下命令更新自己的本地 yum 仓库列表：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> yum localinstall mysql57-community-release-el7-<span class="token punctuation">{</span>version-number<span class="token punctuation">}</span>.noarch.rpm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>可以输入以下命令检查是否成功更新本地 yum 仓库：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum repolist enabled <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"mysql.*-community.*"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>更新成功后可以直接安装，官方下载的 yum 仓库配置，默认开启当前 GA 版本的支持，如果想更换版本可以这样：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 先查看哪些版本被启用</span>
+shell<span class="token operator">&gt;</span> yum repolist all <span class="token operator">|</span> <span class="token function">grep</span> mysql
+
+<span class="token comment"># 然后可以更换版本, 这里假如当前GA版本为 5.7，想要更换为 5.6 </span>
+shell<span class="token operator">&gt;</span> <span class="token function">sudo</span> yum-config-manager --disable mysql57-community
+shell<span class="token operator">&gt;</span> <span class="token function">sudo</span> yum-config-manager --enable mysql56-community
+
+<span class="token comment"># 一般都不用更换版本</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>除了使用命令更改，还可以直接找到相关文件进行修改：</p>
+<p> <code>/etc/yum.repos.d/mysql-community.repo</code> </p>
+<p>如果是 EL8 版本的内核，还需要考虑其他情况，具体参见官方文档</p>
+<h2 id="二、默认安装（推荐）"><a href="#二、默认安装（推荐）" class="headerlink" title="二、默认安装（推荐）"></a>二、默认安装（推荐）</h2><p>安装命令：</p>
+<p>两种方式，可以安装到默认的位置，也可以自定义（不推荐，比较麻烦）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 默认</span>
+<span class="token function">sudo</span> yum -y <span class="token function">install</span> mysql-community-server
+
+<span class="token comment"># 自定义</span>
+<span class="token function">sudo</span> yum -c /etc/yum --releasever<span class="token operator">=</span>/ --installroot<span class="token operator">=</span>/usr/local/mysql-8.0 -y <span class="token function">install</span> mysql-community-server
+
+<span class="token comment"># 参数</span>
+<span class="token comment"># -c 是读取 yum 的配置文件路径</span>
+<span class="token comment"># --releasever=/</span>
+<span class="token comment">#	  我们可以在 yum 配置源的文件中找到很多这样的字符 $releasever 和 $basearch</span>
+<span class="token comment">#		$releasever 代表当前系统的发行版本，可以通过 rpm -qi centos-release</span>
+<span class="token comment">#		$basearch 是我们的系统硬件架构（CPU 指令集），可以使用命令 arch 得到</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>yum 虽然很好的解决了 软件依赖 的问题，但是不能查看软件的位置，我们可以使用 rpm 来查看相关信息</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看软件包安装的目录和文件（包括了可执行程序、配置文件和帮助文档）。</span>
+<span class="token function">rpm</span> -ql mysql-community-server
+
+<span class="token comment"># 查看已安装软件包的详细信息。 和 yum info 有点类似</span>
+<span class="token function">rpm</span> -qi mysql-community-server
+
+<span class="token comment"># 查看已安装软件包的配置</span>
+<span class="token function">rpm</span> -qc mysql-community-server <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到默认安装后，mysql 的相关文件的位置是严格遵守 Linux 目录的 <code>FHS</code>。</p>
+<h3 id="1、开启-MySQL-服务"><a href="#1、开启-MySQL-服务" class="headerlink" title="1、开启 MySQL 服务"></a>1、开启 MySQL 服务</h3><p>这里要提一下：</p>
+<p>MySQL 官方推荐创建 mysql 用户和用户组来管理 mysql 服务。</p>
+<p>我们采用的 yum 方式安装 mysql-community-server ，已经默认给我们创建好了对应的系统账户和组，所以可以不用管这一步。</p>
+<p>使用 <code>cat /etc/passwd | grep mysql</code> 可以看到 mysql 系统账户</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建组</span>
+<span class="token function">groupadd</span> mysql
+<span class="token comment"># 创建用户</span>
+<span class="token function">useradd</span> -r -g mysql -s /bin/false mysql
+<span class="token comment"># 注意，我们只需要创建一个账户用于管理 mysql 服务，所以可以这样做</span>
+<span class="token comment"># -r 创建系统账户，不会给它生成家目录</span>
+<span class="token comment"># -g 属于 mysql 组</span>
+<span class="token comment"># -s 指定该系统账户持有的 shell 为 /bin/false</span>
+<span class="token comment">#    </span>
+<span class="token comment"># 最后还需要给相应的mysql文件设置权限：chmod 750 mysql-files</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>现在可以开启服务了：</p>
+<p>分为两种情况：</p>
+<ul>
+<li><p>初始化随机密码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 默认安装，环境变量已经配置好了</span>
+mysqld --initialize --user<span class="token operator">=</span>mysql
+
+<span class="token comment"># 使用 systemctl 开启服务</span>
+systemctl start mysqld
+
+<span class="token comment"># 查看初始化后随机生成的密码</span>
+<span class="token function">tail</span> /var/log/mysqld.log <span class="token operator">|</span> <span class="token function">grep</span> temporary
+<span class="token comment"># 可以看到</span>
+<span class="token punctuation">[</span>Note<span class="token punctuation">]</span> <span class="token punctuation">[</span>MY-010454<span class="token punctuation">]</span> <span class="token punctuation">[</span>Server<span class="token punctuation">]</span> A temporary password is generated <span class="token keyword">for</span> root@localhost: <span class="token operator">&lt;</span>6za-KXb<span class="token operator">&amp;</span>j<span class="token comment">#p</span>
+<span class="token comment"># 后面就是密码</span>
+
+<span class="token comment"># 登录数据库并修改密码</span>
+mysql -u root -p
+enter password: （注：这里输入密码不显示，输入刚刚的随机密码就好了）
+
+<span class="token comment"># 登录成功后修改密码才能执行下一步操作, 这里我设置密码为 123456</span>
+ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'123456'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>不生成密码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 如果想不生成随机密码，可以使用如下命令初始化数据目录</span>
+mysqld --initialize-insecure --user<span class="token operator">=</span>mysql
+
+<span class="token comment"># 开启服务后，登录时使用</span>
+mysql -u root --skip-password
+
+<span class="token comment"># 然后修改密码</span>
+ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'root-password'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="2、修改-MySQL-配置文件"><a href="#2、修改-MySQL-配置文件" class="headerlink" title="2、修改 MySQL 配置文件"></a>2、修改 MySQL 配置文件</h3><p>默认安装一般 MySQL 服务启动时加载的配置参数在 <code>/etc/my.cnf</code> 文件中，我们可以修改其中的配置：</p>
+<p>下面列举最简单的一种情况，以方便我们在 Windows 中使用工具远程连接服务器数据库：</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">client</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">port</span><span class="token punctuation">=</span><span class="token value attr-value">3306</span>
+<span class="token key attr-name">socket</span><span class="token punctuation">=</span><span class="token value attr-value">/tmp/mysql.sock</span>
+
+<span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">mysqld</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">port</span><span class="token punctuation">=</span><span class="token value attr-value">3306</span>
+<span class="token key attr-name">socket</span><span class="token punctuation">=</span><span class="token value attr-value">/tmp/mysql.sock</span>
+<span class="token key attr-name">key_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">16M</span>
+<span class="token key attr-name">max_allowed_packet</span><span class="token punctuation">=</span><span class="token value attr-value">128M</span>
+
+<span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">mysqldump</span><span class="token punctuation">]</span></span>
+quick<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>因为我们要使用 root 账户连接，所以需要了解一下 MySQL 中账户访问的相关知识：</p>
+<ul>
+<li><p>mysql 中账户名由两部分组成 ‘user_name‘@’host_name’</p>
+</li>
+<li><p>在 MySQL 中，不仅要指定谁可以连接，还要指定可以从什么地方进行连接，这意味着，可以有拥有相同名字、但会从不同位置连接服务器的两个用户</p>
+<p>进入 MySQL 命令行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">use mysql<span class="token punctuation">;</span>
+<span class="token keyword">select</span> user, <span class="token function">host</span> from user<span class="token punctuation">;</span>
+
+<span class="token comment"># 可以看到 root 的 host 是 localhost</span>
+<span class="token comment"># 这意味着 root 用户只能从本机访问 mysql 服务</span>
+<span class="token comment"># 我们现在想在远程访问就需要做一些修改</span>
+<span class="token comment"># 为了方便，我这里直接将 访问地址 改为通配符 % ，允许任何地方连接</span>
+<span class="token comment"># 如果是实际的服务器，可能会带来风险，请视实际情况而定</span>
+update user <span class="token builtin class-name">set</span> <span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token string">'%'</span> where <span class="token assign-left variable">user</span><span class="token operator">=</span><span class="token string">'root'</span><span class="token punctuation">;</span>
+<span class="token comment"># 刷新权限</span>
+flush privileges<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="3、开放端口和服务"><a href="#3、开放端口和服务" class="headerlink" title="3、开放端口和服务"></a>3、开放端口和服务</h3><p>由于 centos 7 拥有防火墙，如果我们想要远程访问 MySQL 服务，就需要开放相应的端口和服务：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 最简单的情况，关闭防火墙，并禁用它</span>
+systemctl stop firewalld
+systemctl disable firewalld
+
+<span class="token comment"># 安全的情况</span>
+<span class="token comment"># 我们在 my.cnf 中指定了MySQL使用的端口</span>
+<span class="token comment"># 开发端口</span>
+firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">3306</span>/tcp --permanent
+<span class="token comment"># 开放服务</span>
+firewall-cmd --zone<span class="token operator">=</span>public --add-service<span class="token operator">=</span>mysql --permanent
+
+<span class="token comment"># 重新加载</span>
+firewall-cmd --reload
+
+<span class="token comment"># 查看结果</span>
+firewall-cmd --list-port
+firewall-cmd --list-service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4、测试远程连接"><a href="#4、测试远程连接" class="headerlink" title="4、测试远程连接"></a>4、测试远程连接</h3><p>自己使用工具进行远程连接测试</p>
+<h2 id="三、自定义安装"><a href="#三、自定义安装" class="headerlink" title="三、自定义安装"></a>三、自定义安装</h2><h3 id="1、命令"><a href="#1、命令" class="headerlink" title="1、命令"></a>1、命令</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> yum -c /etc/yum --releasever<span class="token operator">=</span>/ --installroot<span class="token operator">=</span>/usr/local/mysql_8.0 -y <span class="token function">install</span> mysql-community-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我在这里安装到 <code>/usr/local/mysql_8.0</code> 下面，查看目录后可以发现，在该目录下的所有目录和根路径下面的一样，下面列举出常用目录：</p>
+<ul>
+<li>可以发现 <code>mysql_8.0/bin/mysql</code> 和 <code>mysql_8.0/usr/bin/mysql</code>，以及 <code>mysql_8.0/sbin/mysqld</code> 和 <code>mysql_8.0/usr/sbin/mysqld</code>，都是 <strong>硬链接</strong> 的关系</li>
+<li>一些常用的命令现在感觉有些冗余，可见虽然使用了 安装路径 后便于管理，但是使用起来感觉不太方便，所以还是推荐默认安装</li>
+<li>而且现在还需要配置环境变量</li>
+</ul>
+<h3 id="2、配置环境变量"><a href="#2、配置环境变量" class="headerlink" title="2、配置环境变量"></a>2、配置环境变量</h3><p>设置 mysql <strong>系统环境变量</strong></p>
+<p>Linux 推荐我们在 <code>/etc/profile.d/</code> 目录下通过编写 mysql.sh 来配置其环境变量，因为 Linux 启动后会读取  <code>/etc/profile</code>  文件，然后根据其中的内容又会调用 <code>/etc/profile.d/</code> 目录下的脚本文件，但是又要花时间学习 shell 编写脚本。为了方便还是直接在 <code>/etc/profile</code> 中编写环境变量。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 如果 /etc/profile 不可以编写，先更改权限 chmod u+w /etc/profile</span>
+<span class="token comment"># 最后一行加上</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/mysql_8.0/bin:/usr/local/mysql_8.0/sbin
+<span class="token comment"># 使其生效</span>
+<span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="3、关于配置文件"><a href="#3、关于配置文件" class="headerlink" title="3、关于配置文件"></a>3、关于配置文件</h3><p>Linux 中的 MySQL 配置文件的名称为 <code>my.cnf</code>，采用自定义安装，可以在 <code>/etc/my.cnf</code> 和 <code>/usr/local/mysql_8.0/etc/my.cnf</code> 找到，我们只需关注 mysql 安装路径下的配置文件就好了。</p>
+<p>感兴趣可以到官网看看：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html">https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html</a></p>
+<h3 id="4、自定义路径的坑"><a href="#4、自定义路径的坑" class="headerlink" title="4、自定义路径的坑"></a>4、自定义路径的坑</h3><p>可能会遇到这个错误：</p>
+<p><code>Cannot find a valid baseurl for repo: base/$releasever/x86_64</code></p>
+<ul>
+<li><strong>这里是由于我指定了安装路径但是没有指定内核版本导致的问题，加上 –releasever=/ 就好了，当然了解一下怎么换源也不错</strong></li>
+<li>**在虚拟机中测试的时候，由于我设置静态 ip 的时候配置 dns 没有正确配置，也报了这个错，正确配置应该是这样的 ** <code>DNS1=114.114.114.114</code>，第二个 DNS2 可加可不加，记住要加 DNS1， OvO</li>
+</ul>
+<p>现在尝试配置其他源：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 可以先查看默认的源</span>
+<span class="token function">cat</span> /etc/yum.repos.d/CentOS-Base.repo <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>base<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Base
+<span class="token assign-left variable">mirrorlist</span><span class="token operator">=</span>http://mirrorlist.centos.org/?release<span class="token operator">=</span><span class="token variable">$releasever</span><span class="token operator">&amp;</span><span class="token assign-left variable">arch</span><span class="token operator">=</span><span class="token variable">$basearch</span><span class="token operator">&amp;</span><span class="token assign-left variable">repo</span><span class="token operator">=</span>os<span class="token operator">&amp;</span><span class="token assign-left variable">infra</span><span class="token operator">=</span><span class="token variable">$infra</span>
+<span class="token comment">#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/</span>
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+<span class="token comment">#released updates </span>
+<span class="token punctuation">[</span>updates<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Updates
+<span class="token assign-left variable">mirrorlist</span><span class="token operator">=</span>http://mirrorlist.centos.org/?release<span class="token operator">=</span><span class="token variable">$releasever</span><span class="token operator">&amp;</span><span class="token assign-left variable">arch</span><span class="token operator">=</span><span class="token variable">$basearch</span><span class="token operator">&amp;</span><span class="token assign-left variable">repo</span><span class="token operator">=</span>updates<span class="token operator">&amp;</span><span class="token assign-left variable">infra</span><span class="token operator">=</span><span class="token variable">$infra</span>
+<span class="token comment">#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/</span>
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+<span class="token comment">#additional packages that may be useful</span>
+<span class="token punctuation">[</span>extras<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Extras
+<span class="token assign-left variable">mirrorlist</span><span class="token operator">=</span>http://mirrorlist.centos.org/?release<span class="token operator">=</span><span class="token variable">$releasever</span><span class="token operator">&amp;</span><span class="token assign-left variable">arch</span><span class="token operator">=</span><span class="token variable">$basearch</span><span class="token operator">&amp;</span><span class="token assign-left variable">repo</span><span class="token operator">=</span>extras<span class="token operator">&amp;</span><span class="token assign-left variable">infra</span><span class="token operator">=</span><span class="token variable">$infra</span>
+<span class="token comment">#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/</span>
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+<span class="token comment">#additional packages that extend functionality of existing packages</span>
+<span class="token punctuation">[</span>centosplus<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - Plus
+<span class="token assign-left variable">mirrorlist</span><span class="token operator">=</span>http://mirrorlist.centos.org/?release<span class="token operator">=</span><span class="token variable">$releasever</span><span class="token operator">&amp;</span><span class="token assign-left variable">arch</span><span class="token operator">=</span><span class="token variable">$basearch</span><span class="token operator">&amp;</span><span class="token assign-left variable">repo</span><span class="token operator">=</span>centosplus<span class="token operator">&amp;</span><span class="token assign-left variable">infra</span><span class="token operator">=</span><span class="token variable">$infra</span>
+<span class="token comment">#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/</span>
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>简单分析以下每个源（源都以 [] 括住）中主要的配置信息：以 [base] 为例</p>
+<ul>
+<li>[base] 源</li>
+<li>name：说明当前软件源的意义，不重要</li>
+<li>mirrorlist：列出这个软件源可以使用的镜像站，如果不想使用，可以注释掉</li>
+<li><strong>baseurl</strong>：这个最重要，后面接的是这个软件源的实际地址，mirrorlist 是 YUM 程序自动识别镜像站，baseurl 则是指定固定的软件源网址</li>
+<li>enable=1：让该软件源被启用，不想启用就设置为 0</li>
+<li>gpgcheck=1：指定要查看 RPM 的数字签名</li>
+<li>gpgkey=xxx：就是数字签名的公钥文件所在位置，使用默认值即可</li>
+</ul>
+<p>例如改为阿里云源：</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/repo/">http://mirrors.aliyun.com/repo/</a></p>
+<p>我们可以下载官方的 yum 源配置，windows 下直接下载文件，或者在 Linux 的图形界面访问官网。</p>
+<p>我习惯于使用 命令行 ，所以使用如下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 有个插件 fastestmirror 是用于测试当有多个源时选择速度最快的那个，可禁可不禁</span>
+<span class="token comment"># 我们对 yum 的源配置文件做备份就好了</span>
+<span class="token function">cp</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+<span class="token comment"># 获取 阿里云 的 repo，直接覆盖就好了，注意内核版本</span>
+<span class="token function">wget</span> -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+<span class="token comment"># Tip：我没有用这种方法，而是在原来的文件中直接将所有源禁用，设置 enable=0</span>
+<span class="token comment"># 然后再去阿里云对应的 repo 文件中复制所有配置源信息到目标文件中</span>
+<span class="token comment"># 最后启用 阿里云 的源，设置 enable=1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>然后清除缓存再生成缓存：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 清除缓存</span>
+yum clean all
+<span class="token function">rm</span> -rf /var/cache/yum
+
+<span class="token comment"># 重新生成缓存</span>
+yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="5、自定义安装配置"><a href="#5、自定义安装配置" class="headerlink" title="5、自定义安装配置"></a>5、自定义安装配置</h3><p>参考官网：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html">https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html</a></p>
+<p>官方推荐创建 mysql 组 和 用户 来管理 mysql，允许该用户连接数据库服务器，远程安全连接可以使用 <code>mysql_ssl-rsa_setup</code> 程序创建默认的 SSL 和 RSA 文件。不过我们是学习就算了</p>
+<p>tip：在MySQL 8.0中，默认的身份验证插件已从更改 <code>mysql_native_password</code>为 <code>caching_sha2_password</code>，并且 默认情况下<code>'root'@'localhost'</code>使用管理帐户<code>caching_sha2_password</code>。</p>
+<h2 id="四、配置文件"><a href="#四、配置文件" class="headerlink" title="四、配置文件"></a>四、配置文件</h2><p>my.conf 需要慢慢调试找到最优配置：</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">client</span><span class="token punctuation">]</span></span>    
+<span class="token key attr-name">port</span> <span class="token punctuation">=</span> <span class="token value attr-value">3306</span>
+<span class="token key attr-name">socket</span> <span class="token punctuation">=</span> <span class="token value attr-value">/tmp/mysql.sock</span>
+
+<span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">mysqld</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">user</span> <span class="token punctuation">=</span> <span class="token value attr-value">mysql    --- 表示MySQL的管理用户</span>
+<span class="token key attr-name">port</span> <span class="token punctuation">=</span> <span class="token value attr-value">3306    --- 端口</span>
+<span class="token key attr-name">socket</span> <span class="token punctuation">=</span> <span class="token value attr-value">/tmp/mysql.sock    -- 启动的sock文件</span>
+<span class="token key attr-name">log-bin</span> <span class="token punctuation">=</span> <span class="token value attr-value">/data/mysql-bin</span>
+<span class="token key attr-name">basedir</span> <span class="token punctuation">=</span> <span class="token value attr-value">/usr/local/mysql</span>
+<span class="token key attr-name">datadir</span> <span class="token punctuation">=</span> <span class="token value attr-value">/data/</span>
+<span class="token key attr-name">pid-file</span> <span class="token punctuation">=</span> <span class="token value attr-value">/data/mysql.pid</span>
+<span class="token key attr-name">user</span> <span class="token punctuation">=</span> <span class="token value attr-value">mysql</span>
+<span class="token key attr-name">bind-address</span> <span class="token punctuation">=</span> <span class="token value attr-value">0.0.0.0</span>
+<span class="token key attr-name">server-id</span> <span class="token punctuation">=</span> <span class="token value attr-value">1 #表示是本机的序号为1,一般来讲就是master的意思</span>
+
+skip-name-resolve
+<span class="token comment"># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，</span>
+<span class="token comment"># 则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求</span>
+
+<span class="token comment">#skip-networking</span>
+
+<span class="token key attr-name">back_log</span> <span class="token punctuation">=</span> <span class="token value attr-value">600</span>
+<span class="token comment"># MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，</span>
+<span class="token comment"># 然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。</span>
+<span class="token comment"># 如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，</span>
+<span class="token comment"># 以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。</span>
+<span class="token comment"># 另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。</span>
+<span class="token comment"># 你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</span>
+
+<span class="token key attr-name">max_connections</span> <span class="token punctuation">=</span> <span class="token value attr-value">1000</span>
+<span class="token comment"># MySQL的最大连接数，如果服务器的并发连接请求量比较大，建议调高此值，以增加并行连接数量，当然这建立在机器能支撑的情况下，因为如果连接数越多，介于MySQL会为每个连接提供连接缓冲区，就会开销越多的内存，所以要适当调整该值，不能盲目提高设值。可以过'conn%'通配符查看当前状态的连接数量，以定夺该值的大小。</span>
+
+<span class="token key attr-name">max_connect_errors</span> <span class="token punctuation">=</span> <span class="token value attr-value">6000</span>
+<span class="token comment"># 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH HOST。</span>
+
+<span class="token key attr-name">open_files_limit</span> <span class="token punctuation">=</span> <span class="token value attr-value">65535</span>
+<span class="token comment"># MySQL打开的文件描述符限制，默认最小1024;当open_files_limit没有被配置的时候，比较max_connections*5和ulimit -n的值，哪个大用哪个，</span>
+<span class="token comment"># 当open_file_limit被配置的时候，比较open_files_limit和max_connections*5的值，哪个大用哪个。</span>
+
+<span class="token key attr-name">table_open_cache</span> <span class="token punctuation">=</span> <span class="token value attr-value">128</span>
+<span class="token comment"># MySQL每打开一个表，都会读入一些数据到table_open_cache缓存中，当MySQL在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值64</span>
+<span class="token comment"># 假定系统有200个并发连接，则需将此参数设置为200*N(N为每个连接所需的文件描述符数目)；</span>
+<span class="token comment"># 当把table_open_cache设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上</span>
+
+<span class="token key attr-name">max_allowed_packet</span> <span class="token punctuation">=</span> <span class="token value attr-value">4M</span>
+<span class="token comment"># 接受的数据包大小；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。例如，仅当你发出长查询或MySQLd必须返回大的结果行时MySQLd才会分配更多内存。</span>
+<span class="token comment"># 该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。</span>
+
+<span class="token key attr-name">binlog_cache_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">1M</span>
+<span class="token comment"># 一个事务，在没有提交的时候，产生的日志，记录到Cache中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认binlog_cache_size大小32K</span>
+
+<span class="token key attr-name">max_heap_table_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变</span>
+
+<span class="token key attr-name">tmp_table_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">16M</span>
+<span class="token comment"># MySQL的heap（堆积）表缓冲大小。所有联合在一个DML指令内完成，并且大多数联合甚至可以不用临时表即可以完成。</span>
+<span class="token comment"># 大多数临时表是基于内存的(HEAP)表。具有大的记录长度的临时表 (所有列的长度的和)或包含BLOB列的表存储在硬盘上。</span>
+<span class="token comment"># 如果某个内部heap（堆积）表大小超过tmp_table_size，MySQL可以根据需要自动将内存中的heap表改为基于硬盘的MyISAM表。还可以通过设置tmp_table_size选项来增加临时表的大小。也就是说，如果调高该值，MySQL同时将增加heap表的大小，可达到提高联接查询速度的效果</span>
+
+<span class="token key attr-name">read_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">2M</span>
+<span class="token comment"># MySQL读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySQL会为它分配一段内存缓冲区。read_buffer_size变量控制这一缓冲区的大小。</span>
+<span class="token comment"># 如果对表的顺序扫描请求非常频繁，并且你认为频繁扫描进行得太慢，可以通过增加该变量值以及内存缓冲区大小提高其性能</span>
+
+<span class="token key attr-name">read_rnd_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># MySQL的随机读缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，</span>
+<span class="token comment"># MySQL会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，可适当调高该值。但MySQL会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大</span>
+
+<span class="token key attr-name">sort_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># MySQL执行排序使用的缓冲大小。如果想要增加ORDER BY的速度，首先看是否可以让MySQL使用索引而不是额外的排序阶段。</span>
+<span class="token comment"># 如果不能，可以尝试增加sort_buffer_size变量的大小</span>
+
+<span class="token key attr-name">join_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享</span>
+
+<span class="token key attr-name">thread_cache_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8</span>
+<span class="token comment"># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，</span>
+<span class="token comment"># 如果线程重新被请求，那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，</span>
+<span class="token comment"># 增加这个值可以改善系统性能.通过比较Connections和Threads_created状态的变量，可以看到这个变量的作用。(–&gt;表示要调整的值)</span>
+<span class="token comment"># 根据物理内存设置规则如下：</span>
+<span class="token comment"># 1G  —&gt; 8</span>
+<span class="token comment"># 2G  —&gt; 16</span>
+<span class="token comment"># 3G  —&gt; 32</span>
+<span class="token comment"># 大于3G  —&gt; 64</span>
+
+<span class="token key attr-name">query_cache_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment">#MySQL的查询缓冲大小（从4.0.1开始，MySQL提供了查询缓冲机制）使用查询缓冲，MySQL将SELECT语句和查询结果存放在缓冲区中，</span>
+<span class="token comment"># 今后对于同样的SELECT语句（区分大小写），将直接从缓冲区中读取结果。根据MySQL用户手册，使用查询缓冲最多可以达到238%的效率。</span>
+<span class="token comment"># 通过检查状态值'Qcache_%'，可以知道query_cache_size设置是否合理：如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不够的情况，</span>
+<span class="token comment"># 如果Qcache_hits的值也非常大，则表明查询缓冲使用非常频繁，此时需要增加缓冲大小；如果Qcache_hits的值不大，则表明你的查询重复率很低，</span>
+<span class="token comment"># 这种情况下使用查询缓冲反而会影响效率，那么可以考虑不用查询缓冲。此外，在SELECT语句中加入SQL_NO_CACHE可以明确表示不使用查询缓冲</span>
+
+<span class="token key attr-name">query_cache_limit</span> <span class="token punctuation">=</span> <span class="token value attr-value">2M</span>
+<span class="token comment">#指定单个查询能够使用的缓冲区大小，默认1M</span>
+
+<span class="token key attr-name">key_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">4M</span>
+<span class="token comment">#指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，</span>
+<span class="token comment"># 系统将开始换页并且真的变慢了。对于内存在4GB左右的服务器该参数可设置为384M或512M。通过检查状态值Key_read_requests和Key_reads，</span>
+<span class="token comment"># 可以知道key_buffer_size设置是否合理。比例key_reads/key_read_requests应该尽可能的低，</span>
+<span class="token comment"># 至少是1:100，1:1000更好(上述状态值可以使用SHOW STATUS LIKE 'key_read%'获得)。注意：该参数值设置的过大反而会是服务器整体效率降低</span>
+
+<span class="token key attr-name">ft_min_word_len</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span>
+<span class="token comment"># 分词词汇最小长度，默认4</span>
+
+<span class="token key attr-name">transaction_isolation</span> <span class="token punctuation">=</span> <span class="token value attr-value">REPEATABLE-READ</span>
+<span class="token comment"># MySQL支持4种事务隔离级别，他们分别是：</span>
+<span class="token comment"># READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.</span>
+<span class="token comment"># 如没有指定，MySQL默认采用的是REPEATABLE-READ，ORACLE默认的是READ-COMMITTED</span>
+
+<span class="token key attr-name">log_bin</span> <span class="token punctuation">=</span> <span class="token value attr-value">mysql-bin</span>
+<span class="token key attr-name">binlog_format</span> <span class="token punctuation">=</span> <span class="token value attr-value">mixed</span>
+<span class="token key attr-name">expire_logs_days</span> <span class="token punctuation">=</span> <span class="token value attr-value">30 #超过30天的binlog删除</span>
+
+<span class="token key attr-name">log_error</span> <span class="token punctuation">=</span> <span class="token value attr-value">/data/mysql/mysql-error.log #错误日志路径</span>
+<span class="token key attr-name">slow_query_log</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span>
+<span class="token key attr-name">long_query_time</span> <span class="token punctuation">=</span> <span class="token value attr-value">1 #慢查询时间 超过1秒则为慢查询</span>
+<span class="token key attr-name">slow_query_log_file</span> <span class="token punctuation">=</span> <span class="token value attr-value">/data/mysql/mysql-slow.log</span>
+
+<span class="token key attr-name">performance_schema</span> <span class="token punctuation">=</span> <span class="token value attr-value">0</span>
+explicit_defaults_for_timestamp
+
+<span class="token comment">#lower_case_table_names = 1 #不区分大小写</span>
+
+skip-external-locking #MySQL选项以避免外部锁定。该选项默认开启
+
+<span class="token key attr-name">default-storage-engine</span> <span class="token punctuation">=</span> <span class="token value attr-value">InnoDB #默认存储引擎</span>
+
+<span class="token key attr-name">innodb_file_per_table</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span>
+<span class="token comment"># InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间</span>
+<span class="token comment"># 独立表空间优点：</span>
+<span class="token comment"># 1．每个表都有自已独立的表空间。</span>
+<span class="token comment"># 2．每个表的数据和索引都会存在自已的表空间中。</span>
+<span class="token comment"># 3．可以实现单表在不同的数据库中移动。</span>
+<span class="token comment"># 4．空间可以回收（除drop table操作处，表空不能自已回收）</span>
+<span class="token comment"># 缺点：</span>
+<span class="token comment"># 单表增加过大，如超过100G</span>
+<span class="token comment"># 结论：</span>
+<span class="token comment"># 共享表空间在Insert操作上少有优势。其它都没独立表空间表现好。当启用独立表空间时，请合理调整：innodb_open_files</span>
+
+<span class="token key attr-name">innodb_open_files</span> <span class="token punctuation">=</span> <span class="token value attr-value">500</span>
+<span class="token comment"># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300</span>
+
+<span class="token key attr-name">innodb_buffer_pool_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">64M</span>
+<span class="token comment"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.</span>
+<span class="token comment"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.</span>
+<span class="token comment"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的80%</span>
+<span class="token comment"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.</span>
+<span class="token comment"># 注意在32位系统上你每个进程可能被限制在 2-3.5G 用户层面内存限制,</span>
+<span class="token comment"># 所以不要设置的太高.</span>
+
+<span class="token key attr-name">innodb_write_io_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span>
+<span class="token key attr-name">innodb_read_io_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span>
+<span class="token comment"># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4</span>
+<span class="token comment"># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64</span>
+
+<span class="token key attr-name">innodb_thread_concurrency</span> <span class="token punctuation">=</span> <span class="token value attr-value">0</span>
+<span class="token comment"># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量</span>
+
+<span class="token key attr-name">innodb_purge_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span>
+<span class="token comment"># InnoDB中的清除操作是一类定期回收无用数据的操作。在之前的几个版本中，清除操作是主线程的一部分，这意味着运行时它可能会堵塞其它的数据库操作。</span>
+<span class="token comment"># 从MySQL5.5.X版本开始，该操作运行于独立的线程中,并支持更多的并发数。用户可通过设置innodb_purge_threads配置参数来选择清除操作是否使用单</span>
+<span class="token comment"># 独线程,默认情况下参数设置为0(不使用单独线程),设置为 1 时表示使用单独的清除线程。建议为1</span>
+
+<span class="token key attr-name">innodb_flush_log_at_trx_commit</span> <span class="token punctuation">=</span> <span class="token value attr-value">2</span>
+<span class="token comment"># 0：如果innodb_flush_log_at_trx_commit的值为0,log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作（执行是由mysql的master thread线程来执行的。</span>
+<span class="token comment"># 主线程中每秒会将重做日志缓冲写入磁盘的重做日志文件(REDO LOG)中。不论事务是否已经提交）默认的日志文件是ib_logfile0,ib_logfile1</span>
+<span class="token comment"># 1：当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。</span>
+<span class="token comment"># 2：如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。</span>
+<span class="token comment"># 每次事务提交的时候将数据写入事务日志，而这里的写入仅是调用了文件系统的写入操作，而文件系统是有 缓存的，所以这个写入并不能保证数据已经写入到物理磁盘</span>
+<span class="token comment"># 默认值1是为了保证完整的ACID。当然，你可以将这个配置项设为1以外的值来换取更高的性能，但是在系统崩溃的时候，你将会丢失1秒的数据。</span>
+<span class="token comment"># 设为0的话，mysqld进程崩溃的时候，就会丢失最后1秒的事务。设为2,只有在操作系统崩溃或者断电的时候才会丢失最后1秒的数据。InnoDB在做恢复的时候会忽略这个值。</span>
+<span class="token comment"># 总结</span>
+<span class="token comment"># 设为1当然是最安全的，但性能页是最差的（相对其他两个参数而言，但不是不能接受）。如果对数据一致性和完整性要求不高，完全可以设为2，如果只最求性能，例如高并发写的日志服务器，设为0来获得更高性能</span>
+
+<span class="token key attr-name">innodb_log_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">2M</span>
+<span class="token comment"># 此参数确定些日志文件所用的内存大小，以M为单位。缓冲区更大能提高性能，但意外的故障将会丢失数据。MySQL开发人员建议设置为1－8M之间</span>
+
+<span class="token key attr-name">innodb_log_file_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">32M</span>
+<span class="token comment"># 此参数确定数据日志文件的大小，更大的设置可以提高性能，但也会增加恢复故障数据库所需的时间</span>
+
+<span class="token key attr-name">innodb_log_files_in_group</span> <span class="token punctuation">=</span> <span class="token value attr-value">3</span>
+<span class="token comment"># 为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3</span>
+
+<span class="token key attr-name">innodb_max_dirty_pages_pct</span> <span class="token punctuation">=</span> <span class="token value attr-value">90</span>
+<span class="token comment"># innodb主线程刷新缓存池中的数据，使脏数据比例小于90%</span>
+
+<span class="token key attr-name">innodb_lock_wait_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">120</span> 
+<span class="token comment"># InnoDB事务在被回滚之前可以等待一个锁定的超时秒数。InnoDB在它自己的锁定表中自动检测事务死锁并且回滚事务。InnoDB用LOCK TABLES语句注意到锁定设置。默认值是50秒</span>
+
+<span class="token key attr-name">bulk_insert_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># 批量插入缓存大小， 这个参数是针对MyISAM存储引擎来说的。适用于在一次性插入100-1000+条记录时， 提高效率。默认值是8M。可以针对数据量的大小，翻倍增加。</span>
+
+<span class="token key attr-name">myisam_sort_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token comment"># MyISAM设置恢复表之时使用的缓冲区的尺寸，当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区</span>
+
+<span class="token key attr-name">myisam_max_sort_file_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">10G</span>
+<span class="token comment"># 如果临时文件会变得超过索引，不要使用快速排序索引方法来创建一个索引。注释：这个参数以字节的形式给出</span>
+
+<span class="token key attr-name">myisam_repair_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span>
+<span class="token comment"># 如果该值大于1，在Repair by sorting过程中并行创建MyISAM表索引(每个索引在自己的线程内) </span>
+
+<span class="token key attr-name">interactive_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">28800</span>
+<span class="token comment"># 服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。默认值：28800秒（8小时）</span>
+
+<span class="token key attr-name">wait_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">28800</span>
+<span class="token comment"># 服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，</span>
+<span class="token comment"># 取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)。参数默认值：28800秒（8小时）</span>
+<span class="token comment"># MySQL服务器所支持的最大连接数是有上限的，因为每个连接的建立都会消耗内存，因此我们希望客户端在连接到MySQL Server处理完相应的操作后，</span>
+<span class="token comment"># 应该断开连接并释放占用的内存。如果你的MySQL Server有大量的闲置连接，他们不仅会白白消耗内存，而且如果连接一直在累加而不断开，</span>
+<span class="token comment"># 最终肯定会达到MySQL Server的连接上限数，这会报'too many connections'的错误。对于wait_timeout的值设定，应该根据系统的运行情况来判断。</span>
+<span class="token comment"># 在系统运行一段时间后，可以通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大，</span>
+<span class="token comment"># 可以进行适当的调整小些。要同时设置interactive_timeout和wait_timeout才会生效。</span>
+
+<span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">mysqldump</span><span class="token punctuation">]</span></span>
+quick
+<span class="token key attr-name">max_allowed_packet</span> <span class="token punctuation">=</span> <span class="token value attr-value">16M #服务器发送和接受的最大包长度</span>
+
+<span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">myisamchk</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">key_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token key attr-name">sort_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span>
+<span class="token key attr-name">read_buffer</span> <span class="token punctuation">=</span> <span class="token value attr-value">4M</span>
+<span class="token key attr-name">write_buffer</span> <span class="token punctuation">=</span> <span class="token value attr-value">4M</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://NaiveKyo.github.io/2021/07/06/centos7-install-mysql/">http://NaiveKyo.github.io/2021/07/06/centos7-install-mysql/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2021/07/06/centos7-install-mysql/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="centos7-install-mysql">
+                        
+                        <span class="card-title">centos7-install-mysql</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7 安装 MySQL
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/06/centos7-install-redis/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="centos7-install-redis">
+                        
+                        <span class="card-title">centos7-install-redis</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7 安装 Redis 流程记录
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2086589645@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
