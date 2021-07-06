@@ -316,7 +316,7 @@ header .side-nav .mobile-head {
 
 header .side-nav .mobile-head img {
     margin-top: 30px;
-    width: 75px;
+    width: auto;
     height: 75px;
 }
 
@@ -585,8 +585,8 @@ header .go-back i {
 
 .bg-cover .description {
     /*font-weight: 300;*/
-    font-size: 1.4rem;
-    line-height: 1.4em;
+    font-size: 1.3rem;
+    line-height: 1.3em;
     color: #09d4e9;
 	font-weight: bold;
 }
