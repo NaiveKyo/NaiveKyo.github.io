@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CentOS7 jdk">
+    <meta name="keywords" content="CentOS7、Docker">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>centos7-install-jdk | NaiveKyo</title>
+    <title>centos7_install_docker | NaiveKyo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -280,12 +280,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">centos7-install-jdk</h1>
+                    <h1 class="description center-align post-title">centos7_install_docker</h1>
                 </div>
             </div>
         </div>
@@ -405,8 +405,8 @@
                                 <span class="chip bg-color">Linux</span>
                             </a>
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
                             </a>
                         
                     </div>
@@ -430,21 +430,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-06
+                    2021-07-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-06
+                    2021-07-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    369
+                    330
                 </div>
                 
 
@@ -464,41 +464,40 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、卸载-Open-JDK"><a href="#一、卸载-Open-JDK" class="headerlink" title="一、卸载 Open-JDK"></a>一、卸载 Open-JDK</h2><p>有的 Linux 系统可能已经安装了 open-jdk，它是 jdk 开源之前的版本，已经不在维护了，我们可以卸载它</p>
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>容器的概念在 Linux 中早就有了，并不是 Docker 提出了容器的概念，它是一种轻量级的虚拟化技术，现在常用于打包项目环境，方便我们部署。</p>
+<h1 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h1><h2 id="1、安装前准备"><a href="#1、安装前准备" class="headerlink" title="1、安装前准备"></a>1、安装前准备</h2><p>LInux 内核版本，官方建议 3.10 以上。</p>
 <ul>
-<li><p>使用命令 <code>rpm -qa | grep java</code> 查询系统中和 java 相关的文件，一个个删除</p>
-</li>
-<li><p>例如：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rpm</span> -e --nodeps java-1.7.0-openjdk-1.7.0.111-2.6.7.8.el7.x86_64
-<span class="token function">rpm</span> -e --nodeps java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64
-<span class="token function">rpm</span> -e --nodeps java-1.8.0-openjdk-headless-1.8.0.102-4.b14.el7.x86_64
-<span class="token function">rpm</span> -e --nodeps java-1.7.0-openjdk-headless-1.7.0.111-2.6.7.8.el7.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>检查是否已经删除成功：输入 <strong>java -version</strong></p>
-</li>
-<li><p>如果没有删除完，就使用 yum 删除：<strong>yum -y remove</strong></p>
-</li>
+<li>查看当前内核版本：<code>uname -r</code></li>
 </ul>
-<h2 id="二、安装稳定的-JDK"><a href="#二、安装稳定的-JDK" class="headerlink" title="二、安装稳定的 JDK"></a>二、安装稳定的 JDK</h2><p>官网：<a target="_blank" rel="noopener" href="http://www.oracle.com/">http://www.oracle.com</a></p>
-<p>下载相应的 Linux 版本后，做好备份，开始解压</p>
-<p>可以将 jdk 复制一份放到 <code>/usr/local/src</code> 做备份</p>
-<p>在 <code>/usr/java</code> 中解压 jdk（创建一个 java 目录）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">tar</span> -zxvf jdk-8u281-linux-x64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>如果不满足条件，可以更新系统：</strong></p>
+<ul>
+<li><code>yum -y update</code>（<strong>谨慎使用</strong>）：升级所有包的同时也升级软件和系统内核</li>
+<li><code>yum -y upgrade</code>：只升级所有包，不升级软件和系统内核</li>
+</ul>
+<p>如果之前安装过 Docker，卸载旧版本：</p>
+<p><code>yum remove docker docker-common docker-selinux docker-engine</code></p>
+<h2 id="2、安装-Docker"><a href="#2、安装-Docker" class="headerlink" title="2、安装 Docker"></a>2、安装 Docker</h2><ul>
+<li><p>安装相关依赖</p>
+<p>yum-utils 提供 yum-config-manager 功能，另外两个是 devicemapper 驱动依赖</p>
+<p><code>yum install -y yum-tuils device-mapper-persistent-data lvm2</code></p>
+</li>
+<li><p>查看已经安装的包 <code>yum list installed</code></p>
+</li>
+<li><p>设置 yum 源，两个都可以使用</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum-config-manager --add-repo http://download.docker.com/linux/centos/docker-ce.repo（中央仓库）
 
-<p>如果没有权限就：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">755</span> jdk-8u281-linux-x64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo（阿里仓库）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>选择 Docker 版本并安装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看可用版本</span>
+yum list docker-ce --showduplicates <span class="token operator">|</span> <span class="token function">sort</span> -r
 
-<p>如果实在不行，就进入 root 用户进行操作</p>
-<p>解压完成后开始设置系统环境变量：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/profile
+<span class="token comment"># 选择一个版本安装。当然也可以默认安装，就是最新版</span>
+yum <span class="token function">install</span> docker-ce
 
-<span class="token comment"># 最后面添加下列</span>
-<span class="token comment"># java environment</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/java/jdk1.8.0_281
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">CLASSPATH</span><span class="token operator">=</span>.:<span class="token variable">${JAVA_HOME}</span>/jre/lib/rt.jar:<span class="token variable">${JAVA_HOME}</span>/lib/dt.jar:<span class="token variable">${JAVA_HOME}</span>/lib/tools.jar
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>设置完成后，重新编译配置文件：<code>source /etc/profile</code></p>
-<p>最后检查是否成功安装：<code>java -version</code> 如何输出了 java 的版本信息就说明成功了。</p>
+<span class="token comment"># 启动 Docker 并设置开机自启</span>
+systemctl start docker
+systemctl <span class="token builtin class-name">enable</span> docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 
                 
             </div>
@@ -525,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://NaiveKyo.github.io/2021/07/06/centos7-install-jdk/">http://NaiveKyo.github.io/2021/07/06/centos7-install-jdk/</a>
+                    <a href="http://NaiveKyo.github.io/2021/07/07/centos7-install-docker/">http://NaiveKyo.github.io/2021/07/07/centos7-install-docker/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -567,8 +566,8 @@
                                     <span class="chip bg-color">Linux</span>
                                 </a>
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -735,9 +734,64 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2021/07/07/centos7-install-docker/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="centos7_install_docker">
+                        
+                        <span class="card-title">centos7_install_docker</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7 安装 Docker 容器
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/07/06/centos7-install-git/">
                     <div class="card-image">
@@ -752,59 +806,6 @@
                     <div class="summary block-with-text">
                         
                             CentOS7 安装 Git
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
-                    </a>
-                    
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/07/06/centos7-install-mysql/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="centos7-install-mysql">
-                        
-                        <span class="card-title">centos7-install-mysql</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            CentOS7 安装 MySQL
                         
                     </div>
                     <div class="publish-info">
@@ -830,8 +831,8 @@
                         <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>

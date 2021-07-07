@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>centos7_install_docker</title>
+      <link href="/2021/07/07/centos7-install-docker/"/>
+      <url>/2021/07/07/centos7-install-docker/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>容器的概念在 Linux 中早就有了，并不是 Docker 提出了容器的概念，它是一种轻量级的虚拟化技术，现在常用于打包项目环境，方便我们部署。</p><h1 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h1><h2 id="1、安装前准备"><a href="#1、安装前准备" class="headerlink" title="1、安装前准备"></a>1、安装前准备</h2><p>LInux 内核版本，官方建议 3.10 以上。</p><ul><li>查看当前内核版本：<code>uname -r</code></li></ul><p><strong>如果不满足条件，可以更新系统：</strong></p><ul><li><code>yum -y update</code>（<strong>谨慎使用</strong>）：升级所有包的同时也升级软件和系统内核</li><li><code>yum -y upgrade</code>：只升级所有包，不升级软件和系统内核</li></ul><p>如果之前安装过 Docker，卸载旧版本：</p><p><code>yum remove docker docker-common docker-selinux docker-engine</code></p><h2 id="2、安装-Docker"><a href="#2、安装-Docker" class="headerlink" title="2、安装 Docker"></a>2、安装 Docker</h2><ul><li><p>安装相关依赖</p><p>yum-utils 提供 yum-config-manager 功能，另外两个是 devicemapper 驱动依赖</p><p><code>yum install -y yum-tuils device-mapper-persistent-data lvm2</code></p></li><li><p>查看已经安装的包 <code>yum list installed</code></p></li><li><p>设置 yum 源，两个都可以使用</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum-config-manager --add-repo http://download.docker.com/linux/centos/docker-ce.repo（中央仓库）yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo（阿里仓库）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li><li><p>选择 Docker 版本并安装</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看可用版本</span>yum list docker-ce --showduplicates <span class="token operator">|</span> <span class="token function">sort</span> -r<span class="token comment"># 选择一个版本安装。当然也可以默认安装，就是最新版</span>yum <span class="token function">install</span> docker-ce<span class="token comment"># 启动 Docker 并设置开机自启</span>systemctl start dockersystemctl <span class="token builtin class-name">enable</span> docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>centos7-install-git</title>
       <link href="/2021/07/06/centos7-install-git/"/>
       <url>/2021/07/06/centos7-install-git/</url>

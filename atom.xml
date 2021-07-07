@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-06T10:03:14.051Z</updated>
+  <updated>2021-07-07T01:10:51.240Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7_install_docker</title>
+    <link href="http://naivekyo.github.io/2021/07/07/centos7-install-docker/"/>
+    <id>http://naivekyo.github.io/2021/07/07/centos7-install-docker/</id>
+    <published>2021-07-07T01:04:18.000Z</published>
+    <updated>2021-07-07T01:10:51.240Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h1&gt;&lt;p&gt;容器的概念在 Linux 中早就有了，并不是 Docker</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    
+    <category term="Docker" scheme="http://naivekyo.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7-install-git</title>
