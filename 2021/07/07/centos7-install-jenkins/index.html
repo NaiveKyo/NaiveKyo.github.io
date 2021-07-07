@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux、Redis">
+    <meta name="keywords" content="CentOS7、Jenkins">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>centos7-install-redis | NaiveKyo</title>
+    <title>centos7_install_jenkins | NaiveKyo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -280,12 +280,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">centos7-install-redis</h1>
+                    <h1 class="description center-align post-title">centos7_install_jenkins</h1>
                 </div>
             </div>
         </div>
@@ -405,8 +405,8 @@
                                 <span class="chip bg-color">Linux</span>
                             </a>
                         
-                            <a href="/tags/Redis/">
-                                <span class="chip bg-color">Redis</span>
+                            <a href="/tags/Deploy/">
+                                <span class="chip bg-color">Deploy</span>
                             </a>
                         
                     </div>
@@ -430,7 +430,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-06
+                    2021-07-07
                 </div>
                 
 
@@ -444,7 +444,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    716
+                    2.7k
                 </div>
                 
 
@@ -464,114 +464,236 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、Windows-下安装-Redis"><a href="#一、Windows-下安装-Redis" class="headerlink" title="一、Windows 下安装 Redis"></a>一、Windows 下安装 Redis</h2><p>先去官网下载源文件压缩包，解压到自己创建的指定目录下，建议目录绝对路径中不要出现中文。</p>
-<h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h3><p>使用 cmd，将 Redis 作为服务安装到 Windows 中</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 进入 redis 解压目录下
-redis-server --service-install redis.windows.conf
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><h2 id="1、Jenkins-是什么"><a href="#1、Jenkins-是什么" class="headerlink" title="1、Jenkins 是什么"></a>1、Jenkins 是什么</h2><p>Jenkins是一个开源的、提供友好操作界面的持续集成(CI)工具，起源于Hudson（Hudson是商用的），主要用于持续、自动的构建/测试软件项目、监控外部任务的运行。Jenkins用Java语言编写，可在Tomcat等流行的servlet容器中运行，也可独立运行。通常与版本管理工具(SCM)、构建工具结合使用。常用的版本控制工具有SVN、GIT，构建工具有Maven、Ant、Gradle。</p>
+<h2 id="2、CI-CD-是什么"><a href="#2、CI-CD-是什么" class="headerlink" title="2、CI/CD 是什么"></a>2、CI/CD 是什么</h2><p> <code>CI(Continuous integration)</code>，中文意思是持续集成。它强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。借用网络图片对 CI 加以理解。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6464255-1b6e3bfdbece1492.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp"></p>
+<p><code>CD(Continuous Delivery)</code>， 中文意思持续交付。它是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境(类生产环境)中。比如，我们完成单元测试后，可以把代码部署到连接数据库的 Staging 环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境。下图反应的是 CI/CD 的大概工作模式。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6464255-ba088ec7257062c0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp"></p>
+<h1 id="二、安装-Jenkins"><a href="#二、安装-Jenkins" class="headerlink" title="二、安装 Jenkins"></a>二、安装 Jenkins</h1><p>环境：CentOS7</p>
+<h2 id="1、前置"><a href="#1、前置" class="headerlink" title="1、前置"></a>1、前置</h2><ul>
+<li><p>官网下载 LTS 版本的 war 包：<a target="_blank" rel="noopener" href="https://www.jenkins.io/">https://www.jenkins.io/</a></p>
+</li>
+<li><p>上传到服务器    </p>
+</li>
+<li><p>运行 war 包，将其作为后台进程挂起，输出日志为 <code>jenkins.out</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nohup</span> java -jar /usr/local/jenkins/jenkins.jar <span class="token operator">&gt;</span> /usr/local/jenkins/jenkins.out <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>访问 Jenkins 的管理页面：Linux IP + 8080 端口（<strong>需要开放端口</strong>）</p>
+</li>
+<li><p>登录密码位置：<code>/root/.jenkins/secrets/initialAdminPassword</code></p>
+</li>
+<li><p>获取密码后输入点击继续，会进入下载插件的界面，由于需要从外网下载，速度较慢，我们需要修改为国内的镜像：（先关掉浏览器界面 并 杀死 Linux 中的 jenkins 进程）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 配置国内镜像</span>
+<span class="token comment"># 进入 jenkins 工作目录</span>
+<span class="token builtin class-name">cd</span> /root/.jenkins/updates
 
-# 启动服务
-redis-server --service-start
+<span class="token comment"># 杀死进程: 先查 PID 然后 kill</span>
+<span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> jenkins
+<span class="token function">kill</span> -s <span class="token environment constant">TERM</span> <span class="token operator">&lt;</span>PID<span class="token operator">&gt;</span>
 
-# 停止服务
-redis-server --service-stop
-
-# 卸载服务
-redis-server --service-uninstall<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2、查看版本"><a href="#2、查看版本" class="headerlink" title="2、查看版本"></a>2、查看版本</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">redis-server --version # 或者 redis-server -v
-
-redis-cli --version # 或 redis-cli -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>严格上说：通过　redis-cli 得到的结果应该是redis-cli 的版本，但是 redis-cli 和redis-server，一般都是从同一套源码编译出的。所以应该是一样的。</p>
-<h2 id="二、Linux-中安装-Redis"><a href="#二、Linux-中安装-Redis" class="headerlink" title="二、Linux 中安装 Redis"></a>二、Linux 中安装 Redis</h2><h3 id="1、两种方式"><a href="#1、两种方式" class="headerlink" title="1、两种方式"></a>1、两种方式</h3><ul>
-<li>从官网下载源文件压缩包，然后通过工具或协议上传到 Linux 服务器</li>
-<li>使用 Linux 中的命令工具直接拉取</li>
+<span class="token comment"># 直接修改配置文件 default.json</span>
+<span class="token comment"># 由于该文件内容太多，直接编辑不好修改，我们可以运行脚本进行修改</span>
+<span class="token function">sed</span> -i <span class="token string">'s/http:Wupdates.jenkins-ci.orgVdownload/https:Wmirrors.tuna.tsinghua.edu.cnVjenkins/g'</span> default.json <span class="token operator">&amp;&amp;</span> <span class="token function">sed</span> -i <span class="token string">'s/http:Wwww.google.com/https:Wwww.baidu.com/g'</span> default.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>重启 jenkins 下载插件：<strong>选择安装推荐的插件</strong></p>
+</li>
+<li><p>安装完成之后，创建管理员用户：</p>
+</li>
+<li><p>登录</p>
+</li>
+<li><p>进入管理页面后，开始配置 Jenkins</p>
+<p>Manager Jenkins -&gt; Global Tool Configuration</p>
+<p>分别配置 ==JDK、Maven、Git==</p>
+</li>
 </ul>
-<h3 id="2、前置条件"><a href="#2、前置条件" class="headerlink" title="2、前置条件"></a>2、前置条件</h3><ul>
-<li><p>安装 C++ 的编译器：CentOS 中，C 的编译器是 gcc，C++ 的编译器是 g++</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yum -y install gcc-c++
-# 出现错误，可以多看看 redis 的 ReadMe.md 文件
-make MALLOC=libc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<h2 id="2、Jenkins-自动化配置"><a href="#2、Jenkins-自动化配置" class="headerlink" title="2、Jenkins 自动化配置"></a>2、Jenkins 自动化配置</h2><p>准备工作：</p>
+<ul>
+<li><p>服务器需安装  ==Docker==</p>
+</li>
+<li><p>需要在工程中添加 <strong>Dockerfile</strong> （和 pom 文件在同一级）</p>
+</li>
 </ul>
-<h3 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h3><p>在此之前，我们应该了解 Linux 的各个目录代表的含义。</p>
-<p>我习惯于将自己下载的软件解压并安装到 <code>/usr/local/ </code> 目录下</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 进入目录
-cd /usr/local
-# 先到官网看看长期稳定版本的版本号，
-wget https://download.redis.io/releases/redis-6.2.3.tar.gz
-
-# 解压
-tar xzf redis-6.2.3.tar.gz
-
-# 解压后，压缩包可以自己备份以下，以便以后使用，也可以删掉
-
-# 进入解压后的目录下，开始编译源文件
-cd ./redis-6.2.3
-make
-
-# 切换到/usr/local/redis-6.2.3/src目录
-cd src/
-
-# 开始安装 Redis
-make install
-
-# 安装完成之后，我们可以创建两个文件夹用户存放 配置文件 和 常用的命令
-cd ../
-mkdir etc
-mkdir bin
-
-# 备份配置文件
-cp redis.conf ./etc/
-
-# 转移常用命令
-mv mkreleasehdr.sh redis-benchmark redis-check-aof redis-cli redis-server redis-sentinel /usr/local/redis-6.2.3/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>前置工作：Dockerfile</p>
+</blockquote>
+<p>Dockerfile：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 拉取 JDK 环境</span>
+FROM openjdk:8-jdk-alpine
+<span class="token comment"># 缓存处理</span>
+VOLUME /tmp
+<span class="token comment"># 重命名 jar 包</span>
+COPY ./target/jenkinsdemo-0.0.1-SNAPSHOT.jar demojenkins.jar
+<span class="token comment"># 执行 jar 包</span>
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"java"</span>,<span class="token string">"-jar"</span>,<span class="token string">"/demojenkins.jar"</span>, <span class="token string">"&amp;"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="4、修改配置文件"><a href="#4、修改配置文件" class="headerlink" title="4、修改配置文件"></a>4、修改配置文件</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 修改配置文件
-cd ./exc
-vim redis.conf
+<p>修改 pom.xml </p>
+<ul>
+<li>更改打包类型为 pom</li>
+<li>添加 maven 插件</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.naivekyo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jenkinsdemo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>0.0.1-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>jenkinsdemo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">&gt;</span></span>Demo project for Spring Boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">&gt;</span></span>
 
-# redis.conf主要修改以下 4 点：
-
-# 1.将 daemonize no 改为 daemonize yes，表示需要在后台运行
-
-# 2. 将 bind 127.0.0.1 这一行注释掉，如果不需要远程连接服务器，这个可以不用注释，它的意思是只允许本机访问
-
-# 3. 将 protect-mode yes 改为 protect-mode no，如果不远程连接则不需要注释
-
-# 4. 添加 requirepass 123456 设置密码(默认密码为空)，如果只是在本机测试，也不需要设置密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="5、启动-Redis-服务并测试"><a href="#5、启动-Redis-服务并测试" class="headerlink" title="5、启动 Redis 服务并测试"></a>5、启动 Redis 服务并测试</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 依据指定配置文件启动 Redis
-cd /usr/local/redis-6.2.3/bin
-redis-server ../etc/redis.conf
-
-# 使用 redis-cli 连接本机 Redis 服务，默认端口 6379
-redis-cli
-
-# 认证后测试
-auth 123456
-set name naivekyo
-get name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<h2 id="3、Jenkins-管理界面创建自动化任务"><a href="#3、Jenkins-管理界面创建自动化任务" class="headerlink" title="3、Jenkins 管理界面创建自动化任务"></a>3、Jenkins 管理界面创建自动化任务</h2><ul>
+<li>Jenkins dashboard -&gt; 新建 Item</li>
+<li>填写任务名称：可随意</li>
+<li>一般选择 <strong>Freestyle project</strong> 即可</li>
+<li>下一步：源代码管理，这里我们将没有编译的代码（mvn：clean）上传到远程仓库中，Jenkins 支持两种仓库 GitHub 和 gitee，但是我只找到了 GitHub 一种</li>
+</ul>
+<hr>
+<blockquote>
+<p>使用 Git 将 springboot 项目上传到 GitHub</p>
+</blockquote>
+<ol>
+<li>在 GitHub 上新建仓库</li>
+<li>记录下仓库的地址，例如 <a target="_blank" rel="noopener" href="https://github.com/NaiveKyo/JenkinsTest.git">https://github.com/NaiveKyo/JenkinsTest.git</a></li>
+<li>本机打开 git 的客户端，进入自己要提交的工程的目录</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 举个例子</span>
+<span class="token comment"># 工程目录下右键 打开 git bash here</span>
+<span class="token comment"># 第一步，初始化</span>
+<span class="token function">git</span> init
+<span class="token comment"># 第二步，上传，这里直接是将所有文件添加到仓库中，如果只想添加指定的文件，可以把 . 换成特定的文件名称</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token comment"># 第三步，提交到本地仓库</span>
+<span class="token function">git</span> commit -m <span class="token string">"description"</span> <span class="token comment"># 表示提交的注释</span>
+<span class="token comment"># 可能需要输入 GitHub 账户名和密码</span>
+<span class="token comment"># 可以使用以下方式配置全局信息，以后比较方便</span>
+<span class="token function">git</span> config --global user.email <span class="token string">"Your Email"</span>
+<span class="token function">git</span> config --global user.name <span class="token string">"Your Name"</span>
+
+<span class="token comment"># 第四步，和远程仓库相关联</span>
+<span class="token function">git</span> remote <span class="token function">add</span> origin https://仓库url
+
+<span class="token comment"># 最后，上传到远程仓库，指定分支 master</span>
+<span class="token function">git</span> push -u origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<hr>
+<ul>
+<li>将本地代码上传到远程仓库 <a target="_blank" rel="noopener" href="https://github.com/NaiveKyo/JenkinsTest.git">https://github.com/NaiveKyo/JenkinsTest.git</a></li>
+<li>Jenkins Dashboard 新建 Item，设置好配置信息</li>
+<li><strong>注意：开始构建之前，必须开启 Docker</strong></li>
+<li>开始构建项目</li>
+<li>Build Success</li>
+</ul>
+<h2 id="4、Jenkins-执行任务时遇到的错误"><a href="#4、Jenkins-执行任务时遇到的错误" class="headerlink" title="4、Jenkins 执行任务时遇到的错误"></a>4、Jenkins 执行任务时遇到的错误</h2><p>git 一直无法拉取远程仓库地址：</p>
+<blockquote>
+<p>推荐方案一，剩下两种没测试</p>
+</blockquote>
+<ul>
+<li><p>尝试过配置 ssh，但是无效</p>
+</li>
+<li><p><strong>最终解决方案</strong>：</p>
+<ul>
+<li><strong>缺少插件</strong>：curl-devel ：Jenkins 通过 git 发起 http 请求需要使用工具 <code>curl-devel</code>（我只安装了 wget）</li>
+<li>重新编译 git</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/git/git_x.x.x
+./configuration --prefix<span class="token operator">=</span>/usr/local/git
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>方式二：<code>yum install git-http</code></p>
+</li>
+<li><p>方式三：git 代替 https <code>git clone --recursive git://github.com/用户名/仓库地址</code></p>
+</li>
+</ul>
+<h1 id="三、补充知识"><a href="#三、补充知识" class="headerlink" title="三、补充知识"></a>三、补充知识</h1><h2 id="1、Linux-知识"><a href="#1、Linux-知识" class="headerlink" title="1、Linux 知识"></a>1、Linux 知识</h2><h3 id="（1）nohup"><a href="#（1）nohup" class="headerlink" title="（1）nohup"></a>（1）nohup</h3><p>nohup 命令全程 no hang up，用于在系统后台不挂断的运行命令，退出终端不会影响程序的运行。</p>
+<p>nohup 命令，在默认情况下（非重定向时），会输出一个名叫 <code>nohup.out</code> 的文件到当前目录下，如果当前目录的 nohup.out 不可写，输出重定向到 <code>$HOME/nohup.out</code> 文件中。</p>
+<h3 id="（2）标准输入、输出"><a href="#（2）标准输入、输出" class="headerlink" title="（2）标准输入、输出"></a>（2）标准输入、输出</h3><ul>
+<li>标准输入：stdin  代码 0  用 &lt; 或 &lt;&lt; 表示</li>
+<li>标准输出：stdout 代码 1 用 &gt; 或 &gt;&gt; 表示</li>
+<li>标准错误输出：stderr 代码 2 用 2&gt; 或 2&gt;&gt; 表示</li>
+</ul>
+<p>将命令执行的正确信息和错误信息做处理：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 分别存放到不同的文件</span>
+<span class="token function">find</span> /home -name .bashrc <span class="token operator">&gt;</span> /right.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span> /error.ext
+
+<span class="token comment"># 丢弃错误信息，只保存正确信息</span>
+<span class="token function">find</span> /home -name .bashrc <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span> /dev/null
+
+<span class="token comment"># 将正确和错误的信息输出到同一个文件</span>
+<span class="token function">find</span> /home -name .bashrc <span class="token operator">&gt;</span> /right.txt <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+<span class="token comment"># 或者</span>
+<span class="token function">find</span> /home -name .bashrc <span class="token operator">&amp;&gt;</span> /right.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<p>标准输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 cat 命令简单的创建一个文件</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> text.txt
+<span class="token comment"># 然后输入消息，退出使用 ctrl + d</span>
+
+<span class="token comment"># 使用 cat 和 &lt; 创建文件，可以实现类似复制文件的作用</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> text.txt <span class="token operator">&lt;</span> ./message.txt
+
+<span class="token comment"># 测试 &lt;&lt; 该符号代表 `结束的输入字符`</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> text.txt <span class="token operator">&lt;&lt;</span> <span class="token string">"eof"</span>
+<span class="token comment"># 输入消息，最后一行是 eof 表示退出</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
+<h3 id="（3）Linux-中的-amp"><a href="#（3）Linux-中的-amp" class="headerlink" title="（3）Linux 中的 &amp;"></a>（3）Linux 中的 &amp;</h3><p><strong>幕后工作：</strong>在命令结尾加上 &amp; 表示将这个任务放到后台执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 递归的复制文件目录，假如目录很大，需要很久，可以放到后台执行</span>
+<span class="token function">cp</span> -R original/dir/ backup/dir/ <span class="token operator">&amp;</span>
+<span class="token comment"># 回车执行后，会显示一个 进程 ID 号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<p>任务被放到后台执行之后，就可以立即继续在同一个终端上工作了，甚至关闭终端也不影响这个任务的正常执行。需要注意的是，如果要求这个任务输出内容到标准输出中（例如 <code>echo</code> 或 <code>ls</code>），即使使用了 <code>&amp;</code>，也会等待这些输出任务在前台运行完毕。</p>
+<p>当使用 <code>&amp;</code> 将一个进程放置到后台运行的时候，Bash 会提示这个进程的进程 ID。在 Linux 系统中运行的每一个进程都有一个唯一的进程 ID，你可以使用进程 ID 来暂停、恢复或者终止对应的进程，因此进程 ID 是非常重要的。</p>
+<p>当使用该命令启动一个后台进程时，我们可以在当前终端下使用如下几个命令管理后台进程：</p>
+<ul>
+<li><p><code>jobs</code> 命令可以显示当前终端正在运行的进程，包括前台和后台运行的进程。它对每一个正在执行的进程任务分配一个序号（这个序号不是进程 ID），可以使用这些序号来引用各个进程任务：</p>
+</li>
+<li><p><code>fg</code> 命令可以将后台运行的进程任务放到前台运行，这样可以比较方便地进行交互。根据 <code>jobs</code> 命令提供的进程任务序号，再在前面加上 <code>%</code> 符号，就可以把相应的进程任务放到前台运行。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将 jobs 显示的标号为 1 的进程放到前台运行</span>
+<span class="token function">fg</span> % <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<p>如果这个进程任务是暂停状态，fg 命令可以将它启动起来</p>
+</li>
+<li><p><code>ctrl + z</code> 可以将前台运行的任务暂停，仅仅是暂停而不是终止。当使用 <code>fg</code> 或者 <code>bg</code> 命令将任务重新启动起来的时候，任务会从暂停的地方继续执行。但 <code>sleep</code> 命令是一个特例，<code>sleep</code> 任务被暂停的时间会计算在 <code>sleep</code> 时间之内。因为 <code>sleep</code> 命令依据的是系统时钟的时间，而不是实际运行的时间。也就是说，如果运行了 <code>sleep 30</code> ，然后将任务暂停 30 秒以上，那么任务恢复执行的时候会立即终止并退出。</p>
+</li>
+<li><p><code>bg</code> 命令会将任务防止到后台运行，如果任务是暂停的，也会被启动起来</p>
+</li>
+</ul>
+<h3 id="（4）Linux-的-kill-命令"><a href="#（4）Linux-的-kill-命令" class="headerlink" title="（4）Linux 的 kill 命令"></a>（4）Linux 的 kill 命令</h3><p>前面介绍的几个命令适合在同一个终端中使用，如果启动进程任务的终端关闭了，就无法使用了。</p>
+<p>如果要在另一个终端管理后台进程，就需要使用其他工具，例如 <code>kill</code></p>
+<ul>
+<li><p>暂停后台进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 先查进程号</span>
+<span class="token function">ps</span> <span class="token operator">|</span> <span class="token function">grep</span> 进程名
+<span class="token comment"># 暂停进程 等同于 ctrl + z</span>
+<span class="token function">kill</span> -s STOP <span class="token operator">&lt;</span>PID<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>把暂停的进程启动：<code>kill -s CONT &lt;PID&gt;</code></p>
+</li>
+<li><p>终止进程：<code>kill -s TERM &lt;PID&gt;</code></p>
+</li>
+<li><p>如果进程不相应 TERM 信号并拒绝退出，可以发送 KILL 信号强制终止进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -s KILL <span class="token operator">&lt;</span>PID<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<p>强制终止进程可能会有一定的风险，但如果遇到进程无节制消耗资源的情况，这样的信号还是有用的</p>
+</li>
+<li><p>如果不确定进程 ID 是否存在，可以这样 <code>ps x | grep jenkins</code></p>
+</li>
+<li><p>将 <code>ps</code> 和 <code>grep</code> 结合起来的命令：<code>pgrep 字符串</code>，它可以把包含指定字符的进程 ID 列出来</p>
+</li>
+<li><p>加一些参数 ：<code>pgrep -lx 字符串</code>，这样就可以把名称也显示出来，如果想了解更多的细节，可以这样：<code>pgrep -ax</code>，更多请 –help</p>
+</li>
+</ul>
 
                 
             </div>
@@ -598,7 +720,7 @@ get name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://NaiveKyo.github.io/2021/07/06/centos7-install-redis/">http://NaiveKyo.github.io/2021/07/06/centos7-install-redis/</a>
+                    <a href="http://NaiveKyo.github.io/2021/07/07/centos7-install-jenkins/">http://NaiveKyo.github.io/2021/07/07/centos7-install-jenkins/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -640,8 +762,8 @@ get name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                                     <span class="chip bg-color">Linux</span>
                                 </a>
                             
-                                <a href="/tags/Redis/">
-                                    <span class="chip bg-color">Redis</span>
+                                <a href="/tags/Deploy/">
+                                    <span class="chip bg-color">Deploy</span>
                                 </a>
                             
                         </div>
@@ -808,29 +930,84 @@ get name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/07/06/centos7-install-mysql/">
+                <a href="/2021/07/07/centos7-install-jenkins/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="centos7-install-mysql">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="centos7_install_jenkins">
                         
-                        <span class="card-title">centos7-install-mysql</span>
+                        <span class="card-title">centos7_install_jenkins</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CentOS7 安装 MySQL
+                            CentOS7 安装 Jenkins 并测试项目自动部署。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/Deploy/">
+                        <span class="chip bg-color">Deploy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/07/centos7-install-docker/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="centos7_install_docker">
+                        
+                        <span class="card-title">centos7_install_docker</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7 安装 Docker 容器
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -850,61 +1027,8 @@ get name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/07/06/draft-test/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="draft-test">
-                        
-                        <span class="card-title">draft-test</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            用于测试发布草稿内容
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/BlogTest/" class="post-category">
-                                    BlogTest
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Test/">
-                        <span class="chip bg-color">Test</span>
-                    </a>
-                    
-                    <a href="/tags/Blog/">
-                        <span class="chip bg-color">Blog</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>

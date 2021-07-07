@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-07T01:10:51.240Z</updated>
+  <updated>2021-07-07T02:13:53.913Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7_install_jenkins</title>
+    <link href="http://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
+    <id>http://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
+    <published>2021-07-07T01:48:00.000Z</published>
+    <updated>2021-07-07T02:13:53.913Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h1&gt;&lt;h2 id=&quot;1、Jenkins-是什么&quot;&gt;&lt;a href=&quot;#1、Jenkins-是什么&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    
+    <category term="Deploy" scheme="http://naivekyo.github.io/tags/Deploy/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7_install_docker</title>
@@ -129,7 +156,7 @@
     <link href="http://naivekyo.github.io/2021/07/06/centos7-install-redis/"/>
     <id>http://naivekyo.github.io/2021/07/06/centos7-install-redis/</id>
     <published>2021-07-06T08:28:11.000Z</published>
-    <updated>2021-07-06T09:05:15.046Z</updated>
+    <updated>2021-07-07T01:46:09.782Z</updated>
     
     
       
