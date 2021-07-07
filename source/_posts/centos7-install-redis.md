@@ -3,7 +3,7 @@ title: centos7-install-redis
 date: 2021-07-06 16:28:11
 author: NaiveKyo
 top: true
-cover: true
+cover: false
 toc: true
 summary: CentOS7 安装 Redis 流程记录
 categories: Linux
