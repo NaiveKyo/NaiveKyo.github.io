@@ -577,10 +577,14 @@ header .go-back i {
 }
 
 .bg-cover .title {
-    font-size: 4rem;
+    font-size: 4.2rem;
+	font-weight: bold;
     line-height: 1.2em;
     margin-bottom: 20px;
     position: relative;
+	background: linear-gradient(to right, deepskyblue, #28f538ed);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
 }
 
 .bg-cover .description {
