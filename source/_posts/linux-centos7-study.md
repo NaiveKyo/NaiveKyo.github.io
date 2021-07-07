@@ -23,7 +23,7 @@ tags:
 
 > 连接出现错误 The Semaphore timeout period has expired
 
-```shell
+```bash
 # vi /etc/ssh/sshd_config
 
 GG到文件末尾，增加下面2行：
@@ -109,80 +109,82 @@ ClientAliveCountMax 3
 Vi 编辑器
 
 
-	命令行模式：
-	  i	进入插入模式
-	  esc	进入命令行模式
-	  :	进入末行模式
-	  a	在当前光标之后进入插入模式
-	  o	在当前光标下一行插入空行
-	  O	在当前光标上一行插入空行
-	  I	在当前光标行首进入插入模式
-	  A	在当前光标行末进入插入模式
-			
-		Ctrl + u 	向上翻半页
-		Ctrl + d 	向下翻半页
-	
-		nG	移动到第 n 行
-	
-		Ctrl + g	显示当前所在行数
-	
-		G	跳到最后一行
-		：5	光标跳到第5行
-		：n	光标跳到第n行
+```bash
+命令行模式：
+  i	进入插入模式
+  esc	进入命令行模式
+  :	进入末行模式
+  a	在当前光标之后进入插入模式
+  o	在当前光标下一行插入空行
+  O	在当前光标上一行插入空行
+  I	在当前光标行首进入插入模式
+  A	在当前光标行末进入插入模式
 		
-		0	跳到行首
-		$	跳到行末
-		
-		w	光标跳到下个单词的开头
-		b	光标跳到上个单词的开头
-		e	光标跳到本单词的结尾
-		
-		x	每按一次，删除光标所在位置的一个字符
-		nx	如“3x”表示删除光标所在位置开始的3个字符
-		dw	删除光标所在位置到本单词结尾的字符
-		D	删除本行光标所在位置后面全部内容
-		
-		dd	删除光标所在行
-		ndd	如“3dd”表示删除光标所在位置开始的3行
-		
-		yy	将光标所在位置的一行复制到缓冲区
-		nyy	将光标所在位置的n行复制到缓冲区
-		p	将缓冲区的内容粘贴到光标所在位置
-		
-		r	替换光标所在位置的一个字符	r = replace
-		R	从光标所在位置开始替换，直到按下“Esc”
-		cw	从光标所在位置开始替换单词，知道按下“Esc”
-		
-		u	撤销命令，可多次撤销
+	Ctrl + u 	向上翻半页
+	Ctrl + d 	向下翻半页
+
+	nG	移动到第 n 行
+
+	Ctrl + g	显示当前所在行数
+
+	G	跳到最后一行
+	：5	光标跳到第5行
+	：n	光标跳到第n行
 	
-		J	将当前行的下一行接到当前行的末尾
+	0	跳到行首
+	$	跳到行末
 	
-		/	输入/和要查找的内容，然后 n 表示下一个，N 表示上一个, 撤销高亮输入 :nohl
-		
-		.	小数点表示重复执行上一次的vi命令
+	w	光标跳到下个单词的开头
+	b	光标跳到上个单词的开头
+	e	光标跳到本单词的结尾
 	
-		~	对当前光标所在的字符进行大小写转换
+	x	每按一次，删除光标所在位置的一个字符
+	nx	如“3x”表示删除光标所在位置开始的3个字符
+	dw	删除光标所在位置到本单词结尾的字符
+	D	删除本行光标所在位置后面全部内容
 	
-		列操作：先按 Ctrl + v 然后 按上下键选择列，选中后按 I 输入内容，最后 Esc
+	dd	删除光标所在行
+	ndd	如“3dd”表示删除光标所在位置开始的3行
 	
-		移动光标：h 向左 l 向右  j 向下 k 向上 
+	yy	将光标所在位置的一行复制到缓冲区
+	nyy	将光标所在位置的n行复制到缓冲区
+	p	将缓冲区的内容粘贴到光标所在位置
 	
-		：g/aaa/s//bbb/g	全文替换，把aaa替换为bbb	
+	r	替换光标所在位置的一个字符	r = replace
+	R	从光标所在位置开始替换，直到按下“Esc”
+	cw	从光标所在位置开始替换单词，知道按下“Esc”
 	
-		复制 ctrl + insert 粘贴 shift + insert
+	u	撤销命令，可多次撤销
+
+	J	将当前行的下一行接到当前行的末尾
+
+	/	输入/和要查找的内容，然后 n 表示下一个，N 表示上一个, 撤销高亮输入 :nohl
 	
-	末行模式：
-		:w	存盘
-		:w!	强制存盘
-		:wq	存盘退出
-		:x	存盘退出
-		:q	不存盘退出
-		:q!	不存盘强制退出
+	.	小数点表示重复执行上一次的vi命令
+
+	~	对当前光标所在的字符进行大小写转换
+
+	列操作：先按 Ctrl + v 然后 按上下键选择列，选中后按 I 输入内容，最后 Esc
+
+	移动光标：h 向左 l 向右  j 向下 k 向上 
+
+	：g/aaa/s//bbb/g	全文替换，把aaa替换为bbb	
+
+	复制 ctrl + insert 粘贴 shift + insert
+
+末行模式：
+	:w	存盘
+	:w!	强制存盘
+	:wq	存盘退出
+	:x	存盘退出
+	:q	不存盘退出
+	:q!	不存盘强制退出
+```
 
 
 # 三、makefile 文件
 
-```
+```bash
 	在软件的工程中的源文件是很多的，其按照类型、功能、模块分别放在若干个目录和文件中，哪些文件需要编译
 ，那些文件需要后编译，那些文件需要重新编译，甚至进行更复杂的功能操作，这就有了我们的系统编译的工具。
 
@@ -288,7 +290,7 @@ clean:
 
 # 四、GDB 常用命令
 
-```
+```bash
 命令		命令缩写			命令说明
 
 set args					设置主程序的参数
@@ -322,7 +324,7 @@ quit		q			退出 gdb 环境
 
 > 修改 CentOS 7 的字符集
 
-```shell
+```bash
 echo LANG="zh_CN.gbk" > /etc/locale.conf
 然后让其立即生效
 source /etc/locale.conf
@@ -332,13 +334,13 @@ source /etc/locale.conf
 
 打开 ens33 网卡的配置文件 `/etc/sysconfig/network-scripts/ifcfg-ens33`，把 **NOBOOT** 参数修改为 yes。
 
-```shell
+```bash
 echo ONBOOT=yes >> /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
 
 > 修改 CentOS 7 的时间
 
-```shell
+```bash
 date -s "2021/03/12 21:22:00"
 ```
 
@@ -355,13 +357,13 @@ date -s "2021/03/12 21:22:00"
 
 - 设置时间为中国上海时间  
 
-  ```shell
+  ```bash
   cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
   ```
 
 - 设置时间格式
 
-  ```shell
+  ```bash
   date -s "yyyy-mm-dd hh:mi:ss"
   ```
 
@@ -488,7 +490,7 @@ Linux环境变量也称之为Shell环境变量，以下划线和字母打头，�
 
 例如查看环境变量名中包含PATH的环境变量。
 
-```shell
+```bash
 env | grep PATH
 ```
 
@@ -498,7 +500,7 @@ env | grep PATH
 
 echo $环境变量名
 
-```shel
+```bash
 echo $LANG
 ```
 
@@ -548,7 +550,7 @@ echo $LANG
 
 ## 5、设置环境变量
 
-```shell
+```bash
 变量名='值'
 export 变量名
 
@@ -591,7 +593,7 @@ export ORACLE_HOME=/oracle/homeexport ORACLE_BASE=/oracle/baseexport ORACLE_SID=
 
 例如：
 
-```shell
+```bash
 ls /root/.bash_*ls /home/naivekyo/.bash_*可以查出来几个特别的文件
 ```
 
@@ -619,7 +621,7 @@ ls /root/.bash_*ls /home/naivekyo/.bash_*可以查出来几个特别的文件
 
 环境变量脚本文件的执行顺序如下：
 
-```
+```bash
 /etc/profile -> /etc/profile.d -> /etc/bashrc -> 用户的.bash_profile -> 用户的.bashrc
 ```
 
@@ -627,7 +629,7 @@ ls /root/.bash_*ls /home/naivekyo/.bash_*可以查出来几个特别的文件
 
 还有一个问题需要注意，在/etc/profile中执行了/etc/profile.d的脚本，代码如下：
 
-```shell
+```bash
 for i in /etc/profile.d/*.sh ; do    if [ -r "$i" ]; then        if [ "${-#*i}" != "$-" ]; then            . "$i"        else            . "$i" >/dev/null        fi    fidone
 ```
 
@@ -641,7 +643,7 @@ for i in /etc/profile.d/*.sh ; do    if [ -r "$i" ]; then        if [ "${-#*i}" 
 
 - PATH环境变量存放的是目录列表，目录之间用冒号 : 分隔，最后的圆点 . 表示当前目录。
 
-  ```shell
+  ```bash
   export PATH=目录1:目录2:目录3:......目录n:.
   ```
 
@@ -649,13 +651,13 @@ for i in /etc/profile.d/*.sh ; do    if [ -r "$i" ]; then        if [ "${-#*i}" 
 
 - 在用户的 .bash_profile 文件中，会对PATH进行扩充，如下：
 
-  ```shell
+  ```bash
   export PATH=$PATH:$HOME/bin
   ```
 
 - 如果PATH变量中没有包含**圆点**.，执行当前目录下的程序需要加./或使用绝对路径。
 
-  ```shell
+  ```bash
   # 没有圆点
   export PATH=/usr/bin
   # 执行该目录下的命令时需要使用 ./ 或者 绝对路径
@@ -677,7 +679,7 @@ LANG环境变量存放的是Linux系统的语言、地区、字符集，它不�
 
 - CentOS7.x 字符集配置文件在/etc/locale.conf文件中，内容如下：
 
-```shell
+```bash
 LANG=en_US.UTF-8
 #LANG=zh_CN.UTF-8
 #LANG=zh_CN.gbk
@@ -688,7 +690,7 @@ LANG=en_US.UTF-8
 
 C/C++语言动态链接库文件搜索的目录，它不是Linux缺省的环境变量，但对C/C++程序员来说非常重要。LD_LIBRARY_PATH环境变量存放的也是目录列表，目录之间用冒号:分隔，最后的圆点.表示当前目录，与PATH的格式相同。
 
-```shell
+```bash
 export LD_LIBRARY_PATH=目录1:目录2:目录3:......目录n:.
 ```
 
@@ -704,7 +706,7 @@ CLASSPATH环境变量存放的也是目录列表，目录之间用冒号:分隔�
 
 - 在脚本文件中设置的环境变量不会立即生效，退出 Shell 后重新登录时才生效，或者用 **source** 命令让它立即生效，例如：
 
-  ```shell
+  ```bash
   source /etc/profile
   ```
 
