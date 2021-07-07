@@ -2,7 +2,7 @@
 title: centos7-install-git
 date: 2021-07-06 17:56:26
 author: NaiveKyo
-top: true
+top: false
 hide: false
 cover: false
 toc: true
