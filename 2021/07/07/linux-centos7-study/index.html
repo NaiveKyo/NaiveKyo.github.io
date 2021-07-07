@@ -342,6 +342,9 @@
     #toc-content {
         padding-bottom: 30px;
         overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
     }
 
     #toc-content ol {
@@ -468,7 +471,7 @@
 <blockquote>
 <p>连接出现错误 The Semaphore timeout period has expired</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># vi /etc/ssh/sshd_config</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vi /etc/ssh/sshd_config</span>
 
 GG到文件末尾，增加下面2行：
 ClientAliveInterval <span class="token number">60</span>
@@ -559,77 +562,78 @@ ClientAliveCountMax <span class="token number">3</span>
 </li>
 </ol>
 <h1 id="二、Vim-编辑器"><a href="#二、Vim-编辑器" class="headerlink" title="二、Vim 编辑器"></a>二、Vim 编辑器</h1><p>Vi 编辑器</p>
-<pre><code>命令行模式：
-  i    进入插入模式
-  esc    进入命令行模式
-  :    进入末行模式
-  a    在当前光标之后进入插入模式
-  o    在当前光标下一行插入空行
-  O    在当前光标上一行插入空行
-  I    在当前光标行首进入插入模式
-  A    在当前光标行末进入插入模式
-        
-    Ctrl + u     向上翻半页
-    Ctrl + d     向下翻半页
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">命令行模式：
+  i	进入插入模式
+  esc	进入命令行模式
+  <span class="token builtin class-name">:</span>	进入末行模式
+  a	在当前光标之后进入插入模式
+  o	在当前光标下一行插入空行
+  O	在当前光标上一行插入空行
+  I	在当前光标行首进入插入模式
+  A	在当前光标行末进入插入模式
+		
+	Ctrl + u 	向上翻半页
+	Ctrl + d 	向下翻半页
 
-    nG    移动到第 n 行
+	nG	移动到第 n 行
 
-    Ctrl + g    显示当前所在行数
+	Ctrl + g	显示当前所在行数
 
-    G    跳到最后一行
-    ：5    光标跳到第5行
-    ：n    光标跳到第n行
-    
-    0    跳到行首
-    $    跳到行末
-    
-    w    光标跳到下个单词的开头
-    b    光标跳到上个单词的开头
-    e    光标跳到本单词的结尾
-    
-    x    每按一次，删除光标所在位置的一个字符
-    nx    如“3x”表示删除光标所在位置开始的3个字符
-    dw    删除光标所在位置到本单词结尾的字符
-    D    删除本行光标所在位置后面全部内容
-    
-    dd    删除光标所在行
-    ndd    如“3dd”表示删除光标所在位置开始的3行
-    
-    yy    将光标所在位置的一行复制到缓冲区
-    nyy    将光标所在位置的n行复制到缓冲区
-    p    将缓冲区的内容粘贴到光标所在位置
-    
-    r    替换光标所在位置的一个字符    r = replace
-    R    从光标所在位置开始替换，直到按下“Esc”
-    cw    从光标所在位置开始替换单词，知道按下“Esc”
-    
-    u    撤销命令，可多次撤销
+	G	跳到最后一行
+	：5	光标跳到第5行
+	：n	光标跳到第n行
+	
+	<span class="token number">0</span>	跳到行首
+	$	跳到行末
+	
+	w	光标跳到下个单词的开头
+	b	光标跳到上个单词的开头
+	e	光标跳到本单词的结尾
+	
+	x	每按一次，删除光标所在位置的一个字符
+	nx	如“3x”表示删除光标所在位置开始的3个字符
+	dw	删除光标所在位置到本单词结尾的字符
+	D	删除本行光标所在位置后面全部内容
+	
+	<span class="token function">dd</span>	删除光标所在行
+	ndd	如“3dd”表示删除光标所在位置开始的3行
+	
+	yy	将光标所在位置的一行复制到缓冲区
+	nyy	将光标所在位置的n行复制到缓冲区
+	p	将缓冲区的内容粘贴到光标所在位置
+	
+	r	替换光标所在位置的一个字符	r <span class="token operator">=</span> replace
+	R	从光标所在位置开始替换，直到按下“Esc”
+	cw	从光标所在位置开始替换单词，知道按下“Esc”
+	
+	u	撤销命令，可多次撤销
 
-    J    将当前行的下一行接到当前行的末尾
+	J	将当前行的下一行接到当前行的末尾
 
-    /    输入/和要查找的内容，然后 n 表示下一个，N 表示上一个, 撤销高亮输入 :nohl
-    
-    .    小数点表示重复执行上一次的vi命令
+	/	输入/和要查找的内容，然后 n 表示下一个，N 表示上一个, 撤销高亮输入 :nohl
+	
+	<span class="token builtin class-name">.</span>	小数点表示重复执行上一次的vi命令
 
-    ~    对当前光标所在的字符进行大小写转换
+	~	对当前光标所在的字符进行大小写转换
 
-    列操作：先按 Ctrl + v 然后 按上下键选择列，选中后按 I 输入内容，最后 Esc
+	列操作：先按 Ctrl + <span class="token function">v</span> 然后 按上下键选择列，选中后按 I 输入内容，最后 Esc
 
-    移动光标：h 向左 l 向右  j 向下 k 向上 
+	移动光标：h 向左 l 向右  j 向下 k 向上 
 
-    ：g/aaa/s//bbb/g    全文替换，把aaa替换为bbb    
+	：g/aaa/s//bbb/g	全文替换，把aaa替换为bbb	
 
-    复制 ctrl + insert 粘贴 shift + insert
+	复制 ctrl + insert 粘贴 <span class="token builtin class-name">shift</span> + insert
 
 末行模式：
-    :w    存盘
-    :w!    强制存盘
-    :wq    存盘退出
-    :x    存盘退出
-    :q    不存盘退出
-    :q!    不存盘强制退出
-</code></pre>
-<h1 id="三、makefile-文件"><a href="#三、makefile-文件" class="headerlink" title="三、makefile 文件"></a>三、makefile 文件</h1><pre class="line-numbers language-none"><code class="language-none">	在软件的工程中的源文件是很多的，其按照类型、功能、模块分别放在若干个目录和文件中，哪些文件需要编译
+	:w	存盘
+	:w<span class="token operator">!</span>	强制存盘
+	:wq	存盘退出
+	:x	存盘退出
+	:q	不存盘退出
+	:q<span class="token operator">!</span>	不存盘强制退出<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h1 id="三、makefile-文件"><a href="#三、makefile-文件" class="headerlink" title="三、makefile 文件"></a>三、makefile 文件</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">	在软件的工程中的源文件是很多的，其按照类型、功能、模块分别放在若干个目录和文件中，哪些文件需要编译
 ，那些文件需要后编译，那些文件需要重新编译，甚至进行更复杂的功能操作，这就有了我们的系统编译的工具。
 
 	在linux和unix中，有一个强大的实用程序，叫make，可以用它来管理多模块程序的编译和链接，直至生成可执行文件。
@@ -655,10 +659,10 @@ ClientAliveCountMax <span class="token number">3</span>
 	book2:book2.c  _public.h _public.c
 		gcc -o book2 book2.c  _public.c
 	clean:
-		rm -f book1 book2
+		<span class="token function">rm</span> -f book1 book2
 第一行：
 	all：book1 book2
-	all：这是固定的写法，后面跟的是要编译目标程序的清单，中间用空格分开，如果清单很长，可以用 \ 换行
+	all：这是固定的写法，后面跟的是要编译目标程序的清单，中间用空格分开，如果清单很长，可以用 <span class="token punctuation">\</span> 换行
 	
 第二行：
 	book1: book1.c
@@ -685,40 +689,40 @@ ClientAliveCountMax <span class="token number">3</span>
 	清除目标文件，清除的命令由第十行之后的脚本来执行。
 
 第七行：
-		rm  -f  book1 book46
+		<span class="token function">rm</span>  -f  book1 book46
 	清除目标文件的脚本命令，注意了，rm之前也是一个tab键，不是空格。
 
 二、make 命令
 	
-	makefile准备好了，在命令提示符下执行 &lt;b&gt;make&lt;/b&gt; 就可以编译makefile中all参数指定的目标文件。
-	执行 make 编译目标程序
-	执行 make clean 执行清除目标文件的指令
+	makefile准备好了，在命令提示符下执行 <span class="token operator">&lt;</span>b<span class="token operator">&gt;</span>make<span class="token operator">&lt;</span>/b<span class="token operator">&gt;</span> 就可以编译makefile中all参数指定的目标文件。
+	执行 <span class="token function">make</span> 编译目标程序
+	执行 <span class="token function">make</span> clean 执行清除目标文件的指令
 
 三、makefile 文件中的变量
 	
 	makefile中，变量就是一个名字，变量的值就是一个文本字符串。
 	在makefile中的目标，依赖，命令或其他地方引用变量时，变量会被它的值替代。
 
-CC=gcc
-FLAG=-g
+<span class="token assign-left variable">CC</span><span class="token operator">=</span>gcc
+<span class="token assign-left variable">FLAG</span><span class="token operator">=</span>-g
  
 all:book1 book46
  
 book1:book1.c
-        $(CC) $(FLAG) -o book1 book1.c
+        <span class="token variable"><span class="token variable">$(</span>CC<span class="token variable">)</span></span> <span class="token variable"><span class="token variable">$(</span>FLAG<span class="token variable">)</span></span> -o book1 book1.c
  
 book46:book46.c _public.h _public.c
-        $(CC) $(FLAG) -o book46 book46.c _public.c
+        <span class="token variable"><span class="token variable">$(</span>CC<span class="token variable">)</span></span> <span class="token variable"><span class="token variable">$(</span>FLAG<span class="token variable">)</span></span> -o book46 book46.c _public.c
  
 clean:
-        rm -f book1 book46
+        <span class="token function">rm</span> -f book1 book46
 
-第一行：	CC=gcc
+第一行：	<span class="token assign-left variable">CC</span><span class="token operator">=</span>gcc
 	定义变量CC，赋值gcc
-第二行：	FLAG=-g
+第二行：	<span class="token assign-left variable">FLAG</span><span class="token operator">=</span>-g
 	定义变量，赋值-g
-第七行：	$(CC)  $(FLAG) -o book1 book1.c
-	$(CC)和$(FLAG)就是使用变量CC和FLAG的值，类似于C语言的宏定义，替换后的结果是：
+第七行：	<span class="token variable"><span class="token variable">$(</span>CC<span class="token variable">)</span></span>  <span class="token variable"><span class="token variable">$(</span>FLAG<span class="token variable">)</span></span> -o book1 book1.c
+	<span class="token variable"><span class="token variable">$(</span>CC<span class="token variable">)</span></span>和<span class="token variable"><span class="token variable">$(</span>FLAG<span class="token variable">)</span></span>就是使用变量CC和FLAG的值，类似于C语言的宏定义，替换后的结果是：
 	gcc -g -o book1 book1.c
 
 在makefile文件中，使用变量的好处有两个：1）如果在很多编译指令采用了变量，
@@ -731,13 +735,13 @@ clean:
 
 
 
-<h1 id="四、GDB-常用命令"><a href="#四、GDB-常用命令" class="headerlink" title="四、GDB 常用命令"></a>四、GDB 常用命令</h1><pre class="line-numbers language-none"><code class="language-none">命令		命令缩写			命令说明
+<h1 id="四、GDB-常用命令"><a href="#四、GDB-常用命令" class="headerlink" title="四、GDB 常用命令"></a>四、GDB 常用命令</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">命令		命令缩写			命令说明
 
-set args					设置主程序的参数
+<span class="token builtin class-name">set</span> args					设置主程序的参数
 					例如：两个程序  /test/book1.c	和 ./book1.c
-					设置方法：(gdb) set args /test/book1.c和 gdb book1.c
+					设置方法：<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token builtin class-name">set</span> args /test/book1.c和 gdb book1.c
 
-break		b			设置断点，b 20 表示在20行设置断点，可以设置多个断点
+<span class="token builtin class-name">break</span>		b			设置断点，b <span class="token number">20</span> 表示在20行设置断点，可以设置多个断点
 
 run		r			开始运行程序，程序运行到断点处会停止
 
@@ -748,10 +752,10 @@ step		s			执行当前行语句，如果该语句为函数调用，则进入函�
 
 print		p			显示变量值，例如 p name 表示显示变量name的值
 
-continue		c			继续程序的运行，知道遇到下一个断点
+<span class="token builtin class-name">continue</span>		c			继续程序的运行，知道遇到下一个断点
 
-set var name = value			设置变量的值，假设程序有两个变量：int ii 和 char name[21]
-					set var ii = 10 set name = ”测试“而不用strcpy
+<span class="token builtin class-name">set</span> var name <span class="token operator">=</span> value			设置变量的值，假设程序有两个变量：int ii 和 char name<span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">]</span>
+					<span class="token builtin class-name">set</span> var ii <span class="token operator">=</span> <span class="token number">10</span> <span class="token builtin class-name">set</span> name <span class="token operator">=</span> ”测试“而不用strcpy
 
 quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -759,7 +763,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <blockquote>
 <p>修改 CentOS 7 的字符集</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">echo</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span><span class="token string">"zh_CN.gbk"</span> <span class="token operator">&gt;</span> /etc/locale.conf
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span><span class="token string">"zh_CN.gbk"</span> <span class="token operator">&gt;</span> /etc/locale.conf
 然后让其立即生效
 <span class="token builtin class-name">source</span> /etc/locale.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -767,12 +771,12 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>启用网卡</p>
 </blockquote>
 <p>打开 ens33 网卡的配置文件 <code>/etc/sysconfig/network-scripts/ifcfg-ens33</code>，把 <strong>NOBOOT</strong> 参数修改为 yes。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">echo</span> <span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes <span class="token operator">&gt;&gt;</span> /etc/sysconfig/network-scripts/ifcfg-ens33<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes <span class="token operator">&gt;&gt;</span> /etc/sysconfig/network-scripts/ifcfg-ens33<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <blockquote>
 <p>修改 CentOS 7 的时间</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">date</span> -s <span class="token string">"2021/03/12 21:22:00"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">date</span> -s <span class="token string">"2021/03/12 21:22:00"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -787,9 +791,9 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <li><p>查看时间 <code>date</code></p>
 </li>
 <li><p>设置时间为中国上海时间  </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">cp</span> /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>设置时间格式</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">date</span> -s <span class="token string">"yyyy-mm-dd hh:mi:ss"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">date</span> -s <span class="token string">"yyyy-mm-dd hh:mi:ss"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 <blockquote>
 <p>目录操作：</p>
@@ -887,13 +891,13 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>用 env 命令的时候，满屏显示了很多环境变量，不方便查看，可以用 grep 筛选。</p>
 <p><code>env | grep 环境变量名</code>:</p>
 <p>例如查看环境变量名中包含PATH的环境变量。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">env</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">env</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <p><code>echo 命令</code>:</p>
 <p>echo $环境变量名</p>
-<pre class="line-numbers language-shel" data-language="shel"><code class="language-shel">echo $LANG<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token environment constant">$LANG</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <blockquote>
 <p>常用的环境变量</p>
@@ -930,7 +934,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p><strong>JAVA 语言库文件搜索的目录，它也不是 Linux 缺省的环境变量，但对JAVA程序员来说非常重要</strong></p>
 </li>
 </ul>
-<h2 id="5、设置环境变量"><a href="#5、设置环境变量" class="headerlink" title="5、设置环境变量"></a>5、设置环境变量</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">变量名<span class="token operator">=</span><span class="token string">'值'</span>
+<h2 id="5、设置环境变量"><a href="#5、设置环境变量" class="headerlink" title="5、设置环境变量"></a>5、设置环境变量</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">变量名<span class="token operator">=</span><span class="token string">'值'</span>
 <span class="token builtin class-name">export</span> 变量名
 
 或者
@@ -963,7 +967,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>用户环境变量只对当前用户生效，设置用户环境变量也有多种方法。</p>
 <p>在用户的主目录，有几个特别的文件，用 ls 是看不见的，用 <strong>ls .bash_</strong>* 可以看见。</p>
 <p>例如：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ls</span> /root/.bash_*ls /home/naivekyo/.bash_*可以查出来几个特别的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /root/.bash_*ls /home/naivekyo/.bash_*可以查出来几个特别的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -985,11 +989,11 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>环境变量脚本执行的顺序</p>
 </blockquote>
 <p>环境变量脚本文件的执行顺序如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">/etc/profile -&gt; /etc/profile.d -&gt; /etc/bashrc -&gt; 用户的.bash_profile -&gt; 用户的.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/etc/profile -<span class="token operator">&gt;</span> /etc/profile.d -<span class="token operator">&gt;</span> /etc/bashrc -<span class="token operator">&gt;</span> 用户的.bash_profile -<span class="token operator">&gt;</span> 用户的.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>同名的环境变量，如果在多个脚本中有配置，以最后执行的脚本中的配置为准。</p>
 <p>还有一个问题需要注意，在/etc/profile中执行了/etc/profile.d的脚本，代码如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> /etc/profile.d/*.sh <span class="token punctuation">;</span> <span class="token keyword">do</span>    <span class="token keyword">if</span> <span class="token punctuation">[</span> -r <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">${-<span class="token operator">#</span>*i}</span>"</span> <span class="token operator">!=</span> <span class="token string">"$-"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>            <span class="token builtin class-name">.</span> <span class="token string">"<span class="token variable">$i</span>"</span>        <span class="token keyword">else</span>            <span class="token builtin class-name">.</span> <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token operator">&gt;</span>/dev/null        <span class="token keyword">fi</span>    fidone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> /etc/profile.d/*.sh <span class="token punctuation">;</span> <span class="token keyword">do</span>    <span class="token keyword">if</span> <span class="token punctuation">[</span> -r <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">${-<span class="token operator">#</span>*i}</span>"</span> <span class="token operator">!=</span> <span class="token string">"$-"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>            <span class="token builtin class-name">.</span> <span class="token string">"<span class="token variable">$i</span>"</span>        <span class="token keyword">else</span>            <span class="token builtin class-name">.</span> <span class="token string">"<span class="token variable">$i</span>"</span> <span class="token operator">&gt;</span>/dev/null        <span class="token keyword">fi</span>    fidone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>所以，/etc/profile.d 和 /etc/profile 的执行顺序还要看代码怎么写。</p>
 <h2 id="6、重要环境变量详解"><a href="#6、重要环境变量详解" class="headerlink" title="6、重要环境变量详解"></a>6、重要环境变量详解</h2><blockquote>
@@ -998,13 +1002,13 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>可执行程序的搜索目录，可执行程序包括 Linux 系统命令和用户的应用程序。如果可执行程序的目录不在 PATH 指定的目录中，执行时需要指定目录。</p>
 <ul>
 <li><p>PATH环境变量存放的是目录列表，目录之间用冒号 : 分隔，最后的圆点 . 表示当前目录。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>目录1:目录2:目录3:<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>目录n:.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>目录1:目录2:目录3:<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>目录n:.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>PATH 缺省包含了 Linux 系统命令所在的目录（/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin），如果不包含这些目录，Linux的常用命令也无法执行（要输入绝对路径才能执行）。</p>
 </li>
 <li><p>在用户的 .bash_profile 文件中，会对PATH进行扩充，如下：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token environment constant">$HOME</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token environment constant">$HOME</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>如果PATH变量中没有包含<strong>圆点</strong>.，执行当前目录下的程序需要加./或使用绝对路径。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 没有圆点</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 没有圆点</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/bin
 <span class="token comment"># 执行该目录下的命令时需要使用 ./ 或者 绝对路径</span>
 
@@ -1022,7 +1026,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <li><p>CentOS7.x 字符集配置文件在/etc/locale.conf文件中，内容如下：</p>
 </li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>en_US.UTF-8
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>en_US.UTF-8
 <span class="token comment">#LANG=zh_CN.UTF-8</span>
 <span class="token comment">#LANG=zh_CN.gbk</span>
 <span class="token comment">#LANG=zh_CH.gb18030</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1031,7 +1035,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>3、LD_LIBRARY_PATH环境变量</p>
 </blockquote>
 <p>C/C++语言动态链接库文件搜索的目录，它不是Linux缺省的环境变量，但对C/C++程序员来说非常重要。LD_LIBRARY_PATH环境变量存放的也是目录列表，目录之间用冒号:分隔，最后的圆点.表示当前目录，与PATH的格式相同。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>目录1:目录2:目录3:<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>目录n:.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>目录1:目录2:目录3:<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>目录n:.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <blockquote>
 <p>4、CLASSPATH</p>
@@ -1042,7 +1046,7 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <li><p>在 Shell 下，用 <strong>export</strong> 设置的环境变量对当前 Shell 立即生效，Shell 退出后失效。</p>
 </li>
 <li><p>在脚本文件中设置的环境变量不会立即生效，退出 Shell 后重新登录时才生效，或者用 <strong>source</strong> 命令让它立即生效，例如：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 <h2 id="8、建议"><a href="#8、建议" class="headerlink" title="8、建议"></a>8、建议</h2><p>虽然设置环境变量的方法有多种，但是建议系统环境变量建议在 <strong>/etc/profile.d</strong> 目录中配置，用户环境变量在用户的 <strong>.bash_profile</strong> 中配置，不建议在其它脚本文件中配置环境变，会增加运维的麻烦，容易出错。</p>
 <h1 id="七、CentOS7-设置中文字符集"><a href="#七、CentOS7-设置中文字符集" class="headerlink" title="七、CentOS7 设置中文字符集"></a>七、CentOS7 设置中文字符集</h1><h1 id="八、CentOS7-安装软件包的方法"><a href="#八、CentOS7-安装软件包的方法" class="headerlink" title="八、CentOS7 安装软件包的方法"></a>八、CentOS7 安装软件包的方法</h1><p>Linux有多种发行版本，各种发行版本之间安装软件包的方法和命令不一样，同发行版本之间安装软件包的方法也有不同。Linux主要有三大派系：红帽子派系（Redhat、Centos、Oracle Linux）、Debian派系（Ubuntu、Kali），SUSE派系（SuSe、OpenSUSE）等。</p>
