@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-07T03:37:14.010Z</updated>
+  <updated>2021-07-07T07:09:39.711Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL_Log_Intro</title>
+    <link href="http://naivekyo.github.io/2021/07/07/mysql-log-intro/"/>
+    <id>http://naivekyo.github.io/2021/07/07/mysql-log-intro/</id>
+    <published>2021-07-07T06:59:32.000Z</published>
+    <updated>2021-07-07T07:09:39.711Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MySQL-日志学习&quot;&gt;&lt;a href=&quot;#MySQL-日志学习&quot; class=&quot;headerlink&quot; title=&quot;MySQL 日志学习&quot;&gt;&lt;/a&gt;MySQL 日志学习&lt;/h1&gt;&lt;h2 id=&quot;一、日志分类&quot;&gt;&lt;a href=&quot;#一、日志分类&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="http://naivekyo.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="http://naivekyo.github.io/tags/MySQL/"/>
+    
+    <category term="Log" scheme="http://naivekyo.github.io/tags/Log/"/>
+    
+  </entry>
   
   <entry>
     <title>linux_centos7_study</title>
