@@ -8,7 +8,9 @@ cover: true
 toc: true
 summary: CentOS7 安装 MySQL
 categories: Linux
-keywords: Linux MySQL8
+keywords: 
+  - Linux 
+  - MySQL8
 tags:
   - Linux
   - MySQL

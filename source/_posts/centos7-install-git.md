@@ -8,7 +8,9 @@ cover: false
 toc: true
 summary: CentOS7 安装 Git
 categories: Linux
-keywords: CentOS7、Git
+keywords: 
+  - CentOS7
+  - Git
 tags:
   - Linux
   - Git

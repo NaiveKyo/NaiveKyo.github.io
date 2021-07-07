@@ -8,7 +8,9 @@ cover: flase
 toc: true
 summary: 简单了解 MySQL 的日志模板。
 categories: MySQL
-keywords: MySQL、Log
+keywords: 
+  - MySQL
+  - Log
 tags:
   - MySQL
   - Log

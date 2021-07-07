@@ -7,7 +7,9 @@ cover: false
 toc: true
 summary: CentOS7 安装 Redis 流程记录
 categories: Linux
-keywords: Linux、Redis
+keywords: 
+  - Linux
+  - Redis
 tags:
   - Linux
   - Redis

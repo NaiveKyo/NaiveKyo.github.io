@@ -8,7 +8,9 @@ cover: false
 toc: true
 summary: CentOS7 安装 Java 环境
 categories: Linux
-keywords: CentOS7 jdk
+keywords: 
+  - CentOS7
+  - jdk
 tags:
   - Linux
   - Java

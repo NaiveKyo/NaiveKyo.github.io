@@ -8,7 +8,9 @@ cover: false
 toc: true
 summary: 记录学习 Linux 过程中的一些常用操作
 categories: Linux
-keywords: Linux、Study
+keywords: 
+  - Linux
+  - Study
 tags:
   - Linux
 ---

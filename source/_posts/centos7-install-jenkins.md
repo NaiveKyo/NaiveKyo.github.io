@@ -8,7 +8,9 @@ cover: true
 toc: true
 summary: CentOS7 安装 Jenkins 并测试项目自动部署。
 categories: Linux
-keywords: CentOS7、Jenkins
+keywords: 
+  - CentOS7
+  - Jenkins
 tags:
   - Linux
   - Deploy

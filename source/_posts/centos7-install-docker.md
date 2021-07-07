@@ -8,7 +8,9 @@ cover: false
 toc: true
 summary: CentOS7 安装 Docker 容器
 categories: Linux
-keywords: CentOS7、Docker
+keywords: 
+  - CentOS7
+  - Docker
 tags:
   - Linux
   - Docker
