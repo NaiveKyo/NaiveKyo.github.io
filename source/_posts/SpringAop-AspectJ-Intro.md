@@ -3,6 +3,7 @@ title: SpringAop-AspectJ-Intro
 date: 2021-07-07 15:23:03
 author: NaiveKyo
 top: true
+img: /medias/featureimages/1.jpg
 hide: flase
 cover: false
 toc: true

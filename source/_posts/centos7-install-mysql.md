@@ -2,9 +2,9 @@
 title: centos7-install-mysql
 date: 2021-07-06 17:23:33
 author: NaiveKyo
-top: true
+top: false
 hide: false
-cover: true
+cover: false
 toc: true
 summary: CentOS7 安装 MySQL
 categories: Linux

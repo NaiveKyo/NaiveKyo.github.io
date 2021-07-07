@@ -5,6 +5,7 @@ author: NaiveKyo
 top: true
 hide: false
 cover: true
+img: /medias/featureimages/23.jpg
 toc: true
 summary: CentOS7 安装 Jenkins 并测试项目自动部署。
 categories: Linux

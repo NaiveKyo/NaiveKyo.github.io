@@ -1,12 +1,12 @@
 ---
 title: {{ title }}
 date: {{ date }}
-author:
+author: NaiveKyo
 top:
-hide:
-img:
+hide: false
+img: /medias/featureimages/
 cover:
-toc:
+toc: true
 summary:
 categories:
 keywords:
