@@ -274,7 +274,7 @@ Redis（Remote Dictionary Server），远程字典服务
 
 见另一篇博文：
 
-[Linux 安装 Redis]: https://naivekyo.github.io/2021/07/06/centos7-install-redis/
+[Linux 安装 Redis](https://naivekyo.github.io/2021/07/06/centos7-install-redis/)
 
 
 
@@ -2821,7 +2821,7 @@ Master 接收到命令，会启动后台的存盘进程，同时收集所有接�
 这**一种模型**：
 
 - 可以完成主从复制
-- 当真正的 Master 宕机后，同时兼具 Master 和 Salve 身份的从机可以使用命令 `SLAVEOF no one`，将自己的省份变为 master，这样它的下面还是有从机的，如果真正的主机恢复上线了，就没有从机了，除非再次使用命令配置
+- 当真正的 Master 宕机后，同时兼具 Master 和 Salve 身份的从机可以使用命令 `SLAVEOF no one`，将自己的身份变为 master，这样它的下面还是有从机的，如果真正的主机恢复上线了，就没有从机了，除非再次使用命令配置
 
 
 
