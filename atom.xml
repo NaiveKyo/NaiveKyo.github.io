@@ -3,11 +3,11 @@
   <title>NaiveKyo</title>
   
   <subtitle>A back-end engineer</subtitle>
-  <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
+  <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
-  <link href="http://naivekyo.github.io/"/>
+  <link href="https://naivekyo.github.io/"/>
   <updated>2021-07-07T07:57:47.595Z</updated>
-  <id>http://naivekyo.github.io/</id>
+  <id>https://naivekyo.github.io/</id>
   
   <author>
     <name>NaiveKyo</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>SpringAop-AspectJ-Intro</title>
-    <link href="http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
-    <id>http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
+    <link href="https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
+    <id>https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
     <published>2021-07-07T07:23:03.000Z</published>
     <updated>2021-07-07T07:57:47.595Z</updated>
     
@@ -34,23 +34,23 @@
     
     
     
-    <category term="Java" scheme="http://naivekyo.github.io/categories/Java/"/>
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
     
-    <category term="Spring" scheme="http://naivekyo.github.io/categories/Java/Spring/"/>
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Java/Spring/"/>
     
     
-    <category term="Spring" scheme="http://naivekyo.github.io/tags/Spring/"/>
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
     
-    <category term="Aop" scheme="http://naivekyo.github.io/tags/Aop/"/>
+    <category term="Aop" scheme="https://naivekyo.github.io/tags/Aop/"/>
     
-    <category term="AspectJ" scheme="http://naivekyo.github.io/tags/AspectJ/"/>
+    <category term="AspectJ" scheme="https://naivekyo.github.io/tags/AspectJ/"/>
     
   </entry>
   
   <entry>
     <title>MySQL_Log_Intro</title>
-    <link href="http://naivekyo.github.io/2021/07/07/mysql-log-intro/"/>
-    <id>http://naivekyo.github.io/2021/07/07/mysql-log-intro/</id>
+    <link href="https://naivekyo.github.io/2021/07/07/mysql-log-intro/"/>
+    <id>https://naivekyo.github.io/2021/07/07/mysql-log-intro/</id>
     <published>2021-07-07T06:59:32.000Z</published>
     <updated>2021-07-07T07:47:56.350Z</updated>
     
@@ -65,19 +65,19 @@
     
     
     
-    <category term="MySQL" scheme="http://naivekyo.github.io/categories/MySQL/"/>
+    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
     
     
-    <category term="MySQL" scheme="http://naivekyo.github.io/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
-    <category term="Log" scheme="http://naivekyo.github.io/tags/Log/"/>
+    <category term="Log" scheme="https://naivekyo.github.io/tags/Log/"/>
     
   </entry>
   
   <entry>
     <title>linux_centos7_study</title>
-    <link href="http://naivekyo.github.io/2021/07/07/linux-centos7-study/"/>
-    <id>http://naivekyo.github.io/2021/07/07/linux-centos7-study/</id>
+    <link href="https://naivekyo.github.io/2021/07/07/linux-centos7-study/"/>
+    <id>https://naivekyo.github.io/2021/07/07/linux-centos7-study/</id>
     <published>2021-07-07T02:55:28.000Z</published>
     <updated>2021-07-07T07:47:47.060Z</updated>
     
@@ -92,17 +92,17 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>centos7_install_jenkins</title>
-    <link href="http://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
-    <id>http://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
+    <link href="https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
+    <id>https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
     <published>2021-07-07T01:48:00.000Z</published>
     <updated>2021-07-07T08:00:17.070Z</updated>
     
@@ -117,19 +117,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="Deploy" scheme="http://naivekyo.github.io/tags/Deploy/"/>
+    <category term="Deploy" scheme="https://naivekyo.github.io/tags/Deploy/"/>
     
   </entry>
   
   <entry>
     <title>centos7_install_docker</title>
-    <link href="http://naivekyo.github.io/2021/07/07/centos7-install-docker/"/>
-    <id>http://naivekyo.github.io/2021/07/07/centos7-install-docker/</id>
+    <link href="https://naivekyo.github.io/2021/07/07/centos7-install-docker/"/>
+    <id>https://naivekyo.github.io/2021/07/07/centos7-install-docker/</id>
     <published>2021-07-07T01:04:18.000Z</published>
     <updated>2021-07-07T07:46:33.643Z</updated>
     
@@ -144,19 +144,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="Docker" scheme="http://naivekyo.github.io/tags/Docker/"/>
+    <category term="Docker" scheme="https://naivekyo.github.io/tags/Docker/"/>
     
   </entry>
   
   <entry>
     <title>centos7-install-git</title>
-    <link href="http://naivekyo.github.io/2021/07/06/centos7-install-git/"/>
-    <id>http://naivekyo.github.io/2021/07/06/centos7-install-git/</id>
+    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-git/"/>
+    <id>https://naivekyo.github.io/2021/07/06/centos7-install-git/</id>
     <published>2021-07-06T09:56:26.000Z</published>
     <updated>2021-07-07T07:46:47.089Z</updated>
     
@@ -171,19 +171,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="Git" scheme="http://naivekyo.github.io/tags/Git/"/>
+    <category term="Git" scheme="https://naivekyo.github.io/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>centos7-install-jdk</title>
-    <link href="http://naivekyo.github.io/2021/07/06/centos7-install-jdk/"/>
-    <id>http://naivekyo.github.io/2021/07/06/centos7-install-jdk/</id>
+    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/"/>
+    <id>https://naivekyo.github.io/2021/07/06/centos7-install-jdk/</id>
     <published>2021-07-06T09:46:20.000Z</published>
     <updated>2021-07-07T07:46:59.475Z</updated>
     
@@ -198,19 +198,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="Java" scheme="http://naivekyo.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>centos7-install-mysql</title>
-    <link href="http://naivekyo.github.io/2021/07/06/centos7-install-mysql/"/>
-    <id>http://naivekyo.github.io/2021/07/06/centos7-install-mysql/</id>
+    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-mysql/"/>
+    <id>https://naivekyo.github.io/2021/07/06/centos7-install-mysql/</id>
     <published>2021-07-06T09:23:33.000Z</published>
     <updated>2021-07-07T07:47:20.678Z</updated>
     
@@ -225,19 +225,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="MySQL" scheme="http://naivekyo.github.io/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>centos7-install-redis</title>
-    <link href="http://naivekyo.github.io/2021/07/06/centos7-install-redis/"/>
-    <id>http://naivekyo.github.io/2021/07/06/centos7-install-redis/</id>
+    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-redis/"/>
+    <id>https://naivekyo.github.io/2021/07/06/centos7-install-redis/</id>
     <published>2021-07-06T08:28:11.000Z</published>
     <updated>2021-07-07T07:47:29.216Z</updated>
     
@@ -252,19 +252,19 @@
     
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/categories/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://naivekyo.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
-    <category term="Redis" scheme="http://naivekyo.github.io/tags/Redis/"/>
+    <category term="Redis" scheme="https://naivekyo.github.io/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>draft-test</title>
-    <link href="http://naivekyo.github.io/2021/07/06/draft-test/"/>
-    <id>http://naivekyo.github.io/2021/07/06/draft-test/</id>
+    <link href="https://naivekyo.github.io/2021/07/06/draft-test/"/>
+    <id>https://naivekyo.github.io/2021/07/06/draft-test/</id>
     <published>2021-07-06T07:32:00.000Z</published>
     <updated>2021-07-06T09:07:02.289Z</updated>
     
@@ -279,19 +279,19 @@
     
     
     
-    <category term="BlogTest" scheme="http://naivekyo.github.io/categories/BlogTest/"/>
+    <category term="BlogTest" scheme="https://naivekyo.github.io/categories/BlogTest/"/>
     
     
-    <category term="Test" scheme="http://naivekyo.github.io/tags/Test/"/>
+    <category term="Test" scheme="https://naivekyo.github.io/tags/Test/"/>
     
-    <category term="Blog" scheme="http://naivekyo.github.io/tags/Blog/"/>
+    <category term="Blog" scheme="https://naivekyo.github.io/tags/Blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://naivekyo.github.io/2021/07/05/hello-world/"/>
-    <id>http://naivekyo.github.io/2021/07/05/hello-world/</id>
+    <link href="https://naivekyo.github.io/2021/07/05/hello-world/"/>
+    <id>https://naivekyo.github.io/2021/07/05/hello-world/</id>
     <published>2021-07-05T12:21:45.250Z</published>
     <updated>2021-07-06T06:15:08.474Z</updated>
     
