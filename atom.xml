@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-07T07:39:52.727Z</updated>
+  <updated>2021-07-07T07:41:52.949Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
     <id>http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
     <published>2021-07-07T07:23:03.000Z</published>
-    <updated>2021-07-07T07:39:52.727Z</updated>
+    <updated>2021-07-07T07:41:52.949Z</updated>
     
     
       
@@ -34,7 +34,7 @@
     
     
     
-    <category term="Java" scheme="http://naivekyo.github.io/categories/Java/"/>
+    <category term="Java、Spring" scheme="http://naivekyo.github.io/categories/Java%E3%80%81Spring/"/>
     
     
     <category term="Spring" scheme="http://naivekyo.github.io/tags/Spring/"/>
