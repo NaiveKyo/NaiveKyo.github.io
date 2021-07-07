@@ -6,7 +6,7 @@
   <link href="http://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="http://naivekyo.github.io/"/>
-  <updated>2021-07-07T07:09:39.711Z</updated>
+  <updated>2021-07-07T07:39:52.727Z</updated>
   <id>http://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringAop-AspectJ-Intro</title>
+    <link href="http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
+    <id>http://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
+    <published>2021-07-07T07:23:03.000Z</published>
+    <updated>2021-07-07T07:39:52.727Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;AspectJ-在-Spring-Aop-中的体现&quot;&gt;&lt;a href=&quot;#AspectJ-在-Spring-Aop-中的体现&quot; class=&quot;headerlink&quot; title=&quot;AspectJ 在 Spring Aop 中的体现&quot;&gt;&lt;/a&gt;AspectJ 在</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Spring" scheme="http://naivekyo.github.io/tags/Spring/"/>
+    
+    <category term="Aop" scheme="http://naivekyo.github.io/tags/Aop/"/>
+    
+    <category term="AspectJ" scheme="http://naivekyo.github.io/tags/AspectJ/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL_Log_Intro</title>
