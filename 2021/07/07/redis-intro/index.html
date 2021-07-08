@@ -1296,7 +1296,7 @@ QUEUED
 </ul>
 <p><strong>乐观锁：</strong></p>
 <ul>
-<li>很乐观，认为什么时候都不会出现问题，所以不会加锁！在更新数据时判断以下，在此期间是否有人修改过这个数据（MySQL 中使用 version 字段）</li>
+<li>很乐观，认为什么时候都不会出现问题，所以不会加锁！在更新数据时才会加锁判断，在此期间是否有人修改过这个数据（相当于 MySQL 中使用 version 字段）</li>
 <li>获取 version</li>
 <li>更新的时候比较 version</li>
 </ul>
@@ -1346,7 +1346,7 @@ OK
 
 
 
-<p><strong>测试多线程修改值，使用 wathc 可以当作 redis 的乐观锁操作。</strong></p>
+<p><strong>测试多线程修改值，使用 watch 可以当作 redis 的乐观锁操作。</strong></p>
 <p>执行事务失败后如果想重新进行事务操作，就需要接触监视后重新监视新的数据</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> unwatch
 OK
@@ -2606,10 +2606,10 @@ Reading messages<span class="token punctuation">..</span>. <span class="token pu
 </ol>
 <p>一般来说，要将 Redis 用于工程项目中，只是用一台 Redis 是万万不能的（可能会宕机，一般配三台），原因如下：</p>
 <ol>
-<li>从结构上，单个 Redis 服务器会发送单点故障，并且一台服务器需要处理所有的请求负载，压力过大。</li>
+<li>从结构上，单个 Redis 服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力过大。</li>
 <li>从容量上，单个 Redis 服务器内存容量有限，就算一台 Redis 服务器内存容量为 256G，也不能将所有内存用作 Redis 存储内存，一般来说，单台 Redis 最大使用内存不应该超过 20G</li>
 </ol>
-<p>电商网站上的商品，一般都是一次上次，无数次浏览的，说专业点就是 ”多读少写“</p>
+<p>电商网站上的商品，一般都是一次存储，无数次浏览的，说专业点就是 ”多读少写“</p>
 <p>对于这样的场景，我们使用如下架构：</p>
 <p><img src="https://naivekyo.oss-cn-hangzhou.aliyuncs.com/blog%27image/write%26read.png"></p>
 <p>主从复制、读写分离 解决大量读操作的场景，减缓服务器压力，架构中经常使用。一般：<strong>一主二从</strong>（后续哨兵模式会选举，所以最低需要三台）</p>

@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-07T09:52:17.629Z</updated>
+  <updated>2021-07-08T09:47:21.047Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring_Bean_Lifecycle_Intro</title>
+    <link href="https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/"/>
+    <id>https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/</id>
+    <published>2021-07-08T01:11:44.000Z</published>
+    <updated>2021-07-08T09:47:21.047Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring-的-Bean-生命周期回调&quot;&gt;&lt;a href=&quot;#Spring-的-Bean-生命周期回调&quot; class=&quot;headerlink&quot; title=&quot;Spring 的 Bean 生命周期回调&quot;&gt;&lt;/a&gt;Spring 的 Bean</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
+    
+    <category term="Lifecycle" scheme="https://naivekyo.github.io/tags/Lifecycle/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx_Intro</title>
@@ -46,7 +73,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/redis-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/redis-intro/</id>
     <published>2021-07-07T08:29:51.000Z</published>
-    <updated>2021-07-07T09:27:25.593Z</updated>
+    <updated>2021-07-07T12:40:38.933Z</updated>
     
     
       
@@ -158,7 +185,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
     <id>https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
     <published>2021-07-07T01:48:00.000Z</published>
-    <updated>2021-07-07T08:00:17.070Z</updated>
+    <updated>2021-07-08T09:49:09.396Z</updated>
     
     
       
@@ -293,7 +320,7 @@
     <link href="https://naivekyo.github.io/2021/07/06/centos7-install-redis/"/>
     <id>https://naivekyo.github.io/2021/07/06/centos7-install-redis/</id>
     <published>2021-07-06T08:28:11.000Z</published>
-    <updated>2021-07-07T07:47:29.216Z</updated>
+    <updated>2021-07-08T09:49:32.778Z</updated>
     
     
       
