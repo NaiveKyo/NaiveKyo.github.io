@@ -2,9 +2,9 @@
 title: centos7_install_jenkins
 date: 2021-07-07 09:48:00
 author: NaiveKyo
-top: true
+top: false
 hide: false
-cover: true
+cover: false
 img: /medias/featureimages/23.jpg
 toc: true
 summary: CentOS7 安装 Jenkins 并测试项目自动部署。
