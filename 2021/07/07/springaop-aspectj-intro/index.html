@@ -58,8 +58,8 @@
     background-color: #ddd;
     display: inline-block;
     background-image: url("/medias/loading.gif");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: round;
     transition: margin-right 1.5s;
   }
 
@@ -69,8 +69,8 @@
     background-color: #ddd;
     display: inline-block;
     background-image: url("/medias/loading.gif");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: round;
   }
 
   /* 太极特效 */
@@ -124,9 +124,32 @@
     top: 211px;
   }
 
-  @media only screen and (max-width: 500px) {
+  /*中等屏幕下(平板类)的样式*/
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  /* 小型设备 */
+  @media only screen and (max-width: 601) {
     .loading-text {
       font-size: 1.5rem;
+    }
+    #show {
+      display: none;
     }
   }
 
