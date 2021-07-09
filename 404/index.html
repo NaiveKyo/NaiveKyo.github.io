@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
 </head>
 
 
@@ -294,51 +294,47 @@
 <script>
 
             
-  window.onload = function() {
-    const loader = document.getElementById("loading-container");
+  // window.onload = function() {
+  //   const loader = document.getElementById("loading-container");
 
-    if (sessionStorage.getItem('flag') == null) {
-      console.log("111111")
-      const loaded = function() {
-        setTimeout(function() {
-          loader.style.display = 'none'
-        }, 1000)
-      }
-      loaded();
-      sessionStorage.setItem('flag', 1)
-    } else {
-      loader.style.display = 'none'
-    }
-  }
-
-
-  // (function () {
-
-  //   console.log(sessionStorage.getItem('flag'))
-
-  //   if (sessionStorage.getItem('flag')) {
-
+  //   if (sessionStorage.getItem('flag') == null) {
+  //     console.log("111111")
   //     const loaded = function() {
   //       setTimeout(function() {
-  //         const loader = document.getElementById("loading-container");
-  //         loader.className = "fadeout" ;//使用渐隐的方法淡出loading page 
-  //         // document.getElementById("body-wrap").style.display="flex"; 
-  //         loader.style.display = "none"
-  //         // setTimeout(function() { 
-  //         //   loader.style.display="none"; 
-  //         // },1500); 
-
-  //         sessionStorage.setItem('flag', 1)
-  //         }, 1000); //强制显示loading page 1s 
-  //       sessionStorage.setItem('flag', 1)
+  //         loader.style.display = 'none'
+  //       }, 1000)
   //     }
-  //     loaded()
+  //     loaded();
+  //     sessionStorage.setItem('flag', 1)
   //   } else {
+  //     loader.style.display = 'none'
   //   }
+  // }
+
+
+  (function () {
+
+
+      const loaded = function() {
+        
+        setTimeout(function() {
+
+          const loader = document.getElementById("loading-container");
+          loader.className = "fadeout" ;//使用渐隐的方法淡出loading page 
+          // document.getElementById("body-wrap").style.display="flex"; 
+          loader.style.display = "none"
+          setTimeout(function() { 
+            loader.style.display="none"; 
+          },1500); 
+
+          sessionStorage.setItem('flag', 1)
+          }, 1000); //强制显示loading page 1s 
+
+      }
+      loaded()
       
-  // })() 
+  })() 
 </script>
-     
 
 
 
@@ -354,6 +350,11 @@
 
 <body>
     <!-- 加载动画 -->
+	
+		<div id="loading-container">
+			<p class="loading-text"> ... 少女祈祷中 ... </p>
+			<div class="loading-image"></div>
+		</div>
 	
 
     <header class="navbar-fixed">
