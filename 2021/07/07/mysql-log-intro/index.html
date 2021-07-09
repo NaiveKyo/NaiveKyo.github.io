@@ -42,8 +42,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    /* min-height: 100vh; */
-    /* width: 100vw; */
     width: 100%;
     height: 100%;
     z-index: 9998;
@@ -51,16 +49,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* background-image: url("/medias/loading.gif"); */
-    /* background-size: 50%; */
-    /* background-repeat: no-repeat; */
-    /* background: #FFF; */
     text-align: center;
-    /* loader页面消失采用渐隐的方式*/
-    /* -webkit-transition: opacity 1s ease;
-    -moz-transition: opacity 1s ease;
-    -o-transition: opacity 1s ease; */
-    /* transition: opacity 1s ease; */
   }
 
   #loading-left {
@@ -71,7 +60,7 @@
     background-image: url("/medias/loading.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    transition: margin-right 1s;
+    transition: margin-right 1.5s;
   }
 
   #loading-right {
@@ -170,6 +159,7 @@
 
  
   (function () {
+      
       const loaded = function() {
         setTimeout(function() {
             const loader = document.getElementById("loading-container");
@@ -177,16 +167,11 @@
             const load_right = document.getElementById("loading-right");
             load_left.style.marginRight = "100%"
 
+            // 设置动画的显示时间
             setTimeout(function() {
               loader.style.display="none";
-            }, 1100)
-            // load_left.className = "fadeout_left"
-            // loader.className = "fadeout" ;//使用渐隐的方法淡出loading page 
-            // document.getElementById("body-wrap").style.display="flex"; 
-            // setTimeout(function() { 
-            //   loader.style.display="none"; 
-            // }, 1500); 
-          }, 200); //强制显示loading page 1s 
+            }, 1500)
+          }, 300); 
       }
       loaded()
   })() 
