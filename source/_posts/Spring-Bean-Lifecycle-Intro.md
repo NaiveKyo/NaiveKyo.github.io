@@ -28,7 +28,7 @@ tags:
 
 
 
-<img src="/images/spring/ioc.png" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/IoC.png" style="zoom:67%;" />
 
 
 
@@ -70,7 +70,7 @@ Spring 中，通过两个层面定义 Bean 的生命周期：
 
 ### 1、BeanFactory 的类继承体系
 
-![](/images/spring/BeanFactoryInherit.png)
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/BeanFactoryInherit.png)
 
 `BeanFactory` 位于类结构树的顶端，它最主要的方法就是 `getBean(String beanName)`，该方法从容器中返回特定名称的 Bean。BeanFactory 的功能通过其他接口得到不断扩展。
 
@@ -182,7 +182,7 @@ WebApplicationContext 为 Bean 添加了三个新的作用域：**request**、**
 
 下面是它的继承体系：
 
-![](/images/spring/WebApplicationContextInherit.png)
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/WebApplicationContextInherit.png)
 
 由于 Web 应用比一般的应用拥有更多的特性，因此 `WebApplicationContext` 扩展了 `ApplicationContext`。 WebApplicationContext 定义了一个常量 **ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE**，在上下文启动时，WebApplicationContext 实例即以此为键放置在 ServletContext 的属性列表中，可以通过以下语句从 Web 容器中获取 WebApplicationContext：
 
@@ -214,7 +214,7 @@ WebApplicationContext wac = (WebApplicationContext)servletContext.getAttribute(W
 
 ## 三、BeanFactory 中的 Bean 生命周期
 
-<img src="/images/spring/BeanFactoryLifecycle.png" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/BeanFactoryLifecycle.png" style="zoom:80%;" />
 
 ### 1、具体流程
 

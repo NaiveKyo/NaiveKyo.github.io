@@ -4,6 +4,7 @@ date: 2021-07-06 17:56:26
 author: NaiveKyo
 top: false
 hide: false
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/21.jpg
 cover: false
 toc: true
 summary: CentOS7 安装 Git

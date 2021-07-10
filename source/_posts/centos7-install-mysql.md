@@ -6,6 +6,7 @@ top: false
 hide: false
 cover: false
 toc: true
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/16.jpg
 summary: CentOS7 安装 MySQL
 categories: Linux
 keywords: 

@@ -6,6 +6,7 @@ top: false
 cover: false
 toc: true
 summary: CentOS7 安装 Redis 流程记录
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/15.jpg
 categories: Linux
 keywords: 
   - Linux

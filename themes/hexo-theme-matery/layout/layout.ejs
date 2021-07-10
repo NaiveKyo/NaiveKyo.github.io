@@ -2,10 +2,14 @@
 <html lang="<%= config.language %>">
 <%- partial('_partial/head') %>
 
+<!-- 加载动画 -->
+<% if (theme.loadingPages.enable && is_home() || is_post()) { %>
+    <%- partial('_partial/loading-pages') %>
+<% } %>
+
 <% if (theme.background.enable) { %>
    <%- partial('_partial/background') %>
 <% } %>
-
 
 <script type="text/javascript">
 	var OriginTitile=document.title,st;
@@ -17,7 +21,18 @@
 </script>
 
 <body>
-	
+    <!-- 加载动画 -->
+	<% if (theme.loadingPages.enable && is_home() || is_post()) { %>
+		<div id="loading-container">
+            <div id="loading-left"></div>
+            <div id="loading-right"></div>
+            <div id="show">
+                <p class="loading-text">少女祈祷中</p>
+                <div class="loading-image"></div>
+            </div>
+		</div>
+	<% } %>
+
     <%- partial('_partial/header') %>
     <%- body %>
 
@@ -90,6 +105,7 @@
             app_id: "<%- theme.daovoice.app_id %>"
         });
         daovoice('update');
+
     </script>
     <% } %>
 

@@ -6,6 +6,7 @@ top: false
 hide: false
 cover: flase
 toc: true
+img: /medias/featureimages/13.jpg
 summary: 简单了解 MySQL 的日志模板。
 categories: MySQL
 keywords: 

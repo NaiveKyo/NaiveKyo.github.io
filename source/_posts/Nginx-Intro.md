@@ -2,7 +2,7 @@
 title: Nginx_Intro
 author: NaiveKyo
 hide: false
-img: /medias/featureimages/5.jpg
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/5.jpg
 toc: true
 date: 2021-07-07 17:22:44
 top: false

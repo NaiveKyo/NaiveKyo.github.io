@@ -5,6 +5,7 @@ author: NaiveKyo
 top: false
 hide: false
 cover: false
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/20.jpg
 toc: true
 summary: CentOS7 安装 Java 环境
 categories: Linux
