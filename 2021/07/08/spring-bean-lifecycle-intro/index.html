@@ -456,7 +456,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -616,7 +616,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-08
+                    2021-07-10
                 </div>
                 
 
@@ -643,7 +643,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Spring-的-Bean-生命周期回调"><a href="#Spring-的-Bean-生命周期回调" class="headerlink" title="Spring 的 Bean 生命周期回调"></a>Spring 的 Bean 生命周期回调</h1><h2 id="一、IoC-容器简介"><a href="#一、IoC-容器简介" class="headerlink" title="一、IoC 容器简介"></a>一、IoC 容器简介</h2><img src="/images/spring/IoC.png" style="zoom:67%;">
+                <h1 id="Spring-的-Bean-生命周期回调"><a href="#Spring-的-Bean-生命周期回调" class="headerlink" title="Spring 的 Bean 生命周期回调"></a>Spring 的 Bean 生命周期回调</h1><h2 id="一、IoC-容器简介"><a href="#一、IoC-容器简介" class="headerlink" title="一、IoC 容器简介"></a>一、IoC 容器简介</h2><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/IoC.png" style="zoom:67%;">
 
 
 
@@ -668,7 +668,7 @@
 <li>实例化 Bean 时所经历的一系列阶段</li>
 </ul>
 <p>现在主要探讨 BeanFactory 实例化 Bean 的各个生命周期阶段。</p>
-<h3 id="1、BeanFactory-的类继承体系"><a href="#1、BeanFactory-的类继承体系" class="headerlink" title="1、BeanFactory 的类继承体系"></a>1、BeanFactory 的类继承体系</h3><p><img src="/images/spring/BeanFactoryInherit.png"></p>
+<h3 id="1、BeanFactory-的类继承体系"><a href="#1、BeanFactory-的类继承体系" class="headerlink" title="1、BeanFactory 的类继承体系"></a>1、BeanFactory 的类继承体系</h3><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/BeanFactoryInherit.png"></p>
 <p><code>BeanFactory</code> 位于类结构树的顶端，它最主要的方法就是 <code>getBean(String beanName)</code>，该方法从容器中返回特定名称的 Bean。BeanFactory 的功能通过其他接口得到不断扩展。</p>
 <ul>
 <li><code>ListableBeanFactory</code>：该接口定义了访问容器中 Bean 的基本信息的若干方法，如查看 Bean 的个数、获取某一类型 Bean 的配置名、查看容器中是否包括某一 Bean 等</li>
@@ -742,7 +742,7 @@
 <p>在非 Web 应用的环境下，Bean 只有 <strong>singleton</strong> 和 <strong>prototype</strong> 两种作用域。</p>
 <p>WebApplicationContext 为 Bean 添加了三个新的作用域：<strong>request</strong>、<strong>session</strong> 和 <strong>global session</strong>。</p>
 <p>下面是它的继承体系：</p>
-<p><img src="/images/spring/WebApplicationContextInherit.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/WebApplicationContextInherit.png"></p>
 <p>由于 Web 应用比一般的应用拥有更多的特性，因此 <code>WebApplicationContext</code> 扩展了 <code>ApplicationContext</code>。 WebApplicationContext 定义了一个常量 <strong>ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE</strong>，在上下文启动时，WebApplicationContext 实例即以此为键放置在 ServletContext 的属性列表中，可以通过以下语句从 Web 容器中获取 WebApplicationContext：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">WebApplicationContext</span> wac <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">WebApplicationContext</span><span class="token punctuation">)</span>servletContext<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token class-name">WebApplicationContext</span><span class="token punctuation">.</span>ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -758,7 +758,7 @@
 <li><code>setServletContext(ServletContext servletContext)</code>：为 Spring 设置 Web 应用上下文，以便二者整合</li>
 <li><code>setConfigLocations(String... configLocations)</code>：设置 Spring 配置文件地址，一般情况下，配置文件地址是相对于 Web 根目录的地址，如 /WEB-INF/xx.xml 等等。但用户也可以使用带资源类型前缀的地址，如：classpath:com/smart/beans.xml 等等</li>
 </ul>
-<h2 id="三、BeanFactory-中的-Bean-生命周期"><a href="#三、BeanFactory-中的-Bean-生命周期" class="headerlink" title="三、BeanFactory 中的 Bean 生命周期"></a>三、BeanFactory 中的 Bean 生命周期</h2><img src="/images/spring/BeanFactoryLifecycle.png" style="zoom:80%;">
+<h2 id="三、BeanFactory-中的-Bean-生命周期"><a href="#三、BeanFactory-中的-Bean-生命周期" class="headerlink" title="三、BeanFactory 中的 Bean 生命周期"></a>三、BeanFactory 中的 Bean 生命周期</h2><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/BeanFactoryLifecycle.png" style="zoom:80%;">
 
 <h3 id="1、具体流程"><a href="#1、具体流程" class="headerlink" title="1、具体流程"></a>1、具体流程</h3><p>具体流程如下：</p>
 <ol>
@@ -1212,7 +1212,7 @@
                 <a href="/2021/07/08/spring-bean-lifecycle-intro/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Spring_Bean_Lifecycle_Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg" class="responsive-img" alt="Spring_Bean_Lifecycle_Intro">
                         
                         <span class="card-title">Spring_Bean_Lifecycle_Intro</span>
                     </div>
@@ -1265,7 +1265,7 @@
                 <a href="/2021/07/07/nginx-intro/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Nginx_Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/5.jpg" class="responsive-img" alt="Nginx_Intro">
                         
                         <span class="card-title">Nginx_Intro</span>
                     </div>

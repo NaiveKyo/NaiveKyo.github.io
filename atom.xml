@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-08T09:57:41.195Z</updated>
+  <updated>2021-07-10T00:55:27.336Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/"/>
     <id>https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/</id>
     <published>2021-07-08T01:11:44.000Z</published>
-    <updated>2021-07-08T09:57:41.195Z</updated>
+    <updated>2021-07-10T00:55:27.336Z</updated>
     
     
       
@@ -48,7 +48,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/nginx-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/nginx-intro/</id>
     <published>2021-07-07T09:22:44.000Z</published>
-    <updated>2021-07-07T09:52:17.629Z</updated>
+    <updated>2021-07-10T01:01:12.464Z</updated>
     
     
       
@@ -73,7 +73,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/redis-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/redis-intro/</id>
     <published>2021-07-07T08:29:51.000Z</published>
-    <updated>2021-07-07T12:40:38.933Z</updated>
+    <updated>2021-07-10T01:01:41.837Z</updated>
     
     
       
@@ -102,7 +102,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
     <published>2021-07-07T07:23:03.000Z</published>
-    <updated>2021-07-07T07:57:47.595Z</updated>
+    <updated>2021-07-10T01:01:50.321Z</updated>
     
     
       
@@ -133,7 +133,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/mysql-log-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/mysql-log-intro/</id>
     <published>2021-07-07T06:59:32.000Z</published>
-    <updated>2021-07-07T07:47:56.350Z</updated>
+    <updated>2021-07-10T01:01:01.502Z</updated>
     
     
       
@@ -160,7 +160,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/linux-centos7-study/"/>
     <id>https://naivekyo.github.io/2021/07/07/linux-centos7-study/</id>
     <published>2021-07-07T02:55:28.000Z</published>
-    <updated>2021-07-07T07:47:47.060Z</updated>
+    <updated>2021-07-10T01:00:37.500Z</updated>
     
     
       
@@ -185,7 +185,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
     <id>https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
     <published>2021-07-07T01:48:00.000Z</published>
-    <updated>2021-07-08T09:49:09.396Z</updated>
+    <updated>2021-07-10T00:58:22.922Z</updated>
     
     
       
@@ -239,7 +239,7 @@
     <link href="https://naivekyo.github.io/2021/07/06/centos7-install-git/"/>
     <id>https://naivekyo.github.io/2021/07/06/centos7-install-git/</id>
     <published>2021-07-06T09:56:26.000Z</published>
-    <updated>2021-07-07T07:46:47.089Z</updated>
+    <updated>2021-07-10T00:57:22.340Z</updated>
     
     
       
@@ -266,7 +266,7 @@
     <link href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/"/>
     <id>https://naivekyo.github.io/2021/07/06/centos7-install-jdk/</id>
     <published>2021-07-06T09:46:20.000Z</published>
-    <updated>2021-07-07T07:46:59.475Z</updated>
+    <updated>2021-07-10T00:58:06.524Z</updated>
     
     
       
@@ -293,7 +293,7 @@
     <link href="https://naivekyo.github.io/2021/07/06/centos7-install-mysql/"/>
     <id>https://naivekyo.github.io/2021/07/06/centos7-install-mysql/</id>
     <published>2021-07-06T09:23:33.000Z</published>
-    <updated>2021-07-07T09:09:08.163Z</updated>
+    <updated>2021-07-10T00:59:09.540Z</updated>
     
     
       
@@ -320,7 +320,7 @@
     <link href="https://naivekyo.github.io/2021/07/06/centos7-install-redis/"/>
     <id>https://naivekyo.github.io/2021/07/06/centos7-install-redis/</id>
     <published>2021-07-06T08:28:11.000Z</published>
-    <updated>2021-07-08T09:49:32.778Z</updated>
+    <updated>2021-07-10T00:59:43.047Z</updated>
     
     
       
@@ -339,54 +339,6 @@
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
     <category term="Redis" scheme="https://naivekyo.github.io/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>draft-test</title>
-    <link href="https://naivekyo.github.io/2021/07/06/draft-test/"/>
-    <id>https://naivekyo.github.io/2021/07/06/draft-test/</id>
-    <published>2021-07-06T07:32:00.000Z</published>
-    <updated>2021-07-06T09:07:02.289Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、测试草稿-发布&quot;&gt;&lt;a href=&quot;#一、测试草稿-发布&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="BlogTest" scheme="https://naivekyo.github.io/categories/BlogTest/"/>
-    
-    
-    <category term="Test" scheme="https://naivekyo.github.io/tags/Test/"/>
-    
-    <category term="Blog" scheme="https://naivekyo.github.io/tags/Blog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://naivekyo.github.io/2021/07/05/hello-world/"/>
-    <id>https://naivekyo.github.io/2021/07/05/hello-world/</id>
-    <published>2021-07-05T12:21:45.250Z</published>
-    <updated>2021-07-06T07:33:04.895Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
