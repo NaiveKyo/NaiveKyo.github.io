@@ -7,6 +7,7 @@ hide: false
 cover: false
 toc: true
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/0.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/0.jpg
 summary: 记录学习 Linux 过程中的一些常用操作
 categories: Linux
 keywords: 

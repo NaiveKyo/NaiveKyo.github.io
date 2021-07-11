@@ -2,11 +2,12 @@
 title: Vue_Core_Study
 author: NaiveKyo
 hide: false
-img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg'
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg
 toc: true
 date: 2021-07-10 22:24:49
-top: false
-cover: flase
+top: true
+cover: true
 summary: 学习 Vue 的核心知识
 categories: 
   - Vue

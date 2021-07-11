@@ -2,11 +2,12 @@
 title: Redis_Intro
 author: NaiveKyo
 hide: false
-img: /medias/featureimages/2.jpg
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/2.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/2.jpg
 toc: true
 date: 2021-07-07 16:29:51
-top: true
-cover: true
+top: false
+cover: false
 summary: 学习 Redis 数据类型和常用操作。
 categories: Redis
 keywords:

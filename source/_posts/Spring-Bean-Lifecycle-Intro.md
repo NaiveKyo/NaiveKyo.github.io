@@ -2,11 +2,12 @@
 title: Spring_Bean_Lifecycle_Intro
 author: NaiveKyo
 hide: false
-img: /medias/featureimages/9.jpg
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg
 toc: true
 date: 2021-07-08 09:11:44
 top: true
-cover: true
+cover: false
 summary: 了解 Spring Bean 的生命周期回调
 categories: Spring
 keywords:

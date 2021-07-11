@@ -5,6 +5,7 @@ author: NaiveKyo
 top: false
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/21.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/21.jpg
 cover: false
 toc: true
 summary: CentOS7 安装 Git

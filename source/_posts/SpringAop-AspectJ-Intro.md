@@ -4,6 +4,7 @@ date: 2021-07-07 15:23:03
 author: NaiveKyo
 top: true
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/1.jpg
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/1.jpg
 hide: flase
 cover: false
 toc: true

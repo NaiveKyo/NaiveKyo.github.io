@@ -4,7 +4,8 @@ date: {{ date }}
 author: NaiveKyo
 top:
 hide: false
-img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/
+img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
 cover:
 toc: true
 summary:
