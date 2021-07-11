@@ -40,6 +40,8 @@
 <% } else { %>
 <script>
     // $('.bg-cover').css('background-image', 'url(<%- theme.jsDelivr.url %><%- url_for('/medias/banner/0.jpg') %>)');
+	
+	// 添加了 CDN 后，改 banner 在这里
 	var bannerUrl = "<%- theme.jsDelivr.url %><%- url_for('/medias/banner/') %>" + <%- theme.banner.index %> + '.jpg';
     $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>

@@ -582,7 +582,7 @@ instantpage:
 # 若为 false, 则 banner 默认为 /medias/banner/0.jpg
 banner:
   enable: false
-  index: 5  # 当 enable 为 flase 时, 默认的 banner 号
+  index: 7  # 当 enable 为 flase 时, 默认的 banner 号
 
 #ICP备案信息尾部显示
 icp:
