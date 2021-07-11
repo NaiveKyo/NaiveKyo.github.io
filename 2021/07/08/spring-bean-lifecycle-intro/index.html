@@ -623,7 +623,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.4k
+                    5.5k
                 </div>
                 
 
@@ -648,6 +648,9 @@
 
 
 <p>从上图可以看出容器是 Spring 框架的核心。Spring 将元数据（xml 文件或 Java Config 配置）注入 POJO 最终产生 Bean 放入容器中供应用使用。</p>
+<p>Spring 通过一个配置文件描述 Bean 及 Bena 之间的依赖关系，利用 Java 语言的反射功能实例化 Bean 并建立 Bean 之间的依赖关系。</p>
+<p>Spring 的 IoC 容器在完成这些底层工作的基础上，还提供了 Bean 实例缓存、生命周期管理、Bean 实例代理、事件发布、资源装载等高级服务。</p>
+<p>可见容器是 Spring 框架的核心。</p>
 <p>spring 中容器实现大致有两种：</p>
 <ul>
 <li>BeanFactory（<code>org.springframework.beans.factory.BeanFactory</code> 接口）<ul>
@@ -655,11 +658,15 @@
 </ul>
 </li>
 <li>应用上下文（<code>org.springframework.context.ApplicationContext</code> 接口， 基于 BeanFactory 之上构建）<ul>
-<li>提供更多面向应用的功能，包括国际化支持和框架事件体系单独</li>
+<li>提供更多面向应用的功能，包括国际化支持和框架事件事件体系。</li>
 </ul>
 </li>
 </ul>
-<p>现在的应用中我们一般都会使用 ApplicationContext 来获取上下文从而获取 Bean。</p>
+<p>两者的主要用途：</p>
+<ul>
+<li>BeanFactory 是 Spring 框架的基础设施，面向 Spring 本省；</li>
+<li>ApplicationContext 面向使用 Spring 框架的开发者</li>
+</ul>
 <h2 id="二、Bean-的生命周期"><a href="#二、Bean-的生命周期" class="headerlink" title="二、Bean 的生命周期"></a>二、Bean 的生命周期</h2><p>和 Web 容器中的 Servlet 类似，Spring 容器管理的 Bean 也拥有类似的生命周期。</p>
 <p>Bean 生命周期由多个阶段组成，每个生命阶段都提供了特定的接口对其进行操作。</p>
 <p>Spring 中，通过两个层面定义 Bean 的生命周期：</p>
