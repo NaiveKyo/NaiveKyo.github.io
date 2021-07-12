@@ -6,20 +6,13 @@ img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg
 coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg
 toc: true
 date: 2021-07-10 22:24:49
-top: true
-cover: true
+top: false
+cover: false
 summary: 学习 Vue 的核心知识
-categories: 
-  - Vue
-keywords:
-  - Front-End
-  - Vue
-tags:
-  - Front-End
-  - Vue
+categories: Vue 
+keywords: [Vue, Front-End] 
+tags: [Vue, Front-End] 
 ---
-
-
 
 # Vue 核心
 
@@ -88,7 +81,7 @@ ViewModel 两个作用：
 
 我们创建一个 Vue 实例，可以这样：
 
-```vue
+```javascript
 <script>
   // 常用写法
    new Vue({
@@ -113,7 +106,7 @@ ViewModel 两个作用：
 
 还可以这样：
 
-```vue
+```javascript
 <script>
 // data 第二种写法（组件中用的多）
   new Vue({
@@ -166,7 +159,7 @@ function Vue (options) {
 
 底层使用了 `Object.defineProperty`
 
-```vue
+```javascript
 <body>
     <script>
         // 演示 Object.defineProperty
@@ -190,7 +183,7 @@ function Vue (options) {
 
 模拟数据代理：
 
-```vue
+```javascript
 <body>
     <script>
         // 模拟数据代理
@@ -366,7 +359,7 @@ btn.removeEventListener('click', bgChange);
 
 先看 vue 如何实现的
 
-```vue
+```javascript
 <body>
     <div id="app">
         <button v-on:click="show">点我打印信息</button> <br />
@@ -422,7 +415,7 @@ vue 中 methods 属性下面的方法都是绑定到 vue 实例上面的，而�
 
 如果不确定可以使用如下方法判断：
 
-```vue
+```javascript
 methods: {
 	show() {
 		consolg.log(arguments.length)
@@ -442,7 +435,7 @@ console.log(event.target.innerText)
 
 **方法传参:**
 
-```vue
+```javascript
 <button @click="show1($event, 111)">点我提示信息 + 参数</button> <br />
 
 show1(event, num) {
@@ -613,7 +606,7 @@ fullName() {
 
 ## 7、数据监视 watch
 
-```vue
+```javascript
 <body>
 
     <div id="app">
@@ -734,7 +727,7 @@ watch: {
 
 ## 8、绑定样式
 
-```vue
+```javascript
     <div id="app">
         <!-- class 字符串写法，适用于：类名不确定，要动态获取 -->
         <h2 class="naivekyo" :class="myStyle">{{ title }}</h2>
@@ -801,7 +794,7 @@ watch: {
 
   想要对数据进行加工后再展示，且不想破坏原数据，最好使用 computed
 
-```vue
+```javascript
 // 使用 computed 过滤，优势：不影响原数据
 computed: {
 	fmtPersons() {
@@ -815,7 +808,7 @@ computed: {
 
 
 
-```vue
+```javascript
 computed: {
 	fmtPersons() {
 		const { persons, keyWord, sortType } = this
@@ -989,7 +982,7 @@ https://cn.vuejs.org/v2/guide/transitions.html
 
 vue2.1+ 只能使用全局过滤器，vue3.0+ 可以使用局部过滤器
 
-```vue
+```javascript
 // 全局注册的过滤器, 所有 Vue 实例都可以使用
 Vue.filter('dateFormater', function(value, str = 'YYYY-MM-DD') {
 

@@ -37,14 +37,27 @@ tags:
 
 
 
+Spring 通过一个配置文件描述 Bean 及 Bena 之间的依赖关系，利用 Java 语言的反射功能实例化 Bean 并建立 Bean 之间的依赖关系。
+
+Spring 的 IoC 容器在完成这些底层工作的基础上，还提供了 Bean 实例缓存、生命周期管理、Bean 实例代理、事件发布、资源装载等高级服务。
+
+可见容器是 Spring 框架的核心。
+
 spring 中容器实现大致有两种：
 
 - BeanFactory（`org.springframework.beans.factory.BeanFactory` 接口）
   - 它提供高级 IoC 的配置机制，通常称为 **IOC 容器**。
 - 应用上下文（`org.springframework.context.ApplicationContext` 接口， 基于 BeanFactory 之上构建）
-  - 提供更多面向应用的功能，包括国际化支持和框架事件体系单独
+  - 提供更多面向应用的功能，包括国际化支持和框架事件事件体系。
 
-现在的应用中我们一般都会使用 ApplicationContext 来获取上下文从而获取 Bean。
+
+
+两者的主要用途：
+
+- BeanFactory 是 Spring 框架的基础设施，面向 Spring 本省；
+- ApplicationContext 面向使用 Spring 框架的开发者
+
+
 
 
 

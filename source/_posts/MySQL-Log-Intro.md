@@ -4,10 +4,10 @@ date: 2021-07-07 14:59:32
 author: NaiveKyo
 top: false
 hide: false
-cover: flase
+coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/13.jpg
+cover: false
 toc: true
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/13.jpg
-coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/13.jpg
 summary: 简单了解 MySQL 的日志模板。
 categories: MySQL
 keywords: 
