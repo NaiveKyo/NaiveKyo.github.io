@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Front-End,Vue,Vue-cli">
+    <meta name="keywords" content="Git,Version-Control">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue_Staging_Study | NaiveKyo</title>
+    <title>Git_Manual | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -456,12 +456,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue_Staging_Study</h1>
+                    <h1 class="description center-align post-title">Git_Manual</h1>
                 </div>
             </div>
         </div>
@@ -580,12 +580,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Vue/">
-                                <span class="chip bg-color">Vue</span>
-                            </a>
-                        
-                            <a href="/tags/Vue-cli/">
-                                <span class="chip bg-color">Vue-cli</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -596,8 +592,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Vue/" class="post-category">
-                                Vue
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -623,7 +619,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    324
                 </div>
                 
 
@@ -643,210 +639,62 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Vue-cli"><a href="#Vue-cli" class="headerlink" title="Vue-cli"></a>Vue-cli</h1><h2 id="1、使用脚手架"><a href="#1、使用脚手架" class="headerlink" title="1、使用脚手架"></a>1、使用脚手架</h2><p>说明：</p>
-<ul>
-<li>vue-cli 是 vue 官方提供的脚手架工具 command line interface    </li>
-<li>最新的版本是 4</li>
-<li>3.x 版本与 4.x 版本变化不大，但 3.x 相对于 2.x 的版本变化特别大</li>
-<li>官网：<a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/">https://cli.vuejs.org/zh/guide/</a></li>
-</ul>
-<ul>
-<li>全局安装：<code>npm install -g @vue/cli</code></li>
-<li>创建项目：<code>vue create vue-demo</code></li>
-<li>暂时选择 vue2</li>
-<li>进入目录</li>
-<li><code>npm run serve</code> 开启本地服务器</li>
-</ul>
-<h2 id="2、脚手架文件说明"><a href="#2、脚手架文件说明" class="headerlink" title="2、脚手架文件说明"></a>2、脚手架文件说明</h2><p>脚手架的版本和 Vue 的版本没有什么关系</p>
-<p>下面介绍各个版本的目录架构：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Project Name<span class="token punctuation">(</span>vue-cli <span class="token number">2</span>.x<span class="token punctuation">)</span>
-	<span class="token operator">|</span>-- build <span class="token builtin class-name">:</span> webpack相关的配置文件夹<span class="token punctuation">(</span>基本不需要修改<span class="token punctuation">)</span>
-	<span class="token operator">|</span>-- config: webpack相关的配置文件夹<span class="token punctuation">(</span>基本不需要修改<span class="token punctuation">)</span>
-		<span class="token operator">|</span>-- index.js: 指定的后台服务的端口号和静态资源文件夹
-	<span class="token operator">|</span>-- node_modules
-	<span class="token operator">|</span>-- src <span class="token builtin class-name">:</span> 源码文件夹
-		<span class="token operator">|</span>-- main.js: 应用入口js
-	<span class="token operator">|</span>-- static: 静态资源文件夹
-	<span class="token operator">|</span>-- .babelrc: babel的配置文件
-	<span class="token operator">|</span>-- .editorconfig: 通过编辑器的编码/格式进行一定的配置
-	<span class="token operator">|</span>-- .eslintignore: eslint检查忽略的配置
-	<span class="token operator">|</span>-- .eslintrc.js: eslint检查的配置
-	<span class="token operator">|</span>-- .gitignore: git版本管制忽略的配置
-	<span class="token operator">|</span>-- index.html: 主页面文件
-	<span class="token operator">|</span>-- package.json: 应用包配置文件 
-	<span class="token operator">|</span>-- README.md: 应用描述说明的readme文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="一、常规流程"><a href="#一、常规流程" class="headerlink" title="一、常规流程"></a>一、常规流程</h2><p>考虑到 GitHub 初始化项目时可能会选择生成 Readme.md ，所以可以这样：</p>
+<p><strong>注意：现在 GitHub 仓库默认分支已经切换为 <code>main</code></strong></p>
+<blockquote>
+<p>以前初始化的流程</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">// 初始化本地 <span class="token function">git</span> 仓库
+<span class="token function">git</span> init 
+
+// 关联远程仓库
+<span class="token function">git</span> remote <span class="token function">add</span> origin git@github:Xxx/Xxx.git
+
+// 拉取远程仓库 指定分支代码 和本地 <span class="token function">git</span> 分支合并
+<span class="token function">git</span> pull origin master:master
+
+// 将本地新的文件添加到 <span class="token function">git</span> 仓库
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+
+// 提交到本地仓库
+<span class="token function">git</span> commit -m <span class="token string">"message"</span>
+
+// 推送到远程仓库指定分支
+<span class="token function">git</span> push -u origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<p>推荐使用最新版脚手架开发（最新 4.x）3.x 和 4.x 的结构类似</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Project Name<span class="token punctuation">(</span>vue-cli <span class="token number">3</span>.x<span class="token punctuation">)</span>
-	<span class="token operator">|</span>-- node_modules
-	<span class="token operator">|</span>-- public
-       <span class="token operator">|</span>-- index.html: 主页面文件
-	<span class="token operator">|</span>-- src
-	   <span class="token operator">|</span>-- main.js: 应用入口js
-	<span class="token operator">|</span>-- babel.config.js: babel的配置文件
-	<span class="token operator">|</span>-- vue.config.js: vue的配置文件，需要手动添加
-	<span class="token operator">|</span>-- .gitignore: <span class="token function">git</span> 版本管制忽略的配置
-	<span class="token operator">|</span>-- package.json: 应用包配置文件 
-	<span class="token operator">|</span>-- README.md: 应用描述说明的readme文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="二、从-master-分支迁移到-main-分支"><a href="#二、从-master-分支迁移到-main-分支" class="headerlink" title="二、从 master 分支迁移到 main 分支"></a>二、从 master 分支迁移到 main 分支</h2><p>由于现在 GitHub 默认分支变为 <code>main</code>，但是本机的 git 程序初始化项目时，默认分支依旧是 <code>master</code> 分支，这时候推送代码会出现错误，所以采取以下方式：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">// 初始化
+<span class="token function">git</span> init 
+
+// 关联远程仓库
+<span class="token function">git</span> remote <span class="token function">add</span> origin git@github:Xxx/Xxx.git
+
+// 拉取远程仓库
+<span class="token function">git</span> pull origin main:master
+
+// 创建并切换到 main 分支
+<span class="token function">git</span> checkout -b main
+
+// 将本地新的文件添加到 <span class="token function">git</span> 仓库
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+
+// 提交到本地仓库
+<span class="token function">git</span> commit -m <span class="token string">"message"</span>
+
+// 推送 main
+<span class="token function">git</span> push origin main
+
+// 删除本地 master 分支
+<span class="token function">git</span> branch -d master
+
+// 如果远程有 master 分支，则删除 master 分支
+<span class="token function">git</span> push origin :master
+
+// 迁移成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-
-<p>使用脚手架工具后，它会自动帮我们做了 git 相关的处理：</p>
-<ul>
-<li><code>git init</code></li>
-<li><code>git add</code></li>
-<li><code>git commit -m ''</code></li>
-</ul>
-<p>但是没有和远程仓库关联。</p>
-<h2 id="3、render-h-gt-h-App-详解"><a href="#3、render-h-gt-h-App-详解" class="headerlink" title="3、render: h => h(App) 详解"></a>3、<strong>render: h =&gt; h(App)</strong> 详解</h2><p>脚手架中引入的 <code>Vue</code> 比传统的开发环境下的 Vue 少了模板解析的功能，而是选择了 <code>webpack</code> 中的 <code>webpack-loader</code> 去解析模板</p>
-<ul>
-<li><code>vue-template-compiler</code> 解析 <code>&lt;template&gt;</code> 标签，以及 vm 中的 <code>template</code> 属性<ul>
-<li>默认只能解析 .vue 中的模板</li>
-<li>解决方法，使用 <code>render 属性 + h()</code></li>
-<li><code>h()</code> 函数做了三件事<ul>
-<li><code>components: { App }</code></li>
-<li><code>template: '&lt;App/&gt;'</code></li>
-<li><strong>调用 loader</strong></li>
-</ul>
-</li>
-<li><code>h()</code> 只写一次</li>
-</ul>
-</li>
-</ul>
-<h2 id="4、ref-和-props"><a href="#4、ref-和-props" class="headerlink" title="4、ref 和 props"></a>4、ref 和 props</h2><p>state：就是 Vue 的 data 中的属性</p>
-<p>ref：</p>
-<ul>
-<li>可以给 DOM 打标签，实现一些特殊操作<ul>
-<li>使用 <code>this.$refs.标签</code> 得到的是一个真实的 DOM 节点</li>
-</ul>
-</li>
-<li>在实际开发中，可以给 组件 打标签<ul>
-<li>使用 <code>this.$refs.标签</code>，拿到的是<strong>组件实例对象</strong></li>
-</ul>
-</li>
-</ul>
-<p>​        </p>
-<h3 id="1-props"><a href="#1-props" class="headerlink" title="(1) props"></a>(1) props</h3><p>props：</p>
-<ul>
-<li>用于父子组件之间的数据传递</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
-
-  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>h2 <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"name"</span><span class="token operator">&gt;</span>School Name<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> name <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>h2 <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"address"</span><span class="token operator">&gt;</span>School Address<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> address <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>我收到的值<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> username <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-
-
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
-  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 配置数据</span>
-    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        name<span class="token operator">:</span> <span class="token string">'NaiveKyo'</span><span class="token punctuation">,</span>
-        address<span class="token operator">:</span> <span class="token string">'Hello School'</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-
-    <span class="token comment">// 声明 props 最完整的写法：限制了类型、控制了必要性、指定了默认值</span>
-    <span class="token comment">// props: {</span>
-    <span class="token comment">//   username: {</span>
-    <span class="token comment">//     type: String,    // 类型</span>
-    <span class="token comment">//     required: true,   // 是否必须</span>
-    <span class="token comment">//     default: '老王 xxx' // 默认值</span>
-    <span class="token comment">//   }</span>
-    <span class="token comment">// },</span>
-
-    <span class="token comment">// 声明 props 次完整的写法：限制了类型</span>
-    <span class="token comment">// props: {</span>
-    <span class="token comment">//   username: String</span>
-    <span class="token comment">// },</span>
-
-    <span class="token comment">// 声明 props 精简写法：啥也不限制</span>
-    props<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span>
-  <span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>style scoped<span class="token operator">&gt;</span>
-  <span class="token punctuation">.</span>name <span class="token punctuation">{</span>
-    background<span class="token operator">-</span>color<span class="token operator">:</span> grey<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token punctuation">.</span>address <span class="token punctuation">{</span>
-    background<span class="token operator">-</span>color<span class="token operator">:</span> green<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2-ref"><a href="#2-ref" class="headerlink" title="(2) ref"></a>(2) ref</h3><p>ref 例子：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
-  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>
-      ref 的使用方式：
-        <span class="token number">1.</span>标签中直接编写 ref<span class="token operator">=</span><span class="token string">"xxx"</span>
-        <span class="token number">2.</span>通过 <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>xxx 获取
-        <span class="token number">3.</span>备注
-          <span class="token number">1.</span>若给 html 内置标签打 ref，则获取到的是真实 <span class="token constant">DOM</span> 节点
-          <span class="token number">2.</span>若给组件标签打 ref，则获取到的是组件实例对象
-     <span class="token operator">--</span><span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"showData"</span><span class="token operator">&gt;</span>点我提示数据<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 使用 ref 给 <span class="token constant">DOM</span> 打标签<span class="token punctuation">,</span> 可以通过 <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>keyWord 获取到真实 <span class="token constant">DOM</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> ref<span class="token operator">=</span><span class="token string">"keyWord"</span><span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> refs 可以做到一些特殊的效果，比如说，点击按钮获得 input 输入框的焦点 <span class="token operator">--</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"getFocus"</span><span class="token operator">&gt;</span>点我获得焦点<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 在项目开发中给 组件 打上标签<span class="token punctuation">,</span> 可以通过 <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>xuexiao 获取组件实例 <span class="token operator">--</span><span class="token operator">&gt;</span>
-    <span class="token operator">&lt;</span>School ref<span class="token operator">=</span><span class="token string">"xuexiao"</span> v<span class="token operator">-</span>bind<span class="token operator">:</span>username<span class="token operator">=</span><span class="token string">"username"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
-
-    <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"getVC"</span><span class="token operator">&gt;</span>点我获取组件实例对象<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
-
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
-  <span class="token comment">// 引入 School 组件</span>
-  <span class="token keyword">import</span> School <span class="token keyword">from</span> <span class="token string">'./components/School'</span>
-
-  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        username<span class="token operator">:</span> <span class="token string">'老刘'</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-
-    <span class="token comment">// 局部注册</span>
-    components<span class="token operator">:</span> <span class="token punctuation">{</span> School <span class="token punctuation">}</span><span class="token punctuation">,</span>
-
-    methods<span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token function">showData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>keyWord<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-
-      <span class="token function">getFocus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>keyWord<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-
-      <span class="token function">getVC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>xuexiao<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span>style scoped<span class="token operator">&gt;</span>
-
-<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -874,7 +722,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/07/12/vue-staging-study/">https://naivekyo.github.io/2021/07/12/vue-staging-study/</a>
+                    <a href="https://naivekyo.github.io/2021/07/12/git-manual/">https://naivekyo.github.io/2021/07/12/git-manual/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -912,12 +760,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Vue/">
-                                    <span class="chip bg-color">Vue</span>
-                                </a>
-                            
-                                <a href="/tags/Vue-cli/">
-                                    <span class="chip bg-color">Vue-cli</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -1084,9 +928,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/07/12/git-manual/">
                     <div class="card-image">
@@ -1103,9 +948,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1118,6 +963,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1136,18 +982,18 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/12/vue-componentized-programming/">
+                <a href="/2021/07/12/vue-staging-study/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/11.jpg" class="responsive-img" alt="Vue_Componentized_Programming">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/10.jpg" class="responsive-img" alt="Vue_Staging_Study">
                         
-                        <span class="card-title">Vue_Componentized_Programming</span>
+                        <span class="card-title">Vue_Staging_Study</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            了解 Vue 组件化编程
+                            了解 Vue 脚手架相关的知识
                         
                     </div>
                     <div class="publish-info">
@@ -1173,8 +1019,8 @@
                         <span class="chip bg-color">Vue</span>
                     </a>
                     
-                    <a href="/tags/Front-End/">
-                        <span class="chip bg-color">Front-End</span>
+                    <a href="/tags/Vue-cli/">
+                        <span class="chip bg-color">Vue-cli</span>
                     </a>
                     
                 </div>

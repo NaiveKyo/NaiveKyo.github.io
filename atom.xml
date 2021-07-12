@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-12T03:25:55.628Z</updated>
+  <updated>2021-07-12T12:19:44.737Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git_Manual</title>
+    <link href="https://naivekyo.github.io/2021/07/12/git-manual/"/>
+    <id>https://naivekyo.github.io/2021/07/12/git-manual/</id>
+    <published>2021-07-12T11:55:21.000Z</published>
+    <updated>2021-07-12T12:19:44.737Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、常规流程&quot;&gt;&lt;a href=&quot;#一、常规流程&quot; class=&quot;headerlink&quot; title=&quot;一、常规流程&quot;&gt;&lt;/a&gt;一、常规流程&lt;/h2&gt;&lt;p&gt;考虑到 GitHub 初始化项目时可能会选择生成 Readme.md</summary>
+        
+      
+    
+    
+    
+    <category term="Git" scheme="https://naivekyo.github.io/categories/Git/"/>
+    
+    
+    <category term="Git" scheme="https://naivekyo.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue_Staging_Study</title>
@@ -102,7 +127,7 @@
     <link href="https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/"/>
     <id>https://naivekyo.github.io/2021/07/08/spring-bean-lifecycle-intro/</id>
     <published>2021-07-08T01:11:44.000Z</published>
-    <updated>2021-07-11T07:12:21.036Z</updated>
+    <updated>2021-07-12T11:16:22.152Z</updated>
     
     
       
@@ -129,7 +154,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/nginx-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/nginx-intro/</id>
     <published>2021-07-07T09:22:44.000Z</published>
-    <updated>2021-07-11T06:43:28.563Z</updated>
+    <updated>2021-07-12T11:05:10.141Z</updated>
     
     
       
