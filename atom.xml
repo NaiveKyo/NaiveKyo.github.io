@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-12T02:35:15.332Z</updated>
+  <updated>2021-07-12T02:41:04.811Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Vue_Componentized_Programming</title>
+    <link href="https://naivekyo.github.io/2021/07/12/vue-componentized-programming/"/>
+    <id>https://naivekyo.github.io/2021/07/12/vue-componentized-programming/</id>
+    <published>2021-07-12T02:15:31.000Z</published>
+    <updated>2021-07-12T02:41:04.811Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Vue-组件化编程&quot;&gt;&lt;a href=&quot;#Vue-组件化编程&quot; class=&quot;headerlink&quot; title=&quot;Vue 组件化编程&quot;&gt;&lt;/a&gt;Vue 组件化编程&lt;/h1&gt;&lt;p&gt;Vue</summary>
+        
+      
+    
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
+    
+    <category term="Front-End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vue_Core_Study</title>
     <link href="https://naivekyo.github.io/2021/07/10/vue-core-study/"/>
     <id>https://naivekyo.github.io/2021/07/10/vue-core-study/</id>
     <published>2021-07-10T14:24:49.000Z</published>
-    <updated>2021-07-12T02:35:15.332Z</updated>
+    <updated>2021-07-12T02:40:16.431Z</updated>
     
     
       
@@ -37,9 +64,9 @@
     <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
     
     
-    <category term="Front-End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
     <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
+    
+    <category term="Front-End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
     
   </entry>
   
