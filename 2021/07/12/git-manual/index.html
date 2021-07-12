@@ -619,7 +619,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    324
+                    719
                 </div>
                 
 
@@ -664,7 +664,19 @@
 
 
 
-<h2 id="二、从-master-分支迁移到-main-分支"><a href="#二、从-master-分支迁移到-main-分支" class="headerlink" title="二、从 master 分支迁移到 main 分支"></a>二、从 master 分支迁移到 main 分支</h2><p>由于现在 GitHub 默认分支变为 <code>main</code>，但是本机的 git 程序初始化项目时，默认分支依旧是 <code>master</code> 分支，这时候推送代码会出现错误，所以采取以下方式：</p>
+<h2 id="二、Git-基础知识"><a href="#二、Git-基础知识" class="headerlink" title="二、Git 基础知识"></a>二、Git 基础知识</h2><blockquote>
+<p>了解 Git 项目的三个部分</p>
+</blockquote>
+<ul>
+<li>Git 目录</li>
+<li>工作目录（或工作树）</li>
+<li>暂存区</li>
+</ul>
+<p><strong>Git 目录</strong>（位于 <code>YOUR-PROJECT-PATH/.git/</code> 中）是 Git 存储准确跟踪项目所需的所有内容的位置。这些内容包括元数据和一个对象数据库，其中包含项目文件的压缩版本。</p>
+<p>**工作目录 **是用户在本地对项目进行更改的地方。工作目录从 Git 目录的对象数据库中提取项目的文件，并将其放置在用户的本地计算机上。</p>
+<p>**暂存区 ** 是一个文件，用于存储下一次 commit 内容的信息。“commit” 的意思是你告诉 Git 保存暂存区的更改。 Git 照原样拍摄文件快照，并将该快照永久存储在 Git 目录中。</p>
+<p>在三个部分中，文件可以在任何给定时间处于三种主要状态：提交，修改或暂存。在工作目录中对文件进行<strong>修改</strong>，然后，将其移至暂存区进行<strong>暂存</strong>，最后，commit 提交文件。</p>
+<h2 id="三、从-master-分支迁移到-main-分支"><a href="#三、从-master-分支迁移到-main-分支" class="headerlink" title="三、从 master 分支迁移到 main 分支"></a>三、从 master 分支迁移到 main 分支</h2><p>由于现在 GitHub 默认分支变为 <code>main</code>，但是本机的 git 程序初始化项目时，默认分支依旧是 <code>master</code> 分支，这时候推送代码会出现错误，所以采取以下方式：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">// 初始化
 <span class="token function">git</span> init 
 
@@ -696,6 +708,23 @@
 
 
 
+<h2 id="四、遇到的错误及解决方法"><a href="#四、遇到的错误及解决方法" class="headerlink" title="四、遇到的错误及解决方法"></a>四、遇到的错误及解决方法</h2><h3 id="1、一次性-push-的文件太大"><a href="#1、一次性-push-的文件太大" class="headerlink" title="1、一次性 push 的文件太大"></a>1、一次性 push 的文件太大</h3><p>解决方法（一）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置 git config 的 postBuffer 的大小 (设置为 500MB)</span>
+<span class="token function">git</span> config --local http.postBuffer <span class="token number">524288000</span>
+<span class="token comment"># 注：--local选项指定这个设置只对当前仓库生效。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>解决方法（二）：</p>
+<ul>
+<li>一次 add 几个文件夹，然后提价，最后 push</li>
+<li>多分几次 push 就好了</li>
+</ul>
+<h3 id="2、一次-add-的文件太多，不能一次性-commit"><a href="#2、一次-add-的文件太多，不能一次性-commit" class="headerlink" title="2、一次 add 的文件太多，不能一次性 commit"></a>2、一次 add 的文件太多，不能一次性 commit</h3><p>解决方法：</p>
+<ul>
+<li><p>撤销 add 的所有文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset HEAD<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
 
                 
             </div>
