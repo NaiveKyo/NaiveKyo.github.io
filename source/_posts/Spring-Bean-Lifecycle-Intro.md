@@ -296,11 +296,32 @@ Spring 容器允许注册多个后处理器。只要它们同时实现了 `org.s
 
 - `InitializingBean`  和 `DisposableBean` 回调接口
 - 自定义 `init()` 和 `destroy()`
-- `@PostConstruce` 和 `@PreDestroy` 注解
+- `@PostConstruct` 和 `@PreDestroy` 注解
+
+
+
+`@PostConstruct` 和 `@PreDestroy` 是 Spring3.0 开始，Spring 提供对 **JSR-330** 标准注解的支持，我们推荐使用这两种注解指定 Bean 的初始化和销毁方法:
+
+```java
+@PostConstruct
+public void init() {
+	System.out.println("Inside init() method...");
+}
+
+
+@PreDestroy
+public void destroy() {
+  System.out.println("Inside destroy() method...");
+}
+```
+
+
+
+
 
 为同一个 Bean 配置的多种生命周期机制具有不同的初始化方法，调用顺序如下：
 
-1. 方法注解 `@PostConstruce`
+1. 方法注解 `@PostConstruct`
 2. 通过实现 `InitializingBean` 接口重写 `afterPropertiesSet()` 方法
 3. 自定义 `init()` 方法
 

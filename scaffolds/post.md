@@ -5,7 +5,7 @@ author: NaiveKyo
 top:
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
-coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
+coverImg: /img/
 cover:
 toc: true
 summary:

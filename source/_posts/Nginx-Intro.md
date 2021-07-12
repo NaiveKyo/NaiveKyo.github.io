@@ -3,7 +3,7 @@ title: Nginx_Intro
 author: NaiveKyo
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/5.jpg
-coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/5.jpg
+coverImg: /medias/featureimages/5.jpg
 toc: true
 date: 2021-07-07 17:22:44
 top: false
@@ -81,6 +81,10 @@ tags:
 Ip hash：对客户端请求的 ip 进行 hash 操作，然后根据 hash 结果将同一个客户端 ip请求分发给同一台服务器处理，可以解决 session 不共享问题
 
 **这样有好处也有坏处，好处就是解决了 session 不共享问题，坏处就是一旦服务器出问题了，保存的信息就丢失了，所以更多的时候，我们还是选择使用 Redis。**
+
+
+
+ip hash 存在缺陷，当前端服务器再多一层时，将获取不到用户的正确 IP，获取的将是前一个前端服务器的 IP，因此，nginx 1.7.2 版本推出了 url_hash.
 
 
 
