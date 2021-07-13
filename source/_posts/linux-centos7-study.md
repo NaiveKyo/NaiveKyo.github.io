@@ -1,5 +1,5 @@
 ---
-title: linux_centos7_study
+title: Linux_Centos7_Study
 date: 2021-07-07 10:55:28
 author: NaiveKyo
 top: false
