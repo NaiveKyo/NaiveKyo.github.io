@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Browser Local Storage</title>
+      <link href="/2021/07/15/browser-local-storage/"/>
+      <url>/2021/07/15/browser-local-storage/</url>
+      
+        <content type="html"><![CDATA[<h1 id="浏览器本地存储"><a href="#浏览器本地存储" class="headerlink" title="浏览器本地存储"></a>浏览器本地存储</h1><h2 id="1、localStorage"><a href="#1、localStorage" class="headerlink" title="1、localStorage"></a>1、localStorage</h2><p>只有两种情况会清空 Local Storage 的所有数据：</p><ul><li>用户主动清空所有缓存数据</li><li>主动触发按钮清空数据</li></ul><h2 id="2、sessionStorage"><a href="#2、sessionStorage" class="headerlink" title="2、sessionStorage"></a>2、sessionStorage</h2><p>Session Storage 和  Local Storage 不同的地方在于，浏览器关闭后就被清空</p><h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>Cookie，SessionStorage、LocalStorage 这三者都可以被用来在浏览器端存储数据，而且都是字符串类型的键值对。</p><p>注意：session  和 Session Storage 不是一个概念。在服务端有一种存储方式叫做：session 会话存储，常常被简称 session</p><p>SessionStorage 和 LocalStorage 都是浏览器本地存储，统称为 Web Storage，存储内容大小一般支持 5-10MB</p><p>浏览器端通过 Window.sessionStorage 和 Window.localStorage 属性来实现本地存储机制。</p><p>备注：</p><ul><li><p>Session Storage 的存储内容会随着浏览器的关闭而清空</p></li><li><p>Local Storage 中存储的内容，需要手动清空才会消失</p></li><li><p>xxxStroage.getItem(‘key’) 获取不到就返回 null，<strong>JSON.parse(null)</strong> 的结果是 null</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Browser </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Browser </tag>
+            
+            <tag> Storage </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git_Manual</title>
       <link href="/2021/07/12/git-manual/"/>
       <url>/2021/07/12/git-manual/</url>
