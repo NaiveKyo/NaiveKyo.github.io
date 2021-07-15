@@ -584,7 +584,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210713111311.jpg   # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715143655.jpg   # 指定 jsdlivr 地址的图片
 
 #ICP备案信息尾部显示
 icp:

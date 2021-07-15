@@ -61,28 +61,31 @@ tags: Vue
 
 - 使用 `this.$emit` （推荐）
 
-  - ```javascript
-    <Header @add-todo="addTodo"/>
-    // 注意自定义事件的命名方式
-      
-    // 子组件中使用，需要定义一个新的方法接收这个自定义事件，点击这个新方法就会执行父组件的回调，从而实现子组件向父组件传递消息
-      methods: {
-          add() {
-            if (!this.name.trim()) return alert('输入不能为空')
-            // 根据用户的输入生成一个 todo 对象
-            const todoObj = {
-              id: Date.now(),
-              name: this.name,
-              done: false
-            }
-            // 使用自定义事件通知 App 在 data 中添加一个 todo
-            this.$emit('add-todo', todoObj)
-            // 清空输入
-            this.name = ''
+  ```javascript
+  <Header @add-todo="addTodo"/>
+  // 注意自定义事件的命名方式
+    
+  // 子组件中使用，需要定义一个新的方法接收这个自定义事件，点击这个新方法就会执行父组件的回调，从而实现子组件向父组件传递消息
+    methods: {
+        add() {
+          if (!this.name.trim()) return alert('输入不能为空')
+          // 根据用户的输入生成一个 todo 对象
+          const todoObj = {
+            id: Date.now(),
+            name: this.name,
+            done: false
           }
-        },
-        // props: [ 'addTodo' ]
-      }
+          // 使用自定义事件通知 App 在 data 中添加一个 todo
+          this.$emit('add-todo', todoObj)
+          // 清空输入
+          this.name = ''
+        }
+      },
+      // props: [ 'addTodo' ]
+    }
+  ```
+
+  
 
 - 父组件使用 `ref` 标记子组件，然后在 `mounted` 中使用 `this.$refs.demo.$on('test', this.test)` 为子组件绑定自定义事件，子组件调用的方法和第一种方式一样
 
