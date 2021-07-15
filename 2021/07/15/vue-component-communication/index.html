@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Browser,Storage">
+    <meta name="keywords" content="Vue,Component">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Browser Local Storage | NaiveKyo</title>
+    <title>Vue component communication | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -456,12 +456,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715103346.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715104529.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Browser Local Storage</h1>
+                    <h1 class="description center-align post-title">Vue component communication</h1>
                 </div>
             </div>
         </div>
@@ -580,12 +580,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Browser/">
-                                <span class="chip bg-color">Browser</span>
-                            </a>
-                        
-                            <a href="/tags/Storage/">
-                                <span class="chip bg-color">Storage</span>
+                            <a href="/tags/Vue/">
+                                <span class="chip bg-color">Vue</span>
                             </a>
                         
                     </div>
@@ -596,8 +592,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Browser/" class="post-category">
-                                Browser
+                            <a href="/categories/Vue/" class="post-category">
+                                Vue
                             </a>
                         
                     </div>
@@ -623,7 +619,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    252
+                    883
                 </div>
                 
 
@@ -643,23 +639,115 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="浏览器本地存储"><a href="#浏览器本地存储" class="headerlink" title="浏览器本地存储"></a>浏览器本地存储</h1><h2 id="1、localStorage"><a href="#1、localStorage" class="headerlink" title="1、localStorage"></a>1、localStorage</h2><p>只有两种情况会清空 Local Storage 的所有数据：</p>
+                <h1 id="Vue-组件通信"><a href="#Vue-组件通信" class="headerlink" title="Vue 组件通信"></a>Vue 组件通信</h1><h3 id="Vscode-小知识"><a href="#Vscode-小知识" class="headerlink" title="Vscode 小知识"></a>Vscode 小知识</h3><p>补充：vs 单击文件是预览模式，点开一个文件在点开其他文件会覆盖当前文件浏览窗口，可以双击文件进入编辑模式就可以解决问题</p>
+<h2 id="一、常规父子组件通信"><a href="#一、常规父子组件通信" class="headerlink" title="一、常规父子组件通信"></a>一、常规父子组件通信</h2><h3 id="1、Props"><a href="#1、Props" class="headerlink" title="1、Props"></a>1、Props</h3><blockquote>
+<p>props 实现父向子传递消息</p>
+</blockquote>
+<p>常用的方式：</p>
 <ul>
-<li>用户主动清空所有缓存数据</li>
-<li>主动触发按钮清空数据</li>
+<li><p>使用 <code>props</code> 在父子组件之间传递消息</p>
+</li>
+<li><p><code>props</code> 可以绑定函数或者数据</p>
+</li>
+<li><p>子组件需要接收消息，然后使用</p>
+</li>
 </ul>
-<h2 id="2、sessionStorage"><a href="#2、sessionStorage" class="headerlink" title="2、sessionStorage"></a>2、sessionStorage</h2><p>Session Storage 和  Local Storage 不同的地方在于，浏览器关闭后就被清空</p>
-<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>Cookie，SessionStorage、LocalStorage 这三者都可以被用来在浏览器端存储数据，而且都是字符串类型的键值对。</p>
-<p>注意：session  和 Session Storage 不是一个概念。在服务端有一种存储方式叫做：session 会话存储，常常被简称 session</p>
-<p>SessionStorage 和 LocalStorage 都是浏览器本地存储，统称为 Web Storage，存储内容大小一般支持 5-10MB</p>
-<p>浏览器端通过 Window.sessionStorage 和 Window.localStorage 属性来实现本地存储机制。</p>
-<p>备注：</p>
+<h3 id="2、自定义事件"><a href="#2、自定义事件" class="headerlink" title="2、自定义事件"></a>2、自定义事件</h3><blockquote>
+<p>自定义事件实现子向父传递消息</p>
+</blockquote>
+<p>自定义事件</p>
 <ul>
-<li><p>Session Storage 的存储内容会随着浏览器的关闭而清空</p>
+<li>适用于子组件给父组件传递数据</li>
+<li>父组件中给组件绑定自定义事件（实际上子组件回调的时候是在 vc 的原型上找到这个事件方法的）</li>
+<li>子组件使用 <code>this.$emit(对应的方法, 参数)</code></li>
+</ul>
+<p>自定义事件两种方式：</p>
+<ul>
+<li><p>使用 <code>this.$emit</code> （推荐）</p>
+<ul>
+<li>```javascript<header @add-todo="addTodo">
+// 注意自定义事件的命名方式
+  
+// 子组件中使用，需要定义一个新的方法接收这个自定义事件，点击这个新方法就会执行父组件的回调，从而实现子组件向父组件传递消息<br>  methods: {<pre><code>  add() {
+    if (!this.name.trim()) return alert('输入不能为空')
+    // 根据用户的输入生成一个 todo 对象
+    const todoObj = {
+      id: Date.now(),
+      name: this.name,
+      done: false
+    }
+    // 使用自定义事件通知 App 在 data 中添加一个 todo
+    this.$emit('add-todo', todoObj)
+    // 清空输入
+    this.name = ''
+  }
+},
+// props: [ 'addTodo' ]
+</code></pre>
+  }</header></li>
+</ul>
 </li>
-<li><p>Local Storage 中存储的内容，需要手动清空才会消失</p>
+<li><p>父组件使用 <code>ref</code> 标记子组件，然后在 <code>mounted</code> 中使用 <code>this.$refs.demo.$on('test', this.test)</code> 为子组件绑定自定义事件，子组件调用的方法和第一种方式一样</p>
 </li>
-<li><p>xxxStroage.getItem(‘key’) 获取不到就返回 null，<strong>JSON.parse(null)</strong> 的结果是 null</p>
+<li><p>自定义事件的命名，使用 <strong>kebab-case</strong> 模式 例如：<code>get-data</code></p>
+</li>
+</ul>
+<h2 id="二、任意组件通信"><a href="#二、任意组件通信" class="headerlink" title="二、任意组件通信"></a>二、任意组件通信</h2><h3 id="全局事件总线"><a href="#全局事件总线" class="headerlink" title="全局事件总线"></a>全局事件总线</h3><p>全局事件总线可以实现任意组件之间的通信</p>
+<p>它的原理就是当一个事物可以被所有组件都看到，并且我们可以为它绑定自定义事件，那么借助这个工具就可以实现任意组件相互通信。</p>
+<blockquote>
+<p>Q：什么东西可以被所有组件看到呢？</p>
+</blockquote>
+<p>A：Vue 的原型：Vue.prototype 可以被所有组件看到</p>
+<p>所以：<strong>将自定义事件绑定到 Vue 的原型上</strong></p>
+<p><code>main.js</code> 中注册：</p>
+<ul>
+<li><p>安装全局事件总线：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span>
+
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+<span class="token comment">// 定义全局事件总线</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">beforeCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 注意这一步比较巧妙</span>
+    <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$bus <span class="token operator">=</span> <span class="token keyword">this</span>   <span class="token comment">// 安装事件总线</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  el<span class="token operator">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>在 Demo1 中给 $bus 绑定自定义事件</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token function">test1</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ 		 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Demo1 收到了数据'</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+ 		 <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> x
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 给 $bus 绑定一个自定义事件</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$bus<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'test1'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>test1<span class="token punctuation">)</span>
+		<span class="token comment">// 这里要注意自定义函数时，this 的指向问题，test1 如果使用 function 定义，则 this 指向 $bus</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token function">beforeDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 关闭自定义事件</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>$bus<span class="token punctuation">.</span><span class="token function">$off</span><span class="token punctuation">(</span><span class="token string">'test1'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>在 Demo2 中调用 $bus 上绑定的事件，实现与 Demo1 通信</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+	<span class="token function">sendData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>$bus<span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'test1'</span><span class="token punctuation">,</span> <span class="token string">'NaiveKyo'</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="三、插槽"><a href="#三、插槽" class="headerlink" title="三、插槽"></a>三、插槽</h2><p>此方式用于父组件向子组件传递带数据的标签，当一个组件有不确定的结构时，就需要使用 <code>slot</code> 技术了，注意：插槽内容是在父组件中编译后，再传递给子组件的。</p>
+<h2 id="1、分类"><a href="#1、分类" class="headerlink" title="1、分类"></a>1、分类</h2><ul>
+<li>默认插槽</li>
+<li>命令插槽</li>
+<li><strong>作用域插槽</strong><ul>
+<li><strong>父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。</strong></li>
+</ul>
 </li>
 </ul>
 
@@ -688,7 +776,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/07/15/browser-local-storage/">https://naivekyo.github.io/2021/07/15/browser-local-storage/</a>
+                    <a href="https://naivekyo.github.io/2021/07/15/vue-component-communication/">https://naivekyo.github.io/2021/07/15/vue-component-communication/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -726,12 +814,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Browser/">
-                                    <span class="chip bg-color">Browser</span>
-                                </a>
-                            
-                                <a href="/tags/Storage/">
-                                    <span class="chip bg-color">Storage</span>
+                                <a href="/tags/Vue/">
+                                    <span class="chip bg-color">Vue</span>
                                 </a>
                             
                         </div>
@@ -898,9 +982,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/07/15/vue-component-communication/">
                     <div class="card-image">
@@ -917,9 +1002,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -932,6 +1017,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -950,30 +1036,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/12/git-manual/">
+                <a href="/2021/07/15/browser-local-storage/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/18.jpg" class="responsive-img" alt="Git_Manual">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715103346.jpg" class="responsive-img" alt="Browser Local Storage">
                         
-                        <span class="card-title">Git_Manual</span>
+                        <span class="card-title">Browser Local Storage</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于使用 Git 过程中遇到的问题
+                            关于浏览器本地存储的相关知识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
+                            <a href="/categories/Browser/" class="post-category">
+                                    Browser
                                 </a>
                             
                             
@@ -983,8 +1069,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/Browser/">
+                        <span class="chip bg-color">Browser</span>
+                    </a>
+                    
+                    <a href="/tags/Storage/">
+                        <span class="chip bg-color">Storage</span>
                     </a>
                     
                 </div>

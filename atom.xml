@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-15T02:36:57.491Z</updated>
+  <updated>2021-07-15T03:17:42.191Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue component communication</title>
+    <link href="https://naivekyo.github.io/2021/07/15/vue-component-communication/"/>
+    <id>https://naivekyo.github.io/2021/07/15/vue-component-communication/</id>
+    <published>2021-07-15T02:39:39.000Z</published>
+    <updated>2021-07-15T03:17:42.191Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Vue-组件通信&quot;&gt;&lt;a href=&quot;#Vue-组件通信&quot; class=&quot;headerlink&quot; title=&quot;Vue 组件通信&quot;&gt;&lt;/a&gt;Vue 组件通信&lt;/h1&gt;&lt;h3 id=&quot;Vscode-小知识&quot;&gt;&lt;a href=&quot;#Vscode-小知识&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>Browser Local Storage</title>
