@@ -619,7 +619,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    883
+                    888
                 </div>
                 
 
@@ -664,29 +664,27 @@
 <p>自定义事件两种方式：</p>
 <ul>
 <li><p>使用 <code>this.$emit</code> （推荐）</p>
-<ul>
-<li>```javascript<header @add-todo="addTodo">
-// 注意自定义事件的命名方式
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>Header @add<span class="token operator">-</span>todo<span class="token operator">=</span><span class="token string">"addTodo"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token comment">// 注意自定义事件的命名方式</span>
   
-// 子组件中使用，需要定义一个新的方法接收这个自定义事件，点击这个新方法就会执行父组件的回调，从而实现子组件向父组件传递消息<br>  methods: {<pre><code>  add() {
-    if (!this.name.trim()) return alert('输入不能为空')
-    // 根据用户的输入生成一个 todo 对象
-    const todoObj = {
-      id: Date.now(),
-      name: this.name,
-      done: false
-    }
-    // 使用自定义事件通知 App 在 data 中添加一个 todo
-    this.$emit('add-todo', todoObj)
-    // 清空输入
-    this.name = ''
-  }
-},
-// props: [ 'addTodo' ]
-</code></pre>
-  }</header></li>
-</ul>
-</li>
+<span class="token comment">// 子组件中使用，需要定义一个新的方法接收这个自定义事件，点击这个新方法就会执行父组件的回调，从而实现子组件向父组件传递消息</span>
+  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'输入不能为空'</span><span class="token punctuation">)</span>
+        <span class="token comment">// 根据用户的输入生成一个 todo 对象</span>
+        <span class="token keyword">const</span> todoObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+          id<span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          name<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+          done<span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 使用自定义事件通知 App 在 data 中添加一个 todo</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'add-todo'</span><span class="token punctuation">,</span> todoObj<span class="token punctuation">)</span>
+        <span class="token comment">// 清空输入</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// props: [ 'addTodo' ]</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>父组件使用 <code>ref</code> 标记子组件，然后在 <code>mounted</code> 中使用 <code>this.$refs.demo.$on('test', this.test)</code> 为子组件绑定自定义事件，子组件调用的方法和第一种方式一样</p>
 </li>
 <li><p>自定义事件的命名，使用 <strong>kebab-case</strong> 模式 例如：<code>get-data</code></p>
