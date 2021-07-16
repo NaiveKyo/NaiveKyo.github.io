@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-15T03:21:06.696Z</updated>
+  <updated>2021-07-16T02:44:20.476Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Maven Convergent Engineering</title>
+    <link href="https://naivekyo.github.io/2021/07/16/maven-convergent-engineering/"/>
+    <id>https://naivekyo.github.io/2021/07/16/maven-convergent-engineering/</id>
+    <published>2021-07-16T00:30:33.000Z</published>
+    <updated>2021-07-16T02:44:20.476Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Maven-的依赖管理&quot;&gt;&lt;a href=&quot;#Maven-的依赖管理&quot; class=&quot;headerlink&quot; title=&quot;Maven 的依赖管理&quot;&gt;&lt;/a&gt;Maven 的依赖管理&lt;/h2&gt;&lt;p&gt;Maven</summary>
+        
+      
+    
+    
+    
+    <category term="Maven" scheme="https://naivekyo.github.io/categories/Maven/"/>
+    
+    
+    <category term="Maven" scheme="https://naivekyo.github.io/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vue component communication</title>
     <link href="https://naivekyo.github.io/2021/07/15/vue-component-communication/"/>
     <id>https://naivekyo.github.io/2021/07/15/vue-component-communication/</id>
     <published>2021-07-15T02:39:39.000Z</published>
-    <updated>2021-07-15T03:21:06.696Z</updated>
+    <updated>2021-07-16T01:06:18.160Z</updated>
     
     
       
@@ -73,7 +98,7 @@
     <link href="https://naivekyo.github.io/2021/07/12/git-manual/"/>
     <id>https://naivekyo.github.io/2021/07/12/git-manual/</id>
     <published>2021-07-12T11:55:21.000Z</published>
-    <updated>2021-07-15T09:57:19.171Z</updated>
+    <updated>2021-07-16T01:04:13.720Z</updated>
     
     
       
@@ -98,7 +123,7 @@
     <link href="https://naivekyo.github.io/2021/07/12/vue-staging-study/"/>
     <id>https://naivekyo.github.io/2021/07/12/vue-staging-study/</id>
     <published>2021-07-12T02:56:45.000Z</published>
-    <updated>2021-07-12T03:25:55.628Z</updated>
+    <updated>2021-07-16T01:07:10.706Z</updated>
     
     
       
@@ -125,7 +150,7 @@
     <link href="https://naivekyo.github.io/2021/07/12/vue-componentized-programming/"/>
     <id>https://naivekyo.github.io/2021/07/12/vue-componentized-programming/</id>
     <published>2021-07-12T02:15:31.000Z</published>
-    <updated>2021-07-12T02:44:21.127Z</updated>
+    <updated>2021-07-16T01:06:34.770Z</updated>
     
     
       
@@ -152,7 +177,7 @@
     <link href="https://naivekyo.github.io/2021/07/10/vue-core-study/"/>
     <id>https://naivekyo.github.io/2021/07/10/vue-core-study/</id>
     <published>2021-07-10T14:24:49.000Z</published>
-    <updated>2021-07-12T02:40:16.431Z</updated>
+    <updated>2021-07-16T01:07:01.745Z</updated>
     
     
       
@@ -260,7 +285,7 @@
     <link href="https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
     <id>https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
     <published>2021-07-07T07:23:03.000Z</published>
-    <updated>2021-07-11T06:43:49.803Z</updated>
+    <updated>2021-07-16T01:05:06.869Z</updated>
     
     
       
