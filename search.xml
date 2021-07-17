@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>SpringBoot Multienvironment Switch</title>
+      <link href="/2021/07/17/springboot-multienvironment-switch/"/>
+      <url>/2021/07/17/springboot-multienvironment-switch/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SpringBoot-多环境切换及配置文件"><a href="#SpringBoot-多环境切换及配置文件" class="headerlink" title="SpringBoot 多环境切换及配置文件"></a>SpringBoot 多环境切换及配置文件</h1><h2 id="一、配置文件的位置"><a href="#一、配置文件的位置" class="headerlink" title="一、配置文件的位置"></a>一、配置文件的位置</h2><p>在 SpringBoot 中 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files">官网推荐配置文件</a> 可以放在这些目录下：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/config/application.yaml/application.yamlclasspath:config/application.yamlclasspath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>生效的优先级：</p><ol><li><code>/config/application.yaml</code></li><li><code>/application.yaml</code></li><li><code>classpath:config/application.yaml</code></li><li><code>classpath:application.yaml</code></li></ol><p><strong>结果就是，系统自动配置的文件优先级是最低的</strong></p><h2 id="二、多环境切换配置文件"><a href="#二、多环境切换配置文件" class="headerlink" title="二、多环境切换配置文件"></a>二、多环境切换配置文件</h2><p>在实际开发中，我们有多套环境，例如 测试环境、生产环境 等等，可以迅速切换。</p><p>切换方式如下：</p><p>1、自动覆盖</p><p>2、自己手动选择</p><p><strong>这些环境配置文件的前缀都是 <code>application</code></strong></p><p>例如：</p><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">测试环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application-test.properties</span><span class="token attr-name">开发环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application-dev.properties</span><span class="token attr-name">默认环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application.properties</span>默认启动是默认环境<span class="token attr-name">可以在默认的</span> <span class="token attr-value">application.properties 中设置激活哪一个环境</span><span class="token comment"># springboot 的多环境配置，可以选择激活哪一个配置文件</span><span class="token attr-name">spring.profiles.active</span><span class="token punctuation">=</span><span class="token attr-value">dev// 开发</span><span class="token attr-name">spring.profiles.active</span><span class="token punctuation">=</span><span class="token attr-value">test// 测试</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>使用 yaml 要比 properties 更方便，只需要一个文件就好了:</p><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 多文档模块</span><span class="token key atrule">server</span><span class="token punctuation">:</span>  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span><span class="token key atrule">spring</span><span class="token punctuation">:</span>  <span class="token key atrule">profiles</span><span class="token punctuation">:</span>    <span class="token key atrule">active</span><span class="token punctuation">:</span> test<span class="token punctuation">---</span><span class="token key atrule">server</span><span class="token punctuation">:</span>  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span><span class="token key atrule">spring</span><span class="token punctuation">:</span>  <span class="token key atrule">profiles</span><span class="token punctuation">:</span> dev<span class="token punctuation">---</span><span class="token key atrule">server</span><span class="token punctuation">:</span>  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8082</span><span class="token key atrule">spring</span><span class="token punctuation">:</span>  <span class="token key atrule">profiles</span><span class="token punctuation">:</span> test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>注意：如果 yml 和 properties 同时都配置了端口，并且没有激活其他环境 ， 默认会使用 properties 配置文件的！</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring Boot </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring Boot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swagger Intro</title>
       <link href="/2021/07/16/swagger-intro/"/>
       <url>/2021/07/16/swagger-intro/</url>
