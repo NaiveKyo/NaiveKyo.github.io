@@ -612,14 +612,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-16
+                    2021-07-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    2.5k
                 </div>
                 
 
@@ -724,6 +724,15 @@
 <ul>
 <li><p>撤销 add 的所有文件</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset HEAD<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<h3 id="3、关于分工合作的处理流程"><a href="#3、关于分工合作的处理流程" class="headerlink" title="3、关于分工合作的处理流程"></a>3、关于分工合作的处理流程</h3><p>分工开发的时候，所有人都应该开启一条单独的分支进行开发，最后将自己的分支合并到主分支上面，push 到远程仓库。</p>
+<p>这里有一些注意点：</p>
+<ul>
+<li>从分支中创建了一些新文件并 add 后，主分支也会出现这个文件</li>
+<li>从分支 commit 新文件后，git 的本地分支才会开启一条新的分支，这个文件在主分支中就看不到了（一开始看到从分支创建新文件后，主分支也出现了这个文件还虚惊一场）</li>
+<li>这样在 idea 的 version control 控制台的 log 下就主分支就出现了分叉</li>
+<li>从分支 commit 后切换到主分支，<strong>首先 pull 一下，看有没有更新</strong>，然后再将从分支合并到主分支中</li>
+<li>这样分支就回归到主分支中</li>
 </ul>
 <h2 id="五、Idea-中管理-gitee-仓库协同开发"><a href="#五、Idea-中管理-gitee-仓库协同开发" class="headerlink" title="五、Idea 中管理 gitee 仓库协同开发"></a>五、Idea 中管理 gitee 仓库协同开发</h2><h3 id="1、初始化项目"><a href="#1、初始化项目" class="headerlink" title="1、初始化项目"></a>1、初始化项目</h3><p>项目组长在本地创建项目将其分享到 gitee 远端并生成仓库，然后邀请开发成员进入项目组。</p>
 <p>各个组员在版本控制 <code>VCS</code> 中点击 <strong>Get From Version Control</strong>，选择要克隆的远程仓库，将仓库拉取到本地。</p>
