@@ -612,14 +612,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-17
+                    2021-07-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.5k
+                    2.7k
                 </div>
                 
 
@@ -734,6 +734,19 @@
 <li>从分支 commit 后切换到主分支，<strong>首先 pull 一下，看有没有更新</strong>，然后再将从分支合并到主分支中</li>
 <li>这样分支就回归到主分支中</li>
 </ul>
+<h3 id="4、关于不想上传到-git-服务器的文件"><a href="#4、关于不想上传到-git-服务器的文件" class="headerlink" title="4、关于不想上传到 git 服务器的文件"></a>4、关于不想上传到 git 服务器的文件</h3><p>一开始使用 gitee 比较智能，上传过去就会自动忽略 <code>.idea</code>、<code>*.iml</code>、<code>target</code> 等等文件。</p>
+<p>换成了搭建的 git 服务器后，一开始初始化项目没有编写完整的 <code>.gitignore</code> 文件，所以将一些本地 idea 配置也一并上传了，后来造成了一些问题。</p>
+<blockquote>
+<p>解决思路：</p>
+</blockquote>
+<p>1、idea 忽略不想看到的文件</p>
+<p>setting -&gt; editor -&gt; file types -&gt; ignore file</p>
+<p>后面加上 **.idea;*.iml;**，这样项目工程目录下就看不到这些文件了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210718090908.png"></p>
+<p>2、安装 <code>.ignore</code> 插件</p>
+<p>这个插件挺好的，在我们创建 .gitignore 文件时可以智能的提示</p>
+<p>简介：</p>
+<p>.ignore是IDEA的一款专用忽略文件的插件。其支持的忽略文件类型有：.gitignore (Git), .hgignore (Mercurial), .npmignore (NPM), .dockerignore (Docker), .chefignore (Chef), .cvsignore (CVS), .bzrignore (Bazaar), .boringignore (Darcs), .mtn-ignore (Monotone), ignore-glob (Fossil), .jshintignore (JSHint), .tfignore (Team Foundation), .p4ignore (Perforce), .prettierignore (Prettier), .flooignore (Floobits), .eslintignore (ESLint), .cfignore (Cloud Foundry), .jpmignore (Jetpack), .stylelintignore (StyleLint), .stylintignore (Stylint), .swagger-codegen-ignore (Swagger Codegen), .helmignore (Kubernetes Helm), .upignore (Up), .prettierignore (Prettier), .ebignore (ElasticBeanstalk)</p>
 <h2 id="五、Idea-中管理-gitee-仓库协同开发"><a href="#五、Idea-中管理-gitee-仓库协同开发" class="headerlink" title="五、Idea 中管理 gitee 仓库协同开发"></a>五、Idea 中管理 gitee 仓库协同开发</h2><h3 id="1、初始化项目"><a href="#1、初始化项目" class="headerlink" title="1、初始化项目"></a>1、初始化项目</h3><p>项目组长在本地创建项目将其分享到 gitee 远端并生成仓库，然后邀请开发成员进入项目组。</p>
 <p>各个组员在版本控制 <code>VCS</code> 中点击 <strong>Get From Version Control</strong>，选择要克隆的远程仓库，将仓库拉取到本地。</p>
 <h3 id="2、分支管理（重要）"><a href="#2、分支管理（重要）" class="headerlink" title="2、分支管理（重要）"></a>2、分支管理（重要）</h3><p>分支有两种实现方式：</p>
