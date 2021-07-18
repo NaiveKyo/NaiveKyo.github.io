@@ -6,8 +6,8 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/11.jpg'
 coverImg: '/medias/featureimages/11.jpg'
 toc: true
 date: 2021-07-12 10:15:31
-top: true
-cover: true
+top: false
+cover: false
 summary: 了解 Vue 组件化编程
 categories:
   - Vue

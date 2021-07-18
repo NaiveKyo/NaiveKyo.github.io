@@ -7,7 +7,7 @@ coverImg: /medias/featureimages/10.jpg
 toc: true
 date: 2021-07-12 10:56:45
 top: false
-cover: true
+cover: false
 summary: 了解 Vue 脚手架相关的知识
 categories:
   - Vue

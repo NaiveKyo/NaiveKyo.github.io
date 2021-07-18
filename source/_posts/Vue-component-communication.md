@@ -6,8 +6,8 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715104529.jpg'
 coverImg: /img/20210715104529.jpg
 toc: true
 date: 2021-07-15 10:39:39
-top: false
-cover: true
+top: true
+cover: false
 summary: 了解 Vue 组件通信的几种方式
 categories: Vue
 keywords: [Vue, Component]

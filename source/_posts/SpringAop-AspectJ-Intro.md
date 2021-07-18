@@ -2,14 +2,14 @@
 title: SpringAop-AspectJ-Intro
 date: 2021-07-07 15:23:03
 author: NaiveKyo
-top: true
+top: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/1.jpg
 coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/1.jpg
 hide: flase
 cover: false
 toc: true
 summary: 学习 Spring 中的 AOP 使用方法，以及了解 AspectJ
-categories: [Java, Spring]
+categories: Spring
 keywords: [Spring, Aop, AspectJ]
 tags:
   - Spring

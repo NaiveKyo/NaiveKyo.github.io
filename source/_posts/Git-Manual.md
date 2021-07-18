@@ -7,7 +7,7 @@ coverImg: /medias/featureimages/18.jpg
 toc: true
 date: 2021-07-12 19:55:21
 top: true
-cover: true
+cover: false
 summary: 关于使用 Git 过程中遇到的问题
 categories: Git
 keywords: [Git, Version-Control]
@@ -144,6 +144,53 @@ git config --local http.postBuffer 524288000
   git reset HEAD
   ```
 
+### 3、关于分工合作的处理流程
+
+分工开发的时候，所有人都应该开启一条单独的分支进行开发，最后将自己的分支合并到主分支上面，push 到远程仓库。
+
+这里有一些注意点：
+
+- 从分支中创建了一些新文件并 add 后，主分支也会出现这个文件
+- 从分支 commit 新文件后，git 的本地分支才会开启一条新的分支，这个文件在主分支中就看不到了（一开始看到从分支创建新文件后，主分支也出现了这个文件还虚惊一场）
+- 这样在 idea 的 version control 控制台的 log 下就主分支就出现了分叉
+- 从分支 commit 后切换到主分支，**首先 pull 一下，看有没有更新**，然后再将从分支合并到主分支中
+- 这样分支就回归到主分支中
+
+
+
+
+
+### 4、关于不想上传到 git 服务器的文件
+
+一开始使用 gitee 比较智能，上传过去就会自动忽略 `.idea`、`*.iml`、`target` 等等文件。
+
+换成了搭建的 git 服务器后，一开始初始化项目没有编写完整的 `.gitignore` 文件，所以将一些本地 idea 配置也一并上传了，后来造成了一些问题。
+
+
+
+> 解决思路：
+
+1、idea 忽略不想看到的文件
+
+setting -> editor -> file types -> ignore file
+
+后面加上 **.idea;*.iml;**，这样项目工程目录下就看不到这些文件了。
+
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210718090908.png)
+
+
+
+2、安装 `.ignore` 插件
+
+这个插件挺好的，在我们创建 .gitignore 文件时可以智能的提示
+
+
+
+简介：
+
+.ignore是IDEA的一款专用忽略文件的插件。其支持的忽略文件类型有：.gitignore (Git), .hgignore (Mercurial), .npmignore (NPM), .dockerignore (Docker), .chefignore (Chef), .cvsignore (CVS), .bzrignore (Bazaar), .boringignore (Darcs), .mtn-ignore (Monotone), ignore-glob (Fossil), .jshintignore (JSHint), .tfignore (Team Foundation), .p4ignore (Perforce), .prettierignore (Prettier), .flooignore (Floobits), .eslintignore (ESLint), .cfignore (Cloud Foundry), .jpmignore (Jetpack), .stylelintignore (StyleLint), .stylintignore (Stylint), .swagger-codegen-ignore (Swagger Codegen), .helmignore (Kubernetes Helm), .upignore (Up), .prettierignore (Prettier), .ebignore (ElasticBeanstalk)
+
+
 
 
 
@@ -227,7 +274,7 @@ idea 右下角下面可以显示远程仓库的分支信息：
 2. 选中 `local branches` 下自己的分支，点击 `Merge into Current`，这个 Current 就是指项目的默认主分支 master
 3. 最终分支代码会合并到主分支代码中，**最后不要忘了将主分支 push 到远端**
 
-![img](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715171147.png)
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715171147.png)
 
 
 

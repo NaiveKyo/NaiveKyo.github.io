@@ -886,7 +886,7 @@ form 提交不用给 submit 绑定事件，直接给表单绑定事件
 
 ## 12、Vue 的生命周期
 
-![img](https://cn.vuejs.org/images/lifecycle.png)
+![](https://cn.vuejs.org/images/lifecycle.png)
 
 
 
