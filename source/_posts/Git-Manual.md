@@ -174,7 +174,7 @@ git config --local http.postBuffer 524288000
 
 setting -> editor -> file types -> ignore file
 
-后面加上 **.idea;*.iml;**，这样项目工程目录下就看不到这些文件了。
+后面加上 `.idea;*.iml;`，这样项目工程目录下就看不到这些文件了。
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210718090908.png)
 
