@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring Boot">
+    <meta name="keywords" content="MySQL">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SpringBoot Multienvironment Switch | NaiveKyo</title>
+    <title>MySQL QA | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -456,12 +456,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210717093851.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210720094140.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SpringBoot Multienvironment Switch</h1>
+                    <h1 class="description center-align post-title">MySQL QA</h1>
                 </div>
             </div>
         </div>
@@ -580,8 +580,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Spring-Boot/">
-                                <span class="chip bg-color">Spring Boot</span>
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -592,8 +592,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Spring-Boot/" class="post-category">
-                                Spring Boot
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
                             </a>
                         
                     </div>
@@ -605,21 +605,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-17
+                    2021-07-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-17
+                    2021-07-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    322
+                    170
                 </div>
                 
 
@@ -639,65 +639,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SpringBoot-多环境切换及配置文件"><a href="#SpringBoot-多环境切换及配置文件" class="headerlink" title="SpringBoot 多环境切换及配置文件"></a>SpringBoot 多环境切换及配置文件</h1><h2 id="一、配置文件的位置"><a href="#一、配置文件的位置" class="headerlink" title="一、配置文件的位置"></a>一、配置文件的位置</h2><p>在 SpringBoot 中 <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files">官网推荐配置文件</a> 可以放在这些目录下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/config/application.yaml
+                <h1 id="MySQL-Question-amp-Solution"><a href="#MySQL-Question-amp-Solution" class="headerlink" title="MySQL Question &amp; Solution"></a>MySQL Question &amp; Solution</h1><h2 id="1、MySQL-主键-id-不连续"><a href="#1、MySQL-主键-id-不连续" class="headerlink" title="1、MySQL 主键 id 不连续"></a>1、MySQL 主键 id 不连续</h2><blockquote>
+<p>场景</p>
+</blockquote>
+<p>创建 MySQL 表，主键设为自增，测试时添加了数据，但是最后删除了，此后插入数据，主键从删除的测试记录主键开始自增，最终导致主键 id 不连续。</p>
+<blockquote>
+<p>解决方法</p>
+</blockquote>
+<ul>
+<li>删除完还没有新增数据，即还没有出现不连续的数据 ID 时，可以这样</li>
+</ul>
+<p>重置主键自增的出发点</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-/application.yaml
+<p>可以指定从哪一个值开始自增</p>
+<ul>
+<li>表中已经出现不连续的主键 ID 时，可以这样</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@auto_id</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">UPDATE</span> 表名 <span class="token keyword">SET</span> 自增字段名 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">@auto_id</span> :<span class="token operator">=</span> <span class="token variable">@auto_id</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-classpath:config/application.yaml
-
-classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>生效的优先级：</p>
-<ol>
-<li><code>/config/application.yaml</code></li>
-<li><code>/application.yaml</code></li>
-<li><code>classpath:config/application.yaml</code></li>
-<li><code>classpath:application.yaml</code></li>
-</ol>
-<p><strong>结果就是，系统自动配置的文件优先级是最低的</strong></p>
-<h2 id="二、多环境切换配置文件"><a href="#二、多环境切换配置文件" class="headerlink" title="二、多环境切换配置文件"></a>二、多环境切换配置文件</h2><p>在实际开发中，我们有多套环境，例如 测试环境、生产环境 等等，可以迅速切换。</p>
-<p>切换方式如下：</p>
-<p>1、自动覆盖</p>
-<p>2、自己手动选择</p>
-<p><strong>这些环境配置文件的前缀都是 <code>application</code></strong></p>
-<p>例如：</p>
-<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">测试环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application-test.properties</span>
-<span class="token attr-name">开发环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application-dev.properties</span>
-<span class="token attr-name">默认环境</span> <span class="token punctuation">:</span> <span class="token attr-value">application.properties</span>
-
-默认启动是默认环境
-
-<span class="token attr-name">可以在默认的</span> <span class="token attr-value">application.properties 中设置激活哪一个环境</span>
-
-<span class="token comment"># springboot 的多环境配置，可以选择激活哪一个配置文件</span>
-<span class="token attr-name">spring.profiles.active</span><span class="token punctuation">=</span><span class="token attr-value">dev	// 开发</span>
-<span class="token attr-name">spring.profiles.active</span><span class="token punctuation">=</span><span class="token attr-value">test	// 测试</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>使用 yaml 要比 properties 更方便，只需要一个文件就好了:</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 多文档模块</span>
-<span class="token key atrule">server</span><span class="token punctuation">:</span>
-  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
-<span class="token key atrule">spring</span><span class="token punctuation">:</span>
-  <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
-    <span class="token key atrule">active</span><span class="token punctuation">:</span> test
-
-<span class="token punctuation">---</span>
-<span class="token key atrule">server</span><span class="token punctuation">:</span>
-  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>
-<span class="token key atrule">spring</span><span class="token punctuation">:</span>
-  <span class="token key atrule">profiles</span><span class="token punctuation">:</span> dev
-<span class="token punctuation">---</span>
-<span class="token key atrule">server</span><span class="token punctuation">:</span>
-  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8082</span>
-<span class="token key atrule">spring</span><span class="token punctuation">:</span>
-  <span class="token key atrule">profiles</span><span class="token punctuation">:</span> test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>注意：如果 yml 和 properties 同时都配置了端口，并且没有激活其他环境 ， 默认会使用 properties 配置文件的！</strong></p>
 
                 
             </div>
@@ -724,7 +686,7 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/07/17/springboot-multienvironment-switch/">https://naivekyo.github.io/2021/07/17/springboot-multienvironment-switch/</a>
+                    <a href="https://naivekyo.github.io/2021/07/20/mysql-qa/">https://naivekyo.github.io/2021/07/20/mysql-qa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -762,8 +724,8 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Spring-Boot/">
-                                    <span class="chip bg-color">Spring Boot</span>
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -930,9 +892,10 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/07/20/mysql-qa/">
                     <div class="card-image">
@@ -949,9 +912,9 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -964,6 +927,7 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -982,30 +946,30 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/16/swagger-intro/">
+                <a href="/2021/07/17/springboot-multienvironment-switch/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210716114139.jpg" class="responsive-img" alt="Swagger Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210717093851.jpg" class="responsive-img" alt="SpringBoot Multienvironment Switch">
                         
-                        <span class="card-title">Swagger Intro</span>
+                        <span class="card-title">SpringBoot Multienvironment Switch</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前后端联调开发文档 Swgger 学习
+                            Spring Boot 多环境开发
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Swagger/" class="post-category">
-                                    Swagger
+                            <a href="/categories/Spring-Boot/" class="post-category">
+                                    Spring Boot
                                 </a>
                             
                             
@@ -1015,8 +979,8 @@ classpath:application.yaml<span aria-hidden="true" class="line-numbers-rows"><sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Swagger/">
-                        <span class="chip bg-color">Swagger</span>
+                    <a href="/tags/Spring-Boot/">
+                        <span class="chip bg-color">Spring Boot</span>
                     </a>
                     
                 </div>
