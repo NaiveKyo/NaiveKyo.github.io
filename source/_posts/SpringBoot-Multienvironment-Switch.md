@@ -77,7 +77,7 @@ spring.profiles.active=test	// 测试
 
 
 
-使用 yaml 要比 properties 更方便，只需要一个文件就好了:
+使用 yaml 要比 properties 更方便，只需要一个文件就好了（也可以设置多个文件：`application.yml、application-dev.yml、application-prod.yml、application-test.yml`）:
 
 ```yaml
 # 多文档模块
@@ -100,4 +100,3 @@ spring:
 ```
 
 **注意：如果 yml 和 properties 同时都配置了端口，并且没有激活其他环境 ， 默认会使用 properties 配置文件的！**
-
