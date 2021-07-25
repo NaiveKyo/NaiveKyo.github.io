@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-22T01:55:54.556Z</updated>
+  <updated>2021-07-25T13:52:09.492Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Thread Rudimentary Knowledge</title>
+    <link href="https://naivekyo.github.io/2021/07/25/java-thread-rudimentary-knowledge/"/>
+    <id>https://naivekyo.github.io/2021/07/25/java-thread-rudimentary-knowledge/</id>
+    <published>2021-07-25T13:19:45.000Z</published>
+    <updated>2021-07-25T13:52:09.492Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-多线程&quot;&gt;&lt;a href=&quot;#Java-多线程&quot; class=&quot;headerlink&quot; title=&quot;Java 多线程&quot;&gt;&lt;/a&gt;Java 多线程&lt;/h1&gt;&lt;h2 id=&quot;一、线程简介&quot;&gt;&lt;a href=&quot;#一、线程简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+    <category term="Thread" scheme="https://naivekyo.github.io/tags/Thread/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL QA</title>
@@ -514,33 +541,6 @@
     <category term="Git" scheme="https://naivekyo.github.io/tags/Git/"/>
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7-install-jdk</title>
-    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/"/>
-    <id>https://naivekyo.github.io/2021/07/06/centos7-install-jdk/</id>
-    <published>2021-07-06T09:46:20.000Z</published>
-    <updated>2021-07-11T06:42:27.812Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、卸载-Open-JDK&quot;&gt;&lt;a href=&quot;#一、卸载-Open-JDK&quot; class=&quot;headerlink&quot; title=&quot;一、卸载 Open-JDK&quot;&gt;&lt;/a&gt;一、卸载 Open-JDK&lt;/h2&gt;&lt;p&gt;有的 Linux 系统可能已经安装了</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
