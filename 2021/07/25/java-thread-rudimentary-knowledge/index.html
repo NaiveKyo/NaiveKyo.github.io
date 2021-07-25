@@ -1087,27 +1087,27 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">setPriority(int newPriority)</td>
+<td align="center"><code>setPriority(int newPriority)</code></td>
 <td align="center">更改线程的优先级</td>
 </tr>
 <tr>
-<td align="center">static void sleep(long millis)</td>
+<td align="center"><code>static void sleep(long millis)</code></td>
 <td align="center">在指定的毫秒数内让当前正在执行的线程休眠</td>
 </tr>
 <tr>
-<td align="center">void join()</td>
+<td align="center"><code>void join()</code></td>
 <td align="center">等待该线程终止</td>
 </tr>
 <tr>
-<td align="center">static void yield()</td>
+<td align="center"><code>static void yield()</code></td>
 <td align="center">暂停当前正在执行的线程对象，并执行其他线程</td>
 </tr>
 <tr>
-<td align="center">void interrupt()</td>
+<td align="center"><code>void interrupt()</code></td>
 <td align="center">中断线程，不要用这种方式</td>
 </tr>
 <tr>
-<td align="center">boolean isAlive()</td>
+<td align="center"><code>boolean isAlive()</code></td>
 <td align="center">测试线程是否处于活动状态</td>
 </tr>
 </tbody></table>
@@ -1313,22 +1313,22 @@
 </blockquote>
 <p>线程状态，线程可以处于以下状态之一：</p>
 <ul>
-<li><p>NEW</p>
+<li><p><strong>NEW</strong></p>
 <p>尚未启动的线程处于此状态</p>
 </li>
-<li><p>RUNNABLE</p>
+<li><p><strong>RUNNABLE</strong></p>
 <p>在 Java 虚拟机中执行的线程处于此状态</p>
 </li>
-<li><p>BLOCKED</p>
+<li><p><strong>BLOCKED</strong></p>
 <p>被阻塞等待监视器锁定的线程处于此状态</p>
 </li>
-<li><p>WAITING</p>
+<li><p><strong>WAITING</strong></p>
 <p>正在等待另一个线程执行特定工作的线程处于此状态</p>
 </li>
-<li><p>TIMED_WAITING</p>
+<li><p><strong>TIMED_WAITING</strong></p>
 <p>正在等待另一个线程执行动作达到指定等待时间的线程处于此状态</p>
 </li>
-<li><p>TERMINATED</p>
+<li><p><strong>TERMINATED</strong></p>
 <p>已退出的线程处于此状态</p>
 </li>
 </ul>
@@ -1715,15 +1715,29 @@
 <p>总结</p>
 </blockquote>
 <ul>
-<li>锁的对象应该是变化的量</li>
+<li>要上锁的对象应该是会发生变化的量</li>
 </ul>
 <h3 id="6、补充-Java-util-concurrent-包"><a href="#6、补充-Java-util-concurrent-包" class="headerlink" title="6、补充 Java.util.concurrent 包"></a>6、补充 Java.util.concurrent 包</h3><p>JUC 中有一些线程安全的集合：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 测试 JUC 安全类型的集合public class TestJUC {    public static void main(String[] args) {        CopyOnWriteArrayList&lt;String&gt; list = new CopyOnWriteArrayList&lt;&gt;();        for (int i = 0; i &lt; 10000; i++) {            new Thread(() -&gt; {                list.add(Thread.currentThread().getName());            }).start();        }        System.out.println(list.size());    }}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 测试 JUC 安全类型的集合</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestJUC</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">CopyOnWriteArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CopyOnWriteArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h3 id="7、死锁"><a href="#7、死锁" class="headerlink" title="7、死锁"></a>7、死锁</h3><ul>
-<li>多个线程各占有一些共享资源，并且互相等待其他线程占有的资源才能运行，而导致两个或者多个线程都在等待对象释放资源，都停止执行的情况，某一个同步块同时拥有 <span style="color:red;">“两个以上对象的锁”</span> 时，就可能会发生 “死锁” 的问题。</li>
+<li>多个线程各占有一些共享资源，并且它们继续运行的前提是需要占用其他线程占有的资源才能运行，从而导致两个或者多个线程都在等待其他线程释放资源，最终都停止执行的情况，某一个同步块同时拥有 <span style="color:red;">“两个以上对象的锁”</span> 时，就可能会发生 “死锁” 的问题。</li>
 </ul>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 死锁：多个线程互相锁定对方需要的资源，然后形成僵持</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DeadLock</span> <span class="token punctuation">{</span>
@@ -1808,10 +1822,10 @@
 </blockquote>
 <ul>
 <li>死锁产生的四个必要条件<ol>
-<li>互斥条件：一个资源每次智能被一个进程使用</li>
-<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放</li>
-<li>不剥夺条件：进程已获得的资源，在未使用完成之前，不能强行剥夺</li>
-<li>循环等待条件：若干进程之间形成一种头尾衔接的循环等待资源关系</li>
+<li>互斥条件：一个资源每次只能被一个进程使用；</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放；</li>
+<li>不剥夺条件：进程已获得的资源，在未使用完成之前，不能强行剥夺；</li>
+<li>循环等待条件：若干进程之间形成一种头尾衔接的循环等待资源关系；</li>
 </ol>
 </li>
 </ul>
@@ -1898,9 +1912,9 @@
 <ul>
 <li>对于生产者，没有生产产品之前，需要通知消费者等待，而生产了产品之后，又需要马上通知消费者消费</li>
 <li>对于消费者，在消费之后，要通知生产者已经结束消费，需要生产新的产品以供消费。</li>
-<li>在生产者消费者问题中，仅有 synchronized 是不够的<ul>
-<li>synchronized 可阻止并发更新同一个共享资源，实现了同步</li>
-<li>synchronized 不能用来实现不同进程之间的消息传递（通信）</li>
+<li>在生产者消费者问题中，仅有 <code>synchronized</code> 是不够的<ul>
+<li><code>synchronized</code> 可阻止并发更新同一个共享资源，实现了同步</li>
+<li><code>synchronized</code> 不能用来实现不同进程之间的消息传递（通信）</li>
 </ul>
 </li>
 </ul>
@@ -1913,19 +1927,19 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">wait()</td>
+<td align="center"><code>wait()</code></td>
 <td align="center">表示线程会一直等待，直到其他线程通知，与 sleep 不同，会释放锁</td>
 </tr>
 <tr>
-<td align="center">wait(long timeout)</td>
+<td align="center"><code>wait(long timeout)</code></td>
 <td align="center">指定等待的毫秒数</td>
 </tr>
 <tr>
-<td align="center">notify()</td>
+<td align="center"><code>notify()</code></td>
 <td align="center">唤醒一个处于等待状态的线程</td>
 </tr>
 <tr>
-<td align="center">notifyAll()</td>
+<td align="center"><code>notifyAll()</code></td>
 <td align="center">唤醒同一个对象上所有调用 wait() 方法的线程，优先级高的线程优先调度</td>
 </tr>
 </tbody></table>
