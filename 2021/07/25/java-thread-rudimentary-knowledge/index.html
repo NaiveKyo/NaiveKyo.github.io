@@ -828,7 +828,7 @@
 <li>创建执行服务：<code>ExecutorService ser = Executors.newFixedThreadPoll(1);</code></li>
 <li>提交执行：<code>Future&lt;Boolean&gt; result1 = ser.submit(1);</code></li>
 <li>获取结果：<code>boolean r1 = result1.get()</code></li>
-<li>关闭服务：<code>ser.shutdown();</code></li>
+<li>关闭服务：<code>ser.shutdownNow();</code></li>
 </ol>
 <blockquote>
 <p>使用 Callable 的好处</p>
@@ -1077,7 +1077,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210719191947.png"></p>
+<h2 id="三、线程状态"><a href="#三、线程状态" class="headerlink" title="三、线程状态"></a>三、线程状态</h2><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210719191947.png"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210719192743.png"></p>
 <h3 id="1、线程方法"><a href="#1、线程方法" class="headerlink" title="1、线程方法"></a>1、线程方法</h3><table>
 <thead>
