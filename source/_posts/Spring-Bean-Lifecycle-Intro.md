@@ -6,7 +6,7 @@ img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg
 coverImg: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg
 toc: true
 date: 2021-07-08 09:11:44
-top: true
+top: false
 cover: false
 summary: 了解 Spring Bean 的生命周期回调
 categories: Spring

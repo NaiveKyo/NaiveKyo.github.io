@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/18.jpg'
 coverImg: /medias/featureimages/18.jpg
 toc: true
 date: 2021-07-12 19:55:21
-top: true
+top: false
 cover: false
 summary: 关于使用 Git 过程中遇到的问题
 categories: Git

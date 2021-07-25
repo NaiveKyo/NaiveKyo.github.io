@@ -61,3 +61,15 @@ ALTER TABLE 表名 AUTO_INCREMENT = 1;
 将对应字段修改即可
 
 附：https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html
+
+
+
+## 3、表中字段为数据库关键字
+
+> Q
+
+在 SQL Server 中查询表，有一张表的字段名为 `no`，为数据库关键字，编写 SQL 语句时，如何查询该字段
+
+> A
+
+SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号

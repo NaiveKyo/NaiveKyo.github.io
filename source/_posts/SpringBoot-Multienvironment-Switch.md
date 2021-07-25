@@ -7,7 +7,7 @@ coverImg: /img/20210717093851.jpg
 toc: true
 date: 2021-07-17 09:13:35
 top: false
-cover: true
+cover: false
 summary: Spring Boot 多环境开发
 categories: 'Spring Boot'
 keywords: 'Spring Boot'
