@@ -397,7 +397,7 @@ class WddingCompany implements Marriage {
 
 ```java
 public interface Runnable {
-  public abstract vod
+  public abstract void methodName(...);
 }
 ```
 
@@ -500,6 +500,8 @@ class Like1 implements ILike {
 
 
 
+## 三、线程状态
+
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210719191947.png)
 
 
@@ -514,14 +516,14 @@ class Like1 implements ILike {
 
 ### 1、线程方法
 
-|              方法              |                    说明                    |
-| :----------------------------: | :----------------------------------------: |
-|  setPriority(int newPriority)  |              更改线程的优先级              |
-| static void sleep(long millis) |  在指定的毫秒数内让当前正在执行的线程休眠  |
-|          void join()           |               等待该线程终止               |
-|      static void yield()       | 暂停当前正在执行的线程对象，并执行其他线程 |
-|        void interrupt()        |          中断线程，不要用这种方式          |
-|       boolean isAlive()        |          测试线程是否处于活动状态          |
+|               方法               |                    说明                    |
+| :------------------------------: | :----------------------------------------: |
+|  `setPriority(int newPriority)`  |              更改线程的优先级              |
+| `static void sleep(long millis)` |  在指定的毫秒数内让当前正在执行的线程休眠  |
+|          `void join()`           |               等待该线程终止               |
+|      `static void yield()`       | 暂停当前正在执行的线程对象，并执行其他线程 |
+|        `void interrupt()`        |          中断线程，不要用这种方式          |
+|       `boolean isAlive()`        |          测试线程是否处于活动状态          |
 
 ### 2、停止线程
 
@@ -747,27 +749,27 @@ public class TestJoin implements Runnable {
 
 线程状态，线程可以处于以下状态之一：
 
-- NEW
+- **NEW**
 
   尚未启动的线程处于此状态
 
-- RUNNABLE
+- **RUNNABLE**
 
   在 Java 虚拟机中执行的线程处于此状态
 
-- BLOCKED
+- **BLOCKED**
 
   被阻塞等待监视器锁定的线程处于此状态
 
-- WAITING
+- **WAITING**
 
   正在等待另一个线程执行特定工作的线程处于此状态
 
-- TIMED_WAITING
+- **TIMED_WAITING**
 
   正在等待另一个线程执行动作达到指定等待时间的线程处于此状态
 
-- TERMINATED
+- **TERMINATED**
 
   已退出的线程处于此状态
 
@@ -1195,7 +1197,7 @@ public class UnsafeList {
 
 > 总结
 
-- 锁的对象应该是变化的量
+- 要上锁的对象应该是会发生变化的量
 
 
 
@@ -1204,14 +1206,28 @@ public class UnsafeList {
 JUC 中有一些线程安全的集合：
 
 ```java
-// 测试 JUC 安全类型的集合public class TestJUC {    public static void main(String[] args) {        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();        for (int i = 0; i < 10000; i++) {            new Thread(() -> {                list.add(Thread.currentThread().getName());            }).start();        }        System.out.println(list.size());    }}
+// 测试 JUC 安全类型的集合
+public class TestJUC {
+
+    public static void main(String[] args) {
+
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+
+        for (int i = 0; i < 10000; i++) {
+            new Thread(() -> {
+                list.add(Thread.currentThread().getName());
+            }).start();
+        }
+        System.out.println(list.size());
+    }
+}
 ```
 
 
 
 ### 7、死锁
 
-- 多个线程各占有一些共享资源，并且互相等待其他线程占有的资源才能运行，而导致两个或者多个线程都在等待对象释放资源，都停止执行的情况，某一个同步块同时拥有 <span style="color:red;">“两个以上对象的锁”</span> 时，就可能会发生 “死锁” 的问题。
+- 多个线程各占有一些共享资源，并且它们继续运行的前提是需要占用其他线程占有的资源才能运行，从而导致两个或者多个线程都在等待其他线程释放资源，最终都停止执行的情况，某一个同步块同时拥有 <span style="color:red;">“两个以上对象的锁”</span> 时，就可能会发生 “死锁” 的问题。
 
 ```java
 // 死锁：多个线程互相锁定对方需要的资源，然后形成僵持
@@ -1296,10 +1312,10 @@ class MakeUp extends Thread {
 > 死锁避免的方法
 
 - 死锁产生的四个必要条件
-  1. 互斥条件：一个资源每次智能被一个进程使用
-  2. 请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放
-  3. 不剥夺条件：进程已获得的资源，在未使用完成之前，不能强行剥夺
-  4. 循环等待条件：若干进程之间形成一种头尾衔接的循环等待资源关系
+  1. 互斥条件：一个资源每次只能被一个进程使用；
+  2. 请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放；
+  3. 不剥夺条件：进程已获得的资源，在未使用完成之前，不能强行剥夺；
+  4. 循环等待条件：若干进程之间形成一种头尾衔接的循环等待资源关系；
 
 
 
@@ -1401,9 +1417,9 @@ class TestLock2 implements Runnable {
 
 - 对于生产者，没有生产产品之前，需要通知消费者等待，而生产了产品之后，又需要马上通知消费者消费
 - 对于消费者，在消费之后，要通知生产者已经结束消费，需要生产新的产品以供消费。
-- 在生产者消费者问题中，仅有 synchronized 是不够的
-  - synchronized 可阻止并发更新同一个共享资源，实现了同步
-  - synchronized 不能用来实现不同进程之间的消息传递（通信）
+- 在生产者消费者问题中，仅有 `synchronized` 是不够的
+  - `synchronized` 可阻止并发更新同一个共享资源，实现了同步
+  - `synchronized` 不能用来实现不同进程之间的消息传递（通信）
 
 
 
@@ -1411,12 +1427,12 @@ class TestLock2 implements Runnable {
 
 Java 提供了几个方法来解决线程之间的通信问题
 
-|       方法名       |                             作用                             |
-| :----------------: | :----------------------------------------------------------: |
-|       wait()       | 表示线程会一直等待，直到其他线程通知，与 sleep 不同，会释放锁 |
-| wait(long timeout) |                       指定等待的毫秒数                       |
-|      notify()      |                  唤醒一个处于等待状态的线程                  |
-|    notifyAll()     | 唤醒同一个对象上所有调用 wait() 方法的线程，优先级高的线程优先调度 |
+|        方法名        |                             作用                             |
+| :------------------: | :----------------------------------------------------------: |
+|       `wait()`       | 表示线程会一直等待，直到其他线程通知，与 sleep 不同，会释放锁 |
+| `wait(long timeout)` |                       指定等待的毫秒数                       |
+|      `notify()`      |                  唤醒一个处于等待状态的线程                  |
+|    `notifyAll()`     | 唤醒同一个对象上所有调用 wait() 方法的线程，优先级高的线程优先调度 |
 
 **注意：这些都是 Object 类提供的方法，都只能在同步方法或者同步代码块中使用，否则会抛出异常** `IllegalMonitorStateException`
 
