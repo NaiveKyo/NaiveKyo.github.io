@@ -622,14 +622,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-22
+                    2021-07-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    309
+                    382
                 </div>
                 
 
@@ -689,6 +689,21 @@
 <p>A</p>
 </blockquote>
 <p>SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号</p>
+<h2 id="4、匹配某个字段的字符"><a href="#4、匹配某个字段的字符" class="headerlink" title="4、匹配某个字段的字符"></a>4、匹配某个字段的字符</h2><blockquote>
+<p>Q</p>
+</blockquote>
+<p>匹配这样的记录，某个字段共 8 位，前四位为 0000，匹配后四位：</p>
+<blockquote>
+<p>A</p>
+</blockquote>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 方法一：使用正则表达式</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> categories <span class="token keyword">WHERE</span> path_code <span class="token operator">REGEXP</span> <span class="token string">'^0000.{4}$'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 方法二：使用模糊匹配</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token punctuation">`</span>categories<span class="token punctuation">`</span> <span class="token keyword">where</span> path_code <span class="token operator">like</span> <span class="token string">'0000____'</span> <span class="token operator">AND</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
