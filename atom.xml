@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-25T14:40:43.262Z</updated>
+  <updated>2021-07-28T09:47:03.014Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL Row and Table Locks</title>
+    <link href="https://naivekyo.github.io/2021/07/28/mysql-row-and-table-locks/"/>
+    <id>https://naivekyo.github.io/2021/07/28/mysql-row-and-table-locks/</id>
+    <published>2021-07-28T09:40:17.000Z</published>
+    <updated>2021-07-28T09:47:03.014Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MySQL-行锁和表锁概述&quot;&gt;&lt;a href=&quot;#MySQL-行锁和表锁概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL 行锁和表锁概述&quot;&gt;&lt;/a&gt;MySQL 行锁和表锁概述&lt;/h1&gt;&lt;h2 id=&quot;一、前言&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Thread Rudimentary Knowledge</title>
@@ -73,7 +98,7 @@
     <link href="https://naivekyo.github.io/2021/07/17/springboot-multienvironment-switch/"/>
     <id>https://naivekyo.github.io/2021/07/17/springboot-multienvironment-switch/</id>
     <published>2021-07-17T01:13:35.000Z</published>
-    <updated>2021-07-22T00:40:54.125Z</updated>
+    <updated>2021-07-28T09:43:22.888Z</updated>
     
     
       
@@ -514,33 +539,6 @@
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
     <category term="Docker" scheme="https://naivekyo.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7-install-git</title>
-    <link href="https://naivekyo.github.io/2021/07/06/centos7-install-git/"/>
-    <id>https://naivekyo.github.io/2021/07/06/centos7-install-git/</id>
-    <published>2021-07-06T09:56:26.000Z</published>
-    <updated>2021-07-11T06:42:17.260Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h2&gt;&lt;p&gt;CentOS 版本的 Linux，可能默认就带有 git，但是其 yum 仓库中支持的 Git 版本最高是</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Git" scheme="https://naivekyo.github.io/tags/Git/"/>
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
   </entry>
   
