@@ -73,3 +73,26 @@ ALTER TABLE 表名 AUTO_INCREMENT = 1;
 > A
 
 SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号
+
+
+
+## 4、匹配某个字段的字符
+
+> Q
+
+匹配这样的记录，某个字段共 8 位，前四位为 0000，匹配后四位：
+
+
+
+> A
+
+```sql
+-- 方法一：使用正则表达式
+SELECT * FROM categories WHERE path_code REGEXP '^0000.{4}$';
+
+-- 方法二：使用模糊匹配
+SELECT * FROM `categories` where path_code like '0000____' AND flag = 0;
+```
+
+
+

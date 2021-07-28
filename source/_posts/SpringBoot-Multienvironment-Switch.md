@@ -2,8 +2,8 @@
 title: SpringBoot Multienvironment Switch
 author: NaiveKyo
 hide: false
-img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210717093851.jpg'
-coverImg: /img/20210717093851.jpg
+img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210728174304.jpg'
+coverImg: /img/20210728174304.jpg
 toc: true
 date: 2021-07-17 09:13:35
 top: false
