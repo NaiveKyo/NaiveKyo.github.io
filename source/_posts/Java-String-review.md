@@ -1,5 +1,5 @@
 ---
-title: Java String review
+title: Java String Review
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210729083505.jpg'
