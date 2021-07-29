@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-28T09:47:03.014Z</updated>
+  <updated>2021-07-29T00:36:09.097Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java String review</title>
+    <link href="https://naivekyo.github.io/2021/07/29/java-string-review/"/>
+    <id>https://naivekyo.github.io/2021/07/29/java-string-review/</id>
+    <published>2021-07-29T00:34:37.000Z</published>
+    <updated>2021-07-29T00:36:09.097Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-字符串&quot;&gt;&lt;a href=&quot;#Java-字符串&quot; class=&quot;headerlink&quot; title=&quot;Java 字符串&quot;&gt;&lt;/a&gt;Java 字符串&lt;/h1&gt;&lt;h2 id=&quot;1、字符串的特点&quot;&gt;&lt;a href=&quot;#1、字符串的特点&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL Row and Table Locks</title>
@@ -512,33 +537,6 @@
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
     <category term="Deploy" scheme="https://naivekyo.github.io/tags/Deploy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7_install_docker</title>
-    <link href="https://naivekyo.github.io/2021/07/07/centos7-install-docker/"/>
-    <id>https://naivekyo.github.io/2021/07/07/centos7-install-docker/</id>
-    <published>2021-07-07T01:04:18.000Z</published>
-    <updated>2021-07-07T07:46:33.643Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h1&gt;&lt;p&gt;容器的概念在 Linux 中早就有了，并不是 Docker</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-    <category term="Docker" scheme="https://naivekyo.github.io/tags/Docker/"/>
     
   </entry>
   
