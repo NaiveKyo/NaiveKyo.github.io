@@ -1229,10 +1229,13 @@ article .article-tags .chip {
 
 #articleContent table {
     width: 100%;
-    display: block;
+    /* display: block; */
+    display: table;
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /**
@@ -1254,12 +1257,14 @@ thead {
     min-width: 80px;
     border: 1px solid #dfe2e5;
     padding: 6px 6px;
+    text-align:center;
 }
 
 #articleContent table td {
     min-width: 80px;
     border: 1px solid #dfe2e5;
     padding: 6px 6px;
+    text-align:center;
 }
 
 #articleContent [type="checkbox"]:not(:checked),
