@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-29T00:36:09.097Z</updated>
+  <updated>2021-07-29T07:37:05.954Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Java String review</title>
+    <title>Java Comparable And Comparator</title>
+    <link href="https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/"/>
+    <id>https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/</id>
+    <published>2021-07-29T07:33:49.000Z</published>
+    <updated>2021-07-29T07:37:05.954Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Comparable-和-Comparator&quot;&gt;&lt;a href=&quot;#Comparable-和-Comparator&quot; class=&quot;headerlink&quot; title=&quot;Comparable 和 Comparator&quot;&gt;&lt;/a&gt;Comparable 和</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java String Review</title>
     <link href="https://naivekyo.github.io/2021/07/29/java-string-review/"/>
     <id>https://naivekyo.github.io/2021/07/29/java-string-review/</id>
     <published>2021-07-29T00:34:37.000Z</published>
-    <updated>2021-07-29T00:36:09.097Z</updated>
+    <updated>2021-07-29T00:40:50.251Z</updated>
     
     
       
@@ -510,33 +535,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7_install_jenkins</title>
-    <link href="https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/"/>
-    <id>https://naivekyo.github.io/2021/07/07/centos7-install-jenkins/</id>
-    <published>2021-07-07T01:48:00.000Z</published>
-    <updated>2021-07-11T06:42:38.602Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h1&gt;&lt;h2 id=&quot;1、Jenkins-是什么&quot;&gt;&lt;a href=&quot;#1、Jenkins-是什么&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-    <category term="Deploy" scheme="https://naivekyo.github.io/tags/Deploy/"/>
     
   </entry>
   
