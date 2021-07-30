@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Java static Keyword Intro</title>
+      <link href="/2021/07/30/java-static-keyword-intro/"/>
+      <url>/2021/07/30/java-static-keyword-intro/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Java-static-关键字"><a href="#Java-static-关键字" class="headerlink" title="Java static 关键字"></a>Java static 关键字</h1><h2 id="1、内存图"><a href="#1、内存图" class="headerlink" title="1、内存图"></a>1、内存图</h2><p>静态 static 的内存：</p><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210729085740.png"></p><h2 id="2、静态代码块"><a href="#2、静态代码块" class="headerlink" title="2、静态代码块"></a>2、静态代码块</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/** * 静态代码块 *  * 特点：当第一次调用到本类时，静态代码块执行唯一的一次 * 静态内容总是优先于非静态  *  * 静态代码块的典型用途： *  用来一次性地对静态成员变量进行赋值 */</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>        <span class="token keyword">static</span> <span class="token punctuation">{</span>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"静态代码块执行!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>        <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"构造方法执行!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java General API</title>
       <link href="/2021/07/30/java-general-api/"/>
       <url>/2021/07/30/java-general-api/</url>
