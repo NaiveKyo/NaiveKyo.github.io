@@ -722,7 +722,7 @@
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     
-    <span class="token keyword">public</span> <span class="token keyword">static</span>  <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">T</span> <span class="token function">show2</span><span class="token punctuation">(</span><span class="token class-name">T</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">T</span> <span class="token function">show2</span><span class="token punctuation">(</span><span class="token class-name">T</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> t<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -804,7 +804,7 @@
 </ul>
 <p>第二种使用方式：</p>
 <ul>
-<li>接口使用什么泛型，实现类就使用什么泛型，类跟着接口走，就相当于定义了一个含有泛型的类，创建对象的时候确定泛型的理想</li>
+<li>接口使用什么泛型，实现类就使用什么泛型，类跟着接口走，就相当于定义了一个含有泛型的类，创建对象的时候确定泛型的类型</li>
 </ul>
 <h2 id="4、泛型通配符"><a href="#4、泛型通配符" class="headerlink" title="4、泛型通配符"></a>4、泛型通配符</h2><p>当使用泛型类或者接口时，传递的数据中，泛型类型不确定，可以通过通配符 <code>&lt;?&gt;</code> 表示，但是一旦使用泛型的通配符后，只能使用 <code>Object</code> 类中的共性方法，集合中元素自身的方法无法使用。</p>
 <blockquote>
