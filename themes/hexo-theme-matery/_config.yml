@@ -269,11 +269,11 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20210716083304.jpg
-    - /img/20210720094140.jpg
-    - /img/20210720142450.jpg
-    - /medias/featureimages/1.jpg
-    - /medias/featureimages/10.jpg
+    - /img/20210723091053.jpg
+    - /img/20210725214655.jpg
+    - /img/20210730105640.jpg
+    - /medias/featureimages/14.jpg
+    - /medias/featureimages/22.jpg
     - /medias/featureimages/21.jpg
 
 # Whether to display post-calender in the `archive` page
