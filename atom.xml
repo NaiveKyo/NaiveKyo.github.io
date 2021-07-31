@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-07-30T02:57:32.471Z</updated>
+  <updated>2021-07-31T14:17:24.670Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Generic Intro</title>
+    <link href="https://naivekyo.github.io/2021/07/31/java-generic-intro/"/>
+    <id>https://naivekyo.github.io/2021/07/31/java-generic-intro/</id>
+    <published>2021-07-31T14:14:43.000Z</published>
+    <updated>2021-07-31T14:17:24.670Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;泛型&quot;&gt;&lt;a href=&quot;#泛型&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java static Keyword Intro</title>
@@ -504,35 +529,6 @@
     <category term="Database" scheme="https://naivekyo.github.io/tags/Database/"/>
     
     <category term="Cache" scheme="https://naivekyo.github.io/tags/Cache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringAop-AspectJ-Intro</title>
-    <link href="https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/"/>
-    <id>https://naivekyo.github.io/2021/07/07/springaop-aspectj-intro/</id>
-    <published>2021-07-07T07:23:03.000Z</published>
-    <updated>2021-07-17T02:26:34.817Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;AspectJ-在-Spring-Aop-中的体现&quot;&gt;&lt;a href=&quot;#AspectJ-在-Spring-Aop-中的体现&quot; class=&quot;headerlink&quot; title=&quot;AspectJ 在 Spring Aop 中的体现&quot;&gt;&lt;/a&gt;AspectJ 在</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-    <category term="Aop" scheme="https://naivekyo.github.io/tags/Aop/"/>
-    
-    <category term="AspectJ" scheme="https://naivekyo.github.io/tags/AspectJ/"/>
     
   </entry>
   
