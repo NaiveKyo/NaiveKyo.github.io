@@ -1050,9 +1050,9 @@ L6
 <ul>
 <li><code>StringBuilder</code> 是 JavaSE5 之后引入的，之前使用的是 <code>StringBuffer</code> ，它是线程安全的，开销比较大。</li>
 </ul>
-<h2 id="2、容器的-toString"><a href="#2、容器的-toString" class="headerlink" title="2、容器的 toString"></a>2、容器的 toString</h2><p>由于 Java 中的根类是 <code>Object</code>，所有的 Java 类都会继承它并拥有 <code>toString()</code> 方法，并且覆写该方法用于表达容器自身。对于容器而言，例如 <code>ArrayList.toString()</code>，它会遍历所有元素调用每个元素的 <code>toString</code>。</p>
-<p>如果想要在 <code>toString()</code> 方法中打印对象自身的地址值，可以使用 <code>super.toString()</code>  即 <code>Object.toString()</code>，·    1而不是打印 <code>this</code>。</p>
-<h2 id="3、格式化输出"><a href="#3、格式化输出" class="headerlink" title="3、格式化输出"></a>3、格式化输出</h2><h3 id="（1）、System-out-format"><a href="#（1）、System-out-format" class="headerlink" title="（1）、System.out.format()"></a>（1）、System.out.format()</h3><p>类似于 C语言 的 <code>printf()</code> 函数，Java SE5 引入的 <code>format()</code> 方法可用于 <code>PrintStram</code> 和 <code>PrintWriter</code> 对象 。</p>
+<h2 id="2、容器的-toString"><a href="#2、容器的-toString" class="headerlink" title="2、容器的 toString"></a>2、容器的 toString</h2><p>由于 Java 中的根类是 <code>Object</code>，所有的 Java 类都会继承它并拥有 <code>toString()</code> 方法，并且覆写该方法用于表达自身。对于容器而言，例如 <code>ArrayList.toString()</code>，它会遍历所有元素调用每个元素的 <code>toString</code>。</p>
+<p>如果想要在 <code>toString()</code> 方法中打印对象自身的地址值，可以使用 <code>super.toString()</code>  即 <code>Object.toString()</code>，而不是直接打印 <code>this</code>。</p>
+<h2 id="3、格式化输出"><a href="#3、格式化输出" class="headerlink" title="3、格式化输出"></a>3、格式化输出</h2><h3 id="（1）System-out-format"><a href="#（1）System-out-format" class="headerlink" title="（1）System.out.format()"></a>（1）System.out.format()</h3><p>类似于 C语言 的 <code>printf()</code> 函数，Java SE5 引入的 <code>format()</code> 方法可用于 <code>PrintStram</code> 和 <code>PrintWriter</code> 对象 。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo01</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
     <span class="token keyword">float</span> y <span class="token operator">=</span> <span class="token number">5.123f</span><span class="token punctuation">;</span>
@@ -1062,7 +1062,7 @@ L6
 
 
 
-<h3 id="（2）、Formatter-类"><a href="#（2）、Formatter-类" class="headerlink" title="（2）、Formatter 类"></a>（2）、Formatter 类</h3><p>Java 中所有新的格式化都可以通过 <code>java.util.Formatter</code> 类处理。可以将 <code>Formatter</code> 类看作一个解释器，它将对应的数据根据格式化字符串翻译成想要的结果，在构建 <code>Formatter</code> 对象的时候，可以向构造器传递一些信息，告诉它最终结果需要向哪里输出，比如：</p>
+<h3 id="（2）Formatter-类"><a href="#（2）Formatter-类" class="headerlink" title="（2）Formatter 类"></a>（2）Formatter 类</h3><p>Java 中所有新的格式化都可以通过 <code>java.util.Formatter</code> 类处理。可以将 <code>Formatter</code> 类看作一个解释器，它将对应的数据根据格式化字符串翻译成想要的结果，在构建 <code>Formatter</code> 对象的时候，可以向构造器传递一些信息，告诉它最终结果需要向哪里输出，比如：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo02</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token class-name">PrintStream</span> stdOutStream <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">;</span>
@@ -1094,9 +1094,9 @@ L6
 
 
 
-<h3 id="（3）、String-format"><a href="#（3）、String-format" class="headerlink" title="（3）、String.format()"></a>（3）、String.format()</h3><p><code>String.format()</code> 是一个静态方法，接收和 <code>Formatter.format()</code> 一样的参数，返回一个 String 对象。</p>
+<h3 id="（3）String-format"><a href="#（3）String-format" class="headerlink" title="（3）String.format()"></a>（3）String.format()</h3><p><code>String.format()</code> 是一个静态方法，接收和 <code>Formatter.format()</code> 一样的参数，返回一个 String 对象。</p>
 <p>本质上就是在 <code>String.format()</code> 的内部创建了一个 <code>Formatter</code> 对象。</p>
-<h3 id="（4）、String-split-和-StringTokenizer"><a href="#（4）、String-split-和-StringTokenizer" class="headerlink" title="（4）、String.split() 和 StringTokenizer"></a>（4）、String.split() 和 StringTokenizer</h3><blockquote>
+<h3 id="（4）String-split-和-StringTokenizer"><a href="#（4）String-split-和-StringTokenizer" class="headerlink" title="（4）String.split() 和 StringTokenizer"></a>（4）String.split() 和 StringTokenizer</h3><blockquote>
 <p>split()</p>
 </blockquote>
 <p>我们常用的切分字符串的方法是 <code>split()</code> 方法：</p>
