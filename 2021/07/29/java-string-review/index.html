@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-29
+                    2021-08-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    3.5k
                 </div>
                 
 
@@ -936,6 +936,299 @@
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
+
+<h1 id="深入理解"><a href="#深入理解" class="headerlink" title="深入理解"></a>深入理解</h1><h2 id="1、-和-StringBuilder"><a href="#1、-和-StringBuilder" class="headerlink" title="1、+ 和 StringBuilder"></a>1、+ 和 StringBuilder</h2><p>C++ 允许重载任何运算符，而在 Java 中被重载的只有一个就是 + 运算符，如果我们使用 + 号拼接两个字符串，结果就是返回一个新的字符串常量，使用 <code>javap</code> 反编译可以发现，它在 JVM 汇编层面调用的是 <code>java.lang.StringBuilder</code> 类。因为它更高效。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo01</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    <span class="token class-name">String</span> str1 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> str2 <span class="token operator">=</span> <span class="token string">"world"</span><span class="token punctuation">;</span>
+    
+    <span class="token class-name">String</span> str3 <span class="token operator">=</span> str1 <span class="token operator">+</span> str2<span class="token punctuation">;</span>
+
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>看它反编译后的字节码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">NEW java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span>
+DUP
+INVOKESPECIAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span>init<span class="token punctuation">&gt;</span></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token class-name">V</span>
+ALOAD <span class="token number">0</span>
+INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>append <span class="token punctuation">(</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">;</span>
+ALOAD <span class="token number">1</span>
+INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>append <span class="token punctuation">(</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">;</span>
+INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>toString <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span>
+ASTORE <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>但是我们比较一下在循环的情况下是怎么样的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo02</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> fields<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result <span class="token operator">+=</span> fields<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token class-name">StringBuilder</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> fields<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>fields<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>看看它们的字节码：</p>
+<ul>
+<li><code>demo02()</code></li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">L3
+FRAME APPEND <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span> java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span> <span class="token class-name">I</span><span class="token punctuation">]</span>
+ ILOAD <span class="token number">2</span>
+ ALOAD <span class="token number">0</span>
+ ARRAYLENGTH
+ IF_ICMPGE L4
+L5
+ LINENUMBER <span class="token number">26</span> L5
+ NEW java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span>
+ DUP
+ INVOKESPECIAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span>init<span class="token punctuation">&gt;</span></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token class-name">V</span>
+ ALOAD <span class="token number">1</span>
+ INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>append <span class="token punctuation">(</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">;</span>
+ ALOAD <span class="token number">0</span>
+ ILOAD <span class="token number">2</span>
+ AALOAD
+ INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>append <span class="token punctuation">(</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">;</span>
+ INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>toString <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span>
+ ASTORE <span class="token number">1</span>
+L6
+ LINENUMBER <span class="token number">25</span> L6
+ IINC <span class="token number">2</span> <span class="token number">1</span>
+ GOTO L3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意这里构成了一个循环体，L6 GOTO L3</p>
+<p>每次都会重新生成一个 <code>StringBuilder</code>，再看看 demo03</p>
+<ul>
+<li><code>demo03()</code></li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">L1
+ LINENUMBER <span class="token number">34</span> L1
+ NEW java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span>
+ DUP
+ INVOKESPECIAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span>init<span class="token punctuation">&gt;</span></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token class-name">V</span>
+ ASTORE <span class="token number">1</span>
+L2
+ LINENUMBER <span class="token number">36</span> L2
+ ICONST_0
+ ISTORE <span class="token number">2</span>
+L3
+FRAME APPEND <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span> java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span> <span class="token class-name">I</span><span class="token punctuation">]</span>
+ ILOAD <span class="token number">2</span>
+ ALOAD <span class="token number">0</span>
+ ARRAYLENGTH
+ IF_ICMPGE L4
+L5
+ LINENUMBER <span class="token number">37</span> L5
+ ALOAD <span class="token number">1</span>
+ ALOAD <span class="token number">0</span>
+ ILOAD <span class="token number">2</span>
+ AALOAD
+ INVOKEVIRTUAL java<span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">.</span>append <span class="token punctuation">(</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token class-name">Ljava</span><span class="token operator">/</span>lang<span class="token operator">/</span><span class="token class-name">StringBuilder</span><span class="token punctuation">;</span>
+ POP
+L6
+ LINENUMBER <span class="token number">36</span> L6
+ IINC <span class="token number">2</span> <span class="token number">1</span>
+ GOTO L3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看出只有一个 <code>StringBuilder()</code> 的实例，而且显式的创建一个 <code>StringBuilder</code> 对象可以指定它的大小，如果知道了目标字符串大概有多长，预先指定大小也可以避免多次重新分配缓冲。</p>
+<ul>
+<li><code>StringBuilder</code> 是 JavaSE5 之后引入的，之前使用的是 <code>StringBuffer</code> ，它是线程安全的，开销比较大。</li>
+</ul>
+<h2 id="2、容器的-toString"><a href="#2、容器的-toString" class="headerlink" title="2、容器的 toString"></a>2、容器的 toString</h2><p>由于 Java 中的根类是 <code>Object</code>，所有的 Java 类都会继承它并拥有 <code>toString()</code> 方法，并且覆写该方法用于表达容器自身。对于容器而言，例如 <code>ArrayList.toString()</code>，它会遍历所有元素调用每个元素的 <code>toString</code>。</p>
+<p>如果想要在 <code>toString()</code> 方法中打印对象自身的地址值，可以使用 <code>super.toString()</code>  即 <code>Object.toString()</code>，·    1而不是打印 <code>this</code>。</p>
+<h2 id="3、格式化输出"><a href="#3、格式化输出" class="headerlink" title="3、格式化输出"></a>3、格式化输出</h2><h3 id="（1）、System-out-format"><a href="#（1）、System-out-format" class="headerlink" title="（1）、System.out.format()"></a>（1）、System.out.format()</h3><p>类似于 C语言 的 <code>printf()</code> 函数，Java SE5 引入的 <code>format()</code> 方法可用于 <code>PrintStram</code> 和 <code>PrintWriter</code> 对象 。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo01</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> y <span class="token operator">=</span> <span class="token number">5.123f</span><span class="token punctuation">;</span>
+    
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%d %f"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="（2）、Formatter-类"><a href="#（2）、Formatter-类" class="headerlink" title="（2）、Formatter 类"></a>（2）、Formatter 类</h3><p>Java 中所有新的格式化都可以通过 <code>java.util.Formatter</code> 类处理。可以将 <code>Formatter</code> 类看作一个解释器，它将对应的数据根据格式化字符串翻译成想要的结果，在构建 <code>Formatter</code> 对象的时候，可以向构造器传递一些信息，告诉它最终结果需要向哪里输出，比如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo02</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">PrintStream</span> stdOutStream <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">;</span>
+
+    <span class="token class-name">Formatter</span> formatter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Formatter</span><span class="token punctuation">(</span>stdOutStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s: %d, %f \n"</span><span class="token punctuation">,</span> <span class="token string">"测试字符串"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2.1f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>和 C/C++ 类似，我们可以使用 <strong>width</strong> 来指定宽度、<strong>precision</strong> 指定精度（仅限带小数点的）、默认情况下，数据是右对齐的，可以使用 <strong>-</strong> 来设置左对齐。</p>
+<ul>
+<li><strong>width</strong> 可以用于各种类型的数据转换，指明最大的宽度</li>
+<li><strong>precision</strong> 不一样，不是所有的数据类型都可以使用它，并且不同的类型使用它的时候，<strong>precision</strong> 的意义页不一样，比如，<code>String</code> 类型使用它表示打印时输出的字符的最大数量，浮点数使用它表示小数部分要显示的位数（默认是 6 位），整数无法使用 precision。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">PrintStream</span> stdOutStream <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">;</span>
+
+    <span class="token class-name">Formatter</span> formatter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Formatter</span><span class="token punctuation">(</span>stdOutStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 宽度</span>
+    formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%10d\n"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 精度</span>
+    formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%.10f\n"</span><span class="token punctuation">,</span> <span class="token number">0.2f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 左对齐</span>
+    formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%-10s"</span><span class="token punctuation">,</span> <span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="（3）、String-format"><a href="#（3）、String-format" class="headerlink" title="（3）、String.format()"></a>（3）、String.format()</h3><p><code>String.format()</code> 是一个静态方法，接收和 <code>Formatter.format()</code> 一样的参数，返回一个 String 对象。</p>
+<p>本质上就是在 <code>String.format()</code> 的内部创建了一个 <code>Formatter</code> 对象。</p>
+<h3 id="（4）、String-split-和-StringTokenizer"><a href="#（4）、String-split-和-StringTokenizer" class="headerlink" title="（4）、String.split() 和 StringTokenizer"></a>（4）、String.split() 和 StringTokenizer</h3><blockquote>
+<p>split()</p>
+</blockquote>
+<p>我们常用的切分字符串的方法是 <code>split()</code> 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo04</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    <span class="token class-name">String</span> field <span class="token operator">=</span> <span class="token string">"This is my blog that record my coding life."</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 方式一</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> split <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> s <span class="token operator">:</span> split<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>它的具体实现是这样的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">split</span><span class="token punctuation">(</span><span class="token class-name">String</span> regex<span class="token punctuation">,</span> <span class="token keyword">int</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* fastpath if the regex is a
+     (1)one-char String and this character is not one of the
+        RegEx's meta characters ".$|()[{^?*+\\", or
+     (2)two-char String and the first char is the backslash and
+        the second is not the ascii digit or ascii letter.
+     */</span>
+    <span class="token keyword">char</span> ch <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>regex<span class="token punctuation">.</span>value<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span>
+         <span class="token string">".$|()[{^?*+\\"</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>ch <span class="token operator">=</span> regex<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+         <span class="token punctuation">(</span>regex<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span>
+          regex<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'\\'</span> <span class="token operator">&amp;&amp;</span>
+          <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ch <span class="token operator">=</span> regex<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token string">'0'</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span><span class="token string">'9'</span><span class="token operator">-</span>ch<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span>
+          <span class="token punctuation">(</span><span class="token punctuation">(</span>ch<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span><span class="token string">'z'</span><span class="token operator">-</span>ch<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span>
+          <span class="token punctuation">(</span><span class="token punctuation">(</span>ch<span class="token operator">-</span><span class="token string">'A'</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token punctuation">(</span><span class="token string">'Z'</span><span class="token operator">-</span>ch<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span>ch <span class="token operator">&lt;</span> <span class="token class-name">Character</span><span class="token punctuation">.</span>MIN_HIGH_SURROGATE <span class="token operator">||</span>
+         ch <span class="token operator">&gt;</span> <span class="token class-name">Character</span><span class="token punctuation">.</span>MAX_LOW_SURROGATE<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> off <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> next <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> limited <span class="token operator">=</span> limit <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>next <span class="token operator">=</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>ch<span class="token punctuation">,</span> off<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>limited <span class="token operator">||</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> limit <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">substring</span><span class="token punctuation">(</span>off<span class="token punctuation">,</span> next<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                off <span class="token operator">=</span> next <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>    <span class="token comment">// last one</span>
+                <span class="token comment">//assert (list.size() == limit - 1);</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">substring</span><span class="token punctuation">(</span>off<span class="token punctuation">,</span> value<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                off <span class="token operator">=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// If no match was found, return this</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>off <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Add remaining segment</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>limited <span class="token operator">||</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> limit<span class="token punctuation">)</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">substring</span><span class="token punctuation">(</span>off<span class="token punctuation">,</span> value<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Construct result</span>
+        <span class="token keyword">int</span> resultSize <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>limit <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>resultSize <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>resultSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                resultSize<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span>resultSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">subList</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> resultSize<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>regex<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> limit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>简单的 <code>regex</code> 直接就在这里执行了，需要创建一个 <code>ArrayList</code> ，复杂的匹配模式就需要使用 Java 的正则表达式来做了（<code>Parttern</code>）。</p>
+<blockquote>
+<p>StringTokenizer</p>
+</blockquote>
+<p><code>java.util.StringTokenizer</code>  是专门用来处理字符串切割的工具类。</p>
+<p>它的构造函数有三种：</p>
+<ul>
+<li><code>public StringTokenizer(String str)</code>：构造一个用来解析 str 的 StringTokenizer 对象，采用默认分割符。java 默认的分隔符是空格(“”)、制表符(\t)、换行符(\n)、回车符(\r)。</li>
+<li><code>public StringTokenizer(String str, String delim)</code>：构造一个用来解析 str 的 StringTokenizer 对象，并提供一个指定的分隔符。</li>
+<li><code>public StringTokenizer(String str, String delim, boolean returnDelims)</code>：构造一个用来解析 str 的 StringTokenizer 对象，并提供一个指定的分隔符，同时，指定是否返回分隔符。</li>
+</ul>
+<p>例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo05</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    
+    <span class="token class-name">String</span> field <span class="token operator">=</span> <span class="token string">"This is my blog that record my coding life."</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">StringTokenizer</span> stringTokenizer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringTokenizer</span><span class="token punctuation">(</span>field<span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>stringTokenizer<span class="token punctuation">.</span><span class="token function">hasMoreTokens</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stringTokenizer<span class="token punctuation">.</span><span class="token function">nextToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>它的常用方法：</p>
+<ul>
+<li><code>int countTokens()</code>：返回 nextToken 方法被调用的次数。</li>
+<li><code>boolean hasMoreTokens()</code>：返回是否还有分隔符。</li>
+<li><code>boolean hasMoreElements()</code>：判断枚举 （Enumeration） 对象中是否还有数据。</li>
+<li><code>String nextToken()</code>：返回从当前位置到下一个分隔符的字符串。</li>
+<li><code>Object nextElement()</code>：返回枚举 （Enumeration） 对象的下一个元素。</li>
+<li><code>String nextToken(String delim)</code>：返回从当前位置到下一个分隔符的字符串，并以指定的分隔符返回结果。</li>
+</ul>
+<blockquote>
+<p>对比</p>
+</blockquote>
+<p>在效率上讲 <code>StringTokenizer</code> 比 <code>split()</code> 方法要快的多，因为 <strong>后者会以给定分割字符串的每个字符进行分割，而前者是以整个字符串进行切割。</strong></p>
+<p>而且当出现两个连续的分隔符时，<code>StringTokenizer</code> 会直接跳过，<code>split</code> 会将这两个连续的分割符切开，返回一个空字符串。</p>
+<h2 id="4、正则表达式"><a href="#4、正则表达式" class="headerlink" title="4、正则表达式"></a>4、正则表达式</h2><p>Java 中对字符串的操作主要集中在 <code>String、StringBuilder、StringTokenizer</code> 类，与正则表达式相比，它们只能提供简单的功能。</p>
+<h3 id="（1）简介"><a href="#（1）简介" class="headerlink" title="（1）简介"></a>（1）简介</h3><p>在 Java 中处理正则表达式和其他语言有些不同：</p>
+<ul>
+<li>在 Java 中 <code>\\</code> 表示插入一个正则表达式的反斜线</li>
+<li>如果想插入一个普通的反斜线要这样：<code>\\\\</code></li>
+<li>表示一位数字：<code>\\d</code></li>
+<li>表示一个或多个之前的表达式：<code>+</code></li>
+<li>可能存在，使用 ：<code>?</code></li>
+</ul>
+<p>例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo01</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-1234"</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"-\\d+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// true</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"5678"</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"-?\\d+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// true</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"+910"</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"-?\\d+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// false</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"+1112"</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"(-|\\+)?\\d+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// true</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="（2）正则表达式"><a href="#（2）正则表达式" class="headerlink" title="（2）正则表达式"></a>（2）正则表达式</h3><p><code>java.util.regex</code> 包中的 <code>Pattern</code> 类</p>
+<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">JDK: java.util.regex.Pattern</a></p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3>
                 
             </div>
             <hr/>
