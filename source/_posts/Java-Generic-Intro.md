@@ -84,7 +84,7 @@ public class Generic_Method {
         System.out.println(t.getClass());
     }
     
-    public static  <T> T show2(T t) {
+    public static <T> T show2(T t) {
         return t;
     }
 
@@ -173,7 +173,7 @@ class MyClass<E> implements GenericInterface<E> {
 
 第二种使用方式：
 
-- 接口使用什么泛型，实现类就使用什么泛型，类跟着接口走，就相当于定义了一个含有泛型的类，创建对象的时候确定泛型的理想
+- 接口使用什么泛型，实现类就使用什么泛型，类跟着接口走，就相当于定义了一个含有泛型的类，创建对象的时候确定泛型的类型
 
 
 
