@@ -243,6 +243,7 @@ mark {
 /* 整体背景颜色，包括导航、移动端的导航、页尾、标签页等的背景颜色. */
 .bg-color {
     background-image: linear-gradient(to right, #4e30bf 0%, #0f9d58 100%);
+    opacity: 0.89;
 }
 
 .text-color {
@@ -582,7 +583,7 @@ header .go-back i {
     line-height: 1.3em;
     margin-bottom: 20px;
     position: relative;
-	background: linear-gradient(to right, deepskyblue, #28f538ed);
+	background: linear-gradient(to right, #194cae, #26dbb7ed);
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;
 }
@@ -591,7 +592,7 @@ header .go-back i {
     /*font-weight: 300;*/
     font-size: 1.3rem;
     line-height: 1.3em;
-    color: #09d4e9;
+    color: #ae0cb399;
 	font-weight: bold;
 }
 
@@ -1229,10 +1230,13 @@ article .article-tags .chip {
 
 #articleContent table {
     width: 100%;
-    display: block;
+    /* display: block; */
+    display: table;
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /**
@@ -1254,12 +1258,14 @@ thead {
     min-width: 80px;
     border: 1px solid #dfe2e5;
     padding: 6px 6px;
+    text-align:center;
 }
 
 #articleContent table td {
     min-width: 80px;
     border: 1px solid #dfe2e5;
     padding: 6px 6px;
+    text-align:center;
 }
 
 #articleContent [type="checkbox"]:not(:checked),
