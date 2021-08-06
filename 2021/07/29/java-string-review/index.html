@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-08-04
+                    2021-08-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.5k
+                    4.3k
                 </div>
                 
 
@@ -1072,10 +1072,10 @@ L6
     formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s: %d, %f \n"</span><span class="token punctuation">,</span> <span class="token string">"测试字符串"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2.1f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>和 C/C++ 类似，我们可以使用 <strong>width</strong> 来指定宽度、<strong>precision</strong> 指定精度（仅限带小数点的）、默认情况下，数据是右对齐的，可以使用 <strong>-</strong> 来设置左对齐。</p>
+<p>和 C/C++ 类似，我们可以使用 <strong>width</strong> 来指定宽度、<strong>precision</strong> 指定精度、默认情况下，数据是右对齐的，可以使用 <strong>-</strong> 来设置左对齐。</p>
 <ul>
 <li><strong>width</strong> 可以用于各种类型的数据转换，指明最大的宽度</li>
-<li><strong>precision</strong> 不一样，不是所有的数据类型都可以使用它，并且不同的类型使用它的时候，<strong>precision</strong> 的意义页不一样，比如，<code>String</code> 类型使用它表示打印时输出的字符的最大数量，浮点数使用它表示小数部分要显示的位数（默认是 6 位），整数无法使用 precision。</li>
+<li><strong>precision</strong> 不一样，不是所有的数据类型都可以使用它，并且不同的类型使用它的时候，<strong>precision</strong> 的意义也不一样，比如，<code>String</code> 类型使用它表示打印时输出的字符的最大数量，浮点数使用它表示小数部分要显示的位数（默认是 6 位），整数无法使用 precision。</li>
 </ul>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token class-name">PrintStream</span> stdOutStream <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">;</span>
@@ -1171,7 +1171,7 @@ L6
 
 <p>简单的 <code>regex</code> 直接就在这里执行了，需要创建一个 <code>ArrayList</code> ，复杂的匹配模式就需要使用 Java 的正则表达式来做了（<code>Parttern</code>）。</p>
 <blockquote>
-<p>StringTokenizer</p>
+<p>StringTokenizer（了解即可，现在有了更好的方式）</p>
 </blockquote>
 <p><code>java.util.StringTokenizer</code>  是专门用来处理字符串切割的工具类。</p>
 <p>它的构造函数有三种：</p>
@@ -1226,9 +1226,234 @@ L6
     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"+1112"</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"(-|\\+)?\\d+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// true</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="（2）正则表达式"><a href="#（2）正则表达式" class="headerlink" title="（2）正则表达式"></a>（2）正则表达式</h3><p><code>java.util.regex</code> 包中的 <code>Pattern</code> 类</p>
-<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">JDK: java.util.regex.Pattern</a></p>
-<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3>
+<h3 id="（2）正则表达式"><a href="#（2）正则表达式" class="headerlink" title="（2）正则表达式"></a>（2）正则表达式</h3><p><code>java.util.regex</code> 包中的 <code>Pattern</code> 类 以及 <code>Matcher</code> 类</p>
+<p>完整的描述请看 JDK 文档</p>
+<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">JDK: java.util.regex</a></p>
+<blockquote>
+<p>Patten 简介</p>
+</blockquote>
+<p>典型的调用例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Pattern</span> p <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token string">"a*b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Matcher</span> m <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">matcher</span><span class="token punctuation">(</span><span class="token string">"aaaaab"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> b <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><code>Pattern</code> 这个类是 <code>final</code> 且拥有私有构造器，我们无法实例化它，只能通过静态方法 <code>complie()</code> 来获取它的实例，该实例不可变，可以安全的被多个线程并发使用。但是 <code>Matcher</code> 不是线程安全的。</p>
+<p>当我们给 <code>compile</code> 方法传递一个指定的正则表达式时，生成的 <code>Pattern</code> 匹配器的模式就被固定了，我们无法修改它，所以并发情况下是安全的。</p>
+<p>上面的示例就是可以多次重复使用的匹配器，当然 <code>Pattern</code> 也提供了只使用一次的方法，但是它的效率较低，因为它不允许编译的模式被重用。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">boolean</span> b <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"a*b"</span><span class="token punctuation">,</span> <span class="token string">"aaaaab"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>常用字符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">B</td>
+<td align="center">指定字符B</td>
+</tr>
+<tr>
+<td align="center">\xhh</td>
+<td align="center">十六进制为 0xhh 的字符</td>
+</tr>
+<tr>
+<td align="center">\uhhhh</td>
+<td align="center">十六进制表示为 0xhhhh 的 Unicode 字符</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="center">制表符 tab</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="center">换行符</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td align="center">回车</td>
+</tr>
+<tr>
+<td align="center">\f</td>
+<td align="center">换页</td>
+</tr>
+<tr>
+<td align="center">\e</td>
+<td align="center">转义（Escape）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用字符类</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">字符类</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">任意字符</td>
+</tr>
+<tr>
+<td align="center">[abc]</td>
+<td align="center">包含 a、b 和 c 的任何字符（和 a|b|c 相同）</td>
+</tr>
+<tr>
+<td align="center">[^abc]</td>
+<td align="center">除了 a、b、c 以外的字符（否定）</td>
+</tr>
+<tr>
+<td align="center">[a-zA-Z]</td>
+<td align="center">从 a 到 z 或者 从 A 到 Z 的任何字符（范围）</td>
+</tr>
+<tr>
+<td align="center">[abc[hij]]</td>
+<td align="center">任意 a、b、c、h、i、j 中的字符（和 a|b|c|h|i|j 作用相同）（合并）</td>
+</tr>
+<tr>
+<td align="center">[a-z&amp;&amp;[hij]]</td>
+<td align="center">任意 h、i、j （交集）</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">空白符（空格、tab、换行、换页和回车）</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="center">非空白符（[^\s]）</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">数字（[0-9]）</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">非数字（[^0-9]）</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">词字符（[a-zA-Z0-9]）</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td align="center">非词字符（^\w）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>逻辑操作符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">逻辑操作符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">XY</td>
+<td align="center">Y 跟在 X 的后面</td>
+</tr>
+<tr>
+<td align="center">X|Y</td>
+<td align="center">X 或 Y</td>
+</tr>
+<tr>
+<td align="center">（X）</td>
+<td align="center">捕获组（capturing group），可以在表达式中用 \i 引用第 i 个捕获组</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>边界匹配符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">边界匹配符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">^</td>
+<td align="center">一行的起始</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">一行的结束</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">词的边界</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">非词的边界</td>
+</tr>
+<tr>
+<td align="center">\G</td>
+<td align="center">前一个匹配的结束</td>
+</tr>
+</tbody></table>
+<h3 id="（3）量词"><a href="#（3）量词" class="headerlink" title="（3）量词"></a>（3）量词</h3><p>量词描述了一个模式吸入输入文本的方式。</p>
+<ul>
+<li><strong>贪婪型</strong>：贪婪表达式会为所有可能的模式发现尽可能多的匹配</li>
+<li><strong>勉强型</strong>：用问号来指定，这个量词匹配满足模式所需的最少字符数</li>
+<li><strong>占有型</strong>：目前，这种类型的量词只有在 Java 语言中可以使用。正常的正则表达式被应用于字符串的时候，会产生很多的状态，以便在匹配失败时回溯，而 “占有型” 量词并不保存这些中间状态，因此它们可以防止回溯。</li>
+</ul>
+<p><strong>注：X 为表达式，表达式通常要用圆括号括起来</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">贪婪型</th>
+<th align="center">勉强型</th>
+<th align="center">占有型</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">X?</td>
+<td align="center">X??</td>
+<td align="center">X?+</td>
+<td align="center">一个或零个 X</td>
+</tr>
+<tr>
+<td align="center">X*</td>
+<td align="center">X*?</td>
+<td align="center">X*+</td>
+<td align="center">零个或多个 X</td>
+</tr>
+<tr>
+<td align="center">X+</td>
+<td align="center">X+?</td>
+<td align="center">X++</td>
+<td align="center">一个或多个 X</td>
+</tr>
+<tr>
+<td align="center">X{n}</td>
+<td align="center">X{n}?</td>
+<td align="center">X{n} +</td>
+<td align="center">恰好 n 次 X</td>
+</tr>
+<tr>
+<td align="center">X{n,}</td>
+<td align="center">X{n,}?</td>
+<td align="center">X{n,} +</td>
+<td align="center">至少 n 次 X</td>
+</tr>
+<tr>
+<td align="center">X{n, m}</td>
+<td align="center">X{n, m}?</td>
+<td align="center">X{n, m} +</td>
+<td align="center">X 至少 n 次，且不超过 m 次</td>
+</tr>
+</tbody></table>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2>
                 
             </div>
             <hr/>
