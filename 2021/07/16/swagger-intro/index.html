@@ -29,9 +29,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
 </head>
 
 
@@ -824,20 +824,20 @@
 
 
 
-<h3 id="3、yml-文件"><a href="#3、yml-文件" class="headerlink" title="3、yml 文件"></a>3、yml 文件</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
-  <span class="token key atrule">application</span><span class="token punctuation">:</span>
-    <span class="token key atrule">name</span><span class="token punctuation">:</span> springfox<span class="token punctuation">-</span>swagger
+<h3 id="3、yml-文件"><a href="#3、yml-文件" class="headerlink" title="3、yml 文件"></a>3、yml 文件</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
+  application:
+    name: springfox-swagger
     
-<span class="token key atrule">server</span><span class="token punctuation">:</span>
-  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+server:
+  port: 8080
   
-<span class="token comment">#  定义 swagger 配置</span>
-<span class="token key atrule">swagger</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">application-name</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>spring.application.name<span class="token punctuation">}</span>
-  <span class="token key atrule">application-version</span><span class="token punctuation">:</span> <span class="token number">1.0</span>
-  <span class="token key atrule">application-description</span><span class="token punctuation">:</span> springfox swagger 3.0 整合Demo
-  <span class="token key atrule">try-host</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>$<span class="token punctuation">{</span>server.port<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#  定义 swagger 配置
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0 整合Demo
+  try-host: http://localhost:${server.port}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
