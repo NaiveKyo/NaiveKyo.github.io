@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-07T02:29:11.971Z</updated>
+  <updated>2021-08-07T07:42:23.322Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java Exception Review</title>
+    <link href="https://naivekyo.github.io/2021/08/07/java-exception-review/"/>
+    <id>https://naivekyo.github.io/2021/08/07/java-exception-review/</id>
+    <published>2021-08-07T07:40:38.000Z</published>
+    <updated>2021-08-07T07:42:23.322Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;异常&quot;&gt;&lt;a href=&quot;#异常&quot; class=&quot;headerlink&quot; title=&quot;异常&quot;&gt;&lt;/a&gt;异常&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;异常&lt;/strong&gt;：指的是在程序执行过程中，出现的非正常的情况，最终会导致 JVM</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java Map Review</title>
     <link href="https://naivekyo.github.io/2021/08/07/java-map-review/"/>
     <id>https://naivekyo.github.io/2021/08/07/java-map-review/</id>
     <published>2021-08-07T02:27:07.000Z</published>
-    <updated>2021-08-07T02:29:11.971Z</updated>
+    <updated>2021-08-07T03:37:48.614Z</updated>
     
     
       
@@ -103,7 +129,7 @@
     <link href="https://naivekyo.github.io/2021/07/31/java-generic-intro/"/>
     <id>https://naivekyo.github.io/2021/07/31/java-generic-intro/</id>
     <published>2021-07-31T14:14:43.000Z</published>
-    <updated>2021-07-31T14:32:45.483Z</updated>
+    <updated>2021-08-07T03:27:55.948Z</updated>
     
     
       
@@ -178,7 +204,7 @@
     <link href="https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/"/>
     <id>https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/</id>
     <published>2021-07-29T07:33:49.000Z</published>
-    <updated>2021-07-29T07:37:05.954Z</updated>
+    <updated>2021-08-07T03:27:46.616Z</updated>
     
     
       
@@ -253,7 +279,7 @@
     <link href="https://naivekyo.github.io/2021/07/25/java-thread-rudimentary-knowledge/"/>
     <id>https://naivekyo.github.io/2021/07/25/java-thread-rudimentary-knowledge/</id>
     <published>2021-07-25T13:19:45.000Z</published>
-    <updated>2021-07-25T14:40:43.262Z</updated>
+    <updated>2021-08-07T03:27:33.982Z</updated>
     
     
       
@@ -492,33 +518,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Vue-组件化编程&quot;&gt;&lt;a href=&quot;#Vue-组件化编程&quot; class=&quot;headerlink&quot; title=&quot;Vue 组件化编程&quot;&gt;&lt;/a&gt;Vue 组件化编程&lt;/h1&gt;&lt;p&gt;Vue</summary>
-        
-      
-    
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
-    
-    
-    <category term="Front-End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue_Core_Study</title>
-    <link href="https://naivekyo.github.io/2021/07/10/vue-core-study/"/>
-    <id>https://naivekyo.github.io/2021/07/10/vue-core-study/</id>
-    <published>2021-07-10T14:24:49.000Z</published>
-    <updated>2021-07-16T01:07:01.745Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Vue-核心&quot;&gt;&lt;a href=&quot;#Vue-核心&quot; class=&quot;headerlink&quot; title=&quot;Vue 核心&quot;&gt;&lt;/a&gt;Vue 核心&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
