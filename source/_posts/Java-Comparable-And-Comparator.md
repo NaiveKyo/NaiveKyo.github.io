@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210729153444.jpg'
 coverImg: /img/20210729153444.jpg
 toc: true
 date: 2021-07-29 15:33:49
-top: true
+top: false
 cover: false
 summary: Java 的比较器接口使用简介。
 categories: Java

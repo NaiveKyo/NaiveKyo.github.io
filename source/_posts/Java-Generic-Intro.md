@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210731221513.jpg'
 coverImg: /img/20210731221513.jpg
 toc: true
 date: 2021-07-31 22:14:43
-top: true
+top: false
 cover: false
 summary: Java 泛型简介
 categories: Java
