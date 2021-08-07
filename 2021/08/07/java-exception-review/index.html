@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.8k
+                    2.7k
                 </div>
                 
 
@@ -684,7 +684,7 @@
 <li>其下有两个子类：<ul>
 <li><code>java.lang.Error</code></li>
 <li><code>java.lang.Exception</code>：就是我们平时说的异常<ul>
-<li>一个特殊的子类：<code>java.lang.RuntimeException</code> 运行器异常</li>
+<li>一个特殊的子类：<code>java.lang.RuntimeException</code> 运行期异常</li>
 </ul>
 </li>
 </ul>
@@ -692,7 +692,7 @@
 </ul>
 <p><strong>Throwable 体系：</strong></p>
 <ul>
-<li><strong>Error</strong>：严重错误异常 Error，无法通过处理的错误，只能事先避免</li>
+<li><strong>Error</strong>：严重错误异常 Error，无法处理的错误，只能事先避免</li>
 <li><strong>Exception</strong>：表示异常，异常产生后程序员可以通过修正代码来避免，使程序继续运行，是必须要处理的</li>
 </ul>
 <p><strong>Throwable 中常用的方法：</strong></p>
@@ -889,7 +889,7 @@
 </blockquote>
 <p>为什么子类异常的 catch 块要放在父类异常的 catch 之上呢？</p>
 <ul>
-<li>因为当在 try 块中可能会抛出多个异常且异常具有父子类关系的时候</li>
+<li>当在 try 块中可能会抛出多个异常且异常具有继承关系的时候</li>
 <li>try 块中捕捉到一个异常，该异常会被抛出交给 catch 块处理，而抛出的异常对象会从上到下依次赋值给遇到的 catch 块中定义的异常变量</li>
 <li>如果第一个 catch 块定义了父类异常的变量，就会出现多态，父类引用指向子类实例，或者父类引用指向父类实例，匹配成功后就不会抛给下方的 catch 块，下面的 catch 就没有了意义</li>
 <li>如果第一个 catch 块定义了子类异常的变量，抛出的是父类异常对象，不会出现子类引用指向父类实例的问题，该异常对象会继续抛出找到和自己匹配的异常变量</li>
@@ -901,7 +901,7 @@
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         
-        <span class="token comment">// 1. 多个异常分别处理</span>
+        <span class="token comment">// 1. 多个y异常分别处理</span>
         <span class="token keyword">try</span> <span class="token punctuation">{</span>
             <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
