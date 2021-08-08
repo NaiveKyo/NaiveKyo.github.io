@@ -1,0 +1,2149 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java,IO">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java IO Stream Intro | NaiveKyo</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+    <style type="text/css" lang="css">
+  #loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #loading-left {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: margin-right 1.5s;
+  }
+
+  #loading-right {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* 太极特效 */
+  @keyframes rotate {
+      from {
+          transform: rotate(0deg)
+      }
+
+      to {
+          transform: rotate(359deg)
+      }
+  }
+
+  div[class="loading-image"] {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    background-image:
+        radial-gradient(50% 50% at 50% 25%, #000 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 75%, #fff 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 25%, #fff 50%, transparent 0), radial-gradient(50% 50% at 50% 75%, #000 50%, transparent 0),
+        linear-gradient(to left, #fff 50%, #000 50%);
+    animation: rotate 3s linear infinite;
+  }
+
+  .loading-text {
+    margin-bottom: 1vh;
+    text-align: center;
+    font-size: 3rem;
+    /* box-sizing: border-box; */
+    z-index: 9999;
+    padding: 0 10px;
+    height: 90px;
+    line-height: 90px;
+    font-weight: bold;
+    font-family: cursive;
+    background: linear-gradient(to right, #59c229, #f5287ded);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text
+  }
+
+  #show {
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    position: fixed;
+    left: 561px;
+    top: 211px;
+  }
+
+  /*中等屏幕下(平板类)的样式*/
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  /* 小型设备 */
+  @media only screen and (max-width: 601) {
+    .loading-text {
+      font-size: 1.5rem;
+    }
+    #show {
+      display: none;
+    }
+  }
+
+  /* .fadeout_left {
+    opacity: 0; 
+    filter: alpha(opacity=0);
+  } */
+
+</style>
+
+<script>
+
+            
+  // window.onload = function() {
+  //   const loader = document.getElementById("loading-container");
+
+  //   if (sessionStorage.getItem('flag') == null) {
+  //     console.log("111111")
+  //     const loaded = function() {
+  //       setTimeout(function() {
+  //         loader.style.display = 'none'
+  //       }, 1000)
+  //     }
+  //     loaded();
+  //     sessionStorage.setItem('flag', 1)
+  //   } else {
+  //     loader.style.display = 'none'
+  //   }
+  // }
+
+ 
+  (function () {
+      
+      const loaded = function() {
+        setTimeout(function() {
+            const loader = document.getElementById("loading-container");
+            const load_left = document.getElementById("loading-left");
+            const load_right = document.getElementById("loading-right");
+            load_left.style.marginRight = "100%"
+
+            // 设置动画的显示时间
+            setTimeout(function() {
+              loader.style.display="none";
+            }, 1500)
+          }, 300); 
+      }
+      loaded()
+  })() 
+</script>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210723091053.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script>
+
+<body>
+    <!-- 加载动画 -->
+	
+		<div id="loading-container">
+            <div id="loading-left"></div>
+            <div id="loading-right"></div>
+            <div id="show">
+                <p class="loading-text">少女祈祷中</p>
+                <div class="loading-image"></div>
+            </div>
+		</div>
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/comment_bg.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">NaiveKyo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/comment_bg.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">NaiveKyo</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808175414.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java IO Stream Intro</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/IO/">
+                                <span class="chip bg-color">IO</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                            <a href="/categories/Java/IO/" class="post-category">
+                                IO
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-08-08
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2021-08-08
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    6.7k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="IO-流"><a href="#IO-流" class="headerlink" title="IO 流"></a>IO 流</h1><h2 id="一、IO-概述"><a href="#一、IO-概述" class="headerlink" title="一、IO 概述"></a>一、IO 概述</h2><h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><ul>
+<li>i：input 输入（读取）<ul>
+<li>输入：把硬盘中的数据，读取到内存中使用</li>
+</ul>
+</li>
+<li>o：output 输出（写入）<ul>
+<li>输出：把硬盘中的数据，写入到硬盘中保存</li>
+</ul>
+</li>
+<li>流：数据（字符，字节）1 个字符 = 2 个字节 = 8 位</li>
+</ul>
+<p>Java I/O 操作主要是指使用 <code>java.io</code> 包下的内容，进行输入、输出操作。输入也叫做读取数据，输出也叫做写出数据</p>
+<h3 id="2、分类"><a href="#2、分类" class="headerlink" title="2、分类"></a>2、分类</h3><p>根据数据的流向分为：<strong>输入流</strong> 和 <strong>输出流</strong></p>
+<ul>
+<li><strong>输入流</strong>：把数据从 其他设备 上读取到 内存 中的流</li>
+<li><strong>输出流</strong>：把数据从 内存 中写出到 其他设备 上的流</li>
+</ul>
+<p>根据数据的类型可分为：<strong>字节流</strong> 和 <strong>字符流</strong></p>
+<h3 id="3、顶级父类"><a href="#3、顶级父类" class="headerlink" title="3、顶级父类"></a>3、顶级父类</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">输入流</th>
+<th align="center">输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">字节流</td>
+<td align="center">字节输入流<br><strong>InputStream</strong></td>
+<td align="center">字节输出流<br><strong>OutputStream</strong></td>
+</tr>
+<tr>
+<td align="center">字符流</td>
+<td align="center">字符输入流<br><strong>Reader</strong></td>
+<td align="center">字符输出流<br><strong>Writer</strong></td>
+</tr>
+</tbody></table>
+<h2 id="二、字节流"><a href="#二、字节流" class="headerlink" title="二、字节流"></a>二、字节流</h2><h3 id="1、一切皆为字节"><a href="#1、一切皆为字节" class="headerlink" title="1、一切皆为字节"></a>1、一切皆为字节</h3><p>一切文本数据（文本、图片、视频等等）在存储时，都是以二进制数字的形式保存，都是一个一个的字节，在传输时也是一样。所以，字节流可以传输任意文件数据。在操作流的时候，我们要时刻明确，无论使用什么样的流对象，底层传输的始终为二进制数据。</p>
+<h3 id="2、字节输出流-OutputStream"><a href="#2、字节输出流-OutputStream" class="headerlink" title="2、字节输出流 OutputStream"></a>2、字节输出流 OutputStream</h3><p><code>java.io.OutputStream</code> 抽象类是表示字节输出流的所有类的超类，将指定的字节信息写出到目的地。它定义了字节输出流的基本共性功能方法：</p>
+<ul>
+<li><code>public void close()</code>：关闭此输出流并释放与此相关联的任何系统资源</li>
+<li><code>public void flush()</code>：刷新此输出流并强制任何缓冲的输出字节被写出</li>
+<li><code>public void write(byte[] b)</code>：将 b.length 个字节从指定的字节数组写入此输出流</li>
+<li><code>public void write(byte[] b, int off, int len)</code>：从指定的字节数组写入 len 字节，从偏移量 off 开始输出到此输出流</li>
+<li><code>public abstract void write(int b)</code>：将指定的字节写入此输出流</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808094827.png"></p>
+<p><code>OutputStream</code> 类别的类决定了输出要去往的目标：字节数组（但不是 String）、文件或管道</p>
+<p>此外，<code>FilterOutputStream</code> 为 “装饰器” 类提供了一个基类，“装饰器” 类把属性或者有用的接口与输出流连接起来。</p>
+<table>
+<thead>
+<tr>
+<th align="center">类</th>
+<th align="center">功能</th>
+<th align="center">构造器参数<hr>如何使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>ByteArrayOutputStream</strong></td>
+<td align="center">在内存中创建缓冲区。所有送往 “流” 的数据都要放置在此缓冲区</td>
+<td align="center">缓冲区初始化尺寸（可选）<hr>用于指定数据的目的地：将其与 <code>FilterOutputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>FileOutputStream</strong></td>
+<td align="center">用于将信息写至文件</td>
+<td align="center">文件名字符串、文件或 <code>FileDescriptor</code> 对象<hr>指定数据的目的地：将其与 <code>FilterOutputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>PipedOutputStream</strong></td>
+<td align="center">任何写入其中的信息都会自动作为相关 <code>PipedInputStream</code> 的输出，实现 “管道化” 概念</td>
+<td align="center"><code>PipedInputStream</code><hr>指定用于多线程的数据的目的地：将其与 <code>FilterOutputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>FilterOutputStream</strong></td>
+<td align="center">抽象类，作为 “装饰器” 的接口。其中，”装饰器” 为其他 <code>OutputStream</code> 提供有用功能</td>
+<td align="center">详情请见后文</td>
+</tr>
+</tbody></table>
+<h3 id="3、文件字节输出流-FileOutputStream"><a href="#3、文件字节输出流-FileOutputStream" class="headerlink" title="3、文件字节输出流 FileOutputStream"></a>3、文件字节输出流 FileOutputStream</h3><p>举 <code>java.io.FileOutputStream</code> 为例：</p>
+<p>简单使用：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * java.io.OutputStream：此抽象类表示输出字节流的所有类的超类
+ *  
+ *  看看它的一个子类 java.io.FileOutputStream extends OutputStream
+ *      文件字节输出流
+ *      
+ *  构造方法：
+ *      FileOutputStream(File file) 创建文件输出流以写入由指定的 File对象表示的文件。 
+ *      FileOutputStream(String name) 创建文件输出流以指定的名称写入文件。
+ *      
+ *  参数：写入数据的目的地
+ *      String name: 目的地是一个文件的路径
+ *      File file: 目的地是一个文件
+ *  
+ *  构造方法的作用：
+ *      1. 创建一个 FileOutputStream 对象
+ *      2. 会根据构造方法中传递的文件/文件路径，创建一个空的文件
+ *      3. 会把 FileOutputStream 对象指向创建好的文件
+ *  
+ *  写入数据的原理（内存 --&gt; 硬盘）
+ *      Java 程序 --&gt; JVM --&gt; OS --&gt; OS调用写数据的方法 --&gt; 把数据写入文件中
+ *      
+ *  字节输出流的使用步骤：
+ *      1. 创建一个 FileOutputStream 对象，构造方法中传入写入数据的目的地
+ *      2. 调用 FileOutputStream 对象的方法 write ，把数据写入到文件
+ *      3. 释放资源（流使用会占用一定的内存，使用完毕需要把内存清空，提高效率
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01OutputStream</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        <span class="token class-name">FileOutputStream</span> fos <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 1. 创建对象</span>
+            fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_OutputStream\\a.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 2. 将数据写入到文件</span>
+            fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">97</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 3. 关闭流</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ul>
+<li>写数据的时候，会把十进制的整数 97 转换为二进制整数 97 <ul>
+<li><strong>fos.write(1100001); 97 –&gt; 1100001</strong></li>
+<li>硬盘中存储的都是字节，1 个字节 = 8 个比特位</li>
+</ul>
+</li>
+<li>任意的文本编辑器，在打开文件的时候，都会查询编码表，把字节转换为字符表示<ul>
+<li>0-127：查询 ASCII 表</li>
+<li>其他值：比如中文操作系统，就会查看 GBK 编码表</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一次写入多个字节</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo02OutputStream</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">FileOutputStream</span> fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_OutputStream\\a.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 方式一： 写入多个字节</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">48</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">49</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 012</span>
+
+        <span class="token comment">/**
+         * 方式二： 字节数组
+         *  一次写入多个字节：
+         *      如果写的第一个字节为正数(0 - 127)，那么显示的时候会查询 ASCII 表
+         *      如果写的第一个字节是负数，那么第一个字节和第二个字节，两个字节组成一个中文显示，查询系统默认编码表(GBK)
+         */</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span><span class="token number">49</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">51</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span><span class="token operator">-</span><span class="token number">65</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">66</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">67</span><span class="token punctuation">,</span> <span class="token number">68</span><span class="token punctuation">,</span> <span class="token number">69</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 方式三：将字节数组的一部分写入输出流</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span><span class="token number">49</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">51</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 23</span>
+        
+        <span class="token comment">// 方式三：写入字符串</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token string">"你好"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        fos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4、数据追加续写"><a href="#4、数据追加续写" class="headerlink" title="4、数据追加续写"></a>4、数据追加续写</h3><p>之前使用的方法，其实每次程序运行，会创建输出流对象，然后会清空和此输出流关联的文件内容。如果保留目标文件中的数据，还能继续追加新的数据呢？</p>
+<ul>
+<li><p><code>public FileOutputStream(File file, boolean append)</code>：创建文件输出流以写入由指定的 <code>File</code>对象表示的文件，append 表示是否为追加写入</p>
+</li>
+<li><p><code>public FileOutputStream(String name, boolean append)</code>：创建文件输出流以指定的名称写入文件</p>
+</li>
+</ul>
+<p>boolean append：</p>
+<ul>
+<li>true：追加数据</li>
+<li>false：清空数据</li>
+</ul>
+<p>换行符：</p>
+<ul>
+<li>windows：<code>\r\n</code></li>
+<li>Linux：<code>/n</code></li>
+<li>mac：<code>/r</code></li>
+</ul>
+<h3 id="5、字节输入流-InputStream"><a href="#5、字节输入流-InputStream" class="headerlink" title="5、字节输入流 InputStream"></a>5、字节输入流 InputStream</h3><p><code>java.io.InputStream</code> 抽象类是表示字节输入流的所有类的超类，可以读取到字节信息存储到内存中。它定义了字节输入流的基本共性功能方法</p>
+<ul>
+<li><code>public void close()</code>：关闭此输入流并释放与此流相关联的任何系统资源</li>
+<li><code>public abstract int read()</code>：从输入流读取数据的下一个字节</li>
+<li><code>public int read(byte[] b)</code>：从输入流读取若干字节的数据保存到参数 b 指定的字节数组中，返回的字节数表示读取的字节数，如果遇到输入流的结尾返回 -1</li>
+<li><code>public int read(byte[] b,int off,int len)</code>：从输入流读取若干字节的数据保存到参数 b 指定的字节数组中，其中 off 是指在数组中开始保存数据位置的起始下标，len 是指读取字节的位数。返回的是实际读取的字节数，如果遇到输入流的结尾则返回 -1</li>
+<li><code>public int available()</code>：返回在不阻塞的情况下可以获取的字节数（阻塞意味着当前线程失去了它对资源的占用</li>
+<li><code>public skip(long n)</code>： 从输入流跳过参数 n 指定的字节数目</li>
+</ul>
+<p>这三个方法一般结合起来使用，可以完成重复读取操作</p>
+<p>首先使用 markSupported() 判断，如果可以重复读取，则使用 mark(int readLimit) 方法进行标记，标记完成之后可以使用 read() 方法读取标记范围内的字节数，最后使用 reset() 方法使输入流重新定位到标记的位置，继而完成重复读取操作。</p>
+<ul>
+<li><code>public boolean markSupported()</code>：判断输入流是否可以重复读取，如果可以就返回 true</li>
+<li><code>public void mark(int readLimit)</code>：如果输入流可以被重复读取，从流的当前位置开始设置标记，readLimit 指定可以设置标记的字节数</li>
+<li><code>public void reset()</code>：使输入流重新定位到刚才被标记的位置，这样可以重新读取标记过的数据</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808104626.png"></p>
+<p><code>InputStream</code> 的作用是用来表示那些从不同数据源产生输入的类：</p>
+<p>这些数据源包括：</p>
+<ol>
+<li>字节数组</li>
+<li>String 对象</li>
+<li>文件</li>
+<li>管道</li>
+<li>一个由其他种类的流组成的序列，以便我们可以将它们收集合并到一个流内</li>
+<li>其他数据源，例如 Internet</li>
+</ol>
+<p>每一种数据源都有相应的 <strong>InputStream 子类</strong>。另外，<code>FilterInputStream</code> 也属于一种 <code>InputStream</code>，为 <strong>装饰器（decorator）</strong>类提供基类，装饰器类可以将属性或有用的接口与输入流连接在一起。</p>
+<table>
+<thead>
+<tr>
+<th align="center">类</th>
+<th align="center">功能</th>
+<th align="center">构造器参数<hr>如何使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>ByteArrayInputStream</strong></td>
+<td align="center">允许将内存的缓冲区当作 <code>InputStream</code> 使用</td>
+<td align="center">缓冲区，字节将从中取出<hr>作为一种数据源：将其与 <code>FilterInputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>StringBufferInputStream</strong></td>
+<td align="center">将 <code>String</code> 转换为 <code>InputStream</code></td>
+<td align="center">字符串。底层实现实际使用的是 <code>StringBuffer</code> <hr>作为一种数据源：将其与 <code>FilterInputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>FileInputStream</strong></td>
+<td align="center">用于从文件中读取信息</td>
+<td align="center">文件名字符串、文件或 <code>FileDescriptor</code> 对象<hr>作为一种数据源：将其与<code>FilterInputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>PipedInputStream</strong></td>
+<td align="center">产业用于写入相关 <code>PipedOutputStream</code> 的数据，实现 ”管道化” 概念，数据从一端流入，从另一端流出</td>
+<td align="center">参数：<code>PipedOutputStream</code><hr>作为多线程中数据源：将其与<code>FilterInputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>SequenceInputStream</strong></td>
+<td align="center">将两个或多个 <code>InputStream</code> 对象转换成单一 <code>InputStream</code></td>
+<td align="center">两个 <code>InputStream</code> 对象或一个容纳 <code>InputStream</code> 对象的容器 <code>Enumeratin</code><hr>作为一种数据源：将其与<code>FilterInputStream</code> 对象相连以提供有用接口</td>
+</tr>
+<tr>
+<td align="center"><strong>FilterInputStream</strong></td>
+<td align="center">抽象类，作为 “装饰器” 放入接口。其中 “装饰器” 为其他的 <code>InputStream</code> 类提供有用功能</td>
+<td align="center">详情请见后文</td>
+</tr>
+</tbody></table>
+<p>Java 中的字符是 Unicode 编码，即双字节的，而 InputerStream 是用来处理单字节的，在处理字符文本时不是很方便。这时可以使用 Java 的文本输入流 Reader 类，该类是字符输入流的抽象类，即所有字符输入流的实现都是它的子类，该类的方法与 InputerSteam 类的方法类似</p>
+<h3 id="6、文件字节输入流-FileInputStream"><a href="#6、文件字节输入流-FileInputStream" class="headerlink" title="6、文件字节输入流 FileInputStream"></a>6、文件字节输入流 FileInputStream</h3><p>这里举文件字节输入流为例子：<code>java.io.FileInputStream</code></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * java.io.InputStream ： 所有字节输入流的超类
+ * 
+ * java.io.FileInputStream: 文件字节输入流
+ * 
+ * 构造方法：
+ *  FileInputStream(File file) 
+ *      通过打开与实际文件的连接创建一个 FileInputStream ，该文件由文件系统中的 File对象 file命名。 
+ *  FileInputStream(String name) 
+ *      通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系统中的路径名 name命名。 
+ *      
+ * 构造方法的作用：
+ *  1. 会创建一个 FileInputStream 对象
+ *  2. 会把 FileInputStream 对象指向构造方法中要读取的文件
+ *  
+ * 读取数据原理（硬盘 --&gt; 内存）：
+ *      Java 程序 --&gt; JVM --&gt; OS --&gt; OS 调用读取数据的方法 --&gt; 读取文件到内存
+ *      
+ * 字节输入流使用步骤：
+ *   1. 创建 FileInputStream 对象，构造方法中绑定要读取的数据源
+ *   2. 使用 FileInputStream 的 read() 方法读取文件
+ *   3. 释放资源
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01InputStream</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 1. 创建对象</span>
+            fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_InputStream\\b.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 2. 从文件读取数据到输入流</span>
+            <span class="token comment">// int read() 读取文件中的一个字节并返回，文件末尾就返回 -1</span>
+            <span class="token keyword">int</span> read <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">do</span> <span class="token punctuation">{</span>
+                read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 这里只是打印得到的字节</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>read<span class="token punctuation">)</span><span class="token punctuation">;</span>                
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>read <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 3. 关闭流</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fis <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>一次读取多个字节：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo02InputStream</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_InputStream\\b.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 这里之前测过 b.txt 保存了 22 个字节</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">22</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 返回的是读取到的字节的数量</span>
+        <span class="token keyword">int</span> read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 从文件中读取字节，将其存储到缓冲区数组中</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 要打印读取到的字符串, 详见 String 的构造函数</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="7、文件复制操作"><a href="#7、文件复制操作" class="headerlink" title="7、文件复制操作"></a>7、文件复制操作</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo03File_Copy</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 目标将 b.txt 复制到 c.txt</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        <span class="token comment">// 1. 准备输入和输出流</span>
+        <span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">FileOutputStream</span> fos <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 2. 创建对象和目标文件关联起来</span>
+            fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_InputStream\\b.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_InputStream\\c.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">// 3. 开始读取文件到内存，同时从内存取数据写出到文件</span>
+            <span class="token keyword">int</span> read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>read <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"文件复制完毕!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+          	<span class="token comment">// 关闭资源，先关写的，再关读的，如果写完了，肯定也读完了</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fis <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="三、字符流"><a href="#三、字符流" class="headerlink" title="三、字符流"></a>三、字符流</h2><p>当使用字节流读取文本时，可能会有一个小问题，就是遇到中文字符时，可能不会显示完整的字符，那是因为一个中文字符可能占用多个字节存储。所以 Java 提供了一些字符流类，以字符为单位读写数据，专门用于处理文本文件。</p>
+<h3 id="1、字符输入流-Reader"><a href="#1、字符输入流-Reader" class="headerlink" title="1、字符输入流 Reader"></a>1、字符输入流 Reader</h3><p><code>java.io.Reader</code> 抽象类是表示用于读取字符流的所有类的超类，可以读取字符信息到内存中。它定义了字符输入流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code>：关闭此流并释放与此流相关联的系统资源</li>
+<li><code>public int read()</code>：从输入流读取一个字符</li>
+<li><code>public int read(char[] cbuf)</code>：从输入流中读取一些字符，并将它们存储到字符数组 cbuf 中</li>
+</ul>
+<h3 id="2、FileReader"><a href="#2、FileReader" class="headerlink" title="2、FileReader"></a>2、FileReader</h3><ul>
+<li><code>java.io.Reader</code><ul>
+<li><code>java.io.InputStreamReader</code><ul>
+<li><code>java.io.FileReader</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>读取文件的字符输入流 </p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * java.io.Reader 字符输入流，是字符输入流最顶层的父类，定义了一些共性的方法，它是抽象类
+ * 
+ * 方法：
+ *      int read() 读取单个字符并返回
+ *      int read(char[] cbuf) 一次读取多个字符，将字符读入数组
+ *      void close() 关闭流并释放资源
+ *
+ * java.io.FileReader extends InputStreamReader extends Reader
+ * FileReader: 文件字符输入流
+ * 作用：把硬盘文件中的数据以字符的方式读取到内存中
+ * 
+ * 构造方法：
+ *      FileReader(File file) 
+ *      FileReader(String fileName) 
+ *      参数：读取文件的数据源
+ *          fileName ： 文件的路径
+ *          file： 一个文件
+ *      作用：
+ *          1. 创建一个 FileReader 对象
+ *          2. 将该对象指向要读取的文件
+ *          
+ * 文件字符输入流使用步骤：
+ *      1. 创建 FileReader 对象，绑定要读取的数据源
+ *      2. 使用 FileReader 对象方法，read 读取文件
+ *      3. 释放资源
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01Reader</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">FileReader</span> fr <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 创建文件字符流对象</span>
+            fr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_Reader\\c.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 读取一个字符</span>
+            <span class="token comment">// int read = 0;</span>
+            <span class="token comment">// while ((read = fr.read()) != -1) {</span>
+            <span class="token comment">//     System.out.println((char) read);</span>
+            <span class="token comment">// }</span>
+            
+            <span class="token comment">// 按照字符数组读取</span>
+            <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cbuf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 记录每次读取的有效字符的数量</span>
+            
+            len <span class="token operator">=</span> fr<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"有效字符: "</span> <span class="token operator">+</span> len <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>cbuf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 释放资源</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fr <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fr<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、字符输出流-Writer"><a href="#3、字符输出流-Writer" class="headerlink" title="3、字符输出流 Writer"></a>3、字符输出流 Writer</h3><p><code>java.io.Writer</code> 抽下类是表示用于写出字符流的所有类的超类，将指定的字符信息写出到目的地。它定义了字符输出流的基本共性功能方法：</p>
+<ul>
+<li><code>void write(int c)</code>：写入单个字符</li>
+<li><code>void write(char[] cbuf)</code>：写入字符数组</li>
+<li><code>abstract void write(char[] cbuf, int off, int len)</code>：写入字符数组的某一部分，从偏移量 off 开始写入 len 长度个字符</li>
+<li><code>void write(String str)</code>：写入字符串</li>
+<li><code>void write(String str, int off, int len)</code>：写入字符串的某一部分，从偏移量 off 开始，写入 len 个字符</li>
+<li><code>void flush()</code>：刷新该流的缓冲</li>
+<li><code>void close()</code>：关闭此流，同时释放资源</li>
+</ul>
+<h3 id="4、FileWriter"><a href="#4、FileWriter" class="headerlink" title="4、FileWriter"></a>4、FileWriter</h3><ul>
+<li><code>java.io.Writer</code><ul>
+<li><code>java.io.OutputStreamWriter</code><ul>
+<li><code>java.io.FileWriter</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * java.io.writer ：字符输出流，所有字符输出流的顶层父类，是一个抽象类
+ * 
+ * java.io.FileWriter extends OutputStreamWriter extends Writer
+ * FileWriter：文件字符输出流
+ *  作用：把内存中的字符数据写入到文件中
+ *  
+ * 构造方法：
+ *      FileWriter(File file)
+ *      FileWriter(File file, boolean append) 
+ *      FileWriter(String fileName)
+ *      FileWriter(String fileName, boolean append) 
+ *      参数：
+ *          file：写入数据的目的地
+ *          fileName：文件路径
+ *          append: 是否是追加写入
+ *      构造方法作用：
+ *          1. 创建一个 FileWriter 对象
+ *          2. 根据构造方法中传入的 文件/文件的路径，创建文件
+ *          3. 会把 FileWriter 对象指向创建好的文件
+ * 使用步骤：
+ *      1. 创建 FileWriter 对象，构造方法绑定写入数据的目的地
+ *      2. 使用 FileWriter 对象的方法 write, 将数据写入到内存缓冲区中（字符转换为字节的过程）
+ *      3. 使用 FileWriter 对象的方法 flush, 把内存缓冲区中的数据，刷新到文件中
+ *      4. 释放资源（会先把内存缓冲区中的数据刷新到文件中）
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01Writer</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">FileWriter</span> fw <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 1. 创建对象</span>
+            fw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileWriter</span><span class="token punctuation">(</span><span class="token string">"src\\main\\java\\com\\naivekyo\\Java_IO\\IO_Writer\\d.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 2. 写入单个字符</span>
+            <span class="token comment">// fw.write(97);</span>
+            <span class="token comment">// 2. 写入字符数组</span>
+            <span class="token comment">// char[] chars = {'1', '2', '3', 'a', 'b', 'c', '你', '好'};</span>
+            <span class="token comment">// fw.write(chars);</span>
+            <span class="token comment">// 2. 写入字符串</span>
+            <span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"Hello Java I/O Writer, 文件字符输出流"</span><span class="token punctuation">;</span>
+            fw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 3. 刷新缓冲区</span>
+            fw<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 4. 释放资源</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fw <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>Tip：</p>
+<pre><code> 1. 虽然 write 重载方法的参数是 int 类型，四个字节，但是只会保留一个字符的信息写出
+ 2. 未调用 close 方法，数据只是保存到了缓冲区，并没有写出到文件中
+</code></pre>
+</blockquote>
+<h3 id="5、关闭和刷新"><a href="#5、关闭和刷新" class="headerlink" title="5、关闭和刷新"></a>5、关闭和刷新</h3><p>因为内置缓冲区的原因，如果不关闭输出流，无法写出字符到文件中。但是关闭的流对象，是无法继续写出数据的。如果我们既想写出数据，又想继续使用流，就需要 <code>flush</code> 方法。</p>
+<ul>
+<li><strong>flush</strong>：刷新缓冲区，流对象可以继续使用</li>
+<li><strong>close</strong>：先刷新缓冲区，然后通知系统释放资源。流对象被关闭，无法继续使用</li>
+</ul>
+<blockquote>
+<p>Tip: 即便 flush 方法刷新了缓冲区，将数据写入到文件，在操作的最后还是要调用 close 方法关闭流对象，释放系统资源。</p>
+</blockquote>
+<p><strong>补充：续写和换行</strong></p>
+<p>操作类似 <code>FileOutputStream</code></p>
+<ul>
+<li>使用带有 <code>append</code> 布尔值的构造函数</li>
+<li>换行：<code>fw.write("\r\n")</code></li>
+</ul>
+<p>换行符：</p>
+<ul>
+<li>windows：<code>\r\n</code></li>
+<li>Linux：<code>/n</code></li>
+<li>mac：<code>/r</code></li>
+</ul>
+<h2 id="四、对比-JDK7-和-JDK9-中流异常处理"><a href="#四、对比-JDK7-和-JDK9-中流异常处理" class="headerlink" title="四、对比 JDK7 和 JDK9 中流异常处理"></a>四、对比 JDK7 和 JDK9 中流异常处理</h2><h3 id="1、JDK-7-新特性"><a href="#1、JDK-7-新特性" class="headerlink" title="1、JDK 7 新特性"></a>1、JDK 7 新特性</h3><p>在 try 的后面加一个 <code>()</code>，在括号中定义流对象，那么这个流对象的作用域就只在 try 块中有效。</p>
+<p>try 中代码执行完毕，会自动包流对象释放，不用写 finally 了。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> JKD7_IO <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"D:\\a.txt"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            
+            <span class="token keyword">int</span> read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、JDK-9-新特性"><a href="#2、JDK-9-新特性" class="headerlink" title="2、JDK 9 新特性"></a>2、JDK 9 新特性</h3><p>try 的前面可以定义流对象</p>
+<p>在 try 后边的 <code>()</code> 中可以直接引入流对象的名称（变量名）</p>
+<p>try 块中代码执行完毕后，流对象也可以自动释放，无需 finally 块</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> JKD9_IO <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+      	<span class="token class-name">FileInputStream</span> fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"D:\\a.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">FileOutputStream</span> fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token string">"D:\\b.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token keyword">try</span> <span class="token punctuation">(</span>fis<span class="token punctuation">;</span> fos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            
+            <span class="token keyword">int</span> read <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="五、补充"><a href="#五、补充" class="headerlink" title="五、补充"></a>五、补充</h2><h3 id="1、Java-字符编码介绍"><a href="#1、Java-字符编码介绍" class="headerlink" title="1、Java 字符编码介绍"></a>1、Java 字符编码介绍</h3><p>计算机中，任何的文字都是以指定的编码方式存在的。</p>
+<p>Java 中常见编码：</p>
+<ul>
+<li>ISO8859-1：属于单字节编码，最多只能表示 0~255 的字符范围。</li>
+<li>GBK/GB2312：中文的国标编码，用来表示汉字，属于双字节编码。GBK 可以表示简体中文和繁体中文，而 GB2312 只能表示简体中文。GBK 兼容 GB2312。</li>
+<li>Unicode：是一种编码规范，是为解决全球字符通用编码而设计的。UTF-8 和 UTF-16 是这种规范的一种实现，此编码不兼容 ISO8859-1 编码。Java 内部采用此编码。</li>
+<li>UTF：UTF 编码兼容了 ISO8859-1 编码，同时也可以用来表示所有的语言字符，不过 UTF 编码是不定长编码，每一个字符的长度为 1~6 个字节不等。一般在中文网页中使用此编码，可以节省空间</li>
+</ul>
+<p>本地的默认编码可以使用 System 类查看。Java 中 System 类可以取得与系统有关的信息，所以直接使用此类可以找到系统的默认编码。方法如下所示：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 获取当前系统编码</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"系统默认编码："</span> <span class="token operator">+</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"file.encoding"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、装饰器模式在-Java-I-O-中的应用"><a href="#2、装饰器模式在-Java-I-O-中的应用" class="headerlink" title="2、装饰器模式在 Java I/O 中的应用"></a>2、装饰器模式在 Java I/O 中的应用</h3><p>Java I/O 类库需要多种不同功能的组合，这正是使用装饰器模式的里有所在。</p>
+<p>这也是 Java I/O 类库里存在 <strong>filter（过滤器）</strong>类的原因，抽象类 <code>filter</code> 是所有装饰器类的基类。</p>
+<p>装饰器必须具有和它所装饰的对象相同的接口，但它也可以扩展接口，而这种情况只发生在个别 <code>filter</code> 类中。</p>
+<p>但是，装饰器模式也有一个缺点：在编写程序时，它给我们提供了相当多的灵活性（我们可以很容易的混合和匹配属性），但是它同时也增加了代码的复杂性。</p>
+<p>Java I/O 类操作不变的原因在于：我们必须创建很多类 —— “核心” I/O 类型加上所有的装饰器，才能得到我们所希望的单个 I/O 对象。（PS：C 语言就不一样，一个 file 包完成所有工作 OvO）。</p>
+<p><code>FileterInputStream</code> 和 <code>FilterOutputStream</code> 是用来提供装饰器类接口以控制特定输入流（<code>InputStream</code>）和输出流（<code>OutputStream</code>）的两个类。</p>
+<p>它们分别自 I/O 类库中的基类 <code>InputStream</code> 和 <code>OutputStream</code> 派生而来，这两个类是装饰器的必要条件（以便能为所有正在被修饰的对象提供通用接口）</p>
+<h4 id="（1）FilterInputStream-类型"><a href="#（1）FilterInputStream-类型" class="headerlink" title="（1）FilterInputStream 类型"></a>（1）FilterInputStream 类型</h4><p>通过 <code>FilterInputStream</code> 从 <code>InputStream</code> 读取数据。</p>
+<p>在 <code>FilterInputStream</code> 的诸多子类中，如果按照功能来看大致可以分为两类：</p>
+<ul>
+<li><code>DataInputStream</code> 允许我们读取不同的基本类型数据以及 String 对象。搭配相应的 <code>DataOutputStream</code>，我们就可以通过数据 “流” 将基本类型的数据从一个地方迁移到另一个地方</li>
+<li>其他的 <code>FilterInputStream</code> 类则在内部修改 <code>InputStream</code> 的行为方式：<ul>
+<li>是否缓冲</li>
+<li>是否保留它所读过的行（允许我们查询行数或者设置行数）</li>
+<li>是否把单一字符推回输入流等等</li>
+<li>可能是为了创建一个编译器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Tip：我们几乎每次都要对输入进行缓冲 —— 不管我们正在连接什么 I/O 设备，所以，I/O 类库把无缓冲输入（不是缓冲输入）作为特殊情况就显得很合理。</p>
+</blockquote>
+<p>看看 <code>FilterInputStream</code> 的常用子类：</p>
+<table>
+<thead>
+<tr>
+<th align="center">类</th>
+<th align="center">功能</th>
+<th align="center">构造器参数<hr>如何使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>DataInputStream</strong></td>
+<td align="center">与 <code>DataOutputStream</code> 搭配使用，因此我们可以按照可移植方式从流读取基本数据类型（int，char，long 等等）</td>
+<td align="center"><code>InputStream</code><hr>包含用于读取基本类型数据的全部接口</td>
+</tr>
+<tr>
+<td align="center"><strong>BufferedInputStream</strong></td>
+<td align="center">使用它可以防止每次读取时都得进行实际写操作。代表 “使用缓冲区”</td>
+<td align="center"><code>InputStream</code>，可以指定缓冲区大小（可选）<hr>本质上不提供接口，只不过是向进程中添加缓冲区所必需的。与接口对象搭配</td>
+</tr>
+<tr>
+<td align="center"><strong>LineNumberInputStream</strong></td>
+<td align="center">跟踪输入流中的行号；可调用 <code>getLineNumber()</code> 和 <code>setLineNumber(int)</code></td>
+<td align="center"><code>InputStream</code><hr>仅增加了行号，因此可能要与接口对象搭配使用</td>
+</tr>
+<tr>
+<td align="center"><strong>PushbackInputStream</strong></td>
+<td align="center">具有 “能弹出一个字节的缓冲区”。因此可以将读到的最后一个字符回退。</td>
+<td align="center"><code>InputStream</code><hr>通常作为编译器的扫描器，之所以包含在内是因为 Java 编译器的需要，我们可能永远不会用到</td>
+</tr>
+</tbody></table>
+<h4 id="（2）FilterOutputStream-类型"><a href="#（2）FilterOutputStream-类型" class="headerlink" title="（2）FilterOutputStream 类型"></a>（2）FilterOutputStream 类型</h4><ul>
+<li>与 <code>DataInputStream</code> 对应的是 <code>DataOutputStream</code> ，它可以把各种基本数据类型以及 String 对象格式化输出到 “流” 中；这样，任何机器上的任何 <code>DataInputStream</code> 都能够读取它们。</li>
+<li><code>PrintStream</code> 最初的目的是为了以可视化格式打印所有的基本数据类型以及 String 对象。它和 DataOutputStream 不同，它的目的是将数据置入 “流” 中，使 DataInputStream 能够可移植的重构它们</li>
+<li><code>BufferedOutputStream</code> 是一个修改过的 <code>OutputStream</code>，它对数据流使用缓冲技术；因此当每次向流写入时，不必每次都进行实际的物理写操作。所以在进行输出时，我们可能更经常的使用它。</li>
+</ul>
+<p>看看 <code>FilterOutputStream</code> 的常用子类：</p>
+<table>
+<thead>
+<tr>
+<th align="center">类</th>
+<th align="center">功能</th>
+<th align="center">构造器参数<hr>如何使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>DataOutputStream</strong></td>
+<td align="center">与 <code>DataInputStream</code> 搭配使用，因此可以按照可移植的方式向流中写入基本数据类型（int，char，long等等）（PS：可移植其实指的是不同操作系统定义基本数据类型占用的字节不同）</td>
+<td align="center"><code>OutputStream</code><hr>包含用于写入基本类型数据的全部接口</td>
+</tr>
+<tr>
+<td align="center"><strong>PrintStream</strong></td>
+<td align="center">用于产生格式化输出。其中 <code>DataOutputStream</code> 处理数据的存储，<code>PrintStream</code> 处理数据的显示</td>
+<td align="center"><code>OutputStream</code>，可以用 boolean 值指示是否在每次换行时清空缓冲区（可选的），应该是对 <code>OutputStrem</code> 对象的 “final” 封装<hr>可能会经常使用到它</td>
+</tr>
+<tr>
+<td align="center"><strong>BufferedOutputStream</strong></td>
+<td align="center">使用它以避免每次发送数据时都要进行实际的写操作。代表 “使用缓冲区” 。可以调用 <code>flush()</code> 清空缓冲区</td>
+<td align="center"><code>OutputStream</code>，可以指定缓冲区大小（可选的）<hr>本质上并不提供接口，只不过是向进程中添加缓冲区是必须的。与接口对象搭配</td>
+</tr>
+</tbody></table>
+<h3 id="3、字节流和字符流"><a href="#3、字节流和字符流" class="headerlink" title="3、字节流和字符流"></a>3、字节流和字符流</h3><p>老的 I/O 流继承层次结构仅支持 8 位字节流，不能很好的处理 16 位的 Unicode 字符。由于 Unicode 用于字符国际化，所以添加了 <code>Reader</code> 和 <code>Writer</code> 继承层次结构就是为了在所有的 I/O 操作中都支持 Unicode。</p>
+<ul>
+<li>Java 1.1 中向老的字节流体系中添加了一些新类，所以 <code>InputStream</code> 和 <code>OutputStream</code> 显然不会被取代</li>
+<li>有时候我们必须把来自 “字节” 层次结构中的类和 “字符” 层次结构中的类结合起来使用。为了实现这个目的，就需要用到 <strong>“适配器”（adapter）</strong> 类<ul>
+<li><code>InputStreamReader</code> 可以把 <code>InputStream</code> 转换为 <code>Reader</code> </li>
+<li><code>OutputStreamWriter</code> 可以把 <code>OutputStream</code> 转换为 <code>Writer</code></li>
+</ul>
+</li>
+</ul>
+<p>设计 <code>Reader</code> 和 <code>Writer</code> 继承层次结构主要是为了国际化。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2021/08/08/java-io-stream-intro/">https://naivekyo.github.io/2021/08/08/java-io-stream-intro/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/IO/">
+                                    <span class="chip bg-color">IO</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2021/08/08/java-io-stream-intro/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808175414.jpg" class="responsive-img" alt="Java IO Stream Intro">
+                        
+                        <span class="card-title">Java IO Stream Intro</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java I/O 体系浅析。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            <a href="/categories/Java/IO/" class="post-category">
+                                    IO
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/IO/">
+                        <span class="chip bg-color">IO</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/08/java-file-intro/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808085432.jpg" class="responsive-img" alt="Java File Intro">
+                        
+                        <span class="card-title">Java File Intro</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java File 类简介
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2086589645@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    2.4k
                 </div>
                 
 
@@ -671,7 +671,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p><code>java.io.File</code> 类是文件和目录路径名的 <strong>抽象表示</strong>，主要用于文件和目录的创建、查找和删除操作。</p>
+                <h1 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>在 Java 中，<strong>File 类是 java.io 包中唯一代表磁盘文件本身的对象</strong>，它是文件和目录路径名的 <strong>抽象表示</strong>，主要用于文件和目录的创建、查找和删除操作。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * Java 把电脑中的文件和文件夹封装为一个 File 类
  *  可以使用 File 类的方法
@@ -1083,9 +1083,21 @@
 
 
 <p>改一下就可以变成递归删除了 OvO</p>
-<h2 id="6、文件过滤器"><a href="#6、文件过滤器" class="headerlink" title="6、文件过滤器"></a>6、文件过滤器</h2><p><code>java.io.FileFilter</code> 是一个接口，是 File 的过滤器。该接口的对象可以传递给 File 类的 <code>listFiles(FileFilter)</code> 作为参数，接口中只有一个方法。</p>
+<h2 id="6、过滤器"><a href="#6、过滤器" class="headerlink" title="6、过滤器"></a>6、过滤器</h2><h3 id="（1）文件过滤器"><a href="#（1）文件过滤器" class="headerlink" title="（1）文件过滤器"></a>（1）文件过滤器</h3><p><code>java.io.FileFilter</code> 是一个接口，是 File 的过滤器，该接口中只有一个方法。</p>
+<p>该接口的对象可以传递给 File 类的 <code>listFiles(FileFilter)</code> 作为参数。</p>
 <ul>
 <li><code>boolean accept(File pathname);</code> 测试 pathname 是否应该包含在当前 File 目录中，符合则返回 true</li>
+</ul>
+<h3 id="（2）文件名过滤器"><a href="#（2）文件名过滤器" class="headerlink" title="（2）文件名过滤器"></a>（2）文件名过滤器</h3><p><code>java.io.FilenameFilter</code> 也是一个接口，该接口中也只拥有一个方法：</p>
+<ul>
+<li><code>boolean accept(File dir, String name);</code>：可以用于测试指定目录下是否拥有指定名字的目录或文件</li>
+</ul>
+<p>该接口的对象可以传递给 File 类的 <code>list(FilenameFilter)</code> 方法。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当将这两个接口的对象传递给对应的方法时，会回调 <code>accept()</code> ，进而决定哪些文件包含在列表中。</p>
+<p>这是 <strong>策略模式</strong> 的一个例子。</p>
+<ul>
+<li>list 或 listFiles 实现了基本的功能</li>
+<li>同时按照 <code>FilenameFilter</code> 和 <code>FileFilter</code> 的形式提供了相应的策略，进而完善 list 或 listFiles 在提供服务时所需的算法</li>
 </ul>
 
                 
@@ -1319,29 +1331,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/08/08/java-file-intro/">
+                <a href="/2021/08/08/java-io-stream-intro/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808085432.jpg" class="responsive-img" alt="Java File Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210808175414.jpg" class="responsive-img" alt="Java IO Stream Intro">
                         
-                        <span class="card-title">Java File Intro</span>
+                        <span class="card-title">Java IO Stream Intro</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java File 类简介
+                            Java I/O 体系浅析。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1350,16 +1361,23 @@
                                     Java
                                 </a>
                             
+                            <a href="/categories/Java/IO/" class="post-category">
+                                    IO
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/IO/">
+                        <span class="chip bg-color">IO</span>
                     </a>
                     
                 </div>
