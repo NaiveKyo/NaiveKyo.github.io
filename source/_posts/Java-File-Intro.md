@@ -20,7 +20,7 @@ tags: Java
 
 ## 1、概述
 
-`java.io.File` 类是文件和目录路径名的 **抽象表示**，主要用于文件和目录的创建、查找和删除操作。
+在 Java 中，**File 类是 java.io 包中唯一代表磁盘文件本身的对象**，它是文件和目录路径名的 **抽象表示**，主要用于文件和目录的创建、查找和删除操作。
 
 
 
@@ -63,14 +63,11 @@ public class Demo01_File {
 
 
  * 路径：
-
    *  绝对路径：是一个完整的路径
-
- *    以盘符开始的路径
-
-       *  相对路径：是一个简化的路径
-       *  相对指的是相对于当前项目的根目录
-       *  如果使用当前项目的根目录，路径可以简化书写
+ * 以盘符开始的路径：
+    * 相对路径：是一个简化的路径
+    * 相对指的是相对于当前项目的根目录
+    * 如果使用当前项目的根目录，路径可以简化书写
 
  *  注意：
 
@@ -457,11 +454,37 @@ public class Demo07_File_Recursion {
 
 
 
-## 6、文件过滤器
+## 6、过滤器
 
-`java.io.FileFilter` 是一个接口，是 File 的过滤器。该接口的对象可以传递给 File 类的 `listFiles(FileFilter)` 作为参数，接口中只有一个方法。
+### （1）文件过滤器
+
+`java.io.FileFilter` 是一个接口，是 File 的过滤器，该接口中只有一个方法。
+
+该接口的对象可以传递给 File 类的 `listFiles(FileFilter)` 作为参数。
 
 
 
 - `boolean accept(File pathname);` 测试 pathname 是否应该包含在当前 File 目录中，符合则返回 true
 
+
+
+### （2）文件名过滤器
+
+`java.io.FilenameFilter` 也是一个接口，该接口中也只拥有一个方法：
+
+- `boolean accept(File dir, String name);`：可以用于测试指定目录下是否拥有指定名字的目录或文件
+
+该接口的对象可以传递给 File 类的 `list(FilenameFilter)` 方法。
+
+
+
+### 总结
+
+当将这两个接口的对象传递给对应的方法时，会回调 `accept()` ，进而决定哪些文件包含在列表中。
+
+这是 **策略模式** 的一个例子。
+
+
+
+- list 或 listFiles 实现了基本的功能
+- 同时按照 `FilenameFilter` 和 `FileFilter` 的形式提供了相应的策略，进而完善 list 或 listFiles 在提供服务时所需的算法
