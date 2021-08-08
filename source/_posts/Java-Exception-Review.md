@@ -6,8 +6,8 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210807154056.jpg'
 coverImg: /img/20210807154056.jpg
 toc: true
 date: 2021-08-07 15:40:38
-top: true
-cover: false
+top: false
+cover: true
 summary: 复习 Java 的异常相关知识
 categories: Java
 keywords:
@@ -34,13 +34,13 @@ tags: Java
 - 其下有两个子类：
   - `java.lang.Error`
   - `java.lang.Exception`：就是我们平时说的异常
-    - 一个特殊的子类：`java.lang.RuntimeException` 运行器异常
+    - 一个特殊的子类：`java.lang.RuntimeException` 运行期异常
 
 
 
 **Throwable 体系：**
 
-- **Error**：严重错误异常 Error，无法通过处理的错误，只能事先避免
+- **Error**：严重错误异常 Error，无法处理的错误，只能事先避免
 - **Exception**：表示异常，异常产生后程序员可以通过修正代码来避免，使程序继续运行，是必须要处理的
 
 
@@ -308,7 +308,7 @@ try {
 
 为什么子类异常的 catch 块要放在父类异常的 catch 之上呢？
 
-- 因为当在 try 块中可能会抛出多个异常且异常具有父子类关系的时候
+- 当在 try 块中可能会抛出多个异常且异常具有继承关系的时候
 - try 块中捕捉到一个异常，该异常会被抛出交给 catch 块处理，而抛出的异常对象会从上到下依次赋值给遇到的 catch 块中定义的异常变量
 - 如果第一个 catch 块定义了父类异常的变量，就会出现多态，父类引用指向子类实例，或者父类引用指向父类实例，匹配成功后就不会抛给下方的 catch 块，下面的 catch 就没有了意义
 - 如果第一个 catch 块定义了子类异常的变量，抛出的是父类异常对象，不会出现子类引用指向父类实例的问题，该异常对象会继续抛出找到和自己匹配的异常变量
@@ -321,7 +321,7 @@ public class Demo03MultiException {
 
     public static void main(String[] args) {
         
-        // 1. 多个y分别处理
+        // 1. 多个异常分别处理
         try {
             int[] arr = {1, 2, 3};
 
