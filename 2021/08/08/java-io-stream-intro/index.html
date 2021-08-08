@@ -685,7 +685,7 @@
 </ul>
 </li>
 <li>o：output 输出（写入）<ul>
-<li>输出：把硬盘中的数据，写入到硬盘中保存</li>
+<li>输出：把内存中的数据，写入到硬盘中保存</li>
 </ul>
 </li>
 <li>流：数据（字符，字节）1 个字符 = 2 个字节 = 8 位</li>
@@ -693,8 +693,8 @@
 <p>Java I/O 操作主要是指使用 <code>java.io</code> 包下的内容，进行输入、输出操作。输入也叫做读取数据，输出也叫做写出数据</p>
 <h3 id="2、分类"><a href="#2、分类" class="headerlink" title="2、分类"></a>2、分类</h3><p>根据数据的流向分为：<strong>输入流</strong> 和 <strong>输出流</strong></p>
 <ul>
-<li><strong>输入流</strong>：把数据从 其他设备 上读取到 内存 中的流</li>
-<li><strong>输出流</strong>：把数据从 内存 中写出到 其他设备 上的流</li>
+<li><strong>输入流</strong>：把数据从其他设备上读取到内存中的流</li>
+<li><strong>输出流</strong>：把数据从内存 中写出到其他设备上的流</li>
 </ul>
 <p>根据数据的类型可分为：<strong>字节流</strong> 和 <strong>字符流</strong></p>
 <h3 id="3、顶级父类"><a href="#3、顶级父类" class="headerlink" title="3、顶级父类"></a>3、顶级父类</h3><table>
@@ -720,7 +720,7 @@
 <h3 id="2、字节输出流-OutputStream"><a href="#2、字节输出流-OutputStream" class="headerlink" title="2、字节输出流 OutputStream"></a>2、字节输出流 OutputStream</h3><p><code>java.io.OutputStream</code> 抽象类是表示字节输出流的所有类的超类，将指定的字节信息写出到目的地。它定义了字节输出流的基本共性功能方法：</p>
 <ul>
 <li><code>public void close()</code>：关闭此输出流并释放与此相关联的任何系统资源</li>
-<li><code>public void flush()</code>：刷新此输出流并强制任何缓冲的输出字节被写出</li>
+<li><code>public void flush()</code>：刷新此输出流并强制将缓冲区中的字节被写出到磁盘上</li>
 <li><code>public void write(byte[] b)</code>：将 b.length 个字节从指定的字节数组写入此输出流</li>
 <li><code>public void write(byte[] b, int off, int len)</code>：从指定的字节数组写入 len 字节，从偏移量 off 开始输出到此输出流</li>
 <li><code>public abstract void write(int b)</code>：将指定的字节写入此输出流</li>
@@ -1231,9 +1231,8 @@
 
 <blockquote>
 <p>Tip：</p>
-<pre><code> 1. 虽然 write 重载方法的参数是 int 类型，四个字节，但是只会保留一个字符的信息写出
- 2. 未调用 close 方法，数据只是保存到了缓冲区，并没有写出到文件中
-</code></pre>
+<p>1、虽然 write 重载方法的参数是 int 类型，四个字节，但是只会保留一个字符的信息写出</p>
+<p>2、未调用 close 方法，数据只是保存到了缓冲区，并没有写出到文件中</p>
 </blockquote>
 <h3 id="5、关闭和刷新"><a href="#5、关闭和刷新" class="headerlink" title="5、关闭和刷新"></a>5、关闭和刷新</h3><p>因为内置缓冲区的原因，如果不关闭输出流，无法写出字符到文件中。但是关闭的流对象，是无法继续写出数据的。如果我们既想写出数据，又想继续使用流，就需要 <code>flush</code> 方法。</p>
 <ul>
@@ -1311,11 +1310,11 @@
     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"系统默认编码："</span> <span class="token operator">+</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"file.encoding"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="2、装饰器模式在-Java-I-O-中的应用"><a href="#2、装饰器模式在-Java-I-O-中的应用" class="headerlink" title="2、装饰器模式在 Java I/O 中的应用"></a>2、装饰器模式在 Java I/O 中的应用</h3><p>Java I/O 类库需要多种不同功能的组合，这正是使用装饰器模式的里有所在。</p>
+<h3 id="2、装饰器模式在-Java-I-O-中的应用"><a href="#2、装饰器模式在-Java-I-O-中的应用" class="headerlink" title="2、装饰器模式在 Java I/O 中的应用"></a>2、装饰器模式在 Java I/O 中的应用</h3><p>Java I/O 类库需要多种不同功能的组合，这正是使用装饰器模式的理由所在。</p>
 <p>这也是 Java I/O 类库里存在 <strong>filter（过滤器）</strong>类的原因，抽象类 <code>filter</code> 是所有装饰器类的基类。</p>
 <p>装饰器必须具有和它所装饰的对象相同的接口，但它也可以扩展接口，而这种情况只发生在个别 <code>filter</code> 类中。</p>
 <p>但是，装饰器模式也有一个缺点：在编写程序时，它给我们提供了相当多的灵活性（我们可以很容易的混合和匹配属性），但是它同时也增加了代码的复杂性。</p>
-<p>Java I/O 类操作不变的原因在于：我们必须创建很多类 —— “核心” I/O 类型加上所有的装饰器，才能得到我们所希望的单个 I/O 对象。（PS：C 语言就不一样，一个 file 包完成所有工作 OvO）。</p>
+<p>Java I/O 类操作不变的原因在于：我们必须创建很多类 —— “核心” I/O 类型加上所有的装饰器，才能得到我们所期望的单个 I/O 对象。（PS：C 语言就不一样，一个 file 包完成所有工作 OvO）。</p>
 <p><code>FileterInputStream</code> 和 <code>FilterOutputStream</code> 是用来提供装饰器类接口以控制特定输入流（<code>InputStream</code>）和输出流（<code>OutputStream</code>）的两个类。</p>
 <p>它们分别自 I/O 类库中的基类 <code>InputStream</code> 和 <code>OutputStream</code> 派生而来，这两个类是装饰器的必要条件（以便能为所有正在被修饰的对象提供通用接口）</p>
 <h4 id="（1）FilterInputStream-类型"><a href="#（1）FilterInputStream-类型" class="headerlink" title="（1）FilterInputStream 类型"></a>（1）FilterInputStream 类型</h4><p>通过 <code>FilterInputStream</code> 从 <code>InputStream</code> 读取数据。</p>
