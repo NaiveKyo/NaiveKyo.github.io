@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-11T02:44:30.547Z</updated>
+  <updated>2021-08-11T03:13:01.381Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://naivekyo.github.io/2021/08/11/java-io-stream-extension/"/>
     <id>https://naivekyo.github.io/2021/08/11/java-io-stream-extension/</id>
     <published>2021-08-11T02:36:22.000Z</published>
-    <updated>2021-08-11T02:44:30.547Z</updated>
+    <updated>2021-08-11T03:13:01.381Z</updated>
     
     
       
@@ -33,6 +33,8 @@
       
     
     
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
     
     <category term="java" scheme="https://naivekyo.github.io/categories/java/"/>
     
@@ -50,7 +52,7 @@
     <link href="https://naivekyo.github.io/2021/08/08/java-io-stream-intro/"/>
     <id>https://naivekyo.github.io/2021/08/08/java-io-stream-intro/</id>
     <published>2021-08-08T09:52:55.000Z</published>
-    <updated>2021-08-08T10:36:18.564Z</updated>
+    <updated>2021-08-11T03:12:54.269Z</updated>
     
     
       
