@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-08T10:36:18.564Z</updated>
+  <updated>2021-08-11T02:44:30.547Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java IO Stream Extension</title>
+    <link href="https://naivekyo.github.io/2021/08/11/java-io-stream-extension/"/>
+    <id>https://naivekyo.github.io/2021/08/11/java-io-stream-extension/</id>
+    <published>2021-08-11T02:36:22.000Z</published>
+    <updated>2021-08-11T02:44:30.547Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、属性集&quot;&gt;&lt;a href=&quot;#一、属性集&quot; class=&quot;headerlink&quot; title=&quot;一、属性集&quot;&gt;&lt;/a&gt;一、属性集&lt;/h2&gt;&lt;h3 id=&quot;1、概述&quot;&gt;&lt;a href=&quot;#1、概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="java" scheme="https://naivekyo.github.io/categories/java/"/>
+    
+    <category term="IO" scheme="https://naivekyo.github.io/categories/java/IO/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+    <category term="IO" scheme="https://naivekyo.github.io/tags/IO/"/>
+    
+  </entry>
   
   <entry>
     <title>Java IO Stream Intro</title>
@@ -50,7 +79,7 @@
     <link href="https://naivekyo.github.io/2021/08/08/java-file-intro/"/>
     <id>https://naivekyo.github.io/2021/08/08/java-file-intro/</id>
     <published>2021-08-08T00:54:09.000Z</published>
-    <updated>2021-08-08T08:41:29.772Z</updated>
+    <updated>2021-08-11T02:50:08.733Z</updated>
     
     
       
@@ -75,7 +104,7 @@
     <link href="https://naivekyo.github.io/2021/08/07/java-exception-review/"/>
     <id>https://naivekyo.github.io/2021/08/07/java-exception-review/</id>
     <published>2021-08-07T07:40:38.000Z</published>
-    <updated>2021-08-08T00:55:29.772Z</updated>
+    <updated>2021-08-11T02:48:39.883Z</updated>
     
     
       
@@ -504,31 +533,6 @@
     <category term="Browser" scheme="https://naivekyo.github.io/tags/Browser/"/>
     
     <category term="Storage" scheme="https://naivekyo.github.io/tags/Storage/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git_Manual</title>
-    <link href="https://naivekyo.github.io/2021/07/12/git-manual/"/>
-    <id>https://naivekyo.github.io/2021/07/12/git-manual/</id>
-    <published>2021-07-12T11:55:21.000Z</published>
-    <updated>2021-07-22T00:41:15.659Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、常规流程&quot;&gt;&lt;a href=&quot;#一、常规流程&quot; class=&quot;headerlink&quot; title=&quot;一、常规流程&quot;&gt;&lt;/a&gt;一、常规流程&lt;/h2&gt;&lt;p&gt;考虑到 GitHub 初始化项目时可能会选择生成 Readme.md</summary>
-        
-      
-    
-    
-    
-    <category term="Git" scheme="https://naivekyo.github.io/categories/Git/"/>
-    
-    
-    <category term="Git" scheme="https://naivekyo.github.io/tags/Git/"/>
     
   </entry>
   
