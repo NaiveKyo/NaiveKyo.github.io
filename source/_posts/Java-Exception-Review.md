@@ -7,7 +7,7 @@ coverImg: /img/20210807154056.jpg
 toc: true
 date: 2021-08-07 15:40:38
 top: false
-cover: true
+cover: false
 summary: 复习 Java 的异常相关知识
 categories: Java
 keywords:
