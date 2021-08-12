@@ -652,7 +652,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-11
+                    2021-08-12
                 </div>
                 
 
@@ -1663,8 +1663,9 @@ OK<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><
 <li><p>使用 <code>StringRedisTemplate</code>，但是它只能针对 String 做一些处理，非常不方便</p>
 </li>
 <li><p>更改 RedisTemplate 默认的序列化方式（默认使用的是）</p>
-<pre class="line-numbers language-none"><code class="language-none">By default, it uses Java serialization for its objects (through {@link JdkSerializationRedisSerializer}.For String intensive operations consider the dedicated {@link StringRedisTemplate}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<blockquote>
+<p>By default, it uses Java serialization for its objects (through {@link JdkSerializationRedisSerializer}.For String intensive operations consider the dedicated {@link StringRedisTemplate}</p>
+</blockquote>
 <p>也就是说默认序列化方式是 jdk 的序列化，针对 String 类型可以使用特定的 StringRedisTemplate</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// RedisTemplate 序列化要求</span>
 <span class="token keyword">private</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">RedisSerializer</span> keySerializer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
