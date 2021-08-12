@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-11T03:21:50.893Z</updated>
+  <updated>2021-08-12T08:23:11.179Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot Integrated Cache</title>
+    <link href="https://naivekyo.github.io/2021/08/12/springboot-integrated-cache/"/>
+    <id>https://naivekyo.github.io/2021/08/12/springboot-integrated-cache/</id>
+    <published>2021-08-12T08:20:38.000Z</published>
+    <updated>2021-08-12T08:23:11.179Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringBoot-集成缓存&quot;&gt;&lt;a href=&quot;#SpringBoot-集成缓存&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot 集成缓存&quot;&gt;&lt;/a&gt;SpringBoot 集成缓存&lt;/h1&gt;&lt;h2 id=&quot;一、开启缓存支持&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="SpringBoot" scheme="https://naivekyo.github.io/categories/SpringBoot/"/>
+    
+    <category term="Cache" scheme="https://naivekyo.github.io/categories/SpringBoot/Cache/"/>
+    
+    
+    <category term="Cache" scheme="https://naivekyo.github.io/tags/Cache/"/>
+    
+    <category term="SpringBoot" scheme="https://naivekyo.github.io/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>Java IO Stream Extension</title>
@@ -506,33 +535,6 @@
     
     
     <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Browser Local Storage</title>
-    <link href="https://naivekyo.github.io/2021/07/15/browser-local-storage/"/>
-    <id>https://naivekyo.github.io/2021/07/15/browser-local-storage/</id>
-    <published>2021-07-15T02:32:23.000Z</published>
-    <updated>2021-07-15T02:36:57.491Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;浏览器本地存储&quot;&gt;&lt;a href=&quot;#浏览器本地存储&quot; class=&quot;headerlink&quot; title=&quot;浏览器本地存储&quot;&gt;&lt;/a&gt;浏览器本地存储&lt;/h1&gt;&lt;h2 id=&quot;1、localStorage&quot;&gt;&lt;a href=&quot;#1、localStorage&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Browser" scheme="https://naivekyo.github.io/categories/Browser/"/>
-    
-    
-    <category term="Browser" scheme="https://naivekyo.github.io/tags/Browser/"/>
-    
-    <category term="Storage" scheme="https://naivekyo.github.io/tags/Storage/"/>
     
   </entry>
   
