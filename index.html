@@ -582,7 +582,7 @@
 
 
             <div class="cover-btns">
-                <a href="#articles" class="waves-effect waves-light btn">
+                <a href="#indexCard" class="waves-effect waves-light btn">
                     <i class="fa fa-angle-double-down"></i>Start
                 </a>
 
@@ -741,6 +741,44 @@
                     
 
                     
+
+                    
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/dplayer/DPlayer.min.css">
+<div class="video-player">
+    
+    <div class="title center-align">
+        <i class="fas fa-video-camera"></i>&nbsp;&nbsp;RWBY Weiss Schnee
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s12">
+            <div id="dplayer" class="dplayer-video"
+                    ></div>
+        </div>
+    </div>
+</div>
+
+<!-- 提供 hls 支持 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/hls.js/1.0.8-0.canary.7807/hls.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/dplayer/DPlayer.min.js"></script>
+<script>
+    $(function () {
+        new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: 'false' === 'true',
+            theme: '#42b983',
+            loop: 'false' === 'true',
+            lang: 'zh_CN' === 'zh-CN' ? 'zh-cn' : 'en',
+            preload: 'none',
+            volume: Number('0.7'),
+            video: {
+                url: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/video/rwby.m3u8',
+                pic: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811222211.jpg',
+                thumbnails: ''
+            }
+        });
+    });
+</script>
 
                     
 
