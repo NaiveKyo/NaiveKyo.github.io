@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-12T14:54:21.060Z</updated>
+  <updated>2021-08-13T14:24:55.149Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7 Deploy Nacos Server</title>
+    <link href="https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/"/>
+    <id>https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/</id>
+    <published>2021-08-13T14:09:48.000Z</published>
+    <updated>2021-08-13T14:24:55.149Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Nacos-服务部署&quot;&gt;&lt;a href=&quot;#Nacos-服务部署&quot; class=&quot;headerlink&quot; title=&quot;Nacos 服务部署&quot;&gt;&lt;/a&gt;Nacos 服务部署&lt;/h2&gt;&lt;h3 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot Integrated Cache</title>
@@ -510,31 +535,6 @@
     
     
     <category term="Maven" scheme="https://naivekyo.github.io/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue component communication</title>
-    <link href="https://naivekyo.github.io/2021/07/15/vue-component-communication/"/>
-    <id>https://naivekyo.github.io/2021/07/15/vue-component-communication/</id>
-    <published>2021-07-15T02:39:39.000Z</published>
-    <updated>2021-07-22T00:46:34.378Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Vue-组件通信&quot;&gt;&lt;a href=&quot;#Vue-组件通信&quot; class=&quot;headerlink&quot; title=&quot;Vue 组件通信&quot;&gt;&lt;/a&gt;Vue 组件通信&lt;/h1&gt;&lt;h3 id=&quot;Vscode-小知识&quot;&gt;&lt;a href=&quot;#Vscode-小知识&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
     
   </entry>
   
