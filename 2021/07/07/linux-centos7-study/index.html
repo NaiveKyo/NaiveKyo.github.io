@@ -1291,8 +1291,8 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <ul>
 <li>安装软件包：rpm -ivh 软件包的安装文件名</li>
 <li>升级软件包：rpm -Uvh 软件包的安装文件名</li>
-<li>强制安装软件包：rpm -ivh 软件包的安装文件名 –nodeps –force</li>
-<li>强制升级软件包：rpv -Uvh 软件包的安装文件名 –nodeps –force</li>
+<li>强制安装软件包：rpm -ivh 软件包的安装文件名 --nodeps --force</li>
+<li>强制升级软件包：rpv -Uvh 软件包的安装文件名 --nodeps --force</li>
 <li>删除软件包：rpm -e 软件包名</li>
 </ul>
 <h2 id="2、yum-安装"><a href="#2、yum-安装" class="headerlink" title="2、yum 安装"></a>2、yum 安装</h2><p>rpm安装软件包的虽然方便，但是需要手工解决软件包的依赖关系。很多时候安装一个软件包需要安装多个其他软件包，还有不同版本的兼容性问题，很复杂。yum（Yellow dog Updater, Modified）解决了这些问题，yum是rpm的前端程序，设计的主要目的就是为了自动解决rpm的依赖关系，有以下优点：</p>
@@ -1376,17 +1376,17 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 </li>
 <li><p>只重启正在运行的服务：systemctl try-restart name.service</p>
 </li>
-<li><p>显示所有服务状态：systemctl list-units –type service –all</p>
+<li><p>显示所有服务状态：systemctl list-units --type service --all</p>
 </li>
 <li><p>查看启动成功的服务：systemctl list-unit-files|grep enabled</p>
 </li>
-<li><p>查看启动失败的服务：systemctl –failed</p>
+<li><p>查看启动失败的服务：systemctl --failed</p>
 </li>
-<li><p>查看所有服务状态：systemctl list-unit-files –type service</p>
+<li><p>查看所有服务状态：systemctl list-unit-files --type service</p>
 </li>
-<li><p>列出在指定服务之前启动的服务（依赖）：systemctl list-dependencies –after name.service</p>
+<li><p>列出在指定服务之前启动的服务（依赖）：systemctl list-dependencies --after name.service</p>
 </li>
-<li><p>列出在指定服务之后启动的服务（被依赖）：systemctl list-dependencies –before name.service</p>
+<li><p>列出在指定服务之后启动的服务（被依赖）：systemctl list-dependencies --before name.service</p>
 </li>
 </ul>
 <h1 id="十、CentOS7-配置防火墙"><a href="#十、CentOS7-配置防火墙" class="headerlink" title="十、CentOS7 配置防火墙"></a>十、CentOS7 配置防火墙</h1><p>防火墙技术是用于安全管理的软件和硬件设备，在计算机内/外网之间构建一道相对隔绝的保护屏障，以保护数据和信息安全性的一种技术。</p>
@@ -1401,13 +1401,13 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p>CentOS7的防火墙规则既可以是端口，也可以是服务。</p>
 <p>防火墙查看和配置以下介绍的命令，如果没有特别说明就表示需要管理员权限执行。</p>
 <h2 id="1、查看防火墙的命令"><a href="#1、查看防火墙的命令" class="headerlink" title="1、查看防火墙的命令"></a>1、查看防火墙的命令</h2><ul>
-<li>查看防火墙的版本。firewall-cmd –version</li>
-<li>查看firewall的状态。firewall-cmd –state</li>
+<li>查看防火墙的版本。firewall-cmd --version</li>
+<li>查看firewall的状态。firewall-cmd --state</li>
 <li>查看firewall服务状态（普通用户可执行）。systemctl status firewalld</li>
-<li>查看防火墙全部的信息。firewall-cmd –list-all</li>
-<li>查看防火墙已开通的端口。firewall-cmd –list-port</li>
-<li>查看防火墙已开通的服务。firewall-cmd –list-service</li>
-<li>查看全部的服务列表（普通用户可执行）。firewall-cmd –get-services</li>
+<li>查看防火墙全部的信息。firewall-cmd --list-all</li>
+<li>查看防火墙已开通的端口。firewall-cmd --list-port</li>
+<li>查看防火墙已开通的服务。firewall-cmd --list-service</li>
+<li>查看全部的服务列表（普通用户可执行）。firewall-cmd --get-services</li>
 <li>查看防火墙服务是否开机启动。systemctl is-enabled firewalld</li>
 </ul>
 <h2 id="2、配置防火墙的命令"><a href="#2、配置防火墙的命令" class="headerlink" title="2、配置防火墙的命令"></a>2、配置防火墙的命令</h2><ul>
@@ -1423,17 +1423,17 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 </ul>
 </li>
 <li>开放、移去范围端口。<ul>
-<li>开放5000-5500之间的端口：firewall-cmd –zone=public –add-port=5000-5500/tcp –permanent</li>
-<li>移去5000-5500之间的端口：firewall-cmd –zone=public –remove-port=5000-5500/tcp –permanent</li>
+<li>开放5000-5500之间的端口：firewall-cmd --zone=public --add-port=5000-5500/tcp --permanent</li>
+<li>移去5000-5500之间的端口：firewall-cmd --zone=public --remove-port=5000-5500/tcp --permanent</li>
 </ul>
 </li>
 <li>开放、移去服务。<ul>
-<li>开放ftp服务：firewall-cmd –zone=public –add-service=ftp –permanent</li>
-<li>移去http服务：firewall-cmd –zone=public –remove-service=ftp –permanent</li>
+<li>开放ftp服务：firewall-cmd --zone=public --add-service=ftp --permanent</li>
+<li>移去http服务：firewall-cmd --zone=public --remove-service=ftp --permanent</li>
 </ul>
 </li>
 <li>重新加载防火墙配置（修改配置后要重新加载防火墙配置或重启防火墙服务）。<ul>
-<li>firewall-cmd –reload</li>
+<li>firewall-cmd --reload</li>
 </ul>
 </li>
 <li>设置开机时启用、禁用防火墙服务。<ul>
@@ -1443,9 +1443,9 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 </li>
 </ul>
 <h2 id="3、centos7-之前的版本"><a href="#3、centos7-之前的版本" class="headerlink" title="3、centos7 之前的版本"></a>3、centos7 之前的版本</h2><p>1）开放80，22，8080 端口。</p>
-<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT</p>
-<p>/sbin/iptables -I INPUT -p tcp –dport 22 -j ACCEPT</p>
-<p>/sbin/iptables -I INPUT -p tcp –dport 8080 -j ACCEPT</p>
+<p>/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT</p>
+<p>/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT</p>
+<p>/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT</p>
 <p>2）保存。</p>
 <p>/etc/rc.d/init.d/iptables save</p>
 <p>3）查看打开的端口。</p>
