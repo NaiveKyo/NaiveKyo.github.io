@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-13T14:24:55.149Z</updated>
+  <updated>2021-08-14T16:36:56.332Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Network Programing Intro</title>
+    <link href="https://naivekyo.github.io/2021/08/15/java-network-programing-intro/"/>
+    <id>https://naivekyo.github.io/2021/08/15/java-network-programing-intro/</id>
+    <published>2021-08-14T16:30:10.000Z</published>
+    <updated>2021-08-14T16:36:56.332Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;网络编程&quot;&gt;&lt;a href=&quot;#网络编程&quot; class=&quot;headerlink&quot; title=&quot;网络编程&quot;&gt;&lt;/a&gt;网络编程&lt;/h1&gt;&lt;h2 id=&quot;一、网络编程入门&quot;&gt;&lt;a href=&quot;#一、网络编程入门&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS7 Deploy Nacos Server</title>
@@ -75,7 +100,7 @@
     <link href="https://naivekyo.github.io/2021/08/11/java-io-stream-extension/"/>
     <id>https://naivekyo.github.io/2021/08/11/java-io-stream-extension/</id>
     <published>2021-08-11T02:36:22.000Z</published>
-    <updated>2021-08-11T03:21:50.893Z</updated>
+    <updated>2021-08-14T16:36:29.084Z</updated>
     
     
       
@@ -133,7 +158,7 @@
     <link href="https://naivekyo.github.io/2021/08/08/java-file-intro/"/>
     <id>https://naivekyo.github.io/2021/08/08/java-file-intro/</id>
     <published>2021-08-08T00:54:09.000Z</published>
-    <updated>2021-08-11T02:50:08.733Z</updated>
+    <updated>2021-08-14T16:35:59.941Z</updated>
     
     
       
@@ -287,11 +312,11 @@
   </entry>
   
   <entry>
-    <title>Java static Keyword Intro</title>
+    <title>Java Static Keyword Intro</title>
     <link href="https://naivekyo.github.io/2021/07/30/java-static-keyword-intro/"/>
     <id>https://naivekyo.github.io/2021/07/30/java-static-keyword-intro/</id>
     <published>2021-07-30T02:56:20.000Z</published>
-    <updated>2021-07-30T02:57:32.471Z</updated>
+    <updated>2021-08-14T16:37:24.286Z</updated>
     
     
       
@@ -510,31 +535,6 @@
     
     
     <category term="Swagger" scheme="https://naivekyo.github.io/tags/Swagger/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven Convergent Engineering</title>
-    <link href="https://naivekyo.github.io/2021/07/16/maven-convergent-engineering/"/>
-    <id>https://naivekyo.github.io/2021/07/16/maven-convergent-engineering/</id>
-    <published>2021-07-16T00:30:33.000Z</published>
-    <updated>2021-07-16T03:07:25.141Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Maven-的依赖管理&quot;&gt;&lt;a href=&quot;#Maven-的依赖管理&quot; class=&quot;headerlink&quot; title=&quot;Maven 的依赖管理&quot;&gt;&lt;/a&gt;Maven 的依赖管理&lt;/h2&gt;&lt;p&gt;Maven</summary>
-        
-      
-    
-    
-    
-    <category term="Maven" scheme="https://naivekyo.github.io/categories/Maven/"/>
-    
-    
-    <category term="Maven" scheme="https://naivekyo.github.io/tags/Maven/"/>
     
   </entry>
   
