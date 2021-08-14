@@ -1,5 +1,5 @@
 ---
-title: centos7-install-git
+title: CentOS7 Install Git
 date: 2021-07-06 17:56:26
 author: NaiveKyo
 top: false

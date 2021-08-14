@@ -1,5 +1,5 @@
 ---
-title: centos7-install-jdk
+title: CentOS7 Install JDK
 date: 2021-07-06 17:46:20
 author: NaiveKyo
 top: false

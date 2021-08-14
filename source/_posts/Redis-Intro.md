@@ -1315,10 +1315,8 @@ public class RedisAutoConfiguration {
 
 - 更改 RedisTemplate 默认的序列化方式（默认使用的是）
 
-  ```
-  By default, it uses Java serialization for its objects (through {@link JdkSerializationRedisSerializer}.For String intensive operations consider the dedicated {@link StringRedisTemplate}
-  ```
-
+  > By default, it uses Java serialization for its objects (through {@link JdkSerializationRedisSerializer}.For String intensive operations consider the dedicated {@link StringRedisTemplate}
+  
   也就是说默认序列化方式是 jdk 的序列化，针对 String 类型可以使用特定的 StringRedisTemplate
 
   ```java
@@ -1337,7 +1335,7 @@ public class RedisAutoConfiguration {
   // 解决思路
   // 自己定义一个 RedisTemplate
   ```
-
+  
 - 自定义 `RedisTemplate`
 
   ```java

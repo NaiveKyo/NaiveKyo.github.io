@@ -1,5 +1,5 @@
 ---
-title: centos7-install-redis
+title: CentOS7 Install Redis
 date: 2021-07-06 16:28:11
 author: NaiveKyo
 top: false

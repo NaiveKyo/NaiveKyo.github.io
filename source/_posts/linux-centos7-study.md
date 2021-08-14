@@ -1,5 +1,5 @@
 ---
-title: Linux_Centos7_Study
+title: Linux CentOS7 Study
 date: 2021-07-07 10:55:28
 author: NaiveKyo
 top: false
@@ -770,8 +770,8 @@ RPM包里面包含可执行的二进制程序，自身所带的附加文件，�
 
 - 安装软件包：rpm -ivh 软件包的安装文件名
 - 升级软件包：rpm -Uvh 软件包的安装文件名
-- 强制安装软件包：rpm -ivh 软件包的安装文件名 --nodeps --force
-- 强制升级软件包：rpv -Uvh 软件包的安装文件名 --nodeps --force
+- 强制安装软件包：rpm -ivh 软件包的安装文件名 -\-nodeps -\-force
+- 强制升级软件包：rpv -Uvh 软件包的安装文件名 -\-nodeps -\-force
 - 删除软件包：rpm -e 软件包名
 
 
@@ -891,17 +891,17 @@ systemctl命令有一点不足，就是很多命令执行后没有提示信息
 
 - 只重启正在运行的服务：systemctl try-restart name.service
 
-- 显示所有服务状态：systemctl list-units --type service --all
+- 显示所有服务状态：systemctl list-units -\-type service -\-all
 
 - 查看启动成功的服务：systemctl list-unit-files|grep enabled
 
-- 查看启动失败的服务：systemctl --failed
+- 查看启动失败的服务：systemctl -\-failed
 
-- 查看所有服务状态：systemctl list-unit-files --type service
+- 查看所有服务状态：systemctl list-unit-files -\-type service
 
-- 列出在指定服务之前启动的服务（依赖）：systemctl list-dependencies --after name.service
+- 列出在指定服务之前启动的服务（依赖）：systemctl list-dependencies -\-after name.service
 
-- 列出在指定服务之后启动的服务（被依赖）：systemctl list-dependencies --before name.service
+- 列出在指定服务之后启动的服务（被依赖）：systemctl list-dependencies -\-before name.service
 
 # 十、CentOS7 配置防火墙
 
@@ -927,13 +927,13 @@ CentOS7的防火墙规则既可以是端口，也可以是服务。
 
 ## 1、查看防火墙的命令
 
-- 查看防火墙的版本。firewall-cmd --version
-- 查看firewall的状态。firewall-cmd --state
+- 查看防火墙的版本。firewall-cmd -\-version
+- 查看firewall的状态。firewall-cmd -\-state
 - 查看firewall服务状态（普通用户可执行）。systemctl status firewalld
-- 查看防火墙全部的信息。firewall-cmd --list-all
-- 查看防火墙已开通的端口。firewall-cmd --list-port
-- 查看防火墙已开通的服务。firewall-cmd --list-service
-- 查看全部的服务列表（普通用户可执行）。firewall-cmd --get-services
+- 查看防火墙全部的信息。firewall-cmd -\-list-all
+- 查看防火墙已开通的端口。firewall-cmd -\-list-port
+- 查看防火墙已开通的服务。firewall-cmd -\-list-service
+- 查看全部的服务列表（普通用户可执行）。firewall-cmd -\-get-services
 - 查看防火墙服务是否开机启动。systemctl is-enabled firewalld
 
 
@@ -945,16 +945,16 @@ CentOS7的防火墙规则既可以是端口，也可以是服务。
   - systemctl restart firewalld
   - systemctl stop firewalld
 - 开放、移去某个端口。
-  - 开放80端口：firewall-cmd --zone=public --add-port=80/tcp --permanent
-  - 移去80端口：firewall-cmd --zone=public --remove-port=80/tcp --permanent
+  - 开放80端口：firewall-cmd \-\-zone=public -\-add-port=80/tcp \-\-permanent
+  - 移去80端口：firewall-cmd -\-zone=public -\-remove-port=80/tcp -\-permanent
 - 开放、移去范围端口。
-  - 开放5000-5500之间的端口：firewall-cmd --zone=public --add-port=5000-5500/tcp --permanent
-  - 移去5000-5500之间的端口：firewall-cmd --zone=public --remove-port=5000-5500/tcp --permanent
+  - 开放5000-5500之间的端口：firewall-cmd -\-zone=public -\-add-port=5000-5500/tcp -\-permanent
+  - 移去5000-5500之间的端口：firewall-cmd -\-zone=public -\-remove-port=5000-5500/tcp -\-permanent
 - 开放、移去服务。
-  - 开放ftp服务：firewall-cmd --zone=public --add-service=ftp --permanent
-  - 移去http服务：firewall-cmd --zone=public --remove-service=ftp --permanent
+  - 开放ftp服务：firewall-cmd -\-zone=public -\-add-service=ftp -\-permanent
+  - 移去http服务：firewall-cmd -\-zone=public -\-remove-service=ftp -\-permanent
 - 重新加载防火墙配置（修改配置后要重新加载防火墙配置或重启防火墙服务）。
-  - firewall-cmd --reload
+  - firewall-cmd -\-reload
 - 设置开机时启用、禁用防火墙服务。
   -  启用服务：systemctl enable firewalld
   -  禁用服务：systemctl disable firewalld
@@ -965,11 +965,11 @@ CentOS7的防火墙规则既可以是端口，也可以是服务。
 
 1）开放80，22，8080 端口。
 
-/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp -\-dport 80 -j ACCEPT
 
-/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp -\-dport 22 -j ACCEPT
 
-/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp -\-dport 8080 -j ACCEPT
 
 
 

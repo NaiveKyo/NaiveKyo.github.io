@@ -1,5 +1,5 @@
 ---
-title: centos7-install-mysql
+title: CentOS7 Install MySQL
 date: 2021-07-06 17:23:33
 author: NaiveKyo
 top: false

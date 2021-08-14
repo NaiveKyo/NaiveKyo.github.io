@@ -7,10 +7,11 @@ coverImg: /img/20210811103701.jpg
 toc: true
 date: 2021-08-11 10:36:22
 top: true
-cover: true
+cover: false
 summary: Java I/O 体系补充知识。
 categories: 
- - [java, IO]
+ - Java
+ - [Java, IO]
 keywords:
  - Java
  - IO

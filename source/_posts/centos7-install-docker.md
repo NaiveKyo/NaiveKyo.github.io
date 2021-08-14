@@ -1,5 +1,5 @@
 ---
-title: centos7_install_docker
+title: CentOS7 Install Docker
 date: 2021-07-07 09:04:18
 author: NaiveKyo
 top: false

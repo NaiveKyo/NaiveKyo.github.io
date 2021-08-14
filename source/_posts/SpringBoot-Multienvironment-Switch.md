@@ -9,9 +9,9 @@ date: 2021-07-17 09:13:35
 top: false
 cover: false
 summary: Spring Boot 多环境开发
-categories: 'Spring Boot'
-keywords: 'Spring Boot'
-tags: 'Spring Boot'
+categories: 'SpringBoot'
+keywords: 'SpringBoot'
+tags: 'SpringBoot'
 ---
 
 

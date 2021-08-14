@@ -1,5 +1,5 @@
 ---
-title: centos7_install_jenkins
+title: CentOS7 Install Jenkins
 date: 2021-07-07 09:48:00
 author: NaiveKyo
 top: false

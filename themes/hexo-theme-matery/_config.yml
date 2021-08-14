@@ -75,14 +75,14 @@ dream:
 # Whether to display the musics.
 # 是否在首页显示音乐.
 music:
-  enable: false
+  enable: true
   title: #非吸底模式有效
     enable: true
     show: 听听音乐
   autoHide: true    # hide automaticaly
   server: netease   #require	music platform: netease, tencent, kugou, xiami, baidu
-  type: playlist    #require song, playlist, album, search, artist
-  id: 503838841     #require	song id / playlist id / album id / search keyword
+  type: song    #require song, playlist, album, search, artist
+  id: 27969834     #require	song id / playlist id / album id / search keyword
   fixed: true       # 开启吸底模式
   autoplay: false   # 是否自动播放
   theme: '#42b983'
@@ -96,17 +96,17 @@ music:
 # Whether to display the videos.
 # 是否在首页显示视频.
 video:
-  enable: false
+  enable: true
   showTitle: true
-  title: 精彩视频
-  url: # 必填
-  pic:
+  title: "RWBY Weiss Schnee"
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/video/rwby.m3u8 # 必填
+  pic: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811222211.jpg
   thumbnails:
   height: # 如：400
   autoplay: false # 是否自动播放
   theme: '#42b983'
   loop: false # 是否循环播放
-  preload: 'auto' # 预加载，可选值: 'none', 'metadata', 'auto'
+  preload: 'none' # 预加载，可选值: 'none', 'metadata', 'auto'
   volume: 0.7
 
 # Whether to display the title of the recommended posts
@@ -151,7 +151,7 @@ socialLink:
 toc:
   enable: true
   heading: h1, h2, h3, h4
-  collapseDepth: 3 # 目录默认展开层级
+  collapseDepth: 4 # 目录默认展开层级
   showToggleBtn: true # 是否显示切换TOC目录展开收缩的按钮
 
 # 代码块相关
@@ -269,18 +269,13 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20210723091053.jpg
-    - /img/20210713111311.jpg
-    - /img/20210715143655.jpg
-    - /img/20210715143830.jpg
-    - /img/20210715143838.jpg
     - /img/20210804161135.jpg
     - /img/20210806205459.jpg
     - /img/20210807154519.jpg
     - /img/20210811105219.jpg
-#    - /medias/featureimages/14.jpg
-#    - /medias/featureimages/22.jpg
-#    - /medias/featureimages/21.jpg
+    - /medias/featureimages/14.jpg
+    - /medias/featureimages/22.jpg
+    - /medias/featureimages/21.jpg
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件

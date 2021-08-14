@@ -1,5 +1,5 @@
 ---
-title: Java static Keyword Intro
+title: Java Static Keyword Intro
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210730105640.jpg'
