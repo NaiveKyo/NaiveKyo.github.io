@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-27
+                    2021-08-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    382
+                    548
                 </div>
                 
 
@@ -726,6 +726,29 @@
 
 
 
+<h2 id="5、检测是否存在符合条件的记录"><a href="#5、检测是否存在符合条件的记录" class="headerlink" title="5、检测是否存在符合条件的记录"></a>5、检测是否存在符合条件的记录</h2><blockquote>
+<p>Q</p>
+</blockquote>
+<p>某个场景需要先查询是否有符合条件的数据，在进行后面的操作。</p>
+<p>一般使用的是：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span>
+
+<span class="token comment">-- 可以使用 explain 测试一下</span>
+<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>A</p>
+</blockquote>
+<p>在少量的数据中使用上面的语句是没有问题，但是一旦数据量变大，该语句执行就会变慢，而使用如下语句性能更高</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件 <span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>总结：</p>
+<ul>
+<li>少量数据 <strong>count(*)</strong> 和 <strong>limit 1</strong> 没有什么区别</li>
+<li>但是大量数据下最好使用 <strong>limit 1</strong>，效率更高</li>
+</ul>
 
                 
             </div>
