@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-14T16:36:56.332Z</updated>
+  <updated>2021-08-17T13:22:10.256Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Functional Programming</title>
+    <link href="https://naivekyo.github.io/2021/08/17/java-functional-programming/"/>
+    <id>https://naivekyo.github.io/2021/08/17/java-functional-programming/</id>
+    <published>2021-08-17T13:19:57.000Z</published>
+    <updated>2021-08-17T13:22:10.256Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;函数式编程&quot;&gt;&lt;a href=&quot;#函数式编程&quot; class=&quot;headerlink&quot; title=&quot;函数式编程&quot;&gt;&lt;/a&gt;函数式编程&lt;/h1&gt;&lt;h2 id=&quot;一、函数式接口&quot;&gt;&lt;a href=&quot;#一、函数式接口&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Network Programing Intro</title>
@@ -510,31 +535,6 @@
     
     
     <category term="SpringBoot" scheme="https://naivekyo.github.io/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swagger Intro</title>
-    <link href="https://naivekyo.github.io/2021/07/16/swagger-intro/"/>
-    <id>https://naivekyo.github.io/2021/07/16/swagger-intro/</id>
-    <published>2021-07-16T03:41:08.000Z</published>
-    <updated>2021-07-22T00:41:04.166Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Swagger-3-0-使用教程&quot;&gt;&lt;a href=&quot;#Swagger-3-0-使用教程&quot; class=&quot;headerlink&quot; title=&quot;Swagger 3.0 使用教程&quot;&gt;&lt;/a&gt;Swagger 3.0 使用教程&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Swagger" scheme="https://naivekyo.github.io/categories/Swagger/"/>
-    
-    
-    <category term="Swagger" scheme="https://naivekyo.github.io/tags/Swagger/"/>
     
   </entry>
   
