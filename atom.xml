@@ -96,7 +96,7 @@
     <link href="https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/"/>
     <id>https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/</id>
     <published>2021-08-13T14:09:48.000Z</published>
-    <updated>2021-08-16T00:37:30.365Z</updated>
+    <updated>2021-08-18T15:06:32.648Z</updated>
     
     
       
@@ -113,6 +113,8 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+    <category term="Deploy" scheme="https://naivekyo.github.io/tags/Deploy/"/>
     
   </entry>
   
