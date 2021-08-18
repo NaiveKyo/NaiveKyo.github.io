@@ -11,7 +11,7 @@ cover: false
 summary: CentOS7 部署 Nacos 服务器
 categories: Linux
 keywords: [Linux, Nacos]
-tags: Linux
+tags: [Linux, Deploy]
 ---
 
 ## Nacos 服务部署
@@ -109,7 +109,7 @@ Nacos 支持三种部署模式：
 - 启动 nacos 服务器
 
 ```bash
-bash startup.sh -m standalone
+startup.sh -m standalone
 ```
 
 第三步：

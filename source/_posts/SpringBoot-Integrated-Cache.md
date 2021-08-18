@@ -7,7 +7,7 @@ coverImg: /img/20210723091053.jpg
 toc: true
 date: 2021-08-12 16:20:38
 top: true
-cover: true
+cover: false
 summary: 浅析 SpringBoot 集成缓存。
 categories:
  - SpringBoot
@@ -163,7 +163,7 @@ PROXY 模式中 **CachingConfigurationSelector** 导入了:
     - 获取调用方法时方法上标注的缓存注解的元数据（指 SpringCache 相关 注解：Cacheable、 CachePut 和 CacheEvict 注解）
   - 类型为 `CacheInterceptor` 名称为 `CacheInterceptor` 的 Bean
     - `class CacheInterceptor extends CacheAspectSupport implements MethodInterceptor, Serializable`
-    - 它是一个方法拦截器，包裹在目标 Bean 的外卖用于操作 Cache 的 **AOP Advice**
+    - 它是一个方法拦截器，包裹在目标 Bean 的外面用于操作 Cache 的 **AOP Advice**
 
 
 

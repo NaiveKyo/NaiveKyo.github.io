@@ -96,3 +96,33 @@ SELECT * FROM `categories` where path_code like '0000____' AND flag = 0;
 
 
 
+## 5、检测是否存在符合条件的记录
+
+> Q
+
+某个场景需要先查询是否有符合条件的数据，在进行后面的操作。
+
+一般使用的是：
+
+```sql
+select count(*) from table_name where id = 条件;
+
+-- 可以使用 explain 测试一下
+explain select count(*) from table_name where id = 条件;
+```
+
+> A
+
+在少量的数据中使用上面的语句是没有问题，但是一旦数据量变大，该语句执行就会变慢，而使用如下语句性能更高
+
+```sql
+select 1 from table_name where id = 条件 limit 1;
+```
+
+
+
+总结：
+
+- 少量数据 **count(*)** 和 **limit 1** 没有什么区别
+- 但是大量数据下最好使用 **limit 1**，效率更高
+
