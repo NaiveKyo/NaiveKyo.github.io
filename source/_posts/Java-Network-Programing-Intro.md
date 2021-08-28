@@ -6,8 +6,8 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715143838.jpg'
 coverImg: /img/20210715143838.jpg
 toc: true
 date: 2021-08-15 00:30:10
-top: true
-cover: true
+top: false
+cover: false
 summary: Java 网络编程入门
 categories: Java
 keywords: [Java, Network Programing]
@@ -49,7 +49,7 @@ tags: Java
 - 传输层：
   - 主要负责网络程序之间的通信，在进行网络通信时，可以采用 TCP 协议，也可以采用 UDP 协议
 - 网络层：
-  - 网络层是整个 TCP/IP 协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网路
+  - 网络层是整个 TCP/IP 协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络
 - 链路层：
   - 定义物理传输通道，通常是对某些网络设备的驱动协议，例如针对光纤、网线提供的驱动
 
@@ -618,7 +618,7 @@ public class Server {
 
 > 案例中出现的阻塞
 
-对于普通的文件流来说：一般都是将文件加载到内存中，或将内存中把数据写入到文件
+对于普通的文件流来说：一般都是将文件加载到内存中，或从内存中把数据写入到文件
 
 - read
 - write

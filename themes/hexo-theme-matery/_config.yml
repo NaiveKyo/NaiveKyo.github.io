@@ -269,12 +269,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20210807154519.jpg
     - /img/20210811105219.jpg
     - /medias/featureimages/14.jpg
     - /medias/featureimages/22.jpg
     - /medias/featureimages/21.jpg
     - /medias/banner/0.jpg
+    - /medias/banner/1.jpg
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件

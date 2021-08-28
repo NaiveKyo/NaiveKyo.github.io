@@ -51,7 +51,6 @@ public class API_Object {
         
         // 防止空指针异常
         System.out.println(Objects.equals("111", new String(new char[]{'1', '2', '3'})));
-        
     }
 }
 
@@ -91,7 +90,7 @@ class Person {
  * 毫秒转换为日期：
  *  1 天 = 24 x 60 x 60 = 86400 秒 x 1000 = 86400000 毫秒
  *  
- * 注意：中国属于东八区，会把时间增加 8 个消失
+ * 注意：中国属于东八区，会把时间增加 8 个小时
  */
 public class API_Date {
 

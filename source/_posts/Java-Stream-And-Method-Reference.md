@@ -6,8 +6,8 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210806205459.jpg'
 coverImg: /img/20210806205459.jpg
 toc: true
 date: 2021-08-18 22:58:01
-top: true
-cover: true
+top: false
+cover: false
 summary: Java8 新特性：流和方法引用
 categories: Java
 keywords: [Java, Stream, 'Method Reference']
