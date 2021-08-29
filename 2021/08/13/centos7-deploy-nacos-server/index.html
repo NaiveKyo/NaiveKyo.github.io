@@ -616,10 +616,6 @@
                                 <span class="chip bg-color">Linux</span>
                             </a>
                         
-                            <a href="/tags/Deploy/">
-                                <span class="chip bg-color">Deploy</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -648,7 +644,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-08-18
+                    2021-08-29
                 </div>
                 
 
@@ -689,11 +685,11 @@
 <li><p>上传到 Linux 服务器，解压到 <code>/usr/local/maven</code> 目录下</p>
 </li>
 <li><p>配置环境变量</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># maven environment
-export MAVEN_HOME=/usr/local/maven/apache-maven-3.8.1
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># maven environment</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MAVEN_HOME</span><span class="token operator">=</span>/usr/local/maven/apache-maven-3.8.1
 
-# PATH
-export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token comment"># PATH</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token variable">${MAVEN_HOME}</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>查看版本：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mvn -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
@@ -811,10 +807,6 @@ export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin<span aria-hidden="true" cla
                             
                                 <a href="/tags/Linux/">
                                     <span class="chip bg-color">Linux</span>
-                                </a>
-                            
-                                <a href="/tags/Deploy/">
-                                    <span class="chip bg-color">Deploy</span>
                                 </a>
                             
                         </div>

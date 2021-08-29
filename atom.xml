@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-29T08:29:27.646Z</updated>
+  <updated>2021-08-29T15:07:56.118Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Database Basic Knowledge Review</title>
+    <link href="https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/"/>
+    <id>https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/</id>
+    <published>2021-08-29T14:55:28.000Z</published>
+    <updated>2021-08-29T15:07:56.118Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、数据库概念&quot;&gt;&lt;a href=&quot;#一、数据库概念&quot; class=&quot;headerlink&quot; title=&quot;一、数据库概念&quot;&gt;&lt;/a&gt;一、数据库概念&lt;/h2&gt;&lt;h3 id=&quot;1、基本概念&quot;&gt;&lt;a href=&quot;#1、基本概念&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Database" scheme="https://naivekyo.github.io/categories/Database/"/>
+    
+    
+    <category term="Database" scheme="https://naivekyo.github.io/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>Java JDBC Review</title>
@@ -146,7 +171,7 @@
     <link href="https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/"/>
     <id>https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/</id>
     <published>2021-08-13T14:09:48.000Z</published>
-    <updated>2021-08-18T15:06:32.648Z</updated>
+    <updated>2021-08-29T14:56:04.004Z</updated>
     
     
       
@@ -163,8 +188,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-    <category term="Deploy" scheme="https://naivekyo.github.io/tags/Deploy/"/>
     
   </entry>
   
@@ -510,31 +533,6 @@
     
     
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Row and Table Locks</title>
-    <link href="https://naivekyo.github.io/2021/07/28/mysql-row-and-table-locks/"/>
-    <id>https://naivekyo.github.io/2021/07/28/mysql-row-and-table-locks/</id>
-    <published>2021-07-28T09:40:17.000Z</published>
-    <updated>2021-07-28T09:47:03.014Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MySQL-行锁和表锁概述&quot;&gt;&lt;a href=&quot;#MySQL-行锁和表锁概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL 行锁和表锁概述&quot;&gt;&lt;/a&gt;MySQL 行锁和表锁概述&lt;/h1&gt;&lt;h2 id=&quot;一、前言&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   

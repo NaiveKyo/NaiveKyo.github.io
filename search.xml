@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Database Basic Knowledge Review</title>
+      <link href="/2021/08/29/database-basic-knowledge-review/"/>
+      <url>/2021/08/29/database-basic-knowledge-review/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、数据库概念"><a href="#一、数据库概念" class="headerlink" title="一、数据库概念"></a>一、数据库概念</h2><h3 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h3><p>数据库：DataBase 简称 DB</p><p>概念：用于存储和管理数据的仓库</p><h3 id="2、特点"><a href="#2、特点" class="headerlink" title="2、特点"></a>2、特点</h3><ul><li>持久化的存储数据。数据库本质是一个文件系统</li><li>方便存储和管理数据</li><li>使用了统一的方式操作数据库 — SQL</li></ul><h3 id="3、常用的数据库软件"><a href="#3、常用的数据库软件" class="headerlink" title="3、常用的数据库软件"></a>3、常用的数据库软件</h3><ul><li><p>MySQL：开源免费的数据库，小型的数据库</p></li><li><p>Oracle ：收费的大型数据库，Oracle 公司产品</p></li><li><p>DB2 ：IBM 公司的收费数据库产品，常用于银行系统</p></li><li><p>SQLServer ：Microsoft 公司收费的中型数据库，C#、.net 等语言常用</p></li><li><p>SyBass ：现在已经不用了，但是它提供了一个非常专业的数据建模的工具：PowerDesigner</p></li><li><p>SQLite：嵌入式的小型数据库，常用于手机端</p></li><li><p>常用数据库：MySQL、Oracle</p></li></ul><p>web 应用中，使用最多的是 MySQL 数据库，原因如下：</p><ul><li>开源、免费</li><li>功能足够强大，足以应付 web 开发（最高支持千万级别的并发访问）</li></ul><h2 id="二、SQL"><a href="#二、SQL" class="headerlink" title="二、SQL"></a>二、SQL</h2><h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><p>什么是 SQL ？</p><ul><li><code>Structured Query Language</code>：结构化查询语言<ul><li>其实就是定义了操作所有关系型数据库的规则。每一种数据库操作的方式存在不一样的地方，称为 “方言”</li></ul></li></ul><h3 id="2、SQL-通用用法"><a href="#2、SQL-通用用法" class="headerlink" title="2、SQL 通用用法"></a>2、SQL 通用用法</h3><ul><li>SQL 语句可以单行或多行书写，以分号结尾</li><li>可使用缩进和空格来增强语句的可读性</li><li>MySQL 数据库的 SQL 语句不区分大小写，关键字建议使用大写</li><li>3 种注释：<ol><li>单行注释：<code>-- 注释内容</code> 或 <code># 注释内容</code></li><li>多行注释：<code>/* 注释内容 */</code></li></ol></li></ul><h3 id="3、SQL-分类"><a href="#3、SQL-分类" class="headerlink" title="3、SQL 分类"></a>3、SQL 分类</h3><p>按照功能不同分为 4 类：</p><ul><li><code>DDL (Data Definition Language)</code> 数据定义语言<ul><li>用来定义数据库对象：数据库、表、列等等。关键字：create、drop、alter 等等</li></ul></li><li><code>DML (Data Manipulation Language)</code> 数据操作语言<ul><li>用来对数据库中的表的数据进行增删改。关键字：insert、delete、update 等等</li></ul></li><li><code>DQL (Data Query Language)</code> 数据查询语言<ul><li>用来查询数据库中表的记录（数据）。关键字：select、where 等等</li></ul></li><li><code>DCL (Data Control Language)</code> 数据控制语言（了解）<ul><li>用来定义数据库的访问权限和安全级别，及创建用户。关键字：GRANT、REVOKE 等等</li></ul></li></ul><h3 id="4、DDL-操作数据库、表"><a href="#4、DDL-操作数据库、表" class="headerlink" title="4、DDL 操作数据库、表"></a>4、DDL 操作数据库、表</h3><blockquote><p>操作数据库：CRUD</p></blockquote><ul><li>C（Create）：创建<ul><li>创建数据库：<code>create database 数据库名称;</code></li><li>创建数据库时判断是否已经存在：<code>create database if not exists 数据库名称;</code></li></ul></li><li>R（Retrieve）：查询<ul><li>查询所有数据库名称：<code>show databases;</code></li><li>查询某个数据库的字符集（数据库的创建语句）：<code>show create database 数据库名称;</code></li></ul></li><li>U（Update）：修改<ul><li>修改数据库字符集：<code>alter database 数据库名称 character set 字符集名称;</code></li></ul></li><li>D（Delete）：删除<ul><li>删除数据库：<code>drop database 数据库名称;</code></li><li>判断数据库存在然后再删除：<code>drop database if exists 数据库名称;</code></li></ul></li><li>使用数据库：<ul><li>查询当前正在使用的数据库名称：<code>select database();</code></li><li>使用数据库：<code>use 数据库名称</code></li></ul></li></ul><blockquote><p>操作表</p></blockquote><ul><li><p>C（Create）：创建</p><ul><li><p><code>create table 表名(列名1 数据类型1, 列名2 数据类型2 ... 列名n 数据类型n);</code></p></li><li><p>复制表：<code>create table 表名 like 被复制的表名</code></p></li><li><p>注意：最后一个列必须要加逗号</p></li><li><p>数据类型：</p><ul><li>int：整数类型</li><li>double：小数类型</li><li>date：日期，只包含年月日 yyyy-MM-dd</li><li>datetime：日期，包含年月日时分秒 yyyy-MM-dd HH:mm:ss</li><li>timestamp：时间戳 包含年月日时分秒 yyyy-MM-dd HH:mm:ss 如果不给这个字段赋值，或赋值为 null，则默认使用当前的系统时间，来自动赋值</li><li>varchar：字符串<ul><li>name varchar(20)：姓名最大 20 个字符</li></ul></li></ul></li></ul></li><li><p>R（Retrieve）：查询</p><ul><li>查询某个数据库中所有表：<code>show tables;</code></li><li>查看表结构：<code>desc 表名;</code></li></ul></li><li><p>U（Update）：修改</p><ul><li>修改表名：<code>alter table 旧表名 rename to 新表名;</code></li><li>修改表的字符集：<code>alter table 表名 character set 字符集名称;</code></li><li>添加一列：<code>alter table 表名 add 列名 数据类型;</code></li><li>修改列名称、类型：<ul><li>改名称：<code>alter table 表名 change 旧列名 新列名 新数据类型;</code></li><li>改 类型：<code>alter table 表名 modify 列名 新数据类型; </code></li></ul></li><li>删除列：<code>alter table 表名 drop 列名;</code></li></ul></li><li><p>D（Delete）：删除</p><ul><li><code>drop table 表名;</code></li><li><code>drop table if exists 表名;</code></li></ul></li></ul><h3 id="5、DML-增删改表中数据"><a href="#5、DML-增删改表中数据" class="headerlink" title="5、DML 增删改表中数据"></a>5、DML 增删改表中数据</h3><ul><li><p>添加数据</p><ul><li>注意：除了数据类型，其他类型都需要使用引号（单、双都可以）引起来</li></ul></li><li><p>删除数据</p><ul><li>注意：删除表的方式<ul><li><code>delete from 表名</code>：没有条件，则删除表中所有记录，效率太低，一条一条的删除记录，<strong>不推荐使用</strong></li><li><code>truncate table 表名</code>：删除表，然后再创建一个一模一样的空表，<strong>推荐使用</strong>，效率更高</li></ul></li></ul></li><li><p>修改数据</p></li></ul><h3 id="6、DQL-查询表中记录"><a href="#6、DQL-查询表中记录" class="headerlink" title="6、DQL 查询表中记录"></a>6、DQL 查询表中记录</h3><blockquote><p>（1）语法</p></blockquote><ul><li>select<ul><li>字段列表</li></ul></li><li>from<ul><li>表名列表</li></ul></li><li>where<ul><li>条件列表</li></ul></li><li>group by<ul><li>分组字段</li></ul></li><li>having<ul><li>分组之后的条件</li></ul></li><li>order by<ul><li>排序</li></ul></li><li>limit<ul><li>分页限定</li></ul></li></ul><blockquote><p>（2）基础查询</p></blockquote><ul><li>多字段查询<ul><li><code>select 字段1, 字段2, ... 字段n from 表名;</code></li></ul></li><li>去除重复结果<ul><li><code>select distinct 字段列表 from 表名;</code></li></ul></li><li>计算列：null 字段参于计算，结果都为 null<ul><li>可以使用函数判断是否为 null，然后替换为其他数字：<code>IFNULL(字段名, 替换的数字)</code>，比如：IFNULL(‘course_score’, 0);</li></ul></li><li>起别名<ul><li>as，as 可以省略</li></ul></li></ul><blockquote><p>（3）条件查询</p></blockquote><ul><li>where 子句后面跟条件</li><li>运算符<ul><li>&gt;、&lt;、&lt;=、&gt;=、=、&lt;&gt;</li><li>BETWEEN … AND</li><li>IN （集合）</li><li>LIKE<ul><li>模糊查询可借助常用正则表达式：锁定一位字符 <code>_</code>，匹配多位字符 <code>%</code></li></ul></li><li>IS NULL</li><li>and 或 &amp;&amp;</li><li>or 或 ||</li><li>not 或 ！</li></ul></li></ul><blockquote><p>（4）排序查询</p></blockquote><p>排序查询：</p><ul><li>语法：<code>order  by 子句</code><ul><li><code>order by 排序字段 排序方式</code></li><li>排序方式，升序（默认）：<strong>ASC</strong>    降序：<strong>DESC</strong></li><li>如果有多个排序条件，则当前面的条件值一样时，才会判断第二条件</li></ul></li></ul><blockquote><p>（5）聚合函数</p></blockquote><p>聚合函数：将一列数据作为一个整体，进行纵向的计算</p><ul><li>count：计算个数<ul><li>一般选择非空的列：主键</li></ul></li><li>max：计算最大值</li><li>min：计算最小值</li><li>sum：求和</li><li>avg：计算平均值</li></ul><blockquote><p>（6）分组查询</p></blockquote><ul><li>语法：<code>group by 分组字段</code></li><li>注意：<ul><li>分组之后查询的字段：分组字段、聚合函数</li><li><strong>where 和 having 的区别？</strong><ul><li>where 在分组之前进行限定，如果不满足条件，则不参与分组</li><li>having 在分组之后进行限定，如果不满足条件，就不会被查询出来</li><li>where 后不可以跟聚合函数，而 having 可以进行聚合函数的判断</li></ul></li></ul></li></ul><blockquote><p>（7）分页查询</p></blockquote><ul><li>语法：<code>limit 开始的索引，每页查询的条数</code>;</li><li>例如：每页显示 3 条记录<ul><li>第一页：<code>limit 0 3;</code></li><li>第二页：<code>limit 3 3;</code></li><li>…</li><li>公式：开始的索引 = （当前的页码 - 1）* 每一页显示的条数</li></ul></li><li>limit 是一个 MySQL 的 “方言”</li></ul><h2 id="三、约束"><a href="#三、约束" class="headerlink" title="三、约束"></a>三、约束</h2><h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>约束：对表中的数据进行限定，保证数据的正确性、有效性和完整性</p><h3 id="2、分类"><a href="#2、分类" class="headerlink" title="2、分类"></a>2、分类</h3><ul><li>主键约束：<code>primary key</code></li><li>非空约束：<code>not null</code></li><li>唯一约束：<code>unique</code></li><li>外键约束：<code>foreign key</code></li></ul><h3 id="3、简介"><a href="#3、简介" class="headerlink" title="3、简介"></a>3、简介</h3><blockquote><p>非空约束</p></blockquote><ul><li>not null：值不能为 null<ul><li>创建表时添加约束：<code>create table 表名(name varchar(20) NOT NULL);</code></li><li>创建表之后删除非空约束：<code>alter table 表名 midify name varchar(20)</code>;</li><li>创建表之后添加非空约束：<code>alter table 表名 midify name varchar(20) NOT NULL</code>;</li></ul></li></ul><blockquote><p>唯一约束</p></blockquote><ul><li>unique，值不能重复<ul><li>同上</li></ul></li></ul><blockquote><p>主键约束</p></blockquote><ul><li><p>primary key</p><ul><li>含义：非空且唯一</li><li>一张表只能有一个字段为主键</li><li>主键就是表中记录的唯一标识</li></ul></li><li><p>创建表时添加<code>create table 表名(id INT PRIMARY KEY);</code></p></li><li><p>创建完表后添加和删除主键约束同上</p></li><li><p>自动增长：</p><ul><li>概念：如果某一列是数值类型，使用 <code>auto_increment</code> 可以完成值的自动增长</li><li>例如：创建表指定字段为主键且自增：<code>create table 表名(id int primary key auto_increment);</code></li><li>创建表之后添加或删除自动增长同上</li></ul></li></ul><blockquote><p>外键约束</p></blockquote><ul><li>foreign key</li><li>创建表时添加外键</li></ul><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>  外键列  <span class="token keyword">constraint</span> 外键名称 <span class="token keyword">foreign</span> <span class="token keyword">key</span> 外键列名称 <span class="token keyword">references</span> 主表名称<span class="token punctuation">(</span>主表列名称<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>比如 员工表 和 部门表之间的关联：一个员工属于一个部门:</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> employee {<span class="token comment"># 员工 id</span>id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token comment"># 外键</span>dep_id <span class="token keyword">int</span> <span class="token keyword">CONSTRAINT</span> emp_dept_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>dep_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> department<span class="token punctuation">(</span>id<span class="token punctuation">)</span>}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>创建表后删除外键<ul><li><code>alter table 表名 drop foreign key 外键名</code></li></ul></li><li>创建表后添加外键<ul><li><code>alter table 表名 add constraint 外键名 foreign key 外键列名 references 主表名称(主表列名称)</code></li></ul></li></ul><ul><li>外键级联操作：<ul><li>需要在添加外键的时候设置级联更新</li></ul></li></ul><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> employee {<span class="token comment"># 员工 id</span>id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token comment"># 外键</span>dep_id <span class="token keyword">int</span> <span class="token keyword">CONSTRAINT</span> emp_dept_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>dep_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> department<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span>}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>创建表后设置级联更新，级联删除：<ul><li>级联更新：<code>alter table 表名 add constraint 外键名 foreign key 外键列名 references 主表名称(主表列名称) on update cascade</code></li><li>级联删除：<code>alter table 表名 add constraint 外键名 foreign key 外键列名 references 主表名称(主表列名称) on delete cascade</code></li></ul></li></ul><h2 id="四、数据库设计"><a href="#四、数据库设计" class="headerlink" title="四、数据库设计"></a>四、数据库设计</h2><h3 id="1、多表关系"><a href="#1、多表关系" class="headerlink" title="1、多表关系"></a>1、多表关系</h3><ul><li>一对一<ul><li>一对一实现，可以在任意一方添加外键指向另一方的主键</li></ul></li><li>一对多<ul><li>在多的一方建立外键，指向一的一方的主键</li></ul></li><li>多对多<ul><li>多对多关系实现需要借助第三张中间表</li><li>中间表至少包含两个字段，这两个字段作为第三张表的外键，分别指向两张表的主键（联合主键）</li></ul></li></ul><h3 id="2、设计的范式"><a href="#2、设计的范式" class="headerlink" title="2、设计的范式"></a>2、设计的范式</h3><p>概念：设计数据库时，需要遵守一些规范</p><p>设计关系型数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同的范式，各种范式呈递次规范，越高的范式数据库冗余就越小。</p><p>注：要遵循后面的范式，必须先遵循前面的范式</p><p>目前关系型数据库有六种范式：</p><ul><li>第一范式（1NF）</li><li>第二范式（2NF）</li><li>第三范式（3NF）</li><li>巴斯-科德范式（BCNF）</li><li>第四范式（4NF）</li><li>第五范式（5NF，又称为完美范式）</li></ul><blockquote><p>分类</p></blockquote><ol><li>第一范式（1NF）：每一列都是不可分割的原子数据项</li><li>第二范式（2NF）：在 1NF 的基础上，非码属性必须完全依赖于候选码（主码也称为候选码）（在 1NF 基础上消除非主属性对主码的部分函数依赖）<ul><li>几个概念：</li><li>函数依赖：A –&gt; B，如果通过 A 属性（属性组）的值，可以确定 B 属性的值，则称 B 依赖于 A<ul><li>如学号被姓名所依赖 学号 –&gt; 姓名 ，（学号，课程）–&gt; 分数</li></ul></li><li>完全函数依赖：A –&gt; B，如果 A 是一个属性组，则 B 属性值的确定需要 A 属性组中所有的属性值<ul><li>例如：（学号，课程）–&gt; 分数</li></ul></li><li>部分函数依赖：A –&gt; B，如果 A 是一个属性组，则 B 属性值的确定只需要依赖于 A 属性组中某一些属性的值<ul><li>例如：（学号，课程名称）–&gt; 姓名</li></ul></li><li>传递函数依赖：A –&gt; B，B –&gt; C，如果通过 A 属性（属性组）的值，可以确定唯一 B 属性的值，在通过 B 属性（属性组）的值可以确定唯一 C 属性的值，则称 C 传递函数依赖于 A<ul><li>例如：学号 –&gt; 系名，系名  –&gt;  系主任</li></ul></li><li>码：如果在一张表中，一个属性或属性组，被其他所有属性所完全依赖，则称这个属性（属性组）为该表的码<ul><li>主属性：码属性组中的所有属性</li><li>非主属性：除了主属性的其他属性</li></ul></li></ul></li><li>第三范式（3NF）：在 2NF 基础上，任何非主属性不依赖于其他非主属性（在 2NF 基础上消除传递依赖）</li></ol><h2 id="五、数据库的备份和还原"><a href="#五、数据库的备份和还原" class="headerlink" title="五、数据库的备份和还原"></a>五、数据库的备份和还原</h2><ul><li>命令行：<ul><li>语法：<ul><li>备份：<code>mysqldump -u用户名 -p密码 &gt; 保存的路径</code>  最后会生成一个备份文件</li><li>还原：<ol><li>登录数据库</li><li>创建数据库：要求数据库名字和刚刚备份的数据库名字一样</li><li>使用数据库</li><li>执行文件。<code>source 文件路径</code></li></ol></li></ul></li></ul></li><li>图形化工具：</li></ul><h2 id="六、多表查询"><a href="#六、多表查询" class="headerlink" title="六、多表查询"></a>六、多表查询</h2><p>查询语法：</p><ul><li>select<ul><li>列名列表</li></ul></li><li>from<ul><li>表名列表</li></ul></li><li>where</li></ul><p>比如：</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> employee<span class="token punctuation">,</span> department<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这样查询出来的结果是两张表记录数相乘 <strong>A * B</strong>，也称为笛卡尔积</p><p>如果我们想要对结果进行过滤，消除错误、冗余数据，就需要使用以下这些多表联查：</p><ul><li>内连接查询<ul><li>隐式内连接：使用 where 条件消除无用数据</li><li>显式内连接：使用 inner join on</li></ul></li></ul><p>隐式：</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> e<span class="token punctuation">.</span>name<span class="token punctuation">,</span> d<span class="token punctuation">.</span>name<span class="token keyword">from</span> employee <span class="token keyword">as</span> e<span class="token punctuation">,</span>    <span class="token comment">-- 员工表 </span> department <span class="token keyword">as</span> d   <span class="token comment">-- 部门表</span><span class="token keyword">where</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>显式：</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> e<span class="token punctuation">.</span>name<span class="token punctuation">,</span> d<span class="token punctuation">.</span>name<span class="token keyword">from</span> employee <span class="token keyword">as</span> e<span class="token keyword">inner</span> <span class="token keyword">join</span> department <span class="token keyword">as</span> d<span class="token keyword">on</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><ul><li>外连接查询<ul><li>左外连接：<ul><li>语法 <code>select 字段列表 from 表1 left [outer] join 表2 on 条件;</code></li><li>查询左表所有数据以及左表与右表的交集部分</li></ul></li><li>右外连接<ul><li>语法 <code>select 字段列表 from 表1 right [outer] join 表2 on 条件;</code></li><li>查询右表所有数据以及左表与右表的交集部分</li></ul></li></ul></li><li>子查询（可以使用自联结替代）<ul><li>查询中嵌套查询</li><li>子查询不同情况<ul><li>子查询结果是单行单列的<ul><li>子查询可以作为条件，使用运算符去判断，&gt;、&gt;=、&lt;、&lt;=、=</li></ul></li><li>子查询结果是多行单列的<ul><li>子查询可以作为条件，使用运算符 in 来判断</li></ul></li><li>子查询结果是多行多列的<ul><li>子查询可以作为一张虚拟表，参于多表连接查询</li></ul></li></ul></li></ul></li></ul><h2 id="七、事务"><a href="#七、事务" class="headerlink" title="七、事务"></a>七、事务</h2><h3 id="1、事务的基本概念"><a href="#1、事务的基本概念" class="headerlink" title="1、事务的基本概念"></a>1、事务的基本概念</h3><p>事务的基本概念：</p><ul><li>如果一个包含多个步骤的业务操作，被事务托管，那么这些操作要么同时成功，要么同时失败。</li></ul><p>操作：</p><ol><li>开启事务：start transaction;</li><li>提交：commit；</li><li>回滚：rollback；</li></ol><p>经典的场景就是转账问题</p><p>例如：张三和李四账户上都各有 1000 块，张三给李四转 500，最后张三剩 500，李四有 1500</p><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 0. 开启事务</span><span class="token keyword">start</span> <span class="token keyword">transaction</span><span class="token punctuation">;</span><span class="token comment">-- 1. 判断账户余额是否足够</span><span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> account <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'张三'</span> <span class="token operator">and</span> balance <span class="token operator">&gt;</span> <span class="token number">500</span><span class="token punctuation">;</span><span class="token comment">-- 2. 张三 -500</span><span class="token keyword">update</span> account <span class="token keyword">set</span> balance <span class="token operator">=</span> balance <span class="token operator">-</span> <span class="token number">500</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'张三'</span><span class="token punctuation">;</span><span class="token comment">-- 3. 李四 +500</span><span class="token keyword">update</span> account <span class="token keyword">set</span> balance <span class="token operator">=</span> balance <span class="token operator">+</span> <span class="token number">500</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'李四'</span><span class="token punctuation">;</span><span class="token comment">-- 下面两个操纵需要我们二选一</span><span class="token comment">-- 没有问题就提交</span><span class="token keyword">commit</span><span class="token punctuation">;</span><span class="token comment">-- 出现问题就回滚</span><span class="token keyword">rollback</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong style="color:red">注：在 MySQL 中事务默认自动提交</strong></p><ul><li>事务提交的两种方式：<ul><li>自动提交<ul><li>一条 DML 语句，语句会自动提交一次事务</li></ul></li><li>手动提交：先开启事务，在提交事务</li></ul></li><li>修改事务的默认提交方式<ul><li>查看事务的默认提交方式：<code>select @@autocommit;</code><ul><li>1 代表自动提交</li><li>0 代表手动提交</li></ul></li><li>修改默认提交方式：<code>set @@autocommit = 0;</code></li></ul></li></ul><p>MySQL 数据库默认自动提交，Oracle 数据库默认手动提交</p><h3 id="2、事务的四大特征"><a href="#2、事务的四大特征" class="headerlink" title="2、事务的四大特征"></a>2、事务的四大特征</h3><ul><li>原子性：是不可分割的最小操作单位，要么同时成功，要么同时失败</li><li>持久性：当事务提交或回滚后，数据库会持久化的保存数据</li><li>隔离性：多个事务之间。相互独立。</li><li>一致性：事务操作前后数据总量不变</li></ul><h3 id="3、事务的隔离级别"><a href="#3、事务的隔离级别" class="headerlink" title="3、事务的隔离级别"></a>3、事务的隔离级别</h3><p>概念：</p><ul><li>多个事务之间隔离的，即相互独立的。但是如果多个事务操作同一批数据则会引发一些问题，设置不同的隔离级别就可以解决这些问题。</li></ul><p>存在问题：</p><ul><li>脏读：一个事务读取到另一个事务中没有提交的数据</li><li>不可重复读（虚读）：在同一个事务中两次读取到的数据不一样</li><li>幻读：一个事务操作（DML）数据表中所有记录，另一个事务添加了一条数据，则第一条事务查询不到自己的修改</li><li>注：幻读很难通过命令行界面去复现，前两个都可以复现</li></ul><p>隔离级别：</p><ul><li>read uncommitted：读未提交<ul><li>产生的问题：脏读、不可重复读、幻读</li></ul></li><li>read committed：读已提交 （Oracle 默认）<ul><li>产生的问题：不可重复读、幻读</li></ul></li><li>repeatable read：可重复读 （MySQL 默认）<ul><li>产生的问题：幻读</li></ul></li><li>serializable：串行化<ul><li>可以解决所有问题</li><li><strong>串行化，其实就是锁定整张表，事务开启后锁定需要使用到的表，其他事务无法对这些表读或写。所以虽然安全，但是效率极低。</strong></li></ul></li></ul><ul><li>注意：隔离级别从小到大，安全性越来越高，但是效率也越来越低，所以我们需要设置一个合适的隔离级别，既保证相对安全，又保证效率。</li></ul><p>数据库设置隔离级别：</p><ul><li>查询隔离级别：<code>select @@tx_isolation;</code></li><li>设置隔离级别：<code>set global transaction isolation level 级别字符串;</code></li></ul><h2 id="八、DCL-管理数据库"><a href="#八、DCL-管理数据库" class="headerlink" title="八、DCL 管理数据库"></a>八、DCL 管理数据库</h2><h3 id="1、用户管理"><a href="#1、用户管理" class="headerlink" title="1、用户管理"></a>1、用户管理</h3><p>DBA ：数据库管理员</p><p>DCL：管理用户、授权</p><p>MySQL 有一个系统数据库叫做 <code>mysql</code> ，其中有一张表 <code>user</code> 管理所有数据库用户。</p><ul><li>管理用户<ul><li>添加用户：<ul><li><code>create user '用户名'@'主机名' identified by '密码';</code></li></ul></li><li>删除用户<ul><li><code>drop user '用户名'@'主机名';</code></li></ul></li><li>修改用户密码<ul><li><code>update user set password = PASSWORD('新密码') where user = '用户名';</code></li><li><code>set password for '用户名'@'主机名' = PASSWORD('新密码');</code></li><li>如果 root 用户密码忘记了：<ul><li>cmd 执行 <code>net stop mysql</code> 停止 mysql 服务（需要管理员运行 cmd）</li><li>使用无验证方式启动 mysql 服务：<code>mysqld --skip-grant-tables</code>，然后开启另一个 cmd 窗口，直接输入 <code>mysql</code> 登录服务器，然后修改密码，然后关闭两个 cmd</li><li>使用任务管理器结束 mysql 服务</li><li>最后再次启动服务，使用新密码登录</li></ul></li></ul></li><li>查询用户：<ul><li><code>use mysql;</code></li><li><code>select * from user;</code></li><li>注意查询出的字段 <strong>Host</strong><ul><li>通配符 %：表示用户可以在任何主机登录数据库（不限制 ip）</li><li>localhost：仅限本机登录</li></ul></li></ul></li></ul></li></ul><h3 id="2、权限管理"><a href="#2、权限管理" class="headerlink" title="2、权限管理"></a>2、权限管理</h3><ul><li>查询权限<ul><li>查询某用户权限：<code>show grants for '用户名'@'主机名';</code></li></ul></li><li>授予权限<ul><li>授予权限</li><li><code>grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'</code></li></ul></li><li>撤销权限<ul><li>撤销权限</li><li><code>revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名'</code></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Database </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Database </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java JDBC Review</title>
       <link href="/2021/08/29/java-jdbc-review/"/>
       <url>/2021/08/29/java-jdbc-review/</url>
@@ -133,7 +158,7 @@
       <link href="/2021/08/13/centos7-deploy-nacos-server/"/>
       <url>/2021/08/13/centos7-deploy-nacos-server/</url>
       
-        <content type="html"><![CDATA[<h2 id="Nacos-服务部署"><a href="#Nacos-服务部署" class="headerlink" title="Nacos 服务部署"></a>Nacos 服务部署</h2><h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>Nacos 作为 Spring Cloud Alibaba 的组件之一，主要有以下两个作用：</p><ul><li>服务注册与发现</li><li>配置服务器</li></ul><p><a href="https://nacos.io/zh-cn/docs/what-is-nacos.html">官方文档</a></p><h3 id="2、安装-Java-环境"><a href="#2、安装-Java-环境" class="headerlink" title="2、安装 Java 环境"></a>2、安装 Java 环境</h3><p> <a href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/">CentOS7 Install JDK</a></p><h3 id="3、安装-Maven"><a href="#3、安装-Maven" class="headerlink" title="3、安装 Maven"></a>3、安装 Maven</h3><p><a href="https://maven.apache.org/download.cgi">Maven 官方下载渠道</a></p><ul><li><p>官网下载 LTS 版本 <code>apache-maven-x.x.x-bin.tar.gz</code></p></li><li><p>上传到 Linux 服务器，解压到 <code>/usr/local/maven</code> 目录下</p></li><li><p>配置环境变量</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># maven environmentexport MAVEN_HOME=/usr/local/maven/apache-maven-3.8.1# PATHexport PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>查看版本：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mvn -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li></ul><h3 id="4、安装-Nacos"><a href="#4、安装-Nacos" class="headerlink" title="4、安装 Nacos"></a>4、安装 Nacos</h3><blockquote><p>步骤：</p></blockquote><ul><li><a href="https://github.com/alibaba/nacos/releases">下载</a></li><li><a href="https://nacos.io/zh-cn/docs/deployment.html">部署</a></li><li><a href="https://nacos.io/zh-cn/docs/quick-start.html">启动</a></li></ul><blockquote><p>概述：</p></blockquote><p>去官网下载 Nacos 的 Linux 发行包上传到服务器，解压后</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">unzip</span> nacos-server-<span class="token variable">$version</span>.zip <span class="token comment"># 或者 </span><span class="token function">tar</span> -xvf nacos-server-<span class="token variable">$version</span>.tar.gz<span class="token builtin class-name">cd</span> nacos/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Nacos 支持三种部署模式：</p><ul><li>单机模式<ul><li>单机模式支持 MySQL</li></ul></li><li>集群模式</li><li>多网卡 IP 选择</li></ul><blockquote><p>单机模式</p></blockquote><p>第一步：</p><ul><li>开放端口：Nacos 默认使用的是 8848 端口，我们可以修改</li><li><strong>firewall</strong> 和 阿里云安全组</li></ul><p>第二步：</p><ul><li>启动 nacos 服务器</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">startup.sh -m standalone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>第三步：</p><ul><li>浏览器访问 Nacos 服务器</li></ul><p><code>http://ip:8848/nacos</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Nacos-服务部署"><a href="#Nacos-服务部署" class="headerlink" title="Nacos 服务部署"></a>Nacos 服务部署</h2><h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>Nacos 作为 Spring Cloud Alibaba 的组件之一，主要有以下两个作用：</p><ul><li>服务注册与发现</li><li>配置服务器</li></ul><p><a href="https://nacos.io/zh-cn/docs/what-is-nacos.html">官方文档</a></p><h3 id="2、安装-Java-环境"><a href="#2、安装-Java-环境" class="headerlink" title="2、安装 Java 环境"></a>2、安装 Java 环境</h3><p> <a href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/">CentOS7 Install JDK</a></p><h3 id="3、安装-Maven"><a href="#3、安装-Maven" class="headerlink" title="3、安装 Maven"></a>3、安装 Maven</h3><p><a href="https://maven.apache.org/download.cgi">Maven 官方下载渠道</a></p><ul><li><p>官网下载 LTS 版本 <code>apache-maven-x.x.x-bin.tar.gz</code></p></li><li><p>上传到 Linux 服务器，解压到 <code>/usr/local/maven</code> 目录下</p></li><li><p>配置环境变量</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># maven environment</span><span class="token builtin class-name">export</span> <span class="token assign-left variable">MAVEN_HOME</span><span class="token operator">=</span>/usr/local/maven/apache-maven-3.8.1<span class="token comment"># PATH</span><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token variable">${MAVEN_HOME}</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>查看版本：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mvn -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li></ul><h3 id="4、安装-Nacos"><a href="#4、安装-Nacos" class="headerlink" title="4、安装 Nacos"></a>4、安装 Nacos</h3><blockquote><p>步骤：</p></blockquote><ul><li><a href="https://github.com/alibaba/nacos/releases">下载</a></li><li><a href="https://nacos.io/zh-cn/docs/deployment.html">部署</a></li><li><a href="https://nacos.io/zh-cn/docs/quick-start.html">启动</a></li></ul><blockquote><p>概述：</p></blockquote><p>去官网下载 Nacos 的 Linux 发行包上传到服务器，解压后</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">unzip</span> nacos-server-<span class="token variable">$version</span>.zip <span class="token comment"># 或者 </span><span class="token function">tar</span> -xvf nacos-server-<span class="token variable">$version</span>.tar.gz<span class="token builtin class-name">cd</span> nacos/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Nacos 支持三种部署模式：</p><ul><li>单机模式<ul><li>单机模式支持 MySQL</li></ul></li><li>集群模式</li><li>多网卡 IP 选择</li></ul><blockquote><p>单机模式</p></blockquote><p>第一步：</p><ul><li>开放端口：Nacos 默认使用的是 8848 端口，我们可以修改</li><li><strong>firewall</strong> 和 阿里云安全组</li></ul><p>第二步：</p><ul><li>启动 nacos 服务器</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">startup.sh -m standalone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>第三步：</p><ul><li>浏览器访问 Nacos 服务器</li></ul><p><code>http://ip:8848/nacos</code></p>]]></content>
       
       
       <categories>
@@ -146,8 +171,6 @@
         <tags>
             
             <tag> Linux </tag>
-            
-            <tag> Deploy </tag>
             
         </tags>
       
@@ -697,7 +720,7 @@
     
     
     <entry>
-      <title>Git_Manual</title>
+      <title>Git Manual</title>
       <link href="/2021/07/12/git-manual/"/>
       <url>/2021/07/12/git-manual/</url>
       
@@ -722,7 +745,7 @@
     
     
     <entry>
-      <title>Vue_Staging_Study</title>
+      <title>Vue Staging Study</title>
       <link href="/2021/07/12/vue-staging-study/"/>
       <url>/2021/07/12/vue-staging-study/</url>
       
@@ -740,8 +763,6 @@
             
             <tag> Vue </tag>
             
-            <tag> Vue-cli </tag>
-            
         </tags>
       
     </entry>
@@ -749,7 +770,7 @@
     
     
     <entry>
-      <title>Vue_Componentized_Programming</title>
+      <title>Vue Componentized Programming</title>
       <link href="/2021/07/12/vue-componentized-programming/"/>
       <url>/2021/07/12/vue-componentized-programming/</url>
       
@@ -765,8 +786,6 @@
       
         <tags>
             
-            <tag> Front-End </tag>
-            
             <tag> Vue </tag>
             
         </tags>
@@ -776,7 +795,7 @@
     
     
     <entry>
-      <title>Vue_Core_Study</title>
+      <title>Vue Core Study</title>
       <link href="/2021/07/10/vue-core-study/"/>
       <url>/2021/07/10/vue-core-study/</url>
       
@@ -792,8 +811,6 @@
       
         <tags>
             
-            <tag> Front-End </tag>
-            
             <tag> Vue </tag>
             
         </tags>
@@ -803,7 +820,7 @@
     
     
     <entry>
-      <title>Spring_Bean_Lifecycle_Intro</title>
+      <title>Spring Bean Lifecycle Intro</title>
       <link href="/2021/07/08/spring-bean-lifecycle-intro/"/>
       <url>/2021/07/08/spring-bean-lifecycle-intro/</url>
       
@@ -820,8 +837,6 @@
         <tags>
             
             <tag> Spring </tag>
-            
-            <tag> Lifecycle </tag>
             
         </tags>
       
@@ -873,10 +888,6 @@
             
             <tag> Redis </tag>
             
-            <tag> Cache </tag>
-            
-            <tag> Database </tag>
-            
         </tags>
       
     </entry>
@@ -884,7 +895,7 @@
     
     
     <entry>
-      <title>SpringAop-AspectJ-Intro</title>
+      <title>SpringAop AspectJ Intro</title>
       <link href="/2021/07/07/springaop-aspectj-intro/"/>
       <url>/2021/07/07/springaop-aspectj-intro/</url>
       
@@ -932,8 +943,6 @@
         <tags>
             
             <tag> MySQL </tag>
-            
-            <tag> Log </tag>
             
         </tags>
       
@@ -984,8 +993,6 @@
         <tags>
             
             <tag> Linux </tag>
-            
-            <tag> Deploy </tag>
             
         </tags>
       
