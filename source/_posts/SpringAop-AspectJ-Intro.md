@@ -1,5 +1,5 @@
 ---
-title: SpringAop-AspectJ-Intro
+title: SpringAop AspectJ Intro
 date: 2021-07-07 15:23:03
 author: NaiveKyo
 top: false

@@ -11,7 +11,7 @@ cover: false
 summary: CentOS7 部署 Nacos 服务器
 categories: Linux
 keywords: [Linux, Nacos]
-tags: [Linux, Deploy]
+tags: Linux
 ---
 
 ## Nacos 服务部署

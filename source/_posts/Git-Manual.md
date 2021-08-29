@@ -1,5 +1,5 @@
 ---
-title: Git_Manual
+title: Git Manual
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/18.jpg'

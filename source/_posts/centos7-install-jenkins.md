@@ -15,7 +15,6 @@ keywords:
   - Jenkins
 tags:
   - Linux
-  - Deploy
 ---
 
 

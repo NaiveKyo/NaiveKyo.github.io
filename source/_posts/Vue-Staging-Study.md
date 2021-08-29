@@ -1,5 +1,5 @@
 ---
-title: Vue_Staging_Study
+title: Vue Staging Study
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/10.jpg'
@@ -17,7 +17,6 @@ keywords:
   - Vue-cli
 tags:
   - Vue
-  - Vue-cli
 ---
 
 

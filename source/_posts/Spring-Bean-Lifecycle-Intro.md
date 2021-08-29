@@ -1,5 +1,5 @@
 ---
-title: Spring_Bean_Lifecycle_Intro
+title: Spring Bean Lifecycle Intro
 author: NaiveKyo
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/9.jpg
@@ -16,7 +16,6 @@ keywords:
   - Lifecycle
 tags:
   - Spring
-  - Lifecycle
 ---
 
 

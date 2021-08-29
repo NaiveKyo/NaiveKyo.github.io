@@ -1,5 +1,5 @@
 ---
-title: Vue_Componentized_Programming
+title: Vue Componentized Programming
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/11.jpg'
@@ -15,7 +15,6 @@ keywords:
   - Front-End
   - Vue
 tags:
-  - Front-End
   - Vue
 ---
 

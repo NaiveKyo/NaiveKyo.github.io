@@ -12,11 +12,10 @@ summary: 学习 Redis 数据类型和常用操作。
 categories: Redis
 keywords:
   - Redis
+  - Database
   - Cache
 tags:
   - Redis
-  - Database
-  - Cache
 ---
 
 

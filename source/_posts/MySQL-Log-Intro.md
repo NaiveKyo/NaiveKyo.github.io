@@ -15,7 +15,6 @@ keywords:
   - Log
 tags:
   - MySQL
-  - Log
 ---
 
 

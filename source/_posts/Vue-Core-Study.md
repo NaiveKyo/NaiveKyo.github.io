@@ -1,5 +1,5 @@
 ---
-title: Vue_Core_Study
+title: Vue Core Study
 author: NaiveKyo
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210710222939.jpg
@@ -11,7 +11,7 @@ cover: false
 summary: 学习 Vue 的核心知识
 categories: Vue 
 keywords: [Vue, Front-End] 
-tags: [Vue, Front-End] 
+tags: Vue
 ---
 
 # Vue 核心
