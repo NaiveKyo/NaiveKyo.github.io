@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-08-31T12:48:10.700Z</updated>
+  <updated>2021-09-01T14:56:53.474Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Bit Operation Intro</title>
+    <link href="https://naivekyo.github.io/2021/09/01/java-bit-operation-intro/"/>
+    <id>https://naivekyo.github.io/2021/09/01/java-bit-operation-intro/</id>
+    <published>2021-09-01T14:48:03.000Z</published>
+    <updated>2021-09-01T14:56:53.474Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Java-位运算&quot;&gt;&lt;a href=&quot;#Java-位运算&quot; class=&quot;headerlink&quot; title=&quot;Java 位运算&quot;&gt;&lt;/a&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Design patterns Overview</title>
@@ -499,31 +524,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;常用-API&quot;&gt;&lt;a href=&quot;#常用-API&quot; class=&quot;headerlink&quot; title=&quot;常用 API&quot;&gt;&lt;/a&gt;常用 API&lt;/h1&gt;&lt;h2 id=&quot;一、Object-类的方法&quot;&gt;&lt;a href=&quot;#一、Object-类的方法&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Comparable And Comparator</title>
-    <link href="https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/"/>
-    <id>https://naivekyo.github.io/2021/07/29/java-comparable-and-comparator/</id>
-    <published>2021-07-29T07:33:49.000Z</published>
-    <updated>2021-08-07T03:27:46.616Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Comparable-和-Comparator&quot;&gt;&lt;a href=&quot;#Comparable-和-Comparator&quot; class=&quot;headerlink&quot; title=&quot;Comparable 和 Comparator&quot;&gt;&lt;/a&gt;Comparable 和</summary>
         
       
     
