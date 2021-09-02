@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210723091053.jpg'
 coverImg: /img/20210723091053.jpg
 toc: true
 date: 2021-08-12 16:20:38
-top: true
+top: false
 cover: false
 summary: 浅析 SpringBoot 集成缓存。
 categories:
