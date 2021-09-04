@@ -431,6 +431,23 @@ public class Six_InsertSort {
         }
         arr[index + 1] = x;
     }
+  
+    private static void genericInsertSort(int[] arr) {
+        
+        // 普通方式的插入排序
+        for (int i = 1; i < arr.length; i++) {
+            
+            // 已排序数组的末尾元素下标
+            int index = i - 1;
+            // 备份一下要插入的元素
+            int temp = arr[i];
+            while (index > -1 && temp < arr[index]) {
+                arr[index + 1]  = arr[index];
+                index--;
+            }
+            arr[index + 1] = temp;
+        }
+    }
 }
 ```
 
@@ -460,3 +477,263 @@ public class Six_InsertSort {
 找到出口：
 
 - 出口就是变化量的变化趋势
+
+
+
+## 四、进阶练习
+
+### 1、汉诺塔问题
+
+汉诺塔是使用递归方法求解的一个经典的问题。
+
+
+
+问题描述：
+
+有三根杆，A、B、C，假设在 A 杆上有 n 个圆盘，且这些圆盘是按照从上到下面积依次增大来摆放的，现在要求将这些圆盘移动到 C 杆上，且顺序要和原来相同。求移动过去需要多少步。
+
+
+
+由于要求顺序完全相同，最底下的是面积最大的一块盘，所以我们可以这样，先将从上到下第 1 块到第 n - 1 块盘移动到 B 杆上， 最后将第 n 块盘移动到 C 杆。这一就将问题划分为两个子问题，接着我们还可以继续划分下去。
+
+
+
+从最简单的情况开始分析：（假设圆盘为 M<sub>1</sub> -> M<sub>n</sub>，面积依次增大）
+
+- n = 1，直接 M<sub>1</sub>（A -> C）
+- n = 2
+  - M<sub>1</sub>（A -> B）1 - (n - 1) 块移动到了 B 杆
+  - M<sub>2</sub>（A -> C）第 n 块移动到 C 杆
+  - M<sub>1</sub>（B -> C）：最后从 B 上将圆盘移动到 C 盘
+- n = 3
+  - M<sub>1</sub>（A -> C）
+  - M<sub>2</sub>（A -> B）
+  - M<sub>1</sub>（C -> B）1 - (n - 1) 块移动到了 B 杆
+  - M<sub>3</sub>（A -> C）第 n 块移动到 C 杆
+  - 接下来情况发生了变化，我们要从 B 杆上将 n - 1 块盘移动到 C 杆上去，也可以划分子问题，先将 1 到 n - 2 块盘移动到 A 杆上，最后将第 n - 1 块盘移动到 C 盘上
+  - M<sub>1</sub>（B -> A）
+  - M<sub>2</sub>（B -> C）
+  - M<sub>1</sub>（A -> C）
+- n = 4
+- ......
+
+
+
+如果按照原来的递归题解思路：
+
+- 划分等价子问题：我们将移动盘子的问题划分为一部分一部分的移动
+- 变化的量：似乎没办法很直观的找出来
+- 出口：暂时没办法设计出口
+
+
+
+划分或者递推公式不适用汉诺塔问题。
+
+我们可以试试等价转换：**将盘子的移动问题转换为杆子角色变化的问题。**
+
+
+
+比如说 n = 3 时：
+
+|  n   |     A      |   B    |     C      |
+| :--: | :--------: | :----: | :--------: |
+|  3   | 盘子的来源 | 辅助杆 | 盘子的去向 |
+
+当我们完成了第一次的将 1 到 n - 1 块盘移动到 B 杆，然后将 第 n 块盘移动到 C 杆后，此时，角色发生了变化：
+
+- A：盘子的去向
+- B：盘子的来源
+- C：辅助
+
+此种情况就是一个和原问题等价的子问题，我们现在要将 1 到 n - 2 块盘从 B 杆 移动到 A 杆，然后将第 n - 1 块盘移动到 C 杆上：最后角色又发生了变化：
+
+- A：盘子的来源
+- B：辅助
+- C：盘子的去向
+
+......
+
+上面的问题为什么能够等价呢？
+
+原因在于当我们移动了最大的一块盘后，可以无视这块盘，所有的情况都是：
+
+- 所有盘子都在一个杆子上，其余两个杆子为空
+
+
+
+最后会得到只有 1 块盘的情况，此时是最简单的子问题，只需要将它移动到目标盘就好了。
+
+这个过程中我们发现 A、B 两个杆的角色一直在发生变化。
+
+
+
+```java
+public class Seven_HanoiTower {
+
+    public static int sum = 0;
+    
+    public static void main(String[] args) {
+        
+        hanoi(10, "A", "B", "C");
+        System.out.println("total steps: " + sum);
+    }
+
+    private static void hanoi(int n, String source, String help, String target) {
+        
+        if (n == 1) {
+            // 最简单的一种情况
+            sum++;
+            System.out.println("move " + n +" from " + source + " to " + target);
+        } else {
+            // 不是最简单的情况，就要划分等价的子问题
+            // 先将 n - 1 个盘子从 source 移动到 help，此时杆角色发生变化
+            hanoi(n - 1, source, target, help);
+            sum++;
+            // 在将第 n 个盘子从 source 移动到 target
+            System.out.println("move " + n +" from " + source + " to " + target);
+            // 移动完后此时杆子角色又发生了变化，source 和 help 互换角色
+            hanoi(n - 1, help, source, target);
+        }
+    }
+}
+```
+
+当我们有 10 块盘的时候需要移动 1023 次，而原问题中的 64 块盘想要移动完几乎是不可能的，这个数字非常庞大。
+
+
+
+### 2、二分查找的递归解法
+
+二分查找法是一个非常实用的查找方法，只不过它有一定的要求和注意点：
+
+- 原数组有序递增
+- 注意边界
+
+
+
+我们按照递归的思路去解题：
+
+- 划分等价子问题：原数组从中间一分为二，拆成两个数组，对这两个数组分别进行二分查找
+- 变化量：我们利用两个索引框定一个子数组，这两个索引一直在变化
+- 出口：当限定子数组的两个索引不合法时，就是出口
+
+
+
+这里面一个难点就在于如何确定边界：
+
+```java
+public class Eight_BinarySearch {
+
+    public static void main(String[] args) {
+        
+        int[] arr = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21};
+
+        System.out.println(binarySearchRecursion(arr, 21));
+    }
+
+    // 输入源数组和目标数，返回下标，找不到就返回 -1
+    private static int binarySearchRecursion(int[] arr, int target) {
+        
+        return binarySearchRecursion(arr, target, 0, arr.length - 1);
+    }
+
+    private static int binarySearchRecursion(int[] arr, int target, int left, int right) {
+        
+        // 设计出口
+        if (left > right)
+            return -1;
+        
+        // 拿到切分的位置
+        int mid = (left + right) >>> 1;
+        
+        if (arr[mid] == target)
+            return mid;
+        else if (arr[mid] > target) {
+            return binarySearchRecursion(arr, target, left, mid - 1);
+        } else {
+            return binarySearchRecursion(arr, target, mid + 1, right);
+        }
+    }
+}
+```
+
+
+
+### 3、希尔排序
+
+希尔排序也是插入排序的一种，也称为缩小增量排序，是直接插入排序算法的一种更高效的改进版本。希尔排序是非稳定排序算法。
+
+
+
+思路：
+
+- 根据特定算法确定一个增量序列
+- 根据此增量序列中的每一个增量将原数组划分为多个子序列
+- 对每个增量确定的子序列进行插入排序
+- 完成排序
+
+
+
+分析：
+
+- 时间复杂度：不确定，在 O（nlog<sub>n</sub> ）~ O（n<sup>2</sup>）
+- 空间复杂度：由于是原址排序，所以是 O（1）
+- 稳定性：由于相同的元素可能会被划分到不同的子序列中单独排序，所以无法保证稳定性
+
+
+
+解析：
+
+- 增量是用于分组的
+- 例如增量为 n
+  - 则数组中下标为 0、(0 + n)、(0 + 2n)... 为一组进行插排
+  - 下标为 1、(1 + n)、(1 + 2n)... 为一组进行插排
+  - .....
+- 缩小增量的意思是增量序列的值是递减的
+
+
+
+要点：
+
+- 确定增量序列的算法
+- 常用的是：arr.length / 2
+
+
+
+```java
+public class Nine_ShellSort {
+
+    public static void main(String[] args) {
+        
+        int[] arr = {9, 3, 5, 7, 4, 8, 6, 10, 1, 2, 6, 9};
+
+        shellSort(arr);
+        
+        System.out.println(Arrays.toString(arr));
+    }
+
+    private static void shellSort(int[] arr) {
+
+        // 增量选择：初始值为数组长度的一半，之后逐次减半，缩小增量
+        for (int i = arr.length / 2; i > 0; i = i >>> 2) {
+            
+            // 多个增量确定的子序列并行进行插入排序
+            for (int j = i; j < arr.length ; j++) {
+                
+                int temp = arr[j];  // 备份要插入的元素
+                int index = j - i;  // 记录有序数列的末尾元素的下标
+                
+                while (index > -1 && arr[index] > temp) {
+                    arr[index + i] = arr[index];
+                    index = index - i;
+                }
+                arr[index + i] = temp;
+            }
+        }
+    }
+}
+```
+
+
+
+希尔排序是比普通的插入排序要快的。
