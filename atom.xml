@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-09-04T12:57:49.300Z</updated>
+  <updated>2021-09-08T14:26:30.002Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7 Project Demo One</title>
+    <link href="https://naivekyo.github.io/2021/09/08/centos7-project-demo-one/"/>
+    <id>https://naivekyo.github.io/2021/09/08/centos7-project-demo-one/</id>
+    <published>2021-09-08T14:24:07.000Z</published>
+    <updated>2021-09-08T14:26:30.002Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、CentOS7-安装图形界面&quot;&gt;&lt;a href=&quot;#一、CentOS7-安装图形界面&quot; class=&quot;headerlink&quot; title=&quot;一、CentOS7 安装图形界面&quot;&gt;&lt;/a&gt;一、CentOS7 安装图形界面&lt;/h2&gt;&lt;p&gt;先提一下 yum</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm Performance Analysis</title>
@@ -46,7 +71,7 @@
     <link href="https://naivekyo.github.io/2021/09/02/algorithm-of-recursion-basic-intro/"/>
     <id>https://naivekyo.github.io/2021/09/02/algorithm-of-recursion-basic-intro/</id>
     <published>2021-09-02T15:45:40.000Z</published>
-    <updated>2021-09-03T15:34:38.625Z</updated>
+    <updated>2021-09-08T14:28:50.758Z</updated>
     
     
       
@@ -121,7 +146,7 @@
     <link href="https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/"/>
     <id>https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/</id>
     <published>2021-08-29T14:55:28.000Z</published>
-    <updated>2021-08-29T15:07:56.118Z</updated>
+    <updated>2021-09-08T14:28:27.546Z</updated>
     
     
       
@@ -146,7 +171,7 @@
     <link href="https://naivekyo.github.io/2021/08/29/java-jdbc-review/"/>
     <id>https://naivekyo.github.io/2021/08/29/java-jdbc-review/</id>
     <published>2021-08-29T08:20:02.000Z</published>
-    <updated>2021-08-29T08:29:27.646Z</updated>
+    <updated>2021-09-08T14:28:07.636Z</updated>
     
     
       
@@ -171,7 +196,7 @@
     <link href="https://naivekyo.github.io/2021/08/28/java-annotation-and-reflection/"/>
     <id>https://naivekyo.github.io/2021/08/28/java-annotation-and-reflection/</id>
     <published>2021-08-28T02:03:37.000Z</published>
-    <updated>2021-08-28T02:22:28.980Z</updated>
+    <updated>2021-09-08T14:29:33.381Z</updated>
     
     
       
@@ -499,31 +524,6 @@
 &lt;li&gt;双列集合 &lt;code&gt;java.util.Map&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这里先介绍</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Generic Intro</title>
-    <link href="https://naivekyo.github.io/2021/07/31/java-generic-intro/"/>
-    <id>https://naivekyo.github.io/2021/07/31/java-generic-intro/</id>
-    <published>2021-07-31T14:14:43.000Z</published>
-    <updated>2021-08-07T03:27:55.948Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;泛型&quot;&gt;&lt;a href=&quot;#泛型&quot; class=&quot;headerlink&quot;</summary>
         
       
     
