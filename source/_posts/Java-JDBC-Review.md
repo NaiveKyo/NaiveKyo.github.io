@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811105219.jpg'
 coverImg: /img/20210811105219.jpg
 toc: true
 date: 2021-08-29 16:20:02
-top: true
+top: false
 cover: false
 summary: 回顾 Java JDBC 相关知识
 categories: Java

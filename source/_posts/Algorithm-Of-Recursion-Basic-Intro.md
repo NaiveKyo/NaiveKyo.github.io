@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/0.jpg'
 coverImg: /medias/banner/0.jpg
 toc: true
 date: 2021-09-02 23:45:40
-top: true
+top: false
 cover: false
 summary: 递归算法基础知识简介
 categories: Algorithm
@@ -737,3 +737,161 @@ public class Nine_ShellSort {
 
 
 希尔排序是比普通的插入排序要快的。
+
+
+
+### 4、上楼梯问题
+
+问题描述：小白正在上楼梯，楼梯共有 n 阶台阶，小白一次可以上 1 阶，2 阶或者 3 阶，实现一个方法，计算小白有多少种走完楼梯的方式。
+
+
+
+递归解题思路：
+
+- 递归公式：f(n) = f(n - 1) + f(n - 2) + f(n - 3) 
+- n 代表楼梯的阶数
+- 划分子问题思路：由于有 3 种上楼梯方式，我们可以逆着来，首先到达最后一个台阶的方案分为三种，总方案就是这三种的和
+- 而到达最后台阶的三种方案中每一种方案也可作为一个等价的子问题，以此类推，直到推导到 n = 0、1、2 的情况
+
+
+
+
+
+
+
+```java
+public class Ten_上楼梯 {
+
+    public static void main(String[] args) {
+
+        System.out.println(solution(6));
+    }
+    
+    public static int solution(int n) {
+        
+        if (n == 0)
+            return 1;
+        if (n == 1)
+            return 1;
+        if (n == 2)
+            return 2;
+        
+        return solution(n - 1) + solution(n - 2) + solution(n - 3);
+    }
+}
+```
+
+
+
+### 5、旋转数组的最小数字（改造二分法）
+
+问题描述：
+
+- 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。
+- 例如：数组 {3, 4, 5, 1, 2} 为 {1, 2, 3, 4, 5} 的一个旋转，该数组最小值为 1
+
+
+
+这种情况比较特殊，因为它有前置条件：数组递增有序，有这个条件一般使用二分的思想比较方便。
+
+
+
+我们可以用二分法的思想去做：
+
+```java
+public class Eleven_旋转数组 {
+
+    public static void main(String[] args) {
+        
+        int[] arr1 = {1, 2, 3, 4, 5, 6, 7};
+        int[] arr2 = {3, 4, 5, 6, 7, 1, 2};
+        int[] arr3 = {6, 7, 1, 2, 3, 4, 5};
+
+        System.out.println(solution(arr1));
+        System.out.println(solution(arr2));
+        System.out.println(solution(arr3));
+
+        System.out.println(solution(new int[]{2, 3, 4, 5, 6, 7, 1}));
+    }
+    
+    public static int solution(int[] arr) {
+        
+        return solution(arr, 0, arr.length - 1);
+    }
+
+    private static int solution(int[] arr, int left, int right) {
+        
+        // 如果没有旋转，则必定 arr[left] < arr[right]
+        if (arr[left] < arr[right])
+            return arr[left];
+        
+        int mid = (left + right) >>> 1;
+        
+        if (arr[mid] < arr[mid - 1])
+            return arr[mid];
+        else if (arr[mid] > arr[left] && arr[mid] > arr[right])
+            return solution(arr, mid + 1, right);
+        else 
+            return solution(arr, left, mid - 1);
+    }
+}
+```
+
+
+
+### 6、在有空字符串的有序字符串数组中查找
+
+- 有个排序后的字符串数组，其中散布着一些空字符串，编写一个方法，找到给定字符串（肯定不是空字符串）的索引。
+
+
+
+这个也是有序的，可以使用二分法，但是需要注意空字符串和边界问题。
+
+```java
+public class Twelve_有序字符串查找 {
+
+    public static void main(String[] args) {
+        
+        String[] strs = {"a", "", "ac", "", "ad", "b", "", "ba"};
+        System.out.println(strs[indexOf(strs, "a")]);
+        System.out.println(strs[indexOf(strs, "ba")]);
+        System.out.println(strs[indexOf(strs, "ad")]);
+        System.out.println(indexOf(strs, "abc"));
+        System.out.println(indexOf(strs, "bac"));
+    }
+    
+    public static int indexOf(String[] arr, String tar) {
+        
+        if ("".equals(tar))
+            return -1;
+        
+        int begin = 0;
+        int end = arr.length - 1;
+        
+        while (begin <= end) {
+            int mid = begin + ((end - begin) >>> 1);
+            while (arr[mid].equals("")) {
+                mid++;
+                if (mid > end)
+                    return -1;
+            }
+            if (arr[mid].compareTo(tar) > 0)
+                end = mid - 1;
+            else if (arr[mid].compareTo(tar) < 0)
+                begin = mid + 1;
+            else 
+                return mid;
+        }
+        return -1;
+    }
+}
+```
+
+
+
+### 7、最长连续递增子序列（部分有序）
+
+- {1, 9, 2, 5, 7, 3, 4, 6, 8, 0} 中最长的递增子序列为 {3, 4, 6, 8}
+
+
+

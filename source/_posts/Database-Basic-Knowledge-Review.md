@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/14.jpg'
 coverImg: /medias/featureimages/14.jpg
 toc: true
 date: 2021-08-29 22:55:28
-top: true
+top: false
 cover: false
 summary: 回顾数据库的基础知识
 categories: Database
