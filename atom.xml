@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-09-19T07:05:20.094Z</updated>
+  <updated>2021-09-19T13:43:22.371Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Base (二) Common Protocols and Standards</title>
+    <link href="https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/"/>
+    <id>https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/</id>
+    <published>2021-09-19T13:38:20.000Z</published>
+    <updated>2021-09-19T13:43:22.371Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;常见协议和标准&quot;&gt;&lt;a href=&quot;#常见协议和标准&quot; class=&quot;headerlink&quot; title=&quot;常见协议和标准&quot;&gt;&lt;/a&gt;常见协议和标准&lt;/h2&gt;&lt;p&gt;概述：简单介绍 DNS 协议、TCP/IP 协议、HTTP 协议和 Java Web 开发中的</summary>
+        
+      
+    
+    
+    
+    <category term="Website Basics" scheme="https://naivekyo.github.io/categories/Website-Basics/"/>
+    
+    
+    <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
+    
+  </entry>
   
   <entry>
     <title>Web Base (一) Architecture Evolution</title>
@@ -494,31 +519,6 @@
     <summary type="html">&lt;h1 id=&quot;Map&quot;&gt;&lt;a href=&quot;#Map&quot; class=&quot;headerlink&quot; title=&quot;Map&quot;&gt;&lt;/a&gt;Map&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Map 中的集合称为双列集合&lt;/li&gt;
 &lt;li&gt;Map</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java List And Set</title>
-    <link href="https://naivekyo.github.io/2021/08/06/java-list-and-set/"/>
-    <id>https://naivekyo.github.io/2021/08/06/java-list-and-set/</id>
-    <published>2021-08-06T14:49:18.000Z</published>
-    <updated>2021-08-06T14:58:09.492Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;数据结构&quot;&gt;&lt;a href=&quot;#数据结构&quot; class=&quot;headerlink&quot;</summary>
         
       
     

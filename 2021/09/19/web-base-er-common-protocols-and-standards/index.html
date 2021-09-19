@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Website Basics,Architecture evolution">
+    <meta name="keywords" content="Website Basics,Common Protocols">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Web Base (一) Architecture Evolution | NaiveKyo</title>
+    <title>Web Base (二) Common Protocols and Standards | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -488,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Web Base (一) Architecture Evolution</h1>
+                    <h1 class="description center-align post-title">Web Base (二) Common Protocols and Standards</h1>
                 </div>
             </div>
         </div>
@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4k
+                    2.9k
                 </div>
                 
 
@@ -671,223 +671,179 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、网站架构及其演变过程"><a href="#一、网站架构及其演变过程" class="headerlink" title="一、网站架构及其演变过程"></a>一、网站架构及其演变过程</h2><h3 id="1、软件三大类型"><a href="#1、软件三大类型" class="headerlink" title="1、软件三大类型"></a>1、软件三大类型</h3><p>软件三大类型：单机、C/S、B/S</p>
-<h3 id="2、基础架构"><a href="#2、基础架构" class="headerlink" title="2、基础架构"></a>2、基础架构</h3><p>B/S 架构是最基础的结构，但是想做好它也并不容易，因为互联网是一个错综复杂的网络，数据在传输过程中有很多问题，而所有问题都有它对应的处理方法。</p>
-<p>对于复杂问题，我们可以将其分解成多个简单的问题，通过解决每个简单问题，最终解决复杂问题。</p>
-<p>BS 结构网络传输的分解方式有两种：</p>
+                <h2 id="常见协议和标准"><a href="#常见协议和标准" class="headerlink" title="常见协议和标准"></a>常见协议和标准</h2><p>概述：简单介绍 DNS 协议、TCP/IP 协议、HTTP 协议和 Java Web 开发中的 Servlet。</p>
+<h2 id="DNS-协议"><a href="#DNS-协议" class="headerlink" title="DNS  协议"></a>DNS  协议</h2><p>DNS 协议的作用是将域名解析为 IP。</p>
+<p>我们知道网络上每个站点都是使用 IP 来确定的，所以想要访问一个网站就需要先知道它的 IP，但是 IP 记起来不方便，所以就设计了比较好记的域名来代替 IP。</p>
+<p>而负责处理域名和 IP 之间的对应关系的就是 DNS 协议，考虑到网上有非常多的域名，如果使用客户机去处理会比较慢，而且域名和 IP 之间的对应关系也是不稳定的，时常在变化，所以就需要专门将域名解析为 IP 的服务器，这就是 “DNS 服务器”。</p>
+<p>我们把域名发送给 DNS 服务器，他就会返回给我们 IP 地址，比如 windows 中可以使用 <code>nslookup</code> 来查看 DNS 解析的结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919214301.png"></p>
 <ul>
-<li>标准的 OSI 参考模型</li>
-<li>TCP/IP 参考模型</li>
+<li>DNS 服务器地址：114.114.114.114</li>
+<li>解析 <a target="_blank" rel="noopener" href="http://www.taobao.com/">www.taobao.com</a> 的 IP 是 27.211.197.171 和 27.211.197.172，而且他是通过 CNAME 方式解析的</li>
+<li>原始设置 IP 的域名是 <a target="_blank" rel="noopener" href="http://www.taobao.com.danuoyi.tbcache.com/">www.taobao.com.danuoyi.tbcache.com</a></li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919122424.png"></p>
-<p>OSI 参考模型分为七层，但是它主要用于教学，实际使用多的还是 TCP/IP 的 4 层模型。</p>
-<p>对于 TCP/IP 4 层模型可以简单理解为：（也可以看作一种协议）</p>
+<p>世界各地有很多 DNS 服务器，ISP 会给我们提供默认的 DNS 服务器，也有一些大型公用 DNS 服务器可以使用，比如 Google 的 8.8.8.8 和国内的 114.114.114.114</p>
+<p>我们直接访问的 DNS 服务器叫 本地 DNS 服务器，它本身也没有域名和 IP 的对应关系，在我们发出请求的时候它会从主 DNS 服务器获取然后保存到缓存中，下次再有相同的域名请求直接从缓存中获取就可以了。</p>
+<h2 id="TCP-IP-协议与-Socket"><a href="#TCP-IP-协议与-Socket" class="headerlink" title="TCP/IP 协议与 Socket"></a>TCP/IP 协议与 Socket</h2><p>TCP/IP：（传输控制协议/英特尔互联协议）这两个协议经常放在一起，但他们是不同的，所起的作用也不一样。</p>
 <ul>
-<li>网络接入层：将需要相互连接的节点接入网络中，从而为数据传输提供条件 （<strong>没有协议</strong>）</li>
-<li>网际互连层：找到要传输数据的目标节点   (<strong>IP协议</strong>)</li>
-<li>传输层：实际传输数据   （<strong>TCP协议</strong>）</li>
-<li>应用层：使用接收到的数据  （<strong>HTTP协议</strong>）</li>
+<li>IP 协议是用于查找地址</li>
+<li>具体传输工作由 TCP 完成</li>
 </ul>
-<p>BS 架构中还使用到了 <strong>DNS 协议</strong>，并且在 HTTP 上层还有相关的规范，比如 Java Web 开发中的 Servlet 标准</p>
-<p><mark>补充：对于硬件是各种总线协议、对于网络传输来说就是网络协议</mark></p>
-<p>BS 架构虽然简单、基础，但是想要做好并不容易：</p>
+<p>TCP 在传输之前需要进行三次沟通，一般称为 “三次握手”，传完数据断开时要进行四次沟通，称为 “四次挥手”。</p>
+<p>要理解这个过程需要理解 TCP 的两个序号和三个标志位的含义。</p>
 <ul>
-<li>用户交互</li>
-<li>海量数据处理</li>
-<li>高并发</li>
+<li><code>seq</code>：sequence numbe 的缩写，表示所传数据的序号。TCP 传输时每一个字节都要有一个序号，发送数据时会将数据的第一个序号发送给对方，接受方会按序号检查是否接收完整，如果没有接收完整就需要重新发送，这样就可以保证数据的完整性。</li>
+<li><code>ack</code>：acknoledgement number 的缩写，表示确认号。接收端用它来给发送端反馈已经成功接收到的数据信息，它的值为希望接收的下一个数据包的起始序号，也就是 ack 的值所代表的序号前面的数据已经成功接收了</li>
+<li><code>ACK</code>：确认位，只有 ACK = 1 的时候 ack 才起作用。正常通信时 ACK 为 1，第一次发起请求因为没有需要确认接收的数据所以 ACK = 0。</li>
+<li><code>SYN</code>：同步位，用于建立连接时的同步序号。刚开始建立连接时并没有历史接收的数据，所以 ack 也没办法设置，这时按照正常的机制无法运行了，SYN 的作用就是来解决这样的问题，当接收端接收到 SYN = 1的报文的时候，就会直接将 ack 设置为接收到的 seq + 1 的值，注意这里的值并不是校验后设置的，而是根据 SYN 直接设置的，这时候正常的机制就可以运行了，所以 SYN 叫同步位。需要注意的是，SYN 会在前两次握手时为 1，这是因为通信双方的 ack 都需要设置一个初始值。</li>
+<li><code>FIN</code>：终止位，用来在数据传输完毕后释放连接。</li>
 </ul>
-<p>前者是另一回事，后两者导致了现在网站越来越复杂的架构</p>
-<h3 id="3、架构演变的起点"><a href="#3、架构演变的起点" class="headerlink" title="3、架构演变的起点"></a>3、架构演变的起点</h3><p>基础架构中服务器就一台主机，部署了应用程序和数据库。</p>
-<p>当数据和流量变得越来越大时，就需要将应用程序和数据库分开存放到不同主机</p>
-<h2 id="二、海量数据的解决方案"><a href="#二、海量数据的解决方案" class="headerlink" title="二、海量数据的解决方案"></a>二、海量数据的解决方案</h2><h3 id="1、缓存和页面静态化"><a href="#1、缓存和页面静态化" class="headerlink" title="1、缓存和页面静态化"></a>1、缓存和页面静态化</h3><p>（1）缓存使用方式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919214314.png"></p>
+<p><mark>纠错：上图中三次握手客户端第二次发送给服务端的 ack = y + 1</mark></p>
+<p><strong>注：TCP 其实是一个很复杂的协议，具有很多种状态，状态之间的转换也是比较复杂的，这里不做详述。</strong></p>
+<br>
+
+<p>上面是三次握手，下面是四次挥手（这里是客户端发送停止连接，也有可能是服务端发送，处理过程都一样）。</p>
+<p>TCP 传输是全双工的，也就是说双方是对等的，可以同时传输数据，所以无论连接还是关闭都需要双方同时进行。</p>
 <ul>
-<li>通过程序保存到内存中<ul>
-<li>Map：<code>ConcurrentHashMap</code></li>
+<li>三次握手<ul>
+<li>前两次可以保证服务端可以正确接收并返回请求</li>
+<li>后两次可以保证客户端可以正确接收并返回请求</li>
+<li>在三次握手过程中还可以使用 SYN 标志初始化了双方的 ack 值。</li>
 </ul>
 </li>
-<li>使用缓存框架<ul>
-<li>常用：<code>Ehcache</code>、<code>Memcache</code>、<code>Redis</code> 等等</li>
-</ul>
-</li>
-<li>最重要的问题：什么时候创建缓存和缓存的失效机制<ul>
-<li>什么时候创建：<ul>
-<li>第一次获取的时候创建</li>
-<li>程序启动</li>
-<li>缓存失效之后立即创建</li>
-</ul>
-</li>
-<li>缓存失效机制：<ul>
-<li>定期失效</li>
-<li>数据变化时失效<ul>
-<li>粗粒度失效</li>
-<li>细粒度失效</li>
+<li>四次挥手<ul>
+<li>双方分别发送 FIN 标志来关闭连接并让对方确认</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><mark>mark：缓存中空数据管理</mark></p>
-<p>（2）页面静态化</p>
-<p>原理和缓存类似：缓存是将从数据库（也可以是从其他地方序列化而来）中取到的数据保存起来，而页面静态化是将程序最后生成的页面保存起来，</p>
+<br>
+
+<p>三次握手和四次挥手保证了连接的可靠性，不过凡事有利有弊，这种模式也有它的缺点：</p>
 <ul>
-<li>使用模板技术生成：<ul>
-<li>常用的 <code>Freemarker</code>、<code>Velocity</code>，可以根据模板生成静态页面</li>
-<li>使用缓存服务器在应用服务器的上一层缓存生成的页面：比如 <code>Squid</code></li>
-<li>Nginx 也提供了相关功能</li>
+<li>首先是传输效率上会比较低</li>
+<li>另外三次握手中客户端需要发送两次数据才可以建立连接，这种特性可能会被一些别有用心的人利用<ul>
+<li>比如，发送第一次握手（并接到第二次握手）后就不回应第三次握手了，这时服务端会以为是第二次握手的数据在传输过程中丢失了，然后重新发送第二次握手，默认情况下会一直发送五次，如果发送五次后还是收不到第三次握手，就会丢弃该请求，一两次就算了，如果出现大量这样的请求，会导致服务器浪费大量资源而无法处理正常请求。</li>
+<li>这就是 DDOS 攻击中的 SYN Flood 攻击，对于这种攻击一种应对方法是设置第二次请求的重发次数（tcp_synack_retries），不过重发次数太小也可以导致正常的请求因为网络原因而连接失败，具体设置多少合适，视具体情况而定。</li>
 </ul>
 </li>
 </ul>
-<h3 id="2、数据库优化"><a href="#2、数据库优化" class="headerlink" title="2、数据库优化"></a>2、数据库优化</h3><p>常用：</p>
+<br>
+
+<p>传输层协议出了 TCP 外，还有 UDP，它们的主要区别是 TCP 是有连接的，UDP 是无连接的，TCP 协议会沟通好之后传输数据，而 UDP 协议是拿到目标地址后直接传输数据。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接</td>
+<td>有连接</td>
+<td>无连接</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>可靠</td>
+<td>不可靠</td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>邮件、网页等等</td>
+<td>视频传输、语音输入等等</td>
+</tr>
+</tbody></table>
+<p>HTTP 协议底层传输默认使用的是可靠的 TCP 协议，由于 TCP 的特性也给 HTTP 带来了一些制约。可以搜索查看 HTTP1.0、HTTP2.0、HTTP3.0 相关信息。</p>
+<p>HTTP 协议只是一套规则，并不能具体工作，就像是程序中的接口一样，而 Socket 是 TCP/IP 协议的一个具体的实现。</p>
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>HTTP 协议是应用层协议，在 TCP/IP 协议接收到数据之后就需要 HTTP 协议来解析才可以使用。</p>
+<p>HTTP 协议的报文结构非常重要。HTTP 中报文分为 <strong>请求报文（request message）</strong> 和 <strong>响应报文（response message）</strong> 两种类型，这两种类型都包括三部分：<strong>行首、头部、主体</strong>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>请求报文</th>
+<th>响应报文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>行首</td>
+<td>请求行，包括方法（请求类型）、URL和 HTTP 版本三项内容</td>
+<td>状态行，包括 HTTP 版本、状态码和简短原因三项内容，其中原因可有可无</td>
+</tr>
+<tr>
+<td>头部</td>
+<td>头部保存一些键值对的属性，用冒号分割</td>
+<td>头部保存一些键值对的属性，用冒号分割</td>
+</tr>
+<tr>
+<td>主体</td>
+<td>主要保存 POST 类型的参数</td>
+<td>页面要显示的结果</td>
+</tr>
+</tbody></table>
+<p>请求报文行首的请求类型：</p>
 <ul>
-<li><p>表结构优化</p>
-</li>
-<li><p>SQL 语句优化</p>
+<li><code>GET、HEAD、POST、PUT、DELETE</code> 等类型</li>
+</ul>
+<p>响应报文行首的状态码（Response 的 status）：</p>
 <ul>
-<li>语法层面的优化、处理逻辑的优化（和索引缓存配合）</li>
-<li>通用SQL优化方法：记录目标 SQL 语句的执行时间、仔细分析日志，找出要优化的语句和其中的问题</li>
-</ul>
-</li>
-<li><p>分区和分表</p>
-<ul>
-<li><strong>分区</strong>：将一张表的数据按照一定的规则分到不同的区来保存，这样在查询数据时如果数据的范围在同一区内那么可以只对一个区的数据进行操作，这样操作的数据量更少、速度更快</li>
-<li><strong>分表</strong>：如果一张表的数据可以分为几种固定不变的类型，而且如果同时对多种类型共同操作的情况不多，那么都可以通过分表来处理，这也需要具体情况具体对待</li>
-<li>另一种分表方法：将一个表中不同类型的字段分到不同的表中保存，这么做最直接的好处就是增删改数据的时候锁定的范围减小了，没被锁定的表中的数据不受影响。但是查询的时候需要多表联查</li>
-</ul>
-</li>
-<li><p>索引优化</p>
-<ul>
-<li>索引的大致原理：数据发生变化（增删改）的时候就预先指定字段的顺序排列后保存到一个类似表的结构中，这样在查找索引字段为条件的记录时就可以很快从索引中找到对应记录的指针并从表中获取到记录</li>
-<li>索引是一把双刃剑：提高查询速度的同时降低了增删改的速度，每次数据变化都需要更新索引</li>
-<li>使用方法：合理使用索引、对哪些字段使用索引、使用什么类型的索引、做一些测试</li>
-</ul>
-</li>
-<li><p>使用存储过程代替直接操作</p>
-<ul>
-<li>操作过程中复杂而且调用频率高的业务中，可以通过使用存储过程代替直接操作来提高效率，因为存储过程只需要编译一次，而且可以在一个存储过程中做一些复杂操作</li>
-</ul>
-</li>
-<li><p>合理使用冗余</p>
-</li>
-</ul>
-<h3 id="3、分离活跃数据"><a href="#3、分离活跃数据" class="headerlink" title="3、分离活跃数据"></a>3、分离活跃数据</h3><p>有些数据总数据量非常大，但是活跃数据并不多，这种情况可以将活跃数据单独保存起来从而提高处理效率。</p>
-<p>例子：对网站来说，用户数据很重要</p>
-<ul>
-<li>可以按照指定规则：比如上一次登录时间、指定时间段的登录次数等等规则</li>
-<li>写一个定时任务，按照上述规则将不活跃的用户转移到另一张表</li>
-<li>用户登录时：先从活跃表中查数据、查不到再去不活跃表、还找不到就是未注册用户</li>
-</ul>
-<h3 id="4、批量读取和延迟修改"><a href="#4、批量读取和延迟修改" class="headerlink" title="4、批量读取和延迟修改"></a>4、批量读取和延迟修改</h3><p>批量读取和延迟修改的原理是通过减少操作次数来提高效率。</p>
-<ul>
-<li>批量读取：将多次查询合并到一次中进行</li>
-<li>延迟修改：主要针对高并发而且频繁修改（包括新增）的数据，如一些统计数据。这种情况可以先将需要修改的数据暂时保存到缓存中，然后定时将缓存中的数据保存到数据库中，程序在读取的时候可以同时读取数据库中和缓存中的数据。<strong>这里的缓存和前面将的缓存有本质的区别，前面的缓存在使用过程中，数据库中的数据一直是完整的，但是现在数据库中数据有一段时间是不完整的</strong>。所以这种情况如果保存缓存的机器出了问题将可能丢失数据。</li>
-</ul>
-<h3 id="5、读写分离"><a href="#5、读写分离" class="headerlink" title="5、读写分离"></a>5、读写分离</h3><p>读写分离的本质是对数据库进行<strong>集群</strong>，这样可以在高并发情况下将对数据库的操作分配到多个数据库服务器去处理从而降低单台服务器的压力。</p>
-<p>但是：<strong>由于数据库的特殊性 —— 每台服务器需要保存的数据都需要一致，所以数据同步就成了数据库集群最核心的问题。</strong></p>
-<p>专门负责写的服务器叫做主服务器。主服务器写入（增删改）数据后从底层同步到其他从服务器，读数据时从从服务器中读取。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145206.png"></p>
-<blockquote>
-<p>处理策略</p>
-</blockquote>
-<p>简单的数据同步方式可以采用数据库的热备份功能，不过读取到的数据可能会存在一定的滞后性，高级的方式需要使用专门的软硬件配合。（比如 MySQL + canal）</p>
-<p>另外既然是集群就涉及到负载均衡问题，负载均衡和读写分离的操作一般采用专门程序处理，而且对应用系统来说是透明的。</p>
-<h3 id="6、分布式数据库"><a href="#6、分布式数据库" class="headerlink" title="6、分布式数据库"></a>6、分布式数据库</h3><p><strong>分布式数据库</strong>是将不同的表存放到不同的数据库后然后再放到不同的服务器。这样在处理请求时，如果需要调用多个表，则可以让多台服务器同时处理，从而提高效率。</p>
-<p><mark>注意：读写分离和分布式数据库的使用场景</mark></p>
-<ul>
-<li>数据库<strong>集群</strong>（读写分离）的作用是将多个请求分配到不同的服务器处理，从而减轻单台服务器的压力</li>
-<li><strong>分布式数据库</strong>是解决单个请求本身就非常复杂的问题，它可以将单个请求分配到多个服务器处理，使用分布式后的每个节点还可以同时使用读写分离，从而组成多个节点群</li>
-</ul>
-<p>真正使用分布式数据库还有很多问题，比如事务处理、多表查询等等</p>
-<p>重要是思路</p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145247.png"></p>
-<h3 id="7、NoSQL-和-Hadoop"><a href="#7、NoSQL-和-Hadoop" class="headerlink" title="7、NoSQL 和 Hadoop"></a>7、NoSQL 和 Hadoop</h3><ul>
-<li>NoSQL：非关系型数据库</li>
-<li>Hadoop：处理大数据的框架</li>
-</ul>
-<p>两者结合处理海量大数据</p>
-<h2 id="三、高并发的解决方案"><a href="#三、高并发的解决方案" class="headerlink" title="三、高并发的解决方案"></a>三、高并发的解决方案</h2><h3 id="1、应用和静态资源分离"><a href="#1、应用和静态资源分离" class="headerlink" title="1、应用和静态资源分离"></a>1、应用和静态资源分离</h3><ul>
-<li>早期应用程序和静态资源放在一起，当并发量达到一定程度就需要将静态资源保存到专门的服务器</li>
-</ul>
-<h3 id="2、页面缓存"><a href="#2、页面缓存" class="headerlink" title="2、页面缓存"></a>2、页面缓存</h3><p>页面缓存是将应用生成的页面缓存起来，这样就不需要每次都重新生成页面。</p>
-<p>如果使用了 Nginx 服务器可以使用自带的缓存功能，当然也可以使用专门的 Squid 服务器。</p>
-<p>页面缓存的失效机制一般按照缓存时间处理，当然也可以在修改数据之后手动让缓存失效。</p>
-<p><mark>mark：某些页面中有部分数据经常变化，该如何使用页面缓存？</mark></p>
-<ul>
-<li>页面缓存主要使用在数据很少发生变化的页面</li>
-<li>但是有部分页面中只有一小部分数据经常变化（比如视频网站中顶和踩）</li>
-<li>这个问题可以这样干：先生成静态页面，然后使用 Ajax 来读取并修改相应的数据</li>
-</ul>
-<h3 id="3、集群和分布式"><a href="#3、集群和分布式" class="headerlink" title="3、集群和分布式"></a>3、集群和分布式</h3><blockquote>
-<p>概览</p>
-</blockquote>
-<p>集群和分布式都是使用多台服务器进行处理的。</p>
-<ul>
-<li>集群是每台服务器都具备相同的功能，处理请求时调用哪台服务器都可以，主要起到分流的作用</li>
-<li>分布式是将不同的业务放到不同的服务器中，处理一个请求可能会用到多台服务器，这样可以提高一个请求的处理速度</li>
-<li>集群和分布式可以同时使用</li>
-</ul>
-<blockquote>
-<p>集群</p>
-</blockquote>
-<p>集群有两种方式：</p>
-<ul>
-<li>静态资源集群</li>
-<li>应用程序集群（比较复杂）<ul>
-<li>应用程序在处理时可能会用到缓存，如果集群需要同步这些数据，其中最重要的一个点就是 Session，Session 同步也是应用程序集群中非常核心的一个问题</li>
-<li>Session 不同两种处理方式：<ul>
-<li>一：Session 变化后自动同步到其他服务器</li>
-<li>二：用一个程序统一管理 Session</li>
-</ul>
-</li>
-<li>所有集群的服务器都使用同一个 Session<ul>
-<li>Tomcat 默认使用第一种方式</li>
-<li>第二种方式可以使用专门的服务器安装 Memcached 等高效的缓存程序来统一管理 Session，然后在应用程序中通过重写 Request 并覆盖 getSession 方法来获取指定服务器中的 Session</li>
+<li>分为五类：<ul>
+<li>1XX：信息性状态码</li>
+<li>2XX：成功状态码</li>
+<li>3XX：重定向状态码</li>
+<li>4XX：客户端错误状态码</li>
+<li>5XX：服务端错误状态码</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>对于集群来说有一个重要的问题就是负载均衡</li>
-</ul>
-<p><mark>现在如何处理这些问题？</mark></p>
-<h3 id="4、反向代理"><a href="#4、反向代理" class="headerlink" title="4、反向代理"></a>4、反向代理</h3><p>反向代理指客户端直接访问的服务器并不真正提供服务，它从别的服务器获取资源然后将结果返回给客户。</p>
-<p>反向代理服务器和代理服务器</p>
+<h2 id="Servlet-与-Java-Web-开发"><a href="#Servlet-与-Java-Web-开发" class="headerlink" title="Servlet 与 Java Web 开发"></a>Servlet 与 Java Web 开发</h2><p>Servlet 是 J2EE 标准的一部分，是 Java Web 开发的标准。标准比协议多了强制性的意义，不过它们的作用基本一样，都是用来制定统一的规矩。</p>
+<br>
+
+<p>通过前面的 TCP/IP 协议、HTTP 协议，我们可以得到具体的数据了，Servlet 的作用是对接收到的数据进行处理并生成要返回给客户端的结果。</p>
+<br>
+
+<p>Servlet 指定了 Java 中处理 Web 请求的标准，我们只需要按照标准规定的去做就可以了，但是不论是规范还是标准，它们都是不能干活的，要使用 Servlet 需要有对应的 Servlet 容器才行，比如，我们熟悉的 Tomcat 就是一个 Servlet 容器。</p>
+<h2 id="DNS-解析"><a href="#DNS-解析" class="headerlink" title="DNS 解析"></a>DNS 解析</h2><p>DNS 服务器可以将域名解析成 IP 地址，但是 DNS 服务器是如何知道该域名和 IP 绑定的呢？</p>
+<p>这需要域名的持有者自己将域名解析到对应的 IP 上，这样 DNS 服务器才可以查找到。</p>
+<br>
+
+<p>解析域名：</p>
 <ul>
-<li>反向代理服务器：我们正常访问一台服务器时，服务器自己调用了其他服务器的资源将结果返回给我们，我们并不知道</li>
-<li>代理服务器：代我们想要获取的资源然后将结果返回给我们，所要获取的资源是我们主动告诉服务器的（比如 VPN）</li>
-<li>代理服务器是我们主动使用的，是为我们服务的，它不需要有自己的域名；反向代理服务器是服务器自己使用的，我们并不知道，它有自己的域名，我们访问它和访问正常的网址没有任何区别</li>
-</ul>
-<p>反向代理服务器的三个作用：</p>
-<ul>
-<li>可以作为前端服务器跟实际处理请求的服务器（如 Tomcat）集成</li>
-<li>可以用作负载均衡</li>
-<li>转发请求，比如可以将不同类型的资源请求转发到不同的服务器去处理，可以将动态资源转发到 Tomcat、Php 等动态程序，将静态资源如图片的请求转发到静态资源服务器，另外也可以在 url 地址结构发生变化后将新地址转发到原有的旧地址上</li>
-</ul>
-<h3 id="5、CDN"><a href="#5、CDN" class="headerlink" title="5、CDN"></a>5、CDN</h3><p>CDN 其实就是一种特殊的集群页面缓存服务器，它和普通集群的多台页面缓存服务器比主要是它存放的位置和分配请求的方式有点特殊。</p>
-<p>CDN 的服务器是分布在全国各地的，当接收到用户请求后会将请求分配到最合适的 CDN 服务器节点数据获取数据，比如，联通用户会分配到联通节点，电信用户会分配到电信节点；另外还会按照地理位置进行分配，比如上海用户分配到上海节点。</p>
-<p>CDN 的每一个节点其实就是一个页面缓存服务器，如果没有找到请求资源的缓存就会到主服务器上获取，否则直接返回缓存页面。</p>
-<p>CDN 分配请求的方式比较特殊，它并不是使用普通的负载均衡服务器来分配，而是用专门的 CDN 域名解析服务器在解析域名的时候就分配好的。一般做法是在 ISP 那里使用 CNAME 将域名解析到一个特定的域名，然后再将解析到的那个域名用专门的 CDN 服务器解析到相应的 CDN 节点。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145408.png"></p>
-<p>我们知道 DNS 服务器是域名解析服务器，正常而言通过 DNS 服务器会将域名解析成 IP 地址，然后直接返回。</p>
-<p>但是 CDN 不一样，当我们访问 CDN 域名是，先去找 DNS 服务器，而 DNS 服务器使用 CNAME 记录的目标域名使用 NS 记录指向了 CDN 的 DNS 服务器。</p>
-<p>CDN 的每个节点可能也是集群了多台服务器。</p>
-<h3 id="6、底层的优化"><a href="#6、底层的优化" class="headerlink" title="6、底层的优化"></a>6、底层的优化</h3><p>所有的架构都是建立在前面介绍的基础架构之上的，而且很多地方都需要网络传输数据，如果可以加快网络传输的速度，那会让整个系统从根本上得到改善。</p>
-<p>网络传输数据都是按照各种协议进行的，不过协议并非不可改变。</p>
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><ul>
-<li>网站架构演进主要围绕两个方面：海量数据、高并发</li>
-<li>解决方案主要分为：使用缓存、使用多资源 两种类型<ul>
-<li>多资源主要指多存储（包括多内存）、多CPU和多网络</li>
-<li>多资源又可以分：单个资源处理一个完整请求和多个资源合作处理一个请求<ul>
-<li>多存储和多CPU中的集群和分布式</li>
-<li>多网络中的 CDN 和静态资源分离</li>
+<li>记录类型：域名解析有多种解析的类型，如常用的 A 记录和 CNAME 记录。<ul>
+<li>A 记录是将域名解析到 IP（一个域名可以有多条 A 记录）</li>
+<li>CNAME 记录是将域名解析到另一个域名（也就是作为一个域名的别名），查找时回返回目标域名的 IP<ul>
+<li>比如 A 域名的 CNAME 记录 B 域名，当我们访问 A 域名时，DNS 解析结果回返回 B 域名的 IP</li>
+<li>这样做有三个好处：<ul>
+<li>1、B 域名可能会有多条解析记录，而 A 域名通过 CNAME 记录就可以完成</li>
+<li>2、B 域名的 IP 发生变化，A 域名不需要修改解析内容就可以自动改变</li>
+<li>3、使用 CDN 时可以将用户直接访问的域名作为一个别名，然后将指向的域名通过 ns 记录指定 CDN 专用的 DNS 服务器进行解析，这样用户访问的域名解析使用的还是正常的 DNS 服务器，但是却可以获得 CDN 的 DNS 服务器解析的结果</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>一个网站使用什么样的架构需要根据实际做出选择，只要可以满足需要、可以解决问题就可以了。</p>
-<p><strong>想要设计出合理的架构首先需要理解每种架构所针对的问题和它背后的本质。</strong></p>
-<p><strong>另外在使用复杂架构之前一定要先将业务优化好，这是基础中的基础。</strong></p>
+</li>
+<li>主机记录：就是域名前面的部分：如 www、bbs 等等，如果要解析顶级域名，也就是域名前面没有内容则使用 @ 代替</li>
+<li>解析现路：将不同的线路的用户解析到不同的服务器，比如将联通的用户解析到一个服务器，将电信的用户解析到一个服务器，这样就可以实现一种简单的 CDN</li>
+<li>记录值：解析的目标值，如 A 记录就是一个 IP，CNAME 记录就是对应的目标域名</li>
+<li>TTL：本地 DNS 服务缓存解析结果的时间</li>
+</ul>
+<h2 id="Windows-本机域名和IP"><a href="#Windows-本机域名和IP" class="headerlink" title="Windows 本机域名和IP"></a>Windows 本机域名和IP</h2><p>Windows 电脑本机的 hosts 文件</p>
+<p>设置的格式：IP + 空格 + 域名，一行一条记录（空格可以有多个）</p>
+<p>如：</p>
+<pre class="line-numbers language-none"><code class="language-none">127.0.0.1 				localhost
+127.0.0.1 				www.test.com
+111.111.111.111 	www.111.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>第一行将 localhost 设置到本机，平时使用 localhost 就可以访问到本机。</p>
+<p>第二行将 <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a> 设置到本机</p>
+<p>第三行将 <a target="_blank" rel="noopener" href="http://www.111.com/">www.111.com</a> 设置到 111.111.111.111</p>
+<br>
+
+<p>本机在解析域名时会首先从 hosts 文件中查找，如果可以找到就直接使用，如果找不到才会从 DNS 服务器获取。</p>
+<p>注：hosts 文件很重要，不要允许程序随意修改，它默认是只读的，需要权限才可以修改。</p>
 
                 
             </div>
@@ -914,7 +870,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/">https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/</a>
+                    <a href="https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/">https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1120,9 +1076,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/09/19/web-base-er-common-protocols-and-standards/">
                     <div class="card-image">
@@ -1139,9 +1096,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1154,6 +1111,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1172,30 +1130,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/08/centos7-project-demo-one/">
+                <a href="/2021/09/19/web-base-yi-architecture-evolution/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/2.jpg" class="responsive-img" alt="CentOS7 Project Demo One">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/3.jpg" class="responsive-img" alt="Web Base (一) Architecture Evolution">
                         
-                        <span class="card-title">CentOS7 Project Demo One</span>
+                        <span class="card-title">Web Base (一) Architecture Evolution</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            鲲鹏实训第一期，lamp 环境搭建
+                            网站基础知识之网站架构及其演变过程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Website-Basics/" class="post-category">
+                                    Website Basics
                                 </a>
                             
                             
@@ -1205,8 +1163,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Website-Basics/">
+                        <span class="chip bg-color">Website Basics</span>
                     </a>
                     
                 </div>
