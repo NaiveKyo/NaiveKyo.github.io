@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux,ROC,Apache,PHP,MariaDB,Discuz">
+    <meta name="keywords" content="Website Basics,Architecture evolution">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CentOS7 Project Demo One | NaiveKyo</title>
+    <title>Web Base (一) Architecture Evolution | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -488,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CentOS7 Project Demo One</h1>
+                    <h1 class="description center-align post-title">Web Base (一) Architecture Evolution</h1>
                 </div>
             </div>
         </div>
@@ -612,8 +612,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Website-Basics/">
+                                <span class="chip bg-color">Website Basics</span>
                             </a>
                         
                     </div>
@@ -624,8 +624,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/Website-Basics/" class="post-category">
+                                Website Basics
                             </a>
                         
                     </div>
@@ -637,21 +637,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-09-08
+                    2021-09-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-09-08
+                    2021-09-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.8k
+                    4k
                 </div>
                 
 
@@ -671,430 +671,223 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、CentOS7-安装图形界面"><a href="#一、CentOS7-安装图形界面" class="headerlink" title="一、CentOS7 安装图形界面"></a>一、CentOS7 安装图形界面</h2><p>先提一下 yum 提供的两种安装软件的方式：</p>
+                <h2 id="一、网站架构及其演变过程"><a href="#一、网站架构及其演变过程" class="headerlink" title="一、网站架构及其演变过程"></a>一、网站架构及其演变过程</h2><h3 id="1、软件三大类型"><a href="#1、软件三大类型" class="headerlink" title="1、软件三大类型"></a>1、软件三大类型</h3><p>软件三大类型：单机、C/S、B/S</p>
+<h3 id="2、基础架构"><a href="#2、基础架构" class="headerlink" title="2、基础架构"></a>2、基础架构</h3><p>B/S 架构是最基础的结构，但是想做好它也并不容易，因为互联网是一个错综复杂的网络，数据在传输过程中有很多问题，而所有问题都有它对应的处理方法。</p>
+<p>对于复杂问题，我们可以将其分解成多个简单的问题，通过解决每个简单问题，最终解决复杂问题。</p>
+<p>BS 结构网络传输的分解方式有两种：</p>
 <ul>
-<li>yum install：安装单个软件。以及这个软件的依赖关系</li>
-<li>yum groupinstall：安装一个安装包，这个安装包包含了很多单个软件，以及单个软件的依赖关系</li>
+<li>标准的 OSI 参考模型</li>
+<li>TCP/IP 参考模型</li>
 </ul>
-<p>比如说安装 mysql：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919122424.png"></p>
+<p>OSI 参考模型分为七层，但是它主要用于教学，实际使用多的还是 TCP/IP 的 4 层模型。</p>
+<p>对于 TCP/IP 4 层模型可以简单理解为：（也可以看作一种协议）</p>
 <ul>
-<li>yum install mysql</li>
-<li>yum groupinstall “MySQL Database”</li>
+<li>网络接入层：将需要相互连接的节点接入网络中，从而为数据传输提供条件 （<strong>没有协议</strong>）</li>
+<li>网际互连层：找到要传输数据的目标节点   (<strong>IP协议</strong>)</li>
+<li>传输层：实际传输数据   （<strong>TCP协议</strong>）</li>
+<li>应用层：使用接收到的数据  （<strong>HTTP协议</strong>）</li>
 </ul>
-<p>上面两个都可以</p>
-<p>如果想查看单个软件的安装，yum info 软件名</p>
-<p>MySQL Database 这个安装包中包括了 mysql、mysql-server、mysql-bench 等等</p>
+<p>BS 架构中还使用到了 <strong>DNS 协议</strong>，并且在 HTTP 上层还有相关的规范，比如 Java Web 开发中的 Servlet 标准</p>
+<p><mark>补充：对于硬件是各种总线协议、对于网络传输来说就是网络协议</mark></p>
+<p>BS 架构虽然简单、基础，但是想要做好并不容易：</p>
+<ul>
+<li>用户交互</li>
+<li>海量数据处理</li>
+<li>高并发</li>
+</ul>
+<p>前者是另一回事，后两者导致了现在网站越来越复杂的架构</p>
+<h3 id="3、架构演变的起点"><a href="#3、架构演变的起点" class="headerlink" title="3、架构演变的起点"></a>3、架构演变的起点</h3><p>基础架构中服务器就一台主机，部署了应用程序和数据库。</p>
+<p>当数据和流量变得越来越大时，就需要将应用程序和数据库分开存放到不同主机</p>
+<h2 id="二、海量数据的解决方案"><a href="#二、海量数据的解决方案" class="headerlink" title="二、海量数据的解决方案"></a>二、海量数据的解决方案</h2><h3 id="1、缓存和页面静态化"><a href="#1、缓存和页面静态化" class="headerlink" title="1、缓存和页面静态化"></a>1、缓存和页面静态化</h3><p>（1）缓存使用方式：</p>
+<ul>
+<li>通过程序保存到内存中<ul>
+<li>Map：<code>ConcurrentHashMap</code></li>
+</ul>
+</li>
+<li>使用缓存框架<ul>
+<li>常用：<code>Ehcache</code>、<code>Memcache</code>、<code>Redis</code> 等等</li>
+</ul>
+</li>
+<li>最重要的问题：什么时候创建缓存和缓存的失效机制<ul>
+<li>什么时候创建：<ul>
+<li>第一次获取的时候创建</li>
+<li>程序启动</li>
+<li>缓存失效之后立即创建</li>
+</ul>
+</li>
+<li>缓存失效机制：<ul>
+<li>定期失效</li>
+<li>数据变化时失效<ul>
+<li>粗粒度失效</li>
+<li>细粒度失效</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><mark>mark：缓存中空数据管理</mark></p>
+<p>（2）页面静态化</p>
+<p>原理和缓存类似：缓存是将从数据库（也可以是从其他地方序列化而来）中取到的数据保存起来，而页面静态化是将程序最后生成的页面保存起来，</p>
+<ul>
+<li>使用模板技术生成：<ul>
+<li>常用的 <code>Freemarker</code>、<code>Velocity</code>，可以根据模板生成静态页面</li>
+<li>使用缓存服务器在应用服务器的上一层缓存生成的页面：比如 <code>Squid</code></li>
+<li>Nginx 也提供了相关功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、数据库优化"><a href="#2、数据库优化" class="headerlink" title="2、数据库优化"></a>2、数据库优化</h3><p>常用：</p>
+<ul>
+<li><p>表结构优化</p>
+</li>
+<li><p>SQL 语句优化</p>
+<ul>
+<li>语法层面的优化、处理逻辑的优化（和索引缓存配合）</li>
+<li>通用SQL优化方法：记录目标 SQL 语句的执行时间、仔细分析日志，找出要优化的语句和其中的问题</li>
+</ul>
+</li>
+<li><p>分区和分表</p>
+<ul>
+<li><strong>分区</strong>：将一张表的数据按照一定的规则分到不同的区来保存，这样在查询数据时如果数据的范围在同一区内那么可以只对一个区的数据进行操作，这样操作的数据量更少、速度更快</li>
+<li><strong>分表</strong>：如果一张表的数据可以分为几种固定不变的类型，而且如果同时对多种类型共同操作的情况不多，那么都可以通过分表来处理，这也需要具体情况具体对待</li>
+<li>另一种分表方法：将一个表中不同类型的字段分到不同的表中保存，这么做最直接的好处就是增删改数据的时候锁定的范围减小了，没被锁定的表中的数据不受影响。但是查询的时候需要多表联查</li>
+</ul>
+</li>
+<li><p>索引优化</p>
+<ul>
+<li>索引的大致原理：数据发生变化（增删改）的时候就预先指定字段的顺序排列后保存到一个类似表的结构中，这样在查找索引字段为条件的记录时就可以很快从索引中找到对应记录的指针并从表中获取到记录</li>
+<li>索引是一把双刃剑：提高查询速度的同时降低了增删改的速度，每次数据变化都需要更新索引</li>
+<li>使用方法：合理使用索引、对哪些字段使用索引、使用什么类型的索引、做一些测试</li>
+</ul>
+</li>
+<li><p>使用存储过程代替直接操作</p>
+<ul>
+<li>操作过程中复杂而且调用频率高的业务中，可以通过使用存储过程代替直接操作来提高效率，因为存储过程只需要编译一次，而且可以在一个存储过程中做一些复杂操作</li>
+</ul>
+</li>
+<li><p>合理使用冗余</p>
+</li>
+</ul>
+<h3 id="3、分离活跃数据"><a href="#3、分离活跃数据" class="headerlink" title="3、分离活跃数据"></a>3、分离活跃数据</h3><p>有些数据总数据量非常大，但是活跃数据并不多，这种情况可以将活跃数据单独保存起来从而提高处理效率。</p>
+<p>例子：对网站来说，用户数据很重要</p>
+<ul>
+<li>可以按照指定规则：比如上一次登录时间、指定时间段的登录次数等等规则</li>
+<li>写一个定时任务，按照上述规则将不活跃的用户转移到另一张表</li>
+<li>用户登录时：先从活跃表中查数据、查不到再去不活跃表、还找不到就是未注册用户</li>
+</ul>
+<h3 id="4、批量读取和延迟修改"><a href="#4、批量读取和延迟修改" class="headerlink" title="4、批量读取和延迟修改"></a>4、批量读取和延迟修改</h3><p>批量读取和延迟修改的原理是通过减少操作次数来提高效率。</p>
+<ul>
+<li>批量读取：将多次查询合并到一次中进行</li>
+<li>延迟修改：主要针对高并发而且频繁修改（包括新增）的数据，如一些统计数据。这种情况可以先将需要修改的数据暂时保存到缓存中，然后定时将缓存中的数据保存到数据库中，程序在读取的时候可以同时读取数据库中和缓存中的数据。<strong>这里的缓存和前面将的缓存有本质的区别，前面的缓存在使用过程中，数据库中的数据一直是完整的，但是现在数据库中数据有一段时间是不完整的</strong>。所以这种情况如果保存缓存的机器出了问题将可能丢失数据。</li>
+</ul>
+<h3 id="5、读写分离"><a href="#5、读写分离" class="headerlink" title="5、读写分离"></a>5、读写分离</h3><p>读写分离的本质是对数据库进行<strong>集群</strong>，这样可以在高并发情况下将对数据库的操作分配到多个数据库服务器去处理从而降低单台服务器的压力。</p>
+<p>但是：<strong>由于数据库的特殊性 —— 每台服务器需要保存的数据都需要一致，所以数据同步就成了数据库集群最核心的问题。</strong></p>
+<p>专门负责写的服务器叫做主服务器。主服务器写入（增删改）数据后从底层同步到其他从服务器，读数据时从从服务器中读取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145206.png"></p>
 <blockquote>
-<p>yum 的群组功能</p>
+<p>处理策略</p>
 </blockquote>
+<p>简单的数据同步方式可以采用数据库的热备份功能，不过读取到的数据可能会存在一定的滞后性，高级的方式需要使用专门的软硬件配合。（比如 MySQL + canal）</p>
+<p>另外既然是集群就涉及到负载均衡问题，负载均衡和读写分离的操作一般采用专门程序处理，而且对应用系统来说是透明的。</p>
+<h3 id="6、分布式数据库"><a href="#6、分布式数据库" class="headerlink" title="6、分布式数据库"></a>6、分布式数据库</h3><p><strong>分布式数据库</strong>是将不同的表存放到不同的数据库后然后再放到不同的服务器。这样在处理请求时，如果需要调用多个表，则可以让多台服务器同时处理，从而提高效率。</p>
+<p><mark>注意：读写分离和分布式数据库的使用场景</mark></p>
 <ul>
-<li>yum [群组功能] [软件群组]<ul>
-<li>grouplist：列出所有可使用的  “软件群组”，例如 Development Tools 之类的</li>
-<li>groupinfo：后面接 group_name，则可以了解该 group 内含有的所有软件名</li>
-<li>groupinstall：安装一整组的软件</li>
-<li>groupremove：移除某个软件群组</li>
+<li>数据库<strong>集群</strong>（读写分离）的作用是将多个请求分配到不同的服务器处理，从而减轻单台服务器的压力</li>
+<li><strong>分布式数据库</strong>是解决单个请求本身就非常复杂的问题，它可以将单个请求分配到多个服务器处理，使用分布式后的每个节点还可以同时使用读写分离，从而组成多个节点群</li>
 </ul>
-</li>
+<p>真正使用分布式数据库还有很多问题，比如事务处理、多表查询等等</p>
+<p>重要是思路</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145247.png"></p>
+<h3 id="7、NoSQL-和-Hadoop"><a href="#7、NoSQL-和-Hadoop" class="headerlink" title="7、NoSQL 和 Hadoop"></a>7、NoSQL 和 Hadoop</h3><ul>
+<li>NoSQL：非关系型数据库</li>
+<li>Hadoop：处理大数据的框架</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 以 root 用户安装 X Window System</span>
-yum groupinstall <span class="token string">"X Window System"</span>
-
-<span class="token comment"># 查看已经安装的和可以安装的软件群组</span>
-yum grouplist
-
-<span class="token comment"># 安装 GNOME Desktop</span>
-yum groupinstall <span class="token string">"GNOME Desktop"</span> <span class="token string">"Graphical Administration Tools"</span>
-
-<span class="token comment"># 进入图形界面</span>
-startx
-<span class="token comment"># 或者 init 6 等价于 systemctl isolate graphical.target</span>
-init <span class="token number">6</span> 
-<span class="token comment"># 切换回来 init 3 等价于 systemctl isolate multi-user.target</span>
-
-<span class="token comment"># (可选)：设置开机自动进入图形界面</span>
-systemctl set-default graphical.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="二、服务器支持"><a href="#二、服务器支持" class="headerlink" title="二、服务器支持"></a>二、服务器支持</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 httpd</span>
-yum <span class="token function">install</span> -y httpd
-systemctl restart httpd
-systemctl <span class="token builtin class-name">enable</span> httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>当我们安装完成 httpd 后，/var/www/html 这个文件夹就会出现，我们可以在里面写一些 html，可以直接通过浏览器访问：</p>
-<p>比如 /var/www/html/index.html</p>
-<h2 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h2><h3 id="1、修改主机名和-ip-地址"><a href="#1、修改主机名和-ip-地址" class="headerlink" title="1、修改主机名和 ip 地址"></a>1、修改主机名和 ip 地址</h3><p>我们有一台虚拟机后，可以创建它的链接克隆</p>
-<p>以 root 用户分别登录两台虚拟机</p>
-<p>给克隆的那台主机更改主机名和 ip 地址（推荐使用命令而不是配置文件）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 更改主机名</span>
-hostnamectl set-hostname cloneB
-<span class="token comment"># 更改系统的网络配置：两种方式</span>
-<span class="token comment"># 直接修改配置文件</span>
-<span class="token function">vim</span> /etc/sysconfig/network-scripts/ifcfg-ens32
-
-
-<span class="token comment"># 通过 nmcli 命令</span>
-<span class="token comment"># 查看所有网卡</span>
-nmcli connection show
-<span class="token comment"># 查看指定网卡的详细信息</span>
-nmcli connection show ens32<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>详细信息有很多，我们主要改下面几个：</p>
+<p>两者结合处理海量大数据</p>
+<h2 id="三、高并发的解决方案"><a href="#三、高并发的解决方案" class="headerlink" title="三、高并发的解决方案"></a>三、高并发的解决方案</h2><h3 id="1、应用和静态资源分离"><a href="#1、应用和静态资源分离" class="headerlink" title="1、应用和静态资源分离"></a>1、应用和静态资源分离</h3><ul>
+<li>早期应用程序和静态资源放在一起，当并发量达到一定程度就需要将静态资源保存到专门的服务器</li>
+</ul>
+<h3 id="2、页面缓存"><a href="#2、页面缓存" class="headerlink" title="2、页面缓存"></a>2、页面缓存</h3><p>页面缓存是将应用生成的页面缓存起来，这样就不需要每次都重新生成页面。</p>
+<p>如果使用了 Nginx 服务器可以使用自带的缓存功能，当然也可以使用专门的 Squid 服务器。</p>
+<p>页面缓存的失效机制一般按照缓存时间处理，当然也可以在修改数据之后手动让缓存失效。</p>
+<p><mark>mark：某些页面中有部分数据经常变化，该如何使用页面缓存？</mark></p>
 <ul>
-<li>connecton.autoconnect [yes|no]：开机是否自动启动这个连线，默认通常是 yes</li>
-<li>ipv4.method [auto|manual]：自动还是手动设置网络参数</li>
-<li>ipv4.dns [dns_server_ip]：填写 DNS 的 ip 地址</li>
-<li>ipv4.address [IP/Netmask]：就是 IP 和 netmask 的集合，中间用斜线 / 来隔开</li>
-<li>ipv4.gateway [gw_ip]：就是 gateway 的 IP 地址</li>
+<li>页面缓存主要使用在数据很少发生变化的页面</li>
+<li>但是有部分页面中只有一小部分数据经常变化（比如视频网站中顶和踩）</li>
+<li>这个问题可以这样干：先生成静态页面，然后使用 Ajax 来读取并修改相应的数据</li>
 </ul>
-<p>查看网关的方式：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">netstat</span> -n
-route -n
-<span class="token function">ip</span> route show<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>查看 dns：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> /etc/resolv.conf
-<span class="token comment"># 解析一个网站</span>
-<span class="token function">nslookup</span> www.baidu.com
-<span class="token function">dig</span> <span class="token operator">|</span> <span class="token function">grep</span> SERVER<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>开始修改：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@cloneb ~<span class="token punctuation">]</span><span class="token comment"># nmcli connection modify ens32 \</span>
-<span class="token operator">&gt;</span> connection.autoconnect <span class="token function">yes</span> <span class="token punctuation">\</span>
-<span class="token operator">&gt;</span> ipv4.address <span class="token number">192.168</span>.137.201/24 <span class="token punctuation">\</span>
-<span class="token operator">&gt;</span> ipv4.method manual <span class="token punctuation">\</span>
-<span class="token operator">&gt;</span> ipv4.gateway <span class="token number">192.168</span>.137.254 <span class="token punctuation">\</span>
-<span class="token operator">&gt;</span> ipv4.dns <span class="token number">114.114</span>.114.114
-
-<span class="token comment"># 使配置生效</span>
-nmcli connection up ens32
-<span class="token comment"># 如果是修改配置文件的，最后需要重启网络服务才可以生效</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>上面是采用 static 配置 IP 的方式，如果我们采用 DHCP，只需要改上面的 ipv4.method ，改成 auto 就行了</p>
-<p>现在我们的两台虚拟机配置如下：</p>
-<table>
-<thead>
-<tr>
-<th>主机名</th>
-<th>ip</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>naivekyo</td>
-<td>192.168.137.200</td>
-</tr>
-<tr>
-<td>cloneb</td>
-<td>192.168.137.201</td>
-</tr>
-</tbody></table>
-<h3 id="2、ssh-远程访问"><a href="#2、ssh-远程访问" class="headerlink" title="2、ssh 远程访问"></a>2、ssh 远程访问</h3><p>在主机以 root 身份远程访问 cloneb</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> root@192.168.137.201<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>第一次访问需要输入 yes，并输入 root 的密码，就可以远程控制目标主机了</p>
-<p>如果我想打开目标主机的 firefox，就需要以允许图形支持的模式去访问远程主机</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X root@192.168.137.201
-
-<span class="token comment"># 然后使用 </span>
-firefox
-
-<span class="token comment"># 就可以在本机使用远程主机的浏览器资源了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>ssh 默认使用的是 22 端口，如果我们想改变端口，可以这样做</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 修改 ssh 配置文件</span>
-<span class="token function">vim</span> /etc/ssh/ssh_config
-<span class="token comment"># 可以看到 Port 22 默认是被注释的，我们可以为其指定端口</span>
-Port <span class="token number">8010</span>
-
-<span class="token comment"># 改变端口后需要设置防火墙 开放端口(两台机器都要)</span>
-firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">8010</span>/tcp --permanent
-<span class="token comment"># 如果还不行，可以试试开启服务</span>
-firewall-cmd --zone<span class="token operator">=</span>public --add-service<span class="token operator">=</span>ssh --permanent
-
-<span class="token comment"># 以指定端口访问</span>
-<span class="token function">ssh</span> -p <span class="token number">8010</span> -X root@192.168.137.201<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="3、scp-远程复制文件"><a href="#3、scp-远程复制文件" class="headerlink" title="3、scp 远程复制文件"></a>3、scp 远程复制文件</h3><p>scp（source copy）用于在 Linux 下进行远程拷贝文件的命令。和它类似的是 cp，只不过 cp 只能在本机进行拷贝而不能跨服务器。</p>
-<p>使用方式：</p>
-<p><code>scp -[pr] [-l 速率] file [账号]@主机:目录名</code> ：上传</p>
-<p><code>scp -[pr] [-l 速率] [账号]@主机:file 目录名</code> ：下载</p>
-<p>选项与参数：</p>
+<h3 id="3、集群和分布式"><a href="#3、集群和分布式" class="headerlink" title="3、集群和分布式"></a>3、集群和分布式</h3><blockquote>
+<p>概览</p>
+</blockquote>
+<p>集群和分布式都是使用多台服务器进行处理的。</p>
 <ul>
-<li>-p：保留原本档案的权限数据</li>
-<li>-r：复制来源为目录时，可以复制整个目录 (含子目录)</li>
-<li>-l：可以限制传输的速度，单位为 Kbits/s ，例如 [-l 800] 代表传输速限 100Kbytes/s</li>
+<li>集群是每台服务器都具备相同的功能，处理请求时调用哪台服务器都可以，主要起到分流的作用</li>
+<li>分布式是将不同的业务放到不同的服务器中，处理一个请求可能会用到多台服务器，这样可以提高一个请求的处理速度</li>
+<li>集群和分布式可以同时使用</li>
 </ul>
-<p>例如：将本机的 /etc/hosts* 全部复制到 127.0.0.1 上面的 student 用户的家目录内</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> /etc/hosts* student@127.0.0.1:~<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h3 id="4、免密访问远程主机"><a href="#4、免密访问远程主机" class="headerlink" title="4、免密访问远程主机"></a>4、免密访问远程主机</h3><p>现在每次访问远程主机都需要输入密码，有时候不太方便（比如集群环境下），</p>
 <blockquote>
-<p>ssh-keygen 常用参数</p>
+<p>集群</p>
 </blockquote>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 可以使用</span>
-<span class="token function">man</span> ssh-keygen
-<span class="token comment"># 默认生成 2048 位 RSA 密钥</span>
-ssh-keygen
-<span class="token comment"># 生成 4096 位 RSA 密钥</span>
-ssh-keygen -t rsa -b <span class="token number">4096</span>
-<span class="token comment"># 生成 521 位的 ECDSA 密钥</span>
-ssh-keygen -t ecdsa -b <span class="token number">521</span>
-<span class="token comment"># 私钥生成公钥</span>
-ssh-keygen -y -f <span class="token punctuation">[</span>private-key-path<span class="token punctuation">]</span> <span class="token operator">&gt;</span> <span class="token punctuation">[</span>output-path<span class="token punctuation">]</span>
-<span class="token comment"># 例如：我们有一个私钥名为 id_rsa，可以利用它生成对应的公钥</span>
-ssh-keygen -y -f id_rsa <span class="token operator">&gt;</span> id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>选项说明：</p>
+<p>集群有两种方式：</p>
 <ul>
-<li><code>-t</code> 指定生成密钥的类型，默认 RSA</li>
-<li><code>-f</code> 指定生成密钥的路径，默认 <code>~/.ssh/id_rsa</code>（私钥 <code>id_rsa</code>，公钥 <code>id_rsa.pub</code>）</li>
-<li><code>-P</code> 提供旧密码，空表示不需要密码（<code>-P ''</code>）</li>
-<li><code>-N</code> 提供新密码，空表示不需要密码 (<code>-N ''</code>)</li>
-<li><code>-b</code> 指定密钥长度（bits），默认是 2048 位</li>
-<li><code>-C</code> 提供一个新注释，比如邮箱</li>
-<li><code>-y</code> 读取 OpenSSH 格式私钥文件并将 OpenSSH 公钥输出到 std­out</li>
-<li><code>-q</code> 安静模式</li>
-</ul>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.ssh.com/academy/ssh/keygen">https://www.ssh.com/academy/ssh/keygen</a></p>
-<blockquote>
-<p>开始</p>
-</blockquote>
-<p>1、生成一对 rsa 类型的公钥和私钥</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 进入 .ssh 目录</span>
-<span class="token builtin class-name">cd</span> ~/.ssh/
-<span class="token comment"># 打印，发现只有一个文件</span>
-<span class="token function">ls</span>
-<span class="token comment"># 生成公钥和私钥</span>
-ssh-keygen -t rsa <span class="token comment"># 之后全部回车就可以了，不需要输入什么</span>
-<span class="token comment"># 打印可以看到默认的 id_rsa 和 id_rsa.pub</span>
-<span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>2、将公钥拷贝到需要远程免密登录的机器上</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 ssh-copy-id, 感兴趣可以 man ssh-copy-id</span>
-ssh-copy-id root@192.168.137.201
-<span class="token comment"># 第一次使用需要输入目标账户的密码</span>
-<span class="token comment"># 此后以 root 身份远程访问 192.168.137.201 就不需要输入密码了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="四、web-服务器"><a href="#四、web-服务器" class="headerlink" title="四、web 服务器"></a>四、web 服务器</h2><h3 id="1、挂载"><a href="#1、挂载" class="headerlink" title="1、挂载"></a>1、挂载</h3><p>在 Linux 中我们先了解几个概念</p>
-<ul>
-<li><code>/dev/sr0</code>：光驱的设备名</li>
-<li><code>/dev/cdrom</code>：代表光驱</li>
-<li>cdrom 是 sr0 的软链接</li>
-</ul>
-<p>我们可以创建一个空目录</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /ded
-
-<span class="token punctuation">[</span>root@NaiveKyo ~<span class="token punctuation">]</span><span class="token comment"># mount /dev/cdrom /ded</span>
-mount: /dev/sr0 写保护，将以只读方式挂载<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2、测试-httpd"><a href="#2、测试-httpd" class="headerlink" title="2、测试 httpd"></a>2、测试 httpd</h3><p>在主虚拟机上我们之前安装了 httpd，现在：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /var/www/html/index.html <span class="token comment"># 顺便写点东西</span>
-
-<span class="token comment"># 访问</span>
-firefox <span class="token number">192.168</span>.137.200
-<span class="token comment"># 获取 index.html 的文本</span>
-<span class="token function">curl</span> <span class="token number">192.168</span>.137.200<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="五、搭建-ftp-服务"><a href="#五、搭建-ftp-服务" class="headerlink" title="五、搭建 ftp 服务"></a>五、搭建 ftp 服务</h2><blockquote>
-<p> 安装  vsftpd 软件</p>
-</blockquote>
-<p>老规矩安装软件、重启服务、设置开机自启</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> -y vsftpd
-systemctl restart vsftpd
-systemctl <span class="token builtin class-name">enable</span> vsftpd
-systemctl status vsftpd
-
-<span class="token comment"># 测试访问</span>
-firefox ftp:localhost
-<span class="token comment"># 结果：浏览器显示 ftp 服务界面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="六、安装-MariaDB"><a href="#六、安装-MariaDB" class="headerlink" title="六、安装 MariaDB"></a>六、安装 MariaDB</h2><p>数据库就是用来存放数据的仓库</p>
-<p>我们使用 MySQL 的开源分支数据库：Mariadb</p>
-<p>yum 安装：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 方式一</span>
-yum groupinstall <span class="token string">"MariaDB"</span>
-<span class="token comment"># 方式二</span>
-yum <span class="token function">install</span> -y mariadb-server
-
-<span class="token comment"># 重启服务</span>
-systemctl restart mariadb
-
-<span class="token comment"># 登录数据库</span>
-mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<p>官方安装说明：<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/rpm/">https://mariadb.com/kb/en/rpm/</a></p>
-<p>数据库初始化：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql_secure_installation<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-
-
-<h2 id="七、安装-Discuz-社区"><a href="#七、安装-Discuz-社区" class="headerlink" title="七、安装 Discuz 社区"></a>七、安装 Discuz 社区</h2><h3 id="1、LAMP-环境搭建"><a href="#1、LAMP-环境搭建" class="headerlink" title="1、LAMP 环境搭建"></a>1、LAMP 环境搭建</h3><p>LAMP 是Linux Apache MySQL PHP的简写，其实就是把Apache, MySQL以及PHP安装在Linux系统上，组成一个环境来运行php的脚本语言。</p>
-<h3 id="2、前置需求"><a href="#2、前置需求" class="headerlink" title="2、前置需求"></a>2、前置需求</h3><ul>
-<li>安装 Apache 服务所需软件</li>
-<li>安装 MariaDB 数据库</li>
-<li>安装 PHP 运行环境</li>
-<li>安装 Discuz</li>
-</ul>
-<h3 id="3、Apache-服务"><a href="#3、Apache-服务" class="headerlink" title="3、Apache 服务"></a>3、Apache 服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Apache 服务的主要提供者是 httpd</span>
-yum <span class="token function">install</span> -y httpd httpd-devel
-<span class="token comment"># 启动设置开机自启</span>
-
-<span class="token comment"># 安装 APR(Apache Portable Runtime)</span>
-yum <span class="token function">install</span> -y apr apr-devel apr-util apr-util-devel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>补充：Apr 的官方源码：<a target="_blank" rel="noopener" href="https://apr.apache.org/">https://apr.apache.org/</a></p>
-<p>安装完之后 Linux 系统会注册一个系统用户和系统用户组都叫做 <code>apache</code>，该用户用于启动 httpd 服务（就和在安装 MySQL 时一样，MySQL 进程也是由名为 mysql 的系统用户管理的）</p>
-<ul>
-<li>Apache的主配置文件：/etc/httpd/conf/httpd.conf</li>
-<li>默认站点主目录：/var/www/html/</li>
-</ul>
-<p><code>httpd.conf</code> 主要包含三部分：</p>
-<ul>
-<li>Global Environment—全局环境配置，决定Apache服务器的全局参数</li>
-<li>Main server configuration—主服务配置，相当于是Apache中的默认Web站点，如果我们的服务器中只有一个站点，那么就只需在这里配置就可以了。</li>
-<li>Virtual Hosts—虚拟主机，虚拟主机不能与Main Server主服务器共存，当启用了虚拟主机之后，Main Server就不能使用了</li>
-</ul>
-<p>感兴趣可以自行搜索，我们现在只需要添加对 php 文件的支持就好了</p>
-<p>在该文件中找到：<code>AddType application/x-gzip .gz .tgz</code></p>
-<p>在下面一行添加：<code>AddType application/x-httpd-php .php</code></p>
-<p>找到：</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IfModule</span> <span class="token attr-name">dir_module</span><span class="token punctuation">&gt;</span></span>
-    DirectoryIndex index.html
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>IfModule</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>改为：</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IfModule</span> <span class="token attr-name">dir_module</span><span class="token punctuation">&gt;</span></span>
-    DirectoryIndex index.html index.htm index.php
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>IfModule</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>最后重启服务</p>
-<h3 id="4、MariaDB-服务"><a href="#4、MariaDB-服务" class="headerlink" title="4、MariaDB 服务"></a>4、MariaDB 服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> -y mariadb-server
-<span class="token comment"># 设置启动和开启自启</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>给数据库 root 用户设置密码</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysqladmin -u root password <span class="token string">'123456'</span>
-
-<span class="token comment"># 登录测试</span>
-mysql -u root -p123456<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h3 id="5、PHP-环境"><a href="#5、PHP-环境" class="headerlink" title="5、PHP 环境"></a>5、PHP 环境</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看所有 PHP 支持</span>
-yum groupinfo <span class="token string">"PHP Support"</span> 
-<span class="token comment"># 安装基本的 PHP 支持</span>
-yum groupinstall <span class="token string">"PHP Support"</span>
-
-<span class="token comment"># 将可选的安装包也装上</span>
-yum <span class="token function">install</span> -y php-ldap.x86_64
-yum <span class="token function">install</span> -y php-mysql
-yum <span class="token function">install</span> -y php-odbc.x86_64
-yum <span class="token function">install</span> -y php-pecl-memcache.x86_64
-yum <span class="token function">install</span> -y php-pgsql.x86_64 
-yum <span class="token function">install</span> -y php-recode.x86_64
-yum <span class="token function">install</span> -y php-soap.x86_64 
-yum <span class="token function">install</span> -y php-xmlrpc.x86_64
-
-<span class="token comment"># 安装管理PHP 进程池的软件</span>
-yum <span class="token function">install</span> -y php-fpm
-<span class="token comment"># 重启服务设置开机自启</span>
-systemctl restart php-fpm.service
-systemctl <span class="token builtin class-name">enable</span> php-fpm.service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>测试 php 环境是否可用：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /var/www/html/index.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>index.php:</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-  <span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>保存文件，命令行输入：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox localhost<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果成功会自动跳出 php 的信息网页。</p>
-<h3 id="6、安装-Discuz"><a href="#6、安装-Discuz" class="headerlink" title="6、安装 Discuz"></a>6、安装 Discuz</h3><p>去官网下载安装包：<a target="_blank" rel="noopener" href="https://gitee.com/Discuz/DiscuzX">https://gitee.com/Discuz/DiscuzX</a></p>
-<p>将其上传到服务器：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">unzip</span> ./DiscuzX-master.zip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>解压后将 DiscuzX-master 中的 upload 复制到 apache 根目录</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -af ./DiscuzX-master/upload /var/www/html/
-<span class="token comment"># 改个名</span>
-<span class="token function">mv</span> /var/www/html/upload /var/www/html/bbs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>现在我们要做几件事：</p>
-<ul>
-<li><p>由于我们要将该论坛发布到 apache 服务器上，所以需要将 bbs 的拥有者和群组交给 apache</p>
-<ul>
-<li><code>chown -R apache:apache /var/www/html/bbs</code></li>
+<li>静态资源集群</li>
+<li>应用程序集群（比较复杂）<ul>
+<li>应用程序在处理时可能会用到缓存，如果集群需要同步这些数据，其中最重要的一个点就是 Session，Session 同步也是应用程序集群中非常核心的一个问题</li>
+<li>Session 不同两种处理方式：<ul>
+<li>一：Session 变化后自动同步到其他服务器</li>
+<li>二：用一个程序统一管理 Session</li>
 </ul>
 </li>
-<li><p>关闭 Linux 的 selinux，由于 httpd 进程需要访问服务器资源，所以需要关闭 linux 的安全系统</p>
-<ul>
-<li><code>vvim /etc/selinux/config</code><ul>
-<li>将 SELINUX 改为 <code>SELINUX=disabled</code></li>
-</ul>
-</li>
-<li><strong>重启服务器</strong></li>
-</ul>
-</li>
-<li><p>由于我们想在 windows 本机浏览器访问虚拟机，所以需要开放 80 端口</p>
-<ul>
-<li><code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></li>
-<li><code>firewall-cmd --reload</code></li>
-<li><code>firewall-cmd --list-port</code></li>
+<li>所有集群的服务器都使用同一个 Session<ul>
+<li>Tomcat 默认使用第一种方式</li>
+<li>第二种方式可以使用专门的服务器安装 Memcached 等高效的缓存程序来统一管理 Session，然后在应用程序中通过重写 Request 并覆盖 getSession 方法来获取指定服务器中的 Session</li>
 </ul>
 </li>
 </ul>
-<p>最后：浏览器输入：<strong>虚拟机地址/bbs</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210908220206.png"></p>
-<p>选择全新安装；</p>
-<p>数据库参数设置页面只需要填写数据库密码和管理员密码就可以了；</p>
-<p>点击访问论坛；</p>
-<p>登录管理员账户;</p>
-<p>最终结果：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210908222033.png"></p>
+</li>
+<li>对于集群来说有一个重要的问题就是负载均衡</li>
+</ul>
+<p><mark>现在如何处理这些问题？</mark></p>
+<h3 id="4、反向代理"><a href="#4、反向代理" class="headerlink" title="4、反向代理"></a>4、反向代理</h3><p>反向代理指客户端直接访问的服务器并不真正提供服务，它从别的服务器获取资源然后将结果返回给客户。</p>
+<p>反向代理服务器和代理服务器</p>
+<ul>
+<li>反向代理服务器：我们正常访问一台服务器时，服务器自己调用了其他服务器的资源将结果返回给我们，我们并不知道</li>
+<li>代理服务器：代我们想要获取的资源然后将结果返回给我们，所要获取的资源是我们主动告诉服务器的（比如 VPN）</li>
+<li>代理服务器是我们主动使用的，是为我们服务的，它不需要有自己的域名；反向代理服务器是服务器自己使用的，我们并不知道，它有自己的域名，我们访问它和访问正常的网址没有任何区别</li>
+</ul>
+<p>反向代理服务器的三个作用：</p>
+<ul>
+<li>可以作为前端服务器跟实际处理请求的服务器（如 Tomcat）集成</li>
+<li>可以用作负载均衡</li>
+<li>转发请求，比如可以将不同类型的资源请求转发到不同的服务器去处理，可以将动态资源转发到 Tomcat、Php 等动态程序，将静态资源如图片的请求转发到静态资源服务器，另外也可以在 url 地址结构发生变化后将新地址转发到原有的旧地址上</li>
+</ul>
+<h3 id="5、CDN"><a href="#5、CDN" class="headerlink" title="5、CDN"></a>5、CDN</h3><p>CDN 其实就是一种特殊的集群页面缓存服务器，它和普通集群的多台页面缓存服务器比主要是它存放的位置和分配请求的方式有点特殊。</p>
+<p>CDN 的服务器是分布在全国各地的，当接收到用户请求后会将请求分配到最合适的 CDN 服务器节点数据获取数据，比如，联通用户会分配到联通节点，电信用户会分配到电信节点；另外还会按照地理位置进行分配，比如上海用户分配到上海节点。</p>
+<p>CDN 的每一个节点其实就是一个页面缓存服务器，如果没有找到请求资源的缓存就会到主服务器上获取，否则直接返回缓存页面。</p>
+<p>CDN 分配请求的方式比较特殊，它并不是使用普通的负载均衡服务器来分配，而是用专门的 CDN 域名解析服务器在解析域名的时候就分配好的。一般做法是在 ISP 那里使用 CNAME 将域名解析到一个特定的域名，然后再将解析到的那个域名用专门的 CDN 服务器解析到相应的 CDN 节点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919145408.png"></p>
+<p>我们知道 DNS 服务器是域名解析服务器，正常而言通过 DNS 服务器会将域名解析成 IP 地址，然后直接返回。</p>
+<p>但是 CDN 不一样，当我们访问 CDN 域名是，先去找 DNS 服务器，而 DNS 服务器使用 CNAME 记录的目标域名使用 NS 记录指向了 CDN 的 DNS 服务器。</p>
+<p>CDN 的每个节点可能也是集群了多台服务器。</p>
+<h3 id="6、底层的优化"><a href="#6、底层的优化" class="headerlink" title="6、底层的优化"></a>6、底层的优化</h3><p>所有的架构都是建立在前面介绍的基础架构之上的，而且很多地方都需要网络传输数据，如果可以加快网络传输的速度，那会让整个系统从根本上得到改善。</p>
+<p>网络传输数据都是按照各种协议进行的，不过协议并非不可改变。</p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><ul>
+<li>网站架构演进主要围绕两个方面：海量数据、高并发</li>
+<li>解决方案主要分为：使用缓存、使用多资源 两种类型<ul>
+<li>多资源主要指多存储（包括多内存）、多CPU和多网络</li>
+<li>多资源又可以分：单个资源处理一个完整请求和多个资源合作处理一个请求<ul>
+<li>多存储和多CPU中的集群和分布式</li>
+<li>多网络中的 CDN 和静态资源分离</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一个网站使用什么样的架构需要根据实际做出选择，只要可以满足需要、可以解决问题就可以了。</p>
+<p><strong>想要设计出合理的架构首先需要理解每种架构所针对的问题和它背后的本质。</strong></p>
+<p><strong>另外在使用复杂架构之前一定要先将业务优化好，这是基础中的基础。</strong></p>
 
                 
             </div>
@@ -1121,7 +914,7 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/09/08/centos7-project-demo-one/">https://naivekyo.github.io/2021/09/08/centos7-project-demo-one/</a>
+                    <a href="https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/">https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1159,8 +952,8 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/Website-Basics/">
+                                    <span class="chip bg-color">Website Basics</span>
                                 </a>
                             
                         </div>
@@ -1327,9 +1120,10 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/09/19/web-base-yi-architecture-evolution/">
                     <div class="card-image">
@@ -1346,9 +1140,9 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1361,6 +1155,7 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1379,30 +1174,30 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/04/algorithm-performance-analysis/">
+                <a href="/2021/09/08/centos7-project-demo-one/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/1.jpg" class="responsive-img" alt="Algorithm Performance Analysis">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/2.jpg" class="responsive-img" alt="CentOS7 Project Demo One">
                         
-                        <span class="card-title">Algorithm Performance Analysis</span>
+                        <span class="card-title">CentOS7 Project Demo One</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            算法性能分析（简介）
+                            鲲鹏实训第一期，lamp 环境搭建
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -1412,8 +1207,8 @@ systemctl <span class="token builtin class-name">enable</span> php-fpm.service<s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
