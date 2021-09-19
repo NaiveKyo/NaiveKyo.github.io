@@ -120,7 +120,7 @@ nmcli connection show ens32
 
 详细信息有很多，我们主要改下面几个：
 
-- connecton.autoconnect [yes|no]：使用开启启动这个连线，默认通常是 yes
+- connecton.autoconnect [yes|no]：开机是否自动启动这个连线，默认通常是 yes
 - ipv4.method [auto|manual]：自动还是手动设置网络参数
 - ipv4.dns [dns_server_ip]：填写 DNS 的 ip 地址
 - ipv4.address [IP/Netmask]：就是 IP 和 netmask 的集合，中间用斜线 / 来隔开
