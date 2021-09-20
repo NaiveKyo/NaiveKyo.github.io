@@ -269,13 +269,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /medias/banner/5.jpg
     - /medias/banner/6.jpg
     - /medias/banner/7.jpg
     - /medias/featureimages/4.jpg
     - /medias/featureimages/7.jpg
     - /medias/featureimages/17.jpg
- #   - /medias/featureimages/19.jpg
+    - /medias/featureimages/19.jpg
  #   - /img/20210904170907.jpg
  #   - /img/20210919150925.jpg
 
