@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-09-20T08:15:05.324Z</updated>
+  <updated>2021-09-20T08:21:13.953Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Web Base (三) Socket and NIOScoket and HTTP</title>
-    <link href="https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-nioscoket-and-http/"/>
-    <id>https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-nioscoket-and-http/</id>
+    <title>Web Base (三) Socket and NIOSocket and HTTP</title>
+    <link href="https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/"/>
+    <id>https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/</id>
     <published>2021-09-20T08:11:19.000Z</published>
-    <updated>2021-09-20T08:15:05.324Z</updated>
+    <updated>2021-09-20T08:21:13.953Z</updated>
     
     
       
