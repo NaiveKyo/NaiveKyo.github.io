@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-09-19T13:43:22.371Z</updated>
+  <updated>2021-09-20T08:15:05.324Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Base (三) Socket and NIOScoket and HTTP</title>
+    <link href="https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-nioscoket-and-http/"/>
+    <id>https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-nioscoket-and-http/</id>
+    <published>2021-09-20T08:11:19.000Z</published>
+    <updated>2021-09-20T08:15:05.324Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Java-Socket&quot;&gt;&lt;a href=&quot;#一、Java-Socket&quot; class=&quot;headerlink&quot; title=&quot;一、Java Socket&quot;&gt;&lt;/a&gt;一、Java Socket&lt;/h2&gt;&lt;h3 id=&quot;1、普通-Socket-用法&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Website Basics" scheme="https://naivekyo.github.io/categories/Website-Basics/"/>
+    
+    
+    <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
+    
+  </entry>
   
   <entry>
     <title>Web Base (二) Common Protocols and Standards</title>
@@ -492,33 +517,6 @@
         
     <summary type="html">&lt;h1 id=&quot;异常&quot;&gt;&lt;a href=&quot;#异常&quot; class=&quot;headerlink&quot; title=&quot;异常&quot;&gt;&lt;/a&gt;异常&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;异常&lt;/strong&gt;：指的是在程序执行过程中，出现的非正常的情况，最终会导致 JVM</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Map Review</title>
-    <link href="https://naivekyo.github.io/2021/08/07/java-map-review/"/>
-    <id>https://naivekyo.github.io/2021/08/07/java-map-review/</id>
-    <published>2021-08-07T02:27:07.000Z</published>
-    <updated>2021-08-07T03:37:48.614Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Map&quot;&gt;&lt;a href=&quot;#Map&quot; class=&quot;headerlink&quot; title=&quot;Map&quot;&gt;&lt;/a&gt;Map&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;Map 中的集合称为双列集合&lt;/li&gt;
-&lt;li&gt;Map</summary>
         
       
     
