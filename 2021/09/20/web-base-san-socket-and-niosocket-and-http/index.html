@@ -677,7 +677,7 @@
 <li>客户端可以直接使用 Socket 发起请求并完成传输数据</li>
 </ul>
 <p>两者的用法具体参见：<a href="https://naivekyo.github.io/2021/08/15/java-network-programing-intro/">Java 网络编程简介</a></p>
-<h3 id="2、NioSocket-的用法"><a href="#2、NioSocket-的用法" class="headerlink" title="2、NioSocket 的用法"></a>2、NioSocket 的用法</h3><h4 id="2-1、简介"><a href="#2-1、简介" class="headerlink" title="2.1、简介"></a>2.1、简介</h4><p>从 JDK 1.4 开始，Java 新增了新的 io 模式 —— nio（new IO），nio 在磁层采用了全新的处理方式，极大的提高了 IO 的效率。我们使用的 Scoket 也属于 IO 的一种，nio 提供了相应的工具：</p>
+<h3 id="2、NioSocket-的用法"><a href="#2、NioSocket-的用法" class="headerlink" title="2、NioSocket 的用法"></a>2、NioSocket 的用法</h3><h4 id="2-1、简介"><a href="#2-1、简介" class="headerlink" title="2.1、简介"></a>2.1、简介</h4><p>从 JDK 1.4 开始，Java 新增了新的 io 模式 —— nio（new IO），nio 在底层采用了全新的处理方式，极大的提高了 IO 的效率。我们使用的 Scoket 也属于 IO 的一种，nio 提供了相应的工具：</p>
 <ul>
 <li><code>ServerSocketChannel</code></li>
 <li><code>SocketChannel</code></li>
@@ -686,7 +686,7 @@
 <br>
 
 <p>以前的处理方式，就是服务端 <code>ServerSocket</code> 作为一个监控线程，监听到一个客户端请求就处理它，处理完之后再继续监听等待下一个请求，在处理请求的过程中是阻塞的。</p>
-<p>这种方式一次只能处理一个请求且处理期间无法进行其他操作，一旦请求变多了，效率将会及其低下。</p>
+<p>这种方式一次只能处理一个请求且处理期间无法进行其他操作，一旦请求变多了，效率将会极其低下。</p>
 <br>
 
 <p>下面看看 nio，如果想使用 NioSocket 必须先理解三个概念：</p>
@@ -700,7 +700,7 @@
 <br>
 
 <p>NioSocket 的使用中首先要创建 <code>ServerSocketChannel</code>，然后注册 <code>Selector</code>，接下来就可以用 <code>Selector</code> 接收请求并处理了。</p>
-<p><code>ServerSocketChannel</code> 可以使用自己的静态工厂方法 open 创建。每个 <code>ServerSocketChannel</code> 对应 一个 <code>ServerSocket</code>，可以调用其 socket 方法来获取，不过如果直接使用获取到 ServerSocket 来监听请求，那还是原来的处理模式，一般使用获取到的 ServerSocket 来绑定端口。</p>
+<p><code>ServerSocketChannel</code> 可以使用自己的静态工厂方法 open 创建。每个 <code>ServerSocketChannel</code> 对应 一个 <code>ServerSocket</code>，可以调用其 socket 方法来获取，不过如果直接使用获取到的 ServerSocket 来监听请求，那还是原来的处理模式，一般使用获取到的 ServerSocket 来绑定端口。</p>
 <p><code>ServerSocketChannel</code> 可以通过 <code>configureBlocking</code> 方法来设置是否采用阻塞模式，如果要采用非阻塞模式可以用 <code>configureBlocking(false)</code> 来设置，设置了非阻塞模式之后就可以调用 register 方法注册 Selector 来使用了（阻塞模式不可以使用 Selector）。</p>
 <br>
 
@@ -723,7 +723,7 @@
 <h4 id="2-2、例子"><a href="#2-2、例子" class="headerlink" title="2.2、例子"></a>2.2、例子</h4><p>NioSocket 中服务端的处理过程可以分为 5 步：</p>
 <ol>
 <li>创建 <code>ServerSocketChannel</code> 并设置相应参数</li>
-<li>创建 <code>Selector</code> 并注册到 <code>ServerSocketChannle</code> 上</li>
+<li>创建 <code>Selector</code> 并注册到 <code>ServerSocketChannel</code> 上</li>
 <li>调用 <code>Selector</code> 的<code>select</code>方法等待请求</li>
 <li><code>Selector</code> 接收到请求后使用 <code>selectedKeys</code> 返回 <code>SelectionKey</code> 集合</li>
 <li>使用 <code>SelectionKey</code> 获取到 Channel、Selector 和操作类型并进行具体的操作</li>

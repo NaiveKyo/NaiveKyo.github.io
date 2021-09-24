@@ -644,7 +644,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-09-24
                 </div>
                 
 
@@ -719,8 +719,8 @@
 <p>在初始化 <code>BeanFactory</code> 时，必须为其提供一种日志框架，我们使用 <strong>Log4J</strong>，即在类路径下提供 Log4J 配置文件，这样启动 Spring 容器才不会报错。</p>
 <h3 id="2、ApplicationContext-类体系结构"><a href="#2、ApplicationContext-类体系结构" class="headerlink" title="2、ApplicationContext 类体系结构"></a>2、ApplicationContext 类体系结构</h3><p>如果说 <strong>BeanFactory</strong> 是 Spring 的 “心脏”，那么 <strong>ApplicationContext</strong> 就是完整的 “身躯“ 了。<code>ApplicationContext</code> 由 <code>BeanFactory</code> 派生而来，提供了更多面向实际应用的功能，在 BeanFactory 中，很多功能需要以编程的方式实现，而在 ApplicationContext 中则可以通过配置的方式实现。</p>
 <p>ApplicationContext 的主要实现类是 <code>ClassPathXmlApplicationContext</code> 和 <code>FileSystemXmlApplicationContext</code> ，前者默认从类路径加载配置文件，后者默认从文件系统中装载配置文件。</p>
-<p><img src="/images/spring/ApplicationContextInherit.png"></p>
-<p><code>ConfigurableApplicationContext</code> 扩展于 <code>ApplicationContext</code>，它新增了两个主要的方法：**<code>refresh()</code>**  和 **<code>close()</code>**，让 ApplicationContext 具有启动、刷新和关闭应用上下文的能力。在应用上下文关闭的情况下调用 refresh() 即可启动应用上下文，在已经启动的状态下调用 refresh() 则可清除缓存并重新装载配置信息，但作为开发者，我们并不需要过多关心这些方法。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/ApplicationContextInherit.png"></p>
+<p><code>ConfigurableApplicationContext</code> 扩展于 <code>ApplicationContext</code>，它新增了两个主要的方法：<code style="font-weight:bold;color:red">refresh()</code>  和 <code style="font-weight:bold;color:red">close()</code>，让 ApplicationContext 具有启动、刷新和关闭应用上下文的能力。在应用上下文关闭的情况下调用 refresh() 即可启动应用上下文，在已经启动的状态下调用 refresh() 则可清除缓存并重新装载配置信息，但作为开发者，我们并不需要过多关心这些方法。</p>
 <blockquote>
 <p>使用 ClassPathXmlApplicationContext</p>
 </blockquote>
@@ -773,7 +773,7 @@
 
 
 
-<h3 id="3、WebApplicationContext-类体系结构"><a href="#3、WebApplicationContext-类体系结构" class="headerlink" title="3、WebApplicationContext 类体系结构"></a>3、WebApplicationContext 类体系结构</h3><p><code>WebApplicationContext</code> 是专门为 Web 应用准备的，它允许从相对于 Web 根目录的路径中装载配置文件完成初始化工作。从 <code>WebApplicationContext</code> 中可以获得 <code>ServletContext</code> 的引用，整个 Web 应用上下嗯对象将作为属性放置到 <code>ServletContext</code> 中，以便 Web 应用环境可以访问 Spring 应用上下文。Spring 专门为此提供了一个抽象工具类 **<code>WebApplicationContextUtils</code>**，通过该类的 <code>getWebApplicationContext(ServletContext sc)</code> 方法，可以从 ServletContext 中获取 WebApplicationContext 实例。</p>
+<h3 id="3、WebApplicationContext-类体系结构"><a href="#3、WebApplicationContext-类体系结构" class="headerlink" title="3、WebApplicationContext 类体系结构"></a>3、WebApplicationContext 类体系结构</h3><p><code>WebApplicationContext</code> 是专门为 Web 应用准备的，它允许从相对于 Web 根目录的路径中装载配置文件完成初始化工作。从 <code>WebApplicationContext</code> 中可以获得 <code>ServletContext</code> 的引用，整个 Web 应用上下文对象将作为属性放置到 <code>ServletContext</code> 中，以便 Web 应用环境可以访问 Spring 应用上下文。Spring 专门为此提供了一个抽象工具类 <code style="font-weight:bold;color:red">WebApplicationContextUtils</code>，通过该类的 <code>getWebApplicationContext(ServletContext sc)</code> 方法，可以从 ServletContext 中获取 WebApplicationContext 实例。</p>
 <p>在非 Web 应用的环境下，Bean 只有 <strong>singleton</strong> 和 <strong>prototype</strong> 两种作用域。</p>
 <p>WebApplicationContext 为 Bean 添加了三个新的作用域：<strong>request</strong>、<strong>session</strong> 和 <strong>global session</strong>。</p>
 <p>下面是它的继承体系：</p>
