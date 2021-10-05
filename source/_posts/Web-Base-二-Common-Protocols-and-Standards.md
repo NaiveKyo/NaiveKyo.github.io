@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/4.jpg'
 coverImg: /medias/banner/4.jpg
 toc: true
 date: 2021-09-19 21:38:20
-top: true
+top: false
 cover: false
 summary: 网站基础知识之常见协议和标准
 categories: "Website Basics"
@@ -107,7 +107,7 @@ TCP 传输是全双工的，也就是说双方是对等的，可以同时传输�
 
 <br />
 
-传输层协议出了 TCP 外，还有 UDP，它们的主要区别是 TCP 是有连接的，UDP 是无连接的，TCP 协议会沟通好之后传输数据，而 UDP 协议是拿到目标地址后直接传输数据。
+传输层协议除了 TCP 外，还有 UDP，它们的主要区别是 TCP 是有连接的，UDP 是无连接的，TCP 协议会沟通好之后传输数据，而 UDP 协议是拿到目标地址后直接传输数据。
 
 |          | TCP            | UDP                    |
 | -------- | -------------- | ---------------------- |
@@ -115,7 +115,7 @@ TCP 传输是全双工的，也就是说双方是对等的，可以同时传输�
 | 可靠性   | 可靠           | 不可靠                 |
 | 适合场景 | 邮件、网页等等 | 视频传输、语音输入等等 |
 
-HTTP 协议底层传输默认使用的是可靠的 TCP 协议，由于 TCP 的特性也给 HTTP 带来了一些制约。可以搜索查看 HTTP1.0、HTTP2.0、HTTP3.0 相关信息。
+HTTP 协议底层传输默认使用的是可靠的 TCP 协议，但是 TCP 的特性也给 HTTP 带来了一些制约。可以搜索查看 HTTP1.0、HTTP2.0、HTTP3.0 相关信息。
 
 
 

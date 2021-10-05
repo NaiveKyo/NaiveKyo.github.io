@@ -456,7 +456,7 @@ public class Client {
             //     os.write(buf);
             // }
             
-            // 上传方式三：
+            // 上传方式三：推荐，使用缓存数组同时使用特定方法做处理
             System.out.println("上传中...");
             int len = -1;
             byte[] bytes = new byte[1024];
@@ -468,7 +468,7 @@ public class Client {
              * 解决：上传完文件后，给服务器传过去一个网络流结束的标志
              * void shutdownOutput()
              *      禁用此套接字的输出流
-             *      对于 TC P套接字，任何先前写入的数据将被发送，随后是TCP的正常连接终止序列。
+             *      对于 TCP套接字，任何先前写入的数据将被发送，随后是 TCP的正常连接终止序列。
              */
             clientSocket.shutdownOutput();
             

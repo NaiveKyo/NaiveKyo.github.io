@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/5.jpg'
 coverImg: /medias/banner/5.jpg
 toc: true
 date: 2021-09-20 16:11:19
-top: true
+top: false
 cover: false
 summary: 网站基础知识之 Java Scoket、NioScoket 以及 HTTP 协议。
 categories: "Website Basics"
@@ -31,7 +31,7 @@ Java 中网络通信是通过 Socket 实现的，Socket 分为 `ServerSocket` �
 
 #### 2.1、简介
 
-从 JDK 1.4 开始，Java 新增了新的 io 模式 —— nio（new IO），nio 在磁层采用了全新的处理方式，极大的提高了 IO 的效率。我们使用的 Scoket 也属于 IO 的一种，nio 提供了相应的工具：
+从 JDK 1.4 开始，Java 新增了新的 io 模式 —— nio（new IO），nio 在底层采用了全新的处理方式，极大的提高了 IO 的效率。我们使用的 Scoket 也属于 IO 的一种，nio 提供了相应的工具：
 
 - `ServerSocketChannel`
 - `SocketChannel`
@@ -42,7 +42,7 @@ Java 中网络通信是通过 Socket 实现的，Socket 分为 `ServerSocket` �
 
 以前的处理方式，就是服务端 `ServerSocket` 作为一个监控线程，监听到一个客户端请求就处理它，处理完之后再继续监听等待下一个请求，在处理请求的过程中是阻塞的。
 
-这种方式一次只能处理一个请求且处理期间无法进行其他操作，一旦请求变多了，效率将会及其低下。
+这种方式一次只能处理一个请求且处理期间无法进行其他操作，一旦请求变多了，效率将会极其低下。
 
 <br />
 
@@ -60,7 +60,7 @@ Java 中网络通信是通过 Socket 实现的，Socket 分为 `ServerSocket` �
 
 NioSocket 的使用中首先要创建 `ServerSocketChannel`，然后注册 `Selector`，接下来就可以用 `Selector` 接收请求并处理了。
 
-`ServerSocketChannel` 可以使用自己的静态工厂方法 open 创建。每个 `ServerSocketChannel` 对应 一个 `ServerSocket`，可以调用其 socket 方法来获取，不过如果直接使用获取到 ServerSocket 来监听请求，那还是原来的处理模式，一般使用获取到的 ServerSocket 来绑定端口。
+`ServerSocketChannel` 可以使用自己的静态工厂方法 open 创建。每个 `ServerSocketChannel` 对应 一个 `ServerSocket`，可以调用其 socket 方法来获取，不过如果直接使用获取到的 ServerSocket 来监听请求，那还是原来的处理模式，一般使用获取到的 ServerSocket 来绑定端口。
 
 `ServerSocketChannel` 可以通过 `configureBlocking` 方法来设置是否采用阻塞模式，如果要采用非阻塞模式可以用 `configureBlocking(false)` 来设置，设置了非阻塞模式之后就可以调用 register 方法注册 Selector 来使用了（阻塞模式不可以使用 Selector）。
 
@@ -92,7 +92,7 @@ Channel 和 Selector 并没有谁属于谁的关系，就像一个分拣员可�
 NioSocket 中服务端的处理过程可以分为 5 步：
 
 1. 创建 `ServerSocketChannel` 并设置相应参数
-2. 创建 `Selector` 并注册到 `ServerSocketChannle` 上
+2. 创建 `Selector` 并注册到 `ServerSocketChannel` 上
 3. 调用 `Selector` 的`select`方法等待请求
 4. `Selector` 接收到请求后使用 `selectedKeys` 返回 `SelectionKey` 集合
 5. 使用 `SelectionKey` 获取到 Channel、Selector 和操作类型并进行具体的操作

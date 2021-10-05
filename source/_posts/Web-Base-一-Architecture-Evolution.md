@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/3.jpg'
 coverImg: /medias/banner/3.jpg
 toc: true
 date: 2021-09-19 12:15:14
-top: true
+top: false
 cover: false
 summary: 网站基础知识之网站架构及其演变过程 
 categories: "Website Basics"

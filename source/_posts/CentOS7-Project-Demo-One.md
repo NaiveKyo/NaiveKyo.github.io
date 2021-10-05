@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/banner/2.jpg'
 coverImg: /medias/banner/2.jpg
 toc: true
 date: 2021-09-08 22:24:07
-top: true
+top: false
 cover: false
 summary: 鲲鹏实训第一期，lamp 环境搭建
 categories: Linux

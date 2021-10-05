@@ -112,9 +112,9 @@ ApplicationContext 的主要实现类是 `ClassPathXmlApplicationContext` 和 `F
 
 
 
-![](/images/spring/ApplicationContextInherit.png)
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/images/spring/ApplicationContextInherit.png)
 
-`ConfigurableApplicationContext` 扩展于 `ApplicationContext`，它新增了两个主要的方法：**`refresh()`**  和 **`close()`**，让 ApplicationContext 具有启动、刷新和关闭应用上下文的能力。在应用上下文关闭的情况下调用 refresh() 即可启动应用上下文，在已经启动的状态下调用 refresh() 则可清除缓存并重新装载配置信息，但作为开发者，我们并不需要过多关心这些方法。
+`ConfigurableApplicationContext` 扩展于 `ApplicationContext`，它新增了两个主要的方法：<code style="font-weight:bold;color:red">refresh()</code>  和 <code style="font-weight:bold;color:red">close()</code>，让 ApplicationContext 具有启动、刷新和关闭应用上下文的能力。在应用上下文关闭的情况下调用 refresh() 即可启动应用上下文，在已经启动的状态下调用 refresh() 则可清除缓存并重新装载配置信息，但作为开发者，我们并不需要过多关心这些方法。
 
 
 
@@ -183,7 +183,7 @@ public class AnnotationApplicationContextTest {
 
 ### 3、WebApplicationContext 类体系结构
 
-`WebApplicationContext` 是专门为 Web 应用准备的，它允许从相对于 Web 根目录的路径中装载配置文件完成初始化工作。从 `WebApplicationContext` 中可以获得 `ServletContext` 的引用，整个 Web 应用上下嗯对象将作为属性放置到 `ServletContext` 中，以便 Web 应用环境可以访问 Spring 应用上下文。Spring 专门为此提供了一个抽象工具类 **`WebApplicationContextUtils`**，通过该类的 `getWebApplicationContext(ServletContext sc)` 方法，可以从 ServletContext 中获取 WebApplicationContext 实例。
+`WebApplicationContext` 是专门为 Web 应用准备的，它允许从相对于 Web 根目录的路径中装载配置文件完成初始化工作。从 `WebApplicationContext` 中可以获得 `ServletContext` 的引用，整个 Web 应用上下文对象将作为属性放置到 `ServletContext` 中，以便 Web 应用环境可以访问 Spring 应用上下文。Spring 专门为此提供了一个抽象工具类 <code style="font-weight:bold;color:red">WebApplicationContextUtils</code>，通过该类的 `getWebApplicationContext(ServletContext sc)` 方法，可以从 ServletContext 中获取 WebApplicationContext 实例。
 
 
 
