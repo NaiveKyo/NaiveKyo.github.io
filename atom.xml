@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-09-28T08:20:31.852Z</updated>
+  <updated>2021-10-05T03:37:21.990Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Tomcat Structure and Start-up process</title>
+    <link href="https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/"/>
+    <id>https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/</id>
+    <published>2021-10-05T02:58:43.000Z</published>
+    <updated>2021-10-05T03:37:21.990Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Tomcat-顶层结构及启动过程&quot;&gt;&lt;a href=&quot;#Tomcat-顶层结构及启动过程&quot; class=&quot;headerlink&quot; title=&quot;Tomcat 顶层结构及启动过程&quot;&gt;&lt;/a&gt;Tomcat 顶层结构及启动过程&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/categories/Tomcat/"/>
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Web Base (四) Analysis The Servlet3.0</title>
     <link href="https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/"/>
     <id>https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/</id>
     <published>2021-09-28T08:09:02.000Z</published>
-    <updated>2021-09-28T08:20:31.852Z</updated>
+    <updated>2021-10-05T03:37:58.564Z</updated>
     
     
       
@@ -72,7 +97,7 @@
     <link href="https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/"/>
     <id>https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/</id>
     <published>2021-09-20T08:11:19.000Z</published>
-    <updated>2021-09-20T08:34:58.901Z</updated>
+    <updated>2021-10-05T03:37:53.779Z</updated>
     
     
       
@@ -97,7 +122,7 @@
     <link href="https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/"/>
     <id>https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/</id>
     <published>2021-09-19T13:38:20.000Z</published>
-    <updated>2021-09-28T01:20:20.053Z</updated>
+    <updated>2021-10-05T03:37:47.008Z</updated>
     
     
       
@@ -122,7 +147,7 @@
     <link href="https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/"/>
     <id>https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/</id>
     <published>2021-09-19T04:15:14.000Z</published>
-    <updated>2021-09-19T07:05:20.094Z</updated>
+    <updated>2021-10-05T03:38:07.898Z</updated>
     
     
       
@@ -397,7 +422,7 @@
     <link href="https://naivekyo.github.io/2021/08/15/java-network-programing-intro/"/>
     <id>https://naivekyo.github.io/2021/08/15/java-network-programing-intro/</id>
     <published>2021-08-14T16:30:10.000Z</published>
-    <updated>2021-08-28T02:05:16.734Z</updated>
+    <updated>2021-09-29T02:00:21.908Z</updated>
     
     
       
@@ -484,35 +509,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、属性集&quot;&gt;&lt;a href=&quot;#一、属性集&quot; class=&quot;headerlink&quot; title=&quot;一、属性集&quot;&gt;&lt;/a&gt;一、属性集&lt;/h2&gt;&lt;h3 id=&quot;1、概述&quot;&gt;&lt;a href=&quot;#1、概述&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    <category term="IO" scheme="https://naivekyo.github.io/categories/Java/IO/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-    <category term="IO" scheme="https://naivekyo.github.io/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java IO Stream Intro</title>
-    <link href="https://naivekyo.github.io/2021/08/08/java-io-stream-intro/"/>
-    <id>https://naivekyo.github.io/2021/08/08/java-io-stream-intro/</id>
-    <published>2021-08-08T09:52:55.000Z</published>
-    <updated>2021-08-18T15:10:35.162Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;IO-流&quot;&gt;&lt;a href=&quot;#IO-流&quot; class=&quot;headerlink&quot; title=&quot;IO 流&quot;&gt;&lt;/a&gt;IO 流&lt;/h1&gt;&lt;h2 id=&quot;一、IO-概述&quot;&gt;&lt;a href=&quot;#一、IO-概述&quot; class=&quot;headerlink&quot;</summary>
         
       
     
