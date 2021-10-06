@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java,Map">
+    <meta name="keywords" content="Tomcat">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java Map Review | NaiveKyo</title>
+    <title>Tomcat Pipeline-Value Analysis | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -488,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210807102750.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java Map Review</h1>
+                    <h1 class="description center-align post-title">Tomcat Pipeline-Value Analysis</h1>
                 </div>
             </div>
         </div>
@@ -612,8 +612,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="/tags/Tomcat/">
+                                <span class="chip bg-color">Tomcat</span>
                             </a>
                         
                     </div>
@@ -624,8 +624,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Java/" class="post-category">
-                                Java
+                            <a href="/categories/Tomcat/" class="post-category">
+                                Tomcat
                             </a>
                         
                     </div>
@@ -637,21 +637,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-08-07
+                    2021-10-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-10-05
+                    2021-10-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    988
+                    1.5k
                 </div>
                 
 
@@ -671,117 +671,161 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
-<li>Map 中的集合称为双列集合</li>
-<li>Map 中的集合，元素是成对存在的，每个元素由键和值两部分组成，通过键可以找到对应的值</li>
-</ul>
-<h2 id="1、Map-集合常用子类"><a href="#1、Map-集合常用子类" class="headerlink" title="1、Map 集合常用子类"></a>1、Map 集合常用子类</h2><p>常用的 <code>HashMap</code> 集合 和 <code>LinkedHashMap</code> 集合</p>
+                <h1 id="Pipeline-Value-管道"><a href="#Pipeline-Value-管道" class="headerlink" title="Pipeline-Value 管道"></a>Pipeline-Value 管道</h1><p>前面介绍了 Container 自身的创建过程，Container 处理请求是使用 Pipeline-Value 管道来处理的，现在分析它的处理模式和实现方法。</p>
+<h2 id="1、Pipeline-Value-处理模式"><a href="#1、Pipeline-Value-处理模式" class="headerlink" title="1、Pipeline-Value 处理模式"></a>1、Pipeline-Value 处理模式</h2><p>Pipeline-Value 是责任链模式，责任链模式是指在一个请求处理的过程中有多个处理者依次对请求进行处理，每个处理者负责做自己相应的处理，处理完成后将处理后的请求返回，再让下一个处理者继续处理，每一个处理者的职责各不一样，这就是<mark>责任链模式</mark>。</p>
+<p>Pipeline 就相当于这条链，Value 就相当于处理者。</p>
+<p>不过 Pipeline-Value 的管道模型和普通的责任链模式稍微有些不同，区别主要有两点：</p>
 <ul>
-<li><strong style="color:red">HashMap&lt;K, V&gt;</strong>：存储数据采用的是哈希表结构，元素的存取顺序不能保证一致。由于要保证键的唯一、不重复，需要重写键的 <code>hashCode()</code> 方法、<code>equals()</code> 方法</li>
-<li><strong style="color:red">LinkedHashMap&lt;K, V&gt;</strong>：HashMap 下有个子类 LInkedHashMap，存储数据采用的是哈希表结构 + 链表结构。通过链表结构可以保证元素的存取顺序一致；通过哈希表结构可以保证键的唯一、不重复，需要重写键的 <code>hashCode()</code> 方法和 <code>equals()</code> 方法</li>
+<li>每个 Pipeline 都有特定的 Value，而且是在管道的最后一个执行，这个 Value 叫做 BaseValue，BaseValue 是不可删除的；</li>
+<li>在上层容器的管道的 BaseValue 中会调用下层容器的管道。</li>
 </ul>
-<h2 id="2、常用方法"><a href="#2、常用方法" class="headerlink" title="2、常用方法"></a>2、常用方法</h2><ul>
-<li><code>public V put(K key, V value)</code>：把指定的键与指定的值添加到 Map 集合中</li>
-<li><code>public V remove(Object key)</code>：把指定的键所对应的键值对元素从 Map 集合中删除，并返回被删除键的值</li>
-<li><code>public V get(Object key)</code>：根据给定的键，获取对应的值</li>
-<li><code>boolean containsKey(Object key)</code>：判断集合中是否包含指定的键</li>
-<li><code>public Set&lt;K&gt; keySet()</code>：获取 Map 集合中所有的键，存储到 Set 集合中</li>
-<li><code>public Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code>：获取 Map 集合中所有的键值对对象的集合（Set 集合）</li>
-</ul>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Map_HashMap</span> <span class="token punctuation">{</span>
+<p>4 个容器的 BaseValue 分别是 StandardEngineValue、StandardHostValue、StandardContextValue 和 StandardWrapperValue，</p>
+<p>处理流程如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211006223742.png"></p>
+<p>在 Engine 的管道中依次执行 Engine 的各个 Vaule，最后执行 StandardEngineValue，用于调用 Host 的管道，然后执行 Host 的 Value，这样依此类推最后执行 Wrapper 管道中的 StandardWrapperValue。</p>
+<p>在 Filter 中用到的 FilterChain 其实就是这种模式，FilterChain 相当于 Pipeline，每个 Filter 都相当于一个 Value，Servlet 相当于最后的 BaseValue。</p>
+<h2 id="2、Pipeline-Value-的实现方法"><a href="#2、Pipeline-Value-的实现方法" class="headerlink" title="2、Pipeline-Value 的实现方法"></a>2、Pipeline-Value 的实现方法</h2><p>Pipeline 管道的实现分为生命周期管理和处理请求两部分，下面分别分析。</p>
+<h3 id="2-1、Pipeline-管道生命周期的实现方法"><a href="#2-1、Pipeline-管道生命周期的实现方法" class="headerlink" title="2.1、Pipeline 管道生命周期的实现方法"></a>2.1、Pipeline 管道生命周期的实现方法</h3><p>Container 中的 Pipeline 在抽象实现类 ContainerBase 中定义，并在生命周期的 startInternal、stopInternal、destroyInternal 方法中调用管道的相应生命周期方法（因为管道不需要初始化，所以 initInternal 方法中没有调用），代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.apache.catalina.core.ContainerBase</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// The Pipeline object with which this Container is associated.</span>
+<span class="token comment">// 这就是为什么管道不需要初始化</span>
+<span class="token keyword">protected</span> <span class="token keyword">final</span> <span class="token class-name">Pipeline</span> pipeline <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StandardPipeline</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> hashMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        
-        hashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">,</span> <span class="token string">"one"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 如果存在 put 两个相同的键，后插入的那个会覆盖之前的</span>
-        <span class="token comment">// hashMap.put("two", "three");</span>
-        hashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"two"</span><span class="token punctuation">,</span> <span class="token string">"two"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        hashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"three"</span><span class="token punctuation">,</span> <span class="token string">"three"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        hashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"four"</span><span class="token punctuation">,</span> <span class="token string">"four"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">startInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">LifecycleException</span> <span class="token punctuation">{</span>
 
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hashMap<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">"four"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// four</span>
-
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hashMap<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span><span class="token string">"five"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// false</span>
-
-        <span class="token comment">// 获取所有 键 的 Set 集合</span>
-        <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> keySet <span class="token operator">=</span> hashMap<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> key <span class="token operator">:</span> keySet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s\t"</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// 获取所有条目（k-v 键值对）</span>
-        <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> entrySet <span class="token operator">=</span> hashMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> entry <span class="token operator">:</span> entrySet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"key: %s ---- value: %s\n"</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hashMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment">// Start the Valves in our pipeline (including the basic), if any</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pipeline <span class="token keyword">instanceof</span> <span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> pipeline<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
 
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">stopInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">LifecycleException</span> <span class="token punctuation">{</span>
 
-
-<blockquote>
-<p>补充：Entry 键值对对象</p>
-</blockquote>
-<p>Map 中存放的是两种对象，一种称为 <strong>key（键）</strong>，一种称为 <strong>value（值）</strong>，它们在 Map 中是一一对应的关系，这一对对象又称作 Map 中的一个 <strong>Entry（项）</strong>。<code>Entry</code> 将键值对的对应关系封装成了对象。即键值对对象。</p>
-<blockquote>
-<p>补充：HashMap 存储自定义对象</p>
-</blockquote>
-<p>要求：<strong>作为 key 的元素，必须重写 hashCode 和 equals 方法。</strong></p>
-<h2 id="3、LinkedHashMap"><a href="#3、LinkedHashMap" class="headerlink" title="3、LinkedHashMap"></a>3、LinkedHashMap</h2><p>HashMap 可以保证元素成对唯一，并且查询速度很快，但是成对的元素放进去没有顺序，如果既要保证有序，又要保证速度，就可以使用 HashMap 的一个子类 LinkedHashMap，它是链表和哈希表组合的一个数据结构。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Map_LinkedHashMap</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> linkedHashMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        
-        linkedHashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"one"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedHashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"two"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedHashMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"three"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> entries <span class="token operator">=</span> linkedHashMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">Iterator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> iterator <span class="token operator">=</span> entries<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> next <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>next<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" --- "</span> <span class="token operator">+</span> next<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment">// Stop the Valves in our pipeline (including the basic), if any</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pipeline <span class="token keyword">instanceof</span> <span class="token class-name">Lifecycle</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> pipeline<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAvailable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> pipeline<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
 
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">destroyInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">LifecycleException</span> <span class="token punctuation">{</span>
 
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment">// Stop the Valves in our pipeline (including the basic), if any</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pipeline <span class="token keyword">instanceof</span> <span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> pipeline<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="4、Hashtable"><a href="#4、Hashtable" class="headerlink" title="4、Hashtable"></a>4、Hashtable</h2><ul>
-<li>Hashtable 实现了 Map 接口，也是一个双列集合</li>
-<li>底层也是哈希表</li>
-<li>和 HashMap 的不同之处：<ul>
-<li><code>Hashtable</code> <strong>不允许 null 值作为键或者值，而 HashMap 允许 null 值为键或者值</strong></li>
-<li>线程同步的，单线程集合，安全但是效率慢</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Hashtable 和 Vector 集合一样，在 JDK1.2 版本之后被更好的集合（HashMap，ArrayList）取代了，但是 Hashtable 的子类 Properties 依然在使用。</p>
-</blockquote>
-<p><code>Properties</code> 集合是唯一一个和 IO 流相结合的集合。</p>
-<h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><blockquote>
-<p>JDK9 对集合添加的优化</p>
-</blockquote>
-<ul>
-<li><code>List、Set、Map</code> 增加了一个静态方法 <code>of()</code> ，可以给集合一次性添加多个元素</li>
-<li>使用前提：当集合中存储的元素个数已经确定了，不在改变时可以使用</li>
-<li><code>static &lt;E&gt; List&lt;E&gt; of(E... elements)</code>：返回一个包含任意数量元素的 <strong>不可变</strong> 列表</li>
-</ul>
+<p>Container 的 4 个子容器都继承自 ContainerBase，所以 4 个子容器在执行生命周期方法时都会调用管道对应的生命周期方法。</p>
+<p>Pipeline 使用的是 <code>StandardPipeline</code> 类型，它里面的 Value 保存在 first 属性中，Value 是链式结构，可以通过 getNext 方法依次获取每个 Value，BaseValue  单独保存在 basic 属性中（basic 不可以为空，在调用 addValue 方法添加 Value 时 basic 会同时保存到 first 的最后一个，如果没有调用 addValue 方法则 first 可能为空）。StandardPipeline 继承自 LifecycleBase，所以实际处理生命周期的方法是 startInternal、stopInternal 和 destroyInternal，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.apache.catalina.core.StandardPipeline</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">startInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">LifecycleException</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 使用临时变量 current 来遍历 Value 链里的所有 Value，如果 first 为空则使用 basic</span>
+    <span class="token class-name">Valve</span> current <span class="token operator">=</span> first<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        current <span class="token operator">=</span> basic<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 遍历所有 Value 并调用 start 方法</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token keyword">instanceof</span> <span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> current<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        current <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+	<span class="token comment">// 设置 LifecycleState.STARTING 状态</span>
+    <span class="token function">setState</span><span class="token punctuation">(</span><span class="token class-name">LifecycleState</span><span class="token punctuation">.</span>STARTING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">stopInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">LifecycleException</span> <span class="token punctuation">{</span>
+
+    <span class="token function">setState</span><span class="token punctuation">(</span><span class="token class-name">LifecycleState</span><span class="token punctuation">.</span>STOPPING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Stop the Valves in our pipeline (including the basic), if any</span>
+    <span class="token class-name">Valve</span> current <span class="token operator">=</span> first<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        current <span class="token operator">=</span> basic<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token keyword">instanceof</span> <span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Lifecycle</span><span class="token punctuation">)</span> current<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        current <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">destroyInternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Valve</span><span class="token punctuation">[</span><span class="token punctuation">]</span> valves <span class="token operator">=</span> <span class="token function">getValves</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Valve</span> valve <span class="token operator">:</span> valves<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">removeValve</span><span class="token punctuation">(</span>valve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>startInternal 和 stopInternal 方法处理的过程非常相似，都是使用临时变量 current 来遍历 Value 链里的所有 Value，如果 first 为空就使用 basic，然后遍历所有 Value 并调用相应的 start 和 stop 方法，最后设置相应的声明周期状态。destroyInternal 方法是删除所有 Value。</p>
+<p>getValues 方法可以得到包括 basic 在内的所有 Value 的集合，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.apache.catalina.core.StandardPipeline</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">Valve</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getValves</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Valve</span><span class="token punctuation">&gt;</span></span> valveList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Valve</span> current <span class="token operator">=</span> first<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        current <span class="token operator">=</span> basic<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        valveList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        current <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> valveList<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Valve</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2、Pipeline-管道生命周期结构图"><a href="#2-2、Pipeline-管道生命周期结构图" class="headerlink" title="2.2、Pipeline 管道生命周期结构图"></a>2.2、Pipeline 管道生命周期结构图</h3><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211006223842.png"></p>
+<h3 id="2-3、Pipeline-管道处理请求的实现方法"><a href="#2-3、Pipeline-管道处理请求的实现方法" class="headerlink" title="2.3、Pipeline 管道处理请求的实现方法"></a>2.3、Pipeline 管道处理请求的实现方法</h3><p>Pipeline 调用所包含 Value 的 invoke 方法来处理请求，并且在 BaseValue 里又调用了子容器 Pipeline 所包含 Value 的 invoke 方法，直到最后调用了 Wrapper 的 Pipeline 所包含的 BaseValue —— StandardWrapperValue。</p>
+<p>Connector 在接收到请求后会调用最顶层容器的 Pipeline 来处理，顶层容器的 Pipeline 处理完之后就会在其 BaseValue 里调用下一层容器的 Pipeline 进行处理，这样就可以逐层调用所有容器的 Pipeline 来处理了。</p>
+<p>Engine 的 BaseValue 是 StandardEngineValue，它的 invoke 代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.apache.catalina.core.StandardEngineValve</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">Request</span> request<span class="token punctuation">,</span> <span class="token class-name">Response</span> response<span class="token punctuation">)</span>
+    <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Host 已经事先设置到 request 中了，其他各层容器也一样都会事先设置到 request 中</span>
+    <span class="token class-name">Host</span> host <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>host <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// HTTP 0.9 or HTTP 1.0 request without a host when no default host</span>
+        <span class="token comment">// is defined.</span>
+        <span class="token comment">// Don't overwrite an existing error</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span><span class="token function">isError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            response<span class="token punctuation">.</span><span class="token function">sendError</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        request<span class="token punctuation">.</span><span class="token function">setAsyncSupported</span><span class="token punctuation">(</span>host<span class="token punctuation">.</span><span class="token function">getPipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 将请求传递给 Host 的管道</span>
+    host<span class="token punctuation">.</span><span class="token function">getPipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的实现非常简单，首先从 request 中获取到 Host，然后调用其管道的第一个 Value 的 invoke 方法进行处理。Host 的 BaseValue 也同样会调用 Context 的 Pipeline，Context 的 BaseValue 会调用 Wrapper 的 Pipeline，Wrapper 的 Pipeline 最后会在其 BaseValue（StandardWrapperValue）中创建 FilterChain 并调用其 doFilter 方法来处理请求，FilterChain 包含着我们配置的与请求相匹配的 Filter 和 Servlet，其 doFilter 方法会依次调用所有 Filter 的 doFilter 方法和 Servlet 的 service 方法，这样请求就得到处理了。</p>
+<p>Filter 和 Servlet 实际处理请求的方法在 Wrapper 的管道 Pipeline 的 BaseValue —— StandardWrapperValue 中调用，生命周期相关的方法是在 Wrapper 的实现类 StandardWrapper 中调用。</p>
 
                 
             </div>
@@ -808,7 +852,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/08/07/java-map-review/">https://naivekyo.github.io/2021/08/07/java-map-review/</a>
+                    <a href="https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/">https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -846,8 +890,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="/tags/Tomcat/">
+                                    <span class="chip bg-color">Tomcat</span>
                                 </a>
                             
                         </div>
@@ -1014,45 +1058,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/08/07/java-exception-review/">
+                <a href="/2021/10/06/tomcat-pipeline-value-analysis/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210807154056.jpg" class="responsive-img" alt="Java Exception Review">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/19.jpg" class="responsive-img" alt="Tomcat Pipeline-Value Analysis">
                         
-                        <span class="card-title">Java Exception Review</span>
+                        <span class="card-title">Tomcat Pipeline-Value Analysis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            复习 Java 的异常相关知识
+                            Tomcat 处理请求的组件 Pipeline-Value 浅析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/Tomcat/" class="post-category">
+                                    Tomcat
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Tomcat/">
+                        <span class="chip bg-color">Tomcat</span>
                     </a>
                     
                 </div>
@@ -1066,30 +1112,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/06/java-list-and-set/">
+                <a href="/2021/10/06/tomcat-container-analysis/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210806224955.jpg" class="responsive-img" alt="Java List And Set">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/17.jpg" class="responsive-img" alt="Tomcat Container Analysis">
                         
-                        <span class="card-title">Java List And Set</span>
+                        <span class="card-title">Tomcat Container Analysis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            复习 Java 的 List 和 Set 集合相关知识
+                            Tomcat 容器接口 Container 浅析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/Tomcat/" class="post-category">
+                                    Tomcat
                                 </a>
                             
                             
@@ -1099,8 +1145,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Tomcat/">
+                        <span class="chip bg-color">Tomcat</span>
                     </a>
                     
                 </div>

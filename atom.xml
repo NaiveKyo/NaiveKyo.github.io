@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-05T03:37:21.990Z</updated>
+  <updated>2021-10-06T14:39:08.054Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,86 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Tomcat Pipeline-Value Analysis</title>
+    <link href="https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/"/>
+    <id>https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/</id>
+    <published>2021-10-06T14:35:19.000Z</published>
+    <updated>2021-10-06T14:39:08.054Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Pipeline-Value-管道&quot;&gt;&lt;a href=&quot;#Pipeline-Value-管道&quot; class=&quot;headerlink&quot; title=&quot;Pipeline-Value 管道&quot;&gt;&lt;/a&gt;Pipeline-Value 管道&lt;/h1&gt;&lt;p&gt;前面介绍了</summary>
+        
+      
+    
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/categories/Tomcat/"/>
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat Container Analysis</title>
+    <link href="https://naivekyo.github.io/2021/10/06/tomcat-container-analysis/"/>
+    <id>https://naivekyo.github.io/2021/10/06/tomcat-container-analysis/</id>
+    <published>2021-10-06T14:21:09.000Z</published>
+    <updated>2021-10-06T14:26:31.804Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Container-分析&quot;&gt;&lt;a href=&quot;#Container-分析&quot; class=&quot;headerlink&quot; title=&quot;Container 分析&quot;&gt;&lt;/a&gt;Container 分析&lt;/h1&gt;&lt;h2 id=&quot;1、ContainerBase-的结构&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/categories/Tomcat/"/>
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat life cycle management</title>
+    <link href="https://naivekyo.github.io/2021/10/06/tomcat-life-cycle-management/"/>
+    <id>https://naivekyo.github.io/2021/10/06/tomcat-life-cycle-management/</id>
+    <published>2021-10-06T13:56:36.000Z</published>
+    <updated>2021-10-06T14:16:06.053Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Tomcat-的生命周期管理&quot;&gt;&lt;a href=&quot;#Tomcat-的生命周期管理&quot; class=&quot;headerlink&quot; title=&quot;Tomcat 的生命周期管理&quot;&gt;&lt;/a&gt;Tomcat 的生命周期管理&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/categories/Tomcat/"/>
+    
+    
+    <category term="Tomcat" scheme="https://naivekyo.github.io/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tomcat Structure and Start-up process</title>
     <link href="https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/"/>
     <id>https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/</id>
     <published>2021-10-05T02:58:43.000Z</published>
-    <updated>2021-10-05T03:37:21.990Z</updated>
+    <updated>2021-10-06T08:04:49.810Z</updated>
     
     
       
@@ -46,7 +121,7 @@
     <link href="https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/"/>
     <id>https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/</id>
     <published>2021-09-28T08:09:02.000Z</published>
-    <updated>2021-10-05T03:37:58.564Z</updated>
+    <updated>2021-10-06T12:38:56.214Z</updated>
     
     
       
@@ -439,89 +514,6 @@
     
     
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7 Deploy Nacos Server</title>
-    <link href="https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/"/>
-    <id>https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/</id>
-    <published>2021-08-13T14:09:48.000Z</published>
-    <updated>2021-08-29T14:56:04.004Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Nacos-服务部署&quot;&gt;&lt;a href=&quot;#Nacos-服务部署&quot; class=&quot;headerlink&quot; title=&quot;Nacos 服务部署&quot;&gt;&lt;/a&gt;Nacos 服务部署&lt;/h2&gt;&lt;h3 id=&quot;1、前言&quot;&gt;&lt;a href=&quot;#1、前言&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot Integrated Cache</title>
-    <link href="https://naivekyo.github.io/2021/08/12/springboot-integrated-cache/"/>
-    <id>https://naivekyo.github.io/2021/08/12/springboot-integrated-cache/</id>
-    <published>2021-08-12T08:20:38.000Z</published>
-    <updated>2021-09-02T15:46:59.202Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;SpringBoot-集成缓存&quot;&gt;&lt;a href=&quot;#SpringBoot-集成缓存&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot 集成缓存&quot;&gt;&lt;/a&gt;SpringBoot 集成缓存&lt;/h1&gt;&lt;h2 id=&quot;一、开启缓存支持&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="SpringBoot" scheme="https://naivekyo.github.io/categories/SpringBoot/"/>
-    
-    <category term="Cache" scheme="https://naivekyo.github.io/categories/SpringBoot/Cache/"/>
-    
-    
-    <category term="SpringBoot" scheme="https://naivekyo.github.io/tags/SpringBoot/"/>
-    
-    <category term="Cache" scheme="https://naivekyo.github.io/tags/Cache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java IO Stream Extension</title>
-    <link href="https://naivekyo.github.io/2021/08/11/java-io-stream-extension/"/>
-    <id>https://naivekyo.github.io/2021/08/11/java-io-stream-extension/</id>
-    <published>2021-08-11T02:36:22.000Z</published>
-    <updated>2021-08-18T15:10:28.153Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、属性集&quot;&gt;&lt;a href=&quot;#一、属性集&quot; class=&quot;headerlink&quot; title=&quot;一、属性集&quot;&gt;&lt;/a&gt;一、属性集&lt;/h2&gt;&lt;h3 id=&quot;1、概述&quot;&gt;&lt;a href=&quot;#1、概述&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    <category term="IO" scheme="https://naivekyo.github.io/categories/Java/IO/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-    <category term="IO" scheme="https://naivekyo.github.io/tags/IO/"/>
     
   </entry>
   

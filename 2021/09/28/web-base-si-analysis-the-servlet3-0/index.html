@@ -644,7 +644,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-10-05
+                    2021-10-06
                 </div>
                 
 
@@ -723,7 +723,6 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>那么在具体的执行的时候，是谁将 ServletConfig 传递给 init() 方法呢？</p>
-<p><mark>注：catalina 就是Tomcat 服务器使用的 Apache 提供的 servlet 容器的名字。</mark></p>
 <p>答案是在 <code>org.apacha.catalina.core.StandardWrapper</code> 的 <code>initServlet</code> 方法中调用的，ServletConfig 作为参数传给 <code>StandardWrapper</code>（里面封装着 Servlet）的门面类 <code>StandardWrapperFacade</code>。</p>
 <p><mark>注：Wrapper 其实是一个容器，包含了 web.xml 中定义的 Servlet 信息，Wrapper 接口的实现负责管理底层 Servlet 类的生命周期</mark></p>
 <p><strong>StandardWrapper.java</strong></p>
@@ -866,7 +865,7 @@
 <li>Servlet 的 getServletConfig（）方法，获取到的是 ServletConfig</li>
 <li>ServletConfig 接口中定义的 getServletContext（）方法获取到其实是 ApplicationContextFacade，而执行 getServletContext（）方法的其实是 StandardContext</li>
 </ul>
-<blockquote>
+<h4 id="UML-补充知识"><a href="#UML-补充知识" class="headerlink" title="UML 补充知识"></a>UML 补充知识</h4><blockquote>
 <p>UML 补充知识</p>
 </blockquote>
 <p>在画出类图之后，不得不提一句 UML 中对于 依赖、关联、聚合、组合 这四种关系，依赖还比较好区分，表示类与类之间的联接，<strong>在 Java 中表现为局部变量、方法的形参 或者对某个类静态方法的调用。</strong></p>

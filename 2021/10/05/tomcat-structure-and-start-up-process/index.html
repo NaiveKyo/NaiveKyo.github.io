@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-10-05
+                    2021-10-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.7k
+                    3.6k
                 </div>
                 
 
@@ -711,15 +711,6 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Service</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Server</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>通过该配置文件我们可以看出 Tomcat 的核心在于：</p>
-<ul>
-<li>Catalina Servlet 引擎：提供 Servlet 容器，同时也是 Tomcat 应用服务器的管理者</li>
-</ul>
-<p>配置文件中 Server 属性代指服务器本身，Service 就是 Servlet 容器，这里命名为 Catalina，同时 Service 里面有包含两个组件：</p>
-<ul>
-<li>Connector：负责网络连接</li>
-<li>Container（又叫 Engine）：Servlet 容器</li>
-</ul>
 <p><mark>总结：一个 Server 下有多个 Service 共享服务器上的 JVM 环境，每个 Service 中有多个 Connector 和 一个 Container</mark></p>
 <br>
 
@@ -1384,29 +1375,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/10/05/tomcat-structure-and-start-up-process/">
+                <a href="/2021/10/06/tomcat-life-cycle-management/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/4.jpg" class="responsive-img" alt="Tomcat Structure and Start-up process">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/7.jpg" class="responsive-img" alt="Tomcat life cycle management">
                         
-                        <span class="card-title">Tomcat Structure and Start-up process</span>
+                        <span class="card-title">Tomcat life cycle management</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tomcat 顶层架构与启动过程分析
+                            Tomcat 生命周期管理机制浅析
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1419,7 +1409,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
