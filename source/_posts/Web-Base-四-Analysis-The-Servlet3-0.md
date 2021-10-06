@@ -93,8 +93,6 @@ init 方法接收的 ServletConfig 类型参数，是容器传进去的。这是
 
 那么在具体的执行的时候，是谁将 ServletConfig 传递给 init() 方法呢？
 
-<mark>注：catalina 就是Tomcat 服务器使用的 Apache 提供的 servlet 容器的名字。</mark>
-
 答案是在 `org.apacha.catalina.core.StandardWrapper` 的 `initServlet` 方法中调用的，ServletConfig 作为参数传给 `StandardWrapper`（里面封装着 Servlet）的门面类 `StandardWrapperFacade`。
 
 <mark>注：Wrapper 其实是一个容器，包含了 web.xml 中定义的 Servlet 信息，Wrapper 接口的实现负责管理底层 Servlet 类的生命周期</mark>
@@ -261,6 +259,8 @@ public interface ServletConfig {
 - ServletConfig 接口中定义的 getServletContext（）方法获取到其实是 ApplicationContextFacade，而执行 getServletContext（）方法的其实是 StandardContext
 
 
+
+#### UML 补充知识
 
 > UML 补充知识
 

@@ -64,15 +64,6 @@ Tomcat 中最顶层的容器叫做 Server，代表整个服务器，Server 中�
 </Server>
 ```
 
-通过该配置文件我们可以看出 Tomcat 的核心在于：
-
-- Catalina Servlet 引擎：提供 Servlet 容器，同时也是 Tomcat 应用服务器的管理者
-
-配置文件中 Server 属性代指服务器本身，Service 就是 Servlet 容器，这里命名为 Catalina，同时 Service 里面有包含两个组件：
-
-- Connector：负责网络连接
-- Container（又叫 Engine）：Servlet 容器
-
 <mark>总结：一个 Server 下有多个 Service 共享服务器上的 JVM 环境，每个 Service 中有多个 Connector 和 一个 Container</mark>
 
 <br />

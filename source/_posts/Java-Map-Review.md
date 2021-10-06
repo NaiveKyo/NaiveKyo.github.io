@@ -27,8 +27,8 @@ tags: Java
 
 常用的 `HashMap` 集合 和 `LinkedHashMap` 集合
 
-- **HashMap<K, V>**：存储数据采用的是哈希表结构，元素的存取顺序不能保证一致。由于要保证键的唯一、不重复，需要重写键的 `hashCode()` 方法、`equals()` 方法
-- **LinkedHashMap<K, V>**：HashMap 下有个子类 LInkedHashMap，存储数据采用的是哈希表结构 + 链表结构。通过链表结构可以保证元素的存取顺序一致；通过哈希表结构可以保证键的唯一、不重复，需要重写键的 `hashCode()` 方法和 `equals()` 方法
+- <strong style="color:red">HashMap<K, V></strong>：存储数据采用的是哈希表结构，元素的存取顺序不能保证一致。由于要保证键的唯一、不重复，需要重写键的 `hashCode()` 方法、`equals()` 方法
+- <strong style="color:red">LinkedHashMap<K, V></strong>：HashMap 下有个子类 LInkedHashMap，存储数据采用的是哈希表结构 + 链表结构。通过链表结构可以保证元素的存取顺序一致；通过哈希表结构可以保证键的唯一、不重复，需要重写键的 `hashCode()` 方法和 `equals()` 方法
 
 
 
