@@ -644,7 +644,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-10-06
+                    2021-10-23
                 </div>
                 
 
@@ -996,7 +996,7 @@
 <li>还有一个作用就是在重写 init 方法时也不需要再调用 <code>super.init(config)</code>。</li>
 </ol>
 <p>如果在自己的 Servlet 中重写了带参数的 init 方法，那么记得一定要调用 <code>super.init(config)</code>，否则这里的 config 属性就接收不到值，相应的 ServletConfig 接口方法也就不能执行了。</p>
-<p>GenericServlet 提供了两个 log 方法，一个记录日志，一个记录日常。具体实现是通过传给 ServletContext 的日志实现的。</p>
+<p>GenericServlet 提供了两个 log 方法，一个记录日志，一个记录异常。具体实现是通过传给 ServletContext 的日志实现的。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// javax.servlet.GenericServlet</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">getServletName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span><span class="token operator">+</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>

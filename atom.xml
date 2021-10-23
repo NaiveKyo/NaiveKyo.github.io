@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-07T09:10:13.646Z</updated>
+  <updated>2021-10-23T11:57:21.425Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Spring MVC Creation Process Analysis</title>
+    <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/"/>
+    <id>https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/</id>
+    <published>2021-10-23T11:51:30.000Z</published>
+    <updated>2021-10-23T11:57:21.425Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;创建-Spring-MVC&quot;&gt;&lt;a href=&quot;#创建-Spring-MVC&quot; class=&quot;headerlink&quot; title=&quot;创建 Spring MVC&quot;&gt;&lt;/a&gt;创建 Spring MVC&lt;/h1&gt;&lt;p&gt;目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分析</summary>
+        
+      
+    
+    
+    
+    <category term="”Spring MVC&quot;" scheme="https://naivekyo.github.io/categories/%E2%80%9DSpring-MVC/"/>
+    
+    
+    <category term="”Spring MVC&quot;" scheme="https://naivekyo.github.io/tags/%E2%80%9DSpring-MVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring MVC First Try</title>
+    <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/"/>
+    <id>https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/</id>
+    <published>2021-10-23T11:37:02.000Z</published>
+    <updated>2021-10-23T11:50:22.764Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;初试-SpringMVC&quot;&gt;&lt;a href=&quot;#初试-SpringMVC&quot; class=&quot;headerlink&quot; title=&quot;初试 SpringMVC&quot;&gt;&lt;/a&gt;初试 SpringMVC&lt;/h1&gt;&lt;h2 id=&quot;1、环境搭建&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tomcat Connector Analysis</title>
     <link href="https://naivekyo.github.io/2021/10/07/tomcat-connector-analysis/"/>
     <id>https://naivekyo.github.io/2021/10/07/tomcat-connector-analysis/</id>
     <published>2021-10-07T09:02:30.000Z</published>
-    <updated>2021-10-07T09:10:13.646Z</updated>
+    <updated>2021-10-23T11:33:53.466Z</updated>
     
     
       
@@ -42,18 +94,18 @@
   </entry>
   
   <entry>
-    <title>Tomcat Pipeline-Value Analysis</title>
-    <link href="https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/"/>
-    <id>https://naivekyo.github.io/2021/10/06/tomcat-pipeline-value-analysis/</id>
+    <title>Tomcat Pipeline-Valve Analysis</title>
+    <link href="https://naivekyo.github.io/2021/10/06/tomcat-pipeline-valve-analysis/"/>
+    <id>https://naivekyo.github.io/2021/10/06/tomcat-pipeline-valve-analysis/</id>
     <published>2021-10-06T14:35:19.000Z</published>
-    <updated>2021-10-06T14:39:08.054Z</updated>
+    <updated>2021-10-23T11:34:16.637Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Pipeline-Value-管道&quot;&gt;&lt;a href=&quot;#Pipeline-Value-管道&quot; class=&quot;headerlink&quot; title=&quot;Pipeline-Value 管道&quot;&gt;&lt;/a&gt;Pipeline-Value 管道&lt;/h1&gt;&lt;p&gt;前面介绍了</summary>
+    <summary type="html">&lt;h1 id=&quot;Pipeline-Valve-管道&quot;&gt;&lt;a href=&quot;#Pipeline-Valve-管道&quot; class=&quot;headerlink&quot; title=&quot;Pipeline-Valve 管道&quot;&gt;&lt;/a&gt;Pipeline-Valve 管道&lt;/h1&gt;&lt;p&gt;前面介绍了</summary>
         
       
     
@@ -71,7 +123,7 @@
     <link href="https://naivekyo.github.io/2021/10/06/tomcat-container-analysis/"/>
     <id>https://naivekyo.github.io/2021/10/06/tomcat-container-analysis/</id>
     <published>2021-10-06T14:21:09.000Z</published>
-    <updated>2021-10-06T14:26:31.804Z</updated>
+    <updated>2021-10-23T11:34:02.470Z</updated>
     
     
       
@@ -96,7 +148,7 @@
     <link href="https://naivekyo.github.io/2021/10/06/tomcat-life-cycle-management/"/>
     <id>https://naivekyo.github.io/2021/10/06/tomcat-life-cycle-management/</id>
     <published>2021-10-06T13:56:36.000Z</published>
-    <updated>2021-10-06T14:16:06.053Z</updated>
+    <updated>2021-10-23T11:34:09.117Z</updated>
     
     
       
@@ -121,7 +173,7 @@
     <link href="https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/"/>
     <id>https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/</id>
     <published>2021-10-05T02:58:43.000Z</published>
-    <updated>2021-10-06T08:04:49.810Z</updated>
+    <updated>2021-10-23T11:34:25.232Z</updated>
     
     
       
@@ -146,7 +198,7 @@
     <link href="https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/"/>
     <id>https://naivekyo.github.io/2021/09/28/web-base-si-analysis-the-servlet3-0/</id>
     <published>2021-09-28T08:09:02.000Z</published>
-    <updated>2021-10-06T12:38:56.214Z</updated>
+    <updated>2021-10-23T10:30:12.097Z</updated>
     
     
       
@@ -455,56 +507,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、Junit-单元测试&quot;&gt;&lt;a href=&quot;#一、Junit-单元测试&quot; class=&quot;headerlink&quot; title=&quot;一、Junit 单元测试&quot;&gt;&lt;/a&gt;一、Junit</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Stream And Method Reference</title>
-    <link href="https://naivekyo.github.io/2021/08/18/java-stream-and-method-reference/"/>
-    <id>https://naivekyo.github.io/2021/08/18/java-stream-and-method-reference/</id>
-    <published>2021-08-18T14:58:01.000Z</published>
-    <updated>2021-08-28T02:05:30.157Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Stream-流&quot;&gt;&lt;a href=&quot;#一、Stream-流&quot; class=&quot;headerlink&quot; title=&quot;一、Stream 流&quot;&gt;&lt;/a&gt;一、Stream 流&lt;/h2&gt;&lt;p&gt;提到 Stream 就容易想起来 Java I/O</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Functional Programming</title>
-    <link href="https://naivekyo.github.io/2021/08/17/java-functional-programming/"/>
-    <id>https://naivekyo.github.io/2021/08/17/java-functional-programming/</id>
-    <published>2021-08-17T13:19:57.000Z</published>
-    <updated>2021-08-17T13:25:24.913Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;函数式编程&quot;&gt;&lt;a href=&quot;#函数式编程&quot; class=&quot;headerlink&quot; title=&quot;函数式编程&quot;&gt;&lt;/a&gt;函数式编程&lt;/h1&gt;&lt;h2 id=&quot;一、函数式接口&quot;&gt;&lt;a href=&quot;#一、函数式接口&quot; class=&quot;headerlink&quot;</summary>
         
       
     
