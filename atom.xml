@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-23T12:00:13.744Z</updated>
+  <updated>2021-10-23T14:42:34.443Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/"/>
     <id>https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/</id>
     <published>2021-10-23T11:51:30.000Z</published>
-    <updated>2021-10-23T12:00:13.744Z</updated>
+    <updated>2021-10-23T14:42:34.443Z</updated>
     
     
       
@@ -36,10 +36,10 @@
     
     
     
-    <category term="”Spring MVC&quot;" scheme="https://naivekyo.github.io/categories/%E2%80%9DSpring-MVC/"/>
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
     
     
-    <category term="”Spring MVC&quot;" scheme="https://naivekyo.github.io/tags/%E2%80%9DSpring-MVC/"/>
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
     
   </entry>
   
@@ -48,7 +48,7 @@
     <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/"/>
     <id>https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/</id>
     <published>2021-10-23T11:37:02.000Z</published>
-    <updated>2021-10-23T11:50:22.764Z</updated>
+    <updated>2021-10-23T14:06:27.504Z</updated>
     
     
       

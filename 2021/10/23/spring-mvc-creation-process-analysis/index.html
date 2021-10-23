@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="”Spring MVC&#34;">
+    <meta name="keywords" content="Spring MVC">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -612,8 +612,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E2%80%9DSpring-MVC/">
-                                <span class="chip bg-color">”Spring MVC&#34;</span>
+                            <a href="/tags/Spring-MVC/">
+                                <span class="chip bg-color">Spring MVC</span>
                             </a>
                         
                     </div>
@@ -624,8 +624,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E2%80%9DSpring-MVC/" class="post-category">
-                                ”Spring MVC"
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                Spring MVC
                             </a>
                         
                     </div>
@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.2k
+                    6.1k
                 </div>
                 
 
@@ -753,16 +753,18 @@
 <p>在 web.xml 中定义的 contextConfiguration 可以在 config 下的 parameters 里看到，这里还可以看到 name 和 parent 等属性。当然，这里的 config 是私有的，不可以直接调用，config 其实就是 Tomcat 中的  StandardWrapper —— 存放 Servlet 的容器: 如下图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211023195555.png"></p>
 <p>还可以看到 name 和 parent（父容器）：</p>
-<p>![](D:\The Study and Question\全栈从入门到入土\Book learning\Spring MVC Source Code and Practice\SpringMVC_Source_Code_Practice（六）\NameAndParent.png)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211023222658.png"></p>
 <blockquote>
 <p>ServletContextPropertySource </p>
 </blockquote>
 <p>除此之外，我们还可以看看 propertySources 中的 ServletContextPropertySource 中保存的 ServletContext：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211023195613.png"></p>
+<p>可以看到这里 source 保存的是 Tomcat 中 Context 容器的门面类 ApplicationContextFacade。</p>
+<br>
+
 <blockquote>
 <p>JndiPropertySource</p>
 </blockquote>
-<p>可以看到这里 source 保存的是 Tomcat 中 Context 容器的门面类 ApplicationContextFacade。</p>
 <p>剩下的 JndiPropertySource 从名字上就很容易理解，存放的是 Jndi，由于这里没有使用 Jndi，所以暂不分析。</p>
 <blockquote>
 <p>PropertiesPropertySource</p>
@@ -1199,10 +1201,19 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>可以看到 getDefaultStrategy 中调用了 getDefaultStrategies，后者返回的是 List，这时因为 <code>HandlerMapping</code> 等组件可以有多个，所以定义了 getDefaultStrategies 方法，getDefaultStrategy  直接调用了 getDefaultStrategies  方法，并返回返回值的第一个结果。</p>
+<p>可以看到 getDefaultStrategy 中调用了 getDefaultStrategies，后者返回的是 List，这是因为 <code>HandlerMapping</code> 等组件可以有多个，所以定义了 getDefaultStrategies 方法，getDefaultStrategy  直接调用了 getDefaultStrategies  方法，并返回返回值的第一个结果。</p>
 <p>getDefaultStrategies  中实际执行创建的方法是 <code>ClassUtils.forName</code>，它需要的参数是 className，所以最重要的是看 className 是怎么来的，找到了 className 的来源，也就可以理解默认初始化的方式。</p>
 <p>className 来自 classNames，classNames 又来自 value，而 value 来自 defaultStrategies.getProperty(key)。所以关键点又在 defaultStrategies 中，defaultStrategies 是一个静态属性，在 getDefaultStrategies 方法的最上面初始化的：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>defaultStrategies <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">try</span> <span class="token punctuation">{</span>        <span class="token comment">// 读取名称为 DispatcherServlet.properties 的配置文件，该配置文件不允许应用开发者自定义        ClassPathResource resource = new ClassPathResource(DEFAULT_STRATEGIES_PATH, DispatcherServlet.class);        defaultStrategies = PropertiesLoaderUtils.loadProperties(resource);    }    catch (IOException ex) {        throw new IllegalStateException("Could not load '" + DEFAULT_STRATEGIES_PATH + "': " + ex.getMessage());    }}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>defaultStrategies <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 读取名称为 DispatcherServlet.properties 的配置文件，该配置文件不允许应用开发者自定义</span>
+        <span class="token class-name">ClassPathResource</span> resource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathResource</span><span class="token punctuation">(</span>DEFAULT_STRATEGIES_PATH<span class="token punctuation">,</span> <span class="token class-name">DispatcherServlet</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        defaultStrategies <span class="token operator">=</span> <span class="token class-name">PropertiesLoaderUtils</span><span class="token punctuation">.</span><span class="token function">loadProperties</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">"Could not load '"</span> <span class="token operator">+</span> DEFAULT_STRATEGIES_PATH <span class="token operator">+</span> <span class="token string">"': "</span> <span class="token operator">+</span> ex<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>该静态属性实质上是从 DEFAULT_STRATEGIES_PATH 中读取出来的，DEFAULT_STRATEGIES_PATH 的值是 DispatcherServlet.properties。</p>
 <h3 id="（3）DispatcherServlet-properties"><a href="#（3）DispatcherServlet-properties" class="headerlink" title="（3）DispatcherServlet.properties"></a>（3）DispatcherServlet.properties</h3><p>所以 defaultStrategies  里面存放的是 <code>org.springframework.web.DispatcherServlet.properties</code> 里面定义的键值对：</p>
@@ -1381,7 +1392,7 @@
 <h2 id="5、小结"><a href="#5、小结" class="headerlink" title="5、小结"></a>5、小结</h2><p>前面主要分析了 Spring MVC 自身的创建过程，Spring MVC 中 Servlet 一共有三个层次，分别是：</p>
 <ul>
 <li>HttpServletBean<ul>
-<li>直接继承自 Java 的 HttpServlet，其作用是将 Servlet 配置的参数设置到相应的属性</li>
+<li>直接继承自 Java 的 HttpServlet，其作用是将 Servlet 配置的参数设置到相应的属性（借助了 BeanWrapper 这个 Spring 提供的工具接口。）</li>
 </ul>
 </li>
 <li>FrameworkServlet<ul>
@@ -1469,8 +1480,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E2%80%9DSpring-MVC/">
-                                    <span class="chip bg-color">”Spring MVC&#34;</span>
+                                <a href="/tags/Spring-MVC/">
+                                    <span class="chip bg-color">Spring MVC</span>
                                 </a>
                             
                         </div>
@@ -1664,8 +1675,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E2%80%9DSpring-MVC/" class="post-category">
-                                    ”Spring MVC"
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                    Spring MVC
                                 </a>
                             
                             
@@ -1676,8 +1687,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E2%80%9DSpring-MVC/">
-                        <span class="chip bg-color">”Spring MVC&#34;</span>
+                    <a href="/tags/Spring-MVC/">
+                        <span class="chip bg-color">Spring MVC</span>
                     </a>
                     
                 </div>

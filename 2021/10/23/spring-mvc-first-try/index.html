@@ -779,7 +779,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>这里单独写了处理 HEAD 请求的方法，此方法可以用来检测服务器状态，同时因为它不返回带 body 的 Response 所以比 GET 请求更节省网络资源。GET 请求在处理过程中可能会处理一些别的内容，比如初始化一些首页需要显示的内容，还可以会连接数据库，而这些都比较浪费资源，并且对于 HEAD 请求来说也是不需要的，所以用 Head 请求检测服务器状态比较合适。</p>
+<p>这里单独写了处理 HEAD 请求的方法，此方法可以用来检测服务器状态，同时因为它不返回带 body 的 Response 所以比 GET 请求更节省网络资源。GET 请求在处理过程中可能会处理一些别的内容，比如初始化一些首页需要显示的内容，还可能会连接数据库，而这些都比较浪费资源，并且对于 HEAD 请求来说也是不需要的，所以用 Head 请求检测服务器状态比较合适。</p>
 <p>如果没有配置指定的 ViewResolver，Spring MVC 默认使用 <code>org.springframework.web.servlet.view.InternalResourceViewResolver</code> 作为视图解析器，而且 prefix 和 suffix 都是空。所以 hello.jsp 返回值对应的就是根目录下面的 hello.jsp 文件。</p>
 <pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
 &lt;html&gt;
@@ -1051,8 +1051,8 @@ ${msg}
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E2%80%9DSpring-MVC/" class="post-category">
-                                    ”Spring MVC"
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                    Spring MVC
                                 </a>
                             
                             
@@ -1062,8 +1062,8 @@ ${msg}
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E2%80%9DSpring-MVC/">
-                        <span class="chip bg-color">”Spring MVC&#34;</span>
+                    <a href="/tags/Spring-MVC/">
+                        <span class="chip bg-color">Spring MVC</span>
                     </a>
                     
                 </div>
