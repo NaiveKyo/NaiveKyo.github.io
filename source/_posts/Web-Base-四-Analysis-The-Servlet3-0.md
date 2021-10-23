@@ -434,7 +434,7 @@ public void init() throws ServletException {}
 
 
 
-GenericServlet 提供了两个 log 方法，一个记录日志，一个记录日常。具体实现是通过传给 ServletContext 的日志实现的。
+GenericServlet 提供了两个 log 方法，一个记录日志，一个记录异常。具体实现是通过传给 ServletContext 的日志实现的。
 
 ```java
 // javax.servlet.GenericServlet

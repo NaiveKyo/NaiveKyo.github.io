@@ -6,7 +6,7 @@ img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210904170907.jpg'
 coverImg: /img/20210904170907.jpg
 toc: true
 date: 2021-10-07 17:02:30
-top: true
+top: false
 cover: false
 summary: Tomcat 处理请求的组件 Connector
 categories: Tomcat

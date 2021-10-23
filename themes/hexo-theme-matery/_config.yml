@@ -269,19 +269,18 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20210919150925.jpg
-    - /img/20211005105938.jpg
     - /img/20211005110027.jpg
     - /img/20211005110125.jpg
     - /img/20211005110150.jpg
     - /img/20211005110206.jpg
-#   - /img/20211005110222.jpg
-#   - /img/20211005110235.jpg
+    - /img/20211005110222.jpg
+    - /img/20211005110235.jpg
 #   - /img/20211006224343.jpg
 #   - /img/20211006224420.jpg
 #   - /img/20211006224435.jpg
 #   - /img/20211006224449.jpg
 #   - /img/20211006224512.jpg
+#   - /img/20211008143850.jpg
     
 
 # Whether to display post-calender in the `archive` page
@@ -605,7 +604,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210919150925.jpg    # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211008144043.jpg    # 指定 jsdlivr 地址的图片
 
 #ICP备案信息尾部显示
 icp:
@@ -628,7 +627,7 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210904171103.jpg"
+  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211008144853.jpg"
 
 # 说说 https://artitalk.js.org/
 artitalk:
