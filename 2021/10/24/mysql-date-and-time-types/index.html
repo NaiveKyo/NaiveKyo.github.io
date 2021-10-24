@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.3k
                 </div>
                 
 
@@ -873,6 +873,27 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
     <span class="token operator">-</span><span class="token operator">&gt;</span>            <span class="token keyword">INTERVAL</span> <span class="token string">'1.999999'</span> SECOND_MICROSECOND<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'1993-01-01 00:00:01.000001'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+
+
+<h3 id="4、前后端日期格式"><a href="#4、前后端日期格式" class="headerlink" title="4、前后端日期格式"></a>4、前后端日期格式</h3><p>关于日期格式这个问题需要开发人员联合确定，这里列出常用解决方案：</p>
+<p>环境：SpringBoot、Jackson</p>
+<ul>
+<li>后台给前台传递数据：<ul>
+<li>可以在配置文件中配置好 Jackson 的日期格式</li>
+<li>也可以在字段上使用 <code>@JsonFormat</code> 注解指定格式和时区</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jackson</span><span class="token punctuation">:</span>
+  <span class="token key atrule">date-format</span><span class="token punctuation">:</span> yyyy<span class="token punctuation">-</span>MM<span class="token punctuation">-</span>dd HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss
+  <span class="token key atrule">time-zone</span><span class="token punctuation">:</span> GMT+8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>后台接收前台传递的数据：<ul>
+<li>在字段上使用 <code>@DateTimeFormat</code>  注解格式</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
