@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-24T07:38:45.614Z</updated>
+  <updated>2021-10-24T14:08:37.729Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring MVC Work Procedure</title>
+    <link href="https://naivekyo.github.io/2021/10/24/spring-mvc-work-procedure/"/>
+    <id>https://naivekyo.github.io/2021/10/24/spring-mvc-work-procedure/</id>
+    <published>2021-10-24T14:04:58.000Z</published>
+    <updated>2021-10-24T14:08:37.729Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring-MVC-处理请求过程分析&quot;&gt;&lt;a href=&quot;#Spring-MVC-处理请求过程分析&quot; class=&quot;headerlink&quot; title=&quot;Spring MVC 处理请求过程分析&quot;&gt;&lt;/a&gt;Spring MVC</summary>
+        
+      
+    
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL Date And Time types</title>
@@ -491,31 +516,6 @@
     
     
     <category term="Database" scheme="https://naivekyo.github.io/tags/Database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java JDBC Review</title>
-    <link href="https://naivekyo.github.io/2021/08/29/java-jdbc-review/"/>
-    <id>https://naivekyo.github.io/2021/08/29/java-jdbc-review/</id>
-    <published>2021-08-29T08:20:02.000Z</published>
-    <updated>2021-09-08T14:28:07.636Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、JDBC&quot;&gt;&lt;a href=&quot;#一、JDBC&quot; class=&quot;headerlink&quot; title=&quot;一、JDBC&quot;&gt;&lt;/a&gt;一、JDBC&lt;/h2&gt;&lt;h3 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
