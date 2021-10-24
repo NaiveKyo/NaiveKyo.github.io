@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-23T14:42:34.443Z</updated>
+  <updated>2021-10-24T06:47:28.736Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL Date And Time types</title>
+    <link href="https://naivekyo.github.io/2021/10/24/mysql-date-and-time-types/"/>
+    <id>https://naivekyo.github.io/2021/10/24/mysql-date-and-time-types/</id>
+    <published>2021-10-24T03:19:44.000Z</published>
+    <updated>2021-10-24T06:47:28.736Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;MySQL8-0-日期类型&quot;&gt;&lt;a href=&quot;#MySQL8-0-日期类型&quot; class=&quot;headerlink&quot; title=&quot;MySQL8.0 日期类型&quot;&gt;&lt;/a&gt;MySQL8.0 日期类型&lt;/h2&gt;&lt;h3 id=&quot;1、简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring MVC Creation Process Analysis</title>
@@ -482,31 +507,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、JDBC&quot;&gt;&lt;a href=&quot;#一、JDBC&quot; class=&quot;headerlink&quot; title=&quot;一、JDBC&quot;&gt;&lt;/a&gt;一、JDBC&lt;/h2&gt;&lt;h3 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Annotation And Reflection</title>
-    <link href="https://naivekyo.github.io/2021/08/28/java-annotation-and-reflection/"/>
-    <id>https://naivekyo.github.io/2021/08/28/java-annotation-and-reflection/</id>
-    <published>2021-08-28T02:03:37.000Z</published>
-    <updated>2021-09-08T14:29:33.381Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Junit-单元测试&quot;&gt;&lt;a href=&quot;#一、Junit-单元测试&quot; class=&quot;headerlink&quot; title=&quot;一、Junit 单元测试&quot;&gt;&lt;/a&gt;一、Junit</summary>
         
       
     
