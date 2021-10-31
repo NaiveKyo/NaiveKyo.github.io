@@ -9,9 +9,9 @@ date: 2021-10-23 19:51:30
 top: true
 cover: false
 summary: "Spring MVC 创建过程分析"
-categories: ”Spring MVC"
-keywords: ”Spring MVC"
-tags: ”Spring MVC"
+categories: "Spring MVC"
+keywords: "Spring MVC"
+tags: "Spring MVC"
 ---
 
 # 创建 Spring MVC
@@ -125,7 +125,7 @@ public class HelloController implements EnvironmentAware {
 
 还可以看到 name 和 parent（父容器）：
 
-![](D:\The Study and Question\全栈从入门到入土\Book learning\Spring MVC Source Code and Practice\SpringMVC_Source_Code_Practice（六）\NameAndParent.png)
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211023222658.png)
 
 
 
@@ -137,9 +137,11 @@ public class HelloController implements EnvironmentAware {
 
 
 
-> JndiPropertySource
-
 可以看到这里 source 保存的是 Tomcat 中 Context 容器的门面类 ApplicationContextFacade。
+
+<br/>
+
+> JndiPropertySource
 
 剩下的 JndiPropertySource 从名字上就很容易理解，存放的是 Jndi，由于这里没有使用 Jndi，所以暂不分析。
 
@@ -664,14 +666,23 @@ protected <T> List<T> getDefaultStrategies(ApplicationContext context, Class<T> 
 }
 ```
 
-可以看到 getDefaultStrategy 中调用了 getDefaultStrategies，后者返回的是 List，这时因为 `HandlerMapping` 等组件可以有多个，所以定义了 getDefaultStrategies 方法，getDefaultStrategy  直接调用了 getDefaultStrategies  方法，并返回返回值的第一个结果。
+可以看到 getDefaultStrategy 中调用了 getDefaultStrategies，后者返回的是 List，这是因为 `HandlerMapping` 等组件可以有多个，所以定义了 getDefaultStrategies 方法，getDefaultStrategy  直接调用了 getDefaultStrategies  方法，并返回返回值的第一个结果。
 
 getDefaultStrategies  中实际执行创建的方法是 `ClassUtils.forName`，它需要的参数是 className，所以最重要的是看 className 是怎么来的，找到了 className 的来源，也就可以理解默认初始化的方式。
 
 className 来自 classNames，classNames 又来自 value，而 value 来自 defaultStrategies.getProperty(key)。所以关键点又在 defaultStrategies 中，defaultStrategies 是一个静态属性，在 getDefaultStrategies 方法的最上面初始化的：
 
 ```java
-if (defaultStrategies == null) {    try {        // 读取名称为 DispatcherServlet.properties 的配置文件，该配置文件不允许应用开发者自定义        ClassPathResource resource = new ClassPathResource(DEFAULT_STRATEGIES_PATH, DispatcherServlet.class);        defaultStrategies = PropertiesLoaderUtils.loadProperties(resource);    }    catch (IOException ex) {        throw new IllegalStateException("Could not load '" + DEFAULT_STRATEGIES_PATH + "': " + ex.getMessage());    }}
+if (defaultStrategies == null) {
+    try {
+        // 读取名称为 DispatcherServlet.properties 的配置文件，该配置文件不允许应用开发者自定义
+        ClassPathResource resource = new ClassPathResource(DEFAULT_STRATEGIES_PATH, DispatcherServlet.class);
+        defaultStrategies = PropertiesLoaderUtils.loadProperties(resource);
+    }
+    catch (IOException ex) {
+        throw new IllegalStateException("Could not load '" + DEFAULT_STRATEGIES_PATH + "': " + ex.getMessage());
+    }
+}
 ```
 
 该静态属性实质上是从 DEFAULT_STRATEGIES_PATH 中读取出来的，DEFAULT_STRATEGIES_PATH 的值是 DispatcherServlet.properties。
@@ -893,7 +904,7 @@ public class MvcNamespaceHandler extends NamespaceHandlerSupport {
 前面主要分析了 Spring MVC 自身的创建过程，Spring MVC 中 Servlet 一共有三个层次，分别是：
 
 - HttpServletBean
-  - 直接继承自 Java 的 HttpServlet，其作用是将 Servlet 配置的参数设置到相应的属性
+  - 直接继承自 Java 的 HttpServlet，其作用是将 Servlet 配置的参数设置到相应的属性（借助了 BeanWrapper 这个 Spring 提供的工具接口。）
 - FrameworkServlet
   - 初始化了 WebApplicationContext
     - 三种初始化方式，过程中使用了 Servlet 中配置的一些参数
