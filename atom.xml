@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-24T14:08:37.729Z</updated>
+  <updated>2021-10-31T06:55:15.465Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring MVC Component (一) HandlerMapping</title>
+    <link href="https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/"/>
+    <id>https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/</id>
+    <published>2021-10-31T06:52:20.000Z</published>
+    <updated>2021-10-31T06:55:15.465Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;HandlerMapping&quot;&gt;&lt;a href=&quot;#HandlerMapping&quot; class=&quot;headerlink&quot; title=&quot;HandlerMapping&quot;&gt;&lt;/a&gt;HandlerMapping&lt;/h2&gt;&lt;p&gt;继承结构如图：&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring MVC Components Overview</title>
+    <link href="https://naivekyo.github.io/2021/10/31/spring-mvc-components-overview/"/>
+    <id>https://naivekyo.github.io/2021/10/31/spring-mvc-components-overview/</id>
+    <published>2021-10-31T06:46:16.000Z</published>
+    <updated>2021-10-31T06:49:17.868Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;组件概览&quot;&gt;&lt;a href=&quot;#组件概览&quot; class=&quot;headerlink&quot; title=&quot;组件概览&quot;&gt;&lt;/a&gt;组件概览&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
+    
+    
+    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring MVC Work Procedure</title>
@@ -466,56 +517,6 @@
     
     
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design patterns Overview</title>
-    <link href="https://naivekyo.github.io/2021/08/31/design-patterns-overview/"/>
-    <id>https://naivekyo.github.io/2021/08/31/design-patterns-overview/</id>
-    <published>2021-08-31T12:42:54.000Z</published>
-    <updated>2021-08-31T12:48:10.700Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;设计模式简介&quot;&gt;&lt;a href=&quot;#设计模式简介&quot; class=&quot;headerlink&quot; title=&quot;设计模式简介&quot;&gt;&lt;/a&gt;设计模式简介&lt;/h2&gt;&lt;h3 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Database Basic Knowledge Review</title>
-    <link href="https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/"/>
-    <id>https://naivekyo.github.io/2021/08/29/database-basic-knowledge-review/</id>
-    <published>2021-08-29T14:55:28.000Z</published>
-    <updated>2021-09-08T14:28:27.546Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、数据库概念&quot;&gt;&lt;a href=&quot;#一、数据库概念&quot; class=&quot;headerlink&quot; title=&quot;一、数据库概念&quot;&gt;&lt;/a&gt;一、数据库概念&lt;/h2&gt;&lt;h3 id=&quot;1、基本概念&quot;&gt;&lt;a href=&quot;#1、基本概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Database" scheme="https://naivekyo.github.io/categories/Database/"/>
-    
-    
-    <category term="Database" scheme="https://naivekyo.github.io/tags/Database/"/>
     
   </entry>
   

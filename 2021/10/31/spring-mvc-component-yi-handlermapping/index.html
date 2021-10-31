@@ -1,0 +1,2150 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Spring MVC">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Spring MVC Component (一) HandlerMapping | NaiveKyo</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="NaiveKyo" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+    <style type="text/css" lang="css">
+  #loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #loading-left {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: margin-right 1.5s;
+  }
+
+  #loading-right {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* 太极特效 */
+  @keyframes rotate {
+      from {
+          transform: rotate(0deg)
+      }
+
+      to {
+          transform: rotate(359deg)
+      }
+  }
+
+  div[class="loading-image"] {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    background-image:
+        radial-gradient(50% 50% at 50% 25%, #000 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 75%, #fff 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 25%, #fff 50%, transparent 0), radial-gradient(50% 50% at 50% 75%, #000 50%, transparent 0),
+        linear-gradient(to left, #fff 50%, #000 50%);
+    animation: rotate 3s linear infinite;
+  }
+
+  .loading-text {
+    margin-bottom: 1vh;
+    text-align: center;
+    font-size: 3rem;
+    /* box-sizing: border-box; */
+    z-index: 9999;
+    padding: 0 10px;
+    height: 90px;
+    line-height: 90px;
+    font-weight: bold;
+    font-family: cursive;
+    background: linear-gradient(to right, #59c229, #f5287ded);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text
+  }
+
+  #show {
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    position: fixed;
+    left: 561px;
+    top: 211px;
+  }
+
+  /*中等屏幕下(平板类)的样式*/
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  /* 小型设备 */
+  @media only screen and (max-width: 601) {
+    .loading-text {
+      font-size: 1.5rem;
+    }
+    #show {
+      display: none;
+    }
+  }
+
+  /* .fadeout_left {
+    opacity: 0; 
+    filter: alpha(opacity=0);
+  } */
+
+</style>
+
+<script>
+
+            
+  // window.onload = function() {
+  //   const loader = document.getElementById("loading-container");
+
+  //   if (sessionStorage.getItem('flag') == null) {
+  //     console.log("111111")
+  //     const loaded = function() {
+  //       setTimeout(function() {
+  //         loader.style.display = 'none'
+  //       }, 1000)
+  //     }
+  //     loaded();
+  //     sessionStorage.setItem('flag', 1)
+  //   } else {
+  //     loader.style.display = 'none'
+  //   }
+  // }
+
+ 
+  (function () {
+      
+      const loaded = function() {
+        setTimeout(function() {
+            const loader = document.getElementById("loading-container");
+            const load_left = document.getElementById("loading-left");
+            const load_right = document.getElementById("loading-right");
+            load_left.style.marginRight = "100%"
+
+            // 设置动画的显示时间
+            setTimeout(function() {
+              loader.style.display="none";
+            }, 1500)
+          }, 300); 
+      }
+      loaded()
+  })() 
+</script>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211008144853.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script>
+
+<body>
+    <!-- 加载动画 -->
+	
+		<div id="loading-container">
+            <div id="loading-left"></div>
+            <div id="loading-right"></div>
+            <div id="show">
+                <p class="loading-text">少女祈祷中</p>
+                <div class="loading-image"></div>
+            </div>
+		</div>
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/comment_bg.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">NaiveKyo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/comment_bg.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">NaiveKyo</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211005110206.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Spring MVC Component (一) HandlerMapping</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Spring-MVC/">
+                                <span class="chip bg-color">Spring MVC</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                Spring MVC
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-10-31
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2021-10-31
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    6.6k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="HandlerMapping"><a href="#HandlerMapping" class="headerlink" title="HandlerMapping"></a>HandlerMapping</h2><p>继承结构如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031145428.png"></p>
+<p>可以看到 HandlerMapping 家族可以分为两支（RouteFunctionMapping 可以先放一边），一支继承 <code>AbstractUrlHandlerMapping</code>，另一支继承 <code>AbstractHandlerMethodMapping</code>，而这两支都继承自 <code>AbstractHandlerMapping</code>。</p>
+<h3 id="1、AbstractHandlerMapping"><a href="#1、AbstractHandlerMapping" class="headerlink" title="1、AbstractHandlerMapping"></a>1、AbstractHandlerMapping</h3><p>AbstractHandlerMapping 是 HandlerMapping 的抽象实现，所有的 HandlerMapping 都继承自 AbstractHandlerMapping。AbstractHandlerMapping 采用 <mark>模板模式</mark> 设计了 HandlerMapping 实现的整体结构，子类只需要通过模板方法提供一些初始值或者具体的算法即可。</p>
+<p>将 AbstractHandlerMapping 分析透彻对整个 HandlerMapping 实现方式的理解至关重要。在 Spring MVC 中很多组件都是采用了这种模式 —— 首先使用一个抽象实现采用模板模式进行整体设计，然后在子类通过实现模板方法具体完成业务，所以在分析 Spring MVC 源码的过程中尤其要重视对组件接口直接实现的抽象实现类的分析。</p>
+<p>HandlerMapping 的作用是根据 request 查找 Handler 和 Interceptors。获取 Handler 的过程通过模板方法 <code>getHandlerInternal</code> 交给了子类。AbstractHandlerMapping 中保存了所用配置的 Interceptor，在获取到 Handler 之后会自己根据从 request 提取的 <code>lookupPath</code> 将对应的 Interceptors 装配上去，当然子类也可以通过 getHandlerInternal 方法设置自己的 Interceptor，getHandlerInternal 的返回值为 Object 类型。</p>
+<h4 id="1-1、创建-AbstractHandlerMapping"><a href="#1-1、创建-AbstractHandlerMapping" class="headerlink" title="1.1、创建 AbstractHandlerMapping"></a>1.1、创建 AbstractHandlerMapping</h4><p>AbstractHandlerMapping 继承自 <code>WebApplicationObjectSupport</code>，初始化时会自动调用模板方法 <code>initApplicationContext()</code> ，AbstractHandlerMapping  的创建是在 initApplicationContext 中的，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">initApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+    <span class="token function">extendInterceptors</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>interceptors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">detectMappedInterceptors</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>adaptedInterceptors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">initInterceptors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>initApplicationCotnext 里一共有三个方法，下面分别分析：</p>
+<p>（1）<code>extendnterceptors</code> 是模板方法，用于给子类提供一个添加（或者修改）Interceptors 的入口，不过现有 Spring MVC 的实现中并没有使用。</p>
+<p>（2）<code>detectMappedInterceptors</code> 方法用于将 Spring MVC 容器及父容器中的所有 MappedInterceptor 类型的 Bean 添加到 mappedInterceptors 属性（看上面的代码可知实际上给了 adaptedInterceptors 属性），代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMapping</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">detectMappedInterceptors</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HandlerInterceptor</span><span class="token punctuation">&gt;</span></span> mappedInterceptors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mappedInterceptors<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token class-name">BeanFactoryUtils</span><span class="token punctuation">.</span><span class="token function">beansOfTypeIncludingAncestors</span><span class="token punctuation">(</span>
+        <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">MappedInterceptor</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>（3）<code>initInterceptors</code> 方法的作用是初始化 Interceptor，具体内容其实是将 interceptors 属性里所包含的对象按类型添加到 adaptedInterceptors，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMapping</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">initInterceptors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Object</span> interceptor <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>interceptor <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Entry number "</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">" in interceptors array is null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>adaptedInterceptors<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">adaptInterceptor</span><span class="token punctuation">(</span>interceptor<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>AbstractHandlerMapping 中的 Interceptors 有两个 List 类型的属性：interceptors、adaptedInterceptors（包含 mappedInterceptors），分别解释：</p>
+<ul>
+<li>interceptors：用于配置 Spring MVC 的拦截器，有两种设置方式：<ol>
+<li>注册 HandlerMapping 时通过属性设置</li>
+<li>通过子类的 extendInterceptors 钩子方法进行设置</li>
+<li>interceptors 并不会直接使用，而是通过 initIntercepors  方法按类型分配到 adaptedInterceptors 属性中使用，interceptors 只用于配置。</li>
+</ol>
+</li>
+<li>mappedInterceptors：此类 Interceptor 在使用时需要与请求的 url 进行匹配，只有匹配成功后才会添加到 getHandler 的返回值 HandlerExecutionChain 里。它有两种获取途径：从 interceptors 获取或者注册到 spring 的容器中通过 detectMappedInterceptors 方法获取。</li>
+<li>adaptedInterceptors：这种类型的 Interceptor 不需要进行匹配，在 getHandler 中会全部添加到返回值 HandlerExecutionChain 里面。它只能从 interceptors 中获取。</li>
+</ul>
+<p>AbstractHandlerMapping 的创建其实就是初始化这三个 Interceptor。</p>
+<h4 id="1-2、使用-AbstractHandlerMapping"><a href="#1-2、使用-AbstractHandlerMapping" class="headerlink" title="1.2、使用 AbstractHandlerMapping"></a>1.2、使用 AbstractHandlerMapping</h4><p>HandlerMapping 是通过 getHandler 方法来获取处理器 Handler 和 拦截器 Interceptor 的，下面看一看 AbstractHandlerMapping 中的实现方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token class-name">HandlerExecutionChain</span> <span class="token function">getHandler</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> handler <span class="token operator">=</span> <span class="token function">getHandlerInternal</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        handler <span class="token operator">=</span> <span class="token function">getDefaultHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Bean name or resolved handler?</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> handlerName <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> handler<span class="token punctuation">;</span>
+        handler <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Ensure presence of cached lookupPath for interceptors and others</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">ServletRequestPathUtils</span><span class="token punctuation">.</span><span class="token function">hasCachedPath</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">initLookupPath</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">HandlerExecutionChain</span> executionChain <span class="token operator">=</span> <span class="token function">getHandlerExecutionChain</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Mapped to "</span> <span class="token operator">+</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token class-name">DispatcherType</span><span class="token punctuation">.</span>ASYNC<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getDispatcherType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Mapped to "</span> <span class="token operator">+</span> executionChain<span class="token punctuation">.</span><span class="token function">getHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">hasCorsConfigurationSource</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">CorsUtils</span><span class="token punctuation">.</span><span class="token function">isPreFlightRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">CorsConfiguration</span> config <span class="token operator">=</span> <span class="token function">getCorsConfiguration</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getCorsConfigurationSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">CorsConfiguration</span> globalConfig <span class="token operator">=</span> <span class="token function">getCorsConfigurationSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCorsConfiguration</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            config <span class="token operator">=</span> <span class="token punctuation">(</span>globalConfig <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> globalConfig<span class="token punctuation">.</span><span class="token function">combine</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token operator">:</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>config <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            config<span class="token punctuation">.</span><span class="token function">validateAllowCredentials</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        executionChain <span class="token operator">=</span> <span class="token function">getCorsHandlerExecutionChain</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> executionChain<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> executionChain<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 <code>getHandlerExecutionChain</code> 方法之前是查找 Handler，而 getHandlerExecutionChain 方法本身是添加拦截器，剩余部分就是日志和处理跨域。</p>
+<p>找 Handler 的过程大致是这样的：</p>
+<ol>
+<li>通过 <code>getHandlerInternal(request)</code> 方法获取，这是一个模板方法，留给子类实现（这也是其子类要做的事）</li>
+<li>如果没有找到就使用默认的 Handler，默认的 Handler 保存在 AbstractHandlerMapping 的一个 Object 类型的属性 defaultHandler 中，可以在配置 HandlerMapping 时进行配置，也可以在其子类中进行设置</li>
+<li>如果找到的 Handler 是 String 类型的，则以它为名到 Spring MVC 的容器中找到相应的 Bean</li>
+</ol>
+<p>下面看一看 getHandlerExecutionChain 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMapping</span>
+
+<span class="token keyword">protected</span> <span class="token class-name">HandlerExecutionChain</span> <span class="token function">getHandlerExecutionChain</span><span class="token punctuation">(</span><span class="token class-name">Object</span> handler<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">HandlerExecutionChain</span> chain <span class="token operator">=</span> <span class="token punctuation">(</span>handler <span class="token keyword">instanceof</span> <span class="token class-name">HandlerExecutionChain</span> <span class="token operator">?</span>
+                                   <span class="token punctuation">(</span><span class="token class-name">HandlerExecutionChain</span><span class="token punctuation">)</span> handler <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">HandlerExecutionChain</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">HandlerInterceptor</span> interceptor <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>adaptedInterceptors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>interceptor <span class="token keyword">instanceof</span> <span class="token class-name">MappedInterceptor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">MappedInterceptor</span> mappedInterceptor <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">MappedInterceptor</span><span class="token punctuation">)</span> interceptor<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>mappedInterceptor<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                chain<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span>mappedInterceptor<span class="token punctuation">.</span><span class="token function">getInterceptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            chain<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span>interceptor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> chain<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个方法也很简单，首先通过之前找到的 Handler 将其转换为 HandlerExecutionChain 类型的变量，然后遍历之前得到的 adaptedInterceptors 拦截器集合，将 adaptedInterceptors 和符合要求的 mappedInterceptors 添加进去。</p>
+<h3 id="2、AbstractUrlHandlerMapping-系列"><a href="#2、AbstractUrlHandlerMapping-系列" class="headerlink" title="2、AbstractUrlHandlerMapping 系列"></a>2、AbstractUrlHandlerMapping 系列</h3><h4 id="2-1、AbstractUrlHandlerMapping"><a href="#2-1、AbstractUrlHandlerMapping" class="headerlink" title="2.1、AbstractUrlHandlerMapping"></a>2.1、AbstractUrlHandlerMapping</h4><p>AbstractUrlHandlerMapping  系列都继承自 AbstractUrlHandlerMapping，从名字就可以看出它是通过 url 来进行匹配的。此系列大致原理是将 url 与对应的 Handler 保存在一个 Map 中，在 getHandlerInternal 方法中使用 url 从 Map 中获取 Handler，AbstractUrlHandlerMapping 中实现了具体用 url 从 Map 中获取 Handler 的过程，而 Map 的初始化则交给了具体的子类去完成。</p>
+<p>这里的 Map 就是定义在 AbstractUrlHanlderMapping 中的 handlerMap，另外还单独定义了处理 “/“ 请求的处理器 rootHandler，定义如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</span>
+
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">private</span> <span class="token class-name">Object</span> rootHandler<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> handlerMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面看一下是如何获取 Handler 以及这个 Map 是怎么创建的。</p>
+<p>前面在 AbstractHandlerMapping 的 getHandler 方法中我们知道了获取 Handler 的方法是 <code>getHandlerInternal</code> 模板方法，它在 AbstractUrlHandlerMapping 中的实现为：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getHandlerInternal</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 从 request 中解析出路径</span>
+    <span class="token class-name">String</span> lookupPath <span class="token operator">=</span> <span class="token function">initLookupPath</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Object</span> handler<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">usesPathPatterns</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">RequestPath</span> path <span class="token operator">=</span> <span class="token class-name">ServletRequestPathUtils</span><span class="token punctuation">.</span><span class="token function">getParsedRequestPath</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        handler <span class="token operator">=</span> <span class="token function">lookupHandler</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        handler <span class="token operator">=</span> <span class="token function">lookupHandler</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// We need to care for the default handler directly, since we need to</span>
+        <span class="token comment">// expose the PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE for it as well.</span>
+        <span class="token comment">// 定义一个临时遍历用于保存找到的原始 Handler</span>
+        <span class="token class-name">Object</span> rawHandler <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">matchesCharacter</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            rawHandler <span class="token operator">=</span> <span class="token function">getRootHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rawHandler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            rawHandler <span class="token operator">=</span> <span class="token function">getDefaultHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rawHandler <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Bean name or resolved handler?</span>
+            <span class="token comment">// 如果是 String 类型则到容器中查找具体的 Bean</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>rawHandler <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">String</span> handlerName <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> rawHandler<span class="token punctuation">;</span>
+                rawHandler <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 可以用来校验找到的 Handler 和 request 是否匹配，是模板方法，而且子类也没有使用</span>
+            <span class="token function">validateHandler</span><span class="token punctuation">(</span>rawHandler<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            handler <span class="token operator">=</span> <span class="token function">buildPathExposingHandler</span><span class="token punctuation">(</span>rawHandler<span class="token punctuation">,</span> lookupPath<span class="token punctuation">,</span> lookupPath<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> handler<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里除了 lookupHandler 和 buildPathExposingHandler 方法外都非常容易理解，其他就不解释了，主要看这两个方法：</p>
+<blockquote>
+<p>lookupHandler 方法</p>
+</blockquote>
+<p><code>lookupHandler</code> 方法用于使用 lookupPath 从 Map 中查找 Handler，不过很多时候并不能直接从 Map 中 get 到，因为很多 Handler 都是用了 Pattern 的匹配模式，如 “/show/article/*” ，这里的星号 * 可以代表任意内容而不是真正匹配 url 中的星号，如果 Pattern 中包含 PathVariable 也不能直接从 Map 中获取到。</p>
+<p>另外，一个 url 还可能跟多个 Pattern 相匹配，这时还需要选择其中最优的，所以查找过程其实并不是直接简单地从 Map 里获取，单独写一个方法来做也是应该的。</p>
+<p>lookupHandler 方法代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</span>
+
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">lookupHandler</span><span class="token punctuation">(</span>
+    <span class="token class-name">RequestPath</span> path<span class="token punctuation">,</span> <span class="token class-name">String</span> lookupPath<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 直接从 Map 中获取</span>
+    <span class="token class-name">Object</span> handler <span class="token operator">=</span> <span class="token function">getDirectMatch</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 获取到了直接返回</span>
+        <span class="token keyword">return</span> handler<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Pattern match?</span>
+    <span class="token comment">// Pattern 匹配，比如使用带 * 号的模式与 url 进行匹配</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">PathPattern</span><span class="token punctuation">&gt;</span></span> matches <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">PathPattern</span> pattern <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pathPatternHandlerMap<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">pathWithinApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            matches <span class="token operator">=</span> <span class="token punctuation">(</span>matches <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> matches <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            matches<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>matches <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 如果按照模式匹配到多个，则传入比较器进行比较</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        matches<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token class-name">PathPattern</span><span class="token punctuation">.</span>SPECIFICITY_COMPARATOR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Matching patterns "</span> <span class="token operator">+</span> matches<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 获取优先级最高的那个</span>
+    <span class="token class-name">PathPattern</span> pattern <span class="token operator">=</span> matches<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    handler <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pathPatternHandlerMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 如果是 String 类型则从容器中获取</span>
+        <span class="token class-name">String</span> handlerName <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> handler<span class="token punctuation">;</span>
+        handler <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">validateHandler</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">PathContainer</span> pathWithinMapping <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">extractPathWithinPattern</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">pathWithinApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">buildPathExposingHandler</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> pattern<span class="token punctuation">.</span><span class="token function">getPatternString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> pathWithinMapping<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到查找 Handler 的关键还是保存 url 和 Handler 的那个 Map。</p>
+<blockquote>
+<p>buildPathExposingHandler 方法</p>
+</blockquote>
+<p>buildPathExposingHandler 方法用于给查找到的 Handler 注册两个拦截器 <code>PathExpoingHandlerInterceptor</code> 和 <code>UriTemplateVariableshandlerInterceptor</code>，这是两个内部拦截器，主要作用是将当前 url 实际匹配的 Pattern、匹配条件和 url 模板参数等设置到 request 的属性里，这样在后面的处理过程中就可以直接从 request 属性中获取，而不需要再重新查找一遍，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</span>
+
+<span class="token comment">// 方法</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">buildPathExposingHandler</span><span class="token punctuation">(</span><span class="token class-name">Object</span> rawHandler<span class="token punctuation">,</span> <span class="token class-name">String</span> bestMatchingPattern<span class="token punctuation">,</span>
+                                          <span class="token class-name">String</span> pathWithinMapping<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> uriTemplateVariables<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">HandlerExecutionChain</span> chain <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HandlerExecutionChain</span><span class="token punctuation">(</span>rawHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    chain<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PathExposingHandlerInterceptor</span><span class="token punctuation">(</span>bestMatchingPattern<span class="token punctuation">,</span> pathWithinMapping<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">CollectionUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>uriTemplateVariables<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        chain<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UriTemplateVariablesHandlerInterceptor</span><span class="token punctuation">(</span>uriTemplateVariables<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> chain<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 内部拦截器：PathExposingHandlerInterceptor</span>
+<span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">PathExposingHandlerInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> bestMatchingPattern<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> pathWithinMapping<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">PathExposingHandlerInterceptor</span><span class="token punctuation">(</span><span class="token class-name">String</span> bestMatchingPattern<span class="token punctuation">,</span> <span class="token class-name">String</span> pathWithinMapping<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>bestMatchingPattern <span class="token operator">=</span> bestMatchingPattern<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>pathWithinMapping <span class="token operator">=</span> pathWithinMapping<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">exposePathWithinMapping</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bestMatchingPattern<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pathWithinMapping<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>BEST_MATCHING_HANDLER_ATTRIBUTE<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>INTROSPECT_TYPE_LEVEL_MAPPING<span class="token punctuation">,</span> <span class="token function">supportsTypeLevelMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 内部拦截器：UriTemplateVariablesHandlerInterceptor</span>
+<span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">UriTemplateVariablesHandlerInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> uriTemplateVariables<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">UriTemplateVariablesHandlerInterceptor</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> uriTemplateVariables<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>uriTemplateVariables <span class="token operator">=</span> uriTemplateVariables<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">exposeUriTemplateVariables</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>uriTemplateVariables<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 buildPathExposingHandler 方法中给 Handler 注册两个内部拦截器：<code>PathExposingHandlerInterceptor</code> 和 <code>UriTemplateVariablesHandlerInterceptor</code>，这两个拦截器分别在 <code>preHandle</code> 中调用了 <code>exposePathWithinMapping</code> 和 <code>exposeUriTemplateVariables</code> 方法将相应的内容设置到了 request 的属性中。</p>
+<p>下面分析 Map 的初始化，它通过 registerHandler 方法进行，这个方法承担 AbstractUrlHandlerMapping 的创建工作，不过和之前的创建不同的是这里的 registerHandler 方法并不是自己调用的，也不是父类调用，而是子类调用。这样不同的子类就可以通过注册不同的 Handler 将组件创建出来。</p>
+<p><strong>这种思路也值得我们学习和借鉴。</strong></p>
+<p>AbstractUrlHandlerMapping 中有两个 registerHandler 方法：</p>
+<p>第一个方法可以注册多个 url 到一个处理器，处理器用的是 String 类型的 beanName，这种用法在前面已经多次见到过，它可以使用 beanName 到 spring 容器中找到真实的 bean 做处理器。在这个方法里只是遍历了所有的 url，然后调用第二个 registerHandler 方法具体将 Handler 注册到 Map 中。</p>
+<p>第二个 registerHandler 方法的具体注册过程也非常简单，首先看 Map 里原来有没有传入的 url，如果没有就 put 进去，如果有就看一下原来保存的和现在要注册的 Handler 是不是同一个，如果不是同一个就有问题了，总不能相同的 url 有两个不同的 Handler 吧（该 Handler Mapping 系列只根据 url 找到 Handler ！）这时就要抛出异常。</p>
+<p>往 Map 里放的时候还需要看一下 url 是不是处理 “/“ 或者 “/*”，如果是就不往 Map 里面放了，而是分别设置到 rootHandler 和 defaultHandler，具体代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">registerHandler</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> urlPaths<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span><span class="token punctuation">,</span> <span class="token class-name">IllegalStateException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>urlPaths<span class="token punctuation">,</span> <span class="token string">"URL path array must not be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> urlPath <span class="token operator">:</span> urlPaths<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">registerHandler</span><span class="token punctuation">(</span>urlPath<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">registerHandler</span><span class="token punctuation">(</span><span class="token class-name">String</span> urlPath<span class="token punctuation">,</span> <span class="token class-name">Object</span> handler<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span><span class="token punctuation">,</span> <span class="token class-name">IllegalStateException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>urlPath<span class="token punctuation">,</span> <span class="token string">"URL path must not be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> <span class="token string">"Handler object must not be null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Object</span> resolvedHandler <span class="token operator">=</span> handler<span class="token punctuation">;</span>
+
+    <span class="token comment">// Eagerly resolve handler if referencing singleton via name.’</span>
+    <span class="token comment">// 如果 Handler 是 String 类型而且没有设置 lazyInitHandlers 则从 Spring MVC 容器中获取 Handler</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>lazyInitHandlers <span class="token operator">&amp;&amp;</span> handler <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> handlerName <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> handler<span class="token punctuation">;</span>
+        <span class="token class-name">ApplicationContext</span> applicationContext <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>applicationContext<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            resolvedHandler <span class="token operator">=</span> applicationContext<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">Object</span> mappedHandler <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handlerMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>urlPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mappedHandler <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mappedHandler <span class="token operator">!=</span> resolvedHandler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span>
+                <span class="token string">"Cannot map "</span> <span class="token operator">+</span> <span class="token function">getHandlerDescription</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" to URL path ["</span> <span class="token operator">+</span> urlPath <span class="token operator">+</span>
+                <span class="token string">"]: There is already "</span> <span class="token operator">+</span> <span class="token function">getHandlerDescription</span><span class="token punctuation">(</span>mappedHandler<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" mapped."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>urlPath<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Root mapping to "</span> <span class="token operator">+</span> <span class="token function">getHandlerDescription</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">setRootHandler</span><span class="token punctuation">(</span>resolvedHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>urlPath<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Default mapping to "</span> <span class="token operator">+</span> <span class="token function">getHandlerDescription</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">setDefaultHandler</span><span class="token punctuation">(</span>resolvedHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>handlerMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>urlPath<span class="token punctuation">,</span> resolvedHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getPatternParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>pathPatternHandlerMap<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token function">getPatternParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>urlPath<span class="token punctuation">)</span><span class="token punctuation">,</span> resolvedHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Mapped ["</span> <span class="token operator">+</span> urlPath <span class="token operator">+</span> <span class="token string">"] onto "</span> <span class="token operator">+</span> <span class="token function">getHandlerDescription</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在就已经把整个 AbstractUrlHandlerMapping 系列的原理分析完了，AbstractUrlHandlerMapping 里面定义了整体架构，子类只需要将 Map 初始化就可以了。</p>
+<p>下面看子类是如何做的。有两个类直接继承 AbstractUrlHandlerMapping，分别是 <code>SimpleUrlHandlerMapping</code> 和 <code>AbstractDetectingUrlHandlerMapping</code>。</p>
+<h4 id="2-2、SimpleUrlHandlerMapping"><a href="#2-2、SimpleUrlHandlerMapping" class="headerlink" title="2.2、SimpleUrlHandlerMapping"></a>2.2、SimpleUrlHandlerMapping</h4><p>SimpleUrlHandlerMapping 定义了一个 Map 变量（自己定义一个 Map 主要有两个作用，第一是方便配置，第二是可以在注册前做一些预处理，如确保所有 url 都以 “/“ 开头），将所有的 url 和 Handler 的对应关系放在里面，最后注册到父类的 Map 中；</p>
+<p>而 AbstractDetectingUrlHandlerMapping 则是将容器中的所有 bean 都拿出来，按一定规则注册到父类的 Map 中。下面分别看一下。</p>
+<p>SimpleUrlHandlerMapping 在创建时通过重写父类的 initApplicationContext 方法调用了 registerHandlers 方法完成 Handler 的注册，registerHandlers 内部又调用了 AbstractUrlHandlerMapping 的 registerHandler 方法将我们配置的 urlMap 注册到 AbstractUrlHandlerMapping  的 Map 中（如果要使用 SimpleUrlHandlerMapping 就需要在注册时给它配置 urlMap），代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.SimpleUrlHandlerMapping</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> urlMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">initApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">registerHandlers</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>urlMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">registerHandlers</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> urlMap<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>urlMap<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"No patterns in "</span> <span class="token operator">+</span> <span class="token function">formatMappingName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        urlMap<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> handler<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Prepend with slash if not already present.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>url<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                url <span class="token operator">=</span> <span class="token string">"/"</span> <span class="token operator">+</span> url<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// Remove whitespace from handler bean name.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                handler <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> handler<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">registerHandler</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">logMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>SimpleUrlHandlerMapping 类也非常简单，就是直接将配置的 Map 中的内容配置到 AbstractUrlHandlerMapping 中。</p>
+<h4 id="2-3、AbstractDetectingUrlHandlerMapping"><a href="#2-3、AbstractDetectingUrlHandlerMapping" class="headerlink" title="2.3、AbstractDetectingUrlHandlerMapping"></a>2.3、AbstractDetectingUrlHandlerMapping</h4><p>AbstractDetectingUrlHandlerMapping 也是通过重写 initApplicationContext 来注册 Handler 的，里面调用了 detectHandlers 方法，在 detectHandlers 中根据配置的 detectHandlersInAncestorContexts 参数从 Spring MVC 容器或者 Spring MVC 及其父容器中找到所有 bean 的 beanName，然后用 determineUrlsForHandler 方法对每个 beanName 解析出对应的 urls，如果解析结果不为空则将解析出的 urls 和 beanName（作为 Handler）注册到父类的 Map，注册方法依然是调用 AbstractUrlHandlerMapping 的 registerHandler 方法。使用 beanName 解析 urls 的 determineUrlsForHandler 方法是模板方法，交给具体子类实现。</p>
+<p>AbstractDetectingUrlHandlerMapping 代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ApplicationContextException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">initApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">detectHandlers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">detectHandlers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">ApplicationContext</span> applicationContext <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 获取所有 bean 的名字</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> beanNames <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>detectHandlersInAncestorContexts <span class="token operator">?</span>
+                          <span class="token class-name">BeanFactoryUtils</span><span class="token punctuation">.</span><span class="token function">beanNamesForTypeIncludingAncestors</span><span class="token punctuation">(</span>applicationContext<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">:</span>
+                          applicationContext<span class="token punctuation">.</span><span class="token function">getBeanNamesForType</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Take any bean name that we can determine URLs for.</span>
+    <span class="token comment">// 解析每个 beanName，如果能解析就注册到父类的 Map 中</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> beanName <span class="token operator">:</span> beanNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 使用 beanName 解析 url，是模板方法，子类具体实现</span>
+        <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> urls <span class="token operator">=</span> <span class="token function">determineUrlsForHandler</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 如果能够解析，就注册到父类的 Map z</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">ObjectUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>urls<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// URL paths found: Let's consider it a handler.</span>
+            <span class="token comment">// 父类的 registerHandler 方法</span>
+            <span class="token function">registerHandler</span><span class="token punctuation">(</span>urls<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mappingsLogger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mappingsLogger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token function">formatMappingName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> <span class="token function">getHandlerMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">getHandlerMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Detected "</span> <span class="token operator">+</span> <span class="token function">getHandlerMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" mappings in "</span> <span class="token operator">+</span> <span class="token function">formatMappingName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">determineUrlsForHandler</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>AbstractDetectingUrlHandlerMapping 有一个子类：BeanNameUrlHandlerMapping。</p>
+<p>BeanNameUrlHandlerMapping 是检查 beanName 和 alias 是不是以 “/“ 开头，如果是则将其作为 url，里面只有一个 determineUrlsForHandler 方法，非常简单，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">determineUrlsForHandler</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> urls <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>beanName<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        urls<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> aliases <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAliases</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> alias <span class="token operator">:</span> aliases<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>alias<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            urls<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>alias<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">toStringArray</span><span class="token punctuation">(</span>urls<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>AbstractUrlHandlerMapping 系列就分析完了，层次非常清晰，先来回顾一下：</p>
+<ul>
+<li>首先在 AbstractUrlHandlerMapping 中设计了整体的结构，并完成了查找 Handler 的具体逻辑，其中需要用到一个保存 url 和 Handler 对应关系的 Map，这个 Map 的内容是留给子类初始化的，这里提供了注册（也就是初始化 Map）的工具方法 <code>registerHandler</code>。</li>
+<li>初始化 Map 时提供了两种实现方式，一种是通过手工在配置文件里注册，另一种是在 spring 的容器里面找，第二种方式需要将容器的 bean 按照特定的需求筛选出来，并解析出一个 url，所以又根据需求增加了一层子类。</li>
+</ul>
+<h3 id="3、AbstractHandlerMethodMapping-系列"><a href="#3、AbstractHandlerMethodMapping-系列" class="headerlink" title="3、AbstractHandlerMethodMapping 系列"></a>3、AbstractHandlerMethodMapping 系列</h3><p>从前面 HandlerMapping 的结构图可以看出，AbstractHandlerMethodMapping 系列的结构非常简单，只有三个类：AbstractHandlerMethodMapping、RequestMappingInfoHandlerMapping 和 RequestMappingHandlerMapping，这三个类依次继承。</p>
+<p>AbstractHandlerMethodMapping 直接继承自 AbstractHandlerMapping。虽然看起来这里的结构要比 UrlHandlerMapping 简单很多，但是并没有因为类结构简单而降低复杂度。</p>
+<p>AbstractHandlerMethodMapping 系列是将 Method 作为 Handler 来使用的，这也是我们现在用的最多的一种 Handler，比如经常使用的 <code>@RequestMapping</code> 所注释的方法就是这种 Handler，它有一个专门的类型 —— <code>HandlerMethod</code>，也就是 Method 类型的 Handler。</p>
+<h4 id="3-1、创建-AbstractHandlerMethodMapping"><a href="#3-1、创建-AbstractHandlerMethodMapping" class="headerlink" title="3.1、创建 AbstractHandlerMethodMapping"></a>3.1、创建 AbstractHandlerMethodMapping</h4><p>要想弄明白 AbstractHandlerMethodMapping 系列，最关键的就是先弄明白 AbstractHandlerMethodMapping 里三个 Map 的含义，它们定义如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">HandlerMethod</span><span class="token punctuation">&gt;</span></span> <span class="token function">getHandlerMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">acquireReadLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">unmodifiableMap</span><span class="token punctuation">(</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">getRegistrations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token operator">::</span><span class="token function">getKey</span><span class="token punctuation">,</span> entry <span class="token operator">-&gt;</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>handlerMethod<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">releaseReadLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping&amp;MappingRegistry</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">MultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> pathLookup <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">HandlerMethod</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> nameLookup <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的泛型 T 来自于 AbstractHandlerMethodMapping 类的定义，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractHandlerMethodMapping</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractHandlerMapping</span> <span class="token keyword">implements</span> <span class="token class-name">InitializingBean</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这个泛型 T 官方的解释是：</p>
+<blockquote>
+<p>the mapping for a <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/5.3.7/javadoc-api/org/springframework/web/method/HandlerMethod.html"><code>HandlerMethod</code></a> containing the conditions needed to match the handler method to an incoming request.</p>
+</blockquote>
+<p>也就是用来匹配 Handler 的条件专门使用的一种类，这里的条件就不只是 url 了，还可以又很多其他条件，如 request 的类型（Get、Post 等等）、请求的参数、Header 等都可以作为匹配 HandlerMethod 的条件。默认使用的是 RequestMappingInfo，从 RequestMappingInfoHandlerMapping 的定义就可以看出：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">RequestMappingInfoHandlerMapping</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractHandlerMethodMapping</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">RequestMappingInfo</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>RequestMappingInfo 实现了 RequestCondition 接口，此接口专门用于保存从 request 提取出的用于匹配 Handler 的条件，结构如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031145450.png"></p>
+<p>抽象实现 AbstractRquestCondition 共有 9 个子类，这里就不画出来了。而它本身重写了 equals、hashCode 和 toString 三个方法。</p>
+<p>它的 9 个子类中，除了 <code>CompositeRequestCondition</code> 外每个子类都代表一种匹配条件，比如，<code>PatternsRequestCondition</code>  和 <code>PathPatternsRequestCondition</code> 使用 url 做匹配，但是它们两者又有不同之处。</p>
+<p><code>RequestMethodsRequestCondition</code> 使用 Requestmethod 做匹配等等。</p>
+<p>CompositeRequestCondition 本身并不做匹配，而是可以将多个别的 RequestCondition 封装到自己的一个变量数组中，在用的时候遍历这个数组进行匹配，这就是大家熟悉的 <mark>责任链模式</mark>，这种模式在 Spring MVC 中非常常见，类名一般是 <strong>CompositeXXX</strong> 或者 <strong>XXXComposite</strong> 的形式，它们主要的作用就是为了方便调用。</p>
+<br>
+
+<p>RequestCondition 的另一个实现就是这里要用的 RequestMappingInfo，它里面用了八个变量保存八个 RequestCondition，在匹配时使用这八个变量进行匹配，这也就是可以在 @RequestMapping 中给处理器指定多种匹配方式的原因。</p>
+<blockquote>
+<p>三个 Map</p>
+</blockquote>
+<ul>
+<li>handlerMethods：保存着匹配条件（也就是 RequestCondition）和 HandlerMethod 的对应关系</li>
+<li>pathLookup：保存着 url 与匹配条件（也就是 RequestCondition）的对应关系，当然这里的 url 是 Pattern 式的，可以使用通配符。此外这里使用的 Map 也不是普通的 Map，而是 LinkedMultiValueMap，这种 Map 实质是 MultiValueMap，是一种一个 key 对应多个值的 Map，其实它的 value 是一个 List 类型的值。由于 RequestCondition 可以同时使用多种不同的匹配方式而不只是 url 一种，所以反过来说同一个 url 就可能有多个 RequestCondition 与之对应。这里的 RequestCondition 其实就是在 @RequestMapping 中注释的内容。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MultiValueMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">extends</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>nameLookup：保存着 name 与 HandlerMethod 的对应关系，它使用的线程安全的 HashMap，即 ConcurrentHashMap，而且也是一个 key 对应多个 value，也就是说一个 name 可以有多个 HandlerMethod。这里的 name 是使用 HandlerMethodMappingNamingStrategy 策略的实现类从 HandlerMethod 中解析出来的，默认使用 RequestMappingInfoHandlerMethodMappingNamingStrategy 实现类，解析规则是：类名里的大写字母组合 + “#” + 方法名。这个 Map 在正常的匹配过程并不需要使用，它主要用字啊 MvcUriComponentsBilder 里面，可以用来根据 name 获取相应的 url，比如：</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">MvcUriComponentsBuilder<span class="token punctuation">.</span>MethodArgumentBuilder</span> uriComponents <span class="token operator">=</span> <span class="token class-name">MvcUriComponentsBuilder</span><span class="token punctuation">.</span><span class="token function">fromMappingName</span><span class="token punctuation">(</span><span class="token string">"HC#index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> uri <span class="token operator">=</span> uriComponents<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这样就可以构造出 url —— <a target="_blank" rel="noopener" href="http://localhost:8080/index%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8">http://localhost:8080/index，也就是在</a> HelloController 中定义的 <code>@RequestMapping(value = {"index", "/"}, method = {RequestMethod.GET})</code>。</p>
+<p>可以在 jsp 中通过 spring 的标签来使用，如 <code>&lt;a href="${s:mvcUrl('HC#index')}"&gt;Go&lt;/a&gt;</code></p>
+<p>这三个 Map 如何使用呢？</p>
+<p>nameLookup 刚刚已经介绍过了，下面看看 pathLookup 和 handlerMethods。</p>
+<p>前者保存着 url 和 匹配条件的对应关系，可以通过 url 拿到匹配条件，后者保存着匹配条件与 HandlerMethod 之间的关系，可以通过前者拿到的匹配条件得到具体的 HandleMethod。需要注意的是前者返回的可能是多个匹配条件而不是一个，这时候还需要选出一个最优的，然后才可以获得 HandlerMethod。</p>
+<p>理解了这三个 Map 再来看 AbstractHandlerMethodMapping 系列的创建就容易多了，AbstractHandlerMethodMapping 实现了 <code>InitializingBean</code> 接口，所以 spring 容器会自动调用其 <code>afterPropertiesSet</code> 方法，afterPropertiesSet 又交给 <code>initHandlerMethods</code> 方法完成具体的初始化，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">initHandlerMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">initHandlerMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> beanName <span class="token operator">:</span> <span class="token function">getCandidateBeanNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>beanName<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>SCOPED_TARGET_NAME_PREFIX<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">processCandidateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 可以对 Handler 进行一些初始化，是一个模板方法，但是子类并没有实现</span>
+    <span class="token function">handlerMethodsInitialized</span><span class="token punctuation">(</span><span class="token function">getHandlerMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 筛选方法</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">processCandidateBean</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanType <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        beanType <span class="token operator">=</span> <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// An unresolvable bean type, probably from a lazy bean - let's ignore it.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">"Could not resolve type for bean '"</span> <span class="token operator">+</span> beanName <span class="token operator">+</span> <span class="token string">"'"</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>beanType <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isHandler</span><span class="token punctuation">(</span>beanType<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 将 Handler 保存到 Map 中的方法</span>
+        <span class="token function">detectHandlerMethods</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里和 AbstractDetectingUrlHandlerMapping 类似，都是首先从容器中拿到所有的 bean，然后根据一定规则筛选出 Handler，最后保存到 Map 里。</p>
+<p>实际的筛选方法是 processCandidateBean 中的 isHandler 方法，这是一个模板方法，具体实现在 RequestMappingHandlerMapping 里面，筛选的逻辑是检查类前是否又 @Controller 或者 @RequestMapping 注解，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isHandler</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token class-name">AnnotatedElementUtils</span><span class="token punctuation">.</span><span class="token function">hasAnnotation</span><span class="token punctuation">(</span>beanType<span class="token punctuation">,</span> <span class="token class-name">Controller</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token class-name">AnnotatedElementUtils</span><span class="token punctuation">.</span><span class="token function">hasAnnotation</span><span class="token punctuation">(</span>beanType<span class="token punctuation">,</span> <span class="token class-name">RequestMapping</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接着看 detectHandlerMethods 方法，它的主要作用是从 Handler Bean 中找到 handler method，最后将其保存到 Map 里。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">detectHandlerMethods</span><span class="token punctuation">(</span><span class="token class-name">Object</span> handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 获取 Handler 的类型</span>
+    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> handlerType <span class="token operator">=</span> <span class="token punctuation">(</span>handler <span class="token keyword">instanceof</span> <span class="token class-name">String</span> <span class="token operator">?</span>
+                            <span class="token function">obtainApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> handler<span class="token punctuation">)</span> <span class="token operator">:</span> handler<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handlerType <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 如果是 cglib 代理的子对象类型，则返回父类型，否则直接返回传入的类型</span>
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> userType <span class="token operator">=</span> <span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">getUserClass</span><span class="token punctuation">(</span>handlerType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 获取当前 bean 里所有符合 Handler 要求的 Method</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Method</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> methods <span class="token operator">=</span> <span class="token class-name">MethodIntrospector</span><span class="token punctuation">.</span><span class="token function">selectMethods</span><span class="token punctuation">(</span>userType<span class="token punctuation">,</span>
+                                                                  <span class="token punctuation">(</span><span class="token class-name">MethodIntrospector<span class="token punctuation">.</span>MetadataLookup</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span> method <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                                                                      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                                                                          <span class="token keyword">return</span> <span class="token function">getMappingForMethod</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> userType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                                                      <span class="token punctuation">}</span>
+                                                                      <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                                                          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">"Invalid mapping on handler class ["</span> <span class="token operator">+</span>
+                                                                                                          userType<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"]: "</span> <span class="token operator">+</span> method<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                                                      <span class="token punctuation">}</span>
+                                                                  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token function">formatMappings</span><span class="token punctuation">(</span>userType<span class="token punctuation">,</span> methods<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>mappingsLogger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mappingsLogger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token function">formatMappings</span><span class="token punctuation">(</span>userType<span class="token punctuation">,</span> methods<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 将符合要求的 Method 注册，也就是保存到三个 Map 中</span>
+        methods<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> mapping<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Method</span> invocableMethod <span class="token operator">=</span> <span class="token class-name">AopUtils</span><span class="token punctuation">.</span><span class="token function">selectInvocableMethod</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> userType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">registerHandlerMethod</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> invocableMethod<span class="token punctuation">,</span> mapping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>detectHandlerMethods 方法分为两步：</p>
+<p>首先从传入的处理器中找到符合要求的方法，然后使用 <code>registerHandlerMethod</code> 进行注册（也就是保存到 Map 中）。从这里可以看出 spring 其实是将处理请求的方法所在的类当作处理器了，而不是处理请求的方法，不过很多地方需要使用处理请求的方法作为处理器来理解才容易理解，而且 spring 本身在有些场景中也将处理请求的方法 HandlerMethod 当作处理器了，比如 AbstractHandlerMethodMapping 的 getHandlerInternal 方法返回的处理器就是 HandlerMethod 类型，在 RequestMappingHandlerAdapter 中判断是不是支持的 Handler 时也是通过检查是不是 HandlerMethod 类型来判断的。</p>
+<h4 id="3-2、使用-AbstractHandlerMethodMapping"><a href="#3-2、使用-AbstractHandlerMethodMapping" class="headerlink" title="3.2、使用 AbstractHandlerMethodMapping"></a>3.2、使用 AbstractHandlerMethodMapping</h4><p>通过前面的分析，可知这里的主要功能是通过 <code>getHandlerInternl</code> 方法获取处理器，代码如下:</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">HandlerMethod</span> <span class="token function">getHandlerInternal</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> lookupPath <span class="token operator">=</span> <span class="token function">initLookupPath</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">acquireReadLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">HandlerMethod</span> handlerMethod <span class="token operator">=</span> <span class="token function">lookupHandlerMethod</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>handlerMethod <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> handlerMethod<span class="token punctuation">.</span><span class="token function">createWithResolvedBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">releaseReadLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里主要就做了三件事：</p>
+<ol>
+<li>根据 request 获取 lookupPath，可以简单的理解为 url</li>
+<li>使用 lookupHandlerMethod 方法通过 lookupPath 和 request 找到 handlerMethod</li>
+<li>如果可以找到 handlerMethod 则调用它的 createWithResolvedBean 方法创建新的 HandlerMethod 返回，createWithResolvedBean 的作用是判断 handlerMethod 里的 handler 是不是 String 类型，如果是则改为将其作为 beanName 从容器中获取 bean，不过 HandlerMethod 中的属性都是 final 类型的，不可以修改，所以在 createWithResolvedBean 方法中又用原来的属性和修改后的 handler 新建了一个 HandlerMethod</li>
+</ol>
+<p>先看看具体查找 HandlerMethod 的 <code>lookupHandlerMethod </code> 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// org.springframework.web.servlet.handler.AbstractHandlerMethodMapping</span>
+
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">HandlerMethod</span> <span class="token function">lookupHandlerMethod</span><span class="token punctuation">(</span><span class="token class-name">String</span> lookupPath<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Match 是内部类，保存匹配条件和 Handler</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Match</span><span class="token punctuation">&gt;</span></span> matches <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 首先根据 lookupPath 找到匹配条件</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> directPathMatches <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">getMappingsByDirectPath</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>directPathMatches <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 将匹配条件添加到 matches</span>
+        <span class="token function">addMatchingMappings</span><span class="token punctuation">(</span>directPathMatches<span class="token punctuation">,</span> matches<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 如果不能直接使用 lookupPath 得到匹配条件，则将所有匹配条件加入 matches</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">addMatchingMappings</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">getRegistrations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> matches<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 将包含匹配条件和 Handler 的 matches 排序，并获取第一个作为 bestMatch，如果前面两个排序相同则抛出异常</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>matches<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Match</span> bestMatch <span class="token operator">=</span> matches<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Match</span><span class="token punctuation">&gt;</span></span> comparator <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MatchComparator</span><span class="token punctuation">(</span><span class="token function">getMappingComparator</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            matches<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>comparator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            bestMatch <span class="token operator">=</span> matches<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" matching mappings: "</span> <span class="token operator">+</span> matches<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">CorsUtils</span><span class="token punctuation">.</span><span class="token function">isPreFlightRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Match</span> match <span class="token operator">:</span> matches<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>match<span class="token punctuation">.</span><span class="token function">hasCorsConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">return</span> PREFLIGHT_AMBIGUOUS_MATCH<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token class-name">Match</span> secondBestMatch <span class="token operator">=</span> matches<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>comparator<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>bestMatch<span class="token punctuation">,</span> secondBestMatch<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">Method</span> m1 <span class="token operator">=</span> bestMatch<span class="token punctuation">.</span><span class="token function">getHandlerMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Method</span> m2 <span class="token operator">=</span> secondBestMatch<span class="token punctuation">.</span><span class="token function">getHandlerMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">String</span> uri <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span>
+                        <span class="token string">"Ambiguous handler methods mapped for '"</span> <span class="token operator">+</span> uri <span class="token operator">+</span> <span class="token string">"': {"</span> <span class="token operator">+</span> m1 <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> m2 <span class="token operator">+</span> <span class="token string">"}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>BEST_MATCHING_HANDLER_ATTRIBUTE<span class="token punctuation">,</span> bestMatch<span class="token punctuation">.</span><span class="token function">getHandlerMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">handleMatch</span><span class="token punctuation">(</span>bestMatch<span class="token punctuation">.</span>mapping<span class="token punctuation">,</span> lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> bestMatch<span class="token punctuation">.</span><span class="token function">getHandlerMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">handleNoMatch</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>mappingRegistry<span class="token punctuation">.</span><span class="token function">getRegistrations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lookupPath<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>整个过程中是以 Match 作为载体的，Match 是个内部类，封装了匹配条件和 HandlerMethod 两个属性，子类 RequestMappingInfoHandlerMapping 中进行了重写，将更多的参数设置到了 request，主要是为了以后使用时方便，跟 Mapping 没有关系。</p>
+<h3 id="4、小结"><a href="#4、小结" class="headerlink" title="4、小结"></a>4、小结</h3><p>前面分析了 Spring MVC 中的 HandlerMapping 的各种具体实现方式。</p>
+<p>HandlerMapping 的整体结构在 AbstractHandlerMapping 中涉及，简单来说其功能就是根据 request 找到 Handler 和 Interceptors，组合成 HandlerExecutionChain 类型并返回。</p>
+<p>找 Handler 的过程通过模板方法 getHandlerInternal 留给子类实现，查找 Interceptors 则是 AbstractHandlerMapping 自己完成的，查找的具体方法是通过几个与 Interceptor 相关的 Map 完成的，在初始化过程中对那些 Map 进行了初始化。</p>
+<p>AbstractHandlerMapping 的子类分为两个系类：AbstractUrlHandlerMapping 和 AbstractHandlerMethodMapping 系列，前者通过 url 匹配的，后者匹配的内容更多，而且是直接匹配到 Method，这也是使用最多的一种方式。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/">https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Spring-MVC/">
+                                    <span class="chip bg-color">Spring MVC</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2021/10/31/spring-mvc-component-yi-handlermapping/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211005110206.jpg" class="responsive-img" alt="Spring MVC Component (一) HandlerMapping">
+                        
+                        <span class="card-title">Spring MVC Component (一) HandlerMapping</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Spring MVC 组件之 HandlerMapping
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                    Spring MVC
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring-MVC/">
+                        <span class="chip bg-color">Spring MVC</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/31/spring-mvc-components-overview/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211005110150.jpg" class="responsive-img" alt="Spring MVC Components Overview">
+                        
+                        <span class="card-title">Spring MVC Components Overview</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Spring MVC 组件概述
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-MVC/" class="post-category">
+                                    Spring MVC
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring-MVC/">
+                        <span class="chip bg-color">Spring MVC</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="27969834"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2086589645@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
