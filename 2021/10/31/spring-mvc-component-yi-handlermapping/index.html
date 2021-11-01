@@ -832,7 +832,7 @@
     <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// We need to care for the default handler directly, since we need to</span>
         <span class="token comment">// expose the PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE for it as well.</span>
-        <span class="token comment">// 定义一个临时遍历用于保存找到的原始 Handler</span>
+        <span class="token comment">// 定义一个临时变量用于保存找到的原始 Handler</span>
         <span class="token class-name">Object</span> rawHandler <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">matchesCharacter</span><span class="token punctuation">(</span>lookupPath<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             rawHandler <span class="token operator">=</span> <span class="token function">getRootHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

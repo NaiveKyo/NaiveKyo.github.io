@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-09-08
+                    2021-11-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.4k
+                    4.6k
                 </div>
                 
 
@@ -1280,7 +1280,7 @@
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">shellSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
         <span class="token comment">// 增量选择：初始值为数组长度的一半，之后逐次减半，缩小增量</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             
             <span class="token comment">// 多个增量确定的子序列并行进行插入排序</span>
             <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length <span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1403,7 +1403,7 @@
         
         <span class="token keyword">while</span> <span class="token punctuation">(</span>begin <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">int</span> mid <span class="token operator">=</span> begin <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span> <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 mid<span class="token operator">++</span><span class="token punctuation">;</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>mid <span class="token operator">&gt;</span> end<span class="token punctuation">)</span>
                     <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
@@ -1424,6 +1424,53 @@
 <h3 id="7、最长连续递增子序列（部分有序）"><a href="#7、最长连续递增子序列（部分有序）" class="headerlink" title="7、最长连续递增子序列（部分有序）"></a>7、最长连续递增子序列（部分有序）</h3><ul>
 <li>{1, 9, 2, 5, 7, 3, 4, 6, 8, 0} 中最长的递增子序列为 {3, 4, 6, 8}</li>
 </ul>
+<p>这种数组的特点就是类似于锯齿状。</p>
+<p>算法比较简单，重点在于快慢指针的移动和边界值。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> recursion_最长连续递增子序列<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// 目标  {3, 4, 6, 8}</span>
+    <span class="token comment">// int[] arr = {0, 1, 2, 3, 2, 5, 4, 5, 6};</span>
+    <span class="token comment">// int[] arr = {0, 1, 2, 3, 2, 3, 4, 5, 6};</span>
+
+    <span class="token keyword">int</span> begin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> step <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>right <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            step<span class="token operator">++</span><span class="token punctuation">;</span>
+            right<span class="token operator">++</span><span class="token punctuation">;</span>
+            left<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>step <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&gt;</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                length <span class="token operator">=</span> step <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                begin <span class="token operator">=</span> right <span class="token operator">-</span> step <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                end <span class="token operator">=</span> left<span class="token punctuation">;</span>
+                left <span class="token operator">=</span> right<span class="token punctuation">;</span>
+                right <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                step <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                left <span class="token operator">=</span> right<span class="token punctuation">;</span>
+                right <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>step <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&gt;</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        begin <span class="token operator">=</span> right <span class="token operator">-</span> step <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        end <span class="token operator">=</span> left<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最长连续递增子序列:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
