@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-10-31T11:27:58.219Z</updated>
+  <updated>2021-11-05T01:35:55.848Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm Of Divide And Conquer Intro</title>
+    <link href="https://naivekyo.github.io/2021/11/05/algorithm-of-divide-and-conquer-intro/"/>
+    <id>https://naivekyo.github.io/2021/11/05/algorithm-of-divide-and-conquer-intro/</id>
+    <published>2021-11-05T01:32:37.000Z</published>
+    <updated>2021-11-05T01:35:55.848Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;分治算法&quot;&gt;&lt;a href=&quot;#分治算法&quot; class=&quot;headerlink&quot; title=&quot;分治算法&quot;&gt;&lt;/a&gt;分治算法&lt;/h1&gt;&lt;h2 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring MVC Component (一) HandlerMapping</title>
@@ -492,31 +517,6 @@
     
     
     <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Bit Operation Intro</title>
-    <link href="https://naivekyo.github.io/2021/09/01/java-bit-operation-intro/"/>
-    <id>https://naivekyo.github.io/2021/09/01/java-bit-operation-intro/</id>
-    <published>2021-09-01T14:48:03.000Z</published>
-    <updated>2021-09-01T14:56:53.474Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Java-位运算&quot;&gt;&lt;a href=&quot;#Java-位运算&quot; class=&quot;headerlink&quot; title=&quot;Java 位运算&quot;&gt;&lt;/a&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
