@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-10-24
+                    2021-11-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
@@ -881,6 +881,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <li>后台给前台传递数据：<ul>
 <li>可以在配置文件中配置好 Jackson 的日期格式</li>
 <li>也可以在字段上使用 <code>@JsonFormat</code> 注解指定格式和时区</li>
+<li>该注解也可以作用于 <code>@ReqeustBody</code>  接收的参数对象中的日期属性</li>
 </ul>
 </li>
 </ul>
@@ -891,9 +892,21 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <ul>
 <li>后台接收前台传递的数据：<ul>
 <li>在字段上使用 <code>@DateTimeFormat</code>  注解格式</li>
+<li>需要导入依赖 <code>joda-time</code>，DateTimeFormat 注解才可以生效</li>
+<li>该注解适用于 <code>@RequestParam</code> 接收的参数</li>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>@DateTimeFormat 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 @RequestParam 接收参数，可以正常生效。</p>
+<p>如果是在 @ReqeustBody 中则 @JsonFormat 可以同时适用前后台时间字符串参数解析。</p>
+<p>在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。</p>
+<blockquote>
+<p>GET 请求的查询</p>
+</blockquote>
+<p><code>@GetMapping</code> 不能直接使用 <code>@ReqestBody</code>，只可以使用 <code>@ReqeustParam</code></p>
 
                 
             </div>
