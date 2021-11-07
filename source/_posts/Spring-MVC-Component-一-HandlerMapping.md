@@ -232,7 +232,7 @@ protected Object getHandlerInternal(HttpServletRequest request) throws Exception
     if (handler == null) {
         // We need to care for the default handler directly, since we need to
         // expose the PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE for it as well.
-        // 定义一个临时遍历用于保存找到的原始 Handler
+        // 定义一个临时变量用于保存找到的原始 Handler
         Object rawHandler = null;
         if (StringUtils.matchesCharacter(lookupPath, '/')) {
             rawHandler = getRootHandler();

@@ -365,6 +365,428 @@ public class API_Calendar {
 }
 ```
 
+### 4、Java8 新时间
+
+从Java 8开始，`java.time`包提供了新的日期和时间API，主要涉及的类型有：
+
+
+
+- 本地日期和时间：`LocalDateTime`，`LocalDate`，`LocalTime`；
+- 带时区的日期和时间：`ZonedDateTime`；
+- 时刻：`Instant`；
+- 时区：`ZoneId`，`ZoneOffset`；
+- 时间间隔：`Duration`。
+
+以及一套新的用于取代`SimpleDateFormat`的格式化类型`DateTimeFormatter`。
+
+
+
+和旧的API相比，新API严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且，对日期和时间进行运算更加方便。
+
+
+
+此外，新API修正了旧API不合理的常量设计：
+
+- Month的范围用1~12表示1月到12月；
+- Week的范围用1~7表示周一到周日。
+
+
+
+#### （1）LocalDateTime
+
+我们首先来看最常用的`LocalDateTime`，它表示一个本地日期和时间：
+
+```java
+@Test
+public void test_localDateTime() {
+
+    LocalDate ld = LocalDate.now();
+    System.out.println(ld); // 2021-11-05
+
+    LocalTime lt = LocalTime.now();
+    System.out.println(lt); // 11:03:40.955
+
+    LocalDateTime ldt = LocalDateTime.now();
+    System.out.println(ldt); // 2021-11-05T11:05:49.179
+
+
+    // 或者这样
+    LocalDateTime ldt1 = LocalDateTime.now();
+    LocalDate localDate = ldt1.toLocalDate();
+    LocalTime localTime = ldt1.toLocalTime();
+
+    System.out.println(ldt1);   // 2021-11-05T11:07:10.014
+    System.out.println(localDate); // 2021-11-05
+    System.out.println(localTime); // 11:07:10.014
+}
+```
+
+反过来，通过指定的日期和时间创建`LocalDateTime`可以通过`of()`方法：
+
+```java
+@Test
+public void test_ldt() {
+
+    // 指定日期和时间
+    LocalDate ld = LocalDate.of(2021, 11, 4);   // 2021-11-04
+    LocalTime lt = LocalTime.of(15, 16, 17);        // 15.16.17
+    LocalDateTime ldt = LocalDateTime.of(ld, lt);
+
+    System.out.println(ld); // 2021-11-04
+    System.out.println(lt); // 15:16:17
+    System.out.println(ldt); // 2021-11-04T15:16:17
+
+    LocalDateTime ldt1 = LocalDateTime.of(2021, 11, 5, 10, 30, 21);
+    System.out.println(ldt1);   // 2021-11-05T10:30:21
+}
+```
+
+因为严格按照ISO 8601的格式，因此，将字符串转换为`LocalDateTime`就可以传入标准格式：
+
+```java
+@Test
+public void test_ldt2() {
+
+    LocalDateTime ldt = LocalDateTime.parse("2021-01-01T13:14:15");
+    LocalDate ld = LocalDate.parse("2021-02-02");
+    LocalTime lt = LocalTime.parse("21:21:21");
+
+    System.out.println(ldt);    // 2021-01-01T13:14:15
+    System.out.println(ld);     // 2021-02-02
+    System.out.println(lt);     // 21:21:21
+}
+```
+
+注意ISO 8601规定的日期和时间分隔符是`T`。标准格式如下：
+
+- 日期：yyyy-MM-dd
+- 时间：HH:mm:ss
+- 带毫秒的时间：HH:mm:ss.SSS
+- 日期和时间：yyyy-MM-dd'T'HH:mm:ss
+- 带毫秒的日期和时间：yyyy-MM-dd'T'HH:mm:ss.SSS
+
+> 对日期和时间的简单加减（链式调用）
+
+```java
+@Test
+public void test_ldt_calculate() {
+    LocalDateTime ldt = LocalDateTime.now();
+
+    System.out.println(ldt);
+
+    // day
+    System.out.println(ldt.plusDays(1));    // 加一天
+    System.out.println(ldt.minusDays(1));   // 减一天
+
+    // month
+    System.out.println(ldt.plusMonths(1));  // 加一月
+    System.out.println(ldt.minusMonths(1)); // 减一月
+
+    // year
+    System.out.println(ldt.plusYears(1));   // 加一年
+    System.out.println(ldt.minusYears(1));  // 减一年
+
+    // 链式调用
+    System.out.println(ldt.plusDays(5).minusHours(1)); // 加五天减 1 小时
+}
+```
+
+简单加减用的是 `plusXxx` 和 `minusXxx` 方法。
+
+如果要直接修改日期可使用 `withXxx` 方法：
+
+- 调整年：withYear()
+- 调整月：withMonth()
+- 调整日：withDayOfMonth()
+- 调整时：withHour()
+- 调整分：withMinute()
+- 调整秒：withSecond()
+
+> LocalDateTime 的通用 with() 方法
+
+```java
+@Test
+public void test_with() {
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    LocalDateTime firstDay = LocalDate.now().withDayOfMonth(1).atStartOfDay();
+
+    // 本月第一天 0:00 时刻
+    // 2021-11-01 00:00:00
+    System.out.println(firstDay.withDayOfMonth(1).format(dtf));
+
+    // 本月最后一天
+    LocalDate lastDay = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+    System.out.println(lastDay);
+
+    // 下月第一天
+    LocalDate nextMonthFirstDay = LocalDate.now().with(TemporalAdjusters.firstDayOfNextMonth());
+    System.out.println(nextMonthFirstDay);
+
+    // 本月第一个周一
+    LocalDate firstWeekDay = LocalDate.now().with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
+    System.out.println(firstWeekDay);
+}
+```
+
+这里面用到了两个工具：
+
+- TemporalAdjusters
+- DayOfWeek
+
+> 补充
+
+- 要判断两个 LocalDateTime 的先后（LocalDate 和 LocalTime 也一样）
+  - `isBefore()`
+  - `isAfter()`
+  - 注意到`LocalDateTime`无法与时间戳进行转换，因为`LocalDateTime`没有时区，无法确定某一时刻。
+
+
+
+> Duration 和 Period
+
+- `Duration`表示两个时刻之间的时间间隔。另一个类似的`Period`表示两个日期之间的天数：
+
+```java
+@Test
+public void test_duration_period() {
+
+    LocalDateTime start = LocalDateTime.of(2021, 10, 11, 8, 0, 0);
+    LocalDateTime end = LocalDateTime.of(2021, 11, 11, 9, 0, 0);
+
+    Duration d = Duration.between(start, end);
+    System.out.println(d);	// PT745H
+
+    Period p = LocalDate.of(2021, 10, 10).until(LocalDate.of(2021, 11, 30));
+    System.out.println(p);	// P1M20D
+}
+```
+
+注意到两个`LocalDateTime`之间的差值使用`Duration`表示，类似`PT1235H10M30S`，表示1235小时10分钟30秒。而两个`LocalDate`之间的差值用`Period`表示，类似`P1M21D`，表示1个月21天。
+
+java8 引入的 java.time API 和开源项目 **Joda Time **类似。因为 JDK 团队邀请了 joda time 作者参于设计 Java.time api。
+
+> 小结
+
+
+
+Java 8引入了新的日期和时间API，它们是不变类，默认按ISO 8601标准格式化和解析；
+
+使用`LocalDateTime`可以非常方便地对日期和时间进行加减，或者调整日期和时间，它总是返回新对象；
+
+使用`isBefore()`和`isAfter()`可以判断日期和时间的先后；
+
+使用`Duration`和`Period`可以表示两个日期和时间的“区间间隔”。
+
+
+
+#### （2）ZonedDateTime
+
+`LocalDateTime`总是表示本地日期和时间，要表示一个带时区的日期和时间，我们就需要`ZonedDateTime`。
+
+可以简单地把`ZonedDateTime`理解成`LocalDateTime`加`ZoneId`。`ZoneId`是`java.time`引入的新的时区类，注意和旧的`java.util.TimeZone`区别。
+
+
+
+```java
+@Test
+public void test_zonedDateTime() {
+
+    // ------------ 第一种创建方式 -----------------
+    // 默认时区
+    ZonedDateTime zbj = ZonedDateTime.now();    
+    // 用指定时区获得当前时间
+    ZonedDateTime zny = ZonedDateTime.now(ZoneId.of("America/New_York"));   
+
+    System.out.println(zbj);
+    // 2021-11-05T15:04:44.748+08:00[Asia/Shanghai]
+    System.out.println(zny);
+    // 2021-11-05T03:04:44.750-04:00[America/New_York]
+    
+    
+    // ------------ 第二种创建方式 -----------------
+    LocalDateTime ldt = LocalDateTime.of(2021, 11, 11, 11, 12, 13);
+    ZonedDateTime zbj = ldt.atZone(ZoneId.systemDefault());
+    ZonedDateTime zny = ldt.atZone(ZoneId.of("America/New_York"));
+
+    System.out.println(zbj);
+    System.out.println(zny);
+}
+```
+
+当然如果有 ZonedDateTime 也可以直接将其转换为 LocalDateTime，调用 `toLocalDateTime()` 方法，舍弃时区就可以了。
+
+
+
+#### （3）DateTimeFormatter
+
+使用旧的`Date`对象时，我们用`SimpleDateFormat`进行格式化显示。使用新的`LocalDateTime`或`ZonedLocalDateTime`时，我们要进行格式化显示，就要使用`DateTimeFormatter`。
+
+和`SimpleDateFormat`不同的是，`DateTimeFormatter`不但是不变对象，它还是线程安全的。现在我们只需要记住：因为`SimpleDateFormat`不是线程安全的，使用的时候，只能在方法内部创建新的局部变量。而`DateTimeFormatter`可以只创建一个实例，到处引用。
+
+
+
+```java
+@Test
+public void test_dateTimeFormatter() {
+
+    ZonedDateTime zdt = ZonedDateTime.now();
+    LocalDate ld = zdt.toLocalDate();
+
+    // 创建方式一：传入格式化字符串
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    // 创建方式二：传入格式化字符串，同时指定 Locale
+    DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault());
+
+    System.out.println(zdt.format(formatter));
+    LocalDateTime parse = LocalDateTime.parse("2021-11-05 15:13:06", formatter);
+    System.out.println(parse);
+
+    System.out.println(ld.format(formatter1));
+    LocalDate parse1 = LocalDate.parse("2021-11-05", formatter1); 
+}
+```
+
+#### （4）Instant
+
+计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的`System.currentTimeMillis()`返回的就是以毫秒表示的当前时间戳。
+
+这个当前时间戳在`java.time`中以`Instant`类型表示，我们用`Instant.now()`获取当前时间戳，效果和`System.currentTimeMillis()`类似：
+
+```java
+@Test
+public void test_instant() {
+
+    Instant now = Instant.now();
+
+    System.out.println(now.getEpochSecond());   // 秒
+    System.out.println(now.toEpochMilli()); // 毫秒
+
+    System.out.println(System.currentTimeMillis());
+}
+```
+
+既然`Instant`就是时间戳，那么，给它附加上一个时区，就可以创建出`ZonedDateTime`：
+
+```java
+// 以指定时间戳创建Instant:
+Instant ins = Instant.ofEpochSecond(1568568760);
+ZonedDateTime zdt = ins.atZone(ZoneId.systemDefault());
+System.out.println(zdt); // 2019-09-16T01:32:40+08:00[Asia/Shanghai]
+```
+
+可见，对于某一个时间戳，给它关联上指定的`ZoneId`，就得到了`ZonedDateTime`，继而可以获得了对应时区的`LocalDateTime`。
+
+所以，`LocalDateTime`，`ZoneId`，`Instant`，`ZonedDateTime`和`long`都可以互相转换：
+
+
+
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211105152111.png)
+
+转换的时候，只需要留意`long`类型以毫秒还是秒为单位即可。
+
+小结：`Instant`表示高精度时间戳，它可以和`ZonedDateTime`以及`long`互相转换。
+
+### 5、新旧 API 转换
+
+> 旧 API 转 新 API
+
+如果要把旧式的`Date`或`Calendar`转换为新API对象，可以通过`toInstant()`方法转换为`Instant`对象，再继续转换为`ZonedDateTime`：
+
+```java
+// Date -> Instant:
+Instant ins1 = new Date().toInstant();
+
+// Calendar -> Instant -> ZonedDateTime:
+Calendar calendar = Calendar.getInstance();
+Instant ins2 = calendar.toInstant();
+ZonedDateTime zdt = ins2.atZone(calendar.getTimeZone().toZoneId());
+```
+
+
+
+从上面的代码还可以看到，旧的`TimeZone`提供了一个`toZoneId()`，可以把自己变成新的`ZoneId`。
+
+
+
+> 新 API 转旧 API
+
+如果要把新的`ZonedDateTime`转换为旧的API对象，只能借助`long`型时间戳做一个“中转”：
+
+```java
+// ZonedDateTime -> long:
+ZonedDateTime zdt = ZonedDateTime.now();
+long ts = zdt.toEpochSecond() * 1000;
+
+// long -> Date:
+Date date = new Date(ts);
+
+// long -> Calendar:
+Calendar calendar = Calendar.getInstance();
+calendar.clear();
+calendar.setTimeZone(TimeZone.getTimeZone(zdt.getZone().getId()));
+calendar.setTimeInMillis(zdt.toEpochSecond() * 1000);
+```
+
+从上面的代码还可以看到，新的`ZoneId`转换为旧的`TimeZone`，需要借助`ZoneId.getId()`返回的`String`完成。
+
+> 数据库中存储日期和时间
+
+除了旧式的`java.util.Date`，我们还可以找到另一个`java.sql.Date`，它继承自`java.util.Date`，但会自动忽略所有时间相关信息。
+
+
+
+在数据库中，也存在几种日期和时间类型：
+
+- `DATETIME`：表示日期和时间；
+- `DATE`：仅表示日期；
+- `TIME`：仅表示时间；
+- `TIMESTAMP`：和`DATETIME`类似，但是数据库会在创建或者更新记录的时候同时修改`TIMESTAMP`。
+
+
+
+在使用Java程序操作数据库时，我们需要把数据库类型与Java类型映射起来。下表是数据库类型与Java新旧API的映射关系：
+
+
+
+| 数据库    | 对应Java类（旧）   | 对应Java类（新） |
+| :-------- | :----------------- | :--------------- |
+| DATETIME  | java.util.Date     | LocalDateTime    |
+| DATE      | java.sql.Date      | LocalDate        |
+| TIME      | java.sql.Time      | LocalTime        |
+| TIMESTAMP | java.sql.Timestamp | LocalDateTime    |
+
+实际上，在数据库中，我们需要存储的最常用的是时刻（`Instant`），因为有了时刻信息，就可以根据用户自己选择的时区，显示出正确的本地时间。所以，最好的方法是直接用长整数`long`表示，在数据库中存储为`BIGINT`类型。
+
+通过存储一个`long`型时间戳，我们可以编写一个`timestampToString()`的方法，非常简单地为不同用户以不同的偏好来显示不同的本地时间：
+
+
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        long ts = 1574208900000L;
+        System.out.println(timestampToString(ts, Locale.CHINA, "Asia/Shanghai"));
+        System.out.println(timestampToString(ts, Locale.US, "America/New_York"));
+    }
+
+    static String timestampToString(long epochMilli, Locale lo, String zoneId) {
+        Instant ins = Instant.ofEpochMilli(epochMilli);
+        DateTimeFormatter f = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT);
+        return f.withLocale(lo).format(ZonedDateTime.ofInstant(ins, ZoneId.of(zoneId)));
+    }
+}
+```
+
+
+
+小结：
+
+- 处理日期和时间时，尽量使用新的`java.time`包；
+
+- 在数据库中存储时间戳时，尽量使用`long`型时间戳，它具有省空间，效率高，不依赖数据库的优点。
+
 
 
 ## 三、System 类

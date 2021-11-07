@@ -715,7 +715,7 @@ public class Nine_ShellSort {
     private static void shellSort(int[] arr) {
 
         // 增量选择：初始值为数组长度的一半，之后逐次减半，缩小增量
-        for (int i = arr.length / 2; i > 0; i = i >>> 2) {
+        for (int i = arr.length >>> 1; i > 0; i = i >>> 1) {
             
             // 多个增量确定的子序列并行进行插入排序
             for (int j = i; j < arr.length ; j++) {
@@ -870,7 +870,7 @@ public class Twelve_有序字符串查找 {
         
         while (begin <= end) {
             int mid = begin + ((end - begin) >>> 1);
-            while (arr[mid].equals("")) {
+            while ("".equals(arr[mid])) {
                 mid++;
                 if (mid > end)
                     return -1;
@@ -893,5 +893,103 @@ public class Twelve_有序字符串查找 {
 
 - {1, 9, 2, 5, 7, 3, 4, 6, 8, 0} 中最长的递增子序列为 {3, 4, 6, 8}
 
+这种数组的特点就是类似于锯齿状。
 
+算法比较简单，重点在于快慢指针的移动和边界值。
+
+```java
+@Test
+public void recursion_最长连续递增子序列() {
+
+    int[] arr = {1, 9, 2, 5, 7, 3, 4, 6, 8, 0}; // 目标  {3, 4, 6, 8}
+    // int[] arr = {0, 1, 2, 3, 2, 5, 4, 5, 6};
+    // int[] arr = {0, 1, 2, 3, 2, 3, 4, 5, 6};
+
+    int begin = 0, end = 0;
+    int length = 0;
+    int left = 0;
+    int right = left + 1;
+    int step = 0;
+
+    while (right < arr.length) {
+        if (arr[right] >= arr[left]) {
+            step++;
+            right++;
+            left++;
+        } else {
+            if (step + 1 > length) {
+                length = step + 1;
+                begin = right - step - 1;
+                end = left;
+                left = right;
+                right = left + 1;
+                step = 0;
+            } else {
+                left = right;
+                right = left + 1;
+            }
+        }
+    }
+    if (step + 1 > length) {
+        begin = right - step - 1;
+        end = left;
+    }
+
+    System.out.println("最长连续递增子序列:");
+    for (int i = begin; i <= end; i++) {
+        System.out.print(arr[i] + " ");
+    }
+}
+```
+
+
+
+### 8、优化 a 的 n 次幂
+
+```java
+@Test
+public void recursion_高效求a的n次幂() {
+
+    int a = 2;
+    int n = 12;
+
+    // 常规算法就是累乘，时间复杂度是 O(n)
+    System.out.println(pow_one(a, n));
+
+    // 考虑优化，O(n) 继续优化要么 O(1)，要么 O(logn)，这里考虑向 O(logn) 靠拢，可以使用折半法
+    System.out.println(pow_two(a, n));
+    
+}
+
+private int pow_one(int a, int n) {
+    if (n == 0)
+        return 1;
+
+    int res = 1;
+    for (int i = 0; i < n; i++) {
+        res *= a;
+    }
+    return res;
+}
+
+private int pow_two(int a, int n) {
+    if (n < 0)
+        throw new IllegalArgumentException("n must not be negative!");
+    if (n == 0)
+        return 1;
+
+    int res = a;
+    int ex = 1;
+    while ((ex << 1) <= n) {
+        res *= res;
+        ex <<= 1;
+    }
+
+    for (int i = 0; i < (n - ex); i++) {
+        res = res * a;
+    }
+
+    return res;
+}
+```
 

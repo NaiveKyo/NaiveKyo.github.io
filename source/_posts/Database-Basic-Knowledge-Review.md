@@ -9,9 +9,9 @@ date: 2021-08-29 22:55:28
 top: false
 cover: false
 summary: 回顾数据库的基础知识
-categories: Database
-keywords: Database
-tags: Database
+categories: MySQL
+keywords: [Database, MySQL]
+tags: MySQL
 ---
 
 
