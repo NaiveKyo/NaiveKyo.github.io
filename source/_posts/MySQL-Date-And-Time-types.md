@@ -139,6 +139,7 @@ mysql> SELECT DATE_ADD('1992-12-31 23:59:59.000002',
 - 后台给前台传递数据：
   - 可以在配置文件中配置好 Jackson 的日期格式
   - 也可以在字段上使用 `@JsonFormat` 注解指定格式和时区
+  - 该注解也可以作用于 `@ReqeustBody`  接收的参数对象中的日期属性
 
 ```yaml
 jackson:
@@ -148,3 +149,21 @@ jackson:
 
 - 后台接收前台传递的数据：
   - 在字段上使用 `@DateTimeFormat`  注解格式
+  - 需要导入依赖 `joda-time`，DateTimeFormat 注解才可以生效
+  - 该注解适用于 `@RequestParam` 接收的参数
+
+
+
+> 注意
+
+@DateTimeFormat 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 @RequestParam 接收参数，可以正常生效。
+
+如果是在 @ReqeustBody 中则 @JsonFormat 可以同时适用前后台时间字符串参数解析。
+
+在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。
+
+
+
+> GET 请求的查询
+
+`@GetMapping` 不能直接使用 `@ReqestBody`，只可以使用 `@ReqeustParam`
