@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-11-10T13:16:28.016Z</updated>
+  <updated>2021-11-12T14:21:14.920Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Maven Common Operation</title>
+    <link href="https://naivekyo.github.io/2021/11/12/maven-common-operation/"/>
+    <id>https://naivekyo.github.io/2021/11/12/maven-common-operation/</id>
+    <published>2021-11-12T12:23:04.000Z</published>
+    <updated>2021-11-12T14:21:14.920Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Maven-常用操作&quot;&gt;&lt;a href=&quot;#Maven-常用操作&quot; class=&quot;headerlink&quot; title=&quot;Maven 常用操作&quot;&gt;&lt;/a&gt;Maven 常用操作&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="Maven" scheme="https://naivekyo.github.io/categories/Maven/"/>
+    
+    
+    <category term="Maven" scheme="https://naivekyo.github.io/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Algorithm Of Sort Algorithm Summary</title>
     <link href="https://naivekyo.github.io/2021/11/10/algorithm-of-sort-algorithm-summary/"/>
     <id>https://naivekyo.github.io/2021/11/10/algorithm-of-sort-algorithm-summary/</id>
     <published>2021-11-10T13:15:11.000Z</published>
-    <updated>2021-11-10T13:16:28.016Z</updated>
+    <updated>2021-11-10T13:22:50.179Z</updated>
     
     
       
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;常见协议和标准&quot;&gt;&lt;a href=&quot;#常见协议和标准&quot; class=&quot;headerlink&quot; title=&quot;常见协议和标准&quot;&gt;&lt;/a&gt;常见协议和标准&lt;/h2&gt;&lt;p&gt;概述：简单介绍 DNS 协议、TCP/IP 协议、HTTP 协议和 Java Web 开发中的</summary>
-        
-      
-    
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/categories/Website-Basics/"/>
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web Base (一) Architecture Evolution</title>
-    <link href="https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/"/>
-    <id>https://naivekyo.github.io/2021/09/19/web-base-yi-architecture-evolution/</id>
-    <published>2021-09-19T04:15:14.000Z</published>
-    <updated>2021-10-05T03:38:07.898Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、网站架构及其演变过程&quot;&gt;&lt;a href=&quot;#一、网站架构及其演变过程&quot; class=&quot;headerlink&quot; title=&quot;一、网站架构及其演变过程&quot;&gt;&lt;/a&gt;一、网站架构及其演变过程&lt;/h2&gt;&lt;h3 id=&quot;1、软件三大类型&quot;&gt;&lt;a</summary>
         
       
     
