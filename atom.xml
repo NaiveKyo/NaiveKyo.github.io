@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-11-12T14:21:14.920Z</updated>
+  <updated>2021-11-15T13:01:22.927Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm Of Sort Algorithm Example</title>
+    <link href="https://naivekyo.github.io/2021/11/15/algorithm-of-sort-algorithm-example/"/>
+    <id>https://naivekyo.github.io/2021/11/15/algorithm-of-sort-algorithm-example/</id>
+    <published>2021-11-15T12:58:50.000Z</published>
+    <updated>2021-11-15T13:01:22.927Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、排序数组中找和的因子&quot;&gt;&lt;a href=&quot;#1、排序数组中找和的因子&quot; class=&quot;headerlink&quot; title=&quot;1、排序数组中找和的因子&quot;&gt;&lt;/a&gt;1、排序数组中找和的因子&lt;/h2&gt;&lt;p&gt;给定已排序数组 arr 和 k，不重复打印 arr</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Maven Common Operation</title>
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;一、Java-Socket&quot;&gt;&lt;a href=&quot;#一、Java-Socket&quot; class=&quot;headerlink&quot; title=&quot;一、Java Socket&quot;&gt;&lt;/a&gt;一、Java Socket&lt;/h2&gt;&lt;h3 id=&quot;1、普通-Socket-用法&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/categories/Website-Basics/"/>
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web Base (二) Common Protocols and Standards</title>
-    <link href="https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/"/>
-    <id>https://naivekyo.github.io/2021/09/19/web-base-er-common-protocols-and-standards/</id>
-    <published>2021-09-19T13:38:20.000Z</published>
-    <updated>2021-10-05T03:37:47.008Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;常见协议和标准&quot;&gt;&lt;a href=&quot;#常见协议和标准&quot; class=&quot;headerlink&quot; title=&quot;常见协议和标准&quot;&gt;&lt;/a&gt;常见协议和标准&lt;/h2&gt;&lt;p&gt;概述：简单介绍 DNS 协议、TCP/IP 协议、HTTP 协议和 Java Web 开发中的</summary>
         
       
     
