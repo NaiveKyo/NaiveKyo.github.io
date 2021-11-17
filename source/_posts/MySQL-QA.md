@@ -74,6 +74,8 @@ ALTER TABLE 表名 AUTO_INCREMENT = 1;
 
 SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号
 
+<mark>对比 Sql Server，在 Sql Server 数据库中遇到关键字使用中括号括起来，`[]`</mark>
+
 
 
 ## 4、匹配某个字段的字符
