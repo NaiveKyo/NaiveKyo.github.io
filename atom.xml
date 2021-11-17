@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-11-15T13:01:22.927Z</updated>
+  <updated>2021-11-17T13:31:47.172Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM Summary</title>
+    <link href="https://naivekyo.github.io/2021/11/17/jvm-summary/"/>
+    <id>https://naivekyo.github.io/2021/11/17/jvm-summary/</id>
+    <published>2021-11-17T13:24:22.000Z</published>
+    <updated>2021-11-17T13:31:47.172Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://naivekyo.github.io/categories/JVM/"/>
+    
+    
+    <category term="JVM" scheme="https://naivekyo.github.io/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm Of Sort Algorithm Example</title>
@@ -492,31 +517,6 @@
     
     
     <category term="Logging" scheme="https://naivekyo.github.io/tags/Logging/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web Base (三) Socket and NIOSocket and HTTP</title>
-    <link href="https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/"/>
-    <id>https://naivekyo.github.io/2021/09/20/web-base-san-socket-and-niosocket-and-http/</id>
-    <published>2021-09-20T08:11:19.000Z</published>
-    <updated>2021-10-05T03:37:53.779Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Java-Socket&quot;&gt;&lt;a href=&quot;#一、Java-Socket&quot; class=&quot;headerlink&quot; title=&quot;一、Java Socket&quot;&gt;&lt;/a&gt;一、Java Socket&lt;/h2&gt;&lt;h3 id=&quot;1、普通-Socket-用法&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/categories/Website-Basics/"/>
-    
-    
-    <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
     
   </entry>
   
