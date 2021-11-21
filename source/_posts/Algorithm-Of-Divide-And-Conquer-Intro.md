@@ -737,6 +737,23 @@ private void merge(int[] arr, int lo, int mid, int hi) {
 }
 ```
 
+<mark>为什么会出现一种特殊情况：左半边还没有遍历完</mark>
+
+这和我们对数组的划分有关系，上诉代码中划分子问题是这样的：
+
+```java
+mergeSort_two(arr, lo, mid);
+mergeSort_two(arr, mid + 1, hi);
+```
+
+如果数组长度为偶数，那么划分的左右部分长度相等；
+
+如果数组长度为奇数，那么划分的左半边一定比右半边长。
+
+所以最后要继续遍历左半边。
+
+
+
 
 
 # 题解
