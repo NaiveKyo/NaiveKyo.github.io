@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-11-17T13:31:47.172Z</updated>
+  <updated>2021-11-21T14:29:36.084Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Random Function Intro</title>
+    <link href="https://naivekyo.github.io/2021/11/21/java-random-function-intro/"/>
+    <id>https://naivekyo.github.io/2021/11/21/java-random-function-intro/</id>
+    <published>2021-11-21T13:01:37.000Z</published>
+    <updated>2021-11-21T14:29:36.084Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;随机数生成&quot;&gt;&lt;a href=&quot;#随机数生成&quot; class=&quot;headerlink&quot; title=&quot;随机数生成&quot;&gt;&lt;/a&gt;随机数生成&lt;/h1&gt;&lt;h2 id=&quot;1、Math-random&quot;&gt;&lt;a href=&quot;#1、Math-random&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>JVM Summary</title>
@@ -171,7 +196,7 @@
     <link href="https://naivekyo.github.io/2021/11/05/algorithm-of-divide-and-conquer-intro/"/>
     <id>https://naivekyo.github.io/2021/11/05/algorithm-of-divide-and-conquer-intro/</id>
     <published>2021-11-05T01:32:37.000Z</published>
-    <updated>2021-11-07T06:56:50.006Z</updated>
+    <updated>2021-11-21T12:25:41.672Z</updated>
     
     
       
@@ -492,31 +517,6 @@
     
     
     <category term="Website Basics" scheme="https://naivekyo.github.io/tags/Website-Basics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Logging Logback Configuration Info</title>
-    <link href="https://naivekyo.github.io/2021/09/25/logging-logback-configuration-info/"/>
-    <id>https://naivekyo.github.io/2021/09/25/logging-logback-configuration-info/</id>
-    <published>2021-09-25T09:29:08.000Z</published>
-    <updated>2021-09-25T10:05:24.588Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Example&quot;&gt;&lt;a href=&quot;#一、Example&quot; class=&quot;headerlink&quot; title=&quot;一、Example&quot;&gt;&lt;/a&gt;一、Example&lt;/h2&gt;&lt;h3 id=&quot;1、引入依赖&quot;&gt;&lt;a href=&quot;#1、引入依赖&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Logging" scheme="https://naivekyo.github.io/categories/Logging/"/>
-    
-    
-    <category term="Logging" scheme="https://naivekyo.github.io/tags/Logging/"/>
     
   </entry>
   

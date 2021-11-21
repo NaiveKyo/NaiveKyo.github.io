@@ -644,14 +644,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-07
+                    2021-11-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    7.3k
+                    7.4k
                 </div>
                 
 
@@ -1309,8 +1309,14 @@ helper <span class="token operator">=</span> <span class="token keyword">new</sp
         arr<span class="token punctuation">[</span>current<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> helper<span class="token punctuation">[</span>left<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p><mark>为什么会出现一种特殊情况：左半边还没有遍历完</mark></p>
+<p>这和我们对数组的划分有关系，上诉代码中划分子问题是这样的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token function">mergeSort_two</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">mergeSort_two</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> hi<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-
+<p>如果数组长度为偶数，那么划分的左右部分长度相等；</p>
+<p>如果数组长度为奇数，那么划分的左半边一定比右半边长。</p>
+<p>所以最后要继续遍历左半边。</p>
 <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="五种思路"><a href="#五种思路" class="headerlink" title="五种思路"></a>五种思路</h2><ol>
 <li>举例法<ul>
 <li>先列举出一些具体的例子，看看能不能找出规律</li>

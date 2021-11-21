@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JVM">
+    <meta name="keywords" content="Java">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JVM Summary | NaiveKyo</title>
+    <title>Java Random Function Intro | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -488,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211006224512.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211008143850.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JVM Summary</h1>
+                    <h1 class="description center-align post-title">Java Random Function Intro</h1>
                 </div>
             </div>
         </div>
@@ -612,8 +612,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JVM/">
-                                <span class="chip bg-color">JVM</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -624,8 +624,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/JVM/" class="post-category">
-                                JVM
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -637,21 +637,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-17
+                    2021-11-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-17
+                    2021-11-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3k
+                    1.5k
                 </div>
                 
 
@@ -671,209 +671,134 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><blockquote>
-<p>重点</p>
-</blockquote>
+                <h1 id="随机数生成"><a href="#随机数生成" class="headerlink" title="随机数生成"></a>随机数生成</h1><h2 id="1、Math-random"><a href="#1、Math-random" class="headerlink" title="1、Math.random"></a>1、Math.random</h2><p>Math 类是 Java 中与数学相关的类，可以使用其中的静态方法 <code>random()</code> 来生成伪随机数。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// java.lang.Math#random()</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">double</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">RandomNumberGeneratorHolder</span><span class="token punctuation">.</span>randomNumberGenerator<span class="token punctuation">.</span><span class="token function">nextDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">RandomNumberGeneratorHolder</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Random</span> randomNumberGenerator <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其底层使用的是 <code>java.util.Random</code> 类作为伪随机数生成器。</p>
+<p>返回一个 double 值，取值范围 <code>[0.0, 1.0)</code>，近似一个均匀分布。</p>
+<p><code>Math.random()</code> 方法是线程安全的，第一次调用会生成一个伪随机数生成器实例，此后调用此方法都是共用这个实例，当线程少的时候还好，如果线程数非常多且生成随机数的速率较高，那么性能就会下降。可以考虑使用 <code>java.util.Random</code> 在为每个线程生成伪随机数生成器。</p>
+<h2 id="2、java-util-Random"><a href="#2、java-util-Random" class="headerlink" title="2、java.util.Random"></a>2、java.util.Random</h2><p><code>java.util.Random</code> 的实例用于生成伪随机数，是线程安全的。</p>
+<p>它的核心在于种子和生成算法。</p>
+<p>不过一般情况下，我们会使用 <code>Math.random()</code> 方法来生成伪随机数。</p>
+<p>Random 的实例是线程安全的，但是在高并发的情况下使用它可能会遇到线程争用导致的效率下降问题，这是因为 Random 生成随机数的时候使用的是 CAS。</p>
+<p><mark>比较并交换(compare and swap, CAS)，是原子操作的一种，可用于在多线程编程中实现不被打断的数据交换操作，从而避免多线程同时改写某一数据时由于执行顺序不确定性以及中断的不可预知性产生的数据不一致问题。 该操作通过将内存中的值与指定数据进行比较，当数值一样时将内存中的数据替换为新的值。</mark></p>
+<p>考虑在多线程设计中使用 <code>java.util.concurrent.ThreadLocalRandom</code>。</p>
+<p>同时 Random 的实例在加密上不安全。 考虑使用 <code>java.security.SecureRandom</code> 来获得一个加密安全的伪随机数生成器，供安全敏感的应用程序使用。  </p>
+<p>例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 返回 [0, bound) 之间的整数</span>
+    random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span>random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="3、java-util-concurrent-ThreadLocalRandom"><a href="#3、java-util-concurrent-ThreadLocalRandom" class="headerlink" title="3、java.util.concurrent.ThreadLocalRandom"></a>3、java.util.concurrent.ThreadLocalRandom</h2><p>ThreadLocalRandom 直接继承自 java.util.Random。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/** The common ThreadLocalRandom */</span>
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">ThreadLocalRandom</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadLocalRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/** Constructor used only for static singleton */</span>
+<span class="token keyword">private</span> <span class="token class-name">ThreadLocalRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    initialized <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// false during super() call</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>例子：获取一个随机整数</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span> randomInt <span class="token operator">=</span> <span class="token class-name">ThreadLocalRandom</span><span class="token punctuation">.</span><span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span>begin<span class="token punctuation">,</span> end <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>看一下核心代码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// java.util.concurrent.ThreadLocalRandom#current()</span>
+
+<span class="token comment">// 返回当前线程的 ThreadLocalRandom 随机数生成器</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ThreadLocalRandom</span> <span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>UNSAFE<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> PROBE<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">localInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里有一个 <code>UNSAFE</code> 全局对象，它是 <code>sun.misc.Unsafe</code> 类的实例。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// java.util.concurrent.ThreadLocalRandom#localInit()</span>
+
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">localInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> p <span class="token operator">=</span> probeGenerator<span class="token punctuation">.</span><span class="token function">addAndGet</span><span class="token punctuation">(</span>PROBE_INCREMENT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> probe <span class="token operator">=</span> <span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> p<span class="token punctuation">;</span> <span class="token comment">// skip 0</span>
+    <span class="token keyword">long</span> seed <span class="token operator">=</span> <span class="token function">mix64</span><span class="token punctuation">(</span>seeder<span class="token punctuation">.</span><span class="token function">getAndAdd</span><span class="token punctuation">(</span>SEEDER_INCREMENT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Thread</span> t <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    UNSAFE<span class="token punctuation">.</span><span class="token function">putLong</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> SEED<span class="token punctuation">,</span> seed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    UNSAFE<span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> PROBE<span class="token punctuation">,</span> probe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里是为了为当前线程初始化一个随机种子，<strong style="color:red">核心代码就在于 UNSAFE&nbsp;</strong>的两个方法。</p>
+<p>查看源码发现都是 native 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">int</span> <span class="token function">getInt</span><span class="token punctuation">(</span><span class="token class-name">Object</span> var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">putInt</span><span class="token punctuation">(</span><span class="token class-name">Object</span> var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">,</span> <span class="token keyword">int</span> var4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">long</span> <span class="token function">getLong</span><span class="token punctuation">(</span><span class="token class-name">Object</span> var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">putLong</span><span class="token punctuation">(</span><span class="token class-name">Object</span> var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">,</span> <span class="token keyword">long</span> var4<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Unsafe 类在 rt.jar 中，而且私有化构造方法，我们只能看到字节码文件，而且无法实例化它，但是可以找到这些方法的说明：</p>
 <ul>
-<li>类的加载过程</li>
-<li>运行时数据区的各个结构</li>
-<li>String</li>
-<li>垃圾标记与清除阶段的算法</li>
-<li>各垃圾回收器的吞吐量优先和低延迟</li>
-<li>字节码指令</li>
+<li><code>putLong(object, offset, value)</code> 可以将 object 对象内存地址偏移 offset 后的位置后四个字节设置为 value。</li>
+<li><code>getLong(object, offset)</code> 会从 object 对象内存地址偏移 offset 后的位置读取四个字节作为 long 型返回。</li>
 </ul>
+<p>这方法可以直接操作内存，而且不做任何安全校验，确实符合类名。</p>
+<p>在我们的常识里，get 方法是最容易抛异常的地方，比如空指针、类型转换等，但 <code>Unsafe.getLong()</code> 方法是个非常安全的方法，它从某个内存位置开始读取四个字节，而不管这四个字节是什么内容，总能成功转成 long 型，至于这个 long 型结果是不是跟业务匹配就是另一回事了。而 set 方法也是比较安全的，它把某个内存位置之后的四个字节覆盖成一个 long 型的值，也几乎不会出错。</p>
+<p><mark>那么这些方法不安全在哪里呢？</mark></p>
+<p>它们的不安全并不是在这两个方法执行期间报错，而是未经保护地改变内存，会引起别的方法在使用这一段内存时报错。</p>
 <blockquote>
-<p>概览</p>
+<p>ThreadLocalRandom 的实现</p>
 </blockquote>
+<p>ThreadLocalRandom 的实现需要 Thread 对象的配合，在 Thread 对象内存在着一个属性 <code>threadLocalRandomSeed</code>，它保存着这个线程专属的随机种子，而这个属性在 Thread 对象的 offset，是在 ThreadLocalRandom 类加载时就确定了的，具体方法是 </p>
+<p><code>SEED = UNSAFE.objectFieldOffset(Thread.class.getDeclaredField("threadLocalRandomSeed"));</code></p>
+<p>我们知道一个对象所占用的内存大小在类被加载后就确定了的，所以使用 <code>Unsafe.objectFieldOffset(class, fieldName)</code> 可以获取到某个属性在类中偏移量，而在找对了偏移量，又能确定数据类型时，使用 ThreadLocalRandom 就是很安全的。</p>
+<h2 id="4、java-security-SecureRandom"><a href="#4、java-security-SecureRandom" class="headerlink" title="4、java.security.SecureRandom"></a>4、java.security.SecureRandom</h2><p><code>java.security.SecureRandom</code> 也继承自 <code>java.util.Random</code>，是它的增强版本，可以提供强加密随机数生成器。</p>
+<p>SecureRandom 选取种子的方式有很多种，当它和 Random 的处于一下条件时：</p>
 <ul>
-<li>类加载</li>
-<li>内存结构</li>
-<li>执行引擎</li>
-<li>垃圾回收</li>
-<li>字节码指令</li>
-<li>JVM 监控及诊断工具</li>
-<li>性能调优</li>
+<li>种子一样</li>
+<li>相同条件下</li>
+<li>两者会生成一样的随机数</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117212626.png"></p>
-<blockquote>
-<p>问题</p>
-</blockquote>
-<ul>
-<li><p>什么是 Java 虚拟机，为什么要使用？</p>
-<ul>
-<li>虚拟机：指以软件的方式模拟具有完整硬件系统功能、运行在一个完全隔离环境中的完整计算机系统，是物理机的软件实现。</li>
-</ul>
-</li>
-<li><p>Java 虚拟机的生命周期及体系结构</p>
-<ul>
-<li>Java 虚拟机的启动是通过引导类加载器（bootstrap class loader）创建一个初始类（initial class）来完成，<strong>这个类是由虚拟机的具体实现指定的。</strong></li>
-</ul>
-</li>
-<li><p>虚拟机的退出</p>
-<ul>
-<li>有如下几种情况：</li>
-<li>某线程调用 Runtime 类或 System 类的 exit 方法，或 Runtime 类的 halt 方法，并且 Java 安全管理器也允许这次 exit 或 halt 操作；</li>
-<li>程序正常执行到结束；</li>
-<li>程序在执行过程中遇到了异常或错误而异常终止；</li>
-<li>由于操作系统出现错误而导致 Java 虚拟机进程终止。</li>
-</ul>
-</li>
-</ul>
-<h1 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h1><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117212952.png"></p>
-<h2 id="一、类加载器子系统"><a href="#一、类加载器子系统" class="headerlink" title="一、类加载器子系统"></a>一、类加载器子系统</h2><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213015.png"></p>
-<ul>
-<li>类加载器子系统作用</li>
-<li>类的加载过程</li>
-<li>类的加载器<ul>
-<li>分类</li>
-<li>为什么需要用户自定义类加载器</li>
-</ul>
-</li>
-<li>双亲委派机制</li>
-<li>破坏双亲委派机制</li>
-<li>沙箱安全机制</li>
-</ul>
-<h3 id="1、类的加载过程"><a href="#1、类的加载过程" class="headerlink" title="1、类的加载过程"></a>1、类的加载过程</h3><p>加载（Loading） –&gt; 验证（Verification） –&gt; 准备（Preparation） –&gt; 解析（Resolution）–&gt; 初始化（Initialization）</p>
-<p>验证、准备、解析统称为链接（Linking）</p>
-<blockquote>
-<p>一、加载</p>
-</blockquote>
-<ul>
-<li>通过一个类的全限定名获取定义此类的二进制字节流</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
-<li><strong>在内存中生成一个代表这个类的 java.lang.Class 对象</strong>，作为方法区这个类的各种数据的访问入口</li>
-</ul>
-<p>注意：数组类是如何创建加载的呢？</p>
-<blockquote>
-<p>二、链接</p>
-</blockquote>
-<p>验证（Verify）：</p>
-<ul>
-<li>目的在于确保 Class 文件的字节流中包含信息符合当前虚拟机要求，保证被加载类的正确性，不会危害迅即自身安全</li>
-<li>主要包括四种验证：文件格式验证、元数据验证、字节码验证、符号引用验证</li>
-</ul>
-<p>准备（Prepare）：</p>
-<ul>
-<li>为类变量分配内存并且设置该类变量的默认初始值，即零值</li>
-<li><strong>这里不包含用 final 修饰的 static，因为 final 在编译的时候就会分配了，准备阶段会显式初始化；</strong></li>
-<li><strong>这里不会为实例变量分配初始化</strong>，类变量会分配在方法区中，而实例变量是会随着对象一起分配到 Java 堆中</li>
-</ul>
-<p>解析（Resolve）：</p>
-<ul>
-<li><strong>将常量池内的符号引用转换为直接引用的过程</strong></li>
-<li>事实上，解析操作往往会伴随 JVM 在执行完初始化之后再执行</li>
-</ul>
-<p>符号引用就是一组符号来描述所引用的目标。符号引用的字面量形式明确定义再《java虚拟机规范》的 Class 文件格式中。</p>
-<p>在解析阶段，jvm 根据字符串的内容找到内存区域中相应的地址，然后把符号应用替换为直接指向目标的指针、句柄、偏移量等等，这些直接指向目标的指针、句柄、偏移量就被称为 <strong>直接引用</strong>。</p>
-<ul>
-<li>解析动作主要针对类或接口、字段、类方法、接口方法、方法类型等等。对应常量池中的 CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_info 等等</li>
-</ul>
-<blockquote>
-<p>三、初始化</p>
-</blockquote>
-<ul>
-<li><strong>初始化阶段就是执行类构造器方法 &lt;clinit&gt;（）的过程</strong></li>
-<li>&lt;clinit&gt; 方法不需定义，是 javac 编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来</li>
-<li>构造器方法中指令按语句在源文件中出现的顺序执行</li>
-<li><strong>&lt;clinit&gt;（）叫做类的构造器方法，它不同于类的构造器</strong>。（关联：类的构造器是虚拟机视角下的 &lt;init&gt;（）方法）</li>
-<li>若该类具有父类，JVM 会保证子类的 &lt;clinit&gt;（）执行前，父类的 &lt;clinit&gt;（）已经执行完毕</li>
-<li>虚拟机必须保证一个类的 &lt;clinit&gt;（）方法在多线程下被同步枷锁</li>
-</ul>
-<h3 id="2、类的加载器"><a href="#2、类的加载器" class="headerlink" title="2、类的加载器"></a>2、类的加载器</h3><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213034.png"></p>
-<ul>
-<li>JVM 支持两种类型的类加载器，分别为 <strong style="color:red">引导类加载器 （Bootstrap ClassLoader）</strong> 和 <strong style="color:red">自定义类加载器（UserDefined ClassLoader）</strong><ul>
-<li>引导类加载器 使用 C/C++ 编写，属于 JVM 的一部分</li>
-<li>自定义类加载器 是用 Java 编写的，它们都直接或间接的继承于 <code>java.lang.ClassLoader</code> 这个抽象类</li>
-</ul>
-</li>
-<li>怎么算自定义呢？</li>
-<li>有些地方说是三类、四类，JVM 规范中是两类，上图中的四者之间的关系是包含关系。不是上下层，也不是父子类的继承关系。</li>
-</ul>
-<blockquote>
-<p>为什么需要用户自定义类加载器？</p>
-</blockquote>
-<ul>
-<li>再 Java 的日常开发中，类的加载几乎是由上述三种类加载器相互配合执行的，再必要时，我们还可以自定义类加载器，来定制类的加载方式。</li>
-<li><strong>为什么要自定义类加载器？</strong><ul>
-<li>隔离加载类，避免类冲突</li>
-<li>修改类加载的方式，根据实际情况在某个时间点按需动态加载</li>
-<li>扩展加载源：网络、数据库、机顶盒</li>
-<li>防止源码泄露</li>
-</ul>
-</li>
-</ul>
-<h3 id="3、双亲委派机制"><a href="#3、双亲委派机制" class="headerlink" title="3、双亲委派机制"></a>3、双亲委派机制</h3><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213054.png"></p>
-<blockquote>
-<p>工作原理</p>
-</blockquote>
-<p>（1）如果一个类加载器接收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行；</p>
-<p>（2）如果父类的加载器不加载又会向下委托给子加载器去执行。</p>
-<blockquote>
-<p>优势</p>
-</blockquote>
-<ul>
-<li>避免类的重复加载</li>
-<li>保护程序安全，防止核心 API 被随意篡改</li>
-</ul>
-<h3 id="4、破坏双亲委派机制"><a href="#4、破坏双亲委派机制" class="headerlink" title="4、破坏双亲委派机制"></a>4、破坏双亲委派机制</h3><p>（1）第一次</p>
-<p>发生在双亲委派模型出现之前 —— 即 JDK 1.2 面世以前的时代。</p>
-<p>类加载器的概念和抽象类 <code>java.lang.ClassLoader</code> 在 Java 的第一个版本中就已经存在，面对已经存在的用户自定义类加载器的代码，Java 设计者们引入双亲委派模型时不得不做出一些妥协，为了兼容这些已有代码，<strong>无法再以技术手段编码 loadClass() 被子类覆盖的可能性，只能在 JDK 1.2 之后的 java.lang.ClassLoader 中添加了一个新的 protected 方法 findClass()，并引导用户编写的类加载逻辑时尽可能去重写这个方法，而不是在 loadClass() 中编写代码。</strong></p>
-<p>（2）第二次</p>
-<p>双亲委派机制的第二次 “被破坏” 是由于这个模型自身的缺陷导致的，双亲委派很好地解决了各个类加载器协作时基础类型的一致性问题（<strong>越基础的类由越上层的加载器进行加载</strong>），基础类型之所以被称为 “基础”，是因为它们总是作为被用户代码继承、调用的 API 存在，但 <strong>如果有基础类型又要调用回用户的代码，那么该怎么办呢？</strong></p>
-<p>一个典型的例子就是 JNDI 服务，JNDI 现在已经是 Java 的标准服务，在 JDK 1.3 时加入到 rt.jar。</p>
-<p>JNDI 存在的目的就是对资源进行查找和集中管理，它需要调用由其他厂商实现并部署在应用程序的 ClassPath 下的 JNDI 服务提供者接口 （Service  Provider Interface，SPI）的代码。</p>
-<p>（3）第三次</p>
-<p>双亲委派模型的第三次 “被破坏” 是由于用户对程序动态性的追求导致的。（如：代码热替换 Hot Swap、模块热部署 Host Deployment 等等）。</p>
-<p>IBM 公司主导的 JSR-291（即 OSGi R4.2）实现模块化热部署的关键是它自定义的类加载器机制的实现，每一个程序模块（OSGi 中称为 Bundle）都有一个自己的类加载器，当需要更换一个 Bundle 时，就把 Bundle 连同类加载器一起换掉以实现代码的热替换。在 OSGi 环境下，类加载器不再双亲委派模型推荐的树状结构，而是进一步发展为更加复杂的 <strong style="color:red">网状结构</strong>。</p>
-<p>当收到类加载请求时，OSGi 将按照下面的顺序进行类搜索：</p>
-<ol>
-<li><strong style="color:red">如果类或资源在 java.* 包中，将请求委派给父类加载器加载</strong>，否则，继续下一步搜索。 如果请求被委托给父类加载器还找不到类或资源，则搜索终止并且失败。</li>
-<li><strong style="color:red">如果类或资源来自引导委派列表（系统变量 org.osgi.framework.bootdelegation）中包含的包，将请求委派给父类加载器加载</strong>，如果在那里找不到类或资源，继续下一步搜索。</li>
-<li>如果类或资源属于声明在 Import-Package 导入的包中，或者是在先前的加载中动态导入的，那么请求将委托给声明 Export-Package 这个包的 bundle 的类加载器; 否则继续下一步搜索。如果请求被委托给导出类加载器但找不到类或资源，则失败。</li>
-<li>如果类或资源位于在多个 Require-Bundle 包中导入的包中，则请求将按照清单中指定的顺序委派给其他包的类加载器。这个过程中使用深度优先策略;如果未找到类或资源，则继续下一步搜索。</li>
-<li>搜索 bundle 的内嵌 jar 的类路径 (Bundle Class Path)。如果找不到类或资源，继续下一步。</li>
-<li>查找 Bundle 的 Fragment Bundle 中导入的包, 如果没找到继续下一步</li>
-<li>如果类或资源位于自己导出的包中，则搜索结束并失败。</li>
-<li>否则，如果类或资源位于 DynamicImport-Package 导入的包中，则尝试动态导入包。</li>
-<li>如果动态导入包成功，则将请求委托给导出这个包的类加载器。如果请求被委托给导出类加载器并且找不到类或资源，则搜索终止且失败。</li>
-</ol>
-<p>但这种模式也会产生许多隐患,比如循环依赖问题,如果BundleA依赖BundleB , BundleB依赖BundleC, BundleC又依赖BundleA, 这可能在加载Bundle的时候导致死锁问题。为了避免这种情况,根据OSGi规范说明,在这种情况下,框架必须在第一次访问Bundle的时候做标记,不去访问已经访问过的Bundle.</p>
-<p>   另外,在OSGi中Bundle都有自己独有的<code>ClassLoader</code>, Fragment Bundle不同于普通Bundle, 其和其附着的Host Bundle共享一个<code>ClassLoader.</code></p>
-<h3 id="5、沙箱安全机制"><a href="#5、沙箱安全机制" class="headerlink" title="5、沙箱安全机制"></a>5、沙箱安全机制</h3><h2 id="二、运行时数据区"><a href="#二、运行时数据区" class="headerlink" title="二、运行时数据区"></a>二、运行时数据区</h2><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213113.png"></p>
-<p>​    比较重要的部分：</p>
-<ul>
-<li>堆</li>
-<li>虚拟机栈</li>
-<li>方法区</li>
-</ul>
-<h2 id="三、执行引擎"><a href="#三、执行引擎" class="headerlink" title="三、执行引擎"></a>三、执行引擎</h2><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213127.png"></p>
-<p>Java 被称为半解释型半编译型语言，本质上其实是混合型。</p>
-<ul>
-<li>早期 Java 是解释型语言</li>
-<li>第二版 JVM 中引入了即时编译器（对代码进行缓存，再去执行的时候效率会更高，从这个角度上是半解释半编译的）</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211117213141.png"></p>
-<p><mark>这里上面的编译器应该是前端编译器，将 .java 编译成 .class</mark></p>
-<p><mark>这里下面的 JIT 就是运行期编译器（Just In Time Compiler），将 .class 字节码转换成机器码</mark></p>
-<ul>
-<li>前端编译器 javac：负责将 Java 语法糖，转换为正常的字节码：<ul>
-<li>提高程序员开发效率</li>
-</ul>
-</li>
-<li>运行期编译器 JIT：负责代码优化<ul>
-<li>增进代码运行速度</li>
-</ul>
-</li>
-</ul>
-<h2 id="四、各种-JVM"><a href="#四、各种-JVM" class="headerlink" title="四、各种 JVM"></a>四、各种 JVM</h2><ul>
-<li>Sun Classic VM：解释型</li>
-<li>Exact VM ：只应用在 Solaris 系统（引入即时编译器）</li>
-<li><strong>Sun 公司的 HotSpot VM</strong></li>
-<li><strong>BEA 的 JRockit ：不包含解释器，服务器端，JMC</strong></li>
-<li><strong>IBM 的 J9</strong></li>
-<li>……</li>
-<li><strong>Craal VM</strong> ： 最近新出来的，前途很光明</li>
-</ul>
+<p>例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSecureRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 默认的种子</span>
+    <span class="token class-name">SecureRandom</span> secureRandom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 以字节数组为种子</span>
+    <span class="token class-name">SecureRandom</span> secureRandom1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token string">"abcd"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">SecureRandom</span> secureRandom2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token string">"abcd"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 如果种子相同，生成的随机序列也一样</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>secureRandom1<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 34 44 40 30 1 73 49 4 37 56</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 34 44 40 30 1 73 49 4 37 56</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>secureRandom2<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -900,7 +825,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/11/17/jvm-summary/">https://naivekyo.github.io/2021/11/17/jvm-summary/</a>
+                    <a href="https://naivekyo.github.io/2021/11/21/java-random-function-intro/">https://naivekyo.github.io/2021/11/21/java-random-function-intro/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -938,8 +863,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JVM/">
-                                    <span class="chip bg-color">JVM</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                         </div>
@@ -1106,9 +1031,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/11/21/java-random-function-intro/">
                     <div class="card-image">
@@ -1125,9 +1051,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1140,6 +1066,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1158,30 +1085,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/15/algorithm-of-sort-algorithm-example/">
+                <a href="/2021/11/17/jvm-summary/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211006224449.jpg" class="responsive-img" alt="Algorithm Of Sort Algorithm Example">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211006224512.jpg" class="responsive-img" alt="JVM Summary">
                         
-                        <span class="card-title">Algorithm Of Sort Algorithm Example</span>
+                        <span class="card-title">JVM Summary</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            排序算法常规题解
+                            JVM 概述(重要知识点)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
                                 </a>
                             
                             
@@ -1191,8 +1118,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/JVM/">
+                        <span class="chip bg-color">JVM</span>
                     </a>
                     
                 </div>
