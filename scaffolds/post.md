@@ -2,14 +2,16 @@
 title: {{ title }}
 date: {{ date }}
 author: NaiveKyo
-top:
+top: false
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
 coverImg: /img/
-cover:
+cover: false
 toc: true
+mathjax: false
 summary:
 categories:
 keywords:
 tags:
 ---
+
