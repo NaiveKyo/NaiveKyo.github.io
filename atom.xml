@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-11-28T15:46:08.309Z</updated>
+  <updated>2021-11-30T08:25:13.727Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm Of Array&amp;Matrix Intro</title>
+    <link href="https://naivekyo.github.io/2021/11/30/algorithm-of-array-matrix-intro/"/>
+    <id>https://naivekyo.github.io/2021/11/30/algorithm-of-array-matrix-intro/</id>
+    <published>2021-11-30T07:32:57.000Z</published>
+    <updated>2021-11-30T08:25:13.727Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、基础题解&quot;&gt;&lt;a href=&quot;#一、基础题解&quot; class=&quot;headerlink&quot; title=&quot;一、基础题解&quot;&gt;&lt;/a&gt;一、基础题解&lt;/h1&gt;&lt;h2 id=&quot;1、顺时针打印二维数组&quot;&gt;&lt;a href=&quot;#1、顺时针打印二维数组&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Java General Util Library</title>
@@ -482,31 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Tomcat-的生命周期管理&quot;&gt;&lt;a href=&quot;#Tomcat-的生命周期管理&quot; class=&quot;headerlink&quot; title=&quot;Tomcat 的生命周期管理&quot;&gt;&lt;/a&gt;Tomcat 的生命周期管理&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Tomcat" scheme="https://naivekyo.github.io/categories/Tomcat/"/>
-    
-    
-    <category term="Tomcat" scheme="https://naivekyo.github.io/tags/Tomcat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tomcat Structure and Start-up process</title>
-    <link href="https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/"/>
-    <id>https://naivekyo.github.io/2021/10/05/tomcat-structure-and-start-up-process/</id>
-    <published>2021-10-05T02:58:43.000Z</published>
-    <updated>2021-10-23T11:34:25.232Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Tomcat-顶层结构及启动过程&quot;&gt;&lt;a href=&quot;#Tomcat-顶层结构及启动过程&quot; class=&quot;headerlink&quot; title=&quot;Tomcat 顶层结构及启动过程&quot;&gt;&lt;/a&gt;Tomcat 顶层结构及启动过程&lt;/h2&gt;&lt;h3</summary>
         
       
     
