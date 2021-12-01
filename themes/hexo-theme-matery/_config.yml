@@ -269,19 +269,23 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20211031150048.jpg
     - /img/20211031150110.jpg
     - /img/20211031150127.jpg
     - /img/20211031150142.jpg
     - /img/20211031150350.jpg
     - /img/20211031150404.jpg
-#   - /img/20211031150423.jpg
+    - /img/20211031150423.jpg
 #   - /img/20211031150436.jpg
 #   - /img/20211031150448.jpg
 #   - /img/20211031150501.jpg
 #   - /img/20211031150300.jpg
 #   - /img/20211031161747.jpg
 #   - /img/20211115210617.jpg
+#   - /img/20211130165245.jpg
+#   - /img/20211130165313.jpg
+#   - /img/20211130165359.jpg
+#   - /img/20211130165446.jpg
+
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件
@@ -604,7 +608,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211115210617.jpg   # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211130165509.jpg   # 指定 jsdlivr 地址的图片
 
 #ICP备案信息尾部显示
 icp:
