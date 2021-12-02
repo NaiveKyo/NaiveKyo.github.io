@@ -509,7 +509,7 @@ public String test5(HttpServletRequest request) {
 }
 ```
 
-可知 名为 testConditional 的组件没有在容器中注册，那么可以这样在配置类中设置：
+可知名为 testConditional 的组件没有在容器中注册，那么可以这样在配置类中设置：
 
 ```java
 @Configuration
