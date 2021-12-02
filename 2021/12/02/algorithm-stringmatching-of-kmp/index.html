@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Algorithm StringMatching Of RabinKarp | NaiveKyo</title>
+    <title>Algorithm StringMatching Of KMP | NaiveKyo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -488,12 +488,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150127.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150142.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Algorithm StringMatching Of RabinKarp</h1>
+                    <h1 class="description center-align post-title">Algorithm StringMatching Of KMP</h1>
                 </div>
             </div>
         </div>
@@ -651,7 +651,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.6k
+                    2.6k
                 </div>
                 
 
@@ -671,173 +671,530 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="字符串朴素匹配算法"><a href="#字符串朴素匹配算法" class="headerlink" title="字符串朴素匹配算法"></a>字符串朴素匹配算法</h1><p>在字符串匹配算法中，一般将带匹配的字符串称为母串，匹配的字符串称为模式。</p>
-<p>按照最简单的想法，就是使用暴力法（朴素字符串匹配算法）：</p>
-<p>时间复杂度：$T(n) = O(M \times N)$</p>
+                <h1 id="KMP-算法"><a href="#KMP-算法" class="headerlink" title="KMP 算法"></a>KMP 算法</h1><p>Knuth、Morris 和 Pratt 发明的算法的基本思想是当出现不匹配时，就能知晓一部分文本的内容（因为这部分文本在匹配失败之前已经和模式相匹配），我们利用这些信息可以避免将指针回退到所有这些已知的字符之前。</p>
+<h2 id="1、next-数组解法"><a href="#1、next-数组解法" class="headerlink" title="1、next 数组解法"></a>1、next 数组解法</h2><p>重点：</p>
+<ul>
+<li>依据模式串失配位置前面部分的前缀和后缀的最长匹配来构建一个 next 数组</li>
+</ul>
+<p>对于模式串的 next 数组，当匹配的过程中在 j 位置失配，那么模式串的扫描指针应该回退到 k 位置上，</p>
+<p>即：<code>next[j] = k</code></p>
+<table>
+<thead>
+<tr>
+<th>索引/模式串</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>b/（失配位置）</th>
+<th>next[i]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>b</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>b</td>
+<td>a</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>b</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>KMP 算法适用于字符重复率比较高的文本，因为这种类型的文本可以很方便的构建 next 数组：</p>
+<p>例如，上表中如果在索引为 4 的位置处匹配失败，那么此时已经匹配成功的模式串的那部分就是 b a b a，这一部分的前缀为 b a，后缀为 b a，可得出最长匹配为 2，即 next[4] = 2，那么模式指针应该指向 <code>pat.charAt(2)</code> 。</p>
+<p>但是我们如果要计算出最长匹配会比较麻烦，这里要利用一些规律，例如这里在 <code>pat.charAt(4)</code>  处匹配失败，就看 <code>next[4 - 1]</code> 的值，这里为 1，则比对 <code>pat.charAt[4 - 1]</code> 和 <code>pat.charAt(1)</code> 的字符是否相同，如果相同则 <code>next[4] = next[4 - 1] + 1</code> ，如果不同则 <code>next[4] = next[1] + 1</code> 。利用这种规律可以很快构建好 next 数组。</p>
+<p>最终 next 数组和模式串对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>模式串</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>next[i]</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>设母串长度为 M，模式串长度为 N，总体使用时间是构建 next 数组和进行匹配相加，即：</p>
+<p> T(n) = O(M + N)​</p>
+<p>代码实现：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> solution_1_字符串匹配<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">kmp_1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-    <span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"ABABABA"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"ABA"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"ABAA"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> txt <span class="token operator">=</span> <span class="token string">"ABCAABAABAABAA"</span><span class="token punctuation">;</span>  <span class="token comment">// 4、7、10</span>
 
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">solution_1_brute_force</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> pattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> next <span class="token operator">=</span> <span class="token function">build_next</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">kmp_match</span><span class="token punctuation">(</span>txt<span class="token punctuation">,</span> pattern<span class="token punctuation">,</span> next<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">solution_1_brute_force</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">build_next</span><span class="token punctuation">(</span><span class="token class-name">String</span> pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    next<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">int</span> pLeft <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> pLeft <span class="token operator">&lt;</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>pLeft<span class="token punctuation">)</span> <span class="token operator">!=</span> str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token keyword">break</span><span class="token punctuation">;</span>
-                pLeft<span class="token operator">++</span><span class="token punctuation">;</span>
-                j<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>pLeft <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                res<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> next<span class="token punctuation">;</span>
+
+    next<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> next<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> pre <span class="token operator">=</span> next<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>pre<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> pre <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> next<span class="token punctuation">[</span>pre<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>res <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"匹配成功的次数: "</span> <span class="token operator">+</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> 
-        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h1 id="RabinKarp-算法"><a href="#RabinKarp-算法" class="headerlink" title="RabinKarp 算法"></a>RabinKarp 算法</h1><p>RK 算法和朴素字符串算法相比，最大的不同是它使用模式串的 hash 值与母串进行比对，通过特定的 hash 函数计算出模式串的 hash 值。</p>
-<p>但是在对比的时候它并不是每次都要重头计算待匹配字符串的 hash 值，而是利用前面的子串的 hash 值来计算出当前待匹配串的 hash 值，这也称之为 <strong style="color:red">滚动 hash</strong>。</p>
-<p>为什么称之为滚动 hash，我们一步一步来解释：</p>
-<blockquote>
-<p>哈希函数</p>
-</blockquote>
-<p>哈希函数其实就是一种映射关系，在字符串匹配中，比如我们有一个模式串：”ABC”，我们知道字符在计算机存储中可以转为 int，那么将 ABC 按照特定的 hash 函数是可以得到一个特定的 hash 值的。</p>
-<p>$hash = hash(pattern)$</p>
-<p>要注意的是对于哈希函数而言最重要的两点就是：</p>
-<ul>
-<li>hash 函数的设计</li>
-<li>尽可能减少冲突</li>
-</ul>
-<blockquote>
-<p>滚动 hash</p>
-</blockquote>
-<p>如果我们在遍历母串的时候以每一个字符开头取匹配串的长度计算 hash 值，那么就和朴素匹配没什么区别了，所以 RK 算法中采用了<strong>滚动哈希算法</strong>，它的思路来源于进制转换。</p>
-<p>我们认为长度为 M 的字符串对应着一个 R 进制的 M 位数。</p>
-<p>而采用的 hash 函数使用一张大小为 Q 的散列表来保存通过 hash 函数计算出的键，$hash(pattern) ，\subset [0, Q)$</p>
-<p>即将一个 R 进制的 M 位数转换为一个 0 到 Q - 1 之间的 int 值散列函数，这一步通过除留余数法可以很方便的做到：<br>$$<br>hash(pattern) \quad \% \quad Q \subset [0, Q)<br>$$</p>
-<p>对于母串的所有位置 i，高效计算出文本中 i + 1 位置的子字符串散列值。这可以由一个简单的数学公式得到。</p>
-<p>我们用 ti 表示 <code>txt.charAt(i)</code> ，那么文本 txt 中从 i 开始取长度为 M 的子字符串所对应的数为：</p>
-<p>$$<br>\begin{align}<br>   x_i &amp;= t_i R^{M-1} + t_{i+1} R^{M-2} + \cdots + t_{i+M-2} R^1 + t_{i+M-1} R^{0} \\<br>   &amp;= (t_i R^{M-2} + t_{i+1} R^{M-3} + \cdots + t_{i+M-2}) R + t_{i+M-1} \\<br>   &amp;= ((t_i R^{M-3} + t_{i+1} R^{M-4} + \cdots + t_{i+M-3})R + t_{i+M-2})R + t_{i+M-1} \\<br>   &amp;= \cdots \\<br>   &amp;= (((\cdots(0 \ast R + t_i)R + t_{i+1})R + t_{i+2})R + \cdots)) + t_{i+M-2})R + t_{i+M-1}<br>\end{align}<br>$$</p>
-<p>假设已知  $h(x_i) = x_i \; mod \; Q$  。将模式字符串右移一位即等价于将 x<sub>i</sub> 替换为：<br>$$<br>x_{i+1} = (x_i - t_iR^{M-1}) R + t_{i + M}R^0<br>$$</p>
-<p>即它要减去第一个数字的值，然后整体乘以 R，最后加上最后一个数字的值。</p>
-<p>有一点比较特殊的是这一步不用考虑取模运算，这和取余操作的性质有关：如果在每次运算操作之后都要进行取余操作，等价于在完成了所有的算术运算后再将最后的结果取余。</p>
-<p><mark>注意这个 Q 的取值也很有意思，在哈希函数中 Q 一般取质数，这和数学的一些性质有关，可以尽可能降低冲突</mark></p>
-<p>RK 算法中使用的散列函数：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">long</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">M</span><span class="token punctuation">,</span> <span class="token keyword">long</span> <span class="token class-name">Q</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">long</span> h <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">M</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        h <span class="token operator">=</span> <span class="token punctuation">(</span>h <span class="token operator">*</span> <span class="token class-name">R</span> <span class="token operator">+</span> key<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> h<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>RabinKarp 算法：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">solution_3_RK</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-    <span class="token class-name">String</span> txt <span class="token operator">=</span> <span class="token string">"ABCABCBAAB"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"AB"</span><span class="token punctuation">;</span>
-
-    <span class="token function">rabin_karp_2</span><span class="token punctuation">(</span>txt<span class="token punctuation">,</span> pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> next<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">rabin_karp_2</span><span class="token punctuation">(</span><span class="token class-name">String</span> txt<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">kmp_match</span><span class="token punctuation">(</span><span class="token class-name">String</span> txt<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">int</span> patLen <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 模式字符串的长度</span>
-
-    <span class="token keyword">int</span> <span class="token class-name">R</span> <span class="token operator">=</span> <span class="token number">256</span><span class="token punctuation">;</span>                    <span class="token comment">// ASCII 码最大长度m</span>
-
-    <span class="token keyword">long</span> <span class="token class-name">Q</span> <span class="token operator">=</span> <span class="token function">longRandomPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 获取一个尽可能大的素数</span>
-
-    <span class="token comment">// 将字符串看作 R 进制的 M 位数</span>
-    <span class="token comment">// 我们每次滚动 hash 时都要减去第一个数 ti * R^(M-1)</span>
-    <span class="token comment">// 先计算出 R^(M - 1) 这一部分</span>
-    <span class="token keyword">long</span> RM <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> patLen <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        RM <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">R</span> <span class="token operator">*</span> RM<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token function">rk_match</span><span class="token punctuation">(</span>txt<span class="token punctuation">,</span> pattern<span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">,</span> RM<span class="token punctuation">,</span> <span class="token class-name">Q</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">// 获取一个尽可能大的素数</span>
-<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">long</span> <span class="token function">longRandomPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name">BigInteger</span> prime <span class="token operator">=</span> <span class="token class-name">BigInteger</span><span class="token punctuation">.</span><span class="token function">probablePrime</span><span class="token punctuation">(</span><span class="token number">31</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> prime<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">/**
-* 计算给定字符串的 hash 值
-* @param key 给定字符串
-* @param M 字符串的长度
-* @param R 进制数
-* @param Q 质数
-* @return hash 值
-*/</span>
-<span class="token keyword">private</span> <span class="token keyword">long</span> <span class="token function">rk_hash</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">M</span><span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">,</span> <span class="token keyword">long</span> <span class="token class-name">Q</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">long</span> h <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">M</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        h <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">R</span> <span class="token operator">*</span> h <span class="token operator">+</span> key<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> h<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">/**
-* 匹配算法
-* @param txt 母串
-* @param pattern 模式串
-* @param R 进制数
-* @param RM 每次减去的数的一部分
-* @param Q 质数
-*/</span>
-<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">rk_match</span><span class="token punctuation">(</span><span class="token class-name">String</span> txt<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">,</span> <span class="token keyword">long</span> RM<span class="token punctuation">,</span> <span class="token keyword">long</span> <span class="token class-name">Q</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
+    <span class="token keyword">int</span> txtPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> patPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> txtLen <span class="token operator">=</span> txt<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> patLen <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">long</span> patHash <span class="token operator">=</span> <span class="token function">rk_hash</span><span class="token punctuation">(</span>pattern<span class="token punctuation">,</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">,</span> <span class="token class-name">Q</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 计算母串中第一个和模式串匹配的子串的 hash 值</span>
-    <span class="token keyword">long</span> txtHash <span class="token operator">=</span> <span class="token function">rk_hash</span><span class="token punctuation">(</span>txt<span class="token punctuation">,</span> patLen<span class="token punctuation">,</span> <span class="token class-name">R</span><span class="token punctuation">,</span> <span class="token class-name">Q</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>txtHash <span class="token operator">==</span> patHash<span class="token punctuation">)</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"match index begin: "</span> <span class="token operator">+</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> patLen<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> txtLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// 减去第一个数字，加上最后一个数字，再次检查匹配</span>
-        <span class="token comment">// 但是要注意我们的 hash 函数计算的是取余后的数, 所以这里要先加上一个 Q</span>
-        txtHash <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>txtHash <span class="token operator">+</span> <span class="token class-name">Q</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>RM <span class="token operator">*</span> txt<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i <span class="token operator">-</span> patLen<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">;</span>
-        txtHash <span class="token operator">=</span> <span class="token punctuation">(</span>txtHash <span class="token operator">*</span> <span class="token class-name">R</span> <span class="token operator">+</span> txt<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token class-name">Q</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>txtHash <span class="token operator">==</span> patHash<span class="token punctuation">)</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"match index begin: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> patLen <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>patLen <span class="token operator">&gt;</span> txtLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"模式串长度大于待匹配串!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">&lt;</span> txtLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-<p>也许你会这样想，当匹配成功一次后就从匹配的地址开始取模式串的长度去和模式串进行一个字符一个字符的比较，这样才能保证匹配完全是正确的，因为存在散列冲突的可能性。</p>
-<p>不过 Rabin 和 Karp 证明了只要选择适当的 Q 值，随机字符串产生散列碰撞的概率为 $\frac1Q$ ，这意味着对于这些变量实际可能出现的值，字符串不匹配时散列值也不会匹配，散列值匹配时字符串才会匹配。</p>
-<p>理论上来说，文本中的某个子字符串可能会在与模式不匹配的情况下产生散列冲突，但是实际应用中使用该算法寻找匹配是可靠的。 </p>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>patPointer <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> txt<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>txtPointer<span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>patPointer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            txtPointer<span class="token operator">++</span><span class="token punctuation">;</span>
+            patPointer<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            patPointer <span class="token operator">=</span> next<span class="token punctuation">[</span>patPointer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>patPointer <span class="token operator">==</span> patLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"match index begin: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">-</span> patLen<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            txtPointer<span class="token operator">--</span><span class="token punctuation">;</span>
+            patPointer <span class="token operator">=</span> next<span class="token punctuation">[</span>patPointer <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="2、dfa-解法"><a href="#2、dfa-解法" class="headerlink" title="2、dfa 解法"></a>2、dfa 解法</h2><p>kmp 算法的核心就在于如何确认在匹配失败时，模式指针应该回退到那个地方而不用回退文本指针。</p>
+<p>它利用了一个 <code>dfa[][]</code> 来记录匹配失败时模式指针应该回退多远。</p>
+<p>对于每个字符 c，在比较了 c 和 <code>pat.charAt(j)</code> 之后 <code>dfa[c][j]</code> 是在比较了 <code>txt.charAt(i)</code> 和 <code>pat.charAt(j)</code> 之后应该和 <code>txt.charAt(i + 1)</code> 比较的模式字符的位置。</p>
+<ul>
+<li>如果 <code>txt.charAt(i)</code> 和  <code>pat.charAt(j)</code> 匹配，则 <code>dfa[pat.charAt(j)][j] = j + 1</code>。</li>
+<li> 如果不匹配的时候，我们要知道  <code>txt.charAt(i)</code> 的字符，也需要知道模式指针 j 应该回退到那个地方即 <code>j = dfa[txt.charAt(i)][j]</code></li>
+</ul>
+<h3 id="1-DFA-模拟"><a href="#1-DFA-模拟" class="headerlink" title="(1) DFA 模拟"></a>(1) DFA 模拟</h3><p>如何构建这样一个 dfa 二维数组就是关键，说明这个过程的一个的一种较好的方法是使用 <strong>确定有限状态自动机（DFA）</strong>。</p>
+<p>如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211202223627.png"></p>
+<p>如图所示，假设字符集中只包含 A、B、C 三种字符，模式字符串为 A B A B A C。</p>
+<p>假设模式字符串的长度代表状态的数量，那么这里共有 0 - 6 七种状态，而待匹配的文本串是一个字符一个字符的输入的，每一个输入的字符代表一次状态的转变。</p>
+<p>如上图下方所示，初始状态为 0：</p>
+<ul>
+<li>第一次输入 A 成功匹配则状态由 0 - 1，如果输入 B 或 C，则状态 0 - 0</li>
+<li>第二次输入 B 成功匹配则状态由 1 - 2，如果输入 A 状态 1 - 1，如果输入 C 则状态 1 - 0</li>
+<li>以此类推 ……</li>
+<li>如果最终状态变为 6 则表示成功匹配模式串</li>
+</ul>
+<p>最终自动机可用 <code>dfa[][] </code> 表示：</p>
+<table>
+<thead>
+<tr>
+<th>模式指针 j</th>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模式字符 pat.charAt(j)</td>
+<td></td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td></td>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>dfa[ c ⊂{ A, B, C } ][ j ]</td>
+<td>B</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td></td>
+<td>C</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<p>用更严谨的说法是，自动机包含了一个起始状态 0，同时包含了一个不会进行任何转换的停止状态 M（这里 M = 6）。</p>
+<p>自动机从状态 0 开始：</p>
+<ul>
+<li>如果自动机到了状态 M，那么就在文本中找到了和模式相匹配的一段子字符串（我们称这种情况为确定有限状态自动机识别了该模式）；</li>
+<li>如果自动机在文本结束时还没能到达状态 M，那么就可以知道文本中不存在匹配该模式的子字符串。</li>
+</ul>
+<p>每个模式字符串都对应着一个确定有限状态自动机。</p>
+<p>KMP 算法的字符串查找方法 <code>search()</code> 只是一段模拟自动机运行的 Java 程序。</p>
+<h3 id="2-构建-DFA"><a href="#2-构建-DFA" class="headerlink" title="(2) 构建 DFA"></a>(2) 构建 DFA</h3><p>DFA 的原理大概已经搞明白了，接下来解决 KMP 算法的关键问题：如何计算给定模式相对应的 <code>dfa[][]</code> 数组？</p>
+<p>Knuth、Morris 和 Pratt 给出了一种巧妙（但也相当复杂）的构造方式，关键点还是在于 DFA 本身。</p>
+<ul>
+<li>如果字符匹配，状态机会向下一个状态转变</li>
+<li>如果字符不匹配，我们不需要回退文本指针，只需要把 DFA 重置到适当的状态（这个状态也称为重启状态），就相当于回退了文本指针</li>
+</ul>
+<p>构建 dfa：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">kpm_2_dfa</span><span class="token punctuation">(</span><span class="token class-name">String</span> pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> <span class="token class-name">M</span> <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token class-name">R</span> <span class="token operator">=</span> <span class="token number">256</span><span class="token punctuation">;</span>        <span class="token comment">//   ASCII 码 (即输入的字符集, 最多 256 个字符)</span>
+
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dfa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token class-name">R</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">M</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token class-name">X</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token class-name">M</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 计算 dfa[][j]</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> c <span class="token operator">&lt;</span> <span class="token class-name">R</span><span class="token punctuation">;</span> c<span class="token operator">++</span><span class="token punctuation">)</span>
+            dfa<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dfa<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">X</span><span class="token punctuation">]</span><span class="token punctuation">;</span>      <span class="token comment">// 复制匹配失败情况下的值</span>
+        dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// 设置匹配成功情况下的值</span>
+        <span class="token class-name">X</span> <span class="token operator">=</span> dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">X</span><span class="token punctuation">]</span><span class="token punctuation">;</span>      <span class="token comment">// 更新重启状态</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> dfa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里构建 dfa 的过程中最重要的是重启状态，因为通过重启状态我们就可以确认在当前匹配失败时，自动机的状态是不变还是回退状态，匹配成功时比较简单，直接在对应的位置上将状态加 1 即可，<strong>强烈建议 debug 跟踪感受状态是如何转变的</strong>。</p>
+<p>这里举其中一个例子：</p>
+<p>当匹配到 <code>pat.charAt(j) = B</code> 时，j = 3，重启状态 X = 1，此时首先应该将 j = 1 时的所有状态复制过来;</p>
+<table>
+<thead>
+<tr>
+<th>模式指针 j</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符集\模式字符串</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td><strong style="color:red">1</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td><strong style="color:red">2</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong style="color:red">0</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>重启状态 X</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>为什么要这样，因为已经匹配成功的 A B A，现在匹配的是字符 B，让我们直接判断的话，如果匹配失败，会让模式指针回退到 j = 1 而不是 j = 0 比较合适，那么匹配失败的状态就可以直接套用 j = 1 时的情况，如果匹配成功就转入下一个状态：</p>
+<table>
+<thead>
+<tr>
+<th>模式指针 j</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符集\模式字符串</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td><strong style="color:red">1</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td><strong style="color:red">3</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong style="color:red">0</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>重启状态 X</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>此时要重新判断重置状态的取值，可以认为模式字符串的起始位置变为 j = 1，起始状态就是 j = 1 时的匹配成功的状态，即 <code>X = dfa['B'][1] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>模式指针 j</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符集\模式字符串</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td><strong style="color:red">1</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td><strong style="color:red">2</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong style="color:red">0</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>重启状态 X</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><strong style="color:red">2</strong></td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>然后 <code>j++</code> 开启下一轮判断。</p>
+<h3 id="3-KMP-的-dfa-实现"><a href="#3-KMP-的-dfa-实现" class="headerlink" title="(3) KMP 的 dfa 实现"></a>(3) KMP 的 dfa 实现</h3><p>代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">kmp_2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">String</span> txt <span class="token operator">=</span> <span class="token string">"ABCAABAABAABA"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"AABA"</span><span class="token punctuation">;</span> <span class="token comment">// 2、11、14</span>
+
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dfa <span class="token operator">=</span> <span class="token function">kpm_2_dfa</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">kpm_2_search</span><span class="token punctuation">(</span>txt<span class="token punctuation">,</span> pattern<span class="token punctuation">,</span> dfa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">kpm_2_dfa</span><span class="token punctuation">(</span><span class="token class-name">String</span> pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> <span class="token class-name">M</span> <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token class-name">R</span> <span class="token operator">=</span> <span class="token number">256</span><span class="token punctuation">;</span>        <span class="token comment">//   ASCII 码 (即输入的字符集)</span>
+
+    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dfa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token class-name">R</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">M</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token class-name">X</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token class-name">M</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 计算 dfa[][j]</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> c <span class="token operator">&lt;</span> <span class="token class-name">R</span><span class="token punctuation">;</span> c<span class="token operator">++</span><span class="token punctuation">)</span>
+            dfa<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dfa<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">X</span><span class="token punctuation">]</span><span class="token punctuation">;</span>      <span class="token comment">// 复制匹配失败情况下的值</span>
+        dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// 设置匹配成功情况下的值</span>
+        <span class="token class-name">X</span> <span class="token operator">=</span> dfa<span class="token punctuation">[</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token class-name">X</span><span class="token punctuation">]</span><span class="token punctuation">;</span>      <span class="token comment">// 更新重启状态</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> dfa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 注意这个过程没有比较，只是将 txt 按顺序输入 dfa 中，然后根据 dfa 的指示设置 patPointer 的位置</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">kpm_2_search</span><span class="token punctuation">(</span><span class="token class-name">String</span> txt<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dfa<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> tLen <span class="token operator">=</span> txt<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> pLen <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> patPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> txtPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 在 txt 上模拟 DFA 的运行</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">&lt;</span> tLen <span class="token operator">&amp;&amp;</span> patPointer <span class="token operator">&lt;</span> pLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            patPointer <span class="token operator">=</span> dfa<span class="token punctuation">[</span>txt<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>txtPointer<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>patPointer<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            txtPointer<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>patPointer <span class="token operator">==</span> pLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"match index begin: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">-</span> pLen<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            patPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            txtPointer<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">==</span> tLen<span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对于长度为 M 的字符串，模式字符串为 N 时，KMP 查找的字符不会超过 M + N 个，即：</p>
+<p>T(N) = O(M + N)​</p>
+<p>KMP 算法为最坏情况提供的线性级别运行时间保证是一个重要的理论成果。在实际应用中，它比暴力算法的速度优势并不十分明显，因为极少有应用程序需要在重复性很高的文本中查找重复性很高的模式。但该方法的一个优点是不需要在输入中回退。这使得KMP子字符串查找算法更适合在长度不确定的输人流（例如标准输 人 ）中进行查找，需要回退的算法在这种情况下则需要复杂的缓冲机制。但其实当回退很容易时，还可以比KMP快得多。下面，我们来学习一种利用回退来获取巨大性能收益的算法。</p>
 
                 
             </div>
@@ -864,7 +1221,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-rabinkarp/">https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-rabinkarp/</a>
+                    <a href="https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/">https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1070,9 +1427,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/12/02/algorithm-stringmatching-of-kmp/">
                     <div class="card-image">
@@ -1089,9 +1447,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1104,6 +1462,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1122,30 +1481,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/01/springboot-of-autoconfiguration-intro/">
+                <a href="/2021/12/02/algorithm-stringmatching-of-rabinkarp/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150110.jpg" class="responsive-img" alt="SpringBoot Of Autoconfiguration Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150127.jpg" class="responsive-img" alt="Algorithm StringMatching Of RabinKarp">
                         
-                        <span class="card-title">SpringBoot Of Autoconfiguration Intro</span>
+                        <span class="card-title">Algorithm StringMatching Of RabinKarp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            SpringBoot 自动装配原理简介
+                            字符串匹配算法之 RabinKarp 算法
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SpringBoot/" class="post-category">
-                                    SpringBoot
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
                                 </a>
                             
                             
@@ -1155,8 +1514,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -1287,13 +1646,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
