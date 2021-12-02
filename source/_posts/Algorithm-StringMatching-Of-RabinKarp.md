@@ -108,7 +108,7 @@ $$
 
 对于母串的所有位置 i，高效计算出文本中 i + 1 位置的子字符串散列值。这可以由一个简单的数学公式得到。
 
-我们用 ti 表示 txt.charAt(i) ，那么文本 txt 中从 i 开始取长度为 M 的子字符串所对应的数为：
+我们用 ti 表示 `txt.charAt(i)` ，那么文本 txt 中从 i 开始取长度为 M 的子字符串所对应的数为：
 
 
 
@@ -168,7 +168,7 @@ private void rabin_karp_2(String txt, String pattern) {
 
     int patLen = pattern.length();   // 模式字符串的长度
 
-    int R = 256;                    // ASCII 码最大长度
+    int R = 256;                    // ASCII 码最大长度m
 
     long Q = longRandomPrime();     // 获取一个尽可能大的素数
 
@@ -226,7 +226,7 @@ private void rk_match(String txt, String pattern, int R, long RM, long Q) {
     // 计算母串中第一个和模式串匹配的子串的 hash 值
     long txtHash = rk_hash(txt, patLen, R, Q);
     if (txtHash == patHash)
-        System.out.println("match index from: " + 0);
+        System.out.println("match index begin: " + 0);
 
     for (int i = patLen; i < txtLen; i++) {
         // 减去第一个数字，加上最后一个数字，再次检查匹配
@@ -235,7 +235,7 @@ private void rk_match(String txt, String pattern, int R, long RM, long Q) {
         txtHash = (txtHash * R + txt.charAt(i)) % Q;
 
         if (txtHash == patHash)
-            System.out.println("match index from: " + (i - patLen + 1));
+            System.out.println("match index begin: " + (i - patLen + 1));
     }
 }
 ```
