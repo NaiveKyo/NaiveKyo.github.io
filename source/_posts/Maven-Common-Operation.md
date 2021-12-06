@@ -338,7 +338,7 @@ systemPath 元素可以引用环境变量，如：
 </dependencies>
 ```
 
-这里有一点需要，看如下依赖：
+这里有一点需要注意，看如下依赖：
 
 ```xml
 <dependencies>

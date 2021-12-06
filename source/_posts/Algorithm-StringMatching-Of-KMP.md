@@ -255,7 +255,7 @@ private int[][] kpm_2_dfa(String pattern) {
 
 
 
-为什么要这样，因为已经匹配成功的 A B A，现在匹配的是字符 B，让我们直接判断的话，如果匹配失败，会让模式指针回退到 j = 1 而不是 j = 0 比较合适，那么匹配失败的状态就可以直接套用 j = 1 时的情况，如果匹配成功就转入下一个状态：
+为什么要这样，因为已经匹配成功的 A B A，现在匹配的是字符 B，让我们直接判断的话，如果匹配失败，会让模式指针回退到 j = 1 而不是 j = 0 比较合适（这里的判断机制和 next 数组的前后缀类似），那么匹配失败的状态就可以直接套用 j = 1 时的情况，如果匹配成功就转入下一个状态：
 
 
 
@@ -307,7 +307,7 @@ public void kmp_2() {
 private int[][] kpm_2_dfa(String pattern) {
 
     int M = pattern.length();
-    int R = 256;        //   ASCII 码 (即输入的字符集)
+    int R = 256;        //   ASCII 码 (即字符集，最多 256 z)
 
     int[][] dfa = new int[R][M];
     dfa[pattern.charAt(0)][0] = 1;

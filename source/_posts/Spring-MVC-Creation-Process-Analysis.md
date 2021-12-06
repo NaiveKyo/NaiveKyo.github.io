@@ -396,7 +396,16 @@ ServletContext#getAttribute("org.springframework.web.context.WebApplicationConte
   - 这时只需要在配置 Servlet 的时候将 ServletContext 中的 webApplicationContext 的 name 配置到 contextAttribute 属性就可以了，比如，在 ServletContext 中有个叫 testContext 的 webApplicationContext，可以这样将它配置到 Spring MVC 中:
 
 ```xml
-<!-- web.xml --><servlet>	<servlet-name>springmvc</servlet-name>    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>    <init-param>    	<param-name>contextAttribute</param-name>        <param-value>testContext</param-value>    </init-param>    <load-on-startup>1</load-on-startup></servlet>
+<!-- web.xml -->
+<servlet>	
+    <servlet-name>springmvc</servlet-name>    
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>    	
+        <param-name>contextAttribute</param-name>        
+        <param-value>testContext</param-value>    
+    </init-param>    
+    <load-on-startup>1</load-on-startup>
+</servlet>
 ```
 
 - 第三种方法是前面两种方式都无效的情况下自己创建一个。正常情况下就是使用的这种方式。

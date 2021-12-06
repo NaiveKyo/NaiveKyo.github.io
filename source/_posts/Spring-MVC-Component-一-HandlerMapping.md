@@ -718,7 +718,7 @@ protected void processCandidateBean(String beanName) {
 
 这里和 AbstractDetectingUrlHandlerMapping 类似，都是首先从容器中拿到所有的 bean，然后根据一定规则筛选出 Handler，最后保存到 Map 里。
 
-实际的筛选方法是 processCandidateBean 中的 isHandler 方法，这是一个模板方法，具体实现在 RequestMappingHandlerMapping 里面，筛选的逻辑是检查类前是否又 @Controller 或者 @RequestMapping 注解，代码如下：
+实际的筛选方法是 processCandidateBean 中的 isHandler 方法，这是一个模板方法，具体实现在 RequestMappingHandlerMapping 里面，筛选的逻辑是检查类前是否有 @Controller 或者 @RequestMapping 注解，代码如下：
 
 ```java
 // org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
