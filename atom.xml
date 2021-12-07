@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-12-03T02:15:52.450Z</updated>
+  <updated>2021-12-07T08:01:57.924Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL Statement Simple Optimization</title>
+    <link href="https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/"/>
+    <id>https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/</id>
+    <published>2021-12-07T07:48:02.000Z</published>
+    <updated>2021-12-07T08:01:57.924Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;常用-SQL-语句优化&quot;&gt;&lt;a href=&quot;#常用-SQL-语句优化&quot; class=&quot;headerlink&quot; title=&quot;常用 SQL 语句优化&quot;&gt;&lt;/a&gt;常用 SQL 语句优化&lt;/h2&gt;&lt;h3 id=&quot;1、批量插入&quot;&gt;&lt;a href=&quot;#1、批量插入&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm StringMatching Of KMP</title>
@@ -482,31 +507,6 @@
     <summary type="html">&lt;h1 id=&quot;创建-Spring-MVC&quot;&gt;&lt;a href=&quot;#创建-Spring-MVC&quot; class=&quot;headerlink&quot; title=&quot;创建 Spring MVC&quot;&gt;&lt;/a&gt;创建 Spring MVC&lt;/h1&gt;&lt;p&gt;目标：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;分析</summary>
-        
-      
-    
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring MVC First Try</title>
-    <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/"/>
-    <id>https://naivekyo.github.io/2021/10/23/spring-mvc-first-try/</id>
-    <published>2021-10-23T11:37:02.000Z</published>
-    <updated>2021-10-23T14:53:48.841Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;初试-SpringMVC&quot;&gt;&lt;a href=&quot;#初试-SpringMVC&quot; class=&quot;headerlink&quot; title=&quot;初试 SpringMVC&quot;&gt;&lt;/a&gt;初试 SpringMVC&lt;/h1&gt;&lt;h2 id=&quot;1、环境搭建&quot;&gt;&lt;a</summary>
         
       
     
