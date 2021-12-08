@@ -644,7 +644,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-09-25
+                    2021-12-08
                 </div>
                 
 
@@ -801,7 +801,7 @@ ref: 指向 &lt;appender&gt; 的 name 属性<span aria-hidden="true" class="line
 
 
 
-<h2 id="二、Attention"><a href="#二、Attention" class="headerlink" title="二、Attention"></a>二、Attention</h2><h3 id="1、Java-多环境日志"><a href="#1、Java-多环境日志" class="headerlink" title="1、Java 多环境日志"></a>1、Java 多环境日志</h3><p>概述：项目基于 SpringBoot，要实现日志的多环节配置，比如：test、dev、prod，这个时候需要把 logback 配置文件的名称改为 <code>logback-spring.xml</code>，否则无法使用基于 <code>spring.profiles.active=dev</code> 等方式来配置环境。</p>
+<h2 id="二、Attention"><a href="#二、Attention" class="headerlink" title="二、Attention"></a>二、Attention</h2><h3 id="1、Java-多环境日志"><a href="#1、Java-多环境日志" class="headerlink" title="1、Java 多环境日志"></a>1、Java 多环境日志</h3><p>概述：项目基于 SpringBoot，要实现日志的多环境配置，比如：test、dev、prod，这个时候需要把 logback 配置文件的名称改为 <code>logback-spring.xml</code>，否则无法使用基于 <code>spring.profiles.active=dev</code> 等方式来配置环境。</p>
 <p>原因：</p>
 <blockquote>
 <p>SpringBoot 集成 Logback 日志配置文件加载顺序</p>

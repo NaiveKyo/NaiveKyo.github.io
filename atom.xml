@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-12-07T08:01:57.924Z</updated>
+  <updated>2021-12-08T09:38:31.547Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Open Source Of Easy Excel Quick Start</title>
+    <link href="https://naivekyo.github.io/2021/12/08/open-source-of-easy-excel-quick-start/"/>
+    <id>https://naivekyo.github.io/2021/12/08/open-source-of-easy-excel-quick-start/</id>
+    <published>2021-12-08T09:08:13.000Z</published>
+    <updated>2021-12-08T09:38:31.547Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;EasyExcel-快速入门&quot;&gt;&lt;a href=&quot;#EasyExcel-快速入门&quot; class=&quot;headerlink&quot; title=&quot;EasyExcel 快速入门&quot;&gt;&lt;/a&gt;EasyExcel 快速入门&lt;/h2&gt;&lt;h3 id=&quot;1、项目环境搭建&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Open Source" scheme="https://naivekyo.github.io/categories/Open-Source/"/>
+    
+    
+    <category term="Open Source" scheme="https://naivekyo.github.io/tags/Open-Source/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL Statement Simple Optimization</title>
     <link href="https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/"/>
     <id>https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/</id>
     <published>2021-12-07T07:48:02.000Z</published>
-    <updated>2021-12-07T08:01:57.924Z</updated>
+    <updated>2021-12-07T08:37:40.006Z</updated>
     
     
       
@@ -489,33 +514,6 @@
     
     
     <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring MVC Creation Process Analysis</title>
-    <link href="https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/"/>
-    <id>https://naivekyo.github.io/2021/10/23/spring-mvc-creation-process-analysis/</id>
-    <published>2021-10-23T11:51:30.000Z</published>
-    <updated>2021-12-05T06:17:30.240Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;创建-Spring-MVC&quot;&gt;&lt;a href=&quot;#创建-Spring-MVC&quot; class=&quot;headerlink&quot; title=&quot;创建 Spring MVC&quot;&gt;&lt;/a&gt;创建 Spring MVC&lt;/h1&gt;&lt;p&gt;目标：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;分析</summary>
-        
-      
-    
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
     
   </entry>
   
