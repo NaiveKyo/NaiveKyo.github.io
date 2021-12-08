@@ -280,6 +280,26 @@ myGallery:
 #   - /img/20211130165313.jpg
 #   - /img/20211130165359.jpg
 #   - /img/20211130165446.jpg
+#   - /img/20211208174324.jpg
+#   - /img/20211208174408.jpg
+#   - /img/20211208174424.jpg
+#   - /img/20211208174450.jpg
+#   - /img/20211208174507.jpg
+#   - /img/20211208174522.jpg
+#   - /img/20211208174615.jpg
+#   - /img/20211208174631.jpg
+#   - /img/20211208174650.jpg
+#   - /img/20211208174708.jpg
+#   - /img/20211208174730.jpg
+#   - /img/20211208174745.jpg
+#   - /img/20211208174815.jpg
+#   - /img/20211208174838.jpg
+#   - /img/20211208174855.jpg
+#   - /img/20211208174909.jpg
+#   - /img/20211208174935.jpg
+#   - /img/20211208174952.jpg
+#   - /img/20211208175035.jpg
+#   - /img/20211208175151.jpg
 
 
 # Whether to display post-calender in the `archive` page
@@ -603,7 +623,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150436.jpg   # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208175151.jpg   # 指定 jsdlivr 地址的图片
 
 #ICP备案信息尾部显示
 icp:
