@@ -169,7 +169,7 @@ public class ApplicationMain {
 
 ### 1、Java 多环境日志
 
-概述：项目基于 SpringBoot，要实现日志的多环节配置，比如：test、dev、prod，这个时候需要把 logback 配置文件的名称改为 `logback-spring.xml`，否则无法使用基于 `spring.profiles.active=dev` 等方式来配置环境。
+概述：项目基于 SpringBoot，要实现日志的多环境配置，比如：test、dev、prod，这个时候需要把 logback 配置文件的名称改为 `logback-spring.xml`，否则无法使用基于 `spring.profiles.active=dev` 等方式来配置环境。
 
 原因：
 
