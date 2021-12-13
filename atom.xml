@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-12-08T09:38:31.547Z</updated>
+  <updated>2021-12-13T03:34:33.581Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Security First Try</title>
+    <link href="https://naivekyo.github.io/2021/12/09/spring-security-first-try/"/>
+    <id>https://naivekyo.github.io/2021/12/09/spring-security-first-try/</id>
+    <published>2021-12-09T13:52:58.000Z</published>
+    <updated>2021-12-13T03:34:33.581Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
+    
+  </entry>
   
   <entry>
     <title>Open Source Of Easy Excel Quick Start</title>
@@ -489,31 +514,6 @@
     
     
     <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Date And Time types</title>
-    <link href="https://naivekyo.github.io/2021/10/24/mysql-date-and-time-types/"/>
-    <id>https://naivekyo.github.io/2021/10/24/mysql-date-and-time-types/</id>
-    <published>2021-10-24T03:19:44.000Z</published>
-    <updated>2021-11-07T13:09:27.684Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;MySQL8-0-日期类型&quot;&gt;&lt;a href=&quot;#MySQL8-0-日期类型&quot; class=&quot;headerlink&quot; title=&quot;MySQL8.0 日期类型&quot;&gt;&lt;/a&gt;MySQL8.0 日期类型&lt;/h2&gt;&lt;h3 id=&quot;1、简介&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   
