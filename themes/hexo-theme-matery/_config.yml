@@ -98,9 +98,9 @@ music:
 video:
   enable: true
   showTitle: true
-  title: "RWBY Weiss Schnee"
+  title: "RWBY"
   url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/video/rwby.m3u8 # 必填
-  pic: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811222211.jpg
+  pic: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208180311.jpg
   thumbnails:
   height: # 如：400
   autoplay: false # 是否自动播放
@@ -269,13 +269,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20211031150423.jpg
     - /img/20211031150436.jpg
     - /img/20211031150448.jpg
     - /img/20211031150501.jpg
     - /img/20211031150300.jpg
     - /img/20211031161747.jpg
-#   - /img/20211115210617.jpg
+    - /img/20211115210617.jpg
 #   - /img/20211130165245.jpg
 #   - /img/20211130165313.jpg
 #   - /img/20211130165359.jpg
@@ -300,7 +299,7 @@ myGallery:
 #   - /img/20211208174952.jpg
 #   - /img/20211208175035.jpg
 #   - /img/20211208175151.jpg
-
+#   - /img/20210811222211.jpg
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件
