@@ -36,7 +36,7 @@ tags:
 
 
 
-Spring 通过一个配置文件描述 Bean 及 Bena 之间的依赖关系，利用 Java 语言的反射功能实例化 Bean 并建立 Bean 之间的依赖关系。
+Spring 通过一个配置文件描述 Bean 及 Bean 之间的依赖关系，利用 Java 语言的反射功能实例化 Bean 并建立 Bean 之间的依赖关系。
 
 Spring 的 IoC 容器在完成这些底层工作的基础上，还提供了 Bean 实例缓存、生命周期管理、Bean 实例代理、事件发布、资源装载等高级服务。
 
@@ -53,7 +53,7 @@ spring 中容器实现大致有两种：
 
 两者的主要用途：
 
-- BeanFactory 是 Spring 框架的基础设施，面向 Spring 本省；
+- BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；
 - ApplicationContext 面向使用 Spring 框架的开发者
 
 
@@ -120,7 +120,7 @@ ApplicationContext 的主要实现类是 `ClassPathXmlApplicationContext` 和 `F
 
 > 使用 ClassPathXmlApplicationContext
 
-和 `BeanFactory` 初始化相似，`ApplicationContext` 的初始化也很简单。如果配置文件防止在类路径下，则可以优先考虑使用 `ClassPathXmlApplicationContext` 实现类。
+和 `BeanFactory` 初始化相似，`ApplicationContext` 的初始化也很简单。如果配置文件放置在类路径下，则可以优先考虑使用 `ClassPathXmlApplicationContext` 实现类。
 
 
 

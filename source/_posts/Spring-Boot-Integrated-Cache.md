@@ -1,5 +1,5 @@
 ---
-title: SpringBoot Integrated Cache
+title: Spring Boot Integrated Cache
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210723091053.jpg'
@@ -10,10 +10,10 @@ top: false
 cover: false
 summary: 浅析 SpringBoot 集成缓存。
 categories:
- - SpringBoot
- - [SpringBoot, Cache]
-keywords: [SpringBoot, Cache]
-tags: [SpringBoot, Cache]
+ - "Spring Boot"
+ - ["Spring Boot", Cache]
+keywords: ["Spring Boot", Cache]
+tags: ["Spring Boot", Cache]
 ---
 
 

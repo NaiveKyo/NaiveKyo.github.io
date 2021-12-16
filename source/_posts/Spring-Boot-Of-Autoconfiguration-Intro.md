@@ -1,5 +1,5 @@
 ---
-title: SpringBoot Of Autoconfiguration Intro
+title: Spring Boot Of Autoconfiguration Intro
 author: NaiveKyo
 top: false
 hide: false
@@ -10,9 +10,9 @@ toc: true
 mathjax: false
 date: 2021-12-01 21:29:01
 summary: SpringBoot 自动装配原理简介
-categories: SpringBoot
-keywords: SpringBoot
-tags: SpringBoot
+categories: "Spring Boot"
+keywords: "Spring Boot"
+tags: "Spring Boot"
 ---
 
 # 一、SpringBoot 特点

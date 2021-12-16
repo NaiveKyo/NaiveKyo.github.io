@@ -1,5 +1,5 @@
 ---
-title: SpringBoot Multienvironment Switch
+title: Spring Boot Multienvironment Switch
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210728174304.jpg'
@@ -9,9 +9,9 @@ date: 2021-07-17 09:13:35
 top: false
 cover: false
 summary: Spring Boot 多环境开发
-categories: 'SpringBoot'
-keywords: 'SpringBoot'
-tags: 'SpringBoot'
+categories: "Spring Boot"
+keywords: "Spring Boot"
+tags: "Spring Boot"
 ---
 
 
