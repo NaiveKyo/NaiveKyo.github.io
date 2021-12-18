@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2021-12-15T15:18:33.575Z</updated>
+  <updated>2021-12-18T15:32:51.553Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Security Get Logged-in User Data</title>
+    <link href="https://naivekyo.github.io/2021/12/16/spring-security-get-logged-in-user-data/"/>
+    <id>https://naivekyo.github.io/2021/12/16/spring-security-get-logged-in-user-data/</id>
+    <published>2021-12-16T13:25:06.000Z</published>
+    <updated>2021-12-18T15:32:51.553Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;登录用户数据获取&quot;&gt;&lt;a href=&quot;#登录用户数据获取&quot; class=&quot;headerlink&quot; title=&quot;登录用户数据获取&quot;&gt;&lt;/a&gt;登录用户数据获取&lt;/h1&gt;&lt;p&gt;前置文章：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Boot Integrated Asynchronous Tasks</title>
@@ -46,7 +71,7 @@
     <link href="https://naivekyo.github.io/2021/12/13/spring-security-of-basic-authentication/"/>
     <id>https://naivekyo.github.io/2021/12/13/spring-security-of-basic-authentication/</id>
     <published>2021-12-13T12:41:39.000Z</published>
-    <updated>2021-12-16T13:05:45.756Z</updated>
+    <updated>2021-12-17T01:16:52.905Z</updated>
     
     
       
@@ -488,32 +513,6 @@
     
     
     <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring MVC Component (一) HandlerMapping</title>
-    <link href="https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/"/>
-    <id>https://naivekyo.github.io/2021/10/31/spring-mvc-component-yi-handlermapping/</id>
-    <published>2021-10-31T06:52:20.000Z</published>
-    <updated>2021-12-03T03:03:33.854Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;HandlerMapping&quot;&gt;&lt;a href=&quot;#HandlerMapping&quot; class=&quot;headerlink&quot; title=&quot;HandlerMapping&quot;&gt;&lt;/a&gt;HandlerMapping&lt;/h2&gt;&lt;p&gt;继承结构如图：&lt;/p&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/categories/Spring-MVC/"/>
-    
-    
-    <category term="Spring MVC" scheme="https://naivekyo.github.io/tags/Spring-MVC/"/>
     
   </entry>
   
