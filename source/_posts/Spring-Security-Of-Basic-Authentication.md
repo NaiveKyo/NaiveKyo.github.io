@@ -470,7 +470,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-前面提高过如何为 Spring Security 提供配置类，而且继承的 WebSecurityConfigurerAdapter 比较复杂，可以配置很多东西，这里只是简单的配置一下和表单登录有关的。
+前面提到过如何为 Spring Security 提供配置类，而且继承的 WebSecurityConfigurerAdapter 比较复杂，可以配置很多东西，这里只是简单的配置一下和表单登录有关的。
 
 - 这里使用的链式调用
 - `authorizeRequests()` 方法表示开启权限配置，`.anyRequest().authenticated()` 表示所有的请求都要认证之后才能访问。
