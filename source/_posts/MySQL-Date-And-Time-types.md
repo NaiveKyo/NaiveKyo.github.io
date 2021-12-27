@@ -156,11 +156,11 @@ jackson:
 
 > 注意
 
-@DateTimeFormat 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 @RequestParam 接收参数，可以正常生效。
+`@DateTimeFormat` 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 `@RequestParam` 接收参数，可以正常生效。
 
-如果是在 @ReqeustBody 中则 @JsonFormat 可以同时适用前后台时间字符串参数解析。
+如果是在 `@ReqeustBody` 中则 `@JsonFormat` 可以同时适用前后台时间字符串参数解析。
 
-在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。
+<mark>注意：在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。</mark>
 
 
 
