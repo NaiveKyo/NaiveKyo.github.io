@@ -205,7 +205,7 @@
 
    <style>
     body{
-       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150423.jpg);
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211227215009.jpg);
        background-repeat:no-repeat;
        background-size:cover;
        background-attachment:fixed;
@@ -645,7 +645,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-07-28
+                    2021-12-26
                 </div>
                 
 
@@ -747,7 +747,7 @@
 <p>如果用户 A 在进行了上述操作后，事务还未提交，则 B 无法对 2~6 之间的记录进行更新或插入记录，会阻塞，当 A 将事务提交后，B 的更新操作会执行。</p>
 <h2 id="五、建议"><a href="#五、建议" class="headerlink" title="五、建议"></a>五、建议</h2><ul>
 <li>尽可能让所有数据检索都通过索引来完成，避免无索引导致行锁升级为表锁</li>
-<li>合理涉及索引，尽量缩小锁的范围</li>
+<li>合理设计索引，尽量缩小锁的范围</li>
 <li>尽可能减少索引条件，避免间隙锁</li>
 <li>尽量控制事务大小，减少锁定资源量和时间长度</li>
 </ul>

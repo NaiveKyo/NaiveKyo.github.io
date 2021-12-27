@@ -205,7 +205,7 @@
 
    <style>
     body{
-       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150423.jpg);
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211227215009.jpg);
        background-repeat:no-repeat;
        background-size:cover;
        background-attachment:fixed;
@@ -645,7 +645,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-07
+                    2021-12-27
                 </div>
                 
 
@@ -901,9 +901,9 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <blockquote>
 <p>注意</p>
 </blockquote>
-<p>@DateTimeFormat 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 @RequestParam 接收参数，可以正常生效。</p>
-<p>如果是在 @ReqeustBody 中则 @JsonFormat 可以同时适用前后台时间字符串参数解析。</p>
-<p>在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。</p>
+<p><code>@DateTimeFormat</code> 用于解析前台传过来的时间字符串，如果是 GET 请求且使用了 <code>@RequestParam</code> 接收参数，可以正常生效。</p>
+<p>如果是在 <code>@ReqeustBody</code> 中则 <code>@JsonFormat</code> 可以同时适用前后台时间字符串参数解析。</p>
+<p><mark>注意：在 Mybatis 的 mapper.xml 文件中日期只做判空，而不做与空字符串的比较，否则会报错。</mark></p>
 <blockquote>
 <p>GET 请求的查询</p>
 </blockquote>
