@@ -645,14 +645,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-12-24
+                    2021-12-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    965
+                    1.2k
                 </div>
                 
 
@@ -672,10 +672,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL-常用函数"><a href="#MySQL-常用函数" class="headerlink" title="MySQL 常用函数"></a>MySQL 常用函数</h1><h2 id="一、流程控制函数"><a href="#一、流程控制函数" class="headerlink" title="一、流程控制函数"></a>一、流程控制函数</h2><blockquote>
-<p>CASE</p>
-</blockquote>
-<p>CASE 语句的返回结果比较特殊，是所有结果的聚合类型</p>
+                <h1 id="MySQL-常用函数"><a href="#MySQL-常用函数" class="headerlink" title="MySQL 常用函数"></a>MySQL 常用函数</h1><h2 id="一、流程控制函数"><a href="#一、流程控制函数" class="headerlink" title="一、流程控制函数"></a>一、流程控制函数</h2><h3 id="1、CASE"><a href="#1、CASE" class="headerlink" title="1、CASE"></a>1、CASE</h3><p>CASE 语句的返回结果比较特殊，是所有结果的聚合类型</p>
 <p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html">官方说明</a></p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token number">1</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'one'</span>
     <span class="token operator">-</span><span class="token operator">&gt;</span>     <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'two'</span> <span class="token keyword">ELSE</span> <span class="token string">'more'</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
@@ -690,10 +687,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 
 
-<blockquote>
-<p>IF</p>
-</blockquote>
-<p><code>IF(expr1, expr2, expr3)</code></p>
+<h3 id="2、IF"><a href="#2、IF" class="headerlink" title="2、IF"></a>2、IF</h3><p><code>IF(expr1, expr2, expr3)</code></p>
 <p>expr1 为真时返回 expr2，否则返回 expr3</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&gt;</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">3</span>
@@ -706,10 +700,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 
 
-<blockquote>
-<p>IFNULL</p>
-</blockquote>
-<p><code>IFNULL(expr1, expr2)</code></p>
+<h3 id="3、IFNULL"><a href="#3、IFNULL" class="headerlink" title="3、IFNULL"></a>3、IFNULL</h3><p><code>IFNULL(expr1, expr2)</code></p>
 <p>expr1 为 not null 时，返回 expr1，否则返回 expr2</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span>
@@ -895,6 +886,43 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <p>如果忽略 mode 参数，就采用 <code>default_week_format</code> 系统变量值：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'default_week_format'</span><span class="token punctuation">;</span>
 	<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="3、STR-TO-DATE"><a href="#3、STR-TO-DATE" class="headerlink" title="3、STR_TO_DATE"></a>3、STR_TO_DATE</h3><p><code>STR_TO_DATE(str, format)</code></p>
+<p>该函数和 <code>DATE_FORMAT</code> 正好相反，将字符串按照特定的模式解析成日期对象，模式表和 <code>DATE_FORMAT</code> 一样。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'01,5,2013'</span><span class="token punctuation">,</span><span class="token string">'%d,%m,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'May 1, 2013'</span><span class="token punctuation">,</span><span class="token string">'%M %d,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
+        
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'a%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'09:30:17a'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="三、比较函数"><a href="#三、比较函数" class="headerlink" title="三、比较函数"></a>三、比较函数</h2><h3 id="1、ISNULL"><a href="#1、ISNULL" class="headerlink" title="1、ISNULL"></a>1、ISNULL</h3><p><code>ISNULL(expr)</code></p>
+<p>如果 expr 是 NULL 就返回 1，如果不是就返回 0。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>NULL 值判断</p>
+</blockquote>
+<p><mark>出了使用函数来判断某个字段是否为 NULL，还可以这样：</mark></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select1 <span class="token operator">is</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token operator">&gt;</span> <span class="token number">1</span>
+
+<span class="token keyword">select</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span> <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1408,7 +1436,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">NaiveKyo</a>
