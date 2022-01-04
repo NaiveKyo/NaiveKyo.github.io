@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: true
 date: 2021-11-30 15:32:57
-summary: 多维数据与矩阵运算简介
+summary: 多维数组与矩阵运算简介
 categories: Algorithm
 keywords: Algorithm
 tags: Algorithm

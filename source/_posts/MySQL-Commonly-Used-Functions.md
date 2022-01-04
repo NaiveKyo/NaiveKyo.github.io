@@ -23,7 +23,7 @@ tags: MySQL
 
 ## 一、流程控制函数
 
-> CASE
+### 1、CASE
 
 
 
@@ -46,7 +46,7 @@ mysql> SELECT CASE BINARY 'B'
 
 
 
-> IF
+### 2、IF
 
 `IF(expr1, expr2, expr3)`
 
@@ -67,7 +67,7 @@ mysql> SELECT IF(STRCMP('test','test1'),'no','yes');
 
 
 
-> IFNULL
+### 3、IFNULL
 
 `IFNULL(expr1, expr2)`
 
@@ -183,5 +183,58 @@ mysql> SELECT DATE_FORMAT('2006-06-00', '%d');
 ```sql
 mysql> show variables like 'default_week_format';
 	-> 0
+```
+
+
+
+### 3、STR_TO_DATE
+
+`STR_TO_DATE(str, format)`
+
+该函数和 `DATE_FORMAT` 正好相反，将字符串按照特定的模式解析成日期对象，模式表和 `DATE_FORMAT` 一样。
+
+```sql
+mysql> SELECT STR_TO_DATE('01,5,2013','%d,%m,%Y');
+        -> '2013-05-01'
+mysql> SELECT STR_TO_DATE('May 1, 2013','%M %d,%Y');
+        -> '2013-05-01'
+        
+mysql> SELECT STR_TO_DATE('a09:30:17','a%h:%i:%s');
+        -> '09:30:17'
+mysql> SELECT STR_TO_DATE('a09:30:17','%h:%i:%s');
+        -> NULL
+mysql> SELECT STR_TO_DATE('09:30:17a','%h:%i:%s');
+        -> '09:30:17'
+```
+
+
+
+
+
+## 三、比较函数
+
+### 1、ISNULL
+
+`ISNULL(expr)`
+
+如果 expr 是 NULL 就返回 1，如果不是就返回 0。
+
+```sql
+mysql> SELECT ISNULL(1+1);
+        -> 0
+mysql> SELECT ISNULL(1/0);
+        -> 1
+```
+
+> NULL 值判断
+
+<mark>出了使用函数来判断某个字段是否为 NULL，还可以这样：</mark>
+
+```sql
+select1 is not null;
+> 1
+
+select 1 / 0 is null;
+> 1
 ```
 
