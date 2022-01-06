@@ -652,7 +652,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    2k
                 </div>
                 
 
@@ -802,7 +802,7 @@
 
 
 
-<h3 id="2-配置类"><a href="#2-配置类" class="headerlink" title="(2) 配置类"></a>(2) 配置类</h3><p>通过配置类想容器提供一个 <code>com.google.code.kaptcha.Producer</code> 实例，主要配置生成的图片验证码的宽度、长度、生成字符、验证码的长度等信息：</p>
+<h3 id="2-配置类"><a href="#2-配置类" class="headerlink" title="(2) 配置类"></a>(2) 配置类</h3><p>通过配置类向容器提供一个 <code>com.google.code.kaptcha.Producer</code> 实例，主要配置生成的图片验证码的宽度、长度、生成字符、验证码的长度等信息：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">KaptchaConfig</span> <span class="token punctuation">{</span>
     
@@ -889,6 +889,7 @@
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
                             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kaptcha<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-info<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>验证码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
                             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kaptcha<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kaptcha<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/&gt;</span></span>
                             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/vc.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/&gt;</span></span>
@@ -903,7 +904,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -935,30 +936,7 @@
 
 <p>这里重写 <code>authenticate</code> 方法，在该方法中，从 <code>RequestContextHolder</code> 中获取当前请求，进而获取到验证码参数和存储在 <code>HttpSession</code> 中的验证码文本进行比较，比较通过则继续执行父类的 <code>authenticate</code> 方法，比较不通过，就抛出异常。</p>
 <h3 id="5-Spring-Security-配置"><a href="#5-Spring-Security-配置" class="headerlink" title="(5) Spring Security 配置"></a>(5) Spring Security 配置</h3><p>最后，在 SecurityConfig 中配置 AuthenticationManager：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>naivekyo<span class="token punctuation">.</span>springsecurity5multidatasourceauthcode<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span></span><span class="token class-name">ObjectMapper</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>naivekyo<span class="token punctuation">.</span>springsecurity5multidatasourceauthcode<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">UserMapper</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>naivekyo<span class="token punctuation">.</span>springsecurity5multidatasourceauthcode<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">UserDetailsServiceImpl</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Primary</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">MediaType</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>authentication<span class="token punctuation">.</span></span><span class="token class-name">AuthenticationManager</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>authentication<span class="token punctuation">.</span></span><span class="token class-name">ProviderManager</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>authentication<span class="token punctuation">.</span>dao<span class="token punctuation">.</span></span><span class="token class-name">DaoAuthenticationProvider</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>config<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>authentication<span class="token punctuation">.</span>builders<span class="token punctuation">.</span></span><span class="token class-name">AuthenticationManagerBuilder</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>config<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>web<span class="token punctuation">.</span>builders<span class="token punctuation">.</span></span><span class="token class-name">HttpSecurity</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>config<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>web<span class="token punctuation">.</span>configuration<span class="token punctuation">.</span></span><span class="token class-name">EnableWebSecurity</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>config<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>web<span class="token punctuation">.</span>configuration<span class="token punctuation">.</span></span><span class="token class-name">WebSecurityConfigurerAdapter</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span></span><span class="token class-name">User</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span></span><span class="token class-name">UserDetailsService</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>provisioning<span class="token punctuation">.</span></span><span class="token class-name">InMemoryUserDetailsManager</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span><span class="token punctuation">;</span>
-
-<span class="token comment">/**
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * @author NaiveKyo
  * @version 1.0
  * @since 2021/12/25 23:12
@@ -1044,15 +1022,15 @@
                 <span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p>这里的配置分三步：</p>
 <ul>
 <li>首先沿用前面多数据源的配置，提供不同的 <code>UserDetailsService</code>；</li>
-<li>然后重写 <code>authenticationManagerBean</code> 方法，提供一个自己创建的 <code>ProviderManager</code> 并设置自己自定义的 <code>AuthenticationProvider</code> 实例，该实例采用不同的 <code>UserDetailsService</code>；</li>
-<li>最后不要完了将验证码的接口放行。</li>
+<li>然后重写 <code>authenticationManagerBean</code> 方法，提供一个自己创建的 <code>ProviderManager</code> 并设置自己自定义的 <code>AuthenticationProvider</code> 实例，不同的 <code>AuthenticationProvider</code>  实例采用不同的 <code>UserDetailsService</code>；</li>
+<li>最后不要忘了将验证码的接口放行。</li>
 </ul>
 <h3 id="6-测试"><a href="#6-测试" class="headerlink" title="(6) 测试"></a>(6) 测试</h3><p>重启项目：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220104224107.png"></p>
@@ -1289,29 +1267,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/01/04/spring-security-of-multidatasource-and-authcode/">
+                <a href="/2022/01/05/spring-security-of-initialization-process-analysis/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211130165245.jpg" class="responsive-img" alt="Spring Security Of MultiDataSource And AuthCode">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211130165313.jpg" class="responsive-img" alt="Spring Security Of Initialization Process Analysis">
                         
-                        <span class="card-title">Spring Security Of MultiDataSource And AuthCode</span>
+                        <span class="card-title">Spring Security Of Initialization Process Analysis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 多数据源配置及验证码功能
+                            Spring Security 初始化流程分析
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1324,7 +1301,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

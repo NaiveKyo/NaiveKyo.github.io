@@ -645,7 +645,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-10
+                    2022-01-05
                 </div>
                 
 
@@ -901,7 +901,7 @@
 <li>首先是在 service 方法里添加了对 PATCH 的处理，并将所有需要自己处理请求都集中到了 processRequest 方法进行统一处理，这和 HttpServlet 里面根据 request 的类型将请求分配到各个不同的方法进行处理的过程正好相反。</li>
 <li>然后就是 processRequest 方法，在 processRequest 里面主要的处理逻辑交给 doService，这是一个模板方法，在子类具体实现，另外就是对使用当前 request 获取到的 LocaleContext 和 RequestAttributes 进行了保存，以及处理完之后的恢复，在最后发布了 ServletRequestHandledEvent 事件。</li>
 </ul>
-<h2 id="3、DispatcherServlet"><a href="#3、DispatcherServlet" class="headerlink" title="3、DispatcherServlet"></a>3、DispatcherServlet</h2><h3 id="（1）入口方法-doservice"><a href="#（1）入口方法-doservice" class="headerlink" title="（1）入口方法 doservice"></a>（1）入口方法 doservice</h3><p>DispatcherServlet 是 Spring MVC 最核心的类，整个处理过程的顶层设计都在这里面。</p>
+<h2 id="3、DispatcherServlet"><a href="#3、DispatcherServlet" class="headerlink" title="3、DispatcherServlet"></a>3、DispatcherServlet</h2><h3 id="（1）入口方法-doService"><a href="#（1）入口方法-doService" class="headerlink" title="（1）入口方法 doService"></a>（1）入口方法 doService</h3><p>DispatcherServlet 是 Spring MVC 最核心的类，整个处理过程的顶层设计都在这里面。</p>
 <p>通过之前的分析可知，DispatcherServlet 里面执行处理的入口方法是 <code>doService</code>，不过 doService 并没有直接进行处理，而是交给了 <code>doDispatch</code> 进行具体的处理，在 doDispatch 处理前 doService 做了一些事情：</p>
 <ul>
 <li>首先判断是不是 include 请求（<mark>这里要提一下请求包含 Include 和 请求转发 Forward，前者是将另一个 Servlet 的请求处理流程包含进来，后者是将请求转发给别的 Servlet 处理</mark>），如果是则对 request 的 Attribute 做个快照备份，等 doDispatch 处理完之后（如果不是异步调用且未完成）进行还原，在做完快照后又对 request 设置了一些属性，代码如下：</li>

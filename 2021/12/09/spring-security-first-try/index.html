@@ -645,14 +645,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-12-13
+                    2022-01-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.6k
+                    3.5k
                 </div>
                 
 
@@ -904,7 +904,6 @@
 <p>WebSecurity</p>
 </blockquote>
 <p>查看 WebSecurity 的源码注释可知，WebSecurityConfiguration 配置类创建了 WebSecurity 的实例，并且通过它去创建名为 “springSecurityFilterChain” 的 FilterChainProxy，最终 springSecurityFilterChain 又被 DelegatingFilterProxy 所代理，而且 DelegatingFilterProxyRegistrationBean 是 DelegatingFilterProxy  的实现类。</p>
-<p>当然 WebSecurity 还有诸多作用，可以看作是 Spring Security 的一个核心工具类。</p>
 <h3 id="2-常用-Filter"><a href="#2-常用-Filter" class="headerlink" title="(2) 常用 Filter"></a>(2) 常用 Filter</h3><p>下表列出 Spring Security 中常见的过滤器，是否默认加载指引入 Spring Security 后，如果开发者没有做任何配置，会自动加载的过滤器：</p>
 <table>
 <thead>
