@@ -315,7 +315,7 @@ public class ServletRequestHandledEventListener implements ApplicationListener<S
 
 ## 3、DispatcherServlet
 
-### （1）入口方法 doservice
+### （1）入口方法 doService
 
 DispatcherServlet 是 Spring MVC 最核心的类，整个处理过程的顶层设计都在这里面。
 

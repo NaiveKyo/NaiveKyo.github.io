@@ -364,10 +364,6 @@ public class SecurityFilterAutoConfiguration {
 
 查看 WebSecurity 的源码注释可知，WebSecurityConfiguration 配置类创建了 WebSecurity 的实例，并且通过它去创建名为 "springSecurityFilterChain" 的 FilterChainProxy，最终 springSecurityFilterChain 又被 DelegatingFilterProxy 所代理，而且 DelegatingFilterProxyRegistrationBean 是 DelegatingFilterProxy  的实现类。
 
-
-
-当然 WebSecurity 还有诸多作用，可以看作是 Spring Security 的一个核心工具类。
-
  
 
 ### (2) 常用 Filter

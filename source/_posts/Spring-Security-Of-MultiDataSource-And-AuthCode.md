@@ -194,7 +194,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ### (2) 配置类
 
-通过配置类想容器提供一个 `com.google.code.kaptcha.Producer` 实例，主要配置生成的图片验证码的宽度、长度、生成字符、验证码的长度等信息：
+通过配置类向容器提供一个 `com.google.code.kaptcha.Producer` 实例，主要配置生成的图片验证码的宽度、长度、生成字符、验证码的长度等信息：
 
 ```java
 @Configuration
@@ -293,6 +293,7 @@ public void getVerifyCode(HttpServletResponse response, HttpSession session) thr
                         <div class="form-group">
                             <label for="kaptcha" class="text-info">验证码</label>
                             <input type="text" name="kaptcha" id="kaptcha" class="form-control">
+                            <br />
                             <img src="/vc.jpg" alt="">
                         </div>
                         <br />
@@ -351,29 +352,6 @@ public class KaptchaAuthenticationProvider extends DaoAuthenticationProvider {
 最后，在 SecurityConfig 中配置 AuthenticationManager：
 
 ```java
-package com.naivekyo.springsecurity5multidatasourceauthcode.config;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.naivekyo.springsecurity5multidatasourceauthcode.mapper.UserMapper;
-import com.naivekyo.springsecurity5multidatasourceauthcode.service.impl.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author NaiveKyo
  * @version 1.0
@@ -468,8 +446,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 这里的配置分三步：
 
 - 首先沿用前面多数据源的配置，提供不同的 `UserDetailsService`；
-- 然后重写 `authenticationManagerBean` 方法，提供一个自己创建的 `ProviderManager` 并设置自己自定义的 `AuthenticationProvider` 实例，该实例采用不同的 `UserDetailsService`；
-- 最后不要完了将验证码的接口放行。
+- 然后重写 `authenticationManagerBean` 方法，提供一个自己创建的 `ProviderManager` 并设置自己自定义的 `AuthenticationProvider` 实例，不同的 `AuthenticationProvider`  实例采用不同的 `UserDetailsService`；
+- 最后不要忘了将验证码的接口放行。
 
 
 
