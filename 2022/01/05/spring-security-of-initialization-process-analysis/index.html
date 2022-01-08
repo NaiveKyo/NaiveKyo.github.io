@@ -2066,7 +2066,7 @@
 <p>（1）首先定义了一个 <code>AuthenticationManagerBuilder</code> 实例，目的是为了构建全局的 <code>AuthenticationManager</code> 对象，这个过程会从 Spring 容器中查找 <code>AuthenticationEventPublisher</code> 实例设置给 <code>AuthenticationManagerBuilder</code> 对象；</p>
 <p>（2）接下来构建了三个 Bean，之前都分析过；</p>
 <p>（3）<code>getAuthenticationManager</code> 方法则用来构建具体的 <code>AuthenticationManager</code> 对象，在该方法内部，会首先判断 <code>AuthenticationManager</code> 对象是否已经初始化，如果已经初始化，则直接返回 <code>AuthenticationManager</code> 对象，否则就先从 Spring 容器中获取到 <code>AuthenticationManagerBuilder</code> 对象。</p>
-<p>注意这里还多了一个 <code>AuthenticationManagerDelegator</code> 对象，这个主要是为了防止在初始化 <code>AuthenticationManager</code> 是进行无线递归。拿到 <code>authBuilder</code> 对象之后 ，接下来遍历 <code>globalAuthConfigurers</code> 配置类集合（就是之前提到的 <code>GlobalAuthenticationConfigurerAdapter</code> 的几个实现类），将配置类分别添加到 <code>authBuilder</code> 对象中，然后进行构建，最终将构建结果返回。</p>
+<p>注意这里还多了一个 <code>AuthenticationManagerDelegator</code> 对象，这个主要是为了防止在初始化 <code>AuthenticationManager</code> 是进行无限递归。拿到 <code>authBuilder</code> 对象之后 ，接下来遍历 <code>globalAuthConfigurers</code> 配置类集合（就是之前提到的 <code>GlobalAuthenticationConfigurerAdapter</code> 的几个实现类），将配置类分别添加到 <code>authBuilder</code> 对象中，然后进行构建，最终将构建结果返回。</p>
 <p>这是全局 <code>AuthenticationManager</code> 的构建过程。</p>
 <p>整体来说，<code>AuthenticationConfiguration</code> 的作用主要体现在两方面：</p>
 <ul>
@@ -2306,29 +2306,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/01/05/spring-security-of-initialization-process-analysis/">
+                <a href="/2022/01/07/spring-security-of-filter-chain-related-applications/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211130165313.jpg" class="responsive-img" alt="Spring Security Of Initialization Process Analysis">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211130165359.jpg" class="responsive-img" alt="Spring Security Of Filter Chain Related Applications">
                         
-                        <span class="card-title">Spring Security Of Initialization Process Analysis</span>
+                        <span class="card-title">Spring Security Of Filter Chain Related Applications</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 初始化流程分析
+                            Spring Security 过滤器链相关基础组件的应用
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -2341,7 +2340,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

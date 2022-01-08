@@ -645,14 +645,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-04
+                    2022-01-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2k
+                    2.4k
                 </div>
                 
 
@@ -791,7 +791,7 @@
 <li>自定义过滤器</li>
 <li>自定义认证逻辑</li>
 </ul>
-<h2 id="1、自定义过滤器-TODO"><a href="#1、自定义过滤器-TODO" class="headerlink" title="1、自定义过滤器 TODO"></a>1、自定义过滤器 TODO</h2><h2 id="2、自定义认证逻辑"><a href="#2、自定义认证逻辑" class="headerlink" title="2、自定义认证逻辑"></a>2、自定义认证逻辑</h2><h3 id="1-验证码工具类库：Kaptcha"><a href="#1-验证码工具类库：Kaptcha" class="headerlink" title="(1) 验证码工具类库：Kaptcha"></a>(1) 验证码工具类库：Kaptcha</h3><p>生成验证码，可以自定义一个生成工具类，也可以使用一些现成的开源库来实现。</p>
+<h2 id="1、自定义认证逻辑"><a href="#1、自定义认证逻辑" class="headerlink" title="1、自定义认证逻辑"></a>1、自定义认证逻辑</h2><h3 id="1-验证码工具类库：Kaptcha"><a href="#1-验证码工具类库：Kaptcha" class="headerlink" title="(1) 验证码工具类库：Kaptcha"></a>(1) 验证码工具类库：Kaptcha</h3><p>生成验证码，可以自定义一个生成工具类，也可以使用一些现成的开源库来实现。</p>
 <p>比如：<code>kaptcha</code></p>
 <p>引入依赖：</p>
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
@@ -1035,6 +1035,89 @@
 <h3 id="6-测试"><a href="#6-测试" class="headerlink" title="(6) 测试"></a>(6) 测试</h3><p>重启项目：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220104224107.png"></p>
 <p>此时，输入用户名、密码以及验证码就可以成功登录，如果验证码输入错误，则会提示错误信息。</p>
+<h2 id="2、自定义过滤器"><a href="#2、自定义过滤器" class="headerlink" title="2、自定义过滤器"></a>2、自定义过滤器</h2><p>使用过滤器链实现登录验证码是非常容易的。</p>
+<p>验证码生成方案依旧是使用 <code>Kaptcha</code>。</p>
+<h3 id="1-LoginFilter"><a href="#1-LoginFilter" class="headerlink" title="(1) LoginFilter"></a>(1) LoginFilter</h3><p>首先需要自定义登录过滤器以替换表单登录的默认过滤器：<code>UsernamePasswordAuthenticationFilter</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginFilter</span> <span class="token keyword">extends</span> <span class="token class-name">UsernamePasswordAuthenticationFilter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Authentication</span> <span class="token function">attemptAuthentication</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">AuthenticationException</span> <span class="token punctuation">{</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AuthenticationServiceException</span><span class="token punctuation">(</span><span class="token string">"Authentication method not supported: "</span> <span class="token operator">+</span> request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token class-name">String</span> kaptcha <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"kaptcha"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> sessionKaptcha <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"kaptcha"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">hasText</span><span class="token punctuation">(</span>kaptcha<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">hasText</span><span class="token punctuation">(</span>kaptcha<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> kaptcha<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>sessionKaptcha<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">attemptAuthentication</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AuthenticationServiceException</span><span class="token punctuation">(</span><span class="token string">"验证码输入错误!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 LoginFilter 中首先判断验证码是否正确，如果验证码输入错误，则直接抛出异常；</p>
+<p>如果验证码输入正确，则调用父类的 <code>attemptAuthentication</code> 方法进行登录校验。</p>
+<h3 id="2-SecurityConfig-配置"><a href="#2-SecurityConfig-配置" class="headerlink" title="(2) SecurityConfig 配置"></a>(2) SecurityConfig 配置</h3><p>在 SecurityConfig 中配置 LoginFilter：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableWebSecurity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        
+        auth<span class="token punctuation">.</span><span class="token function">inMemoryAuthentication</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withUser</span><span class="token punctuation">(</span><span class="token string">"naivekyo"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">password</span><span class="token punctuation">(</span><span class="token string">"{noop}123456"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">roles</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">AuthenticationManager</span> <span class="token function">authenticationManagerBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">authenticationManagerBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token class-name">LoginFilter</span> <span class="token function">loginFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">LoginFilter</span> loginFilter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LoginFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        loginFilter<span class="token punctuation">.</span><span class="token function">setFilterProcessesUrl</span><span class="token punctuation">(</span><span class="token string">"/doLogin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginFilter<span class="token punctuation">.</span><span class="token function">setAuthenticationManager</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">authenticationManagerBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginFilter<span class="token punctuation">.</span><span class="token function">setAuthenticationSuccessHandler</span><span class="token punctuation">(</span>
+                <span class="token keyword">new</span> <span class="token class-name">SimpleUrlAuthenticationSuccessHandler</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginFilter<span class="token punctuation">.</span><span class="token function">setAuthenticationFailureHandler</span><span class="token punctuation">(</span>
+                <span class="token keyword">new</span> <span class="token class-name">SimpleUrlAuthenticationFailureHandler</span><span class="token punctuation">(</span><span class="token string">"/myLogin.html"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginFilter<span class="token punctuation">.</span><span class="token function">setUsernameParameter</span><span class="token punctuation">(</span><span class="token string">"uname"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginFilter<span class="token punctuation">.</span><span class="token function">setPasswordParameter</span><span class="token punctuation">(</span><span class="token string">"passwd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">return</span> loginFilter<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        
+        http<span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/vc.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">loginPage</span><span class="token punctuation">(</span><span class="token string">"/myLogin.html"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        http<span class="token punctuation">.</span><span class="token function">addFilterAt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">loginFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">UsernamePasswordAuthenticationFilter</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这上一小节不同，这里修改了登录请求的处理地址，注意这个地址以及表单中自定义的用户名/密码参数名要在 LoginFilter 实例中配置。</p>
+<p>相比于上一种方式，这种通过过滤器来添加验证码验证要更为简单也便于理解。</p>
 
                 
             </div>
