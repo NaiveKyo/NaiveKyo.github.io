@@ -1701,7 +1701,7 @@ public AuthenticationManager getAuthenticationManager() throws Exception {
 
 （3）`getAuthenticationManager` 方法则用来构建具体的 `AuthenticationManager` 对象，在该方法内部，会首先判断 `AuthenticationManager` 对象是否已经初始化，如果已经初始化，则直接返回 `AuthenticationManager` 对象，否则就先从 Spring 容器中获取到 `AuthenticationManagerBuilder` 对象。
 
-注意这里还多了一个 `AuthenticationManagerDelegator` 对象，这个主要是为了防止在初始化 `AuthenticationManager` 是进行无线递归。拿到 `authBuilder` 对象之后 ，接下来遍历 `globalAuthConfigurers` 配置类集合（就是之前提到的 `GlobalAuthenticationConfigurerAdapter` 的几个实现类），将配置类分别添加到 `authBuilder` 对象中，然后进行构建，最终将构建结果返回。
+注意这里还多了一个 `AuthenticationManagerDelegator` 对象，这个主要是为了防止在初始化 `AuthenticationManager` 是进行无限递归。拿到 `authBuilder` 对象之后 ，接下来遍历 `globalAuthConfigurers` 配置类集合（就是之前提到的 `GlobalAuthenticationConfigurerAdapter` 的几个实现类），将配置类分别添加到 `authBuilder` 对象中，然后进行构建，最终将构建结果返回。
 
 
 

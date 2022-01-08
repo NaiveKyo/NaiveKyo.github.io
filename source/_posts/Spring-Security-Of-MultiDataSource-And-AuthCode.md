@@ -164,13 +164,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 - 自定义过滤器
 - 自定义认证逻辑
 
-
-
-## 1、自定义过滤器 TODO
-
-
-
-## 2、自定义认证逻辑
+## 1、自定义认证逻辑
 
 
 
@@ -458,3 +452,108 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220104224107.png)
 
 此时，输入用户名、密码以及验证码就可以成功登录，如果验证码输入错误，则会提示错误信息。
+
+
+
+## 2、自定义过滤器
+
+使用过滤器链实现登录验证码是非常容易的。
+
+验证码生成方案依旧是使用 `Kaptcha`。
+
+
+
+### (1) LoginFilter
+
+首先需要自定义登录过滤器以替换表单登录的默认过滤器：`UsernamePasswordAuthenticationFilter`：
+
+```java
+public class LoginFilter extends UsernamePasswordAuthenticationFilter {
+
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        
+        if (!request.getMethod().equals("POST")) {
+            throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
+        }
+        
+        String kaptcha = request.getParameter("kaptcha");
+        String sessionKaptcha = (String) request.getSession().getAttribute("kaptcha");
+        
+        if (StringUtils.hasText(kaptcha) && StringUtils.hasText(kaptcha) && kaptcha.equalsIgnoreCase(sessionKaptcha)) {
+            return super.attemptAuthentication(request, response);
+        }
+        
+        throw new AuthenticationServiceException("验证码输入错误!");
+    }
+}
+```
+
+在 LoginFilter 中首先判断验证码是否正确，如果验证码输入错误，则直接抛出异常；
+
+如果验证码输入正确，则调用父类的 `attemptAuthentication` 方法进行登录校验。
+
+### (2) SecurityConfig 配置
+
+在 SecurityConfig 中配置 LoginFilter：
+
+```java
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        
+        auth.inMemoryAuthentication()
+                .withUser("naivekyo")
+                .password("{noop}123456")
+                .roles("admin");
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        
+        return super.authenticationManagerBean();
+    }
+    
+    @Bean
+    LoginFilter loginFilter() throws Exception {
+
+        LoginFilter loginFilter = new LoginFilter();
+        
+        loginFilter.setFilterProcessesUrl("/doLogin");
+        loginFilter.setAuthenticationManager(this.authenticationManagerBean());
+        loginFilter.setAuthenticationSuccessHandler(
+                new SimpleUrlAuthenticationSuccessHandler("/hello")
+        );
+        loginFilter.setAuthenticationFailureHandler(
+                new SimpleUrlAuthenticationFailureHandler("/myLogin.html")
+        );
+        loginFilter.setUsernameParameter("uname");
+        loginFilter.setPasswordParameter("passwd");
+        
+        return loginFilter;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        
+        http.authorizeRequests()
+                .antMatchers("/vc.jpg").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/myLogin.html")
+                .permitAll()
+                .and()
+                .csrf().disable();
+        
+        http.addFilterAt(this.loginFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+}
+```
+
+这上一小节不同，这里修改了登录请求的处理地址，注意这个地址以及表单中自定义的用户名/密码参数名要在 LoginFilter 实例中配置。
+
+相比于上一种方式，这种通过过滤器来添加验证码验证要更为简单也便于理解。
