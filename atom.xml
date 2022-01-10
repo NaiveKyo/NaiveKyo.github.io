@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-01-10T06:31:14.205Z</updated>
+  <updated>2022-01-10T08:28:00.796Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Security Of Exception System</title>
+    <link href="https://naivekyo.github.io/2022/01/10/spring-security-of-exception-system/"/>
+    <id>https://naivekyo.github.io/2022/01/10/spring-security-of-exception-system/</id>
+    <published>2022-01-10T07:07:13.000Z</published>
+    <updated>2022-01-10T08:28:00.796Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring-Security-异常体系&quot;&gt;&lt;a href=&quot;#Spring-Security-异常体系&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 异常体系&quot;&gt;&lt;/a&gt;Spring Security</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Security Of CORS Treatment Scheme</title>
@@ -46,7 +71,7 @@
     <link href="https://naivekyo.github.io/2022/01/08/spring-security-of-password-encryption/"/>
     <id>https://naivekyo.github.io/2022/01/08/spring-security-of-password-encryption/</id>
     <published>2022-01-08T13:21:01.000Z</published>
-    <updated>2022-01-09T10:45:12.519Z</updated>
+    <updated>2022-01-10T06:42:51.200Z</updated>
     
     
       
@@ -489,31 +514,6 @@
     
     
     <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java General Util Library</title>
-    <link href="https://naivekyo.github.io/2021/11/28/java-general-util-library/"/>
-    <id>https://naivekyo.github.io/2021/11/28/java-general-util-library/</id>
-    <published>2021-11-28T11:38:58.000Z</published>
-    <updated>2021-11-28T15:46:08.309Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Java-自带工具方法&quot;&gt;&lt;a href=&quot;#一、Java-自带工具方法&quot; class=&quot;headerlink&quot; title=&quot;一、Java 自带工具方法&quot;&gt;&lt;/a&gt;一、Java 自带工具方法&lt;/h2&gt;&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
