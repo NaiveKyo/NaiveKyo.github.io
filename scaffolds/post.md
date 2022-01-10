@@ -6,6 +6,7 @@ top: false
 hide: false
 img: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/
 coverImg: /img/
+password: 123456
 cover: false
 toc: true
 mathjax: false
