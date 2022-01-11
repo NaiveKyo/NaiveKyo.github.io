@@ -216,7 +216,7 @@ public class WebMvcConfig {
 public class CorsConfig {
     
     @Bean
-    public CorsWebFilter corsFilter() {
+    public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         
         config.addAllowedOrigin("*");
@@ -227,7 +227,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
         source.registerCorsConfiguration("/**", config);
 
-        return new CorsWebFilter(source);
+        return new CorsFilter(source);
     }
 }
 ```
