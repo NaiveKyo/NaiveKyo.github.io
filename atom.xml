@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-01-11T08:19:37.143Z</updated>
+  <updated>2022-01-11T13:29:05.952Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Security Of Http Authentication</title>
+    <link href="https://naivekyo.github.io/2022/01/11/spring-security-of-http-authentication/"/>
+    <id>https://naivekyo.github.io/2022/01/11/spring-security-of-http-authentication/</id>
+    <published>2022-01-11T10:04:25.000Z</published>
+    <updated>2022-01-11T13:29:05.952Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HTTP-认证&quot;&gt;&lt;a href=&quot;#HTTP-认证&quot; class=&quot;headerlink&quot; title=&quot;HTTP 认证&quot;&gt;&lt;/a&gt;HTTP 认证&lt;/h1&gt;&lt;p&gt;HTTP 提供了一个用于权限控制和认证的通用方式，这种认证方式通过 HTTP</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
+    
+    
+    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Security Of Authority Management</title>
@@ -489,31 +514,6 @@
     
     
     <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algorithm Of String General Exercises</title>
-    <link href="https://naivekyo.github.io/2021/12/01/algorithm-of-string-general-exercises/"/>
-    <id>https://naivekyo.github.io/2021/12/01/algorithm-of-string-general-exercises/</id>
-    <published>2021-12-01T09:16:16.000Z</published>
-    <updated>2021-12-01T09:17:52.507Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;字符串常规题解&quot;&gt;&lt;a href=&quot;#字符串常规题解&quot; class=&quot;headerlink&quot; title=&quot;字符串常规题解&quot;&gt;&lt;/a&gt;字符串常规题解&lt;/h1&gt;&lt;h2 id=&quot;1、字符串中是否有重复字符&quot;&gt;&lt;a href=&quot;#1、字符串中是否有重复字符&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
     
   </entry>
   
