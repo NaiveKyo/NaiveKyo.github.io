@@ -224,10 +224,36 @@ public class CorsConfig {
         config.addAllowedHeader("*");
         config.setMaxAge(3628800L);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
         return new CorsFilter(source);
+    }
+}
+```
+
+> Spring Cloud Gateway
+
+如果在 Spring Cloud 网关处配置跨域处理，则需要注入 `CorsWebFilter`，这是因为 Spring Cloud Gateway 是 WebFlux 的，并不采用 Servlet 体系。如果一定要在网关模块加入 web 支持，则需要引入 Spring  Boot 对应的  webflux 启动器。
+
+```java
+@Configuration
+public class CorsConfig {
+    
+    @Bean
+    public CorsWebFilter corsWebFilter() {
+
+        CorsConfiguration config = new CorsConfiguration();
+        
+        config.addAllowedOrigin("*");
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        config.setMaxAge(3628800L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        source.registerCorsConfiguration("/**", config);
+        
+        return new CorsWebFilter(source);
     }
 }
 ```

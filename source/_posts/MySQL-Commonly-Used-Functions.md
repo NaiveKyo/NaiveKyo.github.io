@@ -238,3 +238,29 @@ select 1 / 0 is null;
 > 1
 ```
 
+
+
+## 四、字符串函数
+
+### 1、CONCAT
+
+`CONCAT(str1, str2, ...)`
+
+将传入的所有字符串参数拼接为一个字符串返回。
+
+```sql
+mysql> SELECT CONCAT('My', 'S', 'QL');
+        -> 'MySQL'
+mysql> SELECT CONCAT('My', NULL, 'QL');
+        -> NULL
+mysql> SELECT CONCAT(14.3);
+        -> '14.3'
+```
+
+如果字符串带引号，则可以自动连接：
+
+```sql
+mysql> SELECT 'My' 'S' 'QL';
+        -> 'MySQL'
+```
+

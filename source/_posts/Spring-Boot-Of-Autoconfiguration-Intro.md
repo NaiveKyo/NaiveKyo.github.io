@@ -354,7 +354,7 @@ public Pet pet() {
     return new Pet("Milo");
 }
 
-// 无无赖关系
+// 无依赖关系
 @Bean
 public User user() {
     // User 类中没有 Pet 类型成员

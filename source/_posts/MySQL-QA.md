@@ -68,7 +68,7 @@ ALTER TABLE 表名 AUTO_INCREMENT = 1;
 
 > Q
 
-在 SQL Server 中查询表，有一张表的字段名为 `no`，为数据库关键字，编写 SQL 语句时，如何查询该字段
+在 MySQL 中查询表，有一张表的字段名为 `no`，为数据库关键字，编写 SQL 语句时，如何查询该字段
 
 > A
 
@@ -127,4 +127,16 @@ select 1 from table_name where id = 条件 limit 1;
 
 - 少量数据 **count(*)** 和 **limit 1** 没有什么区别
 - 但是大量数据下最好使用 **limit 1**，效率更高
+
+
+
+## 6、from 多个表 join 
+
+将多个表和其他表进行联接，需要用括号括起来：
+
+```sql
+select a.*, b.*, c.xxx
+from (a, b)
+left join c on a.id = c.id;
+```
 
