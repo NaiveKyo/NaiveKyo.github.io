@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-12-31
+                    2022-01-12
                 </div>
                 
 
@@ -936,6 +936,21 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 <span class="token keyword">select</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span> <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
 <span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="四、字符串函数"><a href="#四、字符串函数" class="headerlink" title="四、字符串函数"></a>四、字符串函数</h2><h3 id="1、CONCAT"><a href="#1、CONCAT" class="headerlink" title="1、CONCAT"></a>1、CONCAT</h3><p><code>CONCAT(str1, str2, ...)</code></p>
+<p>将传入的所有字符串参数拼接为一个字符串返回。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token number">14.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'14.3'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果字符串带引号，则可以自动连接：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">'My'</span> <span class="token string">'S'</span> <span class="token string">'QL'</span><span class="token punctuation">;</span>
+        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
                 

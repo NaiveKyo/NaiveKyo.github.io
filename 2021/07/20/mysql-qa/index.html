@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-16
+                    2022-01-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    572
+                    613
                 </div>
                 
 
@@ -720,7 +720,7 @@
 <h2 id="3、表中字段为数据库关键字"><a href="#3、表中字段为数据库关键字" class="headerlink" title="3、表中字段为数据库关键字"></a>3、表中字段为数据库关键字</h2><blockquote>
 <p>Q</p>
 </blockquote>
-<p>在 SQL Server 中查询表，有一张表的字段名为 <code>no</code>，为数据库关键字，编写 SQL 语句时，如何查询该字段</p>
+<p>在 MySQL 中查询表，有一张表的字段名为 <code>no</code>，为数据库关键字，编写 SQL 语句时，如何查询该字段</p>
 <blockquote>
 <p>A</p>
 </blockquote>
@@ -764,6 +764,11 @@
 <li>少量数据 <strong>count(*)</strong> 和 <strong>limit 1</strong> 没有什么区别</li>
 <li>但是大量数据下最好使用 <strong>limit 1</strong>，效率更高</li>
 </ul>
+<h2 id="6、from-多个表-join"><a href="#6、from-多个表-join" class="headerlink" title="6、from 多个表 join"></a>6、from 多个表 join</h2><p>将多个表和其他表进行联接，需要用括号括起来：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> a<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>xxx
+<span class="token keyword">from</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token keyword">left</span> <span class="token keyword">join</span> c <span class="token keyword">on</span> a<span class="token punctuation">.</span>id <span class="token operator">=</span> c<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
