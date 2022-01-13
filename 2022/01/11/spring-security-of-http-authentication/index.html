@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-11
+                    2022-01-13
                 </div>
                 
 
@@ -692,7 +692,7 @@
 <li>HTTP Digest authentication</li>
 </ul>
 <h1 id="HTTP-Basic-authentication"><a href="#HTTP-Basic-authentication" class="headerlink" title="HTTP Basic authentication"></a>HTTP Basic authentication</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>HTTP Basic authentication 中文译作 HTTP 基本认证，在这种认证方式中，将用户的登录用户名/密码经过 Base64 编码之后，放在请求头的 Authorization 字段中，从而完成用户身份的认证。</p>
-<p>这是一种在 RFC7235（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7235%EF%BC%89%E8%A7%84%E8%8C%83%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%BD%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E8%B5%B7%E4%B8%80%E4%B8%AA%E8%AF%B7%E6%B1%82%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%AF%E4%BB%A5%E9%92%88%E5%AF%B9%E8%AF%A5%E8%AF%B7%E6%B1%82%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E8%B4%A8%E8%AF%A2%E4%BF%A1%E6%81%AF%EF%BC%8C%E7%84%B6%E5%90%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%86%8D%E6%8F%90%E4%BE%9B%E7%94%A8%E6%88%B7%E7%9A%84%E5%87%AD%E8%AF%81%E4%BF%A1%E6%81%AF%E3%80%82%E5%85%B7%E4%BD%93%E7%9A%84%E8%B4%A8%E8%AF%A2%E4%B8%8E%E5%BA%94%E7%AD%94%E6%B5%81%E7%A8%8B%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A">https://tools.ietf.org/html/rfc7235）规范中定义的认证方式，当客户端发起一个请求之后，服务端可以针对该请求返回一个质询信息，然后客户端再提供用户的凭证信息。具体的质询与应答流程如图所示：</a></p>
+<p>这是一种在 RFC7235（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7235">https://tools.ietf.org/html/rfc7235</a>）规范中定义的认证方式，当客户端发起一个请求之后，服务端可以针对该请求返回一个质询信息，然后客户端再提供用户的凭证信息。具体的质询与应答流程如图所示：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220111182350.png"></p>
 <p>从图中可以看到，HTTP 基本认证的流程是下面这样的。</p>
 <p>首先客户端（浏览器）发送请求，类似下面这样：</p>
@@ -823,7 +823,7 @@ Content-Length: 16<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <p>（6）最后继续执行接下来的过滤器。在后续过滤器执行过程中，由于 <code>SecurityContextHolder</code> 中已经保存了登录用户信息了，相当于用户已经完成登录了，因此就和普通的请求一致，不会被 “半路拦截”。</p>
 <p>这就是 HTTP 基本认证的实现逻辑，可以看到实现还是比较简单的。</p>
 <h1 id="HTTP-Digest-authentication"><a href="#HTTP-Digest-authentication" class="headerlink" title="HTTP Digest authentication"></a>HTTP Digest authentication</h1><p>HTTP 基本认证虽然简单易用，但是在安全方面问题突出，于是又推出了 HTTP 摘要认证。</p>
-<p>HTTP 摘要认证最早在 RFC2069 中被定义，随后又被 RFC2617（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2617%EF%BC%89%E6%89%80%E5%8F%96%E4%BB%A3%EF%BC%8C%E5%9C%A8">https://tools.ietf.org/html/rfc2617）所取代，在</a> RFC2617 中引入了一系列增强安全性的参数，以防止各种可能出现的网络攻击。</p>
+<p>HTTP 摘要认证最早在 RFC2069 中被定义，随后又被 RFC2617（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2617">https://tools.ietf.org/html/rfc2617</a>）所取代，在 RFC2617 中引入了一系列增强安全性的参数，以防止各种可能出现的网络攻击。</p>
 <p>相比于 HTTP 基本认证，HTTP 摘要认证的安全性有了很大提高，但是依然存在问题，例如不支持 bCrypt、PBKDF2、sCrypt 等加密方式。</p>
 <p>下图描述了 HTTP 摘要认证的具体流程，从图中可以看出，这个认证流程和 HTTP 基本认证流程一致，不同的是每次传递的参数有所差异：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220111200443.png"></p>
