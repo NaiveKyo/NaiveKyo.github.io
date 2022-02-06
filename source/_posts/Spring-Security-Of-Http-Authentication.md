@@ -34,7 +34,7 @@ Spring Security 中对这两种认证方式都提供了相应的支持：
 
 HTTP Basic authentication 中文译作 HTTP 基本认证，在这种认证方式中，将用户的登录用户名/密码经过 Base64 编码之后，放在请求头的 Authorization 字段中，从而完成用户身份的认证。
 
-这是一种在 RFC7235（https://tools.ietf.org/html/rfc7235）规范中定义的认证方式，当客户端发起一个请求之后，服务端可以针对该请求返回一个质询信息，然后客户端再提供用户的凭证信息。具体的质询与应答流程如图所示：
+这是一种在 RFC7235（[https://tools.ietf.org/html/rfc7235](https://tools.ietf.org/html/rfc7235)）规范中定义的认证方式，当客户端发起一个请求之后，服务端可以针对该请求返回一个质询信息，然后客户端再提供用户的凭证信息。具体的质询与应答流程如图所示：
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220111182350.png)
 
@@ -233,7 +233,7 @@ public class BasicAuthenticationFilter extends OncePerRequestFilter {
 
 HTTP 基本认证虽然简单易用，但是在安全方面问题突出，于是又推出了 HTTP 摘要认证。
 
-HTTP 摘要认证最早在 RFC2069 中被定义，随后又被 RFC2617（https://tools.ietf.org/html/rfc2617）所取代，在 RFC2617 中引入了一系列增强安全性的参数，以防止各种可能出现的网络攻击。
+HTTP 摘要认证最早在 RFC2069 中被定义，随后又被 RFC2617（[https://tools.ietf.org/html/rfc2617](https://tools.ietf.org/html/rfc2617)）所取代，在 RFC2617 中引入了一系列增强安全性的参数，以防止各种可能出现的网络攻击。
 
 相比于 HTTP 基本认证，HTTP 摘要认证的安全性有了很大提高，但是依然存在问题，例如不支持 bCrypt、PBKDF2、sCrypt 等加密方式。
 

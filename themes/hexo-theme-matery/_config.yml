@@ -98,7 +98,7 @@ music:
 video:
   enable: true
   showTitle: true
-  title: "RWBY"
+  title: "Winter"
   url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/video/rwby.m3u8 # 必填
   pic: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208180311.jpg
   thumbnails:
@@ -138,11 +138,11 @@ indexbtn:
 # icon/button will not show up if you leave the corresponding socialLink empty
 # 首页 banner 中的第二行个人信息配置，留空即不启用
 socialLink:
-  github:  https://github.com/NaiveKyo
-  email: 2086589645@qq.com
+  github: 
+  email: 
   facebook: # https://www.facebook.com/xxx
   twitter: # https://twitter.com/xxx
-  qq: 2086589645
+  qq: 
   weibo: # https://weibo.com/xxx
   zhihu: # https://www.zhihu.com/xxx
   rss: false # true、false
@@ -272,13 +272,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20211208174507.jpg
     - /img/20211208174522.jpg
     - /img/20211208174615.jpg
     - /img/20211208174631.jpg
     - /img/20211208174650.jpg
     - /img/20211208174708.jpg
-#   - /img/20211208174730.jpg
+    - /img/20211208174730.jpg
 #   - /img/20211208174745.jpg
 #   - /img/20211208174815.jpg
 #   - /img/20211208174838.jpg

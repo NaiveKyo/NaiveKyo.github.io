@@ -264,3 +264,22 @@ mysql> SELECT 'My' 'S' 'QL';
         -> 'MySQL'
 ```
 
+
+
+## 五、数学函数
+
+### 1、RAND
+
+`RAND()` 函数主要用于返回一个在 <mark>[0, 1)</mark> 之间的浮点数，它有两种形式：
+
+- `rand()`：无参的，此时产生的结果是随机的（注意并不是完全随机的）
+- `rand(x)`：有参的，参数作为随机数生成器的种子，如果种子相同，那么产生的随机数序列也是相同的
+
+该函数可以用于 `where` 语句中，一般用于随机排序：
+
+```sql
+SELECT * FROM tbl_name ORDER BY RAND();
+
+SELECT * FROM table1, table2 WHERE a=b AND c<d ORDER BY RAND() LIMIT 1000;
+```
+
