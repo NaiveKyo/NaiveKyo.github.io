@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-01-13T02:57:50.582Z</updated>
+  <updated>2022-02-06T09:02:27.712Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Project Summary One: DRP Web Application</title>
+    <link href="https://naivekyo.github.io/2022/02/05/project-summary-one-drp-web-application/"/>
+    <id>https://naivekyo.github.io/2022/02/05/project-summary-one-drp-web-application/</id>
+    <published>2022-02-05T06:33:13.000Z</published>
+    <updated>2022-02-06T09:02:27.712Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;xxx进销存信息管理系统是笔者在大学期间跟随老师为当地企业完成的一个 web 项目，本文主要对该项目做一个总结。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Project Summary" scheme="https://naivekyo.github.io/categories/Project-Summary/"/>
+    
+    
+    <category term="Project Summary" scheme="https://naivekyo.github.io/tags/Project-Summary/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Security Of Http Authentication</title>
@@ -246,7 +272,7 @@
     <link href="https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/"/>
     <id>https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/</id>
     <published>2021-12-24T05:20:13.000Z</published>
-    <updated>2022-01-12T13:25:06.973Z</updated>
+    <updated>2022-01-20T08:20:23.542Z</updated>
     
     
       
@@ -489,31 +515,6 @@
     
     
     <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot Of Autoconfiguration Intro</title>
-    <link href="https://naivekyo.github.io/2021/12/01/spring-boot-of-autoconfiguration-intro/"/>
-    <id>https://naivekyo.github.io/2021/12/01/spring-boot-of-autoconfiguration-intro/</id>
-    <published>2021-12-01T13:29:01.000Z</published>
-    <updated>2022-01-12T12:16:08.121Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、SpringBoot-特点&quot;&gt;&lt;a href=&quot;#一、SpringBoot-特点&quot; class=&quot;headerlink&quot; title=&quot;一、SpringBoot 特点&quot;&gt;&lt;/a&gt;一、SpringBoot 特点&lt;/h1&gt;&lt;h2 id=&quot;1、依赖管理&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
     
   </entry>
   

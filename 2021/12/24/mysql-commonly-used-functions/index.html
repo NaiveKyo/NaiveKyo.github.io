@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-12
+                    2022-01-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
@@ -951,6 +951,18 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <p>如果字符串带引号，则可以自动连接：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">'My'</span> <span class="token string">'S'</span> <span class="token string">'QL'</span><span class="token punctuation">;</span>
         <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="五、数学函数"><a href="#五、数学函数" class="headerlink" title="五、数学函数"></a>五、数学函数</h2><h3 id="1、RAND"><a href="#1、RAND" class="headerlink" title="1、RAND"></a>1、RAND</h3><p><code>RAND()</code> 函数主要用于返回一个在 <mark>[0, 1)</mark> 之间的浮点数，它有两种形式：</p>
+<ul>
+<li><code>rand()</code>：无参的，此时产生的结果是随机的（注意并不是完全随机的）</li>
+<li><code>rand(x)</code>：有参的，参数作为随机数生成器的种子，如果种子相同，那么产生的随机数序列也是相同的</li>
+</ul>
+<p>该函数可以用于 <code>where</code> 语句中，一般用于随机排序：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tbl_name <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table1<span class="token punctuation">,</span> table2 <span class="token keyword">WHERE</span> a<span class="token operator">=</span>b <span class="token operator">AND</span> c<span class="token operator">&lt;</span>d <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">LIMIT</span> <span class="token number">1000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1539,15 +1551,6 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fab fa-github"></i>
-    </a>
-
-
-
-    <a href="mailto:2086589645@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
 
 
 
@@ -1555,9 +1558,6 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
 
 
 
