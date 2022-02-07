@@ -23,36 +23,57 @@ Knuth、Morris 和 Pratt 发明的算法的基本思想是当出现不匹配时�
 
 ## 1、next 数组解法
 
-
+### (1) 前缀和后缀
 
 重点：
 
 - 依据模式串失配位置前面部分的前缀和后缀的最长匹配来构建一个 next 数组
 
+这里提出了两个概念：前缀和后缀，我们以字符串 `BABABB` 为例说明：
+
+| 子串   | 前缀                  | 后缀                      | 最长公共子串长度 |
+| ------ | --------------------- | ------------------------- | ---------------- |
+| B      | 空集                  | 空集                      | 0                |
+| BA     | [B]                   | [A]                       | 0                |
+| BAB    | [B, BA]               | [AB, B]                   | 1                |
+| BABA   | [B, BA, BAB]          | [ABA, BA, A]              | 2                |
+| BABAB  | [B, BA, BAB, BABA]    | [ABAB, BAB, AB, B]        | 3                |
+| BABABB | [B, BAB, BABA, BABAB] | [ABABB, BABB, ABB, BB, B] | 0                |
+
+不难发现前缀和后缀的最长匹配就是 "前缀" 和 "后缀" 最长的共有元素的长度，而且这类字符串的元素重复度比较高。
 
 
-对于模式串的 next 数组，当匹配的过程中在 j 位置失配，那么模式串的扫描指针应该回退到 k 位置上，
+
+### (2) next 前缀数组
+
+模式串的 next 数组其实就是前缀和后缀的最长公共子串长度集合，它的作用如下: 当匹配的过程中在 j 位置失配，那么模式串的扫描指针应该回退到 k 位置上，
 
 即：`next[j] = k`
 
-
-
-| 索引/模式串 | b    | a    | b    | a    | b    | b/（失配位置） | next[i] |
-| ----------- | ---- | ---- | ---- | ---- | ---- | -------------- | ------- |
-| 0           |      |      |      |      |      | b              | -1      |
-| 1           |      |      |      |      | b    | a              | 0       |
-| 2           |      |      |      | b    | a    | b              | 0       |
-| 3           |      |      | b    | a    | b    | a              | 1       |
-| 4           |      | b    | a    | b    | a    | b              | 2       |
-| 5           | b    | a    | b    | a    | b    | b              | 3       |
-
-
+| 索引/模式串                          | b    | a                                    | b                                    | a                                    | b                                    | b/（失配位置）                       | next[i]                              |
+| ------------------------------------ | ---- | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| 0                                    |      |                                      |                                      |                                      |                                      | b                                    | -1                                   |
+| 1                                    |      |                                      |                                      |                                      | b                                    | a                                    | 0                                    |
+| 2                                    |      |                                      |                                      | b                                    | a                                    | b                                    | 0                                    |
+| 3                                    |      |                                      | b                                    | a                                    | b                                    | a                                    | 1                                    |
+| <strong style="color:red">4</strong> |      | <strong style="color:red">b</strong> | <strong style="color:red">a</strong> | <strong style="color:red">b</strong> | <strong style="color:red">a</strong> | <strong style="color:red">b</strong> | <strong style="color:red">2</strong> |
+| 5                                    | b    | a                                    | b                                    | a                                    | b                                    | b                                    | 3                                    |
 
 KMP 算法适用于字符重复率比较高的文本，因为这种类型的文本可以很方便的构建 next 数组：
 
-例如，上表中如果在索引为 4 的位置处匹配失败，那么此时已经匹配成功的模式串的那部分就是 b a b a，这一部分的前缀为 b a，后缀为 b a，可得出最长匹配为 2，即 next[4] = 2，那么模式指针应该指向 `pat.charAt(2)` 。
+例如，上表中如果在索引为 4 的位置处匹配失败，那么此时已经匹配成功的模式串的那部分就是 b a b a，这一部分前缀和后缀的最长匹配子串为 ba，长度为 2，即 `next[4] = 2`，模式指针应该回退并指向 `pat.charAt(2)`。
 
-但是我们如果要计算出最长匹配会比较麻烦，这里要利用一些规律，例如这里在 `pat.charAt(4)`  处匹配失败，就看 `next[4 - 1]` 的值，这里为 1，则比对 `pat.charAt[4 - 1]` 和 `pat.charAt(1)` 的字符是否相同，如果相同则 `next[4] = next[4 - 1] + 1` ，如果不同则 `next[4] = next[1] + 1` 。利用这种规律可以很快构建好 next 数组。
+那么问题来了，最长匹配子串我们很容易就看出来了，但是该如何计算呢？
+
+最简单直接的方法就是准备两个指针分别扫描所有的前缀和后缀，进行比对得出结果，不过这种方法效率较低，我们可以结合 next 数组以及前缀后缀的一些特性：
+
+- 假设在 `pat.charAt(5)`（即最后一个字符 b）处匹配失败，我们要计算出此时的 next 数组对应的值，即已匹配成功的部分 babab 的最长公共子串的长度，一种更为简便的方法是结合它的上一行来进行计算；
+- 上一行就是在 `pat.charAt(4) ` 处失配，此时 `next[4] = 2`，说明 baba 的前后缀最长公共子串长度为 2，即串 "ba"，而且 "ba" 正是 `pat.charAt(2)` 失配时的已匹配成功的串，总结规律可以发现已匹配串是具有传递性的，同时 `pat.charAt(4) == pat.charAt(2)` 的，最终我们可以推出串 "babab" 的最长公共子串长度为 2 + 1 = 3，如下图所示：
+
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220207225951.png)
+
+- 最终我们得出了 `next[5] = 3`，即模式串在索引为 5 的地方失配时，模式指针应该回退到索引为 3 的地方，此时已匹配成功的串是 "bab"；
+- 如果说 `pat.charAt(4) != pat.charAt(2)`，那么此时我们可以继续往前推，`next[2] = 0`，就看索引为 0 的那一行，然后比对 `pat.charAt(2)` 和 `pat.charAt(0)` 两个字符是否相等，如果一直不相等，最终会回退到索引为 0 的地方，此时 `next[0] = -1`，则 `next[5] = (-1 + 1) = 0`，模式指针直接回退到串首。
 
 
 
@@ -95,12 +116,18 @@ private int[] build_next(String pattern) {
 
     next[1] = 0;
 
-    for (int i = 2; i < next.length; i++) {
-        int pre = next[i - 1];
-        if (pattern.charAt(i - 1) == pattern.charAt(pre)) {
-            next[i] = pre + 1;
+    // next 数组从下标为 j 的值去推出下标为 j + 1 的值
+    int j = 1;
+    int pre = next[j];
+
+    while (j < next.length - 1) {
+        // 如果 pre = -1 说明前缀和后缀没有匹配串, 模式指针只能回到模式串的第一位
+        // 如果 pattern.charAt(pre) == pattern.charAt(j) 说明前缀和后缀有最长匹配子串
+        if (pre == -1 || pattern.charAt(pre) == pattern.charAt(j)) {
+            next[++j] = ++pre;
         } else {
-            next[i] = next[pre] + 1;
+            // 如果当前不匹配, 模式指针需要回退重新寻找前缀和后缀的最长匹配(依次类推, 要么找到最长匹配, 要么 pre = -1)
+            pre = next[pre];
         }
     }
 
@@ -118,20 +145,25 @@ private void kmp_match(String txt, String pattern, int[] next) {
         System.out.println("模式串长度大于待匹配串!");
         return;
     }
-    
+
     while (txtPointer < txtLen) {
 
+        // 当 patPointer = -1 或者当前字符匹配成功(即 txt[i] == pat[j]), 两个指针都需要前进
+        // 当 patPointer = -1 时, 说明 txt 串和 pattern 串的第一位无法匹配, 两个指针都需要前进
         if (patPointer == -1 || txt.charAt(txtPointer) == pattern.charAt(patPointer)) {
             txtPointer++;
             patPointer++;
         } else {
+            // 如果 patPointer != -1, 且当前字符匹配失败(即 txt[i] != pat[j]), 则令文本指针不变, 模式指针回退
             patPointer = next[patPointer];
         }
 
         if (patPointer == patLen) {
             System.out.println("match index begin: " + (txtPointer - patLen));
-            txtPointer--;
-            patPointer = next[patPointer - 1];
+            // txtPointer--;
+            // patPointer = next[patPointer - 1];
+            txtPointer = txtPointer - patLen + 1;
+            patPointer = 0;
         }
     }
 }

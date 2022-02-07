@@ -1,5 +1,5 @@
 ---
-title: Algorithm-StringMatching-Of-Suffix&HeightArr
+title: Algorithm StringMatching Of Suffix&HeightArr
 author: NaiveKyo
 top: false
 hide: false
