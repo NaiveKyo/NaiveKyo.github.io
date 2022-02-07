@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-07T04:31:00.280Z</updated>
+  <updated>2022-02-07T15:23:13.950Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Algorithm-StringMatching-Of-Suffix&amp;HeightArr</title>
+    <title>Algorithm StringMatching Example</title>
+    <link href="https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-example/"/>
+    <id>https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-example/</id>
+    <published>2022-02-07T04:53:20.000Z</published>
+    <updated>2022-02-07T15:23:13.950Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;应用例题&quot;&gt;&lt;a href=&quot;#应用例题&quot; class=&quot;headerlink&quot; title=&quot;应用例题&quot;&gt;&lt;/a&gt;应用例题&lt;/h1&gt;&lt;h2 id=&quot;1、尺取法&quot;&gt;&lt;a href=&quot;#1、尺取法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Algorithm StringMatching Of Suffix&amp;HeightArr</title>
     <link href="https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-of-suffix-heightarr/"/>
     <id>https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-of-suffix-heightarr/</id>
     <published>2022-02-07T04:21:56.000Z</published>
-    <updated>2022-02-07T04:31:00.280Z</updated>
+    <updated>2022-02-07T04:53:31.954Z</updated>
     
     
       
@@ -491,31 +516,6 @@
     
     
     <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algorithm StringMatching Of KMP</title>
-    <link href="https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/"/>
-    <id>https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/</id>
-    <published>2021-12-02T14:37:31.000Z</published>
-    <updated>2022-02-07T03:57:17.919Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;KMP-算法&quot;&gt;&lt;a href=&quot;#KMP-算法&quot; class=&quot;headerlink&quot; title=&quot;KMP 算法&quot;&gt;&lt;/a&gt;KMP 算法&lt;/h1&gt;&lt;p&gt;Knuth、Morris 和 Pratt</summary>
-        
-      
-    
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
     
   </entry>
   

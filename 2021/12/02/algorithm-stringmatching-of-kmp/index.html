@@ -665,7 +665,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    3.3k
                 </div>
                 
 
@@ -686,11 +686,59 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="KMP-算法"><a href="#KMP-算法" class="headerlink" title="KMP 算法"></a>KMP 算法</h1><p>Knuth、Morris 和 Pratt 发明的算法的基本思想是当出现不匹配时，就能知晓一部分文本的内容（因为这部分文本在匹配失败之前已经和模式相匹配），我们利用这些信息可以避免将指针回退到所有这些已知的字符之前。</p>
-<h2 id="1、next-数组解法"><a href="#1、next-数组解法" class="headerlink" title="1、next 数组解法"></a>1、next 数组解法</h2><p>重点：</p>
+<h2 id="1、next-数组解法"><a href="#1、next-数组解法" class="headerlink" title="1、next 数组解法"></a>1、next 数组解法</h2><h3 id="1-前缀和后缀"><a href="#1-前缀和后缀" class="headerlink" title="(1) 前缀和后缀"></a>(1) 前缀和后缀</h3><p>重点：</p>
 <ul>
 <li>依据模式串失配位置前面部分的前缀和后缀的最长匹配来构建一个 next 数组</li>
 </ul>
-<p>对于模式串的 next 数组，当匹配的过程中在 j 位置失配，那么模式串的扫描指针应该回退到 k 位置上，</p>
+<p>这里提出了两个概念：前缀和后缀，我们以字符串 <code>BABABB</code> 为例说明：</p>
+<table>
+<thead>
+<tr>
+<th>子串</th>
+<th>前缀</th>
+<th>后缀</th>
+<th>最长公共子串长度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B</td>
+<td>空集</td>
+<td>空集</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BA</td>
+<td>[B]</td>
+<td>[A]</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BAB</td>
+<td>[B, BA]</td>
+<td>[AB, B]</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BABA</td>
+<td>[B, BA, BAB]</td>
+<td>[ABA, BA, A]</td>
+<td>2</td>
+</tr>
+<tr>
+<td>BABAB</td>
+<td>[B, BA, BAB, BABA]</td>
+<td>[ABAB, BAB, AB, B]</td>
+<td>3</td>
+</tr>
+<tr>
+<td>BABABB</td>
+<td>[B, BAB, BABA, BABAB]</td>
+<td>[ABABB, BABB, ABB, BB, B]</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>不难发现前缀和后缀的最长匹配就是 “前缀” 和 “后缀” 最长的共有元素的长度，而且这类字符串的元素重复度比较高。</p>
+<h3 id="2-next-前缀数组"><a href="#2-next-前缀数组" class="headerlink" title="(2) next 前缀数组"></a>(2) next 前缀数组</h3><p>模式串的 next 数组其实就是前缀和后缀的最长公共子串长度集合，它的作用如下: 当匹配的过程中在 j 位置失配，那么模式串的扫描指针应该回退到 k 位置上，</p>
 <p>即：<code>next[j] = k</code></p>
 <table>
 <thead>
@@ -746,14 +794,14 @@
 <td>1</td>
 </tr>
 <tr>
-<td>4</td>
+<td><strong style="color:red">4</strong></td>
 <td></td>
-<td>b</td>
-<td>a</td>
-<td>b</td>
-<td>a</td>
-<td>b</td>
-<td>2</td>
+<td><strong style="color:red">b</strong></td>
+<td><strong style="color:red">a</strong></td>
+<td><strong style="color:red">b</strong></td>
+<td><strong style="color:red">a</strong></td>
+<td><strong style="color:red">b</strong></td>
+<td><strong style="color:red">2</strong></td>
 </tr>
 <tr>
 <td>5</td>
@@ -767,8 +815,18 @@
 </tr>
 </tbody></table>
 <p>KMP 算法适用于字符重复率比较高的文本，因为这种类型的文本可以很方便的构建 next 数组：</p>
-<p>例如，上表中如果在索引为 4 的位置处匹配失败，那么此时已经匹配成功的模式串的那部分就是 b a b a，这一部分的前缀为 b a，后缀为 b a，可得出最长匹配为 2，即 next[4] = 2，那么模式指针应该指向 <code>pat.charAt(2)</code> 。</p>
-<p>但是我们如果要计算出最长匹配会比较麻烦，这里要利用一些规律，例如这里在 <code>pat.charAt(4)</code>  处匹配失败，就看 <code>next[4 - 1]</code> 的值，这里为 1，则比对 <code>pat.charAt[4 - 1]</code> 和 <code>pat.charAt(1)</code> 的字符是否相同，如果相同则 <code>next[4] = next[4 - 1] + 1</code> ，如果不同则 <code>next[4] = next[1] + 1</code> 。利用这种规律可以很快构建好 next 数组。</p>
+<p>例如，上表中如果在索引为 4 的位置处匹配失败，那么此时已经匹配成功的模式串的那部分就是 b a b a，这一部分前缀和后缀的最长匹配子串为 ba，长度为 2，即 <code>next[4] = 2</code>，模式指针应该回退并指向 <code>pat.charAt(2)</code>。</p>
+<p>那么问题来了，最长匹配子串我们很容易就看出来了，但是该如何计算呢？</p>
+<p>最简单直接的方法就是准备两个指针分别扫描所有的前缀和后缀，进行比对得出结果，不过这种方法效率较低，我们可以结合 next 数组以及前缀后缀的一些特性：</p>
+<ul>
+<li>假设在 <code>pat.charAt(5)</code>（即最后一个字符 b）处匹配失败，我们要计算出此时的 next 数组对应的值，即已匹配成功的部分 babab 的最长公共子串的长度，一种更为简便的方法是结合它的上一行来进行计算；</li>
+<li>上一行就是在 <code>pat.charAt(4) </code> 处失配，此时 <code>next[4] = 2</code>，说明 baba 的前后缀最长公共子串长度为 2，即串 “ba”，而且 “ba” 正是 <code>pat.charAt(2)</code> 失配时的已匹配成功的串，总结规律可以发现已匹配串是具有传递性的，同时 <code>pat.charAt(4) == pat.charAt(2)</code> 的，最终我们可以推出串 “babab” 的最长公共子串长度为 2 + 1 = 3，如下图所示：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220207225951.png"></p>
+<ul>
+<li>最终我们得出了 <code>next[5] = 3</code>，即模式串在索引为 5 的地方失配时，模式指针应该回退到索引为 3 的地方，此时已匹配成功的串是 “bab”；</li>
+<li>如果说 <code>pat.charAt(4) != pat.charAt(2)</code>，那么此时我们可以继续往前推，<code>next[2] = 0</code>，就看索引为 0 的那一行，然后比对 <code>pat.charAt(2)</code> 和 <code>pat.charAt(0)</code> 两个字符是否相等，如果一直不相等，最终会回退到索引为 0 的地方，此时 <code>next[0] = -1</code>，则 <code>next[5] = (-1 + 1) = 0</code>，模式指针直接回退到串首。</li>
+</ul>
 <p>最终 next 数组和模式串对应关系如下：</p>
 <table>
 <thead>
@@ -817,12 +875,18 @@
 
     next<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> next<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> pre <span class="token operator">=</span> next<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>pre<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> pre <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">// next 数组从下标为 j 的值去推出下标为 j + 1 的值</span>
+    <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> pre <span class="token operator">=</span> next<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> next<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 如果 pre = -1 说明前缀和后缀没有匹配串, 模式指针只能回到模式串的第一位</span>
+        <span class="token comment">// 如果 pattern.charAt(pre) == pattern.charAt(j) 说明前缀和后缀有最长匹配子串</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pre <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>pre<span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            next<span class="token punctuation">[</span><span class="token operator">++</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">++</span>pre<span class="token punctuation">;</span>
         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> next<span class="token punctuation">[</span>pre<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token comment">// 如果当前不匹配, 模式指针需要回退重新寻找前缀和后缀的最长匹配(依次类推, 要么找到最长匹配, 要么 pre = -1)</span>
+            pre <span class="token operator">=</span> next<span class="token punctuation">[</span>pre<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 
@@ -840,23 +904,28 @@
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"模式串长度大于待匹配串!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    
+
     <span class="token keyword">while</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">&lt;</span> txtLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
+        <span class="token comment">// 当 patPointer = -1 或者当前字符匹配成功(即 txt[i] == pat[j]), 两个指针都需要前进</span>
+        <span class="token comment">// 当 patPointer = -1 时, 说明 txt 串和 pattern 串的第一位无法匹配, 两个指针都需要前进</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>patPointer <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> txt<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>txtPointer<span class="token punctuation">)</span> <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>patPointer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             txtPointer<span class="token operator">++</span><span class="token punctuation">;</span>
             patPointer<span class="token operator">++</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 如果 patPointer != -1, 且当前字符匹配失败(即 txt[i] != pat[j]), 则令文本指针不变, 模式指针回退</span>
             patPointer <span class="token operator">=</span> next<span class="token punctuation">[</span>patPointer<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 
         <span class="token keyword">if</span> <span class="token punctuation">(</span>patPointer <span class="token operator">==</span> patLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"match index begin: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>txtPointer <span class="token operator">-</span> patLen<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            txtPointer<span class="token operator">--</span><span class="token punctuation">;</span>
-            patPointer <span class="token operator">=</span> next<span class="token punctuation">[</span>patPointer <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token comment">// txtPointer--;</span>
+            <span class="token comment">// patPointer = next[patPointer - 1];</span>
+            txtPointer <span class="token operator">=</span> txtPointer <span class="token operator">-</span> patLen <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            patPointer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
