@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-06T09:02:27.712Z</updated>
+  <updated>2022-02-07T04:31:00.280Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm-StringMatching-Of-Suffix&amp;HeightArr</title>
+    <link href="https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-of-suffix-heightarr/"/>
+    <id>https://naivekyo.github.io/2022/02/07/algorithm-stringmatching-of-suffix-heightarr/</id>
+    <published>2022-02-07T04:21:56.000Z</published>
+    <updated>2022-02-07T04:31:00.280Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;字符串匹配&quot;&gt;&lt;a href=&quot;#字符串匹配&quot; class=&quot;headerlink&quot; title=&quot;字符串匹配&quot;&gt;&lt;/a&gt;字符串匹配&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;前缀树：字典树</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Project Summary One: DRP Web Application</title>
@@ -473,7 +499,7 @@
     <link href="https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/"/>
     <id>https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-kmp/</id>
     <published>2021-12-02T14:37:31.000Z</published>
-    <updated>2021-12-03T02:15:52.450Z</updated>
+    <updated>2022-02-07T03:57:17.919Z</updated>
     
     
       
@@ -481,31 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;KMP-算法&quot;&gt;&lt;a href=&quot;#KMP-算法&quot; class=&quot;headerlink&quot; title=&quot;KMP 算法&quot;&gt;&lt;/a&gt;KMP 算法&lt;/h1&gt;&lt;p&gt;Knuth、Morris 和 Pratt</summary>
-        
-      
-    
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algorithm StringMatching Of RabinKarp</title>
-    <link href="https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-rabinkarp/"/>
-    <id>https://naivekyo.github.io/2021/12/02/algorithm-stringmatching-of-rabinkarp/</id>
-    <published>2021-12-02T08:22:52.000Z</published>
-    <updated>2021-12-02T09:56:08.333Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;字符串朴素匹配算法&quot;&gt;&lt;a href=&quot;#字符串朴素匹配算法&quot; class=&quot;headerlink&quot;</summary>
         
       
     
