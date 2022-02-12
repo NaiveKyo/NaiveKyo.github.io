@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-10T14:57:37.869Z</updated>
+  <updated>2022-02-12T04:37:30.657Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm-NumberTheory-One</title>
+    <link href="https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/"/>
+    <id>https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/</id>
+    <published>2022-02-11T06:34:54.000Z</published>
+    <updated>2022-02-12T04:37:30.657Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;巧用进制&quot;&gt;&lt;a href=&quot;#巧用进制&quot; class=&quot;headerlink&quot; title=&quot;巧用进制&quot;&gt;&lt;/a&gt;巧用进制&lt;/h1&gt;&lt;h2 id=&quot;1、天平称重-变种-3-进制&quot;&gt;&lt;a href=&quot;#1、天平称重-变种-3-进制&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm StringMatching Example</title>
@@ -491,31 +516,6 @@
     
     
     <category term="Open Source" scheme="https://naivekyo.github.io/tags/Open-Source/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Statement Simple Optimization</title>
-    <link href="https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/"/>
-    <id>https://naivekyo.github.io/2021/12/07/mysql-statement-simple-optimization/</id>
-    <published>2021-12-07T07:48:02.000Z</published>
-    <updated>2021-12-07T08:37:40.006Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;常用-SQL-语句优化&quot;&gt;&lt;a href=&quot;#常用-SQL-语句优化&quot; class=&quot;headerlink&quot; title=&quot;常用 SQL 语句优化&quot;&gt;&lt;/a&gt;常用 SQL 语句优化&lt;/h2&gt;&lt;h3 id=&quot;1、批量插入&quot;&gt;&lt;a href=&quot;#1、批量插入&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   

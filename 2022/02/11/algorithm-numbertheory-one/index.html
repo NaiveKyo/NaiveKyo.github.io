@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux,Nacos">
+    <meta name="keywords" content="Algorithm">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CentOS7 Deploy Nacos Server | Miló&amp;Akoúo̱</title>
+    <title>Algorithm-NumberTheory-One | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210713111311.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174631.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CentOS7 Deploy Nacos Server</h1>
+                    <h1 class="description center-align post-title">Algorithm-NumberTheory-One</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Algorithm/">
+                                <span class="chip bg-color">Algorithm</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/Algorithm/" class="post-category">
+                                Algorithm
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-08-13
+                    2022-02-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-02-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    271
+                    1.2k
                 </div>
                 
 
@@ -685,75 +685,110 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Nacos-服务部署"><a href="#Nacos-服务部署" class="headerlink" title="Nacos 服务部署"></a>Nacos 服务部署</h2><h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>Nacos 作为 Spring Cloud Alibaba 的组件之一，主要有以下两个作用：</p>
-<ul>
-<li>服务注册与发现</li>
-<li>配置服务器</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html">官方文档</a></p>
-<h3 id="2、安装-Java-环境"><a href="#2、安装-Java-环境" class="headerlink" title="2、安装 Java 环境"></a>2、安装 Java 环境</h3><p> <a href="https://naivekyo.github.io/2021/07/06/centos7-install-jdk/">CentOS7 Install JDK</a></p>
-<h3 id="3、安装-Maven"><a href="#3、安装-Maven" class="headerlink" title="3、安装 Maven"></a>3、安装 Maven</h3><p><a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">Maven 官方下载渠道</a></p>
-<ul>
-<li><p>官网下载 LTS 版本 <code>apache-maven-x.x.x-bin.tar.gz</code></p>
-</li>
-<li><p>上传到 Linux 服务器，解压到 <code>/usr/local/maven</code> 目录下</p>
-</li>
-<li><p>配置环境变量</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># maven environment</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MAVEN_HOME</span><span class="token operator">=</span>/usr/local/maven/apache-maven-3.8.1
+                <h1 id="巧用进制"><a href="#巧用进制" class="headerlink" title="巧用进制"></a>巧用进制</h1><h2 id="1、天平称重-变种-3-进制"><a href="#1、天平称重-变种-3-进制" class="headerlink" title="1、天平称重:变种 3 进制"></a>1、天平称重:变种 3 进制</h2><p>用天平称重时，我们希望用尽可能少的砝码组合称出尽可能多的重量。</p>
+<p>如果有无限个砝码，但它们的重量分别是1，3，9，27，81，……等 3 的指数幂。</p>
+<p>神奇之处在于用它们的组合可以称出任意整数重量（砝码允许放在左右两个盘中）。</p>
+<p>本题要求编程实现：对用户给定的重量，给出砝码组合方案，重量 &lt; 1000000；</p>
+<p>例如：</p>
+<p>用户输入：</p>
+<p>5</p>
+<p>程序输出：</p>
+<p>9-3-1</p>
+<p>解释：例子意思是这样的，重量为 5，天平左侧放砝码 9，天平右侧放砝码 3、1 以及物品，这样天平两边就等价了，对于程序的输出，天平左盘为正数，右盘为负数。</p>
+<p>解题思路：</p>
+<pre class="line-numbers language-none"><code class="language-none">先看看二进制：
+0 0 0 0 0 0 0 0
+124 64 32 16 8 4 2 1
+可以发现二进制非常特殊，想用二进制表示十进制的任意的数，只需要选取二进制的不同位就可以表示了；
+假设选中了某一位就将该位置 1，未选中就置 0，只有 0 1 两种状态，即砝码的取和不取两种状态；
+则 3 可以表示为 0011，5 可以表示为 0101.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment"># PATH</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">${JAVA_HOME}</span>/bin:<span class="token variable">${MAVEN_HOME}</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>查看版本：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mvn -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-</ul>
-<h3 id="4、安装-Nacos"><a href="#4、安装-Nacos" class="headerlink" title="4、安装 Nacos"></a>4、安装 Nacos</h3><blockquote>
-<p>步骤：</p>
-</blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">下载</a></li>
-<li><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/deployment.html">部署</a></li>
-<li><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">启动</a></li>
-</ul>
-<blockquote>
-<p>概述：</p>
-</blockquote>
-<p>去官网下载 Nacos 的 Linux 发行包上传到服务器，解压后</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">unzip</span> nacos-server-<span class="token variable">$version</span>.zip 
-<span class="token comment"># 或者 </span>
-<span class="token function">tar</span> -xvf nacos-server-<span class="token variable">$version</span>.tar.gz
+<p>二进制有 n 位就可以表示十进制的 1 - 2^n</p>
+<p>但是如果换到三进制就不一样了：</p>
+<pre class="line-numbers language-none"><code class="language-none">对于三进制而言是这样的：
+0 0 0 0 0
+81 27 9 3 1
+每一位有三种状态 0，1，2，转换为砝码的取与不取问题可以这样理解，不取，取一次、取两次；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token builtin class-name">cd</span> nacos/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意本题中并没有说砝码可以重复使用，所以一个砝码只能用一次：</p>
+<pre class="line-numbers language-none"><code class="language-none">以例子中的 5 为例，用三进制可以这样表示
+0 1 2
+9 3 1
+2 个 1 加上一个 3 就是 5，表示为 (1, 2)
+现在想要向例子的 9-3-1 靠拢，可以这样:
+(1, 2) 第一位 + 1 得到 (2, 0)
+再让第一位 - 1 得到 (2, -1)；
+接着让第二位 + 1 得 (1, 0, -1)
+第二位再 -1 得到 (1, -1, -1)
+也就是
+1 -1 -1
+9 3 1
+得到了 9-3-1 的结果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>大概思路就有了，把重量转换为 3 进制，接着我们要做的就是对 3 进制数进行处理要求每一位上只能是 0、 1 、-1中的一个，而且这个处理也是有规律的，就是从低位开始每一位进行 +1 然后 -1 操作：</p>
+<p>例如 5 从 （0，1，2）到 （0，2，-1）到（1，-1，-1）；</p>
+<p>例如 3 表示为（1，0）无需变换；</p>
+<p>例如 26 的 3 进制表示为 （2，2，2），变化过程如下：（2，2，2）到（1，0，0，-1）；</p>
+<p>综上可以发现从低位到高位，每一位进行 + 1、- 1 操作，对于每一位而言：</p>
+<ul>
+<li>遇到 2 则该位变为 -1，且该位的下一位（更高位）要加 1；</li>
+<li>遇到 0 或 1 则该位不变</li>
+</ul>
+<p>代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> test_1_天平称重<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"please input weight: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Scanner</span> sc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<p>Nacos 支持三种部署模式：</p>
-<ul>
-<li>单机模式<ul>
-<li>单机模式支持 MySQL</li>
-</ul>
-</li>
-<li>集群模式</li>
-<li>多网卡 IP 选择</li>
-</ul>
-<blockquote>
-<p>单机模式</p>
-</blockquote>
-<p>第一步：</p>
-<ul>
-<li>开放端口：Nacos 默认使用的是 8848 端口，我们可以修改 <strong>firewall</strong> 和 阿里云安全组</li>
-</ul>
-<p>第二步：</p>
-<ul>
-<li>启动 nacos 服务器</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">startup.sh -m standalone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+    <span class="token comment">// 接收重量</span>
+    <span class="token keyword">int</span> weight <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 转换为 3 进制字符串</span>
+    <span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>weight<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 先翻转将低位放在前面, 高位放在后面, 然后转换为字符数组</span>
+    <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chars <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 再对字符数组进行处理，将三进制数的各个位用 0、-1、1 表示</span>
+    <span class="token comment">// 这里要使用另外一个容器进行存储，并且是逆序插入，这是因为高位在最前面</span>
+    <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> chars<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'2'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 遇到 2 就在开头插入 -1</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> chars<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 如果当前是字符数组的最后一位, 即 3 进制的最高位, 就需要进位</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token operator">++</span>chars<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 否则就对字符数组的 i + 1 位进行加 1</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 遇到字符 '3' 是因为在上一个分支中对字符数组的某一个元素进行了加 1 操作</span>
+            <span class="token comment">// 这种特殊情况首先将该位置 0</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> chars<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 如果该位是最高位，就需要进位</span>
+                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 否则继续将下一位 + 1</span>
+                <span class="token operator">++</span>chars<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 如果遇到 0 或者 1, 就将当前字符转换为整数(减去字符 '0')</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 恢复成十进制表示的字符串</span>
+    <span class="token class-name">StringBuilder</span> sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"+"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+            sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<p>第三步：</p>
-<ul>
-<li>浏览器访问 Nacos 服务器</li>
-</ul>
-<p><code>http://ip:8848/nacos</code></p>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>sb<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意这里出现了某一位等于 3 的情况，这是因为它的前一位是 2 且不是最高位。</p>
 
                 
             </div>
@@ -780,7 +815,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/">https://naivekyo.github.io/2021/08/13/centos7-deploy-nacos-server/</a>
+                    <a href="https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/">https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -818,8 +853,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/Algorithm/">
+                                    <span class="chip bg-color">Algorithm</span>
                                 </a>
                             
                         </div>
@@ -986,45 +1021,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/08/15/java-network-programing-intro/">
+                <a href="/2022/02/11/algorithm-numbertheory-one/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715143838.jpg" class="responsive-img" alt="Java Network Programing Intro">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174631.jpg" class="responsive-img" alt="Algorithm-NumberTheory-One">
                         
-                        <span class="card-title">Java Network Programing Intro</span>
+                        <span class="card-title">Algorithm-NumberTheory-One</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 网络编程入门
+                            数学问题
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -1038,34 +1075,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/12/spring-boot-integrated-cache/">
+                <a href="/2022/02/07/algorithm-stringmatching-example/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210723091053.jpg" class="responsive-img" alt="Spring Boot Integrated Cache">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174615.jpg" class="responsive-img" alt="Algorithm StringMatching Example">
                         
-                        <span class="card-title">Spring Boot Integrated Cache</span>
+                        <span class="card-title">Algorithm StringMatching Example</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            浅析 SpringBoot 集成缓存。
+                            字符串匹配算法例题
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Boot/" class="post-category">
-                                    Spring Boot
-                                </a>
-                            
-                            <a href="/categories/Spring-Boot/Cache/" class="post-category">
-                                    Cache
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
                                 </a>
                             
                             
@@ -1075,12 +1108,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Boot/">
-                        <span class="chip bg-color">Spring Boot</span>
-                    </a>
-                    
-                    <a href="/tags/Cache/">
-                        <span class="chip bg-color">Cache</span>
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
