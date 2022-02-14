@@ -666,7 +666,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-12
+                    2022-02-13
                 </div>
                 
 
@@ -857,7 +857,7 @@
 <p>出现了问题</p>
 </blockquote>
 <p>多个线程访问同一个资源的时候，极有可能会出现问题，资源紊乱。</p>
-<h3 id="4、实现-Callable-接口-TODO"><a href="#4、实现-Callable-接口-TODO" class="headerlink" title="4、实现 Callable 接口  TODO"></a>4、实现 Callable 接口  TODO</h3><p>前面创建线程的2种方式，一种是直接继承 Thread，另外一种就是实现 Runnable 接口。</p>
+<h3 id="4、实现-Callable-接口"><a href="#4、实现-Callable-接口" class="headerlink" title="4、实现 Callable 接口"></a>4、实现 Callable 接口</h3><p>前面创建线程的2种方式，一种是直接继承 Thread，另外一种就是实现 Runnable 接口。</p>
 <p>这 2 种方式都有一个缺陷就是：<strong>在执行完任务之后无法获取执行结果</strong>。</p>
 <p>如果<strong>需要获取执行结果</strong>，就必须通过共享变量或者使用线程通信的方式来达到效果，这样使用起来就比较麻烦。</p>
 <p>而自从 Java 1.5 开始，就提供了 <code>Callable</code> 和 <code>Future</code>，通过它们可以在任务执行完毕之后得到任务执行结果。</p>
@@ -2161,7 +2161,7 @@
 
 <span class="token comment">// 产品</span>
 <span class="token keyword">class</span> <span class="token class-name">Tv</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 生成者消费者模式</span>
+    <span class="token comment">// 生产者消费者模式</span>
     <span class="token comment">// 演员准备好表演时通知观众观看，观众观看时通知演员入场</span>
     <span class="token class-name">String</span> voice<span class="token punctuation">;</span>   <span class="token comment">// 表演的节目</span>
 
@@ -2518,6 +2518,32 @@
     
 
     
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2021/07/25/java-thread-rudimentary-knowledge/';
+        this.page.identifier = '/2021/07/25/java-thread-rudimentary-knowledge/';
+        this.page.title = 'Java Thread Rudimentary Knowledge';
+    };
+    let disqus_shortname = 'naivekyo';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
     
 
