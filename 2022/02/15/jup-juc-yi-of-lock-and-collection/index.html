@@ -1394,7 +1394,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 
 <p>上面的代码中，共享资源和锁只有一个，和该锁关联的监视器也只有一个，但是该监视器和所有线程绑定，从而实现通过 <code>signalAll()</code> 方法唤醒所有线程，所有线程再去竞争锁。</p>
 <h2 id="5、几个例子"><a href="#5、几个例子" class="headerlink" title="5、几个例子"></a>5、几个例子</h2><p>锁是什么？如何判断锁的是谁？</p>
-<h4 id="Case-1：延时-单个对象-同步方法"><a href="#Case-1：延时-单个对象-同步方法" class="headerlink" title="Case 1：延时 + 单个对象 + 同步方法"></a>Case 1：延时 + 单个对象 + 同步方法</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test1</span> <span class="token punctuation">{</span>
+<h3 id="Case-1：延时-单个对象-同步方法"><a href="#Case-1：延时-单个对象-同步方法" class="headerlink" title="Case 1：延时 + 单个对象 + 同步方法"></a>Case 1：延时 + 单个对象 + 同步方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test1</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token class-name">Phone</span> phone <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         
@@ -1448,7 +1448,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 </blockquote>
 <p>Case 1 中锁只有一个，A 线程第一个拿到锁，所以 A 第一个执行。</p>
 <p><mark>补充一点：普通方法（没有 synchronized 或者 Lock）不受锁影响。</mark></p>
-<h4 id="Case-2：延时-多个对象-同步方法"><a href="#Case-2：延时-多个对象-同步方法" class="headerlink" title="Case 2：延时 + 多个对象 + 同步方法"></a>Case 2：延时 + 多个对象 + 同步方法</h4><p>代码如下：</p>
+<h3 id="Case-2：延时-多个对象-同步方法"><a href="#Case-2：延时-多个对象-同步方法" class="headerlink" title="Case 2：延时 + 多个对象 + 同步方法"></a>Case 2：延时 + 多个对象 + 同步方法</h3><p>代码如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test2</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// 两个对象</span>
@@ -1486,7 +1486,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 
 <p>这种情况下准备了两个 <code>Phone</code> 对象，线程 A 和 B 个持有一把锁，如果没有延时的话，线程 A 和 B 的调度是不确定，只和操作系统的线程调度器有关；</p>
 <p>但是由于存在延时，所以此种情况下控制台一定是先打印 <code>B call</code>，因为 A 调用同步方法时，同步方法内部延时了 2 s。</p>
-<h4 id="Case-3：延时-静态同步方法"><a href="#Case-3：延时-静态同步方法" class="headerlink" title="Case 3：延时  + 静态同步方法"></a>Case 3：延时  + 静态同步方法</h4><p>将 <code>synchronized</code> 方法变为静态方法：</p>
+<h3 id="Case-3：延时-静态同步方法"><a href="#Case-3：延时-静态同步方法" class="headerlink" title="Case 3：延时  + 静态同步方法"></a>Case 3：延时  + 静态同步方法</h3><p>将 <code>synchronized</code> 方法变为静态方法：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test3</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         
@@ -1523,7 +1523,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 <blockquote>
 <p>synchronized 修饰静态方法, 此时锁是 Class 对象（全局唯一）</p>
 </blockquote>
-<h4 id="Case-4：延时-多个对象-静态同步方法"><a href="#Case-4：延时-多个对象-静态同步方法" class="headerlink" title="Case 4：延时 + 多个对象 + 静态同步方法"></a>Case 4：延时 + 多个对象 + 静态同步方法</h4><p>多对象静态方法：</p>
+<h3 id="Case-4：延时-多个对象-静态同步方法"><a href="#Case-4：延时-多个对象-静态同步方法" class="headerlink" title="Case 4：延时 + 多个对象 + 静态同步方法"></a>Case 4：延时 + 多个对象 + 静态同步方法</h3><p>多对象静态方法：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test3</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
@@ -1565,7 +1565,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>创建多个对象，<code>synchronized</code> 修饰静态方法，通过实例调用静态方法，此时锁仍然是 <code>Class</code> 对象，不管对象有多少，模板 Class 只有一个，所以 A 线程依旧第一个运行。</p>
-<h4 id="Case-5：无延时-普通同步-静态不同"><a href="#Case-5：无延时-普通同步-静态不同" class="headerlink" title="Case 5：无延时 + 普通同步 + 静态不同"></a>Case 5：无延时 + 普通同步 + 静态不同</h4><p>如果将一个方法改为普通同步方法，另一个依旧为静态同步方法：（去掉延时）</p>
+<h3 id="Case-5：无延时-普通同步-静态不同"><a href="#Case-5：无延时-普通同步-静态不同" class="headerlink" title="Case 5：无延时 + 普通同步 + 静态不同"></a>Case 5：无延时 + 普通同步 + 静态不同</h3><p>如果将一个方法改为普通同步方法，另一个依旧为静态同步方法：（去掉延时）</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test3</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
@@ -1596,7 +1596,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>此时会发现，这两个同步方法的锁是不同的，一个是 Class 对象，一个是实例对象，因此两个线程的调用是不确定的，这只和操作系统有关。</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
 <li>实例同步方法的锁是实例对象；</li>
 <li>静态同步方法的锁是 Class 对象</li>
 </ul>
