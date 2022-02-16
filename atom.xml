@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-16T03:55:54.277Z</updated>
+  <updated>2022-02-16T11:28:05.743Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JUP JUC (二) Callable And Synchronization Aid</title>
+    <link href="https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/"/>
+    <id>https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/</id>
+    <published>2022-02-16T11:26:11.000Z</published>
+    <updated>2022-02-16T11:28:05.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1、Callable&quot;&gt;&lt;a href=&quot;#1、Callable&quot; class=&quot;headerlink&quot; title=&quot;1、Callable&quot;&gt;&lt;/a&gt;1、Callable&lt;/h1&gt;&lt;h2 id=&quot;（1）Callable&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP (一) JUC Of Lock And Collection</title>
@@ -482,31 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Spring-Security-认证&quot;&gt;&lt;a href=&quot;#Spring-Security-认证&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 认证&quot;&gt;&lt;/a&gt;Spring Security 认证&lt;/h1&gt;&lt;h1</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security First Try</title>
-    <link href="https://naivekyo.github.io/2021/12/09/spring-security-first-try/"/>
-    <id>https://naivekyo.github.io/2021/12/09/spring-security-first-try/</id>
-    <published>2021-12-09T13:52:58.000Z</published>
-    <updated>2022-01-05T13:41:31.328Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
