@@ -9,7 +9,9 @@ date: 2021-07-25 21:19:45
 top: false
 cover: false
 summary: Java 多线程基础知识
-categories: Java
+categories: 
+ - "Java Concurrent"
+ - ["Java Concurrent", Java]
 keywords: [Java, Thread]
 tags: [Java, Thread]
 ---
@@ -215,7 +217,7 @@ public class TestThread3 implements Runnable {
 
 
 
-### 4、实现 Callable 接口  TODO
+### 4、实现 Callable 接口
 
 前面创建线程的2种方式，一种是直接继承 Thread，另外一种就是实现 Runnable 接口。
 
@@ -1622,7 +1624,7 @@ class Watch extends Thread {
 
 // 产品
 class Tv {
-    // 生成者消费者模式
+    // 生产者消费者模式
     // 演员准备好表演时通知观众观看，观众观看时通知演员入场
     String voice;   // 表演的节目
 
