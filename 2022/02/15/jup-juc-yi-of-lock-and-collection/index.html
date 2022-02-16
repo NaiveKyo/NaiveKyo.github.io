@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-15
+                    2022-02-16
                 </div>
                 
 
@@ -1625,7 +1625,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 <p>打印出来，会发现有时候很多位置上的元素是 null：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220214144651.png"></p>
 <p>如果将延时时间调大，还会出现：<code>java.util.ConcurrentModificationException</code> 的异常，即并发修改异常。</p>
-<p>出现了并发问题，我们首先应该想到的是使用 <code>synchronized</code> 解决，这一点 JDK 官方其实早就做了，有一种数据结构叫做 <code>Vector&lt;E&gt;</code>，这是早期 Java 为了致敬 C++ 所引入的一中数据结构，在 JDK 1.0 时代就出现了，现在已经不使用它了，看一下 <code>Vector&lt;E&gt;</code> 的 <code>add()</code></p>
+<p>出现了并发问题，我们首先应该想到的是使用 <code>synchronized</code> 解决，这一点 JDK 官方其实早就做了，有一种数据结构叫做 <code>Vector&lt;E&gt;</code>，这是早期 Java 为了致敬 C++ 所引入的一种数据结构，在 JDK 1.0 时代就出现了，现在已经不使用它了，看一下 <code>Vector&lt;E&gt;</code> 的 <code>add()</code></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     modCount<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token function">ensureCapacityHelper</span><span class="token punctuation">(</span>elementCount <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1641,7 +1641,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>可见 Java 并不建议在多线程中使用常规的 <code>ArrayList</code>。</p>
+<p>常规的 <code>ArrayList</code> 中并没有做任何同步操作。</p>
 <h3 id="JUC-解决思路-COW-Lock"><a href="#JUC-解决思路-COW-Lock" class="headerlink" title="JUC 解决思路 COW + Lock"></a>JUC 解决思路 COW + Lock</h3><p>官方不推荐使用 <code>Vector&lt;E&gt;</code> 也不建议在多线程环境下使用 <code>ArrayList&lt;E&gt;</code>，那么该如何解决并发问题呢？</p>
 <p>一种方法是使用 <code>Collections</code> 集合工具类中提供的相关方法获取线程安全的集合：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220214150439.png"></p>
@@ -2020,7 +2020,7 @@ l<span class="token punctuation">.</span><span class="token function">lock</span
 <ul>
 <li>根据特定 hash 函数通过 key 计算 hashcode</li>
 <li>判断 hash 表是否需要初始化</li>
-<li>通过 key 定位 Node，如果为空表示当前位置可插入，就利用 CAS（C++方法操作内存） 尝试写入<ul>
+<li>通过 key 定位 Node，如果为空表示当前位置可插入，就利用 CAS（具体执行方式是通过 C++ 方法操作内存） 尝试写入<ul>
 <li>如果不能插入，且需要扩容，就进行扩容操作</li>
 <li>如果不满足情况，就利用 <code>synchronized</code> 锁写入数据，写入的时候还要判断是否需要转化为红黑树</li>
 </ul>
