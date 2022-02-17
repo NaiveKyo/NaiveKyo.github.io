@@ -337,7 +337,7 @@ class Solver {
 - `CyclicBarrier` 的 `await()` 方法会返回一个 int 值，表示当前子线程到达 `barrier` 的索引；
 - `CyclicBarrier` 采取了一种 `all-or-none` 的 **breakage model**，意思是只要一个线程在达到 `barrier` 之前出现了中断、失败、超时，其他所有正在等待的线程都会通过抛出异常而离开屏障。
 
-如果说 `barrier action`（我们提供的 `Runnable` 实例）不依赖于正在挂起子线程的执行结果，意味着不一定要执行完所有的子线程达到屏障点后再执行 `barrier action`，此时我们就可以借助 `await()` 方法的返回值（子线程到达屏障的位置索引），在指定的地方做一些操作：
+如果说 `barrier action`（我们提供的 `Runnable` 实例）不依赖于正在挂起子线程的执行结果，意味着不一定要执行完所有的子线程达到屏障点后再执行某些操作，此时我们就可以借助 `await()` 方法的返回值（子线程到达屏障的位置索引），在指定的地方做一些操作：
 
 ```java
 public class CB_Demo05 {
@@ -364,24 +364,6 @@ public class CB_Demo05 {
     }
 }
 ```
-
-## 补充：haapens-before
-
-不管是 `CountDownLatch` 还是 `CyclicBarrier` 都提到了一点：内存一致性。
-
-同时也提到了一种 <mark>happens-before</mark> 规则，这种规则其实是 Java 内存模型（**JMM**）相关的知识；
-
-官方文档描述：https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4.5
-
-参考博客：https://zhuanlan.zhihu.com/p/126275344
-
-简单来说，就是对于某些会影响程序执行结果的操作，开发人员希望这些操作能够按照一定的顺序，前一个操作的结果对于后一个操作是可见的，而 `happens-before` 规则正是 JMM 为我们提供的工具，利用这个规则来编写安全的并发程序。
-
-> 以 CyclicBarrier
-
-举 `CyclicBarrier` 为例，影响执行结果的就是 `await()` 操作，例如在某一个子线程中，调用 `barrier.await()` 之前的操作对于 `barrier` 相关的操作是可见的。
-
-同时其他线程依次执行 `await()` 操作并成功返回执行结果，这个过程也是按照 `happens-before` 的规则，前一个操作对后一个操作可见。
 
 ## （3）Semaphore
 
@@ -486,7 +468,7 @@ class Pool {
 
 这里有几点需要注意：
 
-- `Semaphore` 颁发许可和释放许可是同步的，这在 `Semaphore` 内部做了处理，而外部资源的访问是同步还是不同就需要自行解决，拿上面的例子来说，对于项目池，相关方法是使用 `synchronized` 修饰的，这也是信号量和之前两个同步辅助工具的不同之处；
+- `Semaphore` 颁发许可和释放许可是同步的，这在 `Semaphore` 内部做了处理，而外部资源的访问是同步还是不同步就需要自行解决，拿上面的例子来说，对于项目池，相关方法是使用 `synchronized` 修饰的，这也是信号量和之前两个同步辅助工具的不同之处；
 - 如果这样创建信号量 `new Semaphore(1)`，只有一个许可，此时它就可以当作互斥锁来使用，通常这也被称为 **二进制信号量**（`binary semaphore`），因为它只有两种状态：持有一个许可证和持有零个许可证：
   - 二进制信号量和 JUC 的 Lock 锁的功能有些相似（使用方式和公平/不公平锁），但是它们的实现原理是不同的，Lock 锁允许锁的持有者以外的线程释放锁，而信号量不同，它没有持有权的概念；
   - 二进制信号量在某些特定的上下文很有效，比如说死锁的恢复。
@@ -496,3 +478,23 @@ class Pool {
   - 使用公平锁时遵循 FIFO 的规则，谁先申请，当有可用的许可时就先颁发给谁，同时需要注意 `tryAcquire` 方法并不严格的遵循 FIFO 规则，调用该方法时，只要有可用的许可就会直接获取，从逻辑上表现为使用该方法的线程排到等待队列的最前方；
   - 通常来说用来控制资源的使用的信号量应该使用公平锁，以确保没有线程在访问资源时被耗尽；
   - 当采用其他同步访问控制方式时，不公平锁的吞吐量常常超过公平锁。
+
+
+
+## 补充：haapens-before
+
+在  `CountDownLatch`  、`CyclicBarrier`  和 `Semaphore` 中都提到了一点：内存一致性。
+
+同时也提到了一种 <mark>happens-before</mark> 规则，这种规则其实是 Java 内存模型（**JMM**）相关的知识；
+
+官方文档描述：https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4.5
+
+参考博客：https://zhuanlan.zhihu.com/p/126275344
+
+简单来说，就是对于某些会影响程序执行结果的操作，开发人员希望这些操作能够按照一定的顺序，前一个操作的结果对于后一个操作是可见的，而 `happens-before` 规则正是 JMM 为我们提供的工具，利用这个规则来编写安全的并发程序。
+
+> 以 CyclicBarrier 为例
+
+举 `CyclicBarrier` 为例，影响执行结果的就是 `await()` 操作，例如在某一个子线程中，调用 `barrier.await()` 之前的操作对于 `barrier` 相关的操作是可见的。
+
+同时其他线程依次执行 `await()` 操作并成功返回执行结果，这个过程也是按照 `happens-before` 的规则，前一个操作对后一个操作可见。
