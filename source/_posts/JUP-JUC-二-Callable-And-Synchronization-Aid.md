@@ -210,7 +210,7 @@ class Driver2 {
     
     void main() throws InterruptedException {
         CountDownLatch doneSignal = new CountDownLatch(N);
-        // 准备一个线程池
+        // 准备一个线程池（为方便演示，这里直接使用 Executors 生成的线程池）
         ExecutorService executor = Executors.newFixedThreadPool(N);
 
         for (int i = 0; i < N; i++) {
