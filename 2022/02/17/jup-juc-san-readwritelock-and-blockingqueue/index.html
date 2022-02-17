@@ -29,9 +29,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
 </head>
 
 
@@ -665,7 +665,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.5k
+                    3.6k
                 </div>
                 
 
@@ -737,9 +737,9 @@
 <ul>
 <li><strong>Acquisition order</strong>：获得顺序<ul>
 <li>该实现类同时支持公平锁和不公平锁</li>
-<li>默认是不公平模式，这就意味着多条线程在竞争锁时，它们的进入顺序收到可重入性约束（<code>reentrancy constraints</code>），可能会无限期的延迟某些读写线程，但是在性能上要优于公平锁；</li>
+<li>默认是不公平模式，这就意味着多条线程在竞争锁时，它们的获取锁的顺序会受到可重入性约束（<code>reentrancy constraints</code>），可能会无限期的延迟某些读写线程，但是在性能上要优于公平锁；</li>
 <li>采取公平模式时，线程获得锁的顺序遵循 <code>approximately arrival-order policy</code> ，当锁被释放时，要么某个等待时间最长的写入线程获得写锁，要么一组读取线程获得读锁，前提是这组读取线程的等待时间大于所有写入线程的等待时间。<ul>
-<li>当写锁被持有，或者等待队列中存在一个正在等待写入的线程，此时如果一条线程尝试获取不可重入的公平读锁，它就会被阻塞，直到等待时间最长的写入线程获取写锁最后释放写锁，它才可以获得读锁；当然，如果一个正在等待写入的线程放弃了等待，就从剩下的线程中选取一组等待读取的线程作为等待时间最长的，在写入释放后，授予这一组线程读锁。</li>
+<li>当写锁被持有，或者等待队列中存在一个正在等待写入的线程，此时如果一条线程尝试获取不可重入的公平读锁，它就会被阻塞，直到等待时间最长的写入线程获取写锁最后释放写锁，它才可以获得读锁；当然，如果一个正在等待写入的线程放弃了等待，就从剩下的线程中选取一组等待读取的线程作为等待时间最长的，在写锁释放后，授予这一组线程读锁。</li>
 <li>当某个线程尝试获取不可重入的公平写锁时就会阻塞，除非读锁和写锁都被释放了（意味着没有等待线程）</li>
 </ul>
 </li>
@@ -1043,7 +1043,7 @@
             <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"T1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"T2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1314,29 +1314,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/">
+                <a href="/2022/02/17/jup-juc-si-use-thread-pool/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174730.jpg" class="responsive-img" alt="JUP JUC (三) ReadWriteLock And BlockingQueue">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174745.jpg" class="responsive-img" alt="JUP JUC (四) Use Thread Pool">
                         
-                        <span class="card-title">JUP JUC (三) ReadWriteLock And BlockingQueue</span>
+                        <span class="card-title">JUP JUC (四) Use Thread Pool</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程: JUC 中的读写锁和阻塞队列
+                            Java 并发编程: 使用线程池处理并发任务
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1349,7 +1348,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

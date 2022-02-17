@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-17T09:15:48.588Z</updated>
+  <updated>2022-02-17T14:26:23.174Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JUP JUC (四) Use Thread Pool</title>
+    <link href="https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/"/>
+    <id>https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/</id>
+    <published>2022-02-17T14:24:59.000Z</published>
+    <updated>2022-02-17T14:26:23.174Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot; title=&quot;线程池&quot;&gt;&lt;/a&gt;线程池&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JUP JUC (三) ReadWriteLock And BlockingQueue</title>
     <link href="https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/"/>
     <id>https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/</id>
     <published>2022-02-17T09:14:36.000Z</published>
-    <updated>2022-02-17T09:15:48.588Z</updated>
+    <updated>2022-02-17T09:39:21.218Z</updated>
     
     
       
@@ -46,7 +71,7 @@
     <link href="https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/"/>
     <id>https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/</id>
     <published>2022-02-16T11:26:11.000Z</published>
-    <updated>2022-02-17T01:51:27.070Z</updated>
+    <updated>2022-02-17T11:44:26.842Z</updated>
     
     
       
@@ -491,31 +516,6 @@
     
     
     <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot Integrated Asynchronous Tasks</title>
-    <link href="https://naivekyo.github.io/2021/12/14/spring-boot-integrated-asynchronous-tasks/"/>
-    <id>https://naivekyo.github.io/2021/12/14/spring-boot-integrated-asynchronous-tasks/</id>
-    <published>2021-12-14T14:20:32.000Z</published>
-    <updated>2021-12-20T02:07:06.699Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Spring-Boot-异步任务及定时任务&quot;&gt;&lt;a href=&quot;#Spring-Boot-异步任务及定时任务&quot; class=&quot;headerlink&quot; title=&quot;Spring Boot 异步任务及定时任务&quot;&gt;&lt;/a&gt;Spring Boot</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
     
   </entry>
   
