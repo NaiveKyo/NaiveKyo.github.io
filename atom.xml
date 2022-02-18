@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-17T14:26:23.174Z</updated>
+  <updated>2022-02-18T14:23:47.787Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JUP JUC (五) Fork/Join And Parallel Stream</title>
+    <link href="https://naivekyo.github.io/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/"/>
+    <id>https://naivekyo.github.io/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/</id>
+    <published>2022-02-18T14:22:38.000Z</published>
+    <updated>2022-02-18T14:23:47.787Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、ForkJoin-框架&quot;&gt;&lt;a href=&quot;#一、ForkJoin-框架&quot; class=&quot;headerlink&quot; title=&quot;一、ForkJoin 框架&quot;&gt;&lt;/a&gt;一、ForkJoin 框架&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JUP JUC (四) Use Thread Pool</title>
     <link href="https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/"/>
     <id>https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/</id>
     <published>2022-02-17T14:24:59.000Z</published>
-    <updated>2022-02-17T14:26:23.174Z</updated>
+    <updated>2022-02-18T02:10:33.518Z</updated>
     
     
       
@@ -482,31 +507,6 @@
         
     <summary type="html">&lt;h1 id=&quot;用户定义方式&quot;&gt;&lt;a href=&quot;#用户定义方式&quot; class=&quot;headerlink&quot; title=&quot;用户定义方式&quot;&gt;&lt;/a&gt;用户定义方式&lt;/h1&gt;&lt;p&gt;系列文章：&lt;/p&gt;
 &lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Get Logged-in User Data</title>
-    <link href="https://naivekyo.github.io/2021/12/16/spring-security-get-logged-in-user-data/"/>
-    <id>https://naivekyo.github.io/2021/12/16/spring-security-get-logged-in-user-data/</id>
-    <published>2021-12-16T13:25:06.000Z</published>
-    <updated>2021-12-18T15:32:51.553Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;登录用户数据获取&quot;&gt;&lt;a href=&quot;#登录用户数据获取&quot; class=&quot;headerlink&quot; title=&quot;登录用户数据获取&quot;&gt;&lt;/a&gt;登录用户数据获取&lt;/h1&gt;&lt;p&gt;前置文章：&lt;a</summary>
         
       
     

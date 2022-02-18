@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-17
+                    2022-02-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.1k
+                    2.3k
                 </div>
                 
 
@@ -947,6 +947,15 @@
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
+
+<h2 id="5、CPU-密集型和-IO-密集型"><a href="#5、CPU-密集型和-IO-密集型" class="headerlink" title="5、CPU 密集型和 IO 密集型"></a>5、CPU 密集型和 IO 密集型</h2><p>学习了线程池相关的知识后，我们知道应该通过自定义 <code>ThreadPoolExecutor</code> 去自定义线程池，而定制的依据和硬件及程序有关。</p>
+<p>可以分为两类：</p>
+<p>（1）<code>CPU</code> 密集型</p>
+<p>机器有几个处理器，就将线程池的最大线程设置为该数量，这样可以保证 CPU 的效率最高。</p>
+<p>可以通过 <code>Runtime.getRuntime().availableProcessors()</code> 来获取当前系统的 CPU 核数，将该值设置为线程池的最大线程数。</p>
+<p>（2）<code>IO</code> 密集型</p>
+<p>当我们的应用程序中存在较多的大型任务，且 IO 非常占用资源时，我们可以将这些大型任务的数量设置为线程池的核心线程数，核心线程数 &gt;= 耗费大量资源任务的数量。</p>
+
                 
             </div>
             <hr/>
@@ -1204,29 +1213,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/02/17/jup-juc-si-use-thread-pool/">
+                <a href="/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174745.jpg" class="responsive-img" alt="JUP JUC (四) Use Thread Pool">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174815.jpg" class="responsive-img" alt="JUP JUC (五) Fork/Join And Parallel Stream">
                         
-                        <span class="card-title">JUP JUC (四) Use Thread Pool</span>
+                        <span class="card-title">JUP JUC (五) Fork/Join And Parallel Stream</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程: 使用线程池处理并发任务
+                            Java 并发编程: Fork/Join 框架及 Java 8 并行流简介
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1239,7 +1247,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
