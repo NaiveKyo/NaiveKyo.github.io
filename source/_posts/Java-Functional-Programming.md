@@ -612,3 +612,14 @@ public class Demo10Function_andThen {
     }
 }
 ```
+
+
+
+## 四、补充
+
+从 JDK 1.8 之后，Java 程序员可以使用的新特性有这些：
+
+- `lambda` 表达式；
+- 链式编程；
+- 函数式接口；
+- `Stream` 流式计算。
