@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-02-18 22:22:38
-summary: "Java 并发编程: Fork/Join 框架及 Java 8 并行流简介"
+summary: "Java 并发编程: JUC 中的Fork/Join 框架及 Java 8 并行流简介"
 categories: "Java Concurrent"
 keywords: "Java Concurrent"
 tags: "Java Concurrent"
@@ -231,9 +231,9 @@ Long reduce = Stream.iterate(1L, i -> i + 1)
     .reduce(0L, Long::sum);
 ```
 
-转换为并行流后，`Stream` 再内部分成了几块，对不同的块独立进行归纳操作，最终得到整个原始流的归纳结果。
+转换为并行流后，`Stream` 在内部分成了几块，对不同的块独立进行归纳操作，最终得到整个原始流的归纳结果。
 
-需要注意的是，实际上，对顺序流调用 `parallel` 方法并不意味着流本身有任何变化，它在内部实际上就是设置了一个标志，表示你想让调用 `parallel` 之后进行的所有操作都并行执行。类似的，可以对并行流调用 `sequential` 方法就可以把它变成顺序流，这两个方法如果同时使用，流的性质取绝于最后使用的方法。
+需要注意的是，对顺序流调用 `parallel` 方法并不意味着流本身有任何变化，它在内部实际上就是设置了一个标志，表示你想让调用 `parallel` 之后进行的所有操作都并行执行。类似的，可以对并行流调用 `sequential` 方法就可以把它变成顺序流，这两个方法如果同时使用，流的性质取绝于最后使用的方法。
 
 ## 2、并行流的实质
 
@@ -253,13 +253,13 @@ System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "12")
 
 （1）`iterate` 方法生成的是装箱的对象，而在求和的时候必须拆箱成数字才可以求和；
 
-（2）将 `iterate` 分层多个独立快来并行执行其实是有难度的；
+（2）将 `iterate` 分成多个独立块来并行执行其实是有难度的；
 
 
 
 ## 4、原始类型流
 
-既然使用 `iterate` 方法生成自然数序列存在一些问题，那么有没有更好的方法使流可以更高效的求和呢？
+既然使用 `iterate` 方法生成自然数序列存在一些问题，那么有没有更好的方法使流更高效的求和呢？
 
 对于其他原始类型 `double`、`float`、`long`、`short`、`short`、`char`、`byte` 以及 `boolean` ，Stream API 提供了 `IntStream`、`LongStream` 以及 `DoubleStream` 等类型，专门用来直接存储原始类型值，不必使用包装。
 

@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-02-17 22:24:59
-summary: "Java 并发编程: 使用线程池处理并发任务"
+summary: "Java 并发编程: JUC 之使用线程池处理并发任务"
 categories: "Java Concurrent"
 keywords: "Java Concurrent"
 tags: "Java Concurrent"
