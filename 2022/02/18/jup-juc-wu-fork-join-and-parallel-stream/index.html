@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-18
+                    2022-02-19
                 </div>
                 
 
@@ -828,16 +828,16 @@
     <span class="token punctuation">.</span><span class="token function">parallel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token number">0L</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token operator">::</span><span class="token function">sum</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>转换为并行流后，<code>Stream</code> 再内部分成了几块，对不同的块独立进行归纳操作，最终得到整个原始流的归纳结果。</p>
-<p>需要注意的是，实际上，对顺序流调用 <code>parallel</code> 方法并不意味着流本身有任何变化，它在内部实际上就是设置了一个标志，表示你想让调用 <code>parallel</code> 之后进行的所有操作都并行执行。类似的，可以对并行流调用 <code>sequential</code> 方法就可以把它变成顺序流，这两个方法如果同时使用，流的性质取绝于最后使用的方法。</p>
+<p>转换为并行流后，<code>Stream</code> 在内部分成了几块，对不同的块独立进行归纳操作，最终得到整个原始流的归纳结果。</p>
+<p>需要注意的是，对顺序流调用 <code>parallel</code> 方法并不意味着流本身有任何变化，它在内部实际上就是设置了一个标志，表示你想让调用 <code>parallel</code> 之后进行的所有操作都并行执行。类似的，可以对并行流调用 <code>sequential</code> 方法就可以把它变成顺序流，这两个方法如果同时使用，流的性质取绝于最后使用的方法。</p>
 <h2 id="2、并行流的实质"><a href="#2、并行流的实质" class="headerlink" title="2、并行流的实质"></a>2、并行流的实质</h2><p>并行流内部使用了默认的 <code>ForkJoinPool</code>，默认的线程数量就是实际机器的处理器数量，通过 <code>Runtime.getRuntime().availableProcessors()</code> 得到，但是我们也可以通过系统属性 <code>java.util.concurrent.ForkJoinPool.common.parallelism</code> 来改变线程池大小，代码如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">"java.util.concurrent.ForkJoinPool.common.parallelism"</span><span class="token punctuation">,</span> <span class="token string">"12"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这是一个全局设置，它会影响所有的并行流，不过一般不会改这个属性。</p>
 <h2 id="3、装箱和拆箱"><a href="#3、装箱和拆箱" class="headerlink" title="3、装箱和拆箱"></a>3、装箱和拆箱</h2><p>上面的代码中我们使用了 <code>Stream.iterate</code> 方法来构建自然数序列，这里有两个问题：</p>
 <p>（1）<code>iterate</code> 方法生成的是装箱的对象，而在求和的时候必须拆箱成数字才可以求和；</p>
-<p>（2）将 <code>iterate</code> 分层多个独立快来并行执行其实是有难度的；</p>
-<h2 id="4、原始类型流"><a href="#4、原始类型流" class="headerlink" title="4、原始类型流"></a>4、原始类型流</h2><p>既然使用 <code>iterate</code> 方法生成自然数序列存在一些问题，那么有没有更好的方法使流可以更高效的求和呢？</p>
+<p>（2）将 <code>iterate</code> 分成多个独立块来并行执行其实是有难度的；</p>
+<h2 id="4、原始类型流"><a href="#4、原始类型流" class="headerlink" title="4、原始类型流"></a>4、原始类型流</h2><p>既然使用 <code>iterate</code> 方法生成自然数序列存在一些问题，那么有没有更好的方法使流更高效的求和呢？</p>
 <p>对于其他原始类型 <code>double</code>、<code>float</code>、<code>long</code>、<code>short</code>、<code>short</code>、<code>char</code>、<code>byte</code> 以及 <code>boolean</code> ，Stream API 提供了 <code>IntStream</code>、<code>LongStream</code> 以及 <code>DoubleStream</code> 等类型，专门用来直接存储原始类型值，不必使用包装。</p>
 <ul>
 <li>使用 <code>IntStream</code> 存储 <code>short</code>、<code>char</code>、<code>byte</code> ；</li>
@@ -1111,29 +1111,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/">
+                <a href="/2022/02/19/jup-juc-liu-future-and-completablefuture/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174815.jpg" class="responsive-img" alt="JUP JUC (五) Fork/Join And Parallel Stream">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174838.jpg" class="responsive-img" alt="JUP JUC (六) Future And CompletableFuture">
                         
-                        <span class="card-title">JUP JUC (五) Fork/Join And Parallel Stream</span>
+                        <span class="card-title">JUP JUC (六) Future And CompletableFuture</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程: Fork/Join 框架及 Java 8 并行流简介
+                            Java 并发编程：JUC 之 Future 接口及其实现类 CompletableFuture
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1146,7 +1145,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1176,7 +1174,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程: 使用线程池处理并发任务
+                            Java 并发编程: JUC 之使用线程池处理并发任务
                         
                     </div>
                     <div class="publish-info">
