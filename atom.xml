@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-24T06:35:09.797Z</updated>
+  <updated>2022-02-24T12:34:53.299Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JUP JMM (二) Reorder And Sequential Consistency</title>
+    <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/"/>
+    <id>https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/</id>
+    <published>2022-02-24T12:33:15.000Z</published>
+    <updated>2022-02-24T12:34:53.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、重排序&quot;&gt;&lt;a href=&quot;#一、重排序&quot; class=&quot;headerlink&quot; title=&quot;一、重排序&quot;&gt;&lt;/a&gt;一、重排序&lt;/h1&gt;&lt;p&gt;重排序是指编译器和处理器为了优化程序性能而对指令序列进行重新排序的一种手段。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP JMM (一) What&#39;s JMM?</title>
@@ -481,31 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Spring-Security-多数据源&quot;&gt;&lt;a href=&quot;#Spring-Security-多数据源&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 多数据源&quot;&gt;&lt;/a&gt;Spring Security</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Authentication Process Analysis</title>
-    <link href="https://naivekyo.github.io/2021/12/29/spring-security-authentication-process-analysis/"/>
-    <id>https://naivekyo.github.io/2021/12/29/spring-security-authentication-process-analysis/</id>
-    <published>2021-12-29T11:49:52.000Z</published>
-    <updated>2021-12-29T14:02:09.721Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;登录流程分析&quot;&gt;&lt;a href=&quot;#登录流程分析&quot; class=&quot;headerlink&quot; title=&quot;登录流程分析&quot;&gt;&lt;/a&gt;登录流程分析&lt;/h1&gt;&lt;p&gt;Spring Security</summary>
         
       
     

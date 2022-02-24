@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL">
+    <meta name="keywords" content="Java Concurrent">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL Commonly Used Functions | Miló&amp;Akoúo̱</title>
+    <title>JUP JMM (二) Reorder And Sequential Consistency | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031161747.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174909.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL Commonly Used Functions</h1>
+                    <h1 class="description center-align post-title">JUP JMM (二) Reorder And Sequential Consistency</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Java-Concurrent/">
+                                <span class="chip bg-color">Java Concurrent</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                Java Concurrent
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-12-24
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    4.9k
                 </div>
                 
 
@@ -685,285 +685,160 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL-常用函数"><a href="#MySQL-常用函数" class="headerlink" title="MySQL 常用函数"></a>MySQL 常用函数</h1><h2 id="一、流程控制函数"><a href="#一、流程控制函数" class="headerlink" title="一、流程控制函数"></a>一、流程控制函数</h2><h3 id="1、CASE"><a href="#1、CASE" class="headerlink" title="1、CASE"></a>1、CASE</h3><p>CASE 语句的返回结果比较特殊，是所有结果的聚合类型</p>
-<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html">官方说明</a></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token number">1</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'one'</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>     <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'two'</span> <span class="token keyword">ELSE</span> <span class="token string">'more'</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'one'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token keyword">WHEN</span> <span class="token number">1</span><span class="token operator">&gt;</span><span class="token number">0</span> <span class="token keyword">THEN</span> <span class="token string">'true'</span> <span class="token keyword">ELSE</span> <span class="token string">'false'</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'true'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token keyword">BINARY</span> <span class="token string">'B'</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>     <span class="token keyword">WHEN</span> <span class="token string">'a'</span> <span class="token keyword">THEN</span> <span class="token number">1</span> <span class="token keyword">WHEN</span> <span class="token string">'b'</span> <span class="token keyword">THEN</span> <span class="token number">2</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h3 id="2、IF"><a href="#2、IF" class="headerlink" title="2、IF"></a>2、IF</h3><p><code>IF(expr1, expr2, expr3)</code></p>
-<p>expr1 为真时返回 expr2，否则返回 expr3</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&gt;</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">3</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">,</span><span class="token string">'no'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'yes'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span>STRCMP<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span><span class="token string">'test1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'no'</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'no'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h3 id="3、IFNULL"><a href="#3、IFNULL" class="headerlink" title="3、IFNULL"></a>3、IFNULL</h3><p><code>IFNULL(expr1, expr2)</code></p>
-<p>expr1 为 not null 时，返回 expr1，否则返回 expr2</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">10</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">10</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'yes'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><code>IFNULL</code> 的返回类型是 expr1 和 expr2 两个类型中更通用的，顺序：STRING，REAL 或 INTEGER。</p>
-<blockquote>
-<p>NULLIF</p>
-</blockquote>
-<p><code>NULLIF(expr1, expr2)</code></p>
-<p>当 expr1 = expr2 时返回 NULL，否则返回 expr1</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">NULLIF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">NULLIF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="二、时间函数"><a href="#二、时间函数" class="headerlink" title="二、时间函数"></a>二、时间函数</h2><h3 id="1、DATE-FORMAT"><a href="#1、DATE-FORMAT" class="headerlink" title="1、DATE_FORMAT"></a>1、DATE_FORMAT</h3><p><code>DATE_FORMAT(date, format)</code></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2009-10-04 22:23:00'</span><span class="token punctuation">,</span> <span class="token string">'%W %M %Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'Sunday October 2009'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2007-10-04 22:23:00'</span><span class="token punctuation">,</span> <span class="token string">'%H:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'22:23:00'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1900-10-04 22:23:00'</span><span class="token punctuation">,</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>                 <span class="token string">'%D %y %a %d %m %b %j'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'4th 00 Thu 04 10 Oct 277'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1997-10-04 22:23:00'</span><span class="token punctuation">,</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>                 <span class="token string">'%H %k %I %r %T %S %w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'22 22 10 10:23:00 PM 22:23:00 00 6'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1999-01-01'</span><span class="token punctuation">,</span> <span class="token string">'%X %V'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'1998 52'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2006-06-00'</span><span class="token punctuation">,</span> <span class="token string">'%d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'00'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>重点在于模式（<code>format</code>）</p>
+                <h1 id="一、重排序"><a href="#一、重排序" class="headerlink" title="一、重排序"></a>一、重排序</h1><p>重排序是指编译器和处理器为了优化程序性能而对指令序列进行重新排序的一种手段。</p>
+<h2 id="1、数据依赖性"><a href="#1、数据依赖性" class="headerlink" title="1、数据依赖性"></a>1、数据依赖性</h2><p>如果两个操作访问同一个变量，且这两个操作中有一个为 <strong>写操作</strong>，此时这两个操作之间就存在 <strong>数据依赖性</strong>。数据依赖分为三种类型：</p>
 <table>
 <thead>
 <tr>
-<th align="center">Specifier</th>
-<th align="center">Description</th>
+<th>名称</th>
+<th>代码示例</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><code>%a</code></td>
-<td align="center">星期缩写英文名称（Sum…Sat）</td>
+<td>写后读</td>
+<td>a = 1;<br>b = a;</td>
+<td>写一个变量之后，再读这个变量</td>
 </tr>
 <tr>
-<td align="center"><code>%b</code></td>
-<td align="center">月份英文名称缩写（Jan…Dec）</td>
+<td>写后写</td>
+<td>a = 1;<br>a = 2;</td>
+<td>写一个变量之后，再写这个变量</td>
 </tr>
 <tr>
-<td align="center"><code>%c</code></td>
-<td align="center">月份，格式 (0…12)</td>
-</tr>
-<tr>
-<td align="center"><code>%D</code></td>
-<td align="center">带有英语后缀的一个月中的每一天的名称（0th、1st、2nd、3rd）</td>
-</tr>
-<tr>
-<td align="center"><code>%d</code></td>
-<td align="center">用数字形式表现的每月中的每一天（00…31）</td>
-</tr>
-<tr>
-<td align="center"><code>%e</code></td>
-<td align="center">用数字形式表现的每月中的每一天（0…31）</td>
-</tr>
-<tr>
-<td align="center"><code>%f</code></td>
-<td align="center">毫秒（000000…999999）</td>
-</tr>
-<tr>
-<td align="center"><code>%H</code></td>
-<td align="center">24 时制显示的小时（00…23）</td>
-</tr>
-<tr>
-<td align="center"><code>%h</code></td>
-<td align="center">12 时制显示的小时（01…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%I</code></td>
-<td align="center">12 时制显示的小时（01…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%i</code></td>
-<td align="center">以数字形式表现的分钟数（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%j</code></td>
-<td align="center">一年中的每一天（001…366）</td>
-</tr>
-<tr>
-<td align="center"><code>%k</code></td>
-<td align="center">24 时制小时的另一种表现格式（0…23）</td>
-</tr>
-<tr>
-<td align="center"><code>%l</code></td>
-<td align="center">12时制小时的另一种表现格式（1…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%M</code></td>
-<td align="center">用完整英文名称表示的月份（January…December）</td>
-</tr>
-<tr>
-<td align="center"><code>%m</code></td>
-<td align="center">用数字表现的月份（00…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%p</code></td>
-<td align="center">上午（AM）或下午（PM）</td>
-</tr>
-<tr>
-<td align="center"><code>%r</code></td>
-<td align="center">12时制的时间值（hh:mm:ss，后跟 AM 或 PM）</td>
-</tr>
-<tr>
-<td align="center"><code>%S</code></td>
-<td align="center">秒（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%s</code></td>
-<td align="center">秒（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%T</code></td>
-<td align="center">24 时制的小时（hh:mm:ss）</td>
-</tr>
-<tr>
-<td align="center"><code>%U</code></td>
-<td align="center">星期（00…53），其中星期天是每星期的开始日</td>
-</tr>
-<tr>
-<td align="center"><code>%u</code></td>
-<td align="center">星期（00…53），其中星期一是每星期的开始日</td>
-</tr>
-<tr>
-<td align="center"><code>%V</code></td>
-<td align="center">星期（01…53），其中星期天是每星期的开始日，和 <code>%X</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%v</code></td>
-<td align="center">星期（01…53），其中星期一是每星期的开始日，和 <code>%x</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%W</code></td>
-<td align="center">一星期中各日名称（Sunday…Saturday）</td>
-</tr>
-<tr>
-<td align="center"><code>%w</code></td>
-<td align="center">一星期中各日名称（0代表星期日，6代表星期六，以此类推）</td>
-</tr>
-<tr>
-<td align="center"><code>%X</code></td>
-<td align="center">某星期所处年份。其中，星期天是每星期的开始日，采用4位数字形式表现，和 <code>%V</code>一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%x</code></td>
-<td align="center">某星期所处年份。其中，星期一是每星期的开始日，采用4位数字形式表现，和 <code>%V</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%Y</code></td>
-<td align="center">4 位数字表示的年份</td>
-</tr>
-<tr>
-<td align="center"><code>%y</code></td>
-<td align="center">2 位数字表示的年份</td>
-</tr>
-<tr>
-<td align="center"><code>%%</code></td>
-<td align="center">符号<code>%</code>的字面值</td>
-</tr>
-<tr>
-<td align="center"><code>%x</code>（x为斜体）</td>
-<td align="center">字符 x 的字面值，x 指以上未列出的任何字符</td>
+<td>读后写</td>
+<td>a = b;<br>b = 1;</td>
+<td>读一个变量之后，再写这个变量</td>
 </tr>
 </tbody></table>
-<h3 id="2、WEEK"><a href="#2、WEEK" class="headerlink" title="2、WEEK"></a>2、WEEK</h3><p><code>week(date[, mode])</code></p>
-<p>此函数返回日期参数 date 所对应的星期序号，如果同时传入 date 和 mode，则可以指定每星期起始日究竟是星期天还是星期一，以及返回值返回是 0 - 53 还是 1 - 53.</p>
-<p>如果忽略 mode 参数，就采用 <code>default_week_format</code> 系统变量值：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'default_week_format'</span><span class="token punctuation">;</span>
-	<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>上述三种情况，只要重排序两个操作的执行顺序，程序的执行结果就会被改变。</p>
+<p>前面提到过，编译器和处理器可能会对操作进行重排序。编译器和处理器再重排序时，会遵守数据依赖性，编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序。</p>
+<p>这里所说的数据依赖性仅针对单个处理器中执行的指令序列和单个线程中执行的操作，不同处理器之间和不同线程之间的数据依赖性不被编译器和处理器考虑。</p>
+<h2 id="2、as-if-serial-语义"><a href="#2、as-if-serial-语义" class="headerlink" title="2、as-if-serial 语义"></a>2、as-if-serial 语义</h2><p><code>as-if-serial</code> 语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器、runtime 和处理器都必须遵守 <code>as-if-serial</code> 语义。</p>
+<p>为了遵守 <code>as-if-serial</code>，编译器和处理器不会对存在数据依赖关系的操作做重排序，因为这种重排序会改变执行结果。但是，如果操作之间不存在数据依赖关系，这些操作就可能被编译器和处理器重排序。</p>
+<p>比如下面这段代码用于计算圆的面积：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">double</span> pi <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span>			<span class="token comment">// A</span>
+<span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">;</span>				<span class="token comment">// B</span>
+<span class="token keyword">double</span> area <span class="token operator">=</span> pi <span class="token operator">*</span> r <span class="token operator">*</span> r<span class="token punctuation">;</span>	<span class="token comment">// C</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<p>A 和 C 之间存在数据依赖关系（写后读），同时 B 和 C 之间也存在数据依赖关系（写后读）。因此在最终执行的指令序列中，C 不能被重排序到 A 和 B 的前面。但 A 和 B 之间没有数据依赖关系，编译器和处理器可以重排序 A 和 B 之间的执行顺序。</p>
+<p><code>as-if-serial</code> 语义把单线程程序保护了起来，遵守 <code>as-if-serial</code> 语义的编译器、runtime 和处理器共同为编写单线程程序的程序员创建了一种幻觉：单线程程序是按程序的顺序来执行的。</p>
+<p><code>as-if-serial</code> 语义使单线程程序员无需担心重排序会影响到他们，也无需担心内存可见性问题。</p>
+<h2 id="3、程序顺序规则"><a href="#3、程序顺序规则" class="headerlink" title="3、程序顺序规则"></a>3、程序顺序规则</h2><p>根据 <code>happens-before</code> 的程序顺序规则，上面计算圆的面积的代码存在 3 个 <code>happens-before</code> 关系：</p>
+<p>（1）A happens-before B</p>
+<p>（2）B happens-before C</p>
+<p>（3）A happens-before C</p>
+<p>这里的第三个 happens-before 关系是根据传递性推导出来的。</p>
+<p>虽然这里 A happens-before B，但实际执行时 B 却可以排在 A 之前执行（被重排序了）。</p>
+<p>如果 A happens-before B，JMM 并不要求 A 一定要在 B 之前执行。JMM 仅仅要求前一个操作（执行的结果）对后一个操作可见，且前一个操作按顺序排在第二个操作之前。</p>
+<p>这里操作 A 的执行结果不需要对操作 B 可见；而且重排序操作 A 和 操作 B 后的执行结果，与操作 A 和操作 B 按 happens-before 顺序执行的结果一致。在这种情况下，JMM 会认为这种重排序并不非法（not illegal），JMM 允许这种重排序。</p>
+<p>在计算机中，软件技术和硬件技术有一个共同的目标：在不改变程序执行结果的前提下，尽可能提高并行度。编译器和处理器都遵从这一目标，从 happens-before 的定义我们可以看出，JMM 同一遵从这一目标。</p>
+<h2 id="4、重排序对多线程的影响"><a href="#4、重排序对多线程的影响" class="headerlink" title="4、重排序对多线程的影响"></a>4、重排序对多线程的影响</h2><p>下面来看一看，重排序是否会对多线程造成影响，代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>					<span class="token comment">// 1</span>
+        flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>			<span class="token comment">// 2</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>				<span class="token comment">// 3</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> a <span class="token operator">*</span> a<span class="token punctuation">;</span>		<span class="token comment">// 4</span>
+            <span class="token comment">// ...</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-<h3 id="3、STR-TO-DATE"><a href="#3、STR-TO-DATE" class="headerlink" title="3、STR_TO_DATE"></a>3、STR_TO_DATE</h3><p><code>STR_TO_DATE(str, format)</code></p>
-<p>该函数和 <code>DATE_FORMAT</code> 正好相反，将字符串按照特定的模式解析成日期对象，模式表和 <code>DATE_FORMAT</code> 一样。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'01,5,2013'</span><span class="token punctuation">,</span><span class="token string">'%d,%m,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'May 1, 2013'</span><span class="token punctuation">,</span><span class="token string">'%M %d,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
-        
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'a%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'09:30:17a'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h2 id="三、比较函数"><a href="#三、比较函数" class="headerlink" title="三、比较函数"></a>三、比较函数</h2><h3 id="1、ISNULL"><a href="#1、ISNULL" class="headerlink" title="1、ISNULL"></a>1、ISNULL</h3><p><code>ISNULL(expr)</code></p>
-<p>如果 expr 是 NULL 就返回 1，如果不是就返回 0。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>NULL 值判断</p>
-</blockquote>
-<p><mark>出了使用函数来判断某个字段是否为 NULL，还可以这样：</mark></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select1 <span class="token operator">is</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token operator">&gt;</span> <span class="token number">1</span>
-
-<span class="token keyword">select</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span> <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="四、字符串函数"><a href="#四、字符串函数" class="headerlink" title="四、字符串函数"></a>四、字符串函数</h2><h3 id="1、CONCAT"><a href="#1、CONCAT" class="headerlink" title="1、CONCAT"></a>1、CONCAT</h3><p><code>CONCAT(str1, str2, ...)</code></p>
-<p>将传入的所有字符串参数拼接为一个字符串返回。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token number">14.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'14.3'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果字符串带引号，则可以自动连接：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">'My'</span> <span class="token string">'S'</span> <span class="token string">'QL'</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="五、数学函数"><a href="#五、数学函数" class="headerlink" title="五、数学函数"></a>五、数学函数</h2><h3 id="1、RAND"><a href="#1、RAND" class="headerlink" title="1、RAND"></a>1、RAND</h3><p><code>RAND()</code> 函数主要用于返回一个在 <mark>[0, 1)</mark> 之间的浮点数，它有两种形式：</p>
+<p>flag 变量是个标记，用来标识变量 a 是否已被写入。</p>
+<p>这里假设有两个线程 A 和 B，A 首先执行 <code>writer()</code> 非法，随后 B 线程接着执行 <code>reader()</code> 方法。线程 B 在执行操作 4 时，能看到线程 A 在操作 1 对共享变量 a 的写入吗？</p>
+<p>答案是：不一定看得到。</p>
+<p>由于操作 1 和操作 2 没有数据依赖关系，编译器和处理器可以对这两个操作进行重排序；</p>
+<p>同样操作 3 和操作 4 没有数据依赖关系，编译器和处理器也可以对这两个操作进行重排序。</p>
+<p>当操作 1 和操作 2 被重排序时，可能会产生这样的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224170533.png"></p>
+<p>操作 1 和操作 2 做了重排序。程序执行时，线程 A 首先写共享变量 flag，随后线程 B 读这个变量。由于条件判断为真，线程 B 将读取变量 a。此时，变量 a 还没有被线程 A 写入，在这里，多线程程序的语义被重排序破坏了！</p>
+<p>（<mark>注：虚线表示错误的读操作，实线表示正确的读操作</mark>）</p>
+<p>当操作 3 和操作 4 被重排序了，可能会产生如下效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224170850.png"></p>
+<p>在程序中，操作 3 和操作 4 存在 <strong>控制依赖关系</strong>。当代码中存在控制依赖关系时，会影响指令序列执行的并行度。为此，编译器和处理器会采用猜测（Speculation）执行来克服控制相关性对并行度的影响。</p>
+<p>以处理器的猜测执行为例，执行线程 B 的处理器可以提前读取并计算 a * a，然后把计算结果临时保存到一个名为重排序缓冲（Reorder Buffer，ROB）的硬件缓存中。当操作 3 的条件判断为真时，就把该计算结果写入变量 i 中。</p>
+<p>从上图可以看出，猜测执行实质上就是对操作 3 和操作 4 做了重排序（虽然它们不存在数据依赖关系，但是存在控制依赖关系）。重排序在这里破环了多线程程序的语义！</p>
+<p>在单线程程序中，对存在控制依赖的操作做重排序，不会改变执行结果（这也是 <code>as-if-serial</code> 语义允许对存在控制依赖的操作做重排序的原因）；但是在多线程程序中，对存在控制依赖的操作重排序，可能会改变程序的执行结果。</p>
+<h1 id="二、顺序一致性"><a href="#二、顺序一致性" class="headerlink" title="二、顺序一致性"></a>二、顺序一致性</h1><p>顺序一致性内存模型是一个理论参考模型，在设计的时候，处理器的内存模型和编程语言的内存模型都会以顺序一致性内存模型作为参照。</p>
+<h2 id="1、数据竞争与顺序一致性"><a href="#1、数据竞争与顺序一致性" class="headerlink" title="1、数据竞争与顺序一致性"></a>1、数据竞争与顺序一致性</h2><p>当程序未正确同步时，就可能会存在数据竞争。Java 内存模型规范对数据竞争的定义如下：</p>
 <ul>
-<li><code>rand()</code>：无参的，此时产生的结果是随机的（注意并不是完全随机的）</li>
-<li><code>rand(x)</code>：有参的，参数作为随机数生成器的种子，如果种子相同，那么产生的随机数序列也是相同的</li>
+<li>在一个线程中写一个变量</li>
+<li>在另一个线程中读同一个变量</li>
+<li>而且写和读没有通过同步来排序</li>
+<li>当代码中包含数据竞争时，程序的执行往往会产生违反直觉的结果。如果一个多线程程序能够正确同步，这个程序将是一个没有数据竞争的程序。</li>
 </ul>
-<p>该函数可以用于 <code>where</code> 语句中，一般用于随机排序：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tbl_name <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p>JMM 对正确同步的多线程程序的内存一致性做了如下保证：</p>
+<p>如果程序是正确同步的，程序的执行将具有顺序一致性（Sequentially Consistent）—— 即程序的执行结果与该程序在顺序一致性内存模型中的执行结果相同。</p>
+<p>这对于程序员来说是一个极强的保证。这里的同步是指广义上的同步，包括对常用同步原语（synchronized、volatile 和 final）的正确使用。</p>
+<h2 id="2、顺序一致性内存模型"><a href="#2、顺序一致性内存模型" class="headerlink" title="2、顺序一致性内存模型"></a>2、顺序一致性内存模型</h2><p>顺序一致性内存模型是一个被计算机科学家理想化了的理论参考模型，它为程序员提供了极强的内存可见性保证。顺序一致性内存模型有两大特性：</p>
+<p>（1）一个线程中的所有操作必须按照程序的顺序来执行；</p>
+<p>（2）（不管程序是否同步）所有线程都只能看到一个单一的操作执行顺序。在顺序一致性内存模型中，每个操作都必须原子执行且立刻对所有线程可见。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224172632.png"></p>
+<p>在概念上，顺序一致性模型有一个单一的全局内存，这个内存通过一个左右摆动的开关可以连接到任意一个线程，同时每一个线程必须按照程序的顺序来执行内存读/写操作。</p>
+<p>从上面的图中可以看到，在任意时间点最多只能有一个线程可以连接到内存。当多个线程并发执行时，图中的开关装置能把所有线程的所有内存读/写操作串行化（即在顺序一致性模型中，所有操作之间具有全序关系）。</p>
+<p>再举个例子：</p>
+<p>假设有两个线程 A 和 B 并发执行。其中 A 线程有三个操作，它们在程序中的顺序是：<code>A1 -&gt; A2 -&gt; A3</code>；</p>
+<p>B 线程也有三个操作，它们在程序中的顺序是：<code>B1 -&gt; B2 -&gt; B3</code>。</p>
+<p>假设这两个线程使用监视器锁来正确同步：A 线程的 3 个操作执行后立即释放监视器锁，随后 B 线程获取同一个监视器锁。那么程序在顺序一致性模型中的执行效果如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224173043.png"></p>
+<p>现在我们再假设这两个线程没有做同步，下面是这个未同步程序在顺序一致性模型中的执行示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224173132.png"></p>
+<p>未同步程序在顺序一致性模型中虽然整体执行顺序是无序的，但所有线程都只能看到一个一致的整体执行顺序。以上图为例，线程 A 和 B 都看到的执行顺序是：</p>
+<p><code>B1 -&gt; A1 -&gt; A2 -&gt; B2 -&gt; A3 -&gt; B3</code></p>
+<p>之所以能得到这个保证是因为顺序一致性内存模型中的每个操作必须立即对任意线程可见。</p>
+<p>但是，JMM 中就没有这个保证。未同步程序在 JMM 中不但整体的执行顺序是无序的，而且所有线程看到的操作执行顺序也可能不一致。</p>
+<p>比如，在当前线程把写过的数据缓存到本地内存中，在没有刷新到主内存之前，这个写操作仅对当前线程可见；从其他线程的角度来观察，会认为这个写操作根本没有被当前线程执行。只有当前线程把本地内存中写过的数据刷新到主内存之后，这个写操作才能对其他线程可见。在这种情况下，当前线程和其他线程看到的操作执行顺序将不一致。</p>
+<h2 id="3、同步程序的顺序一致性效果"><a href="#3、同步程序的顺序一致性效果" class="headerlink" title="3、同步程序的顺序一致性效果"></a>3、同步程序的顺序一致性效果</h2><p>下面对前面的示例程序用锁来进行同步，看看正确同步的程序如何具有顺序一致性：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>	<span class="token comment">// 获取锁</span>
+        a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>					
+        flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>			
+    <span class="token punctuation">}</span>		<span class="token comment">// 释放锁</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>	<span class="token comment">// 获取锁</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>				
+            <span class="token keyword">int</span> i <span class="token operator">=</span> a<span class="token punctuation">;</span>		
+            <span class="token comment">// ...</span>
+        <span class="token punctuation">}</span>	<span class="token comment">// 释放锁</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table1<span class="token punctuation">,</span> table2 <span class="token keyword">WHERE</span> a<span class="token operator">=</span>b <span class="token operator">AND</span> c<span class="token operator">&lt;</span>d <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">LIMIT</span> <span class="token number">1000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<p>假设 A 线程执行 <code>writer()</code> 方法后，B 线程执行 <code>reader()</code> 方法。这是一个正确同步的多线程程序。根据 JMM 规范，该程序的执行结果与该程序在顺序一致性模型中的执行结果相同。</p>
+<p>下图为该程序在两个内存模型中的执行时序对比图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224195548.png"></p>
+<p>顺序一致性模型中，所有操作完全按照程序的顺序串行执行。而在 JMM 中，临界区内的代码可以重排序（但 JMM 不允许临界区内的代码 “逸出” 到临界区之外，那样会破坏监视器的语义）。JMM 会在退出临界区和进入临界区这两个关键的时间点做一些特别处理，使得线程在这两个时间点具有与顺序一致性模型相同的内存视图。</p>
+<p>虽然线程 A 在临界区内做了重排序，但由于监视器互斥执行的特点，这里的线程 B 根本无法 “观察” 到线程 A 在临界区内的重排序。这种重排序即提高了执行效率，有没有改变程序的执行结果。</p>
+<p><mark>从这里可以看出：JMM 在具体实现上的基本方针为：在不改变（正确同步）程序执行结果的前提下，尽可能地为编译器和处理器的优化打开方便之门。</mark></p>
+<h2 id="4、未同步程序的执行特性"><a href="#4、未同步程序的执行特性" class="headerlink" title="4、未同步程序的执行特性"></a>4、未同步程序的执行特性</h2><p>对于未同步或未正确同步的多线程程序，JMM 只提供最小安全性：线程执行时读取到的值，要么是之前某个线程写入的的值，要么是默认值（0，Null，False），JMM 保证线程读操作读取到的值不会无中生有（Out Of Thin Air）的冒出来。</p>
+<p>为了实现最小安全性，JMM 在堆上分配对象时，首先会对内存空间进行清零，然后才会在上面分配对象（JVM 内部会同步这两个操作）。因此，在已清零的内存空间（Pre-zeroed Memory）分配对象时，域的默认初始化已经完成了。</p>
+<p>JMM 不保证未同步程序的执行结果与该程序在顺序一致性模型中的执行结果一致。因为如果想要保证执行结果一致，JMM 需要禁止大量的处理器和编译器优化，这对程序的执行性能会产生很大的影响。而且未同步程序在顺序一致性模型中执行时，整体是无序的，其执行结果往往无法预知。而且，保证未同步程序在这两个模型中的执行结果一致没什么意义。</p>
+<p>未同步程序在 JMM 中执行时，整体是无序的，其执行结果无法预知。未同步程序在两个模型中的执行特性有以下几个差异：</p>
+<p>（1）顺序一致性模型保证单线程内的操作会按程序的顺序执行，而 JMM 不保证单线程内的操作会按程序的顺序执行（比如前面正确同步的多线程程序在临界区内的重排序）；</p>
+<p>（2）顺序一致性模型保证所有线程只能看到一致的操作执行顺序，而 JMM 不保证所有线程能看到一致的操作执行顺序；</p>
+<p>（3）JMM 不保证对 64 位的 long 型和 double 型变量的写操作具有原子性，而顺序一致性模型保证了对所有的内存读/写都具有原子性。</p>
+<p>第三个差异与处理器总线的工作机制密切相关。在计算机中，数据通过总线在处理器和内存之间传递。每次处理器和内存之间的数据传递都是通过一系列步骤来完成的，这一系列步骤称之为 <strong>总线事务（Bus Transaction）</strong>。总线事务包括读事务（Read Transaction）和写事务（Write Transaction）。</p>
+<p>读事务从内存传送数据到处理器，写事务从处理器传送数据到内存，每个事务会读/写内存中一个或多个物理上连续的字。这里的关键是：总线会同步试图并发使用总线的事务。在一个处理器执行总线事务期间，总线会禁止其他的处理器和 I/O 设备执行内存的读/写。</p>
+<p>总线的工作机制如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224201100.png"></p>
+<p>由图可知，假设处理器 A，B 和 C 同时向总线发起总线事务，这时总线仲裁（Bus Arbitration）会对竞争做出裁决，这里假设总线在仲裁后判断处理器 A 在竞争中获胜（总线仲裁会确保所有处理器都能公平的访问内存）。此时处理器 A 继续它的总线事务，而其他两个处理器则要等待处理器 A 的总线事务完成后才能再次执行内存访问。假设在处理器 A 执行总线事务期间（不管这个总线事务是读事务还是写事务），处理器 D 向总线发起了总线事务，此时处理器 D 的请求会被总线禁止。</p>
+<p>总线的这些工作机制可以把所有处理器对内存的访问以串行化的方式来执行。在任意时间点，最多只能有一个处理器可以访问内存。这个特性确保了单个总线事务之中的内存读/写操作具有原子性。</p>
+<p>在一些 32 位的处理器上，如果要求对 64 位数据的写操作具有原子性，会有比较大的开销。为了照顾这种处理器，Java 语言规范鼓励但不强求 JVM 对 64 位的 long 型变量和 double 型变量的写操作具有原子性。当 JVM 在这种处理器上运行时，可能会把一个 64 位 long/double 型变量的写操作拆分成两个 32 位的写操作来执行。这两个 32 位的写操作可能会被分配到不同的总线事务中执行，此时对这个 64 位变量的写操作将不具有原子性。</p>
+<p>当单个内存操作不具有原子性时，可能会产生意想不到的后果，如图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224201722.png"></p>
+<p>如图，假设处理器 A 写一个 long 型变量，同时处理器 B 要读这个 long 型变量。处理器 A 中 64 位的写操作被拆分成两个 32 位的写操作，且这两个 32 位的写操作被分配到不同的写事务中执行。同时，处理器 B 中 64 位的读操作被分配到单个的读事务中执行。当处理器 A 和 B 按上图的时序来执行时，处理器 B 将看到仅仅被处理器 A “写了一半” 的无效值。</p>
+<p>注意：在 JSR-133 之前的旧内存模型中，一个 64 位的 long/double 变量的读/写操作可以被拆分为两个 32 位的读/写操作来执行。从  JSR-133 内存模型开始（即从 JDK 5 开始），仅仅只允许把一个 64 位 long/double 型变量的写操作拆分为两个 32 位的写操作来执行，任意的读操作在 JSR-133 中都必须具有原子性（即任意读操作必须要在单个读事务中执行）。</p>
 
                 
             </div>
@@ -990,7 +865,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/">https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/</a>
+                    <a href="https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/">https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1028,8 +903,8 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Java-Concurrent/">
+                                    <span class="chip bg-color">Java Concurrent</span>
                                 </a>
                             
                         </div>
@@ -1192,9 +1067,9 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/';
-        this.page.identifier = '/2021/12/24/mysql-commonly-used-functions/';
-        this.page.title = 'MySQL Commonly Used Functions';
+        this.page.url = 'https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/';
+        this.page.identifier = '/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/';
+        this.page.title = 'JUP JMM (二) Reorder And Sequential Consistency';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -1222,45 +1097,47 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/12/29/spring-security-authentication-process-analysis/">
+                <a href="/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211115210617.jpg" class="responsive-img" alt="Spring Security Authentication Process Analysis">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174909.jpg" class="responsive-img" alt="JUP JMM (二) Reorder And Sequential Consistency">
                         
-                        <span class="card-title">Spring Security Authentication Process Analysis</span>
+                        <span class="card-title">JUP JMM (二) Reorder And Sequential Consistency</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 登录认证流程分析
+                            Java 并发编程: 重排序和顺序一致性模型
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Security/" class="post-category">
-                                    Spring Security
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Security/">
-                        <span class="chip bg-color">Spring Security</span>
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
                     </a>
                     
                 </div>
@@ -1274,30 +1151,30 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/21/spring-security-of-user-defined-mode/">
+                <a href="/2022/02/24/jup-jmm-yi-what-s-jmm/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150300.jpg" class="responsive-img" alt="Spring Security Of User-defined Mode">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174855.jpg" class="responsive-img" alt="JUP JMM (一) What&#39;s JMM?">
                         
-                        <span class="card-title">Spring Security Of User-defined Mode</span>
+                        <span class="card-title">JUP JMM (一) What&#39;s JMM?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 用户定义方式
+                            Java 并发编程: 初识 Java 内存模型
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Security/" class="post-category">
-                                    Spring Security
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
                                 </a>
                             
                             
@@ -1307,8 +1184,8 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Security/">
-                        <span class="chip bg-color">Spring Security</span>
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
                     </a>
                     
                 </div>
