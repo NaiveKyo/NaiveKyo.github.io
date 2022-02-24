@@ -90,17 +90,17 @@ public interface ReadWriteLock {
     - 当写锁被持有，或者等待队列中存在一个正在等待写入的线程，此时如果一条线程尝试获取不可重入的公平读锁，它就会被阻塞，直到等待时间最长的写入线程获取写锁最后释放写锁，它才可以获得读锁；当然，如果一个正在等待写入的线程放弃了等待，就从剩下的线程中选取一组等待读取的线程作为等待时间最长的，在写锁释放后，授予这一组线程读锁。
     - 当某个线程尝试获取不可重入的公平写锁时就会阻塞，除非读锁和写锁都被释放了（意味着没有等待线程）
   - 最后注意两个方法：`ReentrantReadWriteLock.ReadLock.tryLock()` 和 `ReentrantReadWriteLock.WriteLock.tryLock()` 不遵循公平模式，只要调用这两个方法，且锁是可以获取的，就立即授予相应的锁。
-- `Reentrancy`：可重入性
+- **Reentrancy**：可重入性
   - 和 `ReentrantLock` 一样，读写锁允许读取线程和写入线程重新获取读写锁。但是对于某些不可重入的读取线程，只有所有的写入线程获取锁并释放锁之后，它们才可以获取读锁。
   - 此外，写锁可以获得读锁，但是读锁不可以获得写锁。
-- `Lock downgrading`：锁降级
+- **Lock downgrading**：锁降级
   - 可重入性允许写锁降级为读锁，某个线程获取写锁后，再获取读锁，最后释放写锁，但是不可以从读锁升级为写锁。
-- `Interruption of lock acquisition`
+- **Interruption of lock acquisition**
   - 读锁和写锁都允许线程在获取锁之后中断。
-- `Condition support`
+- **Condition support**
   - 写锁提供了和 `Condition` 类似的行为，类似 `ReentrantLock.newCondition()` 方法；
   - 但是读锁就没有，如果读锁调用 `newCondition` 方法就会抛出异常 `UnsupportedOperationException`
-- `Instrumentation`
+- **Instrumentation**
   - `ReentrantReadWriteLock` 类提供了方法用于判断锁是否被持有或者竞争，设计这些方法的目的是为了检测系统状态，而不是用于线程同步。
 
 ### 例 1：写锁降级

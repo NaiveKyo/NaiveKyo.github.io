@@ -873,13 +873,13 @@ public List<String> findPrices(String product) {
 
 第二次转换将字符串转变为订单。由于一般情况下解析操作不涉及任何远程服务，也不会进行 I/O 操作，它几乎可以在第一时间进行，所以能够采用同步操作，不会带来太多的延迟。由于这个原因，我们可以对第一步中生成的`CompletableFuture` 对象调用它的 `thenApply`，调用解析方法解析每个字符串。
 
-注意：知道调用 `CompletableFuture` 执行结束，使用的 `thenApply` 方法都不会阻塞代码的运行。这意味着 `CompletableFuture` 最终结束运行时，你希望传递 lambda 表达式给 `thenApply` 方法，将 Stream 中每个 `CompletableFuture<String>` 对象转换为对应的 `CompletableFuture<Quote>` 对象。
+注意：直到调用 `CompletableFuture` 执行结束，使用的 `thenApply` 方法都不会阻塞代码的运行。这意味着 `CompletableFuture` 最终结束运行时，你希望传递 lambda 表达式给 `thenApply` 方法，将 Stream 中每个 `CompletableFuture<String>` 对象转换为对应的 `CompletableFuture<Quote>` 对象。
 
 可以看作是为处理 `CompletableFuture` 的结果建立了一个菜单，和 Stream 的流水线所做的事情一样。
 
 （3）为计算折扣价格构建 Future
 
-第三个 map 操作涉及远程 Discount 服务，为从商店中得到的原始价格申请折扣率。这一个转换和第二个转换又不大一样，因为这一转换需要远程执行，处于这一原因，我们希望它可以异步执行。
+第三个 map 操作涉及远程 Discount 服务，为从商店中得到的原始价格申请折扣率。这一个转换和第二个转换又不大一样，因为这一转换需要远程执行，出于这一原因，我们希望它可以异步执行。
 
 为了实现这一目标，和第一步一样，我们需要传递一个方法给 `applyAsync` 工厂方法用来构建 `CompletableFuture` 对象。
 

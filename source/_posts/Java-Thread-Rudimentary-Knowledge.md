@@ -12,8 +12,8 @@ summary: Java 多线程基础知识
 categories: 
  - "Java Concurrent"
  - ["Java Concurrent", Java]
-keywords: [Java, Thread]
-tags: [Java, Thread]
+keywords: "Java Concurrent"
+tags: "Java Concurrent"
 ---
 
 # Java 多线程
