@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-19
+                    2022-02-22
                 </div>
                 
 
@@ -993,7 +993,7 @@
 <p>测试一下看看时间，发现大约：<code>5s81ms</code></p>
 <p>测试代码：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@org.junit.Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">long</span> start <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token function">findPrices</span><span class="token punctuation">(</span><span class="token string">"iphone13"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1351,10 +1351,10 @@
 <p>第一个操作就是调用 <code>supplyAsync</code> 工厂方法以异步方式对 shop 进行查询。第一个转换的结果是一个 <code>Stream&lt;CompletableFuture&lt;String&gt;&gt;</code>，一旦运行结束，每个 <code>CompletableFuture</code> 对象中都会包含对应 shop 返回的字符串。注意，这里使用了之前定制的 Executor。</p>
 <p>（2）解析报价</p>
 <p>第二次转换将字符串转变为订单。由于一般情况下解析操作不涉及任何远程服务，也不会进行 I/O 操作，它几乎可以在第一时间进行，所以能够采用同步操作，不会带来太多的延迟。由于这个原因，我们可以对第一步中生成的<code>CompletableFuture</code> 对象调用它的 <code>thenApply</code>，调用解析方法解析每个字符串。</p>
-<p>注意：知道调用 <code>CompletableFuture</code> 执行结束，使用的 <code>thenApply</code> 方法都不会阻塞代码的运行。这意味着 <code>CompletableFuture</code> 最终结束运行时，你希望传递 lambda 表达式给 <code>thenApply</code> 方法，将 Stream 中每个 <code>CompletableFuture&lt;String&gt;</code> 对象转换为对应的 <code>CompletableFuture&lt;Quote&gt;</code> 对象。</p>
+<p>注意：直到调用 <code>CompletableFuture</code> 执行结束，使用的 <code>thenApply</code> 方法都不会阻塞代码的运行。这意味着 <code>CompletableFuture</code> 最终结束运行时，你希望传递 lambda 表达式给 <code>thenApply</code> 方法，将 Stream 中每个 <code>CompletableFuture&lt;String&gt;</code> 对象转换为对应的 <code>CompletableFuture&lt;Quote&gt;</code> 对象。</p>
 <p>可以看作是为处理 <code>CompletableFuture</code> 的结果建立了一个菜单，和 Stream 的流水线所做的事情一样。</p>
 <p>（3）为计算折扣价格构建 Future</p>
-<p>第三个 map 操作涉及远程 Discount 服务，为从商店中得到的原始价格申请折扣率。这一个转换和第二个转换又不大一样，因为这一转换需要远程执行，处于这一原因，我们希望它可以异步执行。</p>
+<p>第三个 map 操作涉及远程 Discount 服务，为从商店中得到的原始价格申请折扣率。这一个转换和第二个转换又不大一样，因为这一转换需要远程执行，出于这一原因，我们希望它可以异步执行。</p>
 <p>为了实现这一目标，和第一步一样，我们需要传递一个方法给 <code>applyAsync</code> 工厂方法用来构建 <code>CompletableFuture</code> 对象。</p>
 <p>到目前位置，进行了两次异步操作，用来两个不同的 <code>CompletableFuture</code> 对象进行建模，现在，我们希望它们能够以级联的方式串联起来工作。</p>
 <ul>
@@ -1719,29 +1719,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/02/19/jup-juc-liu-future-and-completablefuture/">
+                <a href="/2022/02/24/jup-jmm-yi-what-s-jmm/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174838.jpg" class="responsive-img" alt="JUP JUC (六) Future And CompletableFuture">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174855.jpg" class="responsive-img" alt="JUP JMM (一) What&#39;s JMM?">
                         
-                        <span class="card-title">JUP JUC (六) Future And CompletableFuture</span>
+                        <span class="card-title">JUP JMM (一) What&#39;s JMM?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程：JUC 之 Future 接口及其实现类 CompletableFuture
+                            Java 并发编程: 初识 Java 内存模型
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1754,7 +1753,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

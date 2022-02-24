@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Algorithm">
+    <meta name="keywords" content="Java Concurrent">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Algorithm NumberTheory One | Miló&amp;Akoúo̱</title>
+    <title>JUP JMM (一) What&#39;s JMM? | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174631.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174855.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Algorithm NumberTheory One</h1>
+                    <h1 class="description center-align post-title">JUP JMM (一) What&#39;s JMM?</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Algorithm/">
-                                <span class="chip bg-color">Algorithm</span>
+                            <a href="/tags/Java-Concurrent/">
+                                <span class="chip bg-color">Java Concurrent</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Algorithm/" class="post-category">
-                                Algorithm
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                Java Concurrent
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-02-11
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-14
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    6k
                 </div>
                 
 
@@ -685,110 +685,280 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="巧用进制"><a href="#巧用进制" class="headerlink" title="巧用进制"></a>巧用进制</h1><h2 id="1、天平称重-变种-3-进制"><a href="#1、天平称重-变种-3-进制" class="headerlink" title="1、天平称重:变种 3 进制"></a>1、天平称重:变种 3 进制</h2><p>用天平称重时，我们希望用尽可能少的砝码组合称出尽可能多的重量。</p>
-<p>如果有无限个砝码，但它们的重量分别是1，3，9，27，81，……等 3 的指数幂。</p>
-<p>神奇之处在于用它们的组合可以称出任意整数重量（砝码允许放在左右两个盘中）。</p>
-<p>本题要求编程实现：对用户给定的重量，给出砝码组合方案，重量 &lt; 1000000；</p>
-<p>例如：</p>
-<p>用户输入：</p>
-<p>5</p>
-<p>程序输出：</p>
-<p>9-3-1</p>
-<p>解释：例子意思是这样的，重量为 5，天平左侧放砝码 9，天平右侧放砝码 3、1 以及物品，这样天平两边就等价了，对于程序的输出，天平左盘为正数，右盘为负数。</p>
-<p>解题思路：</p>
-<pre class="line-numbers language-none"><code class="language-none">先看看二进制：
-0 0 0 0 0 0 0 0
-124 64 32 16 8 4 2 1
-可以发现二进制非常特殊，想用二进制表示十进制的任意的数，只需要选取二进制的不同位就可以表示了；
-假设选中了某一位就将该位置 1，未选中就置 0，只有 0 1 两种状态，即砝码的取和不取两种状态；
-则 3 可以表示为 0011，5 可以表示为 0101.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="什么是-JMM"><a href="#什么是-JMM" class="headerlink" title="什么是 JMM"></a>什么是 JMM</h1><p>之前我们没有研究过 Java 内存模型（JMM）的底层细节，而是仅仅调用 Java 并发的高层 API 来解决并发问题。</p>
+<p>而这些并发机制的安全性保障就是 JMM，在学习 JMM 后，我们才能够深入理解为什么这些机制为什么是安全的，也能够更高效的使用它们。</p>
+<p>假设一个线程为变量 <code>aVariable</code> 赋值：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">aVariable <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>二进制有 n 位就可以表示十进制的 1 - 2^n</p>
-<p>但是如果换到三进制就不一样了：</p>
-<pre class="line-numbers language-none"><code class="language-none">对于三进制而言是这样的：
-0 0 0 0 0
-81 27 9 3 1
-每一位有三种状态 0，1，2，转换为砝码的取与不取问题可以这样理解，不取，取一次、取两次；<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注意本题中并没有说砝码可以重复使用，所以一个砝码只能用一次：</p>
-<pre class="line-numbers language-none"><code class="language-none">以例子中的 5 为例，用三进制可以这样表示
-0 1 2
-9 3 1
-2 个 1 加上一个 3 就是 5，表示为 (1, 2)
-现在想要向例子的 9-3-1 靠拢，可以这样:
-(1, 2) 第一位 + 1 得到 (2, 0)
-再让第一位 - 1 得到 (2, -1)；
-接着让第二位 + 1 得 (1, 0, -1)
-第二位再 -1 得到 (1, -1, -1)
-也就是
-1 -1 -1
-9 3 1
-得到了 9-3-1 的结果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>大概思路就有了，把重量转换为 3 进制，接着我们要做的就是对 3 进制数进行处理要求每一位上只能是 0、 1 、-1中的一个，而且这个处理也是有规律的，就是从低位开始每一位进行 +1 然后 -1 操作：</p>
-<p>例如 5 从 （0，1，2）到 （0，2，-1）到（1，-1，-1）；</p>
-<p>例如 3 表示为（1，0）无需变换；</p>
-<p>例如 26 的 3 进制表示为 （2，2，2），变化过程如下：（2，2，2）到（1，0，0，-1）；</p>
-<p>综上可以发现从低位到高位，每一位进行 + 1、- 1 操作，对于每一位而言：</p>
+<p>JMM 要回答这个问题：”在什么条件下，读取 <code>aVariable</code> 的线程会看到 3 这个值？”</p>
+<p>这个问题看起来挺简单的，但是在缺少同步的情况下，就会有很多因素导致线程可能无法立即（或者永远）无法看到另一个线程操作的结果。</p>
 <ul>
-<li>遇到 2 则该位变为 -1，且该位的下一位（更高位）要加 1；</li>
-<li>遇到 0 或 1 则该位不变</li>
+<li><p>我们在编码时写起来确实挺简单直观的，但是编译器生成指令的次序，可以不同于源代码所暗示的 “明显” 的版本，而且编译器还会把变量存储在寄存器，而不是内存中；</p>
+</li>
+<li><p>处理器可以乱序或者并行地执行命令；</p>
+</li>
+<li><p>缓存会改变写入提交到主内存的变量的次序；</p>
+</li>
+<li><p>最后，存储在处理器本地缓存中的值，对于其他处理器并不可见。</p>
+</li>
 </ul>
-<p>代码如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> test_1_天平称重<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<p>在没有做同步处理的前提下，这些因素都会妨碍一个线程看到一个变量的最新值，而且会引起内存活动在不同的线程中表现出不同的发生次序。</p>
+<blockquote>
+<p>单线程环境</p>
+</blockquote>
+<p>在单线程环境下，这些底层细节对于我们来说是隐蔽的，它除了能够提高程序执行速度外，不会产生其他的影响。</p>
+<p>Java 语言规定了 JVM 要维护 <strong>内部线程类似顺序化语义（within-thread as-if-serial semantics）</strong>；只要程序的最终结果等同于它在严格的顺序环境中执行的结果，那么上述所有的行为都是允许的。这其实是一件好事，因为重新排序后的指令使得程序在计算性能上得到了很大的提升。</p>
+<blockquote>
+<p>多线程</p>
+</blockquote>
+<p>在多线程环境下，为了维护正确的顺序性不得不产生很大的性能开销。因为在大部分时间里，同步的程序中的线程都在做自己的工作，额外的线程间协调只会降低程序的运行效率，不会带来任何好处。</p>
+<p>只有当多个线程要共享数据时，才必须协调它们的活动；协调是通过使用同步来完成的，JVM 依赖于程序明确地指出何时需要协调线程的活动。</p>
+<p><mark>JMM 规定了 JVM 的一种最小保证：什么时候写入一个变量会对其他线程可见。这样的设计，可以在对可预言性的需要和开发程序的简易性之间取得平衡。</mark></p>
+<p>程序员会在高性能的 JVM 上开发程序，这些 JVM 广泛的覆盖了当今流行的处理器体系架构。现代的处理器和编译器为了提高程序性能，会用尽手段。</p>
+<h2 id="1、线程通信与线程同步"><a href="#1、线程通信与线程同步" class="headerlink" title="1、线程通信与线程同步"></a>1、线程通信与线程同步</h2><blockquote>
+<p>两个问题</p>
+</blockquote>
+<p>在并发编程中，有两个关键问题需要处理：</p>
+<ul>
+<li>线程之间如何通信：通信指线程之间以何种机制来交换信息；</li>
+<li>线程之间如何同步：同步指程序中用于控制不同线程间操作发生相对顺序的机制。</li>
+</ul>
+<p>这里的线程指的是并发执行的活动实体。</p>
+<blockquote>
+<p>通信机制及同步机制</p>
+</blockquote>
+<p>在命令式编程中，线程之间的通信机制有两种：共享内存和消息传递。</p>
+<p>在共享内存的并发模型中：</p>
+<ul>
+<li>线程之间共享程序的公共状态，通过 写-读 内存中的公共状态进行隐式通信。</li>
+<li>同步是显式进行的。程序员必须指定某个方法或某段代码需要在线程之间互斥执行。</li>
+</ul>
+<p>在消息传递的并发模型中：</p>
+<ul>
+<li>线程之间没有公共状态，它们必须通过发送消息来显式进行通信。</li>
+<li>由于消息的发送必须在消息的接收之前，因此同步是隐式进行的。</li>
+</ul>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>Java 的并发采用的是共享内存模型，Java 线程之间的通信是隐式的，整个通信过程对程序员完全透明，这就要求程序员在编写并发程序时必须理解线程之间的通信机制，否则就会各种奇怪的内存可见性问题。</p>
+<h2 id="2、平台的内存模型"><a href="#2、平台的内存模型" class="headerlink" title="2、平台的内存模型"></a>2、平台的内存模型</h2><p>在可共享内存的多处理器体系架构中，每个处理器都有自己的缓存，并且周期性地与主内存协调一致。处理器架构提供了不同级别的 <strong>缓存一致性（cache coherence）</strong>；有些只提供最小的保证，几乎在任何时间内，都允许不同的处理器在相同的存储位置上看到不同的值。</p>
+<p>要想保证每个处理器都可以在任意时间获知其他处理器正在进行的工作，其代价非常高昂。大多数时间这些信息都是没什么用的，所以处理器会牺牲 <strong>存储一致性的保证</strong>，来换取性能的提升。</p>
+<p>一种架构的 <strong>内存模型</strong> 告诉了应用程序可以从它的内存系统中获得何种担保，同时详细定义了一些特殊的指令称为 <strong>内存关卡（memory barriers）</strong> 或 <strong>栅栏（fences）</strong>，用以在需要共享数据时，得到额外的内存协调保证</p>
+<p>为了帮助 Java 开发者屏蔽这些跨架构的内存模型之间的不同，Java 提供了自己的内存模型，JVM 会通过在适当的位置上插入内存关卡，来解决 JMM 与底层平台内存模型之间的差异化。</p>
+<p>关于程序执行，一个简约的理想模型（mental model）是：操作执行的顺序是唯一的，那就是它们出现在程序中的顺序（代码顺序），这与执行它们的处理器无关；另外，变量每一次读操作，都能得到执行序列上这个变量的最新的写入值，无论这个值是从哪个处理器写入的。</p>
+<p>如果这个不切实际事情在某个模型上出现了，那么这个模型就叫做 <strong>顺序化一致性</strong> 模型。但是事实上这是不可能的。</p>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>最后的结论是，跨线程共享数据时，现代可共享内存的多处理器（和编译器）架构会做出一些无法预料的事情；除非开发者使用存储关卡，通知它们不要这样做。幸运的是，不需要在 Java 程序中指明存储关卡的放置位置，只需要在访问共享状态时能够识别它们就可以了，通过正确的使用同步，就可以做到这些。</p>
+<h2 id="3、Java-内存模型的抽象结构"><a href="#3、Java-内存模型的抽象结构" class="headerlink" title="3、Java 内存模型的抽象结构"></a>3、Java 内存模型的抽象结构</h2><p>在 Java 中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享（可以称这几个变量为共享变量）。</p>
+<p>局部变量（Local Variables），方法定义参数和异常处理参数不会再线程之间共享，它们不会存在内存可见性问题，也不受内存模型影响。</p>
+<p>Java 线程之间的通信由 Java 内存模型（JMM）控制，JMM 决定一个线程对共享变量的写入何时对另一个线程可见。</p>
+<p>从抽象的角度看，JMM 定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是 JMM 的一个抽象概念，并不真实存在。它涵盖了缓存、写入缓存、寄存器以及其他的硬件和编译器优化。</p>
+<p>Java 内存模型的抽象示意如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220221133657.png"></p>
+<p>从上图看来，如果线程 A 和 B 需要通信，就必须要经过两个步骤：</p>
+<p>（1）线程 A 把本地内存 A 中更新过的共享变量刷新到主内存中去；</p>
+<p>（2）线程 B 到主内存中去读取线程 A 之前已经更新过的共享变量。</p>
+<p>比如说主内存中有一个共享变量 x，线程 A 和 B 的本地内存中都存放着 x 的副本，当线程 A 更新本地内存中的 x 后，将其刷新到主内存中，随后，线程 B 到主内存中读取 x 的值并更新本地内存 B 中的 x 的值。</p>
+<p>从整体上看，这两个步骤实质上是线程 A 再向线程 B 发送消息，而且这个通信过程必须要经过主内存。JMM 通过控制主内存与每个线程的本地内存之间的交互，来为 Java 程序员提供内存可见性保证。</p>
+<h2 id="4、重排序简介"><a href="#4、重排序简介" class="headerlink" title="4、重排序简介"></a>4、重排序简介</h2><h3 id="（1）例子"><a href="#（1）例子" class="headerlink" title="（1）例子"></a>（1）例子</h3><p>在没有正确同步的程序中，想要推断出动作（actions）的执行顺序是非常复杂的。各种能够引起操作延迟或者错序执行的不同原因，都可以归纳为一类 <strong>重排序（reordering）</strong>。</p>
+<p>比如下面这段程序：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PossibleReordering</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">static</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"please input weight: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Scanner</span> sc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Thread</span> one <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            x <span class="token operator">=</span> b<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token class-name">Thread</span> other <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            y <span class="token operator">=</span> a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        one<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        other<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        one<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        other<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// 接收重量</span>
-    <span class="token keyword">int</span> weight <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 转换为 3 进制字符串</span>
-    <span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>weight<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 先翻转将低位放在前面, 高位放在后面, 然后转换为字符数组</span>
-    <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chars <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 再对字符数组进行处理，将三进制数的各个位用 0、-1、1 表示</span>
-    <span class="token comment">// 这里要使用另外一个容器进行存储，并且是逆序插入，这是因为高位在最前面</span>
-    <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> chars<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'2'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">// 遇到 2 就在开头插入 -1</span>
-            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> chars<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment">// 如果当前是字符数组的最后一位, 即 3 进制的最高位, 就需要进位</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token operator">++</span>chars<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 否则就对字符数组的 i + 1 位进行加 1</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">// 遇到字符 '3' 是因为在上一个分支中对字符数组的某一个元素进行了加 1 操作</span>
-            <span class="token comment">// 这种特殊情况首先将该位置 0</span>
-            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> chars<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token comment">// 如果该位是最高位，就需要进位</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token comment">// 否则继续将下一位 + 1</span>
-                <span class="token operator">++</span>chars<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token comment">// 如果遇到 0 或者 1, 就将当前字符转换为整数(减去字符 '0')</span>
-            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"("</span> <span class="token operator">+</span> x <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> y <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token comment">// 恢复成十进制表示的字符串</span>
-    <span class="token class-name">StringBuilder</span> sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"+"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-            sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>sb<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注意这里出现了某一位等于 3 的情况，这是因为它的前一位是 2 且不是最高位。</p>
+<p>在没有正确同步的情况下，即使是最简单的并发程序，推断它的行为也是很困难的，这段代码会打印出 <code>(0, 1)</code>、<code>(1, 0)</code>、<code>(1, 1)</code>；</p>
+<p>线程 A 可以在 B（图中下面的线程） 开始前完成，B 也可以在 A 开始前完成，或者它们的动作可以交替进行。但奇怪的是上述代码还会打印出 <code>(0, 0)</code>（图中的情况）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220220120646.png"></p>
+<p>由于每个线程中的动作都没有依赖其他线程数据流，因此这些动作可以乱序执行。（即使按照次序执行，缓存刷新至主内存的时序也会导致这种现象的发生，从线程 B 的角度上看，赋值操作可能在 A 中以相反的次序发生。）</p>
+<p>内存级的重排序会让程序的行为变得不可预测。没有同步，推断执行次序的难度令人望而却步；但是只需要保证程序正确同步，事情就会变得简单些。</p>
+<p>同步抑制了编译器、运行时和硬件对存储系统的各种方式的重排序，否则这些重排序将会破坏 JMM 提供的可见性保证。</p>
+<h3 id="（2）分类"><a href="#（2）分类" class="headerlink" title="（2）分类"></a>（2）分类</h3><p>编译器和处理器对指令的重排序其实是为了提高程序的性能。重排序主要分三种类型：</p>
+<ul>
+<li>编译器优化的重排序：编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序；</li>
+<li>指令级并行的重排序：现代处理器采用了指令级并行技术（Instruction-Level Parallelism, ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序；</li>
+<li>内存系统的重排序：由于处理器使用缓存和 读/写 缓存区，这使得加载和存储操作看上去可能是在乱序执行。</li>
+</ul>
+<p>从 Java 源代码到最终实际执行的指令序列，会分别经过以下 3 种重排序，如图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220221135404.png"></p>
+<p>1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序可能会导致多线程程序出现 <strong>内存可见性</strong> 问题。</p>
+<p>对于编译器，JMM 的编译器重排序规则会禁止特定类型的编译器重排序（不是所有的编译器重排序都要禁止）。</p>
+<p>对于处理器，JMM 的处理器重排序规则会要求 Java 编译器在生成指令序列时，插入特定类型的内存屏障（Memory Barriers，Intel 称之为 Memeory Fence）指令，通过内存屏障指令来禁止特定类型的处理器重排序。</p>
+<p>Java 属于语言级的内存模型，它确保在不同的编译器和处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。</p>
+<h2 id="5、并发编程模型的分类"><a href="#5、并发编程模型的分类" class="headerlink" title="5、并发编程模型的分类"></a>5、并发编程模型的分类</h2><p>现代的处理器使用写缓存区临时保存向内存写入的数据。写缓存区可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等待向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓存区，以及合并写缓存区中对同一内存地址的多次写，减少对内存总线的占用。</p>
+<p>虽然写缓存区有这么多好处，但每个处理器上的写缓存区，仅仅对它所在的处理器可见。这个特性会对内存操作的执行顺序产生重要的影响：处理器对内存的 读/写 操作的执行顺序，不一定与内存实际发生的 读/写 顺序一致！</p>
+<h3 id="（1）重新解释重排序例子"><a href="#（1）重新解释重排序例子" class="headerlink" title="（1）重新解释重排序例子"></a>（1）重新解释重排序例子</h3><p>这里就拿前面重排序的例子，当出现了（0， 0）这种情况，线程 A 和 B 分别由处理器 A 和 B 执行，操作如下：</p>
+<table>
+<thead>
+<tr>
+<th>处理器 A</th>
+<th>处理器 B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a = 1;  // A1</td>
+<td>b = 2;  // B1</td>
+</tr>
+<tr>
+<td>x = b;  // A2</td>
+<td>y = a;  // B2</td>
+</tr>
+</tbody></table>
+<p>具体的原因：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224103605.png"></p>
+<p>（注，图中 A1、A3 演示的是对 a 的操作，A2 是读取 a 变量赋值为 x 的读操作，内存中初始时 a = b = 0）</p>
+<p>这里处理器 A 和处理器 B 可以同时把共享变量写入自己的写缓冲区（A1，B1），然后从内存中读取另一个共享变量（A2，B2），最后才把自己写缓存区中保存的脏数据刷新到内存中（A3，B3）。当以这种时序执行时，程序就可以得到 x = y = 0 的结果。</p>
+<p>从内存操作实际发生的顺序来看，直到处理器 A 执行 A3 来刷新自己的写缓存区，写操作 A1 才算真正执行了。虽然处理器 A 执行内存操作的顺序为：A1 -&gt; A2，但内存操作实际发生的顺序却是 A2 -&gt; A1，处理器 A 的内存操作顺序被重排序了（处理器 B 也是一样）。</p>
+<p>这里关键的是，由于写缓冲区仅对自己的处理器可见，它会导致处理器执行内存操作的顺序可能会与内存实际的操作执行顺序不一致，由于现代的处理器都会使用写缓冲区，因此现代的处理器都会允许 <strong>对写-读 操作进行重排序</strong>。 </p>
+<h3 id="（2）常见重排序规则"><a href="#（2）常见重排序规则" class="headerlink" title="（2）常见重排序规则"></a>（2）常见重排序规则</h3><table>
+<thead>
+<tr>
+<th>处理器/规则</th>
+<th>Load-Load</th>
+<th>Load-Store</th>
+<th>Store-Store</th>
+<th>Store-Load</th>
+<th>数据依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SPARC-TSO</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>x86（包括 x64 和 AMD64）</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>IA64</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td>PowerPC</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<p>注：N 表示不允许，Y  表示允许重排序。</p>
+<p>常见的处理器都允许 <code>Store-Load</code> 重排序；常见的处理器都不允许对存在数据依赖的操作做重排序。</p>
+<p><code>sparc-TSO</code> 和 <code>X86</code> 都拥有相对较强的处理器内存模型，它们仅允许对 <strong>写-读操作</strong> 做重排序（因为它们都使用了写缓冲区）。</p>
+<h3 id="（3）JMM-内存屏障"><a href="#（3）JMM-内存屏障" class="headerlink" title="（3）JMM 内存屏障"></a>（3）JMM 内存屏障</h3><p>为了保证内存可见性，Java 编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序。JMM 把内存屏障指令分为 4 类：</p>
+<table>
+<thead>
+<tr>
+<th>屏障类型</th>
+<th>指令示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LoadLoad Barriers</td>
+<td>Load1；LoadLoad；Load2</td>
+<td>确保 Load1 数据的装载先于 Load2 及所有后续装载指令的装载</td>
+</tr>
+<tr>
+<td>StoreStore Barriers</td>
+<td>Store1；StoreStore；Store2</td>
+<td>确保 Store1 数据对其他处理器可见（刷新到内存）先于 Store2 及所有后续存储指令的存储</td>
+</tr>
+<tr>
+<td>LoadStore Barriers</td>
+<td>Load1；LoadStore；Store2</td>
+<td>确保 Load1 数据装载先于 Store2 及所有后续的存储指令刷新到内存</td>
+</tr>
+<tr>
+<td>StoreLoad Barriers</td>
+<td>Store1；StoreLoad；Load2</td>
+<td>确保 Store1 数据对其他处理器变得可见（指刷新到内存）先于 Load2 及所有后续装载指令的装载。<br>StoreLoad Barriers 会使该屏障之前的所有内存访问指令（存储和装载指令）完成之后，才执行该屏障之后的内存访问指令</td>
+</tr>
+</tbody></table>
+<p><code>StoreLoad Barriers</code> 是一个 “全能型” 的屏障，它同时具备其他 3 个屏障的效果。现代的多处理器大多支持该屏障（其他类型的屏障不一定被所有处理器支持）。执行该屏障开销会很昂贵，因为当前处理器通常要把写缓冲区中的数据全部刷新到内存中（Buffer Fully Flush）。</p>
+<h2 id="6、happens-before"><a href="#6、happens-before" class="headerlink" title="6、happens-before"></a>6、happens-before</h2><h3 id="（1）定义"><a href="#（1）定义" class="headerlink" title="（1）定义"></a>（1）定义</h3><p>Java 内存模型的定义是通过 <strong>动作（actions）</strong>的形式进行描述的，所谓动作，包括变量的读和写、监视器加锁和释放锁、线程的启动和拼接（join）。</p>
+<p>从 JDK5 开始，Java 使用新的 JSR-133 内存模型。JSR-133 为所有程序内部的动作定义了一个偏序关系，叫做 <code>happens-before</code>。要想保证执行动作 B 的线程看到动作 A 的结果（无论 A 和 B 是否发生在同一个线程中），A 和 B 之间就必须满足 <strong>happends-before</strong> 关系。如果两个操作之间并未按照 <strong>happends-before</strong> 关系排序，JVM 就可以对它们进行任意的重排序。</p>
+<blockquote>
+<p>补充：偏序关系</p>
+</blockquote>
+<p>偏序关系 $\prec$ 是集合上的一种反对称的、自反的和传递的关系，不过并不是任意两个元素 x，y 都必须满足 $x \prec y$ 或者 $y \prec x$。</p>
+<p>我们每天都在应用偏序关系来表达我们的喜好，比如我们可以喜欢敲代码胜过打游戏，可以喜欢鲁迅胜过莫言，但是我们不必在敲代码和鲁迅之间做出一个明确的喜好选择。</p>
+<h3 id="（2）规则"><a href="#（2）规则" class="headerlink" title="（2）规则"></a>（2）规则</h3><blockquote>
+<p>happens-before 规则</p>
+</blockquote>
+<p>当一个变量被多个线程读取，且至少被一个线程写入时，如果读写操作并未依照 <code>happens-before</code> 排序，就会产生 <strong>数据竞争（data race）</strong>。一个 <strong>正确同步的程序（correctly synchronized program）</strong> 是没有数据竞争的程序；正确同步的程序会表现出顺序的一致性，这就是说所有程序内部的动作都会以固定的、全局的顺序发生。</p>
+<p><code>happens-before</code> 的法则包括：</p>
+<p>（1）<strong>程序次序法则</strong>：线程中的每个动作 A 都 happens-before 于该线程中的每一个动作 B，其中，在程序中，所有的动作 B 都出现在动作 A 之后。</p>
+<p>（2）<strong>监视器锁法则</strong>：对一个监视器锁的解锁 happens-before 于每一个后续对同一监视器锁的加锁。（显式锁的加锁和解锁有着与内置锁相同的内存语义）</p>
+<p>（3）<strong>volatile 变量法则</strong>：对 volatile 域的写入操作 happens-before 于每一个后续对同一域的读操作。（原子变量的读写操作有着和 volatile 变量相同的语义）</p>
+<p>（4）<strong>线程启动法则</strong>：在一个线程里，对 Thread.start 的调用会 happens-before 于每一个启动线程中的动作；</p>
+<p>（5）<strong>线程终结法则</strong>：线程中的任何动作都 happens-before 于其他线程检测到这个线程已经终结、或者从 Thread.join 调用中成功返回，或者 Thread.isAlive 返回 false。</p>
+<p>（6）<strong>中断法则</strong>：一个线程调用另一个线程的 interrupt happens-before 于被中断的线程发现中断（通过抛出 InterruptedException，或者调用 isInterrupted 和 interrupted）。</p>
+<p>（7）<strong>终结法则</strong>：一个对象的构造函数的结束 happens-before 于这个对象的 finalizer 的开始。</p>
+<p>（8）<strong>传递性</strong>：如果 A happens-before 于 B，且 B happens-before C，则 A happens-before 于 C。</p>
+<p>（一般用的多的是：程序次序法则结合监视器锁法则或 volatile 变量法则）</p>
+<p><mark>虽然动作仅仅需要满足偏序关系，但是同步动作 —— 锁的获取和释放，以及 volatile 变量的读取和写入 —— 却是满足全序关系（当偏序集中的任意两个元素都可比时，称该偏序集满足全序关系）的。</mark></p>
+<p>这样，在描述 <code>happens-before</code> 关系时，就可以使用 “后续” 锁的获取和 volatile 变量的读取这种形式了。</p>
+<p>下图演示了两个线程同步使用一个公共锁时，它们之间的 happens-before 关系。线程 A 内部的所有动作都是按照 “程序次序法则” 进行排序的。线程 B 的内部动作也是一样：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220220142622.png"></p>
+<p>因为 A 释放了锁 M，B 随后获得了锁 M，A 中的所有释放锁之前的动作，也就因此排到了 B 中请求锁后动作的前面。如果两个线程是在不同的锁上进行同步的，我们就不能对它们之间的动作如何排序做任何断言 —— 两个线程的动作之间并不存在 happens-before 关系。</p>
+<p>注意：两个操作之间具有 <code>happens-before</code> 关系，并不意味着前一个操作必须在后一个操作之前执行， <code>happens-before</code> 仅仅要求前一个操作（执行的结果）对后一个操作可见，且前一个操作按顺序排在第二个操作之前。</p>
+<h3 id="（3）补充"><a href="#（3）补充" class="headerlink" title="（3）补充"></a>（3）补充</h3><p>由类库担保的其他 happens-before 包括：</p>
+<ul>
+<li>将一个条目置入线程安全容器 happens-before 于另一个线程从容器中获取条目（比如阻塞队列）；</li>
+<li>执行 <code>CountDownLatch</code> 中的倒计时 happens-before 于线程从闭锁（latch）的 await 中返回；</li>
+<li>释放一个许可证给 <code>Semaphore</code> happens-before 于从同一个 <code>Semaphore</code> 里获得一个许可；</li>
+<li><code>Future</code> 代表的任务中发生的动作 heppens-before 于另一个线程成功地从 <code>Future.get()</code> 中返回；</li>
+<li>向 <code>Executor</code> 提交一个 Runnable 或者 Callable happens-before 于开始执行任务；</li>
+<li>最后一个线程到达 <code>CyclicBarrier</code> 或 <code>Exchanger</code> happens-before 于相同关卡（barrier）或 Exchange 点钟的其他线程被释放。如果 <code>CyclicBarrier</code> 使用一个关卡（barrier）动作，到达关卡 happens-before 于关卡动作，依照次序，关卡动作 happens-before 于线程从关卡中被释放。</li>
+</ul>
+<p>与程序员密切相关的 happens-before 规则：</p>
+<ul>
+<li>程序次序规则：一个线程中的每个操作，happens-before 于该线程中的任意后续操作；</li>
+<li>监视器锁规则：对一个锁的解锁，happens-before 于随后的对这个锁的加锁；</li>
+<li>volatile 变量规则：对一个 volatile 域的写，happens-before 于任意后续对这个 volatile 域的读；</li>
+<li>传递性：如果 A happens-before B，且 B happens-before C，那么 A happens-before C。</li>
+</ul>
+<p>注意，两个操作之间具有 happens-before 关系，并不意味着前一个操作必须要在后一个操作之前执行！happens-before 仅仅要求前一个操作（执行的结果）对后一个操作可见，且前一个操作按照顺序排在第二个操作之前（the first is visible to and ordered before the second）。</p>
+<p>happens-before 于 JMM 的关系如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220224142809.png"></p>
+<p>如图所示，一个 happens-before 规则对应一个或多个编译器和处理器重排序规则。</p>
+<p>对于 Java 程序员来说，happens-before 规则简单易懂，它避免 Java 程序员为了理解 JMM 提供的内存可见性保证而去学习复杂的重排序规则以及这些规则的具体实现方法。</p>
 
                 
             </div>
@@ -815,7 +985,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/">https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/</a>
+                    <a href="https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/">https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -853,8 +1023,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Algorithm/">
-                                    <span class="chip bg-color">Algorithm</span>
+                                <a href="/tags/Java-Concurrent/">
+                                    <span class="chip bg-color">Java Concurrent</span>
                                 </a>
                             
                         </div>
@@ -1017,9 +1187,9 @@
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/';
-        this.page.identifier = '/2022/02/11/algorithm-numbertheory-one/';
-        this.page.title = 'Algorithm NumberTheory One';
+        this.page.url = 'https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/';
+        this.page.identifier = '/2022/02/24/jup-jmm-yi-what-s-jmm/';
+        this.page.title = 'JUP JMM (一) What&#39;s JMM?';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -1047,28 +1217,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2022/02/15/jup-juc-yi-of-lock-and-collection/">
+                <a href="/2022/02/24/jup-jmm-yi-what-s-jmm/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174650.jpg" class="responsive-img" alt="JUP (一) JUC Of Lock And Collection">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174855.jpg" class="responsive-img" alt="JUP JMM (一) What&#39;s JMM?">
                         
-                        <span class="card-title">JUP (一) JUC Of Lock And Collection</span>
+                        <span class="card-title">JUP JMM (一) What&#39;s JMM?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 并发编程: JUC 中的 Lock 和线程安全的集合
+                            Java 并发编程: 初识 Java 内存模型
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1081,6 +1252,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1099,30 +1271,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/07/algorithm-stringmatching-example/">
+                <a href="/2022/02/19/jup-juc-liu-future-and-completablefuture/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174615.jpg" class="responsive-img" alt="Algorithm StringMatching Example">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174838.jpg" class="responsive-img" alt="JUP JUC (六) Future And CompletableFuture">
                         
-                        <span class="card-title">Algorithm StringMatching Example</span>
+                        <span class="card-title">JUP JUC (六) Future And CompletableFuture</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串匹配算法例题
+                            Java 并发编程：JUC 之 Future 接口及其实现类 CompletableFuture
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
                                 </a>
                             
                             
@@ -1132,8 +1304,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
                     </a>
                     
                 </div>
@@ -1264,6 +1436,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

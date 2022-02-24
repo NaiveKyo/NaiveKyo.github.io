@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-19T14:08:53.040Z</updated>
+  <updated>2022-02-24T06:35:09.797Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JUP JMM (一) What&#39;s JMM?</title>
+    <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/"/>
+    <id>https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/</id>
+    <published>2022-02-24T06:33:56.000Z</published>
+    <updated>2022-02-24T06:35:09.797Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是-JMM&quot;&gt;&lt;a href=&quot;#什么是-JMM&quot; class=&quot;headerlink&quot; title=&quot;什么是 JMM&quot;&gt;&lt;/a&gt;什么是 JMM&lt;/h1&gt;&lt;p&gt;之前我们没有研究过 Java 内存模型（JMM）的底层细节，而是仅仅调用 Java 并发的高层</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JUP JUC (六) Future And CompletableFuture</title>
     <link href="https://naivekyo.github.io/2022/02/19/jup-juc-liu-future-and-completablefuture/"/>
     <id>https://naivekyo.github.io/2022/02/19/jup-juc-liu-future-and-completablefuture/</id>
     <published>2022-02-19T14:07:30.000Z</published>
-    <updated>2022-02-19T14:08:53.040Z</updated>
+    <updated>2022-02-22T12:37:41.715Z</updated>
     
     
       
@@ -96,7 +121,7 @@
     <link href="https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/"/>
     <id>https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/</id>
     <published>2022-02-17T09:14:36.000Z</published>
-    <updated>2022-02-17T09:39:21.218Z</updated>
+    <updated>2022-02-20T08:43:13.316Z</updated>
     
     
       
@@ -146,7 +171,7 @@
     <link href="https://naivekyo.github.io/2022/02/15/jup-juc-yi-of-lock-and-collection/"/>
     <id>https://naivekyo.github.io/2022/02/15/jup-juc-yi-of-lock-and-collection/</id>
     <published>2022-02-15T07:39:28.000Z</published>
-    <updated>2022-02-16T03:55:54.277Z</updated>
+    <updated>2022-02-19T14:17:40.665Z</updated>
     
     
       
@@ -162,7 +187,7 @@
     <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
     
     
-    <category term="JUC" scheme="https://naivekyo.github.io/tags/JUC/"/>
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
     
   </entry>
   
@@ -490,31 +515,6 @@
     
     
     <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Commonly Used Functions</title>
-    <link href="https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/"/>
-    <id>https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/</id>
-    <published>2021-12-24T05:20:13.000Z</published>
-    <updated>2022-01-20T08:20:23.542Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MySQL-常用函数&quot;&gt;&lt;a href=&quot;#MySQL-常用函数&quot; class=&quot;headerlink&quot; title=&quot;MySQL 常用函数&quot;&gt;&lt;/a&gt;MySQL 常用函数&lt;/h1&gt;&lt;h2 id=&quot;一、流程控制函数&quot;&gt;&lt;a href=&quot;#一、流程控制函数&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   

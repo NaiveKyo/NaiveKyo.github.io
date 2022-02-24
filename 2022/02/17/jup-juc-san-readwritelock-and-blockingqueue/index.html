@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-17
+                    2022-02-20
                 </div>
                 
 
@@ -746,25 +746,25 @@
 <li>最后注意两个方法：<code>ReentrantReadWriteLock.ReadLock.tryLock()</code> 和 <code>ReentrantReadWriteLock.WriteLock.tryLock()</code> 不遵循公平模式，只要调用这两个方法，且锁是可以获取的，就立即授予相应的锁。</li>
 </ul>
 </li>
-<li><code>Reentrancy</code>：可重入性<ul>
+<li><strong>Reentrancy</strong>：可重入性<ul>
 <li>和 <code>ReentrantLock</code> 一样，读写锁允许读取线程和写入线程重新获取读写锁。但是对于某些不可重入的读取线程，只有所有的写入线程获取锁并释放锁之后，它们才可以获取读锁。</li>
 <li>此外，写锁可以获得读锁，但是读锁不可以获得写锁。</li>
 </ul>
 </li>
-<li><code>Lock downgrading</code>：锁降级<ul>
+<li><strong>Lock downgrading</strong>：锁降级<ul>
 <li>可重入性允许写锁降级为读锁，某个线程获取写锁后，再获取读锁，最后释放写锁，但是不可以从读锁升级为写锁。</li>
 </ul>
 </li>
-<li><code>Interruption of lock acquisition</code><ul>
+<li><strong>Interruption of lock acquisition</strong><ul>
 <li>读锁和写锁都允许线程在获取锁之后中断。</li>
 </ul>
 </li>
-<li><code>Condition support</code><ul>
+<li><strong>Condition support</strong><ul>
 <li>写锁提供了和 <code>Condition</code> 类似的行为，类似 <code>ReentrantLock.newCondition()</code> 方法；</li>
 <li>但是读锁就没有，如果读锁调用 <code>newCondition</code> 方法就会抛出异常 <code>UnsupportedOperationException</code></li>
 </ul>
 </li>
-<li><code>Instrumentation</code><ul>
+<li><strong>Instrumentation</strong><ul>
 <li><code>ReentrantReadWriteLock</code> 类提供了方法用于判断锁是否被持有或者竞争，设计这些方法的目的是为了检测系统状态，而不是用于线程同步。</li>
 </ul>
 </li>
