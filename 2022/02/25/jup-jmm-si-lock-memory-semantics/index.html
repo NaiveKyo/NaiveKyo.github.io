@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL">
+    <meta name="keywords" content="Java Concurrent">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL Commonly Used Functions | Miló&amp;Akoúo̱</title>
+    <title>JUP JMM (四) Lock Memory Semantics | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031161747.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174952.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL Commonly Used Functions</h1>
+                    <h1 class="description center-align post-title">JUP JMM (四) Lock Memory Semantics</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Java-Concurrent/">
+                                <span class="chip bg-color">Java Concurrent</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                Java Concurrent
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-12-24
+                    2022-02-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-02-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    2.7k
                 </div>
                 
 
@@ -685,285 +685,202 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL-常用函数"><a href="#MySQL-常用函数" class="headerlink" title="MySQL 常用函数"></a>MySQL 常用函数</h1><h2 id="一、流程控制函数"><a href="#一、流程控制函数" class="headerlink" title="一、流程控制函数"></a>一、流程控制函数</h2><h3 id="1、CASE"><a href="#1、CASE" class="headerlink" title="1、CASE"></a>1、CASE</h3><p>CASE 语句的返回结果比较特殊，是所有结果的聚合类型</p>
-<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html">官方说明</a></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token number">1</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'one'</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>     <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'two'</span> <span class="token keyword">ELSE</span> <span class="token string">'more'</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'one'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token keyword">WHEN</span> <span class="token number">1</span><span class="token operator">&gt;</span><span class="token number">0</span> <span class="token keyword">THEN</span> <span class="token string">'true'</span> <span class="token keyword">ELSE</span> <span class="token string">'false'</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'true'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token keyword">BINARY</span> <span class="token string">'B'</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>     <span class="token keyword">WHEN</span> <span class="token string">'a'</span> <span class="token keyword">THEN</span> <span class="token number">1</span> <span class="token keyword">WHEN</span> <span class="token string">'b'</span> <span class="token keyword">THEN</span> <span class="token number">2</span> <span class="token keyword">END</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="锁的内存语义"><a href="#锁的内存语义" class="headerlink" title="锁的内存语义"></a>锁的内存语义</h1><p>总所周知，锁可以让临界区互斥执行。这里介绍锁的另一个重要的功能：锁的内存语义。</p>
+<h2 id="1、锁的释放-获取建立的-happens-before-关系"><a href="#1、锁的释放-获取建立的-happens-before-关系" class="headerlink" title="1、锁的释放-获取建立的 happens-before 关系"></a>1、锁的释放-获取建立的 happens-before 关系</h2><p>锁是 Java 并发编程中最重要的同步机制。锁除了让临界区互斥执行以外，还可以让释放锁的线程向获取同一个锁的线程发送消息。</p>
+<p>例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MonitorExample</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     <span class="token comment">// 1</span>
+        a<span class="token operator">++</span><span class="token punctuation">;</span>                                <span class="token comment">// 2</span>
+    <span class="token punctuation">}</span>                                       <span class="token comment">// 3</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     <span class="token comment">// 4</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> a<span class="token punctuation">;</span>                          <span class="token comment">// 5</span>
+        <span class="token comment">// ... </span>
+    <span class="token punctuation">}</span>                                       <span class="token comment">// 6</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-
-
-<h3 id="2、IF"><a href="#2、IF" class="headerlink" title="2、IF"></a>2、IF</h3><p><code>IF(expr1, expr2, expr3)</code></p>
-<p>expr1 为真时返回 expr2，否则返回 expr3</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&gt;</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">3</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">,</span><span class="token string">'no'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'yes'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span>STRCMP<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span><span class="token string">'test1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'no'</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'no'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h3 id="3、IFNULL"><a href="#3、IFNULL" class="headerlink" title="3、IFNULL"></a>3、IFNULL</h3><p><code>IFNULL(expr1, expr2)</code></p>
-<p>expr1 为 not null 时，返回 expr1，否则返回 expr2</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">10</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">10</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">'yes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'yes'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><code>IFNULL</code> 的返回类型是 expr1 和 expr2 两个类型中更通用的，顺序：STRING，REAL 或 INTEGER。</p>
+<p>假设线程 A 执行 <code>writer()</code> 方法，随后线程 B 执行 <code>reader()</code> 方法。根据 happens-before 规则，这个过程中包含的 happens-before 关系可以分为三类：</p>
+<p>（1）根据程序次序规则：1 happens-before 2，2 happens-before 3，4 happens-before 5，5 happens-before 6</p>
+<p>（2）根据监视器锁规则：3 happens-before 4</p>
+<p>（3）根据 happens-before 的传递性：2 happens-before 5</p>
+<p>图形化表现如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225140604.png"></p>
+<p>线程 A 释放了锁之后，随后线程 B 获得了同一个锁。2 happens-before 5，因此，线程 A 在释放锁之前所有可见的共享变量，在线程 B 获取同一个锁之后，将立刻变得对线程 B 可见。</p>
+<h2 id="2、锁的释放和获取的内存语义"><a href="#2、锁的释放和获取的内存语义" class="headerlink" title="2、锁的释放和获取的内存语义"></a>2、锁的释放和获取的内存语义</h2><p>当线程释放锁后，JMM 会把该线程对应的本地内存中的共享变量刷新到主内存中。以上面的 <code>MonitorExample</code> 程序为例，A 线程释放锁后，共享数据的状态示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225140952.png"></p>
+<p>当线程获取锁时，JMM 会把该线程对应的本地内存置为无效。从而使得被监视器保护的临界区代码必须从主内存中读取共享变量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225141054.png"></p>
+<p>对比锁释放-获取的内存语义与 volatile 写-读的内存语义可以看出：锁释放与 volatile 写有相同的内存语义；锁获取与 volatile 读有相同的内存语义。</p>
 <blockquote>
-<p>NULLIF</p>
+<p>总结</p>
 </blockquote>
-<p><code>NULLIF(expr1, expr2)</code></p>
-<p>当 expr1 = expr2 时返回 NULL，否则返回 expr1</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">NULLIF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">NULLIF</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="二、时间函数"><a href="#二、时间函数" class="headerlink" title="二、时间函数"></a>二、时间函数</h2><h3 id="1、DATE-FORMAT"><a href="#1、DATE-FORMAT" class="headerlink" title="1、DATE_FORMAT"></a>1、DATE_FORMAT</h3><p><code>DATE_FORMAT(date, format)</code></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2009-10-04 22:23:00'</span><span class="token punctuation">,</span> <span class="token string">'%W %M %Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'Sunday October 2009'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2007-10-04 22:23:00'</span><span class="token punctuation">,</span> <span class="token string">'%H:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'22:23:00'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1900-10-04 22:23:00'</span><span class="token punctuation">,</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>                 <span class="token string">'%D %y %a %d %m %b %j'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'4th 00 Thu 04 10 Oct 277'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1997-10-04 22:23:00'</span><span class="token punctuation">,</span>
-    <span class="token operator">-</span><span class="token operator">&gt;</span>                 <span class="token string">'%H %k %I %r %T %S %w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'22 22 10 10:23:00 PM 22:23:00 00 6'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'1999-01-01'</span><span class="token punctuation">,</span> <span class="token string">'%X %V'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'1998 52'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token string">'2006-06-00'</span><span class="token punctuation">,</span> <span class="token string">'%d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'00'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>重点在于模式（<code>format</code>）</p>
-<table>
-<thead>
-<tr>
-<th align="center">Specifier</th>
-<th align="center">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>%a</code></td>
-<td align="center">星期缩写英文名称（Sum…Sat）</td>
-</tr>
-<tr>
-<td align="center"><code>%b</code></td>
-<td align="center">月份英文名称缩写（Jan…Dec）</td>
-</tr>
-<tr>
-<td align="center"><code>%c</code></td>
-<td align="center">月份，格式 (0…12)</td>
-</tr>
-<tr>
-<td align="center"><code>%D</code></td>
-<td align="center">带有英语后缀的一个月中的每一天的名称（0th、1st、2nd、3rd）</td>
-</tr>
-<tr>
-<td align="center"><code>%d</code></td>
-<td align="center">用数字形式表现的每月中的每一天（00…31）</td>
-</tr>
-<tr>
-<td align="center"><code>%e</code></td>
-<td align="center">用数字形式表现的每月中的每一天（0…31）</td>
-</tr>
-<tr>
-<td align="center"><code>%f</code></td>
-<td align="center">毫秒（000000…999999）</td>
-</tr>
-<tr>
-<td align="center"><code>%H</code></td>
-<td align="center">24 时制显示的小时（00…23）</td>
-</tr>
-<tr>
-<td align="center"><code>%h</code></td>
-<td align="center">12 时制显示的小时（01…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%I</code></td>
-<td align="center">12 时制显示的小时（01…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%i</code></td>
-<td align="center">以数字形式表现的分钟数（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%j</code></td>
-<td align="center">一年中的每一天（001…366）</td>
-</tr>
-<tr>
-<td align="center"><code>%k</code></td>
-<td align="center">24 时制小时的另一种表现格式（0…23）</td>
-</tr>
-<tr>
-<td align="center"><code>%l</code></td>
-<td align="center">12时制小时的另一种表现格式（1…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%M</code></td>
-<td align="center">用完整英文名称表示的月份（January…December）</td>
-</tr>
-<tr>
-<td align="center"><code>%m</code></td>
-<td align="center">用数字表现的月份（00…12）</td>
-</tr>
-<tr>
-<td align="center"><code>%p</code></td>
-<td align="center">上午（AM）或下午（PM）</td>
-</tr>
-<tr>
-<td align="center"><code>%r</code></td>
-<td align="center">12时制的时间值（hh:mm:ss，后跟 AM 或 PM）</td>
-</tr>
-<tr>
-<td align="center"><code>%S</code></td>
-<td align="center">秒（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%s</code></td>
-<td align="center">秒（00…59）</td>
-</tr>
-<tr>
-<td align="center"><code>%T</code></td>
-<td align="center">24 时制的小时（hh:mm:ss）</td>
-</tr>
-<tr>
-<td align="center"><code>%U</code></td>
-<td align="center">星期（00…53），其中星期天是每星期的开始日</td>
-</tr>
-<tr>
-<td align="center"><code>%u</code></td>
-<td align="center">星期（00…53），其中星期一是每星期的开始日</td>
-</tr>
-<tr>
-<td align="center"><code>%V</code></td>
-<td align="center">星期（01…53），其中星期天是每星期的开始日，和 <code>%X</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%v</code></td>
-<td align="center">星期（01…53），其中星期一是每星期的开始日，和 <code>%x</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%W</code></td>
-<td align="center">一星期中各日名称（Sunday…Saturday）</td>
-</tr>
-<tr>
-<td align="center"><code>%w</code></td>
-<td align="center">一星期中各日名称（0代表星期日，6代表星期六，以此类推）</td>
-</tr>
-<tr>
-<td align="center"><code>%X</code></td>
-<td align="center">某星期所处年份。其中，星期天是每星期的开始日，采用4位数字形式表现，和 <code>%V</code>一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%x</code></td>
-<td align="center">某星期所处年份。其中，星期一是每星期的开始日，采用4位数字形式表现，和 <code>%V</code> 一起使用</td>
-</tr>
-<tr>
-<td align="center"><code>%Y</code></td>
-<td align="center">4 位数字表示的年份</td>
-</tr>
-<tr>
-<td align="center"><code>%y</code></td>
-<td align="center">2 位数字表示的年份</td>
-</tr>
-<tr>
-<td align="center"><code>%%</code></td>
-<td align="center">符号<code>%</code>的字面值</td>
-</tr>
-<tr>
-<td align="center"><code>%x</code>（x为斜体）</td>
-<td align="center">字符 x 的字面值，x 指以上未列出的任何字符</td>
-</tr>
-</tbody></table>
-<h3 id="2、WEEK"><a href="#2、WEEK" class="headerlink" title="2、WEEK"></a>2、WEEK</h3><p><code>week(date[, mode])</code></p>
-<p>此函数返回日期参数 date 所对应的星期序号，如果同时传入 date 和 mode，则可以指定每星期起始日究竟是星期天还是星期一，以及返回值返回是 0 - 53 还是 1 - 53.</p>
-<p>如果忽略 mode 参数，就采用 <code>default_week_format</code> 系统变量值：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'default_week_format'</span><span class="token punctuation">;</span>
-	<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="3、STR-TO-DATE"><a href="#3、STR-TO-DATE" class="headerlink" title="3、STR_TO_DATE"></a>3、STR_TO_DATE</h3><p><code>STR_TO_DATE(str, format)</code></p>
-<p>该函数和 <code>DATE_FORMAT</code> 正好相反，将字符串按照特定的模式解析成日期对象，模式表和 <code>DATE_FORMAT</code> 一样。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'01,5,2013'</span><span class="token punctuation">,</span><span class="token string">'%d,%m,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'May 1, 2013'</span><span class="token punctuation">,</span><span class="token string">'%M %d,%Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'2013-05-01'</span>
-        
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'a%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'a09:30:17'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'09:30:17a'</span><span class="token punctuation">,</span><span class="token string">'%h:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'09:30:17'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-<h2 id="三、比较函数"><a href="#三、比较函数" class="headerlink" title="三、比较函数"></a>三、比较函数</h2><h3 id="1、ISNULL"><a href="#1、ISNULL" class="headerlink" title="1、ISNULL"></a>1、ISNULL</h3><p><code>ISNULL(expr)</code></p>
-<p>如果 expr 是 NULL 就返回 1，如果不是就返回 0。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">0</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ISNULL<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>NULL 值判断</p>
-</blockquote>
-<p><mark>出了使用函数来判断某个字段是否为 NULL，还可以这样：</mark></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">select1 <span class="token operator">is</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token operator">&gt;</span> <span class="token number">1</span>
-
-<span class="token keyword">select</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span> <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
-<span class="token operator">&gt;</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="四、字符串函数"><a href="#四、字符串函数" class="headerlink" title="四、字符串函数"></a>四、字符串函数</h2><h3 id="1、CONCAT"><a href="#1、CONCAT" class="headerlink" title="1、CONCAT"></a>1、CONCAT</h3><p><code>CONCAT(str1, str2, ...)</code></p>
-<p>将传入的所有字符串参数拼接为一个字符串返回。</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'My'</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">'QL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">NULL</span>
-mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token number">14.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'14.3'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果字符串带引号，则可以自动连接：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token string">'My'</span> <span class="token string">'S'</span> <span class="token string">'QL'</span><span class="token punctuation">;</span>
-        <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token string">'MySQL'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="五、数学函数"><a href="#五、数学函数" class="headerlink" title="五、数学函数"></a>五、数学函数</h2><h3 id="1、RAND"><a href="#1、RAND" class="headerlink" title="1、RAND"></a>1、RAND</h3><p><code>RAND()</code> 函数主要用于返回一个在 <mark>[0, 1)</mark> 之间的浮点数，它有两种形式：</p>
 <ul>
-<li><code>rand()</code>：无参的，此时产生的结果是随机的（注意并不是完全随机的）</li>
-<li><code>rand(x)</code>：有参的，参数作为随机数生成器的种子，如果种子相同，那么产生的随机数序列也是相同的</li>
+<li>线程 A 释放一个锁，实质上是线程 A 向接下来要获取这个锁的某个线程发出了（线程 A 对共享变量所作修改的）消息。</li>
+<li>线程 B 获取一个锁，实质上是线程 B 接收了之前某个线程发出的（在释放这个锁之前对共享变量所做修改的）消息。</li>
+<li>线程 A 释放锁，随后线程 B 获取这个锁，这个过程实质上是线程 A 通过主内存向线程 B 发送消息。</li>
 </ul>
-<p>该函数可以用于 <code>where</code> 语句中，一般用于随机排序：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tbl_name <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="3、锁内存语义的实现"><a href="#3、锁内存语义的实现" class="headerlink" title="3、锁内存语义的实现"></a>3、锁内存语义的实现</h2><h3 id="（1）ReentrantLock"><a href="#（1）ReentrantLock" class="headerlink" title="（1）ReentrantLock"></a>（1）ReentrantLock</h3><p>看一下使用 <code>ReentrantLock</code> 的例子：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReentrantLockExample</span> <span class="token punctuation">{</span>
+    
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+    <span class="token class-name">ReentrantLock</span> lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      <span class="token comment">// 获取锁</span>
+        lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            a <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 释放锁</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      <span class="token comment">// 获取锁</span>
+        lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> a<span class="token punctuation">;</span>
+            <span class="token comment">// ...</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 释放锁</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table1<span class="token punctuation">,</span> table2 <span class="token keyword">WHERE</span> a<span class="token operator">=</span>b <span class="token operator">AND</span> c<span class="token operator">&lt;</span>d <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">LIMIT</span> <span class="token number">1000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在 <code>ReentrantLock</code> 中，调用 <code>lock()</code> 方法获取锁；调用 <code>unlock()</code> 方法释放锁。</p>
+<p><code>ReentrantLock</code> 的实现依赖于 Java 同步器框架 <code>AbstractQueuedSynchronizer</code>（AQS，抽象同步队列）。</p>
+<p>AQS 使用一个整型的 volatile 变量（命名为 state）来维护同步状态，这个 volatile 变量是 <code>ReentrantLock</code> 内存语义实现的关键。</p>
+<p>下图为 <code>ReentrantLock</code> 的部分类图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225160941.png"></p>
+<h3 id="（2）公平锁和非公平锁"><a href="#（2）公平锁和非公平锁" class="headerlink" title="（2）公平锁和非公平锁"></a>（2）公平锁和非公平锁</h3><p><code>ReentrantLock</code> 分为公平锁和非公平锁，首先分析公平锁：</p>
+<p>使用公平锁时，加锁方法 <code>lock()</code> 的调用轨迹如下：</p>
+<p>（1）<code>ReentrantLock#lock()</code></p>
+<p>（2）<code>FairSync#lock()</code></p>
+<p>（3）<code>AbstractQueuedSynchronizer#acquire(int arg)</code></p>
+<p>（4）<code>FairSync#tryAcquire(int acquires)</code></p>
+<p>到第四步真正开始加锁，该方法源码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> acquires<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token class-name">Thread</span> current <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 获取锁的开始, 首先读 volatile 变量 state</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">hasQueuedPredecessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+            <span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> acquires<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token function">getExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> nextc <span class="token operator">=</span> c <span class="token operator">+</span> acquires<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nextc <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Maximum lock count exceeded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setState</span><span class="token punctuation">(</span>nextc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>加锁方法首先读 volatile 变量 state。</p>
+<p>在使用公平锁时，解锁方法 <code>unlock()</code> 的调用轨迹如下：</p>
+<p>（1）<code>ReentrantLock#unlock()</code></p>
+<p>（2）<code>AbstractQueuedSynchronizer#release(int arg)</code></p>
+<p>（3）<code>Sync#tryRelease(int releases)</code></p>
+<p>在第三步真正开始释放锁，下面是该方法的源码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">tryRelease</span><span class="token punctuation">(</span><span class="token keyword">int</span> releases<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> releases<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">getExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalMonitorStateException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> free <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        free <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setState</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 释放锁的最后，写 volatile 变量 state</span>
+    <span class="token keyword">return</span> free<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从源码可以看出，在释放锁的最后写 volatile 变量 state。</p>
+<p>公平锁在释放锁的最后写 volatile 变量 state，在获取锁时首先读这个 volatile 变量。根据 volatile 的 happens-before 规则，释放锁的线程在写 volatile 变量之前可见的共享变量，在获取锁的线程读取同一个 volatile 变量后将立即变得对获取锁的线程可见。</p>
+<p>现在分析一下非公平锁的内存语义的实现。非公平锁的释放和公平锁完全一样，所以这里仅仅分析非公平锁的获取。使用非公平锁时，加锁方法 <code>lock()</code> 的调用轨迹如下：</p>
+<p>（1）<code>ReentrantLock#lock()</code></p>
+<p>（2）<code>NonfairSync#lock()</code></p>
+<p>（3）<code>AbstractQueuedSynchronizer#acquire(int arg)</code></p>
+<p>（4）<code>NonfairSync#tryAcquire(int acquires)</code></p>
+<p>（5）<code>Sync#nonfairTryAcquire(int acquires)</code></p>
+<p>到第五步才开始真正加锁：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">nonfairTryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> acquires<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token class-name">Thread</span> current <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> acquires<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token function">getExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> nextc <span class="token operator">=</span> c <span class="token operator">+</span> acquires<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nextc <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// overflow</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Maximum lock count exceeded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setState</span><span class="token punctuation">(</span>nextc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里用到了 <code>compareAndSetState</code> 方法（简称 CAS），该方法以原子操作的方式更新 state 变量。</p>
+<p>JDK 文档对该方法说明如下：如果当前状态值等于预期值，则以原子方式将同步状态设置为给定的更新值。此操作具有 volatile 读和写的内存语义。</p>
+<h3 id="（3）CAS-的实现"><a href="#（3）CAS-的实现" class="headerlink" title="（3）CAS 的实现"></a>（3）CAS 的实现</h3><p>这里我们从编译器和处理器的角度来分析，CAS 如何同时具有 volatile 读和 volatile 写的内存语义。</p>
+<p>之前提到过，编译器不会对 volatile 读与 volatile 读后面的任意内存操作作重排序；编译器不会对 volatile 写与 volatile 写前面的任意内存操作作重排序。组合这两个条件，意味着为了同时实现 volatile 读和 volatile 写的内存语义，编译器不能对 CAS 与 CAS 前面和后面的任意内存操作作重排序。</p>
+<p>下面分析在常见的 intel X86 处理器中，CAS 是如何同时具有 volatile 读和 volatile 写的内存语义的。</p>
+<p>下面是 <code>sum.misc.Unsafe</code> 类的 <code>compareAndSwapInt()</code> 方法的源代码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">native</span> <span class="token keyword">boolean</span> <span class="token function">compareAndSwapInt</span><span class="token punctuation">(</span><span class="token class-name">Object</span> var1<span class="token punctuation">,</span> <span class="token keyword">long</span> var2<span class="token punctuation">,</span> <span class="token keyword">int</span> var4<span class="token punctuation">,</span> <span class="token keyword">int</span> var5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 换个参数说明</span>
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">native</span> <span class="token keyword">boolean</span> <span class="token function">compareAndSwapInt</span><span class="token punctuation">(</span><span class="token class-name">Object</span> o<span class="token punctuation">,</span> <span class="token keyword">long</span> offest<span class="token punctuation">,</span> <span class="token keyword">int</span> expect<span class="token punctuation">,</span> <span class="token keyword">int</span> update<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到，这是一个本地方法调用。这个本地方法的最终实现在 openjdk 中源代码为：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">inline</span> jint     <span class="token class-name">Atomic</span><span class="token double-colon punctuation">::</span><span class="token function">cmpxchg</span>    <span class="token punctuation">(</span>jint     exchange_value<span class="token punctuation">,</span> <span class="token keyword">volatile</span> jint<span class="token operator">*</span>     dest<span class="token punctuation">,</span> jint     compare_value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// alternative for InterlockedCompareExchange</span>
+  <span class="token keyword">int</span> mp <span class="token operator">=</span> os<span class="token double-colon punctuation">::</span><span class="token function">is_MP</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  __asm <span class="token punctuation">{</span>
+    mov edx<span class="token punctuation">,</span> dest
+    mov ecx<span class="token punctuation">,</span> exchange_value
+    mov eax<span class="token punctuation">,</span> compare_value
+    <span class="token function">LOCK_IF_MP</span><span class="token punctuation">(</span>mp<span class="token punctuation">)</span>
+    cmpxchg dword ptr <span class="token punctuation">[</span>edx<span class="token punctuation">]</span><span class="token punctuation">,</span> ecx
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程序会根据当前处理器的类型来决定是否为 cmpxchg 指令添加 lock 前缀。如果程序是在多处理器上运行的，就为 cmpxchg 指令加上 lock 前缀（Lock Cmpxchg）。反之，如果程序是在单处理器上运行的，就省略 lock 前缀（单处理器自身会维护单处理器内的顺序一致性，不需要 lock 前缀提供的内存屏障效果）。</p>
+<p>intel 的手册对 lock 前缀说明如下：</p>
+<p>（1）确保对内存的 读-改-写 操作原子执行。在 <code>Pentium</code> 及 <code>Pentium</code> 之前的处理器中，带有 lock 前缀的指令会在执行期间会锁住总线，使得其他处理器暂时无法通过总线访问内存。很显然，这会带来昂贵的开销。从 Pentium4、Intel Xeon 及 P6 处理器开始，Intel 使用缓存锁定（Cache Locking）来保证指令执行的原子性。缓存锁定将大大降低 lock 前缀指令的执行开销。</p>
+<p>（2）禁止改指令与之前和之后的读和写指令重排序。</p>
+<p>（3）把写缓冲区中的所有数据刷新到内存中。</p>
+<p>上面的 2、3 两点所具有的内存屏障效果，足以同时实现 volatile 读和 volatile 写的内存语义。</p>
+<p>经过上的分析，我们终于明白了为什么 JDK 文档说 CAS 同时具有 volatile 读和 volatile 写的内存语义了。</p>
+<h3 id="（4）总结"><a href="#（4）总结" class="headerlink" title="（4）总结"></a>（4）总结</h3><p>现在对公平锁和非公平锁的内存语义做个总结：</p>
+<ul>
+<li>公平锁和非公平锁释放时，最后都要写一个 volatile 变量的 state；</li>
+<li>公平锁和非公平锁获取时，首先会去读 volatile 变量，然后用 CAS 更新 volatile 变量，这个操作同时具有 volatile 读和 volatile 写的内存语义。</li>
+</ul>
+<p>从前面对 <code>ReentrantLock</code> 的分析，可知锁释放-获取的内存语义的实现至少有下面两种方式：</p>
+<p>（1）利用 volatile 变量的写-读所具有的内存语义；</p>
+<p>（2）利用 CAS 所附带的 volatile 读和 volatile 写的内存语义。</p>
+<h2 id="4、concurrent-包的实现"><a href="#4、concurrent-包的实现" class="headerlink" title="4、concurrent 包的实现"></a>4、concurrent 包的实现</h2><p>由于 Java 的 CAS 同时具有 volatile 读和 volatile 写的内存语义，因此 Java 线程之间的通信现在有了四种方式：</p>
+<p>（1）A 线程写 volatile 变量，随后 B 线程读这个 volatile 变量；</p>
+<p>（2）A 线程写 volatile 变量，随后 B 线程用 CAS 更新这个 volatile 变量；</p>
+<p>（3）A 线程用 CAS 更新一个 volatile 变量，随后 B 线程用 CAS 更新这个 volatile 变量；</p>
+<p>（4）A 线程用 CAS 更新一个 volatile 变量，随后 B 线程读这个 volatile 变量。</p>
+<p>Java 的 CAS 会使用现代处理器上提供的高效机器级别的原子指令，这些原子指令以原子方式对内存执行 <strong>读-改-写 操作</strong>，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时 volatile 变量的 读/写 和 CAS 可以实现线程之间的通信。</p>
+<p>把这些特性整合起来，就形成了整个 concurrent 包得以实现的基石。</p>
+<p>如果我们仔细分析 concurrent 包的源代码实现，会发现一个通用化的实现模式。</p>
+<p>（1）首先，声明共享变量为 volatile；</p>
+<p>（2）然后，使用 CAS 的原子条件更新来实现线程之间的同步；</p>
+<p>（3）同时，配合以 volatile 的读/写和 CAS 所具有的 volatile 读和写的内存语义来实现线程之间的通信。</p>
+<p>AQS，非阻塞数据结构和原子变量类（<code>java.util.concurrent.atomic</code>包中的类），这些 concurrent 包中的基础类都是使用这种模式来实现的，而 concurrent 包中的高层类又是依赖这些基础类来实现的。</p>
+<p>从整体上看，concurrent 包的实现示意图如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225172529.png"></p>
 
                 
             </div>
@@ -990,7 +907,7 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/">https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/</a>
+                    <a href="https://naivekyo.github.io/2022/02/25/jup-jmm-si-lock-memory-semantics/">https://naivekyo.github.io/2022/02/25/jup-jmm-si-lock-memory-semantics/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1028,8 +945,8 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Java-Concurrent/">
+                                    <span class="chip bg-color">Java Concurrent</span>
                                 </a>
                             
                         </div>
@@ -1192,9 +1109,9 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2021/12/24/mysql-commonly-used-functions/';
-        this.page.identifier = '/2021/12/24/mysql-commonly-used-functions/';
-        this.page.title = 'MySQL Commonly Used Functions';
+        this.page.url = 'https://naivekyo.github.io/2022/02/25/jup-jmm-si-lock-memory-semantics/';
+        this.page.identifier = '/2022/02/25/jup-jmm-si-lock-memory-semantics/';
+        this.page.title = 'JUP JMM (四) Lock Memory Semantics';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -1222,45 +1139,47 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/12/29/spring-security-authentication-process-analysis/">
+                <a href="/2022/02/25/jup-jmm-si-lock-memory-semantics/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211115210617.jpg" class="responsive-img" alt="Spring Security Authentication Process Analysis">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174952.jpg" class="responsive-img" alt="JUP JMM (四) Lock Memory Semantics">
                         
-                        <span class="card-title">Spring Security Authentication Process Analysis</span>
+                        <span class="card-title">JUP JMM (四) Lock Memory Semantics</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 登录认证流程分析
+                            Java 内存模型: 锁的内存语义(volatile And CAS)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Security/" class="post-category">
-                                    Spring Security
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Security/">
-                        <span class="chip bg-color">Spring Security</span>
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
                     </a>
                     
                 </div>
@@ -1274,30 +1193,30 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/21/spring-security-of-user-defined-mode/">
+                <a href="/2022/02/25/jup-jmm-san-volatile-memory-semantics/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211031150300.jpg" class="responsive-img" alt="Spring Security Of User-defined Mode">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208174935.jpg" class="responsive-img" alt="JUP JMM (三) Volatile Memory Semantics">
                         
-                        <span class="card-title">Spring Security Of User-defined Mode</span>
+                        <span class="card-title">JUP JMM (三) Volatile Memory Semantics</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Security 用户定义方式
+                            Java 内存模型: Volatile 内存语义
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Security/" class="post-category">
-                                    Spring Security
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
                                 </a>
                             
                             
@@ -1307,8 +1226,8 @@ mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Security/">
-                        <span class="chip bg-color">Spring Security</span>
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
                     </a>
                     
                 </div>
