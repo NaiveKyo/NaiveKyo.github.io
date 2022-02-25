@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: true
 date: 2022-02-24 14:33:56
-summary: "Java 并发编程: 初识 Java 内存模型"
+summary: "Java 内存模型: 初识 Java 内存模型"
 categories: "Java Concurrent"
 keywords: "Java Concurrent"
 tags: "Java Concurrent"
@@ -226,7 +226,7 @@ Java 属于语言级的内存模型，它确保在不同的编译器和处理器
 
 这里关键的是，由于写缓冲区仅对自己的处理器可见，它会导致处理器执行内存操作的顺序可能会与内存实际的操作执行顺序不一致，由于现代的处理器都会使用写缓冲区，因此现代的处理器都会允许 **对写-读 操作进行重排序**。 
 
-### （2）常见重排序规则
+### （2）常见处理器重排序规则
 
 | 处理器/规则              | Load-Load | Load-Store | Store-Store | Store-Load | 数据依赖 |
 | ------------------------ | --------- | ---------- | ----------- | ---------- | -------- |

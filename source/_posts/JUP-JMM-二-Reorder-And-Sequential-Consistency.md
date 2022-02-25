@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-02-24 20:33:15
-summary: "Java 并发编程: 重排序和顺序一致性模型"
+summary: "Java 内存模型: 重排序和顺序一致性模型"
 categories: "Java Concurrent"
 keywords: "Java Concurrent"
 tags: "Java Concurrent"
