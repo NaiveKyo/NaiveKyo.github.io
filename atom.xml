@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-24T12:34:53.299Z</updated>
+  <updated>2022-02-25T03:36:01.309Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JUP JMM (三) Volatile Memory Semantics</title>
+    <link href="https://naivekyo.github.io/2022/02/25/jup-jmm-san-volatile-memory-semantics/"/>
+    <id>https://naivekyo.github.io/2022/02/25/jup-jmm-san-volatile-memory-semantics/</id>
+    <published>2022-02-25T03:34:29.000Z</published>
+    <updated>2022-02-25T03:36:01.309Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;volatile-的内存语义&quot;&gt;&lt;a href=&quot;#volatile-的内存语义&quot; class=&quot;headerlink&quot; title=&quot;volatile 的内存语义&quot;&gt;&lt;/a&gt;volatile 的内存语义&lt;/h1&gt;&lt;p&gt;当声明共享变量为 volatile</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JUP JMM (二) Reorder And Sequential Consistency</title>
     <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/"/>
     <id>https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/</id>
     <published>2022-02-24T12:33:15.000Z</published>
-    <updated>2022-02-24T12:34:53.299Z</updated>
+    <updated>2022-02-25T03:35:40.668Z</updated>
     
     
       
@@ -47,7 +72,7 @@
     <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/"/>
     <id>https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/</id>
     <published>2022-02-24T06:33:56.000Z</published>
-    <updated>2022-02-24T06:35:09.797Z</updated>
+    <updated>2022-02-25T03:35:33.066Z</updated>
     
     
       
@@ -482,31 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;初始化流程分析&quot;&gt;&lt;a href=&quot;#初始化流程分析&quot; class=&quot;headerlink&quot; title=&quot;初始化流程分析&quot;&gt;&lt;/a&gt;初始化流程分析&lt;/h1&gt;&lt;h2 id=&quot;1、ObjectPostProcessor&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of MultiDataSource And AuthCode</title>
-    <link href="https://naivekyo.github.io/2022/01/04/spring-security-of-multidatasource-and-authcode/"/>
-    <id>https://naivekyo.github.io/2022/01/04/spring-security-of-multidatasource-and-authcode/</id>
-    <published>2022-01-04T12:26:33.000Z</published>
-    <updated>2022-01-08T07:34:13.861Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Spring-Security-多数据源&quot;&gt;&lt;a href=&quot;#Spring-Security-多数据源&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 多数据源&quot;&gt;&lt;/a&gt;Spring Security</summary>
         
       
     
