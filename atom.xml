@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-25T14:01:48.700Z</updated>
+  <updated>2022-02-26T05:17:13.946Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Office Create page numbers in Word</title>
+    <link href="https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/"/>
+    <id>https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/</id>
+    <published>2022-02-26T05:15:50.000Z</published>
+    <updated>2022-02-26T05:17:13.946Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Word-中如何创建页码&quot;&gt;&lt;a href=&quot;#Word-中如何创建页码&quot; class=&quot;headerlink&quot; title=&quot;Word 中如何创建页码&quot;&gt;&lt;/a&gt;Word 中如何创建页码&lt;/h1&gt;&lt;h2 id=&quot;1、封面和目录&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Office" scheme="https://naivekyo.github.io/categories/Office/"/>
+    
+    
+    <category term="Office" scheme="https://naivekyo.github.io/tags/Office/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP JMM (五) Final Memory Semantics And Happens-Before</title>
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;什么是-CORS&quot;&gt;&lt;a href=&quot;#什么是-CORS&quot; class=&quot;headerlink&quot; title=&quot;什么是 CORS&quot;&gt;&lt;/a&gt;什么是 CORS&lt;/h1&gt;&lt;p&gt;CORS（Cross-Origin Resource Sharing）是由 W3C</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of Password Encryption</title>
-    <link href="https://naivekyo.github.io/2022/01/08/spring-security-of-password-encryption/"/>
-    <id>https://naivekyo.github.io/2022/01/08/spring-security-of-password-encryption/</id>
-    <published>2022-01-08T13:21:01.000Z</published>
-    <updated>2022-01-10T06:42:51.200Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;密码加密&quot;&gt;&lt;a href=&quot;#密码加密&quot; class=&quot;headerlink&quot; title=&quot;密码加密&quot;&gt;&lt;/a&gt;密码加密&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     

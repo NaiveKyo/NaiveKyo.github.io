@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring, Spring Boot, Spring Cloud, Java, Linux, MySQL">
+    <meta name="keywords" content="Office,Word">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Miló&amp;Akoúo̱</title>
+    <title>Office Create page numbers in Word | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -486,32 +486,29 @@
 </header>
 
     
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                A back-end engineer
-                
-            </div>
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['就算曾经停止不前进，那也终将成为回忆，明天会绽放出花朵，绽放出希望。','Parsley, sage, rosemary and thyme.'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811222211.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Office Create page numbers in Word</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -520,256 +517,693 @@
 
 
 
-	<script>
-		// 指定 banner 图的地址
-		$('.bg-cover').css('background-image', 'url(' + 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215170101.jpg' + ')');
-		
-	</script>
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Office/">
+                                <span class="chip bg-color">Office</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Office/" class="post-category">
+                                Office
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-02-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-02-26
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    934
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Word-中如何创建页码"><a href="#Word-中如何创建页码" class="headerlink" title="Word 中如何创建页码"></a>Word 中如何创建页码</h1><h2 id="1、封面和目录"><a href="#1、封面和目录" class="headerlink" title="1、封面和目录"></a>1、封面和目录</h2><p>在制作 Word 文档时，一种常见的需求是首页是封面，第二页是目录，之后才是正文，这里主要讲目录是如何设置的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226111926.png"></p>
+<p>在需要设置目录的页面首行点击导航栏的 <strong>引用</strong> 下面的 <strong>目录</strong>，选择自己需要的目录格式，也可以自定义目录。</p>
+<p>创建完目录后，可以对目录的标题设置一些样式，如果新增了按钮，需要及时更新目录。</p>
+<h2 id="2、页码的设置"><a href="#2、页码的设置" class="headerlink" title="2、页码的设置"></a>2、页码的设置</h2><h3 id="（1）插入分节符"><a href="#（1）插入分节符" class="headerlink" title="（1）插入分节符"></a>（1）插入分节符</h3><p>通常来说，文档的封面和目录不应该设置页码，而是从正文开始计算页码，要做到这一点，我们首先需要将 word 文档分为两节：</p>
+<p>（1）封面和目录作为第一节；</p>
+<p>（2）正文作为第二节。</p>
+<p>实现这一需求的步骤如下：</p>
+<p>首先在需要分节的页面最后一行（在该例中就是目录的最后一行），点击导航栏 <strong>布局</strong> 下面的 <strong>分隔符</strong>，可以看到分隔符分为两种类型，分页符和分节符，我们需要的是 <strong>分节符</strong> 下面的 <strong>下一页</strong> 选项。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226112447.png"></p>
+<p>当然，默认情况下即使插入了分节符，我们也看不到效果，这个时候可以在导航栏 <strong>开始</strong> 下面的 <strong>段落</strong> 栏中点击 <strong>显示/隐藏编辑标记按钮</strong>，这样就可以看到分节符了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226112624.png"></p>
+<h3 id="（2）取消链接到上一节"><a href="#（2）取消链接到上一节" class="headerlink" title="（2）取消链接到上一节"></a>（2）取消链接到上一节</h3><p>此时，在插入了分节符后，如果我们直接插入页码，会发现和正常插入的页码没什么区别，因为还有一些步骤没有完成，现在 word 已经被我们分为了两节，也就是两部分，我们还要做以下事情：</p>
+<ul>
+<li>第二节的页眉、页脚以及页码不需要延续上一节；</li>
+<li>删除第一节的页码；（如果之前没有插入页码，则这一步是多余的）</li>
+<li>格式化第二节的页码：<ul>
+<li>设置第二节页码的首页；</li>
+<li>自定义页码样式。</li>
+</ul>
+</li>
+</ul>
+<p>下面开始取消两节的关联：双击正文第一页的页脚，打开 word 的页眉和页脚设计工具，点击 <strong>导航</strong> 栏中的 <strong>链接到前一节</strong>，取消该选项：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226113633.png"></p>
+<p>取消后会发现右下角的 <strong>与前一节相同</strong> 的提示消失。</p>
+<h3 id="（3）设置第二节的首页"><a href="#（3）设置第二节的首页" class="headerlink" title="（3）设置第二节的首页"></a>（3）设置第二节的首页</h3><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226113745.png"></p>
+<p>在正文首页，点击导航栏 <strong>插入</strong> 下面的 <strong>页眉和页脚</strong> 中的 <strong>页码</strong> 下拉框，然后点击 <strong>设置页码格式</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226113834.png"></p>
+<p>改为上图中的设置：<strong>起始页码：1</strong>，最后点击确定。</p>
+<h3 id="（4）自定义页码"><a href="#（4）自定义页码" class="headerlink" title="（4）自定义页码"></a>（4）自定义页码</h3><p>接着在正文的首页插入页码，选择自己喜欢的格式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226114100.png"></p>
+<p>由于我的 word 有封面、目录、正文，此时在第二节（即正文首页）处插入页码后，可以看到封面和目录所在的页的页脚是没有页码的，正文首页的页脚显示的页码是：<code>1/3</code>，可以看到总页数不对，我们想要的效果是 <code>1/1</code>，但是实际上总页数的计算却是将封面和目录也计算进去了。</p>
+<p>不要急，使用键盘按下 <code>Alt + F9</code>，可以看到页脚显示如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226114611.png"></p>
+<p>页脚从 <code>1/3</code> 变为 <code>{PAGE} / {NUMPAGES}</code>，这是 word 提供的代码，还有一个 <code>SECTIONPAGES</code>，它们的含义如下：</p>
+<ul>
+<li><code>PAGE</code>：表示当前页码；</li>
+<li><code>NUMPAGES</code>：整个 word 的总页数，包括所有节；</li>
+<li><code>SECTIONPAGES</code>：当前节的总页数；</li>
+<li>需要注意的是 <code>{}</code> 不能手动输入，需要使用 <code>Ctrl + F9</code> 插入；</li>
+</ul>
+<p>此时我们可以自定义页码格式为：<code>第 {PAGE} 页，共 {SECTIONPAGES} 页</code>，然后按下 <code>Alt + F9</code>，最终效果如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220226114956.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/">https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
 
 
 
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Office/">
+                                    <span class="chip bg-color">Office</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
 
-<main class="content">
-
-    
-
-    
-
-    <!-- 所有文章卡片 -->
-    <article id="articles" class="container articles">
-        <div class="row article-row">
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/07/06/centos7-install-git/">
-                        <div class="card-image">
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/21.jpg" class="responsive-img" alt="CentOS7 Install Git">
-                            
-                            <span class="card-title">CentOS7 Install Git</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CentOS7 安装 Git
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Linux/">
-                            <span class="chip bg-color">Linux</span>
-                        </a>
-                        
-                        <a href="/tags/Git/">
-                            <span class="chip bg-color">Git</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/07/06/centos7-install-jdk/">
-                        <div class="card-image">
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/20.jpg" class="responsive-img" alt="CentOS7 Install JDK">
-                            
-                            <span class="card-title">CentOS7 Install JDK</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CentOS7 安装 Java 环境
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Linux/">
-                            <span class="chip bg-color">Linux</span>
-                        </a>
-                        
-                        <a href="/tags/Java/">
-                            <span class="chip bg-color">Java</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/07/06/centos7-install-mysql/">
-                        <div class="card-image">
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/16.jpg" class="responsive-img" alt="CentOS7 Install MySQL">
-                            
-                            <span class="card-title">CentOS7 Install MySQL</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CentOS7 安装 MySQL
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Linux/">
-                            <span class="chip bg-color">Linux</span>
-                        </a>
-                        
-                        <a href="/tags/MySQL/">
-                            <span class="chip bg-color">MySQL</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/07/06/centos7-install-redis/">
-                        <div class="card-image">
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/15.jpg" class="responsive-img" alt="CentOS7 Install Redis">
-                            
-                            <span class="card-title">CentOS7 Install Redis</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CentOS7 安装 Redis 流程记录
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Linux/">
-                            <span class="chip bg-color">Linux</span>
-                        </a>
-                        
-                        <a href="/tags/Redis/">
-                            <span class="chip bg-color">Redis</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
             
         </div>
-    </article>
+    </div>
+
+    
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/';
+        this.page.identifier = '/2022/02/26/office-create-page-numbers-in-word/';
+        this.page.title = 'Office Create page numbers in Word';
+    };
+    let disqus_shortname = 'https-naivekyo-github-io';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/02/26/office-create-page-numbers-in-word/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210811222211.jpg" class="responsive-img" alt="Office Create page numbers in Word">
+                        
+                        <span class="card-title">Office Create page numbers in Word</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在 Word 中使用目录和页码
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Office/" class="post-category">
+                                    Office
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Office/">
+                        <span class="chip bg-color">Office</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/25/jup-jmm-wu-final-memory-semantics-and-happens-before/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211208175035.jpg" class="responsive-img" alt="JUP JMM (五) Final Memory Semantics And Happens-Before">
+                        
+                        <span class="card-title">JUP JMM (五) Final Memory Semantics And Happens-Before</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java 内存模型: final 内存语义及 happens-before 规则详解
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java-Concurrent/" class="post-category">
+                                    Java Concurrent
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java-Concurrent/">
+                        <span class="chip bg-color">Java Concurrent</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
 
 </main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a href="/page/6/"
-               class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">7 / 7</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a class="right btn-floating btn-large disabled">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
 
 
 
