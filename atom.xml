@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-02-26T05:17:13.946Z</updated>
+  <updated>2022-03-02T14:22:38.863Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java Web Build The Tomcat Application With IDEA</title>
+    <link href="https://naivekyo.github.io/2022/03/02/java-web-build-the-tomcat-application-with-idea/"/>
+    <id>https://naivekyo.github.io/2022/03/02/java-web-build-the-tomcat-application-with-idea/</id>
+    <published>2022-03-02T14:21:21.000Z</published>
+    <updated>2022-03-02T14:22:38.863Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;IDEA-配置-Tomcat&quot;&gt;&lt;a href=&quot;#IDEA-配置-Tomcat&quot; class=&quot;headerlink&quot; title=&quot;IDEA 配置 Tomcat&quot;&gt;&lt;/a&gt;IDEA 配置 Tomcat&lt;/h1&gt;&lt;h2 id=&quot;1、下载-tomcat&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java Web" scheme="https://naivekyo.github.io/categories/Java-Web/"/>
+    
+    
+    <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Office Create page numbers in Word</title>
     <link href="https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/"/>
     <id>https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/</id>
     <published>2022-02-26T05:15:50.000Z</published>
-    <updated>2022-02-26T05:17:13.946Z</updated>
+    <updated>2022-02-26T07:54:23.657Z</updated>
     
     
       
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Spring-Security-异常体系&quot;&gt;&lt;a href=&quot;#Spring-Security-异常体系&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 异常体系&quot;&gt;&lt;/a&gt;Spring Security</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of CORS Treatment Scheme</title>
-    <link href="https://naivekyo.github.io/2022/01/10/spring-security-of-cors-treatment-scheme/"/>
-    <id>https://naivekyo.github.io/2022/01/10/spring-security-of-cors-treatment-scheme/</id>
-    <published>2022-01-10T01:42:26.000Z</published>
-    <updated>2022-01-12T12:52:11.023Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;什么是-CORS&quot;&gt;&lt;a href=&quot;#什么是-CORS&quot; class=&quot;headerlink&quot; title=&quot;什么是 CORS&quot;&gt;&lt;/a&gt;什么是 CORS&lt;/h1&gt;&lt;p&gt;CORS（Cross-Origin Resource Sharing）是由 W3C</summary>
         
       
     
