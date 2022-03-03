@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-02T14:22:38.863Z</updated>
+  <updated>2022-03-03T14:34:44.458Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JUP JMM (六) DoubleCheckedLocking And Class Initialization</title>
+    <link href="https://naivekyo.github.io/2022/03/03/jup-jmm-liu-doublecheckedlocking-and-class-initialization/"/>
+    <id>https://naivekyo.github.io/2022/03/03/jup-jmm-liu-doublecheckedlocking-and-class-initialization/</id>
+    <published>2022-03-03T14:32:50.000Z</published>
+    <updated>2022-03-03T14:34:44.458Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;双重检查锁定与延迟初始化&quot;&gt;&lt;a href=&quot;#双重检查锁定与延迟初始化&quot; class=&quot;headerlink&quot; title=&quot;双重检查锁定与延迟初始化&quot;&gt;&lt;/a&gt;双重检查锁定与延迟初始化&lt;/h1&gt;&lt;p&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Web Build The Tomcat Application With IDEA</title>
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;权限管理&quot;&gt;&lt;a href=&quot;#权限管理&quot; class=&quot;headerlink&quot; title=&quot;权限管理&quot;&gt;&lt;/a&gt;权限管理&lt;/h1&gt;&lt;p&gt;认证和授权是 Spring Security 中的两大核心功能，所谓授权也就是我们日常所说的权限管理。Spring</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of Exception System</title>
-    <link href="https://naivekyo.github.io/2022/01/10/spring-security-of-exception-system/"/>
-    <id>https://naivekyo.github.io/2022/01/10/spring-security-of-exception-system/</id>
-    <published>2022-01-10T07:07:13.000Z</published>
-    <updated>2022-01-10T08:28:00.796Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Spring-Security-异常体系&quot;&gt;&lt;a href=&quot;#Spring-Security-异常体系&quot; class=&quot;headerlink&quot; title=&quot;Spring Security 异常体系&quot;&gt;&lt;/a&gt;Spring Security</summary>
         
       
     
