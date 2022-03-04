@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-03T14:34:44.458Z</updated>
+  <updated>2022-03-04T07:03:29.637Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JUP JMM (七) JMM Summary</title>
+    <link href="https://naivekyo.github.io/2022/03/04/jup-jmm-qi-jmm-summary/"/>
+    <id>https://naivekyo.github.io/2022/03/04/jup-jmm-qi-jmm-summary/</id>
+    <published>2022-03-04T07:01:13.000Z</published>
+    <updated>2022-03-04T07:03:29.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-内存模型总结&quot;&gt;&lt;a href=&quot;#Java-内存模型总结&quot; class=&quot;headerlink&quot; title=&quot;Java 内存模型总结&quot;&gt;&lt;/a&gt;Java 内存模型总结&lt;/h1&gt;&lt;h2 id=&quot;1、处理器的内存模型&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP JMM (六) DoubleCheckedLocking And Class Initialization</title>
@@ -483,31 +508,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;HTTP-认证&quot;&gt;&lt;a href=&quot;#HTTP-认证&quot; class=&quot;headerlink&quot; title=&quot;HTTP 认证&quot;&gt;&lt;/a&gt;HTTP 认证&lt;/h1&gt;&lt;p&gt;HTTP 提供了一个用于权限控制和认证的通用方式，这种认证方式通过 HTTP</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of Authority Management</title>
-    <link href="https://naivekyo.github.io/2022/01/11/spring-security-of-authority-management/"/>
-    <id>https://naivekyo.github.io/2022/01/11/spring-security-of-authority-management/</id>
-    <published>2022-01-11T02:04:53.000Z</published>
-    <updated>2022-01-11T08:19:37.143Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;权限管理&quot;&gt;&lt;a href=&quot;#权限管理&quot; class=&quot;headerlink&quot; title=&quot;权限管理&quot;&gt;&lt;/a&gt;权限管理&lt;/h1&gt;&lt;p&gt;认证和授权是 Spring Security 中的两大核心功能，所谓授权也就是我们日常所说的权限管理。Spring</summary>
         
       
     
