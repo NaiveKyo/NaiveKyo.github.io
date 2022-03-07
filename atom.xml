@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-04T07:03:29.637Z</updated>
+  <updated>2022-03-07T02:43:43.010Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JUP JUC (七) The Underlying Principle Of JUC</title>
+    <link href="https://naivekyo.github.io/2022/03/07/jup-juc-qi-the-underlying-principle-of-juc/"/>
+    <id>https://naivekyo.github.io/2022/03/07/jup-juc-qi-the-underlying-principle-of-juc/</id>
+    <published>2022-03-07T02:41:35.000Z</published>
+    <updated>2022-03-07T02:43:43.010Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、上下文切换&quot;&gt;&lt;a href=&quot;#一、上下文切换&quot; class=&quot;headerlink&quot; title=&quot;一、上下文切换&quot;&gt;&lt;/a&gt;一、上下文切换&lt;/h1&gt;&lt;h2 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP JMM (七) JMM Summary</title>
@@ -492,31 +517,6 @@
     
     
     <category term="Project Summary" scheme="https://naivekyo.github.io/tags/Project-Summary/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Security Of Http Authentication</title>
-    <link href="https://naivekyo.github.io/2022/01/11/spring-security-of-http-authentication/"/>
-    <id>https://naivekyo.github.io/2022/01/11/spring-security-of-http-authentication/</id>
-    <published>2022-01-11T10:04:25.000Z</published>
-    <updated>2022-01-13T02:57:50.582Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;HTTP-认证&quot;&gt;&lt;a href=&quot;#HTTP-认证&quot; class=&quot;headerlink&quot; title=&quot;HTTP 认证&quot;&gt;&lt;/a&gt;HTTP 认证&lt;/h1&gt;&lt;p&gt;HTTP 提供了一个用于权限控制和认证的通用方式，这种认证方式通过 HTTP</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/categories/Spring-Security/"/>
-    
-    
-    <category term="Spring Security" scheme="https://naivekyo.github.io/tags/Spring-Security/"/>
     
   </entry>
   
