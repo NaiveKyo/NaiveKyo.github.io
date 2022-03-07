@@ -9,9 +9,7 @@ date: 2021-07-25 21:19:45
 top: false
 cover: false
 summary: Java 多线程基础知识
-categories: 
- - "Java Concurrent"
- - ["Java Concurrent", Java]
+categories: "Java Concurrent"
 keywords: "Java Concurrent"
 tags: "Java Concurrent"
 ---
