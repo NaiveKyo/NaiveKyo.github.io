@@ -23,7 +23,7 @@ tags: "Java Concurrent"
 
 ## 1、volatile 的特性
 
-理解 volatile 特性的一个好办法是把对 volatile 变量的单个读/写，看成是使用同一个锁对这些单个读/写操作做了同步。
+理解 volatile 特性的一个好办法是把对 volatile 变量的单个读/写，看成是使用同一个锁对该变量单个读/写操作做了同步。
 
 代码如下：
 
