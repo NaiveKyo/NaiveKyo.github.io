@@ -665,7 +665,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
@@ -737,7 +737,7 @@ server.shutdownPort <span class="token operator">=</span> <span class="token num
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
 java -cp <span class="token string">"gitblit.jar:ext/*"</span> com.gitblit.GitBlitServer --baseFolder data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>修改为如下配置，表示后台启动 Gitblit 服务，同时将其日志信息输出到 <code>log_gitblit.log</code> 文件：</p>
+<p>修改为如下配置，表示后台运行 Gitblit 服务，同时将其运行时产生的错误和正确的信息保存到 <code>log_gitblit.log</code> 文件：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
 java -cp <span class="token string">"gitblit.jar:ext/*"</span> com.gitblit.GitBlitServer --baseFolder data <span class="token operator">&gt;</span> log_gitblit.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -779,12 +779,12 @@ naivekyo   <span class="token number">1746</span>   <span class="token number">1
 <h3 id="7、用户名和密码"><a href="#7、用户名和密码" class="headerlink" title="7、用户名和密码"></a>7、用户名和密码</h3><p>登录后记得及时通过个人资料界面修改密码：</p>
 <ul>
 <li>对于用户名：不区分大小写；</li>
-<li>对于密码：区分大小写，加密方式也可以设置，通过 <code>gitbli.properties</code> 配置，参考官方文档。</li>
+<li>对于密码：区分大小写，加密方式也可以设置，通过 <code>gitblit.properties</code> 配置，参考官方文档。</li>
 </ul>
 <h3 id="8、关闭服务"><a href="#8、关闭服务" class="headerlink" title="8、关闭服务"></a>8、关闭服务</h3><p>调用 Gitblit 根目录中的 <code>gitblit-stop.sh</code> 脚本即可。</p>
-<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><h2 id="（1）mobaxTerm-连接虚拟机太慢"><a href="#（1）mobaxTerm-连接虚拟机太慢" class="headerlink" title="（1）mobaxTerm 连接虚拟机太慢"></a>（1）mobaxTerm 连接虚拟机太慢</h2><p>原因是 ssh 反向解析 dns 及验证用户太非时间</p>
+<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><h2 id="（1）mobaxTerm-连接虚拟机太慢"><a href="#（1）mobaxTerm-连接虚拟机太慢" class="headerlink" title="（1）mobaxTerm 连接虚拟机太慢"></a>（1）mobaxTerm 连接虚拟机太慢</h2><p>原因是 ssh 反向解析 dns 及验证用户太费时间</p>
 <p>决解方法：修改 ssh 设置</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/ssh/sshd_config
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/ssh/sshd_config
 
 <span class="token comment"># 修改如下配置</span>
 useDNS <span class="token operator">=</span> no
