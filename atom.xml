@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-07T02:57:20.526Z</updated>
+  <updated>2022-03-11T02:49:01.143Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7 Deploy Gitblit Server</title>
+    <link href="https://naivekyo.github.io/2022/03/11/centos7-deploy-gitblit-server/"/>
+    <id>https://naivekyo.github.io/2022/03/11/centos7-deploy-gitblit-server/</id>
+    <published>2022-03-11T02:47:28.000Z</published>
+    <updated>2022-03-11T02:49:01.143Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;CentOS-7-Install-Gitblit&quot;&gt;&lt;a href=&quot;#CentOS-7-Install-Gitblit&quot; class=&quot;headerlink&quot; title=&quot;CentOS 7 Install Gitblit&quot;&gt;&lt;/a&gt;CentOS 7</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>JUP JUC (七) The Underlying Principle Of JUC</title>
@@ -491,32 +516,6 @@
     
     
     <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Project Summary One: DRP Web Application</title>
-    <link href="https://naivekyo.github.io/2022/02/05/project-summary-one-drp-web-application/"/>
-    <id>https://naivekyo.github.io/2022/02/05/project-summary-one-drp-web-application/</id>
-    <published>2022-02-05T06:33:13.000Z</published>
-    <updated>2022-02-09T03:46:36.641Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;xxx进销存信息管理系统是笔者在大学期间跟随老师为当地企业完成的一个 web 项目，本文主要对该项目做一个总结。&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Project Summary" scheme="https://naivekyo.github.io/categories/Project-Summary/"/>
-    
-    
-    <category term="Project Summary" scheme="https://naivekyo.github.io/tags/Project-Summary/"/>
     
   </entry>
   
