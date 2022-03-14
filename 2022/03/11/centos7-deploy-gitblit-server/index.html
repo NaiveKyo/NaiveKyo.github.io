@@ -700,26 +700,26 @@
 
 
 <h3 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h3><p>解压后，通过 <code>Gitblit根目录/data/giblit.properties</code> 配置文件对 Gitblit 进行配置，默认配置如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">#
-# GITBLIT<span class="token punctuation">.</span>PROPERTIES
-#
-# <span class="token class-name">Define</span> your custom settings in <span class="token keyword">this</span> file and<span class="token operator">/</span>or include settings defined in
-# other properties files<span class="token punctuation">.</span>
-#
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#</span>
+<span class="token comment"># GITBLIT.PROPERTIES</span>
+<span class="token comment">#</span>
+<span class="token comment"># Define your custom settings in this file and/or include settings defined in</span>
+<span class="token comment"># other properties files.</span>
+<span class="token comment">#</span>
 
-# <span class="token class-name">Include</span> <span class="token class-name">Gitblit</span><span class="token string">'s '</span>defaults<span class="token punctuation">.</span>properties' within your configuration<span class="token punctuation">.</span>
-#
-# NOTE<span class="token operator">:</span> <span class="token class-name">Gitblit</span> will not automatically reload <span class="token string">"included"</span> <span class="token class-name"><span class="token namespace">properties<span class="token punctuation">.</span></span>  Gitblit</span>
-# only watches the <span class="token string">'gitblit.properties'</span> file <span class="token keyword">for</span> modifications<span class="token punctuation">.</span>
-#
-# <span class="token class-name">Paths</span> may be relative <span class="token keyword">to</span> <span class="token namespace">the</span> $<span class="token punctuation">{</span>baseFolder<span class="token punctuation">}</span> or they may be absolute<span class="token punctuation">.</span>
-#
-# COMMA<span class="token operator">-</span>DELIMITED
-# SINCE <span class="token number">1.7</span><span class="token number">.0</span>
-include <span class="token operator">=</span> defaults<span class="token punctuation">.</span>properties
+<span class="token comment"># Include Gitblit's 'defaults.properties' within your configuration.</span>
+<span class="token comment">#</span>
+<span class="token comment"># NOTE: Gitblit will not automatically reload "included" properties.  Gitblit</span>
+<span class="token comment"># only watches the 'gitblit.properties' file for modifications.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Paths may be relative to the ${baseFolder} or they may be absolute.</span>
+<span class="token comment">#</span>
+<span class="token comment"># COMMA-DELIMITED</span>
+<span class="token comment"># SINCE 1.7.0</span>
+<span class="token attr-name">include</span> <span class="token punctuation">=</span> <span class="token attr-value">defaults.properties</span>
 
-#
-# <span class="token class-name">Define</span> your overrides or custom settings below<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#</span>
+<span class="token comment"># Define your overrides or custom settings below</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在末尾添加如下配置：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置服务器访问端口, 默认 8080</span>
@@ -728,7 +728,7 @@ server.httpPort <span class="token operator">=</span> <span class="token number"
 <span class="token comment"># https port, 设置为 0 表示关闭</span>
 server.httpsPort <span class="token operator">=</span> <span class="token number">0</span>
 
-<span class="token comment"># 访问 IP 地址, 一旦设置了就无法通过外网访问</span>
+<span class="token comment"># 访问 IP 地址, 暂不设置, 一旦设置了就无法通过外网访问</span>
 server.httpBindInterface <span class="token operator">=</span>
 <span class="token comment"># 关闭服务的端口, 默认 8081</span>
 server.shutdownPort <span class="token operator">=</span> <span class="token number">10101</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1070,47 +1070,45 @@ root    <span class="token assign-left variable">ALL</span><span class="token op
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/03/11/centos7-deploy-gitblit-server/">
+                <a href="/2022/03/14/spring-source-code-analysis-yi-environment-setup-and-spring-module-description/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211227215521.jpg" class="responsive-img" alt="CentOS7 Deploy Gitblit Server">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211227215819.jpg" class="responsive-img" alt="Spring Source Code Analysis (一) Environment setup And Spring Module Description">
                         
-                        <span class="card-title">CentOS7 Deploy Gitblit Server</span>
+                        <span class="card-title">Spring Source Code Analysis (一) Environment setup And Spring Module Description</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CentOS7 部署 Gitblit 服务器
+                            Spring 源码分析: 环境搭建和 Spring 模块说明
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-11
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                 </div>
