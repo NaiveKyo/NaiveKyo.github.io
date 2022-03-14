@@ -719,6 +719,9 @@ public class Demo01ObjectStream {
         ObjectInputStream ois = new ObjectInputStream(fis);
 
         Person person = (Person) ois.readObject();
+        // 多个对象的反序列化可以使用循环, 因为之前写入了 null
+        // 这里如果读到了 null 就表示读取结束了
+        // 正常情况下, 读取到末尾会抛出 EOF 异常
 
         System.out.println(person);
         
@@ -737,6 +740,8 @@ public class Demo01ObjectStream {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
         oos.writeObject(new Person("张三", 40));
+        // 如果要序列化多个对象，可以手动设置一个 null
+        // oos.writeObject(null);
 
         oos.close();
         

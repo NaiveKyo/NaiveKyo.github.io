@@ -48,7 +48,7 @@ sudo tar -zxvf gitblit-1.9.1.tar.gz -C 指定目录的绝对/相对路径
 
 解压后，通过 `Gitblit根目录/data/giblit.properties` 配置文件对 Gitblit 进行配置，默认配置如下：
 
-```java
+```properties
 #
 # GITBLIT.PROPERTIES
 #
@@ -80,7 +80,7 @@ server.httpPort = 10100
 # https port, 设置为 0 表示关闭
 server.httpsPort = 0
 
-# 访问 IP 地址, 一旦设置了就无法通过外网访问
+# 访问 IP 地址, 暂不设置, 一旦设置了就无法通过外网访问
 server.httpBindInterface =
 # 关闭服务的端口, 默认 8081
 server.shutdownPort = 10101
@@ -93,7 +93,7 @@ server.shutdownPort = 10101
 java -cp "gitblit.jar:ext/*" com.gitblit.GitBlitServer --baseFolder data
 ```
 
-修改为如下配置，表示后台启动 Gitblit 服务，同时将其日志信息输出到 `log_gitblit.log` 文件：
+修改为如下配置，表示后台运行 Gitblit 服务，同时将其运行时产生的错误和正确的信息保存到 `log_gitblit.log` 文件：
 
 ```shell
 #!/bin/bash
@@ -161,7 +161,7 @@ naivekyo   1746   1728  0 21:25 pts/0    00:00:00 grep --color=auto gitblit
 登录后记得及时通过个人资料界面修改密码：
 
 - 对于用户名：不区分大小写；
-- 对于密码：区分大小写，加密方式也可以设置，通过 `gitbli.properties` 配置，参考官方文档。
+- 对于密码：区分大小写，加密方式也可以设置，通过 `gitblit.properties` 配置，参考官方文档。
 
 
 
@@ -175,12 +175,12 @@ naivekyo   1746   1728  0 21:25 pts/0    00:00:00 grep --color=auto gitblit
 
 ## （1）mobaxTerm 连接虚拟机太慢
 
-原因是 ssh 反向解析 dns 及验证用户太非时间
+原因是 ssh 反向解析 dns 及验证用户太费时间
 
 决解方法：修改 ssh 设置
 
 ```bash
-vim /etc/ssh/sshd_config
+sudo vim /etc/ssh/sshd_config
 
 # 修改如下配置
 useDNS = no
