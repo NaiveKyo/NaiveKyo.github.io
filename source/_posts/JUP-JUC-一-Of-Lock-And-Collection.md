@@ -1,5 +1,5 @@
 ---
-title: JUP (一) JUC Of Lock And Collection
+title: JUP JUC (一) Of Lock And Collection
 author: NaiveKyo
 top: false
 hide: false

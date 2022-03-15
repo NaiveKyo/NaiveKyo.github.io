@@ -27,13 +27,13 @@ tags: "Spring"
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-webmvc</artifactId>
-    <version>5.3.16</version>
+    <version>5.2.19.RELEASE</version>
 </dependency>
 ```
 
 webmvc 集成了 Spring 所需的各大模块，所以直接使用该版本进行源码分析。
 
-
+最好去 GitHub 上 clone 对应版本的 Spring 源代码。
 
 ## 2、Spring 整体架构
 
