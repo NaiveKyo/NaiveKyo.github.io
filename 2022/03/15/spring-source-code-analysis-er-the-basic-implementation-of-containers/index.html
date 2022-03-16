@@ -1073,34 +1073,34 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>Spring-beans-3.0.xsd 代码部分如下：</p>
-<pre class="line-numbers language-]xml" data-language="]xml"><code class="language-]xml">&lt;xsd:schema xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.springframework.org/schema/beans"&gt;
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>schema</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
+		<span class="token attr-name"><span class="token namespace">xmlns:</span>xsd</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema<span class="token punctuation">"</span></span>
+		<span class="token attr-name">targetNamespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
-	&lt;xsd:import namespace="http://www.w3.org/XML/1998/namespace"/&gt;
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>import</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/XML/1998/namespace<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-	&lt;xsd:annotation&gt;
-		&lt;xsd:documentation&gt;&lt;![CDATA][
-            ......
-            ]]&gt;&lt;/xsd:documentation&gt;
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>annotation</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>![CDATA][</span>
+            <span class="token attr-name">......</span>
+            <span class="token attr-name">]]</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span>
             
-    &lt;!-- base types --&gt;
-	&lt;xsd:complexType name="identifiedType" abstract="true"&gt;
-		&lt;xsd:annotation&gt;
-			&lt;xsd:documentation&gt;&lt;![CDATA[
+    <span class="token comment">&lt;!-- base types --&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>complexType</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>identifiedType<span class="token punctuation">"</span></span> <span class="token attr-name">abstract</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>annotation</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span><span class="token cdata">&lt;![CDATA[
 			......
-			]]&gt;&lt;/xsd:documentation&gt;
-	&lt;xsd:attribute name="id" type="xsd:string"&gt;
-			&lt;xsd:annotation&gt;
-				&lt;xsd:documentation&gt;&lt;![CDATA[
+			]]&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>attribute</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xsd:string<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>annotation</span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span><span class="token cdata">&lt;![CDATA[
 			......
-			]]&gt;&lt;/xsd:documentation&gt;
-			&lt;/xsd:annotation&gt;
-		&lt;/xsd:attribute&gt;
-	&lt;/xsd:complexType&gt;
+			]]&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>documentation</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>annotation</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>attribute</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>complexType</span><span class="token punctuation">&gt;</span></span>
 	
 	... ...
-&lt;/xsd:schema&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">xsd:</span>schema</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这里只是简单的了解 DTD 和 XSD 的知识。</p>
 <h3 id="5-2-验证模式的读取"><a href="#5-2-验证模式的读取" class="headerlink" title="5.2 验证模式的读取"></a>5.2 验证模式的读取</h3><p>了解了 DTD 和 XSD 的区别后再去分析 Spring 中对于验证模式的提取就更容易理解了，代码如下：</p>
@@ -1742,7 +1742,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring
+                            Spring 源码分析: 容器的基本实现
                         
                     </div>
                     <div class="publish-info">
