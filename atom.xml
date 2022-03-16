@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-15T11:52:53.105Z</updated>
+  <updated>2022-03-16T12:45:22.825Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Source Code Analysis (三) Bean label parsing and registration</title>
+    <link href="https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/"/>
+    <id>https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/</id>
+    <published>2022-03-16T12:43:50.000Z</published>
+    <updated>2022-03-16T12:45:22.825Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;默认标签的解析&quot;&gt;&lt;a href=&quot;#默认标签的解析&quot; class=&quot;headerlink&quot; title=&quot;默认标签的解析&quot;&gt;&lt;/a&gt;默认标签的解析&lt;/h1&gt;&lt;p&gt;之前提到过 Spring XML</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Source Code Analysis (二) The basic implementation of containers</title>
@@ -490,31 +515,6 @@
     
     
     <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algorithm NumberTheory One</title>
-    <link href="https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/"/>
-    <id>https://naivekyo.github.io/2022/02/11/algorithm-numbertheory-one/</id>
-    <published>2022-02-11T06:34:54.000Z</published>
-    <updated>2022-02-14T10:45:16.988Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;巧用进制&quot;&gt;&lt;a href=&quot;#巧用进制&quot; class=&quot;headerlink&quot; title=&quot;巧用进制&quot;&gt;&lt;/a&gt;巧用进制&lt;/h1&gt;&lt;h2 id=&quot;1、天平称重-变种-3-进制&quot;&gt;&lt;a href=&quot;#1、天平称重-变种-3-进制&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/categories/Algorithm/"/>
-    
-    
-    <category term="Algorithm" scheme="https://naivekyo.github.io/tags/Algorithm/"/>
     
   </entry>
   
