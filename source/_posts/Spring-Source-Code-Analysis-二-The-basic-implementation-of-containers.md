@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-03-15 19:42:58
-summary: "Spring"
+summary: "Spring 源码分析: 容器的基本实现"
 categories: "Spring"
 keywords: "Spring"
 tags: "Spring"
@@ -533,7 +533,7 @@ XML Schema 语言就是 XSD（XML Schemas Definition）。XML Schema 描述了 X
 
 Spring-beans-3.0.xsd 代码部分如下：
 
-```]xml
+```xml
 <xsd:schema xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 		targetNamespace="http://www.springframework.org/schema/beans">

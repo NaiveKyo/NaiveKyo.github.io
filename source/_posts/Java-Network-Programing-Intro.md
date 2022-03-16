@@ -1173,3 +1173,100 @@ public class TCPServer {
 ### 2、效果
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210815002804.png)
+
+
+
+## 五、Java 网络爬虫
+
+```java
+package com.naivekyo.network;
+
+import sun.net.www.protocol.https.HttpsURLConnectionImpl;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * @author NaiveKyo
+ * @version 1.0
+ * @description: java 网络爬虫
+ * @since 2022/3/16 10:33
+ */
+public class Spider {
+    public static void main(String[] args) {
+
+        // 爬取凤凰网首页的超链接信息
+        String urls = "https://www.ifeng.com";
+        String filePath = System.getProperty("user.dir") + "\\sortutil\\src\\com\\naivekyo\\network\\spider.txt";
+        
+        URL url = null;
+        HttpsURLConnectionImpl httpsCi;
+        InputStream is = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+        FileOutputStream fos = null;
+        OutputStreamWriter osw = null;
+        BufferedWriter bw = null;
+        
+        try {
+            url = new URL(urls);
+            httpsCi = (HttpsURLConnectionImpl) url.openConnection();
+            
+            // 设置网络连接属性
+            httpsCi.setConnectTimeout(2000);
+            httpsCi.setReadTimeout(2000);
+            httpsCi.setRequestMethod("GET");
+            
+            // 获取数据
+            httpsCi.connect();
+            is = httpsCi.getInputStream();
+            isr = new InputStreamReader(is);
+            br = new BufferedReader(isr);
+            
+            fos = new FileOutputStream(new File(filePath), true);
+            osw = new OutputStreamWriter(fos);
+            bw = new BufferedWriter(osw);            
+            
+            // 通过正则表达式匹配网页中的超链接地址, 并保存
+            String pat = "https://\\w+\\.\\w+\\.[A-Za-z]+";
+            
+            String str = null;
+            while ((str = br.readLine()) != null) {
+                Pattern compile = Pattern.compile(pat);
+                Matcher matcher = compile.matcher(str);
+                while (matcher.find()) {
+                    bw.write(matcher.group());
+                    bw.newLine();
+                }
+            }
+            System.out.println("爬取完毕!");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭流
+            try {
+                if (bw != null)
+                    bw.close();
+                if (osw != null)
+                    osw.close();
+                if (fos != null)
+                    fos.close();
+                if (br != null)
+                    br.close();
+                if (isr != null)
+                    isr.close();
+                if (is != null)
+                    is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
