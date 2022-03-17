@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-16T12:45:22.825Z</updated>
+  <updated>2022-03-17T02:57:41.478Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Source Code Analysis (四) The parsing of alias, import and beans label</title>
+    <link href="https://naivekyo.github.io/2022/03/17/spring-source-code-analysis-si-the-parsing-of-alias-import-and-beans-label/"/>
+    <id>https://naivekyo.github.io/2022/03/17/spring-source-code-analysis-si-the-parsing-of-alias-import-and-beans-label/</id>
+    <published>2022-03-17T02:55:00.000Z</published>
+    <updated>2022-03-17T02:57:41.478Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;默认标签的解析&quot;&gt;&lt;a href=&quot;#默认标签的解析&quot; class=&quot;headerlink&quot; title=&quot;默认标签的解析&quot;&gt;&lt;/a&gt;默认标签的解析&lt;/h1&gt;&lt;p&gt;之前提到过读配置文件的解析包括对 import 标签、alias 标签、bean 标签、beans</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Source Code Analysis (三) Bean label parsing and registration</title>
@@ -481,31 +506,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;1、Callable&quot;&gt;&lt;a href=&quot;#1、Callable&quot; class=&quot;headerlink&quot; title=&quot;1、Callable&quot;&gt;&lt;/a&gt;1、Callable&lt;/h1&gt;&lt;h2 id=&quot;（1）Callable&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (一) Of Lock And Collection</title>
-    <link href="https://naivekyo.github.io/2022/02/15/jup-juc-yi-of-lock-and-collection/"/>
-    <id>https://naivekyo.github.io/2022/02/15/jup-juc-yi-of-lock-and-collection/</id>
-    <published>2022-02-15T07:39:28.000Z</published>
-    <updated>2022-03-14T07:34:00.913Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;初识-JUC-：Sync、Lock、集合&quot;&gt;&lt;a href=&quot;#初识-JUC-：Sync、Lock、集合&quot; class=&quot;headerlink&quot; title=&quot;初识 JUC ：Sync、Lock、集合&quot;&gt;&lt;/a&gt;初识 JUC</summary>
         
       
     
