@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-17T02:57:41.478Z</updated>
+  <updated>2022-03-18T03:02:37.692Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Source Code Analysis (五) User-defined tag resolution</title>
+    <link href="https://naivekyo.github.io/2022/03/18/spring-source-code-analysis-wu-user-defined-tag-resolution/"/>
+    <id>https://naivekyo.github.io/2022/03/18/spring-source-code-analysis-wu-user-defined-tag-resolution/</id>
+    <published>2022-03-18T03:01:17.000Z</published>
+    <updated>2022-03-18T03:02:37.692Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;自定义标签的解析&quot;&gt;&lt;a href=&quot;#自定义标签的解析&quot; class=&quot;headerlink&quot; title=&quot;自定义标签的解析&quot;&gt;&lt;/a&gt;自定义标签的解析&lt;/h1&gt;&lt;p&gt;在 Spring 的 XML</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Source Code Analysis (四) The parsing of alias, import and beans label</title>
@@ -481,31 +506,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;一、读写锁&quot;&gt;&lt;a href=&quot;#一、读写锁&quot; class=&quot;headerlink&quot; title=&quot;一、读写锁&quot;&gt;&lt;/a&gt;一、读写锁&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (二) Callable And Synchronization Aid</title>
-    <link href="https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/"/>
-    <id>https://naivekyo.github.io/2022/02/16/jup-juc-er-callable-and-synchronization-aid/</id>
-    <published>2022-02-16T11:26:11.000Z</published>
-    <updated>2022-02-17T11:44:26.842Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;1、Callable&quot;&gt;&lt;a href=&quot;#1、Callable&quot; class=&quot;headerlink&quot; title=&quot;1、Callable&quot;&gt;&lt;/a&gt;1、Callable&lt;/h1&gt;&lt;h2 id=&quot;（1）Callable&quot;&gt;&lt;a</summary>
         
       
     
