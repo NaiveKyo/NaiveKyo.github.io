@@ -1203,7 +1203,7 @@ public class Spider {
         String filePath = System.getProperty("user.dir") + "\\sortutil\\src\\com\\naivekyo\\network\\spider.txt";
         
         URL url = null;
-        HttpsURLConnectionImpl httpsCi;
+        HttpsURLConnectionImpl httpsCi = null;
         InputStream is = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
@@ -1262,6 +1262,8 @@ public class Spider {
                     isr.close();
                 if (is != null)
                     is.close();
+                if (httpsCi != null)
+                    httpsCi.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             }
