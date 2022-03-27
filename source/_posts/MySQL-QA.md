@@ -140,3 +140,22 @@ from (a, b)
 left join c on a.id = c.id;
 ```
 
+
+
+## 7、查询表时模拟序号
+
+可以使用临时变量：
+
+```sql
+SELECT @rownum:=@rownum+1 AS '序号', 
+c.course_no AS '课程编号', c.course_name AS '课程名称', c.course_period AS '总学时',
+c.course_credit AS '学分', a.academy_name AS '所属院系', 
+(CASE c.course_type WHEN 0 THEN '必修' WHEN 1 THEN '公选课' WHEN 2 THEN '限选课' END) AS '课程类别',
+(IF(c.course_exam = 0, '考试', '考察')) AS '考试方式'
+FROM (course AS c, (SELECT @rownum:=0) AS t)
+INNER JOIN academy AS a ON a.academy_code = c.course_academy_code AND a.delete_flag = 0
+WHERE c.delete_flag = 0;
+```
+
+<mark>注：在 DQL 和 DML 语句中 = 的意思就是判断相等，而在用户变量的赋值操作时使用 :=，例如 set @tmp:=1、@tmp:=@tmp+1</mark>
+

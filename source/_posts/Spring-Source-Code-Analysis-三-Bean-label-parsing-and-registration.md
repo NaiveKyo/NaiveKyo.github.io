@@ -1271,7 +1271,7 @@ protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate d
 }
 ```
 
-前面重点分析了 `BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele)` 这句代码，接下来要进行 `bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder)` 代码的分析，从语义上看，这句代码的意思就是如果需要的化就对 BeanDefinition 进行装饰，在配置文件中类似这样：
+前面重点分析了 `BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele)` 这句代码，接下来要进行 `bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder)` 代码的分析，从语义上看，这句代码的意思就是如果需要的话就对 BeanDefinition 进行装饰，在配置文件中类似这样：
 
 ```xml
 <bean id="test" class="test.MyClass">
