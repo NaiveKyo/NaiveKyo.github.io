@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-18T03:02:37.692Z</updated>
+  <updated>2022-03-27T14:57:51.245Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL The ranks of conversion</title>
+    <link href="https://naivekyo.github.io/2022/03/25/mysql-the-ranks-of-conversion/"/>
+    <id>https://naivekyo.github.io/2022/03/25/mysql-the-ranks-of-conversion/</id>
+    <published>2022-03-25T03:41:54.000Z</published>
+    <updated>2022-03-27T14:57:51.245Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文参考自 : &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Source Code Analysis (五) User-defined tag resolution</title>
@@ -71,7 +96,7 @@
     <link href="https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/"/>
     <id>https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/</id>
     <published>2022-03-16T12:43:50.000Z</published>
-    <updated>2022-03-16T12:45:22.825Z</updated>
+    <updated>2022-03-21T02:47:38.649Z</updated>
     
     
       
@@ -481,31 +506,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot; title=&quot;线程池&quot;&gt;&lt;/a&gt;线程池&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (三) ReadWriteLock And BlockingQueue</title>
-    <link href="https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/"/>
-    <id>https://naivekyo.github.io/2022/02/17/jup-juc-san-readwritelock-and-blockingqueue/</id>
-    <published>2022-02-17T09:14:36.000Z</published>
-    <updated>2022-02-20T08:43:13.316Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、读写锁&quot;&gt;&lt;a href=&quot;#一、读写锁&quot; class=&quot;headerlink&quot; title=&quot;一、读写锁&quot;&gt;&lt;/a&gt;一、读写锁&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     

@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-01-12
+                    2022-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    613
+                    774
                 </div>
                 
 
@@ -769,6 +769,19 @@
 <span class="token keyword">from</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
 <span class="token keyword">left</span> <span class="token keyword">join</span> c <span class="token keyword">on</span> a<span class="token punctuation">.</span>id <span class="token operator">=</span> c<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+
+
+<h2 id="7、查询表时模拟序号"><a href="#7、查询表时模拟序号" class="headerlink" title="7、查询表时模拟序号"></a>7、查询表时模拟序号</h2><p>可以使用临时变量：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token variable">@rownum</span><span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">AS</span> <span class="token string">'序号'</span><span class="token punctuation">,</span> 
+c<span class="token punctuation">.</span>course_no <span class="token keyword">AS</span> <span class="token string">'课程编号'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_name <span class="token keyword">AS</span> <span class="token string">'课程名称'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_period <span class="token keyword">AS</span> <span class="token string">'总学时'</span><span class="token punctuation">,</span>
+c<span class="token punctuation">.</span>course_credit <span class="token keyword">AS</span> <span class="token string">'学分'</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>academy_name <span class="token keyword">AS</span> <span class="token string">'所属院系'</span><span class="token punctuation">,</span> 
+<span class="token punctuation">(</span><span class="token keyword">CASE</span> c<span class="token punctuation">.</span>course_type <span class="token keyword">WHEN</span> <span class="token number">0</span> <span class="token keyword">THEN</span> <span class="token string">'必修'</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'公选课'</span> <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'限选课'</span> <span class="token keyword">END</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'课程类别'</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>course_exam <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'考试'</span><span class="token punctuation">,</span> <span class="token string">'考察'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'考试方式'</span>
+<span class="token keyword">FROM</span> <span class="token punctuation">(</span>course <span class="token keyword">AS</span> c<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> t<span class="token punctuation">)</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> academy <span class="token keyword">AS</span> a <span class="token keyword">ON</span> a<span class="token punctuation">.</span>academy_code <span class="token operator">=</span> c<span class="token punctuation">.</span>course_academy_code <span class="token operator">AND</span> a<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">WHERE</span> c<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><mark>注：在 DQL 和 DML 语句中 = 的意思就是判断相等，而在用户变量的赋值操作时使用 :=，例如 set @tmp:=1、@tmp:=@tmp+1</mark></p>
 
                 
             </div>

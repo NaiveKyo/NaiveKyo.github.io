@@ -658,7 +658,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-03-16
+                    2022-03-21
                 </div>
                 
 
@@ -1778,7 +1778,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>前面重点分析了 <code>BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele)</code> 这句代码，接下来要进行 <code>bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder)</code> 代码的分析，从语义上看，这句代码的意思就是如果需要的化就对 BeanDefinition 进行装饰，在配置文件中类似这样：</p>
+<p>前面重点分析了 <code>BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele)</code> 这句代码，接下来要进行 <code>bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder)</code> 代码的分析，从语义上看，这句代码的意思就是如果需要的话就对 BeanDefinition 进行装饰，在配置文件中类似这样：</p>
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>test<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>test.MyClass<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mybean:</span>user</span> <span class="token attr-name">username</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>aaa<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
