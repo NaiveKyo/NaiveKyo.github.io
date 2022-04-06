@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-08-29
+                    2022-04-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    1.7k
                 </div>
                 
 
@@ -882,6 +882,55 @@
 
 
 
+<h3 id="3-scope-和-name"><a href="#3-scope-和-name" class="headerlink" title="(3) scope 和 name"></a>(3) scope 和 name</h3><p>scoped：</p>
+<ul>
+<li><p>给每个 Vue 组件做一个区分。限定作用域</p>
+</li>
+<li><p>引出：Vue-cli 采取的是局部刷新（为组件添加 scoped 属性会生成 v-data-xxx 属性附加到 html 标签上）</p>
+</li>
+<li><p>有些时候不需要加 scoped：就是公共的样式</p>
+</li>
+</ul>
+<p>name：</p>
+<ul>
+<li><code>name : ''</code> 可以为组件定义名字，不管在 App.vue 中如何注册的组件，最终显示的组件名就是通过 name 属性定义的</li>
+</ul>
+<h3 id="4-eslint-语法检查配置说明"><a href="#4-eslint-语法检查配置说明" class="headerlink" title="(4) eslint 语法检查配置说明"></a>(4) eslint 语法检查配置说明</h3><p>组件创建后如果不使用，Vue-Cli 会报错</p>
+<p>关于 ESlint 语法检查问题：</p>
+<ul>
+<li><p>下一行代码不检查：<code>/* eslint-disable-next-line */</code></p>
+</li>
+<li><p>整个组件内不检查：在 script 标签下第一行写：<code>/* eslint-disable */</code></p>
+</li>
+<li><p><strong>使用脚手架的配置文件：具体详见官网</strong></p>
+<ul>
+<li>名称：<code>vue.config.js</code> 和 <code>package.json</code> 同级</li>
+</ul>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// vue.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 如何定义脚手架</span>
+  <span class="token comment">// eslint 语法检查配置</span>
+  lintOnSave<span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token comment">// 看官网有很多选项</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="5-组件通信"><a href="#5-组件通信" class="headerlink" title="(5) 组件通信"></a>(5) 组件通信</h3><p>数据是一层一层流动的：</p>
+<ul>
+<li>从父组件到子组件单向流通；</li>
+<li>流通的可以是 数据 也可以是 方法。</li>
+</ul>
+<p><strong>Vue 是事件优先的</strong>：</p>
+<p>类似这样 :</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;input type="checkbox" :checked="todo.done" @click="update($event, index)"/&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果点击了选项了首先响应的是 click 事件，其次才是变更 data 中的 todo 对象</p>
+<p>熟悉使用 $event</p>
+<ul>
+<li>组件中 data 中的数据、接收到的 props、methods 中的方法、computed 中的属性，都在 vc 对象上、</li>
+<li>Vue 是事件优先</li>
+<li>使用计算属性时，只是读取就用 get，如果要修改，记得加上 set</li>
+<li>methods、computed、watch 并没有严格意义上的界定，视具体功能而定，有时候用什么都可以实现</li>
+</ul>
 
                 
             </div>
