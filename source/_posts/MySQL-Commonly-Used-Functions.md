@@ -266,6 +266,12 @@ mysql> SELECT 'My' 'S' 'QL';
 
 
 
+### 2、GROUP_CONCAT
+
+官网：https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_group-concat
+
+`group_concat` 属于聚合函数的一种，通常它会和 `group by` 结合使用，用于将组内指定成员字段拼接成一个大字符串
+
 ## 五、数学函数
 
 ### 1、RAND

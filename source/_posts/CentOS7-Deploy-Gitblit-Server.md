@@ -120,6 +120,8 @@ sudo firewall-cmd --reload
 
 建议切换为 root 用户进行开启服务，因为我使用 `sudo  ./gitblit.sh` 执行发现，无法通过该脚本调用 java 命令，日志文件中提示找不到 `java -cp` 命令，切换到 root 再次执行就没问题了：
 
+<mark>补充：OvO，当时没注意，其实这里应该是 sudo sh ./gitblit.sh，这样就可以了</mark>
+
 ```bash
 # 切换到 root
 su -

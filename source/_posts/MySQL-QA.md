@@ -159,3 +159,10 @@ WHERE c.delete_flag = 0;
 
 <mark>注：在 DQL 和 DML 语句中 = 的意思就是判断相等，而在用户变量的赋值操作时使用 :=，例如 set @tmp:=1、@tmp:=@tmp+1</mark>
 
+
+
+## 8、where 和 having
+
+- where 是对数据库指定表的字段进行条件筛选；
+- having 是对 select 中选中的字段的数据进行条件筛选。
+
