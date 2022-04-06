@@ -1,5 +1,5 @@
 ---
-title: Vue component communication
+title: Vue Component Communication
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210715104529.jpg'
@@ -174,7 +174,7 @@ A：Vue 的原型：Vue.prototype 可以被所有组件看到
 
 
 
-## 1、分类
+### 分类
 
 - 默认插槽
 - 命令插槽

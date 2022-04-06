@@ -143,7 +143,9 @@ W3C 标准包括（重要）：
 
 # 十一、iframe 内联框架
 
-/<iframe src="path" name="mianFrame"/></iframe>
+```html
+<iframe src="path" name="mianFrame"></iframe>
+```
 
 
 

@@ -845,7 +845,7 @@ Net.Socket 是一个可读可写流
 
 
 
-# Node.js 进程管理
+# 七、Node.js 进程管理
 
 > 多人广播消息
 
@@ -853,7 +853,7 @@ Net.Socket 是一个可读可写流
 
 
 
-# 七、Node.js 实现 HTTP 服务
+# 八、Node.js 实现 HTTP 服务
 
 Node.js 提供了 HTTP 核心模块
 

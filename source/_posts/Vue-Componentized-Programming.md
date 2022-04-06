@@ -302,3 +302,69 @@ export default {
 
 
 
+### (3) scope 和 name
+
+scoped：
+
+- 给每个 Vue 组件做一个区分。限定作用域
+- 引出：Vue-cli 采取的是局部刷新（为组件添加 scoped 属性会生成 v-data-xxx 属性附加到 html 标签上）
+
+- 有些时候不需要加 scoped：就是公共的样式
+
+
+
+name：
+
+- `name : ''` 可以为组件定义名字，不管在 App.vue 中如何注册的组件，最终显示的组件名就是通过 name 属性定义的
+
+### (4) eslint 语法检查配置说明
+
+组件创建后如果不使用，Vue-Cli 会报错
+
+关于 ESlint 语法检查问题：
+
+- 下一行代码不检查：`/* eslint-disable-next-line */`
+
+- 整个组件内不检查：在 script 标签下第一行写：`/* eslint-disable */`
+
+- **使用脚手架的配置文件：具体详见官网**
+
+  - 名称：`vue.config.js` 和 `package.json` 同级
+
+  ```javascript
+  // vue.config.js
+  module.exports = {
+    // 如何定义脚手架
+    // eslint 语法检查配置
+    lintOnSave: false
+    // 看官网有很多选项
+  }
+  ```
+
+  
+
+### (5) 组件通信
+
+数据是一层一层流动的：
+
+- 从父组件到子组件单向流通；
+- 流通的可以是 数据 也可以是 方法。
+
+
+
+**Vue 是事件优先的**：
+
+类似这样 :
+
+```
+<input type="checkbox" :checked="todo.done" @click="update($event, index)"/>
+```
+
+如果点击了选项了首先响应的是 click 事件，其次才是变更 data 中的 todo 对象
+
+熟悉使用 $event
+
+- 组件中 data 中的数据、接收到的 props、methods 中的方法、computed 中的属性，都在 vc 对象上、
+- Vue 是事件优先
+- 使用计算属性时，只是读取就用 get，如果要修改，记得加上 set
+- methods、computed、watch 并没有严格意义上的界定，视具体功能而定，有时候用什么都可以实现

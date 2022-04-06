@@ -23,7 +23,7 @@ tags: "JavaScript"
 
 JavaScript 是一门世界上最流行的脚本语言
 
-==一个合格的后端人员，必须要精通 JavaScript==
+<mark>一个合格的后端人员，必须要精通 JavaScript</mark>
 
 ## 1.2、ECMAScript
 
@@ -66,7 +66,7 @@ JavaScript 严格区分大小写
 
 
 
-==1、number==
+<mark>1、number</mark>
 
  js 不区分小数和整数
 
@@ -81,19 +81,19 @@ Infinity	// 无限大
 
 
 
-==2、字符串==
+<mark>2、字符串</mark>
 
 ‘abc’	“abc”
 
 
 
-==3、布尔值==
+<mark>3、布尔值</mark>
 
 true ， fasle
 
 
 
-==4、逻辑运算==
+<mark>4、逻辑运算</mark>
 
 ```
 &&
@@ -103,7 +103,7 @@ true ， fasle
 
 
 
-==5、比较运算符（重要）==
+<mark>5、比较运算符（重要）</mark>
 
 ```
 =
@@ -134,14 +134,14 @@ Math.abs(1/3 - (1-2/3)) < 0.000000001
 
 
 
-==6、null 和 undefined==
+<mark>6、null 和 undefined</mark>
 
 - null 是空
 - undefined 是未定义
 
 
 
-==7、数组==
+<mark>7、数组</mark>
 
 JavaScript 的数组对类型的限制比较少，数组可以存储各种类型的值
 
@@ -155,7 +155,7 @@ var arr = [1, 2, 3, 4, "hello", null, true];
 
 
 
-==8、对象==
+<mark>8、对象</mark>
 
 数组用中括号，对象用大括号。
 
@@ -975,9 +975,9 @@ var xiaohong = new Pupil("xiaohong", "二");
 
 > 原型链 （一个环）
 
-\__proto__:
+`__proto__`:
 
-protoType
+`protoType`
 
 
 
@@ -1258,7 +1258,7 @@ father.removeChild(self);
 
 新建一个标签
 
-```html
+```javascript
 // 通过 JS 创建一个新的节点
 var newP = document.createElement('p');    // 创建一个 p 标签
 newP.id = 'newP';
@@ -1278,7 +1278,7 @@ myScript.setAttribute('type', 'javascript');
 
 
 
-```html
+```javascript
 var ee = document.getElementById('ee');
 var code = document.createElement('strong');
 code.innerText = "插入到 JavaEE 的上面";
