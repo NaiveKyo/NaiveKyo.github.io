@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-03-27T14:57:51.245Z</updated>
+  <updated>2022-04-06T13:16:56.623Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,134 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NodeJS with Babel CommonJS Webpack Intro</title>
+    <link href="https://naivekyo.github.io/2022/04/03/nodejs-with-babel-commonjs-webpack-intro/"/>
+    <id>https://naivekyo.github.io/2022/04/03/nodejs-with-babel-commonjs-webpack-intro/</id>
+    <published>2022-04-03T13:15:38.000Z</published>
+    <updated>2022-04-06T13:16:56.623Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、Node-js&quot;&gt;&lt;a href=&quot;#一、Node-js&quot; class=&quot;headerlink&quot; title=&quot;一、Node.js&quot;&gt;&lt;/a&gt;一、Node.js&lt;/h1&gt;&lt;h2 id=&quot;1-1、简介&quot;&gt;&lt;a href=&quot;#1-1、简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/categories/NodeJS/"/>
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/tags/NodeJS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript summary</title>
+    <link href="https://naivekyo.github.io/2022/04/01/javascript-summary/"/>
+    <id>https://naivekyo.github.io/2022/04/01/javascript-summary/</id>
+    <published>2022-04-01T13:10:24.000Z</published>
+    <updated>2022-04-06T13:11:36.965Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;h2 id=&quot;1-1、概述&quot;&gt;&lt;a href=&quot;#1-1、概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Front-end learn CSS3</title>
+    <link href="https://naivekyo.github.io/2022/03/29/front-end-learn-css3/"/>
+    <id>https://naivekyo.github.io/2022/03/29/front-end-learn-css3/</id>
+    <published>2022-03-29T13:02:26.000Z</published>
+    <updated>2022-04-06T13:08:42.685Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、什么是-CSS&quot;&gt;&lt;a href=&quot;#一、什么是-CSS&quot; class=&quot;headerlink&quot; title=&quot;一、什么是 CSS&quot;&gt;&lt;/a&gt;一、什么是 CSS&lt;/h1&gt;&lt;p&gt;如何学习：&lt;/p&gt;
+&lt;p&gt;​    1、CSS 是什么&lt;/p&gt;
+&lt;p&gt;​   </summary>
+        
+      
+    
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Front-end learn HTML5</title>
+    <link href="https://naivekyo.github.io/2022/03/28/front-end-learn-html5/"/>
+    <id>https://naivekyo.github.io/2022/03/28/front-end-learn-html5/</id>
+    <published>2022-03-28T13:06:54.000Z</published>
+    <updated>2022-04-06T13:08:57.578Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、概念&quot;&gt;&lt;a href=&quot;#一、概念&quot; class=&quot;headerlink&quot; title=&quot;一、概念&quot;&gt;&lt;/a&gt;一、概念&lt;/h1&gt;&lt;p&gt;HTML&lt;/p&gt;
+&lt;p&gt;​    Hyper Text Markup</summary>
+        
+      
+    
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NodeJS summary</title>
+    <link href="https://naivekyo.github.io/2022/03/27/nodejs-summary/"/>
+    <id>https://naivekyo.github.io/2022/03/27/nodejs-summary/</id>
+    <published>2022-03-27T12:55:12.000Z</published>
+    <updated>2022-04-06T13:14:55.377Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Node-js&quot;&gt;&lt;a href=&quot;#Node-js&quot; class=&quot;headerlink&quot; title=&quot;Node.js&quot;&gt;&lt;/a&gt;Node.js&lt;/h1&gt;&lt;h1 id=&quot;一、模块化编程&quot;&gt;&lt;a href=&quot;#一、模块化编程&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/categories/NodeJS/"/>
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL The ranks of conversion</title>
@@ -380,132 +508,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;volatile-的内存语义&quot;&gt;&lt;a href=&quot;#volatile-的内存语义&quot; class=&quot;headerlink&quot; title=&quot;volatile 的内存语义&quot;&gt;&lt;/a&gt;volatile 的内存语义&lt;/h1&gt;&lt;p&gt;当声明共享变量为 volatile</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (二) Reorder And Sequential Consistency</title>
-    <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/"/>
-    <id>https://naivekyo.github.io/2022/02/24/jup-jmm-er-reorder-and-sequential-consistency/</id>
-    <published>2022-02-24T12:33:15.000Z</published>
-    <updated>2022-02-25T03:35:40.668Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、重排序&quot;&gt;&lt;a href=&quot;#一、重排序&quot; class=&quot;headerlink&quot; title=&quot;一、重排序&quot;&gt;&lt;/a&gt;一、重排序&lt;/h1&gt;&lt;p&gt;重排序是指编译器和处理器为了优化程序性能而对指令序列进行重新排序的一种手段。&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (一) What&#39;s JMM?</title>
-    <link href="https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/"/>
-    <id>https://naivekyo.github.io/2022/02/24/jup-jmm-yi-what-s-jmm/</id>
-    <published>2022-02-24T06:33:56.000Z</published>
-    <updated>2022-02-25T03:35:33.066Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;什么是-JMM&quot;&gt;&lt;a href=&quot;#什么是-JMM&quot; class=&quot;headerlink&quot; title=&quot;什么是 JMM&quot;&gt;&lt;/a&gt;什么是 JMM&lt;/h1&gt;&lt;p&gt;之前我们没有研究过 Java 内存模型（JMM）的底层细节，而是仅仅调用 Java 并发的高层</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (六) Future And CompletableFuture</title>
-    <link href="https://naivekyo.github.io/2022/02/19/jup-juc-liu-future-and-completablefuture/"/>
-    <id>https://naivekyo.github.io/2022/02/19/jup-juc-liu-future-and-completablefuture/</id>
-    <published>2022-02-19T14:07:30.000Z</published>
-    <updated>2022-02-22T12:37:41.715Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;异步编程&quot;&gt;&lt;a href=&quot;#异步编程&quot; class=&quot;headerlink&quot; title=&quot;异步编程&quot;&gt;&lt;/a&gt;异步编程&lt;/h1&gt;&lt;h1 id=&quot;一、并发和并行&quot;&gt;&lt;a href=&quot;#一、并发和并行&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (五) Fork/Join And Parallel Stream</title>
-    <link href="https://naivekyo.github.io/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/"/>
-    <id>https://naivekyo.github.io/2022/02/18/jup-juc-wu-fork-join-and-parallel-stream/</id>
-    <published>2022-02-18T14:22:38.000Z</published>
-    <updated>2022-02-19T14:06:36.294Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、ForkJoin-框架&quot;&gt;&lt;a href=&quot;#一、ForkJoin-框架&quot; class=&quot;headerlink&quot; title=&quot;一、ForkJoin 框架&quot;&gt;&lt;/a&gt;一、ForkJoin 框架&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JUC (四) Use Thread Pool</title>
-    <link href="https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/"/>
-    <id>https://naivekyo.github.io/2022/02/17/jup-juc-si-use-thread-pool/</id>
-    <published>2022-02-17T14:24:59.000Z</published>
-    <updated>2022-02-19T14:06:20.664Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot; title=&quot;线程池&quot;&gt;&lt;/a&gt;线程池&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
