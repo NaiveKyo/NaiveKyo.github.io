@@ -1022,6 +1022,8 @@ Vue.filter('dateFormater', function(value, str = 'YYYY-MM-DD') {
 
 ## 17、自定义指令
 
+更多内容参考：https://cn.vuejs.org/v2/guide/custom-directive.html
+
 全局指令和局部指令
 
 通过获取真实 DOM，和要绑定的数据，我们可以进行很多操作，例如填充文本数据或者html，还可以发送 axios 请求

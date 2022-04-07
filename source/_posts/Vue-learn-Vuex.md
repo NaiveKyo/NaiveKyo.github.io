@@ -5,7 +5,6 @@ top: false
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221016.jpg'
 coverImg: /img/20220225221016.jpg
-password: 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
 cover: false
 toc: true
 mathjax: false

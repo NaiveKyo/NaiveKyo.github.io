@@ -8,7 +8,7 @@ coverImg: /img/20220225221005.jpg
 cover: false
 toc: true
 mathjax: false
-date: 2022-04-07 09:57:55
+date: 2022-04-04 09:57:55
 summary: "Vue-Router: Vue.js 的路由管理器"
 categories: "Vue"
 keywords: 
@@ -686,3 +686,9 @@ Vue 传参：
 使用 `<keep-alive>` 
 
 https://cn.vuejs.org/v2/api/#keep-alive
+
+
+
+## 12、导航守卫
+
+参考官网：https://v3.router.vuejs.org/zh/guide/advanced/navigation-guards.html

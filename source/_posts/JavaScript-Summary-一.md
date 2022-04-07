@@ -1,5 +1,5 @@
 ---
-title: JavaScript summary
+title: JavaScript Summary (一)
 author: NaiveKyo
 top: false
 hide: false
@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-04-01 21:10:24
-summary: "JavaScript 初步学习"
+summary: "JavaScript 初步学习 (一)"
 categories: "JavaScript"
 keywords: "JavaScript"
 tags: "JavaScript"
