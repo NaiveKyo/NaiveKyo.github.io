@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-07T02:36:09.063Z</updated>
+  <updated>2022-04-07T07:03:38.919Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript Summary (二)</title>
+    <link href="https://naivekyo.github.io/2022/04/07/javascript-summary-er/"/>
+    <id>https://naivekyo.github.io/2022/04/07/javascript-summary-er/</id>
+    <published>2022-04-07T07:02:05.000Z</published>
+    <updated>2022-04-07T07:03:38.919Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-Script&quot;&gt;&lt;a href=&quot;#Java-Script&quot; class=&quot;headerlink&quot; title=&quot;Java Script&quot;&gt;&lt;/a&gt;Java Script&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;Brendan Eich 布兰登-艾奇</summary>
+        
+      
+    
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript: learn JS and JQuery</title>
+    <link href="https://naivekyo.github.io/2022/04/06/javascript-learn-js-and-jquery/"/>
+    <id>https://naivekyo.github.io/2022/04/06/javascript-learn-js-and-jquery/</id>
+    <published>2022-04-06T02:54:02.000Z</published>
+    <updated>2022-04-07T02:56:09.415Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaScript&quot;&gt;&lt;a href=&quot;#JavaScript&quot; class=&quot;headerlink&quot; title=&quot;JavaScript&quot;&gt;&lt;/a&gt;JavaScript&lt;/h1&gt;&lt;p&gt;JavaScript</summary>
+        
+      
+    
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue learn Vuex</title>
@@ -46,7 +96,7 @@
     <link href="https://naivekyo.github.io/2022/04/04/vue-learn-vue-router/"/>
     <id>https://naivekyo.github.io/2022/04/04/vue-learn-vue-router/</id>
     <published>2022-04-04T01:57:55.000Z</published>
-    <updated>2022-04-07T02:23:30.887Z</updated>
+    <updated>2022-04-07T06:39:55.443Z</updated>
     
     
       
@@ -92,11 +142,11 @@
   </entry>
   
   <entry>
-    <title>JavaScript summary</title>
-    <link href="https://naivekyo.github.io/2022/04/01/javascript-summary/"/>
-    <id>https://naivekyo.github.io/2022/04/01/javascript-summary/</id>
+    <title>JavaScript Summary (一)</title>
+    <link href="https://naivekyo.github.io/2022/04/01/javascript-summary-yi/"/>
+    <id>https://naivekyo.github.io/2022/04/01/javascript-summary-yi/</id>
     <published>2022-04-01T13:10:24.000Z</published>
-    <updated>2022-04-06T13:35:37.019Z</updated>
+    <updated>2022-04-07T07:03:54.773Z</updated>
     
     
       
@@ -466,56 +516,6 @@
     
     
     <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Office Create page numbers in Word</title>
-    <link href="https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/"/>
-    <id>https://naivekyo.github.io/2022/02/26/office-create-page-numbers-in-word/</id>
-    <published>2022-02-26T05:15:50.000Z</published>
-    <updated>2022-02-26T07:54:23.657Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Word-中如何创建页码&quot;&gt;&lt;a href=&quot;#Word-中如何创建页码&quot; class=&quot;headerlink&quot; title=&quot;Word 中如何创建页码&quot;&gt;&lt;/a&gt;Word 中如何创建页码&lt;/h1&gt;&lt;h2 id=&quot;1、封面和目录&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Office" scheme="https://naivekyo.github.io/categories/Office/"/>
-    
-    
-    <category term="Office" scheme="https://naivekyo.github.io/tags/Office/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (五) Final Memory Semantics And Happens-Before</title>
-    <link href="https://naivekyo.github.io/2022/02/25/jup-jmm-wu-final-memory-semantics-and-happens-before/"/>
-    <id>https://naivekyo.github.io/2022/02/25/jup-jmm-wu-final-memory-semantics-and-happens-before/</id>
-    <published>2022-02-25T14:00:30.000Z</published>
-    <updated>2022-02-25T14:01:48.700Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、final-域的内存语义&quot;&gt;&lt;a href=&quot;#一、final-域的内存语义&quot; class=&quot;headerlink&quot; title=&quot;一、final 域的内存语义&quot;&gt;&lt;/a&gt;一、final 域的内存语义&lt;/h1&gt;&lt;p&gt;与之前分析的 volatile</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
     
   </entry>
   
