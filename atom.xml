@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-07T07:03:38.919Z</updated>
+  <updated>2022-04-07T07:35:00.353Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,18 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Front-end learn webapp</title>
+    <link href="https://naivekyo.github.io/2022/04/07/front-end-learn-webapp/"/>
+    <id>https://naivekyo.github.io/2022/04/07/front-end-learn-webapp/</id>
+    <published>2022-04-07T07:34:07.000Z</published>
+    <updated>2022-04-07T07:35:00.353Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;视口&quot;&gt;&lt;a href=&quot;#视口&quot; class=&quot;headerlink&quot; title=&quot;视口&quot;&gt;&lt;/a&gt;视口&lt;/h1&gt;&lt;h2 id=&quot;布局视口-layout-viewport&quot;&gt;&lt;a href=&quot;#布局视口-layout-viewport&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Front-end learn H5 + CSS3</title>
+    <link href="https://naivekyo.github.io/2022/04/07/front-end-learn-h5-css3/"/>
+    <id>https://naivekyo.github.io/2022/04/07/front-end-learn-h5-css3/</id>
+    <published>2022-04-07T07:30:44.000Z</published>
+    <updated>2022-04-07T07:31:38.137Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;浏览器&quot;&gt;&lt;a href=&quot;#浏览器&quot; class=&quot;headerlink&quot; title=&quot;浏览器&quot;&gt;&lt;/a&gt;浏览器&lt;/h1&gt;&lt;pre class=&quot;line-numbers language-html&quot; data-language=&quot;html&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
+    
+    
+    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript Summary (二)</title>
     <link href="https://naivekyo.github.io/2022/04/07/javascript-summary-er/"/>
     <id>https://naivekyo.github.io/2022/04/07/javascript-summary-er/</id>
     <published>2022-04-07T07:02:05.000Z</published>
-    <updated>2022-04-07T07:03:38.919Z</updated>
+    <updated>2022-04-07T07:19:37.754Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Java-Script&quot;&gt;&lt;a href=&quot;#Java-Script&quot; class=&quot;headerlink&quot; title=&quot;Java Script&quot;&gt;&lt;/a&gt;Java Script&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;Brendan Eich 布兰登-艾奇</summary>
+    <summary type="html">&lt;h1 id=&quot;Java-Script&quot;&gt;&lt;a href=&quot;#Java-Script&quot; class=&quot;headerlink&quot; title=&quot;Java Script&quot;&gt;&lt;/a&gt;Java Script&lt;/h1&gt;&lt;pre class=&quot;line-numbers</summary>
         
       
     
@@ -466,56 +516,6 @@
     
     
     <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (六) DoubleCheckedLocking And Class Initialization</title>
-    <link href="https://naivekyo.github.io/2022/03/03/jup-jmm-liu-doublecheckedlocking-and-class-initialization/"/>
-    <id>https://naivekyo.github.io/2022/03/03/jup-jmm-liu-doublecheckedlocking-and-class-initialization/</id>
-    <published>2022-03-03T14:32:50.000Z</published>
-    <updated>2022-03-03T14:34:44.458Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;双重检查锁定与延迟初始化&quot;&gt;&lt;a href=&quot;#双重检查锁定与延迟初始化&quot; class=&quot;headerlink&quot; title=&quot;双重检查锁定与延迟初始化&quot;&gt;&lt;/a&gt;双重检查锁定与延迟初始化&lt;/h1&gt;&lt;p&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web Build The Tomcat Application With IDEA</title>
-    <link href="https://naivekyo.github.io/2022/03/02/java-web-build-the-tomcat-application-with-idea/"/>
-    <id>https://naivekyo.github.io/2022/03/02/java-web-build-the-tomcat-application-with-idea/</id>
-    <published>2022-03-02T14:21:21.000Z</published>
-    <updated>2022-03-02T14:22:38.863Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;IDEA-配置-Tomcat&quot;&gt;&lt;a href=&quot;#IDEA-配置-Tomcat&quot; class=&quot;headerlink&quot; title=&quot;IDEA 配置 Tomcat&quot;&gt;&lt;/a&gt;IDEA 配置 Tomcat&lt;/h1&gt;&lt;h2 id=&quot;1、下载-tomcat&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Java Web" scheme="https://naivekyo.github.io/categories/Java-Web/"/>
-    
-    
-    <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
     
   </entry>
   
