@@ -39,7 +39,101 @@ tags: Vue
 
 - 子组件需要接收消息，然后使用
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件通信</title>
+</head>
+<body>
+<div id="app">
+    <father></father>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    // 父向子传递数据(父 -> 子 单向)
+    // 父向子传递函数(子 -> 父 单向)
+    const Child1 = Vue.extend({
+        name: 'Child1',
+        props: {
+            receiveMsg: {
+                type: String,
+                default: ''
+            },
+            receiveFunction: {
+                type: Function,
+                required: true
+            }
+        },
+        created() {
+            console.log('---------- vc_child1 ----------')
+            console.log(this)
+        },
+        data() {
+            return {
+                step: 1
+            }
+        },
+        methods: {
+            add() {
+                this.receiveFunction(++this.step)
+            }
+        },
+        template: `
+          <div>
+          <p>这里是子组件 1</p>
+          <p>从父组件传过来的数据: {{ receiveMsg }}</p>
+          <button @click="add">点我增加父组件中的计数器</button>
+          <hr/>
+          </div>
+        `
+    })
 
+    // 父组件
+    const Father = Vue.component('father', {
+        name: 'Father',
+        components: {Child1},
+        data() {
+            return {
+                // 向子组件传递消息
+                msg1: '传递消息',
+                // 计数器
+                count: 0
+            }
+        },
+        methods: {
+            increase(step) {
+                this.count += step
+            }
+        },
+        created() {
+            console.log('---------- vc_father ----------')
+            console.log(this)
+        },
+        template: `
+          <div>
+          <p>这里是父组件</p>
+          <label for="send">发送给子组件的消息</label>
+          <input id="send" v-model="msg1">
+          <p>父组件中用于计数的值 {{ count }}</p>
+          <hr/>
+          <child1 :receive-function="increase" :receive-msg="msg1"></child1>
+          </div>
+        `
+    })
+
+    new Vue({
+        el: '#app',
+        created() {
+            console.log('---------- vm ----------')
+            console.log(this)
+        },
+    })
+</script>
+</html>
+```
 
 
 
@@ -91,6 +185,110 @@ tags: Vue
 
 - 自定义事件的命名，使用 **kebab-case** 模式 例如：`get-data`
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件</title>
+</head>
+<body>
+<div id="app">
+    <father></father>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    // 子组件给父组件传递数据使用自定义事件 (子 -> 父 单向)
+    // 方式一: 使用 this.$emit 实现
+    const Child1 = Vue.extend({
+        name: 'Child1',
+        data() {
+            return {
+                msg: ''
+            }
+        },
+        methods: {
+            add() {
+                if (!this.msg.trim())
+                    return alert('消息不能为空!')
+                this.$emit('send-msg', this.msg)
+                this.msg = ''
+            }
+        },
+        template: `
+          <div>
+          <p>这里是子组件 1</p>
+          <input v-model="msg" type="text" placeholder="输入信息, 点击按钮进行发送">  <button @click="add">发送</button>
+          <hr/>
+          </div>
+        `
+    })
+
+    // 方式二: 使用 ref 实现
+    const Child2 = Vue.extend({
+        name: 'Child2',
+        data() {
+            return {
+                msg: ''
+            }
+        },
+        methods: {
+            add() {
+                if (!this.msg.trim())
+                    return alert('消息不能为空!')
+                this.$emit('send-msg', this.msg)
+                this.msg = ''
+            }
+        },
+        template: `
+          <div>
+          <p>这里是子组件 2</p>
+          <input v-model="msg" type="text" placeholder="输入信息, 点击按钮进行发送">  <button @click="add">发送</button>
+          <hr/>
+          </div>
+        `
+    })
+
+    // 父组件
+    const Father = Vue.component('father', {
+        name: 'Father',
+        components: { Child1, Child2 },
+        data() {
+            return {
+                msgList: []
+            }
+        },
+        methods: {
+            receiveMsg(msg) {
+                this.msgList.push(msg)
+            }
+        },
+        mounted() {
+          this.$refs.child2_ref.$on('send-msg', this.receiveMsg)
+        },
+        template: `
+          <div>
+          <p>这里是父组件</p>
+          <label>接收子组件传递的消息列表:</label>
+          <ul>
+            <li v-if="msgList.length === 0">暂无消息</li>
+            <li v-else v-for="msg in msgList">{{ msg }}</li>
+          </ul>
+          <hr/>
+          <child1 @send-msg="receiveMsg"></child1>
+          <child2 ref="child2_ref"></child2>
+          </div>
+        `
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+</html>
+```
+
 
 
 ## 二、任意组件通信
@@ -109,11 +307,7 @@ A：Vue 的原型：Vue.prototype 可以被所有组件看到
 
 所以：**将自定义事件绑定到 Vue 的原型上**
 
-
-
 `main.js` 中注册：
-
-
 
 - 安装全局事件总线：
 
@@ -168,6 +362,162 @@ A：Vue 的原型：Vue.prototype 可以被所有组件看到
 
 
 
+例子：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局事件总线</title>
+</head>
+<body>
+<div id="app">
+    <Child1></Child1>
+    <Child2></Child2>
+    <Child3></Child3>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    // 任意组件通信
+    const Child1 = Vue.extend({
+        name: 'Child1',
+        data() {
+            return {
+                msgList: []
+            }
+        },
+        methods: {
+            receiveMsg(msg) {
+                this.msgList.push(msg)
+            },
+            sendMsgToComponent2() {
+                this.$bus.$emit('child-2', '这是来自组件 1 的消息')
+            },
+            sendMsgToComponent3() {
+                this.$bus.$emit('child-3', '这是来自组件 1 的消息')
+            }
+        },
+        mounted() {
+            // 注册事件
+            this.$bus.$on('child-1', this.receiveMsg)
+        },
+        beforeDestroy() {
+            // 关闭自定义事件
+            this.$bus.off('child-1')
+        },
+        template: `
+          <div>
+          <p>这里是组件 1</p>
+          <label>接收其他组件传递的消息列表:</label>
+          <ul>
+            <li v-if="msgList.length === 0">暂无消息</li>
+            <li v-else v-for="msg in msgList">{{ msg }}</li>
+          </ul>
+          <button @click="sendMsgToComponent2">给组件 2 发送消息</button>
+          <button @click="sendMsgToComponent3">给组件 3 发送消息</button>
+          <hr/>
+          </div>
+        `
+    })
+
+    const Child2 = Vue.extend({
+        name: 'Child2',
+        data() {
+            return {
+                msgList: []
+            }
+        },
+        methods: {
+            receiveMsg(msg) {
+                this.msgList.push(msg)
+            },
+            sendMsgToComponent1() {
+                this.$bus.$emit('child-1', '这是来自组件 2 的消息')
+            },
+            sendMsgToComponent3() {
+                this.$bus.$emit('child-3', '这是来自组件 2 的消息')
+            }
+        },
+        mounted() {
+            // 注册事件
+            this.$bus.$on('child-2', this.receiveMsg)
+        },
+        beforeDestroy() {
+            // 关闭自定义事件
+            this.$bus.off('child-2')
+        },
+        template: `
+          <div>
+          <p>这里是组件 2</p>
+          <label>接收其他组件传递的消息列表:</label>
+          <ul>
+            <li v-if="msgList.length === 0">暂无消息</li>
+            <li v-else v-for="msg in msgList">{{ msg }}</li>
+          </ul>
+          <button @click="sendMsgToComponent1">给组件 1 发送消息</button>
+          <button @click="sendMsgToComponent3">给组件 3 发送消息</button>
+          <hr/>
+          </div>
+        `
+    })
+
+    const Child3 = Vue.extend({
+        name: 'Child3',
+        data() {
+            return {
+                msgList: []
+            }
+        },
+        methods: {
+            receiveMsg(msg) {
+                this.msgList.push(msg)
+            },
+            sendMsgToComponent1() {
+                this.$bus.$emit('child-1', '这是来自组件 3 的消息')
+            },
+            sendMsgToComponent2() {
+                this.$bus.$emit('child-2', '这是来自组件 3 的消息')
+            }
+        },
+        mounted() {
+            // 注册事件
+            this.$bus.$on('child-3', this.receiveMsg)
+        },
+        beforeDestroy() {
+            // 关闭自定义事件
+            this.$bus.off('child-3')
+        },
+        template: `
+          <div>
+          <p>这里是组件 3</p>
+          <label>接收其他组件传递的消息列表:</label>
+          <ul>
+            <li v-if="msgList.length === 0">暂无消息</li>
+            <li v-else v-for="msg in msgList">{{ msg }}</li>
+          </ul>
+          <button @click="sendMsgToComponent1">给组件 1 发送消息</button>
+          <button @click="sendMsgToComponent2">给组件 2 发送消息</button>
+          <hr/>
+          </div>
+        `
+    })
+
+    new Vue({
+        beforeCreate() {
+          // 安装事件总线
+          Vue.prototype.$bus = this
+        },
+        el: '#app',
+        components: { Child1, Child2, Child3 }
+    })
+</script>
+</html>
+```
+
+
+
 ## 三、插槽
 
 此方式用于父组件向子组件传递带数据的标签，当一个组件有不确定的结构时，就需要使用 `slot` 技术了，注意：插槽内容是在父组件中编译后，再传递给子组件的。
@@ -181,3 +531,10 @@ A：Vue 的原型：Vue.prototype 可以被所有组件看到
 - **作用域插槽**
   - **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。**
 
+## 四、补充
+
+### 消息订阅与发布
+
+**npm install pubsub-js**
+
+https://github.com/mroderick/PubSubJS
