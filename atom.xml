@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-06T13:16:56.623Z</updated>
+  <updated>2022-04-07T02:10:39.828Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue learn Vue-Router</title>
+    <link href="https://naivekyo.github.io/2022/04/07/vue-learn-vue-router/"/>
+    <id>https://naivekyo.github.io/2022/04/07/vue-learn-vue-router/</id>
+    <published>2022-04-07T01:57:55.000Z</published>
+    <updated>2022-04-07T02:10:39.828Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Vue-Router&quot;&gt;&lt;a href=&quot;#Vue-Router&quot; class=&quot;headerlink&quot; title=&quot;Vue-Router&quot;&gt;&lt;/a&gt;Vue-Router&lt;/h1&gt;&lt;h2 id=&quot;1、SPA-的理解&quot;&gt;&lt;a href=&quot;#1、SPA-的理解&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue learn Vuex</title>
+    <link href="https://naivekyo.github.io/2022/04/05/vue-learn-vuex/"/>
+    <id>https://naivekyo.github.io/2022/04/05/vue-learn-vuex/</id>
+    <published>2022-04-05T02:10:12.000Z</published>
+    <updated>2022-04-07T02:17:58.843Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Vuex&quot;&gt;&lt;a href=&quot;#Vuex&quot; class=&quot;headerlink&quot; title=&quot;Vuex&quot;&gt;&lt;/a&gt;Vuex&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
+    
+    
+    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>NodeJS with Babel CommonJS Webpack Intro</title>
@@ -457,57 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;一、final-域的内存语义&quot;&gt;&lt;a href=&quot;#一、final-域的内存语义&quot; class=&quot;headerlink&quot; title=&quot;一、final 域的内存语义&quot;&gt;&lt;/a&gt;一、final 域的内存语义&lt;/h1&gt;&lt;p&gt;与之前分析的 volatile</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (四) Lock Memory Semantics</title>
-    <link href="https://naivekyo.github.io/2022/02/25/jup-jmm-si-lock-memory-semantics/"/>
-    <id>https://naivekyo.github.io/2022/02/25/jup-jmm-si-lock-memory-semantics/</id>
-    <published>2022-02-25T09:27:53.000Z</published>
-    <updated>2022-02-25T09:28:54.345Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;锁的内存语义&quot;&gt;&lt;a href=&quot;#锁的内存语义&quot; class=&quot;headerlink&quot; title=&quot;锁的内存语义&quot;&gt;&lt;/a&gt;锁的内存语义&lt;/h1&gt;&lt;p&gt;总所周知，锁可以让临界区互斥执行。这里介绍锁的另一个重要的功能：锁的内存语义。&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (三) Volatile Memory Semantics</title>
-    <link href="https://naivekyo.github.io/2022/02/25/jup-jmm-san-volatile-memory-semantics/"/>
-    <id>https://naivekyo.github.io/2022/02/25/jup-jmm-san-volatile-memory-semantics/</id>
-    <published>2022-02-25T03:34:29.000Z</published>
-    <updated>2022-03-08T02:46:05.253Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;volatile-的内存语义&quot;&gt;&lt;a href=&quot;#volatile-的内存语义&quot; class=&quot;headerlink&quot; title=&quot;volatile 的内存语义&quot;&gt;&lt;/a&gt;volatile 的内存语义&lt;/h1&gt;&lt;p&gt;当声明共享变量为 volatile</summary>
         
       
     
