@@ -1,5 +1,5 @@
 ---
-title: Design patterns Overview
+title: Design Patterns Overview
 author: NaiveKyo
 hide: false
 img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/featureimages/22.jpg'
