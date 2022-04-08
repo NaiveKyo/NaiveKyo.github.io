@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-07T07:35:00.353Z</updated>
+  <updated>2022-04-08T06:05:51.385Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Design Patterns Of Singleton and Factory</title>
+    <link href="https://naivekyo.github.io/2022/04/08/design-patterns-of-singleton-and-factory/"/>
+    <id>https://naivekyo.github.io/2022/04/08/design-patterns-of-singleton-and-factory/</id>
+    <published>2022-04-08T06:04:57.000Z</published>
+    <updated>2022-04-08T06:05:51.385Z</updated>
+    
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
   
   <entry>
     <title>Front-end learn webapp</title>
@@ -482,31 +499,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;一、上下文切换&quot;&gt;&lt;a href=&quot;#一、上下文切换&quot; class=&quot;headerlink&quot; title=&quot;一、上下文切换&quot;&gt;&lt;/a&gt;一、上下文切换&lt;/h1&gt;&lt;h2 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
-    
-    
-    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUP JMM (七) JMM Summary</title>
-    <link href="https://naivekyo.github.io/2022/03/04/jup-jmm-qi-jmm-summary/"/>
-    <id>https://naivekyo.github.io/2022/03/04/jup-jmm-qi-jmm-summary/</id>
-    <published>2022-03-04T07:01:13.000Z</published>
-    <updated>2022-03-04T07:03:29.637Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java-内存模型总结&quot;&gt;&lt;a href=&quot;#Java-内存模型总结&quot; class=&quot;headerlink&quot; title=&quot;Java 内存模型总结&quot;&gt;&lt;/a&gt;Java 内存模型总结&lt;/h1&gt;&lt;h2 id=&quot;1、处理器的内存模型&quot;&gt;&lt;a</summary>
         
       
     
