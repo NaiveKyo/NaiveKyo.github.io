@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-04-08 14:04:57
-summary:
+summary: "设计模式之单例模式、工厂模式"
 categories: "Design Patterns"
 keywords:
  - "Design Patterns"
@@ -18,9 +18,9 @@ keywords:
 tags: "Design Patterns"
 ---
 
+
+
 # 设计模式概述和分类
-
-
 
 ## 1、设计模式介绍
 
