@@ -1,0 +1,1861 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux,Oracle">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>CentOS7 Install Oracle Database | Miló&amp;Akoúo̱</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+    <style type="text/css" lang="css">
+  #loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #loading-left {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: margin-right 1.5s;
+  }
+
+  #loading-right {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* 太极特效 */
+  @keyframes rotate {
+      from {
+          transform: rotate(0deg)
+      }
+
+      to {
+          transform: rotate(359deg)
+      }
+  }
+
+  div[class="loading-image"] {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    background-image:
+        radial-gradient(50% 50% at 50% 25%, #000 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 75%, #fff 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 25%, #fff 50%, transparent 0), radial-gradient(50% 50% at 50% 75%, #000 50%, transparent 0),
+        linear-gradient(to left, #fff 50%, #000 50%);
+    animation: rotate 3s linear infinite;
+  }
+
+  .loading-text {
+    margin-bottom: 1vh;
+    text-align: center;
+    font-size: 3rem;
+    /* box-sizing: border-box; */
+    z-index: 9999;
+    padding: 0 10px;
+    height: 90px;
+    line-height: 90px;
+    font-weight: bold;
+    font-family: cursive;
+    background: linear-gradient(to right, #59c229, #f5287ded);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text
+  }
+
+  #show {
+    /* 加载图片和文字屏幕居中 */
+    /* width: 400px; */
+    /* height: 400px; */
+    background-color: transparent;
+    position: fixed;
+    /* left: 561px; */
+    /* top: 211px; */
+  }
+
+  /*中等屏幕下(平板类)的样式*/
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  /* 小型设备 */
+  @media only screen and (max-width: 601) {
+    .loading-text {
+      font-size: 1.5rem;
+    }
+    #show {
+      display: none;
+    }
+  }
+
+  /* .fadeout_left {
+    opacity: 0; 
+    filter: alpha(opacity=0);
+  } */
+
+</style>
+
+<script>
+
+            
+  // window.onload = function() {
+  //   const loader = document.getElementById("loading-container");
+
+  //   if (sessionStorage.getItem('flag') == null) {
+  //     console.log("111111")
+  //     const loaded = function() {
+  //       setTimeout(function() {
+  //         loader.style.display = 'none'
+  //       }, 1000)
+  //     }
+  //     loaded();
+  //     sessionStorage.setItem('flag', 1)
+  //   } else {
+  //     loader.style.display = 'none'
+  //   }
+  // }
+
+ 
+  (function () {
+      
+      const loaded = function() {
+        setTimeout(function() {
+            const loader = document.getElementById("loading-container");
+            const load_left = document.getElementById("loading-left");
+            const load_right = document.getElementById("loading-right");
+            load_left.style.marginRight = "100%"
+
+            // 设置动画的显示时间
+            setTimeout(function() {
+              loader.style.display="none";
+            }, 1500)
+          }, 300); 
+      }
+      loaded()
+  })() 
+</script>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215213943.png);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<!-- <script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script> -->
+
+<body>
+    <!-- 加载动画 -->
+	
+		<div id="loading-container">
+            <div id="loading-left"></div>
+            <div id="loading-right"></div>
+            <div id="show">
+                <p class="loading-text">少女祈祷中</p>
+                <div class="loading-image"></div>
+            </div>
+		</div>
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Miló&amp;Akoúo̱</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Miló&amp;Akoúo̱</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221159.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CentOS7 Install Oracle Database</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-04-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="CentOS7-安装-Oracle-19c"><a href="#CentOS7-安装-Oracle-19c" class="headerlink" title="CentOS7 安装 Oracle 19c"></a>CentOS7 安装 Oracle 19c</h1><p>本文参考：<a target="_blank" rel="noopener" href="https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7">https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7</a></p>
+<h1 id="一、下载-Oracle-19c"><a href="#一、下载-Oracle-19c" class="headerlink" title="一、下载 Oracle 19c"></a>一、下载 Oracle 19c</h1><p>官网下载地址：<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html">https://www.oracle.com/database/technologies/oracle-database-software-downloads.html</a></p>
+<p>或者 Oracle Delivery：<a target="_blank" rel="noopener" href="https://edelivery.oracle.com/osdc/faces/Home.jspx">https://edelivery.oracle.com/osdc/faces/Home.jspx</a> （Oracle 的绝大多数软件都在这里下载）</p>
+<p>或者 Oracle MOS：但是这个需要企业或组织购买了 Oracle 的官方服务后才可以开通。</p>
+<p>Oracle 19c 目前是 Oracle 的 LST 版本，包含了 Oracle 的所有功能，用来学习和测试是么问题，但是注意如果要用于商务，就需要向 Oracle 公司购买 License。</p>
+<p>注意：需要登录 Oracle 账户才可以下载（普通账户即可）。</p>
+<p>以官网下载为例，进入下载地址后找到：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412231131.png"></p>
+<p>如果要下载免费版本，可以在最下方的 <code>Oracle Database Express Edition</code> 栏下查看相关信息，但是注意免费版本阉割了很多功能。</p>
+<p>这里我们下载 ZIP 包，下载完成后点击右侧 <code>See All</code> 查看校验用的 MD5 或者 SHA 值进行验证，确保下载的软件和官网提供的完全一致。</p>
+<h1 id="二、CentOS7-安装-Oracle-19c"><a href="#二、CentOS7-安装-Oracle-19c" class="headerlink" title="二、CentOS7 安装 Oracle 19c"></a>二、CentOS7 安装 Oracle 19c</h1><p>参考文章：<a target="_blank" rel="noopener" href="https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7">https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7</a></p>
+<h2 id="1、配置-Host"><a href="#1、配置-Host" class="headerlink" title="1、配置 Host"></a>1、配置 Host</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 输入 </span>
+<span class="token function">sudo</span> <span class="token function">vim</span> /etc/hosts
+
+<span class="token number">127.0</span>.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+<span class="token comment"># 最后一行加上</span>
+<span class="token number">192.168</span>.154.128 ol7-19.localdomain ol7-19<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>名称可以随意取，这里只是标识我们是在 Linux 7 上安装 Oracle 19。</p>
+<h2 id="2、安装方式说明以及更换-yum-源"><a href="#2、安装方式说明以及更换-yum-源" class="headerlink" title="2、安装方式说明以及更换 yum 源"></a>2、安装方式说明以及更换 yum 源</h2><p>安装方式有两种：</p>
+<ul>
+<li>使用 rpm 安装包默认安装</li>
+<li>使用 zip 包手动安装</li>
+<li><mark>无论哪一种都需要一些必要的前置依赖，以及一些配置。</mark></li>
+<li>剩下的步骤可以切换到 root 账户进行</li>
+</ul>
+<p>这里使用清华镜像站的 CentOS 镜像仓库。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 进入 yum 的本地仓库文件夹</span>
+<span class="token builtin class-name">cd</span> /etc/yum/yum.repos.d
+<span class="token comment"># 备份默认的 yum 仓库</span>
+<span class="token function">tar</span> -cvf yum_repos.bak ./
+<span class="token comment"># 使用 sed 工具配合正则表达式批量修改 yum 配置文件</span>
+<span class="token comment"># 注意当前版本为 Centos7</span>
+<span class="token function">sed</span> -e <span class="token string">'s|^mirrorlist=|#mirrorlist=|g'</span> <span class="token punctuation">\</span>
+	-e <span class="token string">'s|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g'</span> <span class="token punctuation">\</span>
+	-i <span class="token punctuation">\</span>
+	/etc/yum.repos.d/CentOS-*.repo
+	
+<span class="token comment"># 最后重新生成软件包缓存</span>
+yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="3、默认安装-Oracle-前置依赖"><a href="#3、默认安装-Oracle-前置依赖" class="headerlink" title="3、默认安装 Oracle 前置依赖"></a>3、默认安装 Oracle 前置依赖</h2><p>如果当前系统是 Oracle Linux 平台，可以去下载对应的 rpm 包：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum -y <span class="token function">install</span> oracle-database-preinstall-19c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果不是，比如我们现在用的是 CentOS 7，可以去下面两个网站找：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://oss.oracle.com/ol7/SRPMS-updates/">https://oss.oracle.com/ol7/SRPMS-updates/</a> 搜索 -19c ，下载最新的即可；</li>
+<li><a target="_blank" rel="noopener" href="https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/index.html">https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/index.html</a> </li>
+</ul>
+<p>也可以使用下面的命令（推荐）：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -o oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm
+
+yum -y localinstall oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>接着使用一下命令查看：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看用户</span>
+<span class="token function">tail</span> -n <span class="token number">10</span> /etc/passwd	<span class="token comment"># 可以看到 oracle 用户已经被创建了</span>
+
+<span class="token comment"># 查看用户组</span>
+<span class="token function">tail</span> -n <span class="token number">10</span> /etc/group
+
+<span class="token comment"># 可以看到以下几个用户组</span>
+oinstall:x:54321:oracle
+dba:x:54322:oracle
+oper:x:54323:oracle
+backupdba:x:54324:oracle
+dgdba:x:54325:oracle
+kmdba:x:54326:oracle
+racdba:x:54330:oracle<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="4、手动安装-Oracle-前置依赖"><a href="#4、手动安装-Oracle-前置依赖" class="headerlink" title="4、手动安装 Oracle 前置依赖"></a>4、手动安装 Oracle 前置依赖</h2><p>更多信息参考：<a target="_blank" rel="noopener" href="https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7">https://oracle-base.com/articles/19c/oracle-db-19c-installation-on-oracle-linux-7</a></p>
+<p>手动安装主要做的事情就是手动为 Oracle 做一些配置，这些事在前面的 preinstall 中自动做了。</p>
+<h2 id="5、配置-Oracle-用户"><a href="#5、配置-Oracle-用户" class="headerlink" title="5、配置 Oracle 用户"></a>5、配置 Oracle 用户</h2><p>无论是默认安装还是手动安装，都需要进行这一步。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 为 oracle 用户配置密码</span>
+<span class="token function">passwd</span> oracle
+
+<span class="token comment"># 设置 Linux 的 SELINUX 运行模式改为宽容模式</span>
+<span class="token function">vim</span> /etc/selinux/config
+<span class="token comment"># 修改 SELINUX=permissive</span>
+
+<span class="token comment"># 重启服务器或者使用下面的命令刷新 SELINUX</span>
+setenforce Permissive
+
+<span class="token comment"># 创建 Oracle 软件安装目录，可以自定义</span>
+<span class="token function">mkdir</span> -p /u01/app/oracle/product/19.0.0/dbhome_1
+<span class="token function">mkdir</span> -p /u02/oradata
+<span class="token function">chown</span> -R oracle:oinstall /u01 /u02
+<span class="token function">chmod</span> -R <span class="token number">775</span> /u01 /u02<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>解释一下，线上环境我们不会直接将 Oracle 的挂载点放在根目录下，应该给它安装单独的磁盘，这里是在学习环境下安装的，所以直接放在 <code>/</code> 下面，对于真正的安装，应该为操作系统保留 <code>/</code> 存储空间。</p>
+<blockquote>
+<p>为 oracle 用户配置用户环境变量</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在 oralce 的家目录中创建一个存放脚本的目录</span>
+<span class="token function">mkdir</span> /home/oracle/scripts
+
+<span class="token comment"># 在该目录下创建一个名为 setEnv.sh 的脚本，这里使用 cat，注意需要对 $ 进行转义</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /home/oracle/scripts/setEnv.sh <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+# Oracle Settings
+export TMP=/tmp
+export TMPDIR=\<span class="token variable">$TMP</span>
+
+export ORACLE_HOSTNAME=ol7-19.localdomain
+export ORACLE_UNQNAME=cdb1
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=\<span class="token variable">$ORACLE_BASE</span>/product/19.0.0/dbhome_1
+export ORA_INVENTORY=/u01/app/oraInventory
+export ORACLE_SID=cdb1
+export PDB_NAME=pdb1
+export DATA_DIR=/u02/oradata
+
+export PATH=/usr/sbin:/usr/local/bin:\<span class="token environment constant">$PATH</span>
+export PATH=\<span class="token variable">$ORACLE_HOME</span>/bin:\<span class="token environment constant">$PATH</span>
+
+export LD_LIBRARY_PATH=\<span class="token variable">$ORACLE_HOME</span>/lib:/lib:/usr/lib
+export CLASSPATH=\<span class="token variable">$ORACLE_HOME</span>/jlib:\<span class="token variable">$ORACLE_HOME</span>/rdbms/jlib
+EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意这里的 ORACLE_HOSTNAME 是我们之前在 hosts 文件中配置的。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 由于我们现在是在 root 用户下创建的脚本，但是实际执行的是 oracle 用户，所以需要设置一下权限</span>
+<span class="token function">chown</span> oracle:oinstall /home/oracle/scripts/setEnv.sh
+<span class="token function">chown</span> <span class="token number">744</span> /home/oracle/scripts/setEnv.sh
+
+<span class="token comment"># 最后将这个脚本文件的引用追加到 oracle 用户环境变量配置文件中</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'. /home/oracle/scripts/setEnv.sh'</span> <span class="token operator">&gt;&gt;</span> /home/oracle/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="6、创建-oracle-数据库启动和停止脚本"><a href="#6、创建-oracle-数据库启动和停止脚本" class="headerlink" title="6、创建 oracle 数据库启动和停止脚本"></a>6、创建 oracle 数据库启动和停止脚本</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建 start_all.sh 和 stop_all.sh 用来开启和关闭所有的 oralce 数据库实例</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /home/oracle/scripts/start_all.sh <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+#!/bin/bash
+. /home/oracle/scripts/setEnv.sh
+
+export ORAENV_ASK=NO
+. oraenv
+export ORAENV_ASK=YES
+
+dbstart \<span class="token variable">$ORACLE_HOME</span>
+EOF</span>
+
+
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /home/oracle/scripts/stop_all.sh <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+#!/bin/bash
+. /home/oracle/scripts/setEnv.sh
+
+export ORAENV_ASK=NO
+. oraenv
+export ORAENV_ASK=YES
+
+dbshut \<span class="token variable">$ORACLE_HOME</span>
+EOF</span>
+
+<span class="token function">chown</span> -R oracle:oinstall /home/oracle/scripts
+<span class="token function">chmod</span> u+x /home/oracle/scripts/*.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样，我们之后切换到 oracle 用户就可以用下面的命令启动或结束 oracle 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">~/scripts/start_all.sh
+~/scripts/stop_all.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="7、扩展-创建-Oracle-服务"><a href="#7、扩展-创建-Oracle-服务" class="headerlink" title="7、扩展: 创建 Oracle 服务"></a>7、扩展: 创建 Oracle 服务</h2><p>参考：<a target="_blank" rel="noopener" href="https://oracle-base.com/articles/linux/linux-services-systemd#creating-linux-services">https://oracle-base.com/articles/linux/linux-services-systemd#creating-linux-services</a></p>
+<h1 id="三、安装-Oracle"><a href="#三、安装-Oracle" class="headerlink" title="三、安装 Oracle"></a>三、安装 Oracle</h1><h2 id="1、静默安装"><a href="#1、静默安装" class="headerlink" title="1、静默安装"></a>1、静默安装</h2><p>首先将我们最开始下载的 zip 压缩包上传到服务器并解压：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 重新以 oracle 用户登录服务器</span>
+<span class="token comment"># 进入 ORACLE_HOME 目录</span>
+<span class="token builtin class-name">cd</span> <span class="token variable">$ORACLE_HOME</span>
+<span class="token comment"># 解压之前上传到服务器的 zip 文件</span>
+<span class="token function">unzip</span> -oq /usr/local/backup/LINUX.X64_193000_db_home.zip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来分为两种安装模式：图形界面安装、命令行静默安装</p>
+<blockquote>
+<p>图形界面</p>
+</blockquote>
+<p>该安装方式需要 Linux 图形化，这里不做过多说明（笔者用的是命令行）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Interactive mode.</span>
+./runInstaller<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>静默安装</p>
+</blockquote>
+<p>图形化的安装界面本质上是更方便的引导用户输入一些参数对数据库进行配置，而静默安装则是通过一个 response file 来提供这些配置参数，两者的区别就是配置参数的来源是用户输入还是文件。</p>
+<p>当然如果开发者想要自定义参数可以通过提供 response file 或者说在命令行覆盖 resopnse file 中的参数，直接输入，下面以此为例：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Silent mode.</span>
+./runInstaller -ignorePrereq -waitforcompletion -silent                        <span class="token punctuation">\</span>
+    -responseFile <span class="token variable">${ORACLE_HOME}</span>/install/response/db_install.rsp               <span class="token punctuation">\</span>
+    oracle.install.option<span class="token operator">=</span>INSTALL_DB_SWONLY                                    <span class="token punctuation">\</span>
+    <span class="token assign-left variable">ORACLE_HOSTNAME</span><span class="token operator">=</span><span class="token variable">${ORACLE_HOSTNAME}</span>                                         <span class="token punctuation">\</span>
+    <span class="token assign-left variable">UNIX_GROUP_NAME</span><span class="token operator">=</span>oinstall                                                   <span class="token punctuation">\</span>
+    <span class="token assign-left variable">INVENTORY_LOCATION</span><span class="token operator">=</span><span class="token variable">${ORA_INVENTORY}</span>                                        <span class="token punctuation">\</span>
+    <span class="token assign-left variable">SELECTED_LANGUAGES</span><span class="token operator">=</span>en,zh_CN                                                <span class="token punctuation">\</span>
+    <span class="token assign-left variable">ORACLE_HOME</span><span class="token operator">=</span><span class="token variable">${ORACLE_HOME}</span>                                                 <span class="token punctuation">\</span>
+    <span class="token assign-left variable">ORACLE_BASE</span><span class="token operator">=</span><span class="token variable">${ORACLE_BASE}</span>                                                 <span class="token punctuation">\</span>
+    oracle.install.db.InstallEdition<span class="token operator">=</span>EE                                        <span class="token punctuation">\</span>
+    oracle.install.db.OSDBA_GROUP<span class="token operator">=</span>dba                                          <span class="token punctuation">\</span>
+    oracle.install.db.OSBACKUPDBA_GROUP<span class="token operator">=</span>dba                                    <span class="token punctuation">\</span>
+    oracle.install.db.OSDGDBA_GROUP<span class="token operator">=</span>dba                                        <span class="token punctuation">\</span>
+    oracle.install.db.OSKMDBA_GROUP<span class="token operator">=</span>dba                                        <span class="token punctuation">\</span>
+    oracle.install.db.OSRACDBA_GROUP<span class="token operator">=</span>dba                                       <span class="token punctuation">\</span>
+    <span class="token assign-left variable">SECURITY_UPDATES_VIA_MYORACLESUPPORT</span><span class="token operator">=</span>false                                 <span class="token punctuation">\</span>
+    <span class="token assign-left variable">DECLINE_SECURITY_UPDATES</span><span class="token operator">=</span>true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 提示 Successfully Setup ... 后切换到 root 用户执行下面两个脚本,注意此时我么还没有将 oracle 加入 visudo</span>
+
+<span class="token function">su</span> -
+/u01/app/oraInventory/orainstRoot.sh
+/u01/app/oracle/product/19.0.0/dbhome_1/root.sh
+<span class="token comment"># 不用管输出的有关权限的信息，使用 root 账户一定会执行成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2、创建数据库实例"><a href="#2、创建数据库实例" class="headerlink" title="2、创建数据库实例"></a>2、创建数据库实例</h2><h3 id="（1）容器数据库"><a href="#（1）容器数据库" class="headerlink" title="（1）容器数据库"></a>（1）容器数据库</h3><p><strong style="color:red">暂时虚拟机中创建容器数据库会卡进度，暂时先创建非容器数据库。</strong></p>
+<p>我们可以通过 Database Configuration Assistant (DBCA) 去创建数据库，也是分为两种方式：GUI 和 命令行，此处我们使用命令行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换回 oracle 用户</span>
+<span class="token comment"># 使用 oracle 的命令监听，如果无法执行说明环境变量没有配置好</span>
+lsnrctl start <span class="token comment"># 最后会提示 successfully</span>
+
+<span class="token comment"># 图形交互界面</span>
+dbca
+
+<span class="token comment"># 命令行静默模式</span>
+dbca -silent -createDatabase                                                   <span class="token punctuation">\</span>
+     -templateName General_Purpose.dbc                                         <span class="token punctuation">\</span>
+     -gdbname <span class="token variable">${ORACLE_SID}</span> -sid  <span class="token variable">${ORACLE_SID}</span> -responseFile NO_VALUE         <span class="token punctuation">\</span>
+     -characterSet AL32UTF8                                                    <span class="token punctuation">\</span>
+     -sysPassword <span class="token number">123456</span>                                                 <span class="token punctuation">\</span>
+     -systemPassword <span class="token number">123456</span>                                              <span class="token punctuation">\</span>
+     -createAsContainerDatabase <span class="token boolean">true</span>                                           <span class="token punctuation">\</span>
+     -numberOfPDBs <span class="token number">1</span>                                                           <span class="token punctuation">\</span>
+     -pdbName <span class="token variable">${PDB_NAME}</span>                                                      <span class="token punctuation">\</span>
+     -pdbAdminPassword <span class="token number">123456</span>                                            <span class="token punctuation">\</span>
+     -databaseType MULTIPURPOSE                                                <span class="token punctuation">\</span>
+     -memoryMgmtType auto_sga                                                  <span class="token punctuation">\</span>
+     -totalMemory <span class="token number">2000</span>                                                         <span class="token punctuation">\</span>
+     -storageType FS                                                           <span class="token punctuation">\</span>
+     -datafileDestination <span class="token string">"<span class="token variable">${DATA_DIR}</span>"</span>                                        <span class="token punctuation">\</span>
+     -redoLogFileSize <span class="token number">50</span>                                                       <span class="token punctuation">\</span>
+     -emConfiguration NONE                                                     <span class="token punctuation">\</span>
+     -ignorePreReqs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname <span class="token variable">${ORACLE_SID}</span> -sid  <span class="token variable">${ORACLE_SID}</span> -responseFile NO_VALUE -characterSet AL32UTF8 -sysPassword <span class="token number">123456</span> -systemPassword <span class="token number">123456</span> -createAsContainerDatabase <span class="token boolean">true</span> -numberOfPDBs <span class="token number">1</span> -pdbName <span class="token variable">${PDB_NAME}</span> -pdbAdminPassword <span class="token number">123456</span> -databaseType MULTIPURPOSE -memoryMgmtType auto_sga -totalMemory <span class="token number">2000</span> -storageType FS -datafileDestination <span class="token string">"<span class="token variable">${DATA_DIR}</span>"</span> -redoLogFileSize <span class="token number">50</span> -emConfiguration NONE -ignorePreReqs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关于 dbca 静默模式的使用，参考：<a target="_blank" rel="noopener" href="https://oracle-base.com/articles/misc/database-configuration-assistant-dbca-silent-mode">https://oracle-base.com/articles/misc/database-configuration-assistant-dbca-silent-mode</a></p>
+<p>官方文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/">https://docs.oracle.com/en/</a></li>
+<li>19C：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/index.html">https://docs.oracle.com/en/database/oracle/oracle-database/index.html</a></li>
+<li>19C 创建数据库实例：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html#GUID-807DE711-C82C-4BB2-8C31-5EE89CA71349">https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html#GUID-807DE711-C82C-4BB2-8C31-5EE89CA71349</a></li>
+<li>19C DBCA Silent Model Commands：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html#GUID-0A94814D-032B-4F6A-8B54-A35223A1E3EF">https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html#GUID-0A94814D-032B-4F6A-8B54-A35223A1E3EF</a></li>
+</ul>
+<p>这里的参数说明：（注意所有的 <code>${}</code> 拿到的环境变量都是 oracle 用户的用户环境变量）</p>
+<ul>
+<li><p><code>temploateName</code>：General_Purpose 表示通用的数据库；</p>
+</li>
+<li><p><code>gdbname</code>：全局数据库名称，这里的数据库的 sid 是  <code>${ORACLE_SID}</code> 我们配置为 <code>cdb1</code>；</p>
+</li>
+<li><p><code>characterSet</code>：字符编码，这里用的是 Unicode 编码；</p>
+</li>
+<li><p><code>sysPassword</code>：SYS 用户密码；</p>
+</li>
+<li><p><code>systemPassword</code>：SYSTEM 用户密码；</p>
+</li>
+<li><p><code>createAsContainerDatabase</code>：是否作为容器数据库（CDB，一个 CDB 可以拥有多个可拔插数据库（PDB，Pluggable Database））；</p>
+</li>
+<li><p><code>numberOfPDBs</code>：CDB 最多拥有的 PDB 数量，默认是 0；</p>
+<p><mark>注：ORACLE 12C 之前，实例与数据库是一对一或多对一的关系（RAC），即一个实例只能与一个数据库关联，或者一个数据库可以被多个实例所加载。但是在 ORACLE 12C 之后，实例和数据库可以是一对多的关系。</mark></p>
+</li>
+<li><p><code>pdbName</code>：每个 PDB 的基础名称（前缀），如果 <code>numbersOfPDBs</code> 参数大于 1，就会为 <code>pdbName</code>  添加一个数字编号后缀（递增），如果 <code>numbersOfPDBs</code>  大于 0，该参数必须声明；</p>
+</li>
+<li><p><code>pdbAdminPassword</code>：PDB 管理员的密码；</p>
+</li>
+<li><p><code>databaseType</code>：</p>
+<ul>
+<li>声明为  <code>MULTIPURPOSE</code>，表示数据库同时用于 OLAP（On-Line Analytical Processing）和数据仓库；</li>
+<li>声明为 <code>DATA_WAREHOUSING</code> 表明数据库主要用于数据仓库；</li>
+<li>声明为 <code>OLTP</code>，表明数据库主要用于在线联机事务处理（OLTP）；</li>
+</ul>
+</li>
+<li><p>……</p>
+</li>
+<li><p><code>storageType</code>：数据库存储类型，有两种：</p>
+<ul>
+<li><code>FS</code>，取决于操作系统；</li>
+<li><code>ASM</code>：Oracle 提供的数据库文件管理机制。</li>
+</ul>
+</li>
+<li><p><code>datafileDestination</code>：数据库文件存放位置，这里是之前定义的 /u02/oradata；</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<p>如果容器化安装成功，可以编辑 <code>/etc/oratab</code> 文件，将最后一行的 <code>cdb1:/u01/app/oracle/product/19.0.0/dbhome_1:N</code> 最后的 N 改成 Y。 </p>
+<p>然后开启 Oracle Managed Files（OMF）确保实例启动后 PDB 也会一同启动：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sqlplus / as sysdba <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+alter system set db_create_file_dest='<span class="token variable">${DATA_DIR}</span>';
+alter pluggable database <span class="token variable">${PDB_NAME}</span> save state;
+exit;
+EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="（2）非容器数据库"><a href="#（2）非容器数据库" class="headerlink" title="（2）非容器数据库"></a>（2）非容器数据库</h3><p>如果创建容器数据库卡在某个进度无法继续，可以调小 <code>totalMemory</code> 的值，可能是服务器内存资源不够，也可能是其他原因，所以现在删除数据库实例，转而创建非容器数据库。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname <span class="token variable">${ORACLE_SID}</span> -sid  <span class="token variable">${ORACLE_SID}</span> -responseFile NO_VALUE -characterSet AL32UTF8 -sysPassword <span class="token number">123456</span> -systemPassword <span class="token number">123456</span> -databaseType MULTIPURPOSE -memoryMgmtType auto_sga -totalMemory <span class="token number">2000</span> -storageType FS -datafileDestination <span class="token string">"<span class="token variable">${DATA_DIR}</span>"</span> -redoLogFileSize <span class="token number">50</span> -emConfiguration NONE -ignorePreReqs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>根据实际情况调整 <code>totalMemory</code>，最后创建成功后提示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Executing Post Configuration Actions
+<span class="token number">100</span>% complete
+Database creation complete. For details check the logfiles at:
+ /u01/app/oracle/cfgtoollogs/dbca/cdb1.
+Database Information:
+Global Database Name:cdb1
+System Identifier<span class="token punctuation">(</span>SID<span class="token punctuation">)</span>:cdb1
+Look at the log <span class="token function">file</span> <span class="token string">"/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb14.log"</span> <span class="token keyword">for</span> further details.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后编辑 <code>/etc/oratab</code> 文件，将最后一行的 <code>cdb1:/u01/app/oracle/product/19.0.0/dbhome_1:N</code> 最后的 N 改成 Y。 </p>
+<h3 id="（3）静默删除数据库实例"><a href="#（3）静默删除数据库实例" class="headerlink" title="（3）静默删除数据库实例"></a>（3）静默删除数据库实例</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dbca -silent -deleteDatabase -sourcedb cdb1 -sid cdb1 -sysDBAUserName sys -sysDBAPassword <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意这里的 cdb1 是数据库 sid，使用 sysDBA 用户，密码是 123456</p>
+<h1 id="四、补充"><a href="#四、补充" class="headerlink" title="四、补充"></a>四、补充</h1><h2 id="1、文档"><a href="#1、文档" class="headerlink" title="1、文档"></a>1、文档</h2><p>多看官网文档</p>
+<ul>
+<li><p>19C：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/administration.html">https://docs.oracle.com/en/database/oracle/oracle-database/19/administration.html</a></p>
+</li>
+<li><p>Oracle SQL 参考：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/index.html">https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/index.html</a></p>
+</li>
+</ul>
+<h2 id="2、开放端口"><a href="#2、开放端口" class="headerlink" title="2、开放端口"></a>2、开放端口</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 Oracle 的 lsnrctl 命令</span>
+<span class="token punctuation">[</span>oracle@ol7-19 dbhome_1<span class="token punctuation">]</span>$ lsnrctl status
+
+LSNRCTL <span class="token keyword">for</span> Linux: Version <span class="token number">19.0</span>.0.0.0 - Production on <span class="token number">12</span>-APR-2022 09:41:00
+
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">1991</span>, <span class="token number">2019</span>, Oracle.  All rights reserved.
+
+Connecting to <span class="token punctuation">(</span>ADDRESS<span class="token operator">=</span><span class="token punctuation">(</span>PROTOCOL<span class="token operator">=</span>tcp<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST<span class="token operator">=</span><span class="token punctuation">)</span><span class="token punctuation">(</span>PORT<span class="token operator">=</span><span class="token number">1521</span><span class="token punctuation">))</span>
+STATUS of the LISTENER
+------------------------
+Alias                     LISTENER
+Version                   TNSLSNR <span class="token keyword">for</span> Linux: Version <span class="token number">19.0</span>.0.0.0 - Production
+Start Date                <span class="token number">12</span>-APR-2022 09:36:16
+Uptime                    <span class="token number">0</span> days <span class="token number">0</span> hr. <span class="token number">4</span> min. <span class="token number">44</span> sec
+Trace Level               off
+Security                  ON: Local OS Authentication
+SNMP                      OFF
+Listener Log File         /u01/app/oracle/diag/tnslsnr/ol7-19/listener/alert/log.xml
+Listening Endpoints Summary<span class="token punctuation">..</span>.
+  <span class="token punctuation">(</span>DESCRIPTION<span class="token operator">=</span><span class="token punctuation">(</span>ADDRESS<span class="token operator">=</span><span class="token punctuation">(</span>PROTOCOL<span class="token operator">=</span>tcp<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST<span class="token operator">=</span>ol7-19.localdomain<span class="token punctuation">)</span><span class="token punctuation">(</span>PORT<span class="token operator">=</span><span class="token number">1521</span><span class="token punctuation">))</span><span class="token punctuation">)</span>
+Services Summary<span class="token punctuation">..</span>.
+Service <span class="token string">"cdb1"</span> has <span class="token number">1</span> instance<span class="token punctuation">(</span>s<span class="token punctuation">)</span>.
+  Instance <span class="token string">"cdb1"</span>, status READY, has <span class="token number">1</span> handler<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">for</span> this service<span class="token punctuation">..</span>.
+Service <span class="token string">"cdb1XDB"</span> has <span class="token number">1</span> instance<span class="token punctuation">(</span>s<span class="token punctuation">)</span>.
+  Instance <span class="token string">"cdb1"</span>, status READY, has <span class="token number">1</span> handler<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">for</span> this service<span class="token punctuation">..</span>.
+The <span class="token builtin class-name">command</span> completed successfully<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到 Oracle 进程的端口是 1521：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换到 root</span>
+<span class="token function">su</span> -
+<span class="token comment"># 开放端口</span>
+firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">1521</span>/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-port<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3、使用-Navicat-远程连接-Oracle-数据库"><a href="#3、使用-Navicat-远程连接-Oracle-数据库" class="headerlink" title="3、使用 Navicat 远程连接 Oracle 数据库"></a>3、使用 Navicat 远程连接 Oracle 数据库</h2><p>在服务器上可以使用 <code>sqlplus</code> 连接 Oracle，使用方式和 <code>mysqld</code> 类似。</p>
+<p>通过 Navicat 连接远程 Oracle 时，新建连接后需要在高级选项中设置相应的角色，例如这里我们要以 SYS 账户连接，则需要这样设置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412220735.png"></p>
+<p>然后常规选项中输入相关信息，点击测试连接：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412220829.png"></p>
+<p>连接类型选择 Basic，TNS 方式需要在服务器端 <code>$ORACLE_HOME/network/admin</code> 目录下新建一个 <code>tnsnames.ora</code> 配置本地网络连接配置，比较麻烦，Basic 连接就不需要这个了。</p>
+<p>服务名或者 SID 在服务端使用 <code>lsnrctl status</code> 中可以看到，此处为 cdb1。</p>
+<p>用户名为 sys，密码为前面使用 dbca 静默安装时设置的。</p>
+<h2 id="4、OCI-和-SQLPlus-配置"><a href="#4、OCI-和-SQLPlus-配置" class="headerlink" title="4、OCI 和 SQLPlus 配置"></a>4、OCI 和 SQLPlus 配置</h2><p>如果出现了 OCI 导致的连接问题可以去官网下载对应数据库版本的 instant-client。</p>
+<p>由于连接 Oracle 数据库要求本地也拥有 Oracle 环境，但是完整的 Oracle 数据库配置太大，此时可以选择一个轻量级的 Oracle 客户端，也就是 <code>instant-client</code>。</p>
+<p>Navicat 自带的有，但是不能保证和开发者配置的 Oracle 版本匹配，如果不匹配就会出现连接失败的问题，此时可以下载对应版本的 OCI 并修改 Navicat 配置，注意配置后需要重启 Navicat。</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
+<p>在这个下载页面中找到和 Oracle 数据库版本对应的 <code>instant-client</code> 的 Basic 包，以及 <code>SQL*Plus</code> 包</p>
+<p>解压到某个目录，然后在 Navicat 的菜单中工具 -&gt; 选项 -&gt; 环境中进行配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412224453.png"></p>
+<p>注意配置成功后需要重启 Navicat。</p>
+<p>重启后再次连接 Oracle 数据库，按下键盘 <code>F6</code> 弹出 sqlplus 界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412224735.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/">https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/';
+        this.page.identifier = '/2022/04/12/centos7-install-oracle-database/';
+        this.page.title = 'CentOS7 Install Oracle Database';
+    };
+    let disqus_shortname = 'https-naivekyo-github-io';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/04/12/centos7-install-oracle-database/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221159.jpg" class="responsive-img" alt="CentOS7 Install Oracle Database">
+                        
+                        <span class="card-title">CentOS7 Install Oracle Database</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7 安装 Oracle Database 19C
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/08/design-patterns-of-singleton-and-factory/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221139.jpg" class="responsive-img" alt="Design Patterns Of Singleton and Factory">
+                        
+                        <span class="card-title">Design Patterns Of Singleton and Factory</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            设计模式之单例模式、工厂模式
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="27969834"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
