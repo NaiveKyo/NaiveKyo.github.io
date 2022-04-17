@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL">
+    <meta name="keywords" content="Design Patterns">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL QA | Miló&amp;Akoúo̱</title>
+    <title>Design Patterns Of Adapter And Bridge | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210720094140.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221227.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL QA</h1>
+                    <h1 class="description center-align post-title">Design Patterns Of Adapter And Bridge</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Design-Patterns/">
+                                <span class="chip bg-color">Design Patterns</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                Design Patterns
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-20
+                    2022-04-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-13
+                    2022-04-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    837
+                    3.2k
                 </div>
                 
 
@@ -685,108 +685,211 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL-Question-amp-Answer"><a href="#MySQL-Question-amp-Answer" class="headerlink" title="MySQL Question &amp; Answer"></a>MySQL Question &amp; Answer</h1><h2 id="1、MySQL-主键-id-不连续"><a href="#1、MySQL-主键-id-不连续" class="headerlink" title="1、MySQL 主键 id 不连续"></a>1、MySQL 主键 id 不连续</h2><blockquote>
-<p>Q</p>
+                <h1 id="一、适配器模式"><a href="#一、适配器模式" class="headerlink" title="一、适配器模式"></a>一、适配器模式</h1><blockquote>
+<p>案例</p>
 </blockquote>
-<p>创建 MySQL 表，主键设为自增，测试时添加了数据，但是最后删除了，此后插入数据，主键从删除的测试记录主键开始自增，最终导致主键 id 不连续。</p>
+<p>不同国家采取的插座规格是不一样的，但是我们可以买一个 多功能转接插口（适配器），这样就可以使用了</p>
+<h2 id="1、基本介绍"><a href="#1、基本介绍" class="headerlink" title="1、基本介绍"></a>1、基本介绍</h2><ul>
+<li>适配器模式（Adapter Pattern）将某个类的接口转换成客户端期望的另一个接口，主要目的是为了兼容性，让原本因接口不匹配而不能一起工作的两个类可以协同工作，其别名为包装器（Wrapper）</li>
+<li>适配器模式属于 <strong>结构型模式</strong></li>
+<li>主要分为三类：类适配器模式、对象适配器模式、接口适配器模式</li>
+</ul>
+<h2 id="2、工作原理"><a href="#2、工作原理" class="headerlink" title="2、工作原理"></a>2、工作原理</h2><ul>
+<li>适配器模式：将一个类的接口转换成另一种接口，让 <strong>原本接口不兼容的类可以兼容</strong></li>
+<li>从用户的角度看不到被适配者，是解耦的</li>
+<li>用户调用适配器转化出来的目标接口方法，适配器再调用被适配者的相关接口方法</li>
+<li>用户收到反馈结果，感觉只是和目标接口交互</li>
+</ul>
+<p>结构：</p>
+<p>适配器模式（Adapter）包含以下主要角色。</p>
+<ol>
+<li>目标（Target）接口：当前系统业务所期待的接口，它可以是抽象类或接口。</li>
+<li>适配者（Adaptee）类：它是被访问和适配的现存组件库中的组件接口。</li>
+<li>适配器（Adapter）类：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。</li>
+</ol>
+<h2 id="3、类适配器"><a href="#3、类适配器" class="headerlink" title="3、类适配器"></a>3、类适配器</h2><p><strong>类适配器模式</strong>：会增强耦合，用的较少</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145631.png"></p>
 <blockquote>
-<p>A</p>
+<p>案例 —— 电压问题</p>
+</blockquote>
+<p><strong>类适配器介绍：</strong></p>
+<p>基本介绍：Adapter 类、通过继承 src 类，实现 dst 类接口，完成 src -&gt; dst 的适配</p>
+<p>生活中，充电器就是 Adapter，220V 交流电相当于 src（被适配者），我们的目的 dst（目标）是 5V 直流电</p>
+<p>相关代码看 idea</p>
+<blockquote>
+<p>类适配器注意事项</p>
 </blockquote>
 <ul>
-<li>删除完测试数据，还没有新增数据，即还没有出现不连续的数据 ID 时，可以这样</li>
+<li>Java 是单根继承机制，所以类适配器需要继承 src 这一点算是一个缺点，因为这要求 dst 必须是接口，<strong>有一定局限性</strong>    </li>
+<li>src 类的方法在 Adapter 中会暴露出来，也增加了使用成本</li>
+<li>由于其继承了 src 类，所以它可以根据需求重写 src 类的方法，使得 Adapter 的<strong>灵活性增强了</strong></li>
 </ul>
-<p>重置主键自增的出发点</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>可以指定从哪一个值开始自增</p>
+<h2 id="4、对象适配器"><a href="#4、对象适配器" class="headerlink" title="4、对象适配器"></a>4、对象适配器</h2><ul>
+<li>基本思路和类的适配器相同，只是将 Adapter 类做修改，不是继承 src 类，而是聚合 src 类，以解决兼容性问题。即：持有 src 类，实现 dst 类接口，完成 src -&gt; dst 的适配</li>
+<li>根据 <strong>合成复用原则</strong>，在系统中应该尽量使用关联关系来替代继承关系</li>
+<li>对象适配器模式是适配器模式常用的一种</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145703.png"></p>
+<blockquote>
+<p>对象适配器注意事项</p>
+</blockquote>
 <ul>
-<li>表中已经出现不连续的主键 ID 时，可以这样</li>
+<li><p>对象适配器和类适配器其实算是一种思想，只不过实现的方式不同</p>
+<p>根据 <strong>合成复用原则</strong>，使用聚合代替继承，所以它解决了类适配器必须继承 src 的局限性问题，也不再要求 dst 必须是接口。</p>
+</li>
+<li><p>使用成本更低，更灵活。</p>
+</li>
 </ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@auto_id</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">UPDATE</span> 表名 <span class="token keyword">SET</span> 自增字段名 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">@auto_id</span> :<span class="token operator">=</span> <span class="token variable">@auto_id</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="2、MySQL-关键字和保留字"><a href="#2、MySQL-关键字和保留字" class="headerlink" title="2、MySQL 关键字和保留字"></a>2、MySQL 关键字和保留字</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>数据库字段设置为 MySQL 保留字或者关键字，造成执行 sql 语句时提示语法错误。</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>将对应字段修改即可</p>
-<p>附：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html">https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html</a></p>
-<h2 id="3、表中字段为数据库关键字"><a href="#3、表中字段为数据库关键字" class="headerlink" title="3、表中字段为数据库关键字"></a>3、表中字段为数据库关键字</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>在 MySQL 中查询表，有一张表的字段名为 <code>no</code>，为数据库关键字，编写 SQL 语句时，如何查询该字段</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号</p>
-<p><mark>对比 Sql Server，在 Sql Server 数据库中遇到关键字使用中括号括起来，<code>[]</code></mark></p>
-<p><mark>对比 Oracle，在 Oracle 数据库中遇到关键字使用双引号括起来，<code>""</code></mark></p>
-<h2 id="4、匹配某个字段的字符"><a href="#4、匹配某个字段的字符" class="headerlink" title="4、匹配某个字段的字符"></a>4、匹配某个字段的字符</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>匹配这样的记录，某个字段共 8 位，前四位为 0000，匹配后四位：</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 方法一：使用正则表达式</span>
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> categories <span class="token keyword">WHERE</span> path_code <span class="token operator">REGEXP</span> <span class="token string">'^0000.{4}$'</span><span class="token punctuation">;</span>
-
-<span class="token comment">-- 方法二：使用模糊匹配</span>
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token punctuation">`</span>categories<span class="token punctuation">`</span> <span class="token keyword">where</span> path_code <span class="token operator">like</span> <span class="token string">'0000____'</span> <span class="token operator">AND</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="5、检测是否存在符合条件的记录"><a href="#5、检测是否存在符合条件的记录" class="headerlink" title="5、检测是否存在符合条件的记录"></a>5、检测是否存在符合条件的记录</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>某个场景需要先查询是否有符合条件的数据，在进行后面的操作。</p>
-<p>一般使用的是：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span>
-
-<span class="token comment">-- 可以使用 explain 测试一下</span>
-<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>在少量的数据中使用上面的语句是没有问题，但是一旦数据量变大，该语句执行就会变慢，而使用如下语句性能更高</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件 <span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>总结：</p>
+<h2 id="5、接口适配器模式"><a href="#5、接口适配器模式" class="headerlink" title="5、接口适配器模式"></a>5、接口适配器模式</h2><p>介绍：</p>
 <ul>
-<li>少量数据 <strong>count(*)</strong> 和 <strong>limit 1</strong> 没有什么区别</li>
-<li>但是大量数据下最好使用 <strong>limit 1</strong>，效率更高</li>
+<li>一些书籍称为：适配器模式（Default Adapter Pattern）或缺省适配器模式</li>
+<li>当不需要全部实现接口提供的方法时，可以先设计一个抽象类实现接口，并为该接口中每个方法提供一个默认实现（空方法），那么该抽象类的子类可有选择地覆盖父类的某些方法来实现需求</li>
+<li>适用于使用一个接口时不想使用其所有方法的情况</li>
 </ul>
-<h2 id="6、from-多个表-join"><a href="#6、from-多个表-join" class="headerlink" title="6、from 多个表 join"></a>6、from 多个表 join</h2><p>将多个表和其他表进行联接，需要用括号括起来：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> a<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>xxx
-<span class="token keyword">from</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
-<span class="token keyword">left</span> <span class="token keyword">join</span> c <span class="token keyword">on</span> a<span class="token punctuation">.</span>id <span class="token operator">=</span> c<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="7、查询表时模拟序号"><a href="#7、查询表时模拟序号" class="headerlink" title="7、查询表时模拟序号"></a>7、查询表时模拟序号</h2><p>可以使用临时变量：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token variable">@rownum</span><span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">AS</span> <span class="token string">'序号'</span><span class="token punctuation">,</span> 
-c<span class="token punctuation">.</span>course_no <span class="token keyword">AS</span> <span class="token string">'课程编号'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_name <span class="token keyword">AS</span> <span class="token string">'课程名称'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_period <span class="token keyword">AS</span> <span class="token string">'总学时'</span><span class="token punctuation">,</span>
-c<span class="token punctuation">.</span>course_credit <span class="token keyword">AS</span> <span class="token string">'学分'</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>academy_name <span class="token keyword">AS</span> <span class="token string">'所属院系'</span><span class="token punctuation">,</span> 
-<span class="token punctuation">(</span><span class="token keyword">CASE</span> c<span class="token punctuation">.</span>course_type <span class="token keyword">WHEN</span> <span class="token number">0</span> <span class="token keyword">THEN</span> <span class="token string">'必修'</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'公选课'</span> <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'限选课'</span> <span class="token keyword">END</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'课程类别'</span><span class="token punctuation">,</span>
-<span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>course_exam <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'考试'</span><span class="token punctuation">,</span> <span class="token string">'考察'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'考试方式'</span>
-<span class="token keyword">FROM</span> <span class="token punctuation">(</span>course <span class="token keyword">AS</span> c<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> t<span class="token punctuation">)</span>
-<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> academy <span class="token keyword">AS</span> a <span class="token keyword">ON</span> a<span class="token punctuation">.</span>academy_code <span class="token operator">=</span> c<span class="token punctuation">.</span>course_academy_code <span class="token operator">AND</span> a<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span>
-<span class="token keyword">WHERE</span> c<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><mark>注：在 DQL 和 DML 语句中 = 的意思就是判断相等，而在用户变量的赋值操作时使用 :=，例如 set @tmp:=1、@tmp:=@tmp+1</mark></p>
-<h2 id="8、where-和-having"><a href="#8、where-和-having" class="headerlink" title="8、where 和 having"></a>8、where 和 having</h2><ul>
-<li>where 是对数据库指定表的字段进行条件筛选；</li>
-<li>having 是对 select 中选中的字段的数据进行条件筛选。</li>
+<p>相当典型的案例就是 Android 中添加监听器，一般使用匿名内部类实现某个抽象类，而这个抽象类继承了一个接口，将接口中不需要的方法全部覆盖成空方法。</p>
+<h2 id="6、适配器模式在-SpringMVC-框架应用中源码分析"><a href="#6、适配器模式在-SpringMVC-框架应用中源码分析" class="headerlink" title="6、适配器模式在 SpringMVC 框架应用中源码分析"></a>6、适配器模式在 SpringMVC 框架应用中源码分析</h2><ul>
+<li>SpringMVC 中的 HandlerAdapter，就使用了适配器模式<ul>
+<li>回顾 springmvc 的三个步骤：HandlerMapping、HandlerAdapter、ViewResolever</li>
+<li>核心：<strong>DispatcherServlet</strong>，当它捕获到请求的时候，会调用其内部方法 <code>doDispatch</code></li>
 </ul>
+</li>
+<li>使用 HandlerAdapter 的原因分析：<ul>
+<li>可以看到处理器的类型不同，有多重实现方式，那么调用方式就不是确定的，如果需要直接调用 Controller 方法，需要调用的时候就得不断使用 if else 判断是哪一种子类然后执行，那么，如果后面要扩展 Controller，就需要修改原来的代码，违背了 OCP 原则。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>自己动手简单实现 DispatcherServlet 适配器模式</p>
+</blockquote>
+<p>说明：</p>
+<ul>
+<li>Spring 定义了一个适配接口，使得每一种 Controller 有一种对应的适配器实现类</li>
+<li>适配器代替 Controller 执行相应的方法</li>
+<li>扩展 Controller 时，只需要增加一个适配器就完成了 SpringMVC 的扩展</li>
+</ul>
+<p>代码看 idea ，这里只上 DispatcherSerlvet 简易版本：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DispatcherServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HandlerAdapter</span><span class="token punctuation">&gt;</span></span> handlerAdapters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">DispatcherServlet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        handlerAdapters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SimpleHandlerAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        handlerAdapters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HttpHandlerAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        handlerAdapters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">AnnotationHandlerAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doDispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 此处模拟 SpringMVC 从 request 获取 handler 的情形</span>
+        <span class="token comment">// 适配器可以获取希望的 Controller</span>
+        <span class="token comment">// 这一步在 SpringMVC 中由 HandlerMapping 获取到对应的 Handler（即 Controller）</span>
+        <span class="token comment">// HttpController controller = new HttpController();</span>
+        <span class="token class-name">AnnotationController</span> controller <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// SimpleController controller = new SimpleController();</span>
+
+        <span class="token comment">// 得到对应的适配器</span>
+        <span class="token class-name">HandlerAdapter</span> adapter <span class="token operator">=</span> <span class="token function">getHandler</span><span class="token punctuation">(</span>controller<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 通过适配器执行对应的 controller 中的方法</span>
+        adapter<span class="token punctuation">.</span><span class="token function">handle</span><span class="token punctuation">(</span>controller<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">HandlerAdapter</span> <span class="token function">getHandler</span><span class="token punctuation">(</span><span class="token class-name">Controller</span> controller<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">HandlerAdapter</span> adapter <span class="token operator">:</span> handlerAdapters<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>adapter<span class="token punctuation">.</span><span class="token function">supports</span><span class="token punctuation">(</span>controller<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> adapter<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="7、适配器模式注意事项"><a href="#7、适配器模式注意事项" class="headerlink" title="7、适配器模式注意事项"></a>7、适配器模式注意事项</h2><ul>
+<li>三种命名方式，是根据 adaptee 是以怎样的形式给 adapter 来命名的<ul>
+<li>类适配器：Adapter 将 Adaptee 类继承</li>
+<li>对象适配器：Adapter 将 Adaptee 聚合</li>
+<li>接口适配器：Adapter 将 Adaptee 实现</li>
+</ul>
+</li>
+<li>Adapter 模式最大的作用还是将原来不兼容的接口融合到一起工作</li>
+<li>实际开发中，实现起来不拘泥于这三种经典的适配器模式</li>
+</ul>
+<h2 id="8、模式应用场景及扩展"><a href="#8、模式应用场景及扩展" class="headerlink" title="8、模式应用场景及扩展"></a>8、模式应用场景及扩展</h2><blockquote>
+<p>应用场景</p>
+</blockquote>
+<p>适配器模式（Adapter）通常适用于以下场景。</p>
+<ul>
+<li>以前开发的系统存在满足新系统功能需求的类，但其接口同新系统的接口不一致。</li>
+<li>使用第三方提供的组件，但组件接口定义和自己要求的接口定义不同。</li>
+</ul>
+<blockquote>
+<p>模式的扩展</p>
+</blockquote>
+<p>适配器模式（Adapter）可扩展为双向适配器模式，双向适配器类既可以把适配者接口转换成目标接口，也可以把目标接口转换成适配者接扣</p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1361.html">http://c.biancheng.net/view/1361.html</a></p>
+<h1 id="二、桥接模式"><a href="#二、桥接模式" class="headerlink" title="二、桥接模式"></a>二、桥接模式</h1><h2 id="1、介绍和类图"><a href="#1、介绍和类图" class="headerlink" title="1、介绍和类图"></a>1、介绍和类图</h2><p>在现实生活中，某些类具有两个或多个维度的变化，如图形既可按形状分，又可按颜色分。如何设计类似于 Photoshop 这样的软件，能画不同形状和不同颜色的图形呢？如果用继承方式，m 种形状和 n 种颜色的图形就有 m×n 种，不但对应的子类很多，而且扩展困难。</p>
+<p>当然，这样的例子还有很多，如不同颜色和字体的文字、不同品牌和功率的汽车、不同性别和职业的男女、支持不同平台和不同文件格式的媒体播放器等。如果用桥接模式就能很好地解决这些问题。</p>
+<blockquote>
+<p>定义和特点</p>
+</blockquote>
+<p>基本介绍：</p>
+<ul>
+<li>桥接模式（Bridge 模式）是指：<strong>将实现与抽象放在两个不同的类层次中，使两个层次可以独立改变</strong></li>
+<li>是一种<strong>结构型设计模式</strong></li>
+<li>Bridge 模式基于<strong>类的最小设计原则</strong>，通过使用封装、聚合及继承等行为让不同的类承担不同的职责。它的主要特点是把抽象（Abstraction）与行为实现（Implementation）分离开来，从而可以保持各部分的独立性以及应对它们的功能扩展</li>
+</ul>
+<p>类图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145725.png"></p>
+<p>分析：从图中可以看到抽象和实现是两个部分</p>
+<ul>
+<li>客户类：桥接模式的调用者</li>
+<li>抽象化角色：维护了 Implementor （及它的具体实现化角色），二者是聚合关系，Abstraction 充当的桥接类，联系抽象和实现</li>
+<li>扩展抽象化角色：是 Abstraction 的子类</li>
+<li>Implementor：行为实现类的接口</li>
+<li>具体实现化角色：行为的具体实现类</li>
+<li>可以看出：这里的抽象类和接口是聚合关系，也是调用和被调用的关系</li>
+</ul>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<ul>
+<li>抽象与实现分离，扩展能力强</li>
+<li>符合开闭原则</li>
+<li>符合合成复用原则</li>
+<li>其实现细节对客户透明</li>
+</ul>
+<p>缺点是：由于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，能正确地识别出系统中两个独立变化的维度，这增加了系统的理解与设计难度。</p>
+<blockquote>
+<p>角色</p>
+</blockquote>
+<ul>
+<li>抽象化（Abstraction）角色：定义抽象类，并包含一个对实现化对象的引用。</li>
+<li>扩展抽象化（Refined Abstraction）角色：是抽象化角色的子类，实现父类中的业务方法，并通过聚合关系调用实现化角色中的业务方法。</li>
+<li>实现化（Implementor）角色：定义实现化角色的接口，供扩展抽象化角色调用。</li>
+<li>具体实现化（Concrete Implementor）角色：给出实现化角色接口的具体实现。</li>
+</ul>
+<h2 id="2、JDBC-源码分析（Driver）"><a href="#2、JDBC-源码分析（Driver）" class="headerlink" title="2、JDBC 源码分析（Driver）"></a>2、JDBC 源码分析（Driver）</h2><ul>
+<li>JDBC 的 Driver 接口，如果从桥接模式看，Driver 就是一个接口，下面可以有 MySql 的 Driver、Oracle 的 Driver，这些就可以看作接口的实现类</li>
+</ul>
+<h2 id="3、桥接模式注意事项"><a href="#3、桥接模式注意事项" class="headerlink" title="3、桥接模式注意事项"></a>3、桥接模式注意事项</h2><ul>
+<li>实现了抽象和实现部分的分离，从而极大的提供了系统的灵活性，让抽象部分和实现部分独立开来，这有助于系统进行分层设计，从而产生更好的结构化系统。</li>
+<li>对于系统的高层部分，只需要知道抽象部分和实现部分的接口就可以了，其他的部分由具体业务来完成</li>
+<li>桥接模式替代多层继承方案，可以减少子类的个数，降低系统的管理和维护成本</li>
+<li>桥接模式的引入增加了系统的理解和设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象层进行设计和编程</li>
+<li>桥接模式要求正确识别出系统中两个独立变化的维度，因此其使用范围有一定的局限性，即需要有这样的应用场景。</li>
+</ul>
+<h2 id="4、应用场景"><a href="#4、应用场景" class="headerlink" title="4、应用场景"></a>4、应用场景</h2><p>当一个类内部具备两种或多种变化维度时，使用桥接模式可以解耦这些变化的维度，使高层代码架构稳定。</p>
+<p>桥接模式通常适用于以下场景。</p>
+<ul>
+<li>当一个类存在两个独立变化的维度，且这两个维度都需要进行扩展时。</li>
+<li>当一个系统不希望使用继承或因为多层次继承导致系统类的个数急剧增加时。</li>
+<li>当一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性时。</li>
+</ul>
+<p>桥接模式的一个常见使用场景就是替换继承。我们知道，继承拥有很多优点，比如，抽象、封装、多态等，父类封装共性，子类实现特性。继承可以很好的实现代码复用（封装）的功能，但这也是继承的一大缺点。</p>
+<p>因为父类拥有的方法，子类也会继承得到，无论子类需不需要，这说明继承具备强侵入性（父类代码侵入子类），同时会导致子类臃肿。因此，在设计模式中，有一个原则为优先使用组合/聚合，而不是继承。（<strong>合成复用原则</strong>）</p>
+<p>很多时候，我们分不清该使用继承还是组合/聚合或其他方式等，其实可以从现实语义进行思考。因为软件最终还是提供给现实生活中的人使用的，是服务于人类社会的，软件是具备现实场景的。当我们从纯代码角度无法看清问题时，现实角度可能会提供更加开阔的思路。</p>
+<h2 id="5、扩展"><a href="#5、扩展" class="headerlink" title="5、扩展"></a>5、扩展</h2><p>在软件开发中，有时桥接（Bridge）模式可与适配器模式联合使用，当桥接（Bridge）模式的实现化角色的接口与现有类的接口不一致时，可以在二者中间定义一个适配器将二者连接起来，其具体结构图如图 5 所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145758.png"></p>
 
                 
             </div>
@@ -813,7 +916,7 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/07/20/mysql-qa/">https://naivekyo.github.io/2021/07/20/mysql-qa/</a>
+                    <a href="https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/">https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -851,8 +954,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Design-Patterns/">
+                                    <span class="chip bg-color">Design Patterns</span>
                                 </a>
                             
                         </div>
@@ -1015,9 +1118,9 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2021/07/20/mysql-qa/';
-        this.page.identifier = '/2021/07/20/mysql-qa/';
-        this.page.title = 'MySQL QA';
+        this.page.url = 'https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/';
+        this.page.identifier = '/2022/04/15/design-patterns-of-adapter-and-bridge/';
+        this.page.title = 'Design Patterns Of Adapter And Bridge';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -1049,30 +1152,30 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/07/25/java-thread-rudimentary-knowledge/">
+                <a href="/2022/04/17/design-patterns-of-decorator-and-composite/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210725214655.jpg" class="responsive-img" alt="Java Thread Rudimentary Knowledge">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221240.jpg" class="responsive-img" alt="Design Patterns Of Decorator And Composite">
                         
-                        <span class="card-title">Java Thread Rudimentary Knowledge</span>
+                        <span class="card-title">Design Patterns Of Decorator And Composite</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 多线程基础知识
+                            设计模式之装饰器模式、组合模式
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java-Concurrent/" class="post-category">
-                                    Java Concurrent
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
                                 </a>
                             
                             
@@ -1082,8 +1185,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java-Concurrent/">
-                        <span class="chip bg-color">Java Concurrent</span>
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
                     </a>
                     
                 </div>
@@ -1097,30 +1200,30 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/17/spring-boot-multienvironment-switch/">
+                <a href="/2022/04/14/design-patterns-of-prototype-and-builder/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210728174304.jpg" class="responsive-img" alt="Spring Boot Multienvironment Switch">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221211.jpg" class="responsive-img" alt="Design Patterns Of Prototype And Builder">
                         
-                        <span class="card-title">Spring Boot Multienvironment Switch</span>
+                        <span class="card-title">Design Patterns Of Prototype And Builder</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Boot 多环境开发
+                            设计模式之原型模式、建造者模式
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Boot/" class="post-category">
-                                    Spring Boot
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
                                 </a>
                             
                             
@@ -1130,8 +1233,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Boot/">
-                        <span class="chip bg-color">Spring Boot</span>
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
                     </a>
                     
                 </div>

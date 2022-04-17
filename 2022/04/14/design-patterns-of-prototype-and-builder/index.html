@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MySQL">
+    <meta name="keywords" content="Design Patterns">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MySQL QA | Miló&amp;Akoúo̱</title>
+    <title>Design Patterns Of Prototype And Builder | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -502,12 +502,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210720094140.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221211.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MySQL QA</h1>
+                    <h1 class="description center-align post-title">Design Patterns Of Prototype And Builder</h1>
                 </div>
             </div>
         </div>
@@ -626,8 +626,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Design-Patterns/">
+                                <span class="chip bg-color">Design Patterns</span>
                             </a>
                         
                     </div>
@@ -638,8 +638,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                Design Patterns
                             </a>
                         
                     </div>
@@ -651,21 +651,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-07-20
+                    2022-04-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-13
+                    2022-04-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    837
+                    3.3k
                 </div>
                 
 
@@ -685,108 +685,225 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL-Question-amp-Answer"><a href="#MySQL-Question-amp-Answer" class="headerlink" title="MySQL Question &amp; Answer"></a>MySQL Question &amp; Answer</h1><h2 id="1、MySQL-主键-id-不连续"><a href="#1、MySQL-主键-id-不连续" class="headerlink" title="1、MySQL 主键 id 不连续"></a>1、MySQL 主键 id 不连续</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>创建 MySQL 表，主键设为自增，测试时添加了数据，但是最后删除了，此后插入数据，主键从删除的测试记录主键开始自增，最终导致主键 id 不连续。</p>
+                <h1 id="一、原型模式"><a href="#一、原型模式" class="headerlink" title="一、原型模式"></a>一、原型模式</h1><p>在有些系统中，存在大量相同或相似对象的创建问题，如果用传统的构造函数来创建对象，会比较复杂且耗时耗资源，用原型模式生成对象就很高效，就像孙悟空拔下猴毛轻轻一吹就变出很多孙悟空一样简单。</p>
+<h2 id="1、传统方法"><a href="#1、传统方法" class="headerlink" title="1、传统方法"></a>1、传统方法</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Sheep</span> sheep <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sheep</span><span class="token punctuation">(</span><span class="token string">"tom"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"白色"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 传统方法复制</span>
+<span class="token class-name">Sheep</span> sheep2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sheep</span><span class="token punctuation">(</span>sheep<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sheep<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sheep<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>优缺点：</p>
+<ul>
+<li>好理解，易操作</li>
+<li>创建新的对象总是需要重新获取原始对象的属性，如果对象比较复杂，效率就会变低</li>
+<li>总是需要重新初始化对象，而不是动态的获得对象，不够灵活</li>
+<li>改进：<ul>
+<li><strong>思路：Java Object 类提供了一个 <code>clone()</code> 方法</strong>，该方法可以将 Java 对象复制一份，但是需要实现 clone 的 Java 类必须实现 <code>Cloneable</code> 接口（<strong>原型模式</strong>）</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、原型模式（优缺点）"><a href="#2、原型模式（优缺点）" class="headerlink" title="2、原型模式（优缺点）"></a>2、原型模式（优缺点）</h2><p>基本介绍：</p>
+<ol>
+<li>原型模式（Prototype）是指：用原型实例创建对象的种类，并且通过拷贝这些原型，创建新的对象</li>
+<li>原型模式是一种创建型设计模式，允许一个对象再创建另外一个可定制的对象，无需知道如如何创建的细节</li>
+<li>工作原理：通过将一个原型对象传给那个要发动创建的对象，这个要发动创建的对象通过请求原型对象拷贝它们自己来实现创建，即：对象.clone()</li>
+</ol>
+<p>结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145124.png"></p>
+<p>实现：</p>
+<ul>
+<li><strong>Java 中的 Object 类提供了浅克隆的 clone() 方法，具体原型类只要实现 Cloneable 接口就可实现对象的浅克隆，这里的 Cloneable 接口就是抽象原型类。</strong></li>
+</ul>
+<p>说明：</p>
+<ol>
+<li>抽象原型类：规定了具体原型对象必须<strong>实现的接口</strong>。</li>
+<li>具体原型类：实现抽象原型类的 clone() 方法，它是可被复制的对象。</li>
+<li>访问类：使用具体原型类中的 clone() 方法来复制新的对象。</li>
+</ol>
 <blockquote>
-<p>A</p>
+<p>优缺点：</p>
 </blockquote>
 <ul>
-<li>删除完测试数据，还没有新增数据，即还没有出现不连续的数据 ID 时，可以这样</li>
+<li>优点：<ul>
+<li>Java 自带的原型模式基于内存二进制流的复制，在性能上比直接 new 一个对象更加优良。</li>
+<li>可以使用深克隆方式保存对象的状态，使用原型模式将对象复制一份，并将其状态保存起来，简化了创建对象的过程，以便在需要的时候使用（例如恢复到历史某一状态），可辅助实现撤销操作。</li>
 </ul>
-<p>重置主键自增的出发点</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>缺点：<ul>
+<li>需要为每一个类都配置一个 clone 方法</li>
+<li>clone 方法位于类的内部，当对已有类进行改造的时候，需要修改代码，违背了开闭原则。</li>
+<li>当实现深克隆时，需要编写较为复杂的代码，而且当对象之间存在多重嵌套引用时，为了实现深克隆，每一层对象对应的类都必须支持深克隆，实现起来会比较麻烦。因此，深克隆、浅克隆需要运用得当。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、Spring-源码应用"><a href="#3、Spring-源码应用" class="headerlink" title="3、Spring 源码应用"></a>3、Spring 源码应用</h2><p>Spring 中原型 bean 的创建，就使用了原型模式</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>people<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.naivekyo.springanalysis.People<span class="token punctuation">"</span></span> <span class="token attr-name">scope</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prototype<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>张三<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>21<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>可以指定从哪一个值开始自增</p>
+<h2 id="4、浅拷贝和深拷贝"><a href="#4、浅拷贝和深拷贝" class="headerlink" title="4、浅拷贝和深拷贝"></a>4、浅拷贝和深拷贝</h2><blockquote>
+<p>浅拷贝</p>
+</blockquote>
+<ol>
+<li>对于数据类型是基本数据类型的成员变量，浅拷贝会直接进行<strong>值传递</strong>，也就是将该属性值复制一份给新的对象</li>
+<li>对于数据类型是引用数据类型的成员变量，比如说成员变量是某个数组、某个类的对象等等，那么浅拷贝会进行<strong>引用传递</strong>，也就是只是将该成员变量的引用值（内存地址）复制一份给新的对象。因此实际上两个对象的该成员变量都指向同一个实例，这种情况下，在一个对象中修改该成员变量会影响到另一个对象的该成员变量</li>
+<li>Java 中的 Object 类提供了浅克隆的 clone() 方法，具体原型类只要实现 Cloneable 接口就可实现对象的浅克隆，这里的 Cloneable 接口就是抽象原型类。</li>
+</ol>
+<blockquote>
+<p>深拷贝</p>
+</blockquote>
+<ol>
+<li>复制对象的所有基本数据类型的成员变量值</li>
+<li>为所有引用数据类型的成员变量申请存储空间，并复制每个引用数据类型成员变量所引用的对象，直到该对象可达的所有对象。也就是说，对象进行深拷贝要对整个对象进行拷贝。</li>
+<li><strong>深拷贝实现方式：</strong><ul>
+<li>1：<strong>重写 clone 方法</strong>实现深拷贝</li>
+<li>2：通过<strong>对象序列化</strong>实现深拷贝</li>
+</ul>
+</li>
+</ol>
+<h2 id="5、深拷贝详解"><a href="#5、深拷贝详解" class="headerlink" title="5、深拷贝详解"></a>5、深拷贝详解</h2><blockquote>
+<p>方式一：重写 clone 方法</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 深拷贝：clone()</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CloneNotSupportedException</span> <span class="token punctuation">{</span>
+
+    <span class="token class-name">Object</span> deep <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 完成对基本数据类型的克隆</span>
+    deep <span class="token operator">=</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 单独处理引用类型</span>
+    <span class="token class-name">DeepPrototype</span> deepPrototype <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">DeepPrototype</span><span class="token punctuation">)</span> deep<span class="token punctuation">;</span>
+    deepPrototype<span class="token punctuation">.</span>deepCloneableTarget <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">DeepCloneableTarget</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>deepCloneableTarget<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> deepPrototype<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<blockquote>
+<p>方式二：序列化实现深拷贝（推荐使用）</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 深拷贝：序列化（推荐）</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">deepClone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 创建流对象</span>
+    <span class="token class-name">ByteArrayOutputStream</span> bos <span class="token operator">=</span>  <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token class-name">ByteArrayInputStream</span> bis <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">ObjectOutputStream</span> oos <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token class-name">ObjectInputStream</span> ois <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 序列化操作</span>
+        bos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        oos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectOutputStream</span><span class="token punctuation">(</span>bos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        oos<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 把当前对象转换成字节流</span>
+
+        <span class="token comment">// 反序列化</span>
+        bis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayInputStream</span><span class="token punctuation">(</span>bos<span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ois <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectInputStream</span><span class="token punctuation">(</span>bis<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">DeepPrototype</span> copyObj <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">DeepPrototype</span><span class="token punctuation">)</span> ois<span class="token punctuation">.</span><span class="token function">readObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> copyObj<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> <span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 关闭流</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            bos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            oos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            bis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ois<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="6、原型模式注意事项"><a href="#6、原型模式注意事项" class="headerlink" title="6、原型模式注意事项"></a>6、原型模式注意事项</h2><ol>
+<li>创建新的对象比较复杂时，可以利用原型模式简化对象的创建过程，同时也能提高效率</li>
+<li>不用重新初始化对象，而是动态的获得对象运行时的状态</li>
+<li>如果原始对象发生变化（增加或者减少属性），其他克隆对象也会发生相应的变化，无需修改代码</li>
+<li>再实现深克隆的时候可能需要比较复杂的代码（重写 clone 方法）</li>
+<li><strong>缺点</strong>：需要为每一个类配备一个克隆方法，这对全新的类来说不是很复杂，但对已有的类进行改造时，需要修改源代码，违背了 ocp 原则。</li>
+</ol>
+<h2 id="7、原型模式的应用场景"><a href="#7、原型模式的应用场景" class="headerlink" title="7、原型模式的应用场景"></a>7、原型模式的应用场景</h2><p>原型模式通常适用于以下场景。</p>
 <ul>
-<li>表中已经出现不连续的主键 ID 时，可以这样</li>
+<li>对象之间相同或相似，即只是个别的几个属性不同的时候。</li>
+<li>创建对象成本较大，例如初始化时间长，占用CPU太多，或者占用网络资源太多等，需要优化资源。</li>
+<li>创建一个对象需要繁琐的数据准备或访问权限等，需要提高性能或者提高安全性。</li>
+<li>系统中大量使用该类对象，且各个调用者都需要给它的属性重新赋值。</li>
 </ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@auto_id</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">UPDATE</span> 表名 <span class="token keyword">SET</span> 自增字段名 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">@auto_id</span> :<span class="token operator">=</span> <span class="token variable">@auto_id</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">AUTO_INCREMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="2、MySQL-关键字和保留字"><a href="#2、MySQL-关键字和保留字" class="headerlink" title="2、MySQL 关键字和保留字"></a>2、MySQL 关键字和保留字</h2><blockquote>
-<p>Q</p>
+<h1 id="二、建造者模式"><a href="#二、建造者模式" class="headerlink" title="二、建造者模式"></a>二、建造者模式</h1><p>建造者模式将复杂对象中变化与不变的部分分离开</p>
+<p>举个例子：盖房子问题</p>
+<p>盖房子的步骤是确定的，打地基、砌墙、封底</p>
+<p>但是建成房子的种类有很多：普通房子、高楼 等等</p>
+<h2 id="1、传统方式"><a href="#1、传统方式" class="headerlink" title="1、传统方式"></a>1、传统方式</h2><p>AbstractHouse </p>
+<p>— CommonHouse</p>
+<p>Client</p>
+<ol>
+<li>优点：实现比较简单</li>
+<li>设计的程序结构：没有设计缓存层对象，程序的扩展和维护不好，也就是说，这种设计方式：将产品和创建产品的过程封装在一起，增强了耦合性</li>
+<li>解决方案：将产品和产品建造过程解耦 =》 建造者模式</li>
+</ol>
+<h2 id="2、建造者模式"><a href="#2、建造者模式" class="headerlink" title="2、建造者模式"></a>2、建造者模式</h2><blockquote>
+<p>基本介绍</p>
 </blockquote>
-<p>数据库字段设置为 MySQL 保留字或者关键字，造成执行 sql 语句时提示语法错误。</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>将对应字段修改即可</p>
-<p>附：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html">https://dev.mysql.com/doc/mysqld-version-reference/en/keywords.html</a></p>
-<h2 id="3、表中字段为数据库关键字"><a href="#3、表中字段为数据库关键字" class="headerlink" title="3、表中字段为数据库关键字"></a>3、表中字段为数据库关键字</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>在 MySQL 中查询表，有一张表的字段名为 <code>no</code>，为数据库关键字，编写 SQL 语句时，如何查询该字段</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>SQL 语句将该字段用单引号括起来，如果不行，可以使用反引号</p>
-<p><mark>对比 Sql Server，在 Sql Server 数据库中遇到关键字使用中括号括起来，<code>[]</code></mark></p>
-<p><mark>对比 Oracle，在 Oracle 数据库中遇到关键字使用双引号括起来，<code>""</code></mark></p>
-<h2 id="4、匹配某个字段的字符"><a href="#4、匹配某个字段的字符" class="headerlink" title="4、匹配某个字段的字符"></a>4、匹配某个字段的字符</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>匹配这样的记录，某个字段共 8 位，前四位为 0000，匹配后四位：</p>
-<blockquote>
-<p>A</p>
-</blockquote>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 方法一：使用正则表达式</span>
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> categories <span class="token keyword">WHERE</span> path_code <span class="token operator">REGEXP</span> <span class="token string">'^0000.{4}$'</span><span class="token punctuation">;</span>
-
-<span class="token comment">-- 方法二：使用模糊匹配</span>
-<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token punctuation">`</span>categories<span class="token punctuation">`</span> <span class="token keyword">where</span> path_code <span class="token operator">like</span> <span class="token string">'0000____'</span> <span class="token operator">AND</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="5、检测是否存在符合条件的记录"><a href="#5、检测是否存在符合条件的记录" class="headerlink" title="5、检测是否存在符合条件的记录"></a>5、检测是否存在符合条件的记录</h2><blockquote>
-<p>Q</p>
-</blockquote>
-<p>某个场景需要先查询是否有符合条件的数据，在进行后面的操作。</p>
-<p>一般使用的是：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span>
-
-<span class="token comment">-- 可以使用 explain 测试一下</span>
-<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>A</p>
-</blockquote>
-<p>在少量的数据中使用上面的语句是没有问题，但是一旦数据量变大，该语句执行就会变慢，而使用如下语句性能更高</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span> id <span class="token operator">=</span> 条件 <span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>总结：</p>
 <ul>
-<li>少量数据 <strong>count(*)</strong> 和 <strong>limit 1</strong> 没有什么区别</li>
-<li>但是大量数据下最好使用 <strong>limit 1</strong>，效率更高</li>
+<li>建造者模式（Builder Pattern）又叫生成器模式，是一种对象构建模式，它可以将复杂对象的建造过程抽象出来（抽象类别），使这个抽象过程的不同实现方式可以构造出不同表现（属性）的对象</li>
+<li>建造者模式 是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体实现细节</li>
 </ul>
-<h2 id="6、from-多个表-join"><a href="#6、from-多个表-join" class="headerlink" title="6、from 多个表 join"></a>6、from 多个表 join</h2><p>将多个表和其他表进行联接，需要用括号括起来：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> a<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token operator">*</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>xxx
-<span class="token keyword">from</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
-<span class="token keyword">left</span> <span class="token keyword">join</span> c <span class="token keyword">on</span> a<span class="token punctuation">.</span>id <span class="token operator">=</span> c<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="7、查询表时模拟序号"><a href="#7、查询表时模拟序号" class="headerlink" title="7、查询表时模拟序号"></a>7、查询表时模拟序号</h2><p>可以使用临时变量：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token variable">@rownum</span><span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">AS</span> <span class="token string">'序号'</span><span class="token punctuation">,</span> 
-c<span class="token punctuation">.</span>course_no <span class="token keyword">AS</span> <span class="token string">'课程编号'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_name <span class="token keyword">AS</span> <span class="token string">'课程名称'</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>course_period <span class="token keyword">AS</span> <span class="token string">'总学时'</span><span class="token punctuation">,</span>
-c<span class="token punctuation">.</span>course_credit <span class="token keyword">AS</span> <span class="token string">'学分'</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>academy_name <span class="token keyword">AS</span> <span class="token string">'所属院系'</span><span class="token punctuation">,</span> 
-<span class="token punctuation">(</span><span class="token keyword">CASE</span> c<span class="token punctuation">.</span>course_type <span class="token keyword">WHEN</span> <span class="token number">0</span> <span class="token keyword">THEN</span> <span class="token string">'必修'</span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'公选课'</span> <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'限选课'</span> <span class="token keyword">END</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'课程类别'</span><span class="token punctuation">,</span>
-<span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>course_exam <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'考试'</span><span class="token punctuation">,</span> <span class="token string">'考察'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'考试方式'</span>
-<span class="token keyword">FROM</span> <span class="token punctuation">(</span>course <span class="token keyword">AS</span> c<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token variable">@rownum</span>:<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> t<span class="token punctuation">)</span>
-<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> academy <span class="token keyword">AS</span> a <span class="token keyword">ON</span> a<span class="token punctuation">.</span>academy_code <span class="token operator">=</span> c<span class="token punctuation">.</span>course_academy_code <span class="token operator">AND</span> a<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span>
-<span class="token keyword">WHERE</span> c<span class="token punctuation">.</span>delete_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><mark>注：在 DQL 和 DML 语句中 = 的意思就是判断相等，而在用户变量的赋值操作时使用 :=，例如 set @tmp:=1、@tmp:=@tmp+1</mark></p>
-<h2 id="8、where-和-having"><a href="#8、where-和-having" class="headerlink" title="8、where 和 having"></a>8、where 和 having</h2><ul>
-<li>where 是对数据库指定表的字段进行条件筛选；</li>
-<li>having 是对 select 中选中的字段的数据进行条件筛选。</li>
+<blockquote>
+<p>模式的结构和实现</p>
+</blockquote>
+<p>建造者（Builder）模式由产品、抽象建造者、具体建造者、指挥者等 4 个要素构成，现在我们来分析其基本结构和实现方法。</p>
+<p><strong>模式的结构：</strong></p>
+<p>建造者（Builder）模式的主要角色如下。</p>
+<ol>
+<li>产品角色（Product）：它是包含多个组成部件的复杂对象，由具体建造者来创建其各个零部件。</li>
+<li>抽象建造者（Builder）：它是一个包含创建产品各个子部件的抽象方法的接口 / 抽象类，通常还包含一个返回复杂产品的方法 getResult()。</li>
+<li>具体建造者(Concrete Builder）：实现 Builder 接口，完成复杂产品的各个部件的具体创建方法。</li>
+<li>指挥者（Director）：它调用建造者对象中的部件构造与装配方法完成复杂对象的创建，在指挥者中不涉及具体产品的信息。</li>
+</ol>
+<p><strong>类图：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220417145206.png"></p>
+<p>图中抽象建造者和指挥者之间应该是 <strong>组合</strong> 关系。箭头用错了。</p>
+<p><strong>Java 的 StringBuilder 使用了建造者模式的思想</strong></p>
+<blockquote>
+<p>注意事项</p>
+</blockquote>
+<ul>
+<li>客户端（实用程序）不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品</li>
+<li>每一个具体的建造者都相对独立，而与其他的具体建造者无关，因此可以很方便的替换具体建造者或增加新的具体建造者，用户使用不同的具体建造者即可得到不同的产品对象</li>
+<li>可以更加精细地控制产品的创建过程。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</li>
+<li>增加新的具体建造者无需修改原有的代码，指挥者类针对抽象建造者编程，系统扩展方便，符合 ocp 原则。</li>
+<li>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，<strong>如果产品之间的差异性很大，则不适合使用建造者模式</strong>，因此其使用范围收到一定的限制</li>
+<li>如果产品内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，如果系统变得很庞大，因此在这种情况下，要考虑是否使用建造者模式</li>
+<li>抽象工厂模式 VS 建造者模式<ul>
+<li>抽象工厂模式实现对产品家族的创建，一个产品家族是这样的一系列产品：具有不同分类维度的产品组合，采用抽象工厂模式不需要关心创建过程，只关心什么产品由什么工程生产即可</li>
+<li>而建造者模式则是要求按照指定的蓝图建造产品，它的主要目的是通过组装零配件来生产另一个新产品。</li>
 </ul>
+</li>
+</ul>
+<h2 id="3、模式的应用场景"><a href="#3、模式的应用场景" class="headerlink" title="3、模式的应用场景"></a>3、模式的应用场景</h2><p>建造者模式唯一区别于工厂模式的是针对复杂对象的创建。也就是说，如果创建简单对象，通常都是使用工厂模式进行创建，而如果创建复杂对象，就可以考虑使用建造者模式。</p>
+<p>当需要创建的产品具备复杂创建过程时，可以抽取出共性创建过程，然后交由具体实现类自定义创建流程，使得同样的创建行为可以生产出不同的产品，分离了创建与表示，使创建产品的灵活性大大增加。</p>
+<p>建造者模式主要适用于以下应用场景：</p>
+<ul>
+<li>相同的方法，不同的执行顺序，产生不同的结果。</li>
+<li>多个部件或零件，都可以装配到一个对象中，但是产生的结果又不相同。</li>
+<li>产品类非常复杂，或者产品类中不同的调用顺序产生不同的作用。</li>
+<li>初始化一个对象特别复杂，参数多，而且很多参数都具有默认值。</li>
+</ul>
+<h2 id="4、建造者模式和工厂模式的区别"><a href="#4、建造者模式和工厂模式的区别" class="headerlink" title="4、建造者模式和工厂模式的区别"></a>4、建造者模式和工厂模式的区别</h2><ul>
+<li>建造者模式更加注重方法的调用顺序，工厂模式注重创建对象。</li>
+<li>创建对象的力度不同，建造者模式创建复杂的对象，由各种复杂的部件组成，工厂模式创建出来的对象都一样</li>
+<li>关注重点不一样，工厂模式只需要把对象创建出来就可以了，而建造者模式不仅要创建出对象，还要知道对象由哪些部件组成。</li>
+<li>建造者模式根据建造过程中的顺序不一样，最终对象部件组成也不一样。</li>
+</ul>
+<h2 id="5、模式的扩展"><a href="#5、模式的扩展" class="headerlink" title="5、模式的扩展"></a>5、模式的扩展</h2><p>建造者（Builder）模式在应用过程中可以根据需要改变，如果创建的产品种类只有一种，只需要一个具体建造者，这时可以省略掉抽象建造者，甚至可以省略掉指挥者角色。</p>
 
                 
             </div>
@@ -813,7 +930,7 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2021/07/20/mysql-qa/">https://naivekyo.github.io/2021/07/20/mysql-qa/</a>
+                    <a href="https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/">https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -851,8 +968,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Design-Patterns/">
+                                    <span class="chip bg-color">Design Patterns</span>
                                 </a>
                             
                         </div>
@@ -1015,9 +1132,9 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2021/07/20/mysql-qa/';
-        this.page.identifier = '/2021/07/20/mysql-qa/';
-        this.page.title = 'MySQL QA';
+        this.page.url = 'https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/';
+        this.page.identifier = '/2022/04/14/design-patterns-of-prototype-and-builder/';
+        this.page.title = 'Design Patterns Of Prototype And Builder';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -1049,30 +1166,30 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/07/25/java-thread-rudimentary-knowledge/">
+                <a href="/2022/04/15/design-patterns-of-adapter-and-bridge/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210725214655.jpg" class="responsive-img" alt="Java Thread Rudimentary Knowledge">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221227.jpg" class="responsive-img" alt="Design Patterns Of Adapter And Bridge">
                         
-                        <span class="card-title">Java Thread Rudimentary Knowledge</span>
+                        <span class="card-title">Design Patterns Of Adapter And Bridge</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 多线程基础知识
+                            设计模式之适配器模式、桥接模式
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java-Concurrent/" class="post-category">
-                                    Java Concurrent
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
                                 </a>
                             
                             
@@ -1082,8 +1199,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java-Concurrent/">
-                        <span class="chip bg-color">Java Concurrent</span>
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
                     </a>
                     
                 </div>
@@ -1097,30 +1214,30 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/17/spring-boot-multienvironment-switch/">
+                <a href="/2022/04/12/centos7-install-oracle-database/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20210728174304.jpg" class="responsive-img" alt="Spring Boot Multienvironment Switch">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221159.jpg" class="responsive-img" alt="CentOS7 Install Oracle Database">
                         
-                        <span class="card-title">Spring Boot Multienvironment Switch</span>
+                        <span class="card-title">CentOS7 Install Oracle Database</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Boot 多环境开发
+                            CentOS7 安装 Oracle Database 19C
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring-Boot/" class="post-category">
-                                    Spring Boot
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -1130,8 +1247,8 @@ c<span class="token punctuation">.</span>course_credit <span class="token keywor
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring-Boot/">
-                        <span class="chip bg-color">Spring Boot</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>

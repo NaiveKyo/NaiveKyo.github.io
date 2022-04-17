@@ -658,14 +658,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-08-13
+                    2022-04-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    8.1k
+                    8.2k
                 </div>
                 
 
@@ -1091,6 +1091,22 @@ quit		q			退出 gdb 环境<span aria-hidden="true" class="line-numbers-rows"><s
 <p><code>df [-h] [-T]</code></p>
 <p>选项-h 以方便阅读的方式显示信息。</p>
 <p>选项-T 列出文件系统类型。</p>
+<h2 id="3、修改时区"><a href="#3、修改时区" class="headerlink" title="3、修改时区"></a>3、修改时区</h2><p>现代的 Linux 基本都支持 <code>timedatectl</code> 命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 timedatectl 查看当前系统时间相关的信息</span>
+timedatectl
+
+<span class="token comment"># 如果当前时区不是自己所在地区的时区</span>
+<span class="token comment"># 查看所有可用时区</span>
+timedatectl list-timezones
+
+<span class="token comment"># 选择想要的时区进行配置，比如 Asia/Shanghai</span>
+<span class="token function">sudo</span> timedatectl set-timezone Asia/Shanghai
+
+<span class="token comment"># 重启服务器</span>
+init <span class="token number">6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="六、CentOS-7-设置环境变量"><a href="#六、CentOS-7-设置环境变量" class="headerlink" title="六、CentOS 7 设置环境变量"></a>六、CentOS 7 设置环境变量</h1><h2 id="1、环境变量的含义"><a href="#1、环境变量的含义" class="headerlink" title="1、环境变量的含义"></a>1、环境变量的含义</h2><p>程序（操作系统命令和应用程序）的执行都需要运行环境，这个环境是由多个环境变量组成的。</p>
 <h2 id="2、环境变量的分类"><a href="#2、环境变量的分类" class="headerlink" title="2、环境变量的分类"></a>2、环境变量的分类</h2><ul>
 <li>按生效的范围分类<ul>

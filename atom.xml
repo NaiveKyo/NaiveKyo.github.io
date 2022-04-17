@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-12T15:12:12.232Z</updated>
+  <updated>2022-04-17T07:08:02.679Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,86 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Design Patterns Of Decorator And Composite</title>
+    <link href="https://naivekyo.github.io/2022/04/17/design-patterns-of-decorator-and-composite/"/>
+    <id>https://naivekyo.github.io/2022/04/17/design-patterns-of-decorator-and-composite/</id>
+    <published>2022-04-17T07:06:56.000Z</published>
+    <updated>2022-04-17T07:08:02.679Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、装饰器模式&quot;&gt;&lt;a href=&quot;#一、装饰器模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Adapter And Bridge</title>
+    <link href="https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/"/>
+    <id>https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/</id>
+    <published>2022-04-15T06:59:13.000Z</published>
+    <updated>2022-04-17T07:00:20.883Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、适配器模式&quot;&gt;&lt;a href=&quot;#一、适配器模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Prototype And Builder</title>
+    <link href="https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/"/>
+    <id>https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/</id>
+    <published>2022-04-14T06:53:38.000Z</published>
+    <updated>2022-04-17T06:55:15.113Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、原型模式&quot;&gt;&lt;a href=&quot;#一、原型模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CentOS7 Install Oracle Database</title>
     <link href="https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/"/>
     <id>https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/</id>
     <published>2022-04-12T15:09:41.000Z</published>
-    <updated>2022-04-12T15:12:12.232Z</updated>
+    <updated>2022-04-14T15:39:15.005Z</updated>
     
     
       
@@ -441,81 +516,6 @@
     
     
     <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Source Code Analysis (二) The basic implementation of containers</title>
-    <link href="https://naivekyo.github.io/2022/03/15/spring-source-code-analysis-er-the-basic-implementation-of-containers/"/>
-    <id>https://naivekyo.github.io/2022/03/15/spring-source-code-analysis-er-the-basic-implementation-of-containers/</id>
-    <published>2022-03-15T11:42:58.000Z</published>
-    <updated>2022-03-15T11:52:53.105Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;容器的基本实现&quot;&gt;&lt;a href=&quot;#容器的基本实现&quot; class=&quot;headerlink&quot; title=&quot;容器的基本实现&quot;&gt;&lt;/a&gt;容器的基本实现&lt;/h1&gt;&lt;h2 id=&quot;1、容器基本用法&quot;&gt;&lt;a href=&quot;#1、容器基本用法&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Source Code Analysis (一) Environment setup And Spring Module Description</title>
-    <link href="https://naivekyo.github.io/2022/03/14/spring-source-code-analysis-yi-environment-setup-and-spring-module-description/"/>
-    <id>https://naivekyo.github.io/2022/03/14/spring-source-code-analysis-yi-environment-setup-and-spring-module-description/</id>
-    <published>2022-03-14T03:46:56.000Z</published>
-    <updated>2022-03-14T07:06:28.911Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;h2 id=&quot;1、版本说明&quot;&gt;&lt;a href=&quot;#1、版本说明&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7 Deploy Gitblit Server</title>
-    <link href="https://naivekyo.github.io/2022/03/11/centos7-deploy-gitblit-server/"/>
-    <id>https://naivekyo.github.io/2022/03/11/centos7-deploy-gitblit-server/</id>
-    <published>2022-03-11T02:47:28.000Z</published>
-    <updated>2022-03-30T15:55:34.574Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;CentOS-7-Install-Gitblit&quot;&gt;&lt;a href=&quot;#CentOS-7-Install-Gitblit&quot; class=&quot;headerlink&quot; title=&quot;CentOS 7 Install Gitblit&quot;&gt;&lt;/a&gt;CentOS 7</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
   </entry>
   
