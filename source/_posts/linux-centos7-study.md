@@ -453,6 +453,27 @@ chown将目录或文件的拥有者修改为参数指定的用户名和组，目
 
 
 
+## 3、修改时区
+
+现代的 Linux 基本都支持 `timedatectl` 命令：
+
+```bash
+# 使用 timedatectl 查看当前系统时间相关的信息
+timedatectl
+
+# 如果当前时区不是自己所在地区的时区
+# 查看所有可用时区
+timedatectl list-timezones
+
+# 选择想要的时区进行配置，比如 Asia/Shanghai
+sudo timedatectl set-timezone Asia/Shanghai
+
+# 重启服务器
+init 6
+```
+
+
+
 # 六、CentOS 7 设置环境变量
 
 ## 1、环境变量的含义

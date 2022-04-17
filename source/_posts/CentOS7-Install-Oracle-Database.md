@@ -309,9 +309,15 @@ su -
 
 ## 2、创建数据库实例
 
+> 说明
+
+<font style="color:green">说明：不管是在本地虚拟机还是云端服务器，创建数据库实例的过程均出现卡在某个进度的情况，此时建议查看 `/u01/app/oracle/cfgtoollogs/dbca/cdb1/` 目录下的对应日志文件，也可结合云服务上平台提供的实时监控功能，如果没有出现明显的错误信息，可以耐心等待，笔者在云端服务器创建容器数据库卡在 36% 最终没有等到执行完毕，创建非容器数据库卡在 46%，经过了十几分钟后才结束卡顿，最终成功创建非容器数据库。</font>
+
+<font style="color:red">大概原因可能是和机器性能有关。。。</font>
+
 ### （1）容器数据库
 
-<strong style="color:red">暂时虚拟机中创建容器数据库会卡进度，暂时先创建非容器数据库。</strong>
+<strong style="color:red">目前虚拟机中创建容器数据库会卡进度，所以先创建非容器数据库。TODO</strong>
 
 我们可以通过 Database Configuration Assistant (DBCA) 去创建数据库，也是分为两种方式：GUI 和 命令行，此处我们使用命令行：
 
@@ -406,9 +412,13 @@ EOF
 
 ### （2）非容器数据库
 
-如果创建容器数据库卡在某个进度无法继续，可以调小 `totalMemory` 的值，可能是服务器内存资源不够，也可能是其他原因，所以现在删除数据库实例，转而创建非容器数据库。
+如果创建容器数据库卡在某个进度无法继续，可以调小 `totalMemory` 的值，可能是服务器内存资源不够，也可能是其他原因，所以现在删除数据库实例（如何删除见后文），转而创建非容器数据库。
 
 ```bash
+# 首先开启监听
+lsnrctl start
+
+# 然后执行以下命令创建非容器数据库
 dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname ${ORACLE_SID} -sid  ${ORACLE_SID} -responseFile NO_VALUE -characterSet AL32UTF8 -sysPassword 123456 -systemPassword 123456 -databaseType MULTIPURPOSE -memoryMgmtType auto_sga -totalMemory 2000 -storageType FS -datafileDestination "${DATA_DIR}" -redoLogFileSize 50 -emConfiguration NONE -ignorePreReqs
 ```
 
@@ -497,7 +507,7 @@ firewall-cmd --list-port
 
 在服务器上可以使用 `sqlplus` 连接 Oracle，使用方式和 `mysqld` 类似。
 
-通过 Navicat 连接远程 Oracle 时，新建连接后需要在高级选项中设置相应的角色，例如这里我们要以 SYS 账户连接，则需要这样设置：
+但是有一点需要注意，如果我们要以 SYS 或者 SYSTEM 账户远程连接 Oracle 数据库，则必须设置登录角色（普通用户不用设置这个），在高级选项中设置相应的角色，例如这里我们要以 SYS 账户连接，则需要这样设置：
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412220735.png)
 
@@ -532,3 +542,9 @@ Navicat 自带的有，但是不能保证和开发者配置的 Oracle 版本匹�
 重启后再次连接 Oracle 数据库，按下键盘 `F6` 弹出 sqlplus 界面：
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220412224735.png)
+
+
+
+## 5、MobaXterm SSH 长连接
+
+菜单栏 Settings，打开里面的 Configuration，在弹出的对话框中找到 SSH 配置栏中的 SSH settings，勾选其中的 `SSH keepalive` 选项，这样就可以保持长连接了。
