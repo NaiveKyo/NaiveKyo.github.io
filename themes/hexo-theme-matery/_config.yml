@@ -69,8 +69,8 @@ cover:
 dream:
   enable: true
   showTitle: true
-  title: 思考
-  text: 目标是什么不重要，目标能产生什么样的效果才重要。我们演活什么人，便成为什么人。  ———— 尼摩伊
+  title: Consideration
+  text: True mastery of any skill takes a lifetime.
 
 # Whether to display the musics.
 # 是否在首页显示音乐.
@@ -138,11 +138,11 @@ indexbtn:
 # icon/button will not show up if you leave the corresponding socialLink empty
 # 首页 banner 中的第二行个人信息配置，留空即不启用
 socialLink:
-  github: 
-  email: 
+  github: https://github.com/NaiveKyo
+  email: https://naivekyore@gmail.com
   facebook: # https://www.facebook.com/xxx
   twitter: # https://twitter.com/xxx
-  qq: 
+  qq: 2086589645
   weibo: # https://weibo.com/xxx
   zhihu: # https://www.zhihu.com/xxx
   rss: false # true、false
@@ -272,13 +272,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20220225221300.jpg
     - /img/20220225221313.jpg
     - /img/20220225221330.jpg
     - /img/20220225221341.jpg
     - /img/20220225221353.jpg
     - /img/20220225221406.jpg
-#   - /img/20220225221417.jpg
+    - /img/20220225221417.jpg
 #   - /img/20220225221428.jpg
 #   - /img/20220225221442.jpg
 #   - /img/20220225221456.jpg
