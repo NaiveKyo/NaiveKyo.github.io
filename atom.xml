@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-17T07:08:02.679Z</updated>
+  <updated>2022-04-18T04:03:02.374Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Web Integration SSM With Tomcat</title>
+    <link href="https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/"/>
+    <id>https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/</id>
+    <published>2022-04-18T02:13:51.000Z</published>
+    <updated>2022-04-18T04:03:02.374Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;整合-SSM-框架&quot;&gt;&lt;a href=&quot;#整合-SSM-框架&quot; class=&quot;headerlink&quot; title=&quot;整合 SSM 框架&quot;&gt;&lt;/a&gt;整合 SSM 框架&lt;/h1&gt;&lt;h1 id=&quot;一、技术选型&quot;&gt;&lt;a href=&quot;#一、技术选型&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java Web" scheme="https://naivekyo.github.io/categories/Java-Web/"/>
+    
+    
+    <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
+    
+    <category term="SSM" scheme="https://naivekyo.github.io/tags/SSM/"/>
+    
+  </entry>
   
   <entry>
     <title>Design Patterns Of Decorator And Composite</title>
@@ -482,31 +509,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;默认标签的解析&quot;&gt;&lt;a href=&quot;#默认标签的解析&quot; class=&quot;headerlink&quot; title=&quot;默认标签的解析&quot;&gt;&lt;/a&gt;默认标签的解析&lt;/h1&gt;&lt;p&gt;之前提到过读配置文件的解析包括对 import 标签、alias 标签、bean 标签、beans</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Source Code Analysis (三) Bean label parsing and registration</title>
-    <link href="https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/"/>
-    <id>https://naivekyo.github.io/2022/03/16/spring-source-code-analysis-san-bean-label-parsing-and-registration/</id>
-    <published>2022-03-16T12:43:50.000Z</published>
-    <updated>2022-03-21T02:47:38.649Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;默认标签的解析&quot;&gt;&lt;a href=&quot;#默认标签的解析&quot; class=&quot;headerlink&quot; title=&quot;默认标签的解析&quot;&gt;&lt;/a&gt;默认标签的解析&lt;/h1&gt;&lt;p&gt;之前提到过 Spring XML</summary>
         
       
     
