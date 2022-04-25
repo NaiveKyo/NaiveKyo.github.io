@@ -3,7 +3,7 @@
 <%- partial('_partial/head') %>
 
 <!-- 加载动画 -->
-<% if (theme.loadingPages.enable && is_home() || is_post()) { %>
+<% if (theme.loadingPages.enable && is_home() && is_post()) { %>
     <%- partial('_partial/loading-pages') %>
 <% } %>
 
@@ -22,7 +22,7 @@
 
 <body>
     <!-- 加载动画 -->
-	<% if (theme.loadingPages.enable && is_home() || is_post()) { %>
+	<% if (theme.loadingPages.enable && is_home() && is_post()) { %>
 		<div id="loading-container">
             <div id="loading-left"></div>
             <div id="loading-right"></div>

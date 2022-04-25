@@ -317,6 +317,9 @@ myGallery:
 #   - /img/20220425111600.jpg
 #   - /img/20220425111615.jpg
 #   - /img/20220425111634.jpg
+#   - /img/20220425121012.jpg
+#   - /img/20220425121105.jpg
+
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件
@@ -639,7 +642,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215170101.jpg   # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121012.jpg   # 指定 jsdlivr 地址的图片
 
 # https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20211228091809.jpg
 
@@ -664,7 +667,7 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215213943.png"
+  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121105.jpg"
 
 # 说说 https://artitalk.js.org/
 artitalk:
@@ -703,4 +706,4 @@ githubEmojis:
 
 # 添加预加载动画开关
 loadingPages:
-    enable: true
+    enable: false
