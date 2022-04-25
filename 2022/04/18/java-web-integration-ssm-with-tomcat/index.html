@@ -662,14 +662,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-18
+                    2022-04-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.4k
+                    2.6k
                 </div>
                 
 
@@ -811,7 +811,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.7.25<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="三、配置文件"><a href="#三、配置文件" class="headerlink" title="三、配置文件"></a>三、配置文件</h1><h2 id="1、-Spring-容器"><a href="#1、-Spring-容器" class="headerlink" title="1、 Spring 容器"></a>1、 Spring 容器</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<h1 id="三、配置文件"><a href="#三、配置文件" class="headerlink" title="三、配置文件"></a>三、配置文件</h1><h2 id="1、-Spring-容器"><a href="#1、-Spring-容器" class="headerlink" title="1、 Spring 容器"></a>1、 Spring 容器</h2><p>application-context.xml</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
        <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
        <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans 
@@ -839,7 +840,16 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>default-servlet-handler</span><span class="token punctuation">/&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.test.controller<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>cors</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>mapping</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/**<span class="token punctuation">"</span></span>
+                     <span class="token attr-name">allowed-origins</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>*<span class="token punctuation">"</span></span>
+                     <span class="token attr-name">allowed-headers</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>*<span class="token punctuation">"</span></span>
+                     <span class="token attr-name">allowed-methods</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>*<span class="token punctuation">"</span></span>
+                     <span class="token attr-name">exposed-headers</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
+        <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">mvc:</span>cors</span><span class="token punctuation">&gt;</span></span>
+    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="（2）service-层"><a href="#（2）service-层" class="headerlink" title="（2）service 层"></a>（2）service 层</h3><p>声明式事务的两种实现：</p>
 <ul>
@@ -1094,6 +1104,21 @@
 
 
 <h1 id="四、项目结构"><a href="#四、项目结构" class="headerlink" title="四、项目结构"></a>四、项目结构</h1><p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220418120204.png"></p>
+<h1 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h1><h2 id="xml-和-Java-Config"><a href="#xml-和-Java-Config" class="headerlink" title="xml 和 Java Config"></a>xml 和 Java Config</h2><p>分为三种模式：</p>
+<ul>
+<li>纯 XML 配置；<ul>
+<li>可以将配置与代码完全解耦</li>
+</ul>
+</li>
+<li>纯 Java Config 配置；<ul>
+<li>现在的主流方式，但是不建议在 SSM 项目中使用</li>
+</ul>
+</li>
+<li>以 Java Config 为主，XML 辅助的配置方式；<ul>
+<li>此种方式下，XML 仅仅起到辅助作用，Java Config 配置类可以通过 <code>@ImportResource</code> 导入 XML 文件。</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -1356,51 +1381,45 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/04/18/java-web-integration-ssm-with-tomcat/">
+                <a href="/2022/04/20/design-patterns-of-facade-and-flyweight/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221300.jpg" class="responsive-img" alt="Java Web Integration SSM With Tomcat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221330.jpg" class="responsive-img" alt="Design Patterns Of Facade And Flyweight">
                         
-                        <span class="card-title">Java Web Integration SSM With Tomcat</span>
+                        <span class="card-title">Design Patterns Of Facade And Flyweight</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java Web: 整合 SSM 框架
+                            设计模式之外观模式、享元模式
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java-Web/" class="post-category">
-                                    Java Web
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java-Web/">
-                        <span class="chip bg-color">Java Web</span>
-                    </a>
-                    
-                    <a href="/tags/SSM/">
-                        <span class="chip bg-color">SSM</span>
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
                     </a>
                     
                 </div>

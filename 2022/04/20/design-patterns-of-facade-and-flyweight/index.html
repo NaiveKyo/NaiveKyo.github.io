@@ -1,0 +1,1670 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Design Patterns">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Design Patterns Of Facade And Flyweight | Miló&amp;Akoúo̱</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+    <style type="text/css" lang="css">
+  #loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #loading-left {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: margin-right 1.5s;
+  }
+
+  #loading-right {
+    width: 50%;
+    height: 100%;
+    background-color: #ddd;
+    display: inline-block;
+    background-image: url("https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/loading.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* 太极特效 */
+  @keyframes rotate {
+      from {
+          transform: rotate(0deg)
+      }
+
+      to {
+          transform: rotate(359deg)
+      }
+  }
+
+  div[class="loading-image"] {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    background-image:
+        radial-gradient(50% 50% at 50% 25%, #000 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 75%, #fff 10%, transparent 0),
+        radial-gradient(50% 50% at 50% 25%, #fff 50%, transparent 0), radial-gradient(50% 50% at 50% 75%, #000 50%, transparent 0),
+        linear-gradient(to left, #fff 50%, #000 50%);
+    animation: rotate 3s linear infinite;
+  }
+
+  .loading-text {
+    margin-bottom: 1vh;
+    text-align: center;
+    font-size: 3rem;
+    /* box-sizing: border-box; */
+    z-index: 9999;
+    padding: 0 10px;
+    height: 90px;
+    line-height: 90px;
+    font-weight: bold;
+    font-family: cursive;
+    background: linear-gradient(to right, #59c229, #f5287ded);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text
+  }
+
+  #show {
+    /* 加载图片和文字屏幕居中 */
+    /* width: 400px; */
+    /* height: 400px; */
+    background-color: transparent;
+    position: fixed;
+    /* left: 561px; */
+    /* top: 211px; */
+  }
+
+  /*中等屏幕下(平板类)的样式*/
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .container {
+        width: 90%;
+      }
+      #show {
+        display: none;
+      }
+  }
+
+  /* 小型设备 */
+  @media only screen and (max-width: 601) {
+    .loading-text {
+      font-size: 1.5rem;
+    }
+    #show {
+      display: none;
+    }
+  }
+
+  /* .fadeout_left {
+    opacity: 0; 
+    filter: alpha(opacity=0);
+  } */
+
+</style>
+
+<script>
+
+            
+  // window.onload = function() {
+  //   const loader = document.getElementById("loading-container");
+
+  //   if (sessionStorage.getItem('flag') == null) {
+  //     console.log("111111")
+  //     const loaded = function() {
+  //       setTimeout(function() {
+  //         loader.style.display = 'none'
+  //       }, 1000)
+  //     }
+  //     loaded();
+  //     sessionStorage.setItem('flag', 1)
+  //   } else {
+  //     loader.style.display = 'none'
+  //   }
+  // }
+
+ 
+  (function () {
+      
+      const loaded = function() {
+        setTimeout(function() {
+            const loader = document.getElementById("loading-container");
+            const load_left = document.getElementById("loading-left");
+            const load_right = document.getElementById("loading-right");
+            load_left.style.marginRight = "100%"
+
+            // 设置动画的显示时间
+            setTimeout(function() {
+              loader.style.display="none";
+            }, 1500)
+          }, 300); 
+      }
+      loaded()
+  })() 
+</script>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215213943.png);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<!-- <script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script> -->
+
+<body>
+    <!-- 加载动画 -->
+	
+		<div id="loading-container">
+            <div id="loading-left"></div>
+            <div id="loading-right"></div>
+            <div id="show">
+                <p class="loading-text">少女祈祷中</p>
+                <div class="loading-image"></div>
+            </div>
+		</div>
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Miló&amp;Akoúo̱</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Miló&amp;Akoúo̱</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221330.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Design Patterns Of Facade And Flyweight</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Design-Patterns/">
+                                <span class="chip bg-color">Design Patterns</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                Design Patterns
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-04-25
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    4.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一、外观模式"><a href="#一、外观模式" class="headerlink" title="一、外观模式"></a>一、外观模式</h1><p>在现实生活中，常常存在办事较复杂的例子，如办房产证或注册一家公司，有时要同多个部门联系，这时要是有一个综合部门能解决一切手续问题就好了。</p>
+<p>软件设计也是这样，当一个系统的功能越来越强，子系统会越来越多，客户对系统的访问也变得越来越复杂。这时如果系统内部发生改变，客户端也要跟着改变，这违背了“开闭原则”，也违背了“迪米特法则”，所以有必要为多个子系统提供一个统一的接口，从而降低系统的耦合度，<strong>这就是外观模式的目标</strong>。</p>
+<h2 id="1、外观模式的定义与特点"><a href="#1、外观模式的定义与特点" class="headerlink" title="1、外观模式的定义与特点"></a>1、外观模式的定义与特点</h2><p>外观（Facade）模式又叫作门面模式，是一种通过为多个复杂的子系统提供一个一致的接口，而使这些子系统更加容易被访问的模式。该模式对外有一个统一接口，外部应用程序不用关心内部子系统的具体细节，这样会大大降低应用程序的复杂度，提高了程序的可维护性。</p>
+<p>在日常编码工作中，我们都在有意无意的大量使用外观模式。只要是高层模块需要调度多个子系统（2个以上的类对象），我们都会自觉地创建一个新的类封装这些子系统，提供精简的接口，让高层模块可以更加容易地间接调用这些子系统的功能。尤其是现阶段各种第三方SDK、开源类库，很大概率都会使用外观模式。</p>
+<blockquote>
+<p>优点和缺点</p>
+</blockquote>
+<p><strong>外观（Facade）模式是“迪米特法则”的典型应用</strong>，它有以下主要优点。</p>
+<ul>
+<li>降低了子系统与客户端之间的耦合度，使得子系统的变化不会影响调用它的客户类。</li>
+<li>对客户屏蔽了子系统组件，减少了客户处理的对象数目，并使得子系统使用起来更加容易。</li>
+<li>降低了大型软件系统中的编译依赖性，简化了系统在不同平台之间的移植过程，因为编译一个子系统不会影响其他的子系统，也不会影响外观对象。</li>
+</ul>
+<p>外观（Facade）模式的主要缺点如下。</p>
+<ul>
+<li>不能很好地限制客户使用子系统类，很容易带来未知风险。</li>
+<li>增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</li>
+</ul>
+<h2 id="2、外观模式的结构和实现"><a href="#2、外观模式的结构和实现" class="headerlink" title="2、外观模式的结构和实现"></a>2、外观模式的结构和实现</h2><p>外观（Facade）模式的结构比较简单，主要是定义了一个高层接口。它包含了对各个子系统的引用，客户端可以通过它访问各个子系统的功能。现在来分析其基本结构和实现方法。</p>
+<blockquote>
+<p>模式的结构</p>
+</blockquote>
+<ul>
+<li>外观（Facade）角色：为多个子系统对外提供一个共同的接口。外观角色知道哪些子系统负责处理请求，从而将调用端的请求代理给适当的子系统对象。</li>
+<li>子系统（Sub System）角色：实现系统的部分功能，客户可以通过外观角色访问它。</li>
+<li>客户（Client）角色：通过一个外观角色访问各个子系统的功能。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425102832.png"></p>
+<h2 id="3、案例分析"><a href="#3、案例分析" class="headerlink" title="3、案例分析"></a>3、案例分析</h2><p>组件一个家庭影元系统：</p>
+<p>DVD 播放器、投影仪、自动屏幕、环绕立体声、爆米花机，要求完成使用家庭影院功能，其过程为：</p>
+<ul>
+<li>直接用遥控器：统筹各设备开关</li>
+<li>开爆米花机</li>
+<li>放下屏幕</li>
+<li>开投影仪</li>
+<li>开音响</li>
+<li>开 DVD，选 dvd</li>
+<li>去拿爆米花</li>
+<li>调暗灯光</li>
+<li>播放</li>
+<li>观影结束后，关闭各种设备</li>
+</ul>
+<blockquote>
+<p>传统解决方案分析</p>
+</blockquote>
+<ul>
+<li>在 ClientTest 的 main 方法中，创建各个子系统的对象，并直接去调用子系统相关方法，会造成调用过程混乱，没有清晰的过程</li>
+<li>不利于在 ClientTest 中，去维护对子系统的操作</li>
+<li>解决思路：定义一个高层接口，给子系统中的一组接口提供一个 <strong>一致的界面（比如在高层接口提供四个方法 ready、play、pause、end）</strong>，用来访问子系统中的一群接口</li>
+<li>也就是说：通过定义一个一致的接口（界面类），用以屏蔽内部子系统的细节，使得调用端只需跟这个接口发生调用，而无需关心这个子系统的内部细节  =&gt;（<strong>外观模式</strong>）</li>
+</ul>
+<blockquote>
+<p>外观模式解决问题</p>
+</blockquote>
+<ul>
+<li>外观模式可以理解为转换一群接口，客户只需要调用一个接口，而不用调用多个接口达到目的。</li>
+<li>外观模式就是解决多个复杂接口带来的使用困难，起到简化用户操作的目的</li>
+</ul>
+<h2 id="4、Mybatis-源码分析"><a href="#4、Mybatis-源码分析" class="headerlink" title="4、Mybatis 源码分析"></a>4、Mybatis 源码分析</h2><ul>
+<li>Mybatis 中的 Configuration 创建 MetaObject 对象时使用到了外观模式</li>
+</ul>
+<h2 id="5、注意事项和细节"><a href="#5、注意事项和细节" class="headerlink" title="5、注意事项和细节"></a>5、注意事项和细节</h2><ul>
+<li>外观模式对外屏蔽了子系统的细节，因此外观模式降低了客户端对子系统使用的复杂性</li>
+<li>外观模式对客户端与子系统的耦合关系，让子系统内部的模块更容易维护和扩展</li>
+<li>通过合理的使用外观模式，可以帮我们<strong>更好的划分访问的层次</strong></li>
+<li>当系统需要进行分层设计时，可以考虑使用 Facade 模式</li>
+<li>在维护一个遗留的大型系统时，可能这个系统已经非常难以维护和扩展了，此时，可以考虑为新系统开发一个 Facade 类，来提供遗留系统的比较清晰简单的接口，让新系统与 Facade 类交互，提高复用性</li>
+<li>不能过多的或者不合理的使用 Facade 模式，使用外观模式好，还是直接调用模块好，要让以系统有层次，利于维护为目的</li>
+</ul>
+<h2 id="6、应用场景和扩展"><a href="#6、应用场景和扩展" class="headerlink" title="6、应用场景和扩展"></a>6、应用场景和扩展</h2><p>通常在以下情况可以考虑使用外观模式</p>
+<ul>
+<li>对分层结构系统构建时，使用外观模式定义子系统中每层的入口点可以简化子系统之间的依赖关系</li>
+<li>当一个复杂系统的子系统很多时，外观模式可以为系统设计一个简单的接口供外界访问</li>
+<li>当客户端与多个子系统之间有很大的联系时，引入外观模式可以将它们分离，从而提高子系统的独立性和可移植性</li>
+</ul>
+<p>扩展：</p>
+<p>在外观模式中，当增加或移除子系统时需要修改外观类，违背了 ocp 原则。如果引入 <strong>抽象外观类</strong>，则在一定程度上解决了这个问题。</p>
+<h1 id="二、享元模式"><a href="#二、享元模式" class="headerlink" title="二、享元模式"></a>二、享元模式</h1><p>在面向对象程序设计过程中，有时会面临要创建大量相同或相似对象实例的问题。创建那么多的对象将会耗费很多的系统资源，它是系统性能提高的一个瓶颈。</p>
+<p>例如，围棋和五子棋中的黑白棋子，图像中的坐标点或颜色，局域网中的路由器、交换机和集线器，教室里的桌子和凳子等。这些对象有很多相似的地方，如果能把它们相同的部分提取出来共享，则能节省大量的系统资源，这就是享元模式的产生背景。</p>
+<h2 id="1、享元模式的定义与特点"><a href="#1、享元模式的定义与特点" class="headerlink" title="1、享元模式的定义与特点"></a>1、享元模式的定义与特点</h2><p>享元（Flyweight）模式的定义：运用共享技术来有效地支持大量细粒度对象的复用。它通过共享已经存在的对象来大幅度减少需要创建的对象数量、避免大量相似类的开销，从而提高系统资源的利用率。</p>
+<p>享元模式的 <strong>主要优点</strong> 是：相同对象只要保存一份，这降低了系统中对象的数量，从而降低了系统中细粒度对象给内存带来的压力。</p>
+<p><strong>其主要缺点是：</strong> </p>
+<ul>
+<li>为了使对象可以共享，需要将一些不能共享的状态外部化，这将增加程序的复杂性。</li>
+<li>读取享元模式的外部状态会使得运行时间稍微变长。</li>
+</ul>
+<h2 id="2、结构和实现"><a href="#2、结构和实现" class="headerlink" title="2、结构和实现"></a>2、结构和实现</h2><p>享元模式的定义提出了两个要求，细粒度和共享对象。因为要求细粒度，所以不可避免地会使对象数量多且性质相近，此时我们就将这些对象的信息分为两个部分：<strong>内部状态和外部状态。</strong></p>
+<ul>
+<li>内部状态指对象共享出来的信息，存储在享元信息内部，并且不会随环境的改变而改变；</li>
+<li>外部状态指对象得以依赖的一个标记，随环境的改变而改变，不可共享。</li>
+</ul>
+<p>比如，连接池中的连接对象，保存在连接对象中的用户名、密码、连接URL等信息，在创建对象的时候就设置好了，不会随环境的改变而改变，这些为内部状态。而当每个连接要被回收利用时，我们需要将它标记为可用状态，这些为外部状态。</p>
+<p><strong>享元模式的本质是缓存共享对象，降低内存消耗。</strong></p>
+<blockquote>
+<p>模式的结构和实现</p>
+</blockquote>
+<p>享元模式的主要角色有如下：</p>
+<ul>
+<li>抽象享元角色（Flyweight）：是所有的具体享元类的基类，为具体享元规范需要实现的公共接口，非享元的外部状态以参数的形式通过方法传入。</li>
+<li>具体享元（Concrete Flyweight）角色：实现抽象享元角色中所规定的接口。</li>
+<li>非享元（Unsharable Flyweight)角色：是不可以共享的外部状态，它以参数的形式注入具体享元的相关方法中。</li>
+<li>享元工厂（Flyweight Factory）角色：负责创建和管理享元角色。当客户对象请求一个享元对象时，享元工厂检査系统中是否存在符合要求的享元对象，如果存在则提供给客户；如果不存在的话，则创建一个新的享元对象。</li>
+</ul>
+<p>看结构图：</p>
+<ul>
+<li>UnsharedConcreteFlyweight 是非享元角色，里面包含了非共享的外部状态信息 info；</li>
+<li>Flyweight 是抽象享元角色（定义了外部状态和内部状态），里面包含了享元方法 ，operation(UnsharedConcreteFlyweight state)，非享元的外部状态以参数的形式通过该方法传入；</li>
+<li>ConcreteFlyweight 是具体享元角色，包含了关键字 key，它实现了抽象享元接口；</li>
+<li>FlyweightFactory 是享元工厂角色，它是关键字 key 来管理具体享元；（用于构建一个池容器：集合）</li>
+<li>客户角色通过享元工厂获取具体享元，并访问具体享元的相关方法。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425102855.png"></p>
+<h2 id="3、案例分析-1"><a href="#3、案例分析-1" class="headerlink" title="3、案例分析"></a>3、案例分析</h2><p>展示网站需求：</p>
+<p>小型的外包网站，给客户 A 做一个产品展示网站，客户 A 的朋友也希望做这样的产品展示网站，但是有一部分要求不同：</p>
+<ul>
+<li>有客户要求以新闻方式发布</li>
+<li>有客户要求以博客方式发布</li>
+<li>有客户希望以微信公众号的方式发布</li>
+</ul>
+<p>总结：大部分需求是相同的只有一小部分不同的地方，需要分割</p>
+<blockquote>
+<p>传统方案解决</p>
+</blockquote>
+<ul>
+<li>直接复制粘贴一份，然后根据客户不同的需求，进行定制修改</li>
+<li>给每个网站租用一个空间</li>
+</ul>
+<p><strong>问题分析：</strong></p>
+<ul>
+<li>需要的网站相似度很高，而且都不是高访问量网站，如果分成多个虚拟空间来处理，相当于一个相同网站的实例对象很多，造成服务器的资源浪费</li>
+<li>解决思路：整合到一个网站中，共享其相关的代码和数据，对于硬盘、内存、CPU、数据库空间等服务器资源都可以达成共享，减少服务器开销</li>
+<li>对于代码来说，由于是一份实例，维护和扩展都更加容易</li>
+<li>上面的解决思路就可以使用 <strong>享元模式</strong> </li>
+</ul>
+<h2 id="4、享元模式解决问题"><a href="#4、享元模式解决问题" class="headerlink" title="4、享元模式解决问题"></a>4、享元模式解决问题</h2><p>基本介绍：</p>
+<ul>
+<li>享元模式（Flyweight Pattern）也叫 蝇量模式：运用共享技术有效地支持大量细粒度的对象</li>
+<li>常用系统底层开发，解决系统的性能问题。像 <strong>数据库连接池</strong>，里面都是创建好的连接对象，在这些连接对象中有我们需要的就直接拿过来用，避免重新创建，如果没有我们需要的，则创建一个</li>
+<li>享元模式能够解决 <strong>重复对象的内存浪费问题</strong>，当系统中有大量相似对象，需要缓冲池时。不需要总是创建新对象，可以从缓冲池中获取，这样就可以降低系统内存，同时提高效率</li>
+<li>享元模式 <strong>经典的应用场景</strong> 就是池技术了，String 常量池、数据库连接池、缓冲池等等都是享元模式的应用，享元模式是池技术的重要实现方式。</li>
+</ul>
+<p>案例看代码</p>
+<h2 id="5、内部状态和外部状态"><a href="#5、内部状态和外部状态" class="headerlink" title="5、内部状态和外部状态"></a>5、内部状态和外部状态</h2><p>比如围棋、五子棋、跳棋，它们都有大量的棋子对象，围棋和五子棋只有黑白两色，跳棋颜色多一些，所以<strong>棋子颜色</strong>就是棋子的内部状态；而各个棋子之间的差别就是位置的不同，当我们落子后，落子颜色是定的，但位置是变化的，所以<strong>棋子坐标</strong>就是棋子的外部状态</p>
+<ul>
+<li>享元模式提出了两个要求：<strong>细粒度和共享对象</strong>。这里就涉及到内部状态和外部状态。即：将对象的信息分为两个部分：内部状态和外部状态</li>
+<li><strong>内部状态</strong> 指对象共享出来的信息，存储在享元对象内部且不会随外部环境的改变而改变</li>
+<li><strong>外部状态</strong> 指对象得以依赖的一个标记，是随环境改变而改变的、不可共享的状态</li>
+</ul>
+<p>例如：围棋理论上有 361 个空位可以放棋子，每盘棋都有可能有两三百个棋子对象产生，因为内存空间有限，一台服务器难以支持更多玩家对弈，如果用享元模式来处理棋子，那么棋子对象就可以减少到只有两个实例，这样就很好地解决了对象开销问题。</p>
+<h2 id="6、JDK-Integer-源码分析"><a href="#6、JDK-Integer-源码分析" class="headerlink" title="6、JDK Integer 源码分析"></a>6、JDK Integer 源码分析</h2><p>自己看</p>
+<h2 id="7、应用场景和扩展"><a href="#7、应用场景和扩展" class="headerlink" title="7、应用场景和扩展"></a>7、应用场景和扩展</h2><blockquote>
+<p>应用场景</p>
+</blockquote>
+<p>当系统中多处需要同一组信息时，可以把这些信息封装到一个对象中，然后对该对象进行缓存，这样，一个对象就可以提供给多出需要使用的地方，避免大量同一对象的多次创建，降低大量内存空间的消耗。</p>
+<p>享元模式其实是 <code>工厂方法模式</code> 的一个改进机制，享元模式同样要求创建一个或一组对象，并且就是通过工厂方法模式生成对象的，只不过享元模式为工厂方法模式增加了缓存这一功能。</p>
+<p>前面分析了享元模式的结构与特点，下面分析它适用的应用场景。享元模式是通过减少内存中对象的数量来节省内存空间的，所以以下几种情形适合采用享元模式。</p>
+<ul>
+<li>系统中存在大量相同或相似的对象，这些对象耗费大量的内存资源。</li>
+<li>大部分的对象可以按照内部状态进行分组，且可将不同部分外部化，这样每一个组只需保存一个内部状态。</li>
+<li>由于享元模式需要额外维护一个保存享元的 <code>数据结构</code>，所以应当在有足够多的享元实例时才值得使用享元模式。</li>
+</ul>
+<blockquote>
+<p>扩展</p>
+</blockquote>
+<p>在前面介绍的享元模式中，其结构图通常包含可以共享的部分和不可以共享的部分。在实际使用过程中，有时候会稍加改变，即存在两种特殊的享元模式：单纯享元模式和复合享元模式，下面分别对它们进行简单介绍。</p>
+<ul>
+<li>单纯享元模式，这种享元模式中的所有的具体享元类都是可以共享的，不存在非共享的具体享元类。</li>
+<li>复合享元模式，这种享元模式中的有些享元对象是由一些单纯享元对象组合而成的，它们就是复合享元对象。虽然复合享元对象本身不能共享，但它们可以分解成单纯享元对象再被共享</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2022/04/20/design-patterns-of-facade-and-flyweight/">https://naivekyo.github.io/2022/04/20/design-patterns-of-facade-and-flyweight/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Design-Patterns/">
+                                    <span class="chip bg-color">Design Patterns</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2022/04/20/design-patterns-of-facade-and-flyweight/';
+        this.page.identifier = '/2022/04/20/design-patterns-of-facade-and-flyweight/';
+        this.page.title = 'Design Patterns Of Facade And Flyweight';
+    };
+    let disqus_shortname = 'https-naivekyo-github-io';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/04/21/design-patterns-of-proxy-and-template-method/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221341.jpg" class="responsive-img" alt="Design Patterns Of Proxy And Template Method">
+                        
+                        <span class="card-title">Design Patterns Of Proxy And Template Method</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            设计模式之代理模式、模板方法模式
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Design-Patterns/" class="post-category">
+                                    Design Patterns
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Design-Patterns/">
+                        <span class="chip bg-color">Design Patterns</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/18/java-web-integration-ssm-with-tomcat/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221300.jpg" class="responsive-img" alt="Java Web Integration SSM With Tomcat">
+                        
+                        <span class="card-title">Java Web Integration SSM With Tomcat</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java Web: 整合 SSM 框架
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java-Web/" class="post-category">
+                                    Java Web
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java-Web/">
+                        <span class="chip bg-color">Java Web</span>
+                    </a>
+                    
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="27969834"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:https://naivekyore@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

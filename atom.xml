@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-18T04:03:02.374Z</updated>
+  <updated>2022-04-25T03:02:08.698Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,211 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Design Patterns Of Strategy And Chain Of Responsibility</title>
+    <link href="https://naivekyo.github.io/2022/04/25/design-patterns-of-strategy-and-chain-of-responsibility/"/>
+    <id>https://naivekyo.github.io/2022/04/25/design-patterns-of-strategy-and-chain-of-responsibility/</id>
+    <published>2022-04-25T02:59:56.000Z</published>
+    <updated>2022-04-25T03:02:08.698Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、策略模式&quot;&gt;&lt;a href=&quot;#一、策略模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Interpreter And State</title>
+    <link href="https://naivekyo.github.io/2022/04/25/design-patterns-of-interpreter-and-state/"/>
+    <id>https://naivekyo.github.io/2022/04/25/design-patterns-of-interpreter-and-state/</id>
+    <published>2022-04-25T02:54:22.000Z</published>
+    <updated>2022-04-25T02:58:21.840Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、解释器模式&quot;&gt;&lt;a href=&quot;#一、解释器模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx Page Statics</title>
+    <link href="https://naivekyo.github.io/2022/04/25/nginx-page-statics/"/>
+    <id>https://naivekyo.github.io/2022/04/25/nginx-page-statics/</id>
+    <published>2022-04-25T02:23:00.000Z</published>
+    <updated>2022-04-25T02:24:35.598Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;页面静态化&quot;&gt;&lt;a href=&quot;#页面静态化&quot; class=&quot;headerlink&quot; title=&quot;页面静态化&quot;&gt;&lt;/a&gt;页面静态化&lt;/h1&gt;&lt;h2 id=&quot;1、概念&quot;&gt;&lt;a href=&quot;#1、概念&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Nginx" scheme="https://naivekyo.github.io/categories/Nginx/"/>
+    
+    
+    <category term="Nginx" scheme="https://naivekyo.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Mediator And Memento</title>
+    <link href="https://naivekyo.github.io/2022/04/24/design-patterns-of-mediator-and-memento/"/>
+    <id>https://naivekyo.github.io/2022/04/24/design-patterns-of-mediator-and-memento/</id>
+    <published>2022-04-24T02:46:26.000Z</published>
+    <updated>2022-04-25T02:49:02.439Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、中介者模式&quot;&gt;&lt;a href=&quot;#一、中介者模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Iterator And Observer</title>
+    <link href="https://naivekyo.github.io/2022/04/23/design-patterns-of-iterator-and-observer/"/>
+    <id>https://naivekyo.github.io/2022/04/23/design-patterns-of-iterator-and-observer/</id>
+    <published>2022-04-23T02:43:09.000Z</published>
+    <updated>2022-04-25T02:45:27.765Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、迭代器设计模式&quot;&gt;&lt;a href=&quot;#一、迭代器设计模式&quot; class=&quot;headerlink&quot; title=&quot;一、迭代器设计模式&quot;&gt;&lt;/a&gt;一、迭代器设计模式&lt;/h1&gt;&lt;p&gt;在现实生活以及程序设计中，经常要访问一个聚合对象中的各个元素，如 数据结构中 链表</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Command And Visitor</title>
+    <link href="https://naivekyo.github.io/2022/04/22/design-patterns-of-command-and-visitor/"/>
+    <id>https://naivekyo.github.io/2022/04/22/design-patterns-of-command-and-visitor/</id>
+    <published>2022-04-22T02:38:50.000Z</published>
+    <updated>2022-04-25T02:42:29.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、命令模式&quot;&gt;&lt;a href=&quot;#一、命令模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Proxy And Template Method</title>
+    <link href="https://naivekyo.github.io/2022/04/21/design-patterns-of-proxy-and-template-method/"/>
+    <id>https://naivekyo.github.io/2022/04/21/design-patterns-of-proxy-and-template-method/</id>
+    <published>2022-04-21T02:34:09.000Z</published>
+    <updated>2022-04-25T02:37:24.830Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、代理模式&quot;&gt;&lt;a href=&quot;#一、代理模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Facade And Flyweight</title>
+    <link href="https://naivekyo.github.io/2022/04/20/design-patterns-of-facade-and-flyweight/"/>
+    <id>https://naivekyo.github.io/2022/04/20/design-patterns-of-facade-and-flyweight/</id>
+    <published>2022-04-20T02:26:46.000Z</published>
+    <updated>2022-04-25T02:32:15.267Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、外观模式&quot;&gt;&lt;a href=&quot;#一、外观模式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java Web Integration SSM With Tomcat</title>
     <link href="https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/"/>
     <id>https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/</id>
     <published>2022-04-18T02:13:51.000Z</published>
-    <updated>2022-04-18T04:03:02.374Z</updated>
+    <updated>2022-04-19T07:15:27.946Z</updated>
     
     
       
@@ -140,6 +340,31 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Design Patterns Of Seven Principles</title>
+    <link href="https://naivekyo.github.io/2022/04/09/design-patterns-of-seven-principles/"/>
+    <id>https://naivekyo.github.io/2022/04/09/design-patterns-of-seven-principles/</id>
+    <published>2022-04-09T02:51:53.000Z</published>
+    <updated>2022-04-25T02:53:20.062Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;设计模式的重要性&quot;&gt;&lt;a href=&quot;#设计模式的重要性&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
+    
+    
+    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
     
   </entry>
   
@@ -290,234 +515,6 @@
     
     
     <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue learn Vue-Router</title>
-    <link href="https://naivekyo.github.io/2022/04/04/vue-learn-vue-router/"/>
-    <id>https://naivekyo.github.io/2022/04/04/vue-learn-vue-router/</id>
-    <published>2022-04-04T01:57:55.000Z</published>
-    <updated>2022-04-07T06:39:55.443Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Vue-Router&quot;&gt;&lt;a href=&quot;#Vue-Router&quot; class=&quot;headerlink&quot; title=&quot;Vue-Router&quot;&gt;&lt;/a&gt;Vue-Router&lt;/h1&gt;&lt;h2 id=&quot;1、SPA-的理解&quot;&gt;&lt;a href=&quot;#1、SPA-的理解&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NodeJS with Babel CommonJS Webpack Intro</title>
-    <link href="https://naivekyo.github.io/2022/04/03/nodejs-with-babel-commonjs-webpack-intro/"/>
-    <id>https://naivekyo.github.io/2022/04/03/nodejs-with-babel-commonjs-webpack-intro/</id>
-    <published>2022-04-03T13:15:38.000Z</published>
-    <updated>2022-04-06T13:16:56.623Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、Node-js&quot;&gt;&lt;a href=&quot;#一、Node-js&quot; class=&quot;headerlink&quot; title=&quot;一、Node.js&quot;&gt;&lt;/a&gt;一、Node.js&lt;/h1&gt;&lt;h2 id=&quot;1-1、简介&quot;&gt;&lt;a href=&quot;#1-1、简介&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NodeJS" scheme="https://naivekyo.github.io/categories/NodeJS/"/>
-    
-    
-    <category term="NodeJS" scheme="https://naivekyo.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript Summary (一)</title>
-    <link href="https://naivekyo.github.io/2022/04/01/javascript-summary-yi/"/>
-    <id>https://naivekyo.github.io/2022/04/01/javascript-summary-yi/</id>
-    <published>2022-04-01T13:10:24.000Z</published>
-    <updated>2022-04-07T07:03:54.773Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;h2 id=&quot;1-1、概述&quot;&gt;&lt;a href=&quot;#1-1、概述&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Front-end learn CSS3</title>
-    <link href="https://naivekyo.github.io/2022/03/29/front-end-learn-css3/"/>
-    <id>https://naivekyo.github.io/2022/03/29/front-end-learn-css3/</id>
-    <published>2022-03-29T13:02:26.000Z</published>
-    <updated>2022-04-06T13:08:42.685Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、什么是-CSS&quot;&gt;&lt;a href=&quot;#一、什么是-CSS&quot; class=&quot;headerlink&quot; title=&quot;一、什么是 CSS&quot;&gt;&lt;/a&gt;一、什么是 CSS&lt;/h1&gt;&lt;p&gt;如何学习：&lt;/p&gt;
-&lt;p&gt;​    1、CSS 是什么&lt;/p&gt;
-&lt;p&gt;​   </summary>
-        
-      
-    
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Front-end learn HTML5</title>
-    <link href="https://naivekyo.github.io/2022/03/28/front-end-learn-html5/"/>
-    <id>https://naivekyo.github.io/2022/03/28/front-end-learn-html5/</id>
-    <published>2022-03-28T13:06:54.000Z</published>
-    <updated>2022-04-06T13:30:49.715Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、概念&quot;&gt;&lt;a href=&quot;#一、概念&quot; class=&quot;headerlink&quot; title=&quot;一、概念&quot;&gt;&lt;/a&gt;一、概念&lt;/h1&gt;&lt;p&gt;HTML&lt;/p&gt;
-&lt;p&gt;​    Hyper Text Markup</summary>
-        
-      
-    
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NodeJS summary</title>
-    <link href="https://naivekyo.github.io/2022/03/27/nodejs-summary/"/>
-    <id>https://naivekyo.github.io/2022/03/27/nodejs-summary/</id>
-    <published>2022-03-27T12:55:12.000Z</published>
-    <updated>2022-04-06T13:26:19.822Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Node-js&quot;&gt;&lt;a href=&quot;#Node-js&quot; class=&quot;headerlink&quot; title=&quot;Node.js&quot;&gt;&lt;/a&gt;Node.js&lt;/h1&gt;&lt;h1 id=&quot;一、模块化编程&quot;&gt;&lt;a href=&quot;#一、模块化编程&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NodeJS" scheme="https://naivekyo.github.io/categories/NodeJS/"/>
-    
-    
-    <category term="NodeJS" scheme="https://naivekyo.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL The ranks of conversion</title>
-    <link href="https://naivekyo.github.io/2022/03/25/mysql-the-ranks-of-conversion/"/>
-    <id>https://naivekyo.github.io/2022/03/25/mysql-the-ranks-of-conversion/</id>
-    <published>2022-03-25T03:41:54.000Z</published>
-    <updated>2022-03-27T14:57:51.245Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文参考自 : &lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Source Code Analysis (五) User-defined tag resolution</title>
-    <link href="https://naivekyo.github.io/2022/03/18/spring-source-code-analysis-wu-user-defined-tag-resolution/"/>
-    <id>https://naivekyo.github.io/2022/03/18/spring-source-code-analysis-wu-user-defined-tag-resolution/</id>
-    <published>2022-03-18T03:01:17.000Z</published>
-    <updated>2022-03-18T03:02:37.692Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;自定义标签的解析&quot;&gt;&lt;a href=&quot;#自定义标签的解析&quot; class=&quot;headerlink&quot; title=&quot;自定义标签的解析&quot;&gt;&lt;/a&gt;自定义标签的解析&lt;/h1&gt;&lt;p&gt;在 Spring 的 XML</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Source Code Analysis (四) The parsing of alias, import and beans label</title>
-    <link href="https://naivekyo.github.io/2022/03/17/spring-source-code-analysis-si-the-parsing-of-alias-import-and-beans-label/"/>
-    <id>https://naivekyo.github.io/2022/03/17/spring-source-code-analysis-si-the-parsing-of-alias-import-and-beans-label/</id>
-    <published>2022-03-17T02:55:00.000Z</published>
-    <updated>2022-03-17T02:57:41.478Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;默认标签的解析&quot;&gt;&lt;a href=&quot;#默认标签的解析&quot; class=&quot;headerlink&quot; title=&quot;默认标签的解析&quot;&gt;&lt;/a&gt;默认标签的解析&lt;/h1&gt;&lt;p&gt;之前提到过读配置文件的解析包括对 import 标签、alias 标签、bean 标签、beans</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
     
   </entry>
   
