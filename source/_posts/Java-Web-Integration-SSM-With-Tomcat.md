@@ -148,6 +148,8 @@ tags: ["Java Web", SSM]
 
 ## 1、 Spring 容器
 
+application-context.xml
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -181,6 +183,15 @@ tags: ["Java Web", SSM]
     <mvc:default-servlet-handler/>
     <context:component-scan base-package="com.test.controller"/>
 
+    <mvc:cors>
+        <mvc:mapping path="/**"
+                     allowed-origins="*"
+                     allowed-headers="*"
+                     allowed-methods="*"
+                     exposed-headers=""
+        />
+    </mvc:cors>
+    
 </beans>
 ```
 
@@ -458,3 +469,19 @@ jdbc_url = jdbc:mysql://localhost:3306/xxx?useUnicode=true&useSSL=false&characte
 # 四、项目结构
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220418120204.png)
+
+
+
+# 五、注意事项
+
+## xml 和 Java Config
+
+分为三种模式：
+
+- 纯 XML 配置；
+  - 可以将配置与代码完全解耦
+- 纯 Java Config 配置；
+  - 现在的主流方式，但是不建议在 SSM 项目中使用
+- 以 Java Config 为主，XML 辅助的配置方式；
+  - 此种方式下，XML 仅仅起到辅助作用，Java Config 配置类可以通过 `@ImportResource` 导入 XML 文件。
+
