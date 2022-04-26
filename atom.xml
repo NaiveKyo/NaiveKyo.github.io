@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-25T03:02:08.698Z</updated>
+  <updated>2022-04-26T14:46:02.355Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Study (一) Service Provider And Consumer</title>
+    <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/"/>
+    <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/</id>
+    <published>2022-04-26T14:44:27.000Z</published>
+    <updated>2022-04-26T14:46:02.355Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;测试用例：&lt;/p&gt;
+&lt;p&gt;之前已经搭建好了 Maven</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Of Microservice Technology</title>
+    <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-of-microservice-technology/"/>
+    <id>https://naivekyo.github.io/2022/04/26/spring-cloud-of-microservice-technology/</id>
+    <published>2022-04-26T14:41:02.000Z</published>
+    <updated>2022-04-26T14:42:39.160Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是微服务&quot;&gt;&lt;a href=&quot;#什么是微服务&quot; class=&quot;headerlink&quot; title=&quot;什么是微服务&quot;&gt;&lt;/a&gt;什么是微服务&lt;/h1&gt;&lt;p&gt;微服务架构是一种架构模式，它提倡将单一应用程序划分为一组小的服务，服务之间互相协调、互相配合，为用户</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
   
   <entry>
     <title>Design Patterns Of Strategy And Chain Of Responsibility</title>
@@ -71,7 +122,7 @@
     <link href="https://naivekyo.github.io/2022/04/25/nginx-page-statics/"/>
     <id>https://naivekyo.github.io/2022/04/25/nginx-page-statics/</id>
     <published>2022-04-25T02:23:00.000Z</published>
-    <updated>2022-04-25T02:24:35.598Z</updated>
+    <updated>2022-04-26T08:59:26.970Z</updated>
     
     
       
@@ -465,56 +516,6 @@
     
     
     <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript: learn JS and JQuery</title>
-    <link href="https://naivekyo.github.io/2022/04/06/javascript-learn-js-and-jquery/"/>
-    <id>https://naivekyo.github.io/2022/04/06/javascript-learn-js-and-jquery/</id>
-    <published>2022-04-06T02:54:02.000Z</published>
-    <updated>2022-04-07T02:56:09.415Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JavaScript&quot;&gt;&lt;a href=&quot;#JavaScript&quot; class=&quot;headerlink&quot; title=&quot;JavaScript&quot;&gt;&lt;/a&gt;JavaScript&lt;/h1&gt;&lt;p&gt;JavaScript</summary>
-        
-      
-    
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue learn Vuex</title>
-    <link href="https://naivekyo.github.io/2022/04/05/vue-learn-vuex/"/>
-    <id>https://naivekyo.github.io/2022/04/05/vue-learn-vuex/</id>
-    <published>2022-04-05T02:10:12.000Z</published>
-    <updated>2022-04-07T02:36:09.063Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Vuex&quot;&gt;&lt;a href=&quot;#Vuex&quot; class=&quot;headerlink&quot; title=&quot;Vuex&quot;&gt;&lt;/a&gt;Vuex&lt;/h1&gt;&lt;h2 id=&quot;1、简介&quot;&gt;&lt;a href=&quot;#1、简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/categories/Vue/"/>
-    
-    
-    <category term="Vue" scheme="https://naivekyo.github.io/tags/Vue/"/>
     
   </entry>
   
