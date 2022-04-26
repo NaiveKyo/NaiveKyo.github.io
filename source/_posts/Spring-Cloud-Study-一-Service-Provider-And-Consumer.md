@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-04-26 22:44:27
-summary: "Spring Cloud 学习(一): 支付服务(服务提供者), 客户订单服务(服务消费者)"
+summary: "Spring Cloud 学习(一): 服务提供者与服务消费者"
 categories: "Spring Cloud"
 keywords: "Spring Cloud"
 tags: "Spring Cloud"
