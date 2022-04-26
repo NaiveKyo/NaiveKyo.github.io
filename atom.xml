@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-26T14:46:02.355Z</updated>
+  <updated>2022-04-26T15:31:59.060Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Spring Cloud Study (二) Learning Eureka</title>
+    <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/"/>
+    <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/</id>
+    <published>2022-04-26T15:30:16.000Z</published>
+    <updated>2022-04-26T15:31:59.060Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Eureka&quot;&gt;&lt;a href=&quot;#Eureka&quot; class=&quot;headerlink&quot; title=&quot;Eureka&quot;&gt;&lt;/a&gt;Eureka&lt;/h1&gt;&lt;h1 id=&quot;一、什么是服务治理&quot;&gt;&lt;a href=&quot;#一、什么是服务治理&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring Cloud Study (一) Service Provider And Consumer</title>
     <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/"/>
     <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/</id>
     <published>2022-04-26T14:44:27.000Z</published>
-    <updated>2022-04-26T14:46:02.355Z</updated>
+    <updated>2022-04-26T15:30:31.533Z</updated>
     
     
       
@@ -491,31 +516,6 @@
     
     
     <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript Summary (二)</title>
-    <link href="https://naivekyo.github.io/2022/04/07/javascript-summary-er/"/>
-    <id>https://naivekyo.github.io/2022/04/07/javascript-summary-er/</id>
-    <published>2022-04-07T07:02:05.000Z</published>
-    <updated>2022-04-07T07:19:37.754Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java-Script&quot;&gt;&lt;a href=&quot;#Java-Script&quot; class=&quot;headerlink&quot; title=&quot;Java Script&quot;&gt;&lt;/a&gt;Java Script&lt;/h1&gt;&lt;pre class=&quot;line-numbers</summary>
-        
-      
-    
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://naivekyo.github.io/tags/JavaScript/"/>
     
   </entry>
   
