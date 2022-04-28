@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-26T15:31:59.060Z</updated>
+  <updated>2022-04-28T15:16:25.123Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,111 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>VMware Workstation Build CentOS 7 System</title>
+    <link href="https://naivekyo.github.io/2022/04/28/vmware-workstation-build-centos-7-system/"/>
+    <id>https://naivekyo.github.io/2022/04/28/vmware-workstation-build-centos-7-system/</id>
+    <published>2022-04-28T15:15:32.000Z</published>
+    <updated>2022-04-28T15:16:25.123Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;在-VMware-中安装-CentOS-7-系统&quot;&gt;&lt;a href=&quot;#在-VMware-中安装-CentOS-7-系统&quot; class=&quot;headerlink&quot; title=&quot;在 VMware 中安装 CentOS 7 系统&quot;&gt;&lt;/a&gt;在 VMware 中安装</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7 Deploy Zookeeper Server</title>
+    <link href="https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server/"/>
+    <id>https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server/</id>
+    <published>2022-04-28T15:13:18.000Z</published>
+    <updated>2022-04-28T15:14:18.126Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Zookeeper&quot;&gt;&lt;a href=&quot;#Zookeeper&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper&quot;&gt;&lt;/a&gt;Zookeeper&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Study (四) Learning Consul And Cap</title>
+    <link href="https://naivekyo.github.io/2022/04/28/spring-cloud-study-si-learning-consul-and-cap/"/>
+    <id>https://naivekyo.github.io/2022/04/28/spring-cloud-study-si-learning-consul-and-cap/</id>
+    <published>2022-04-28T15:10:44.000Z</published>
+    <updated>2022-04-28T15:11:51.589Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Consul&quot;&gt;&lt;a href=&quot;#Consul&quot; class=&quot;headerlink&quot; title=&quot;Consul&quot;&gt;&lt;/a&gt;Consul&lt;/h1&gt;&lt;h1 id=&quot;一、Consul-简介&quot;&gt;&lt;a href=&quot;#一、Consul-简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Study (三) Use Zookeeper</title>
+    <link href="https://naivekyo.github.io/2022/04/28/spring-cloud-study-san-use-zookeeper/"/>
+    <id>https://naivekyo.github.io/2022/04/28/spring-cloud-study-san-use-zookeeper/</id>
+    <published>2022-04-28T15:06:06.000Z</published>
+    <updated>2022-04-28T15:08:23.470Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Zookeeper-作为注册中心&quot;&gt;&lt;a href=&quot;#Zookeeper-作为注册中心&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper 作为注册中心&quot;&gt;&lt;/a&gt;Zookeeper 作为注册中心&lt;/h1&gt;&lt;p&gt;zookeeper</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring Cloud Study (二) Learning Eureka</title>
     <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/"/>
     <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/</id>
     <published>2022-04-26T15:30:16.000Z</published>
-    <updated>2022-04-26T15:31:59.060Z</updated>
+    <updated>2022-04-28T09:59:50.871Z</updated>
     
     
       
@@ -416,106 +516,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Seven Principles</title>
-    <link href="https://naivekyo.github.io/2022/04/09/design-patterns-of-seven-principles/"/>
-    <id>https://naivekyo.github.io/2022/04/09/design-patterns-of-seven-principles/</id>
-    <published>2022-04-09T02:51:53.000Z</published>
-    <updated>2022-04-25T02:53:20.062Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;设计模式的重要性&quot;&gt;&lt;a href=&quot;#设计模式的重要性&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Singleton and Factory</title>
-    <link href="https://naivekyo.github.io/2022/04/08/design-patterns-of-singleton-and-factory/"/>
-    <id>https://naivekyo.github.io/2022/04/08/design-patterns-of-singleton-and-factory/</id>
-    <published>2022-04-08T06:04:57.000Z</published>
-    <updated>2022-04-08T06:28:49.867Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;设计模式概述和分类&quot;&gt;&lt;a href=&quot;#设计模式概述和分类&quot; class=&quot;headerlink&quot; title=&quot;设计模式概述和分类&quot;&gt;&lt;/a&gt;设计模式概述和分类&lt;/h1&gt;&lt;h2 id=&quot;1、设计模式介绍&quot;&gt;&lt;a href=&quot;#1、设计模式介绍&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Front-end learn webapp</title>
-    <link href="https://naivekyo.github.io/2022/04/07/front-end-learn-webapp/"/>
-    <id>https://naivekyo.github.io/2022/04/07/front-end-learn-webapp/</id>
-    <published>2022-04-07T07:34:07.000Z</published>
-    <updated>2022-04-07T07:35:00.353Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;视口&quot;&gt;&lt;a href=&quot;#视口&quot; class=&quot;headerlink&quot; title=&quot;视口&quot;&gt;&lt;/a&gt;视口&lt;/h1&gt;&lt;h2 id=&quot;布局视口-layout-viewport&quot;&gt;&lt;a href=&quot;#布局视口-layout-viewport&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Front-end learn H5 + CSS3</title>
-    <link href="https://naivekyo.github.io/2022/04/07/front-end-learn-h5-css3/"/>
-    <id>https://naivekyo.github.io/2022/04/07/front-end-learn-h5-css3/</id>
-    <published>2022-04-07T07:30:44.000Z</published>
-    <updated>2022-04-07T07:31:38.137Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;浏览器&quot;&gt;&lt;a href=&quot;#浏览器&quot; class=&quot;headerlink&quot; title=&quot;浏览器&quot;&gt;&lt;/a&gt;浏览器&lt;/h1&gt;&lt;pre class=&quot;line-numbers language-html&quot; data-language=&quot;html&quot;&gt;&lt;code</summary>
-        
-      
-    
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/categories/Front-End/"/>
-    
-    
-    <category term="Front End" scheme="https://naivekyo.github.io/tags/Front-End/"/>
     
   </entry>
   

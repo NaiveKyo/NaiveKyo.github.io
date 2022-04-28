@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-04-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.7k
+                    4.8k
                 </div>
                 
 
@@ -807,7 +807,7 @@ eureka:
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> PAYMENT_URL <span class="token operator">=</span> <span class="token string">"http://CLOUD-PAYMENT-SERVICE"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>改成这样后重启订单消费者服务，调用接口会发现抛出异常，这是因为同一个服务名下面有多个服务实例，调用 api 时不能确定调用的究竟是哪一个。</p>
-<p>解决方法：开启 <code>RestTemplate</code> 的负载均衡功能（使用 <code>@LoaderBalance</code> 注解，使用是 <code>Ribbon</code>）。</p>
+<p>解决方法：开启 <code>RestTemplate</code> 的负载均衡功能（使用 <code>@LoaderBalance</code> 注解，具体原理则是通过调用 <code>Ribbon</code> 完成的）。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ApplicationContextConfig</span> <span class="token punctuation">{</span>
     
@@ -843,16 +843,16 @@ eureka:
 <p>重启服务，此时 Eureka 注册中心显示的信息为：<code>CLOUD-PAYMENT-SERVICE   payment8002,payment8001</code>。</p>
 <p>企业中需要更规范的命名。</p>
 <h2 id="2、IP-信息显示"><a href="#2、IP-信息显示" class="headerlink" title="2、IP 信息显示"></a>2、IP 信息显示</h2><p>现在将鼠标悬停到对应的服务实例名称上，不会显示 ip 地址，可以增加以下配置：</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka<span class="token punctuation">,</span>http<span class="token punctuation">:</span>//eureka7002.com<span class="token punctuation">:</span>7002/eureka
 
-  instance:
-    instance-id: payment8002
-	prefer-ip-address: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">instance-id</span><span class="token punctuation">:</span> payment8002
+	<span class="token key atrule">prefer-ip-address</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -924,43 +924,43 @@ eureka:
 <p>它的设计哲学就是宁可保留错误的服务注册信息，也不盲目注销任何可能健康的服务实例。</p>
 <p>综上：自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留）也不盲目注销任何健康的微服务。使用自我保护模式，可以让 Eureka 集群更加的健壮、稳定。</p>
 <h2 id="2、禁用自我保护机制"><a href="#2、禁用自我保护机制" class="headerlink" title="2、禁用自我保护机制"></a>2、禁用自我保护机制</h2><p>Eureka 的自我保护机制是默认开启的，可以通过配置 <code>eureka.server.enable-self-preservation = false</code> 来关闭，例如我们以 Eureka Server 7001 服务为例，将其改为单机模式：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 7001
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">7001</span>
   
-eureka:
-  instance:
-    hostname: eureka7001.com  # Eureka 服务端的实例名称
-    instance-id: eureka-server7001
-    prefer-ip-address: true
-  client:
-    register-with-eureka: false 
-    fetch-registry: false  
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka # 单机
-  server:
-    enable-self-preservation: false # 关闭自我保护, 保证失联的服务实例被及时注销
-    eviction-interval-timer-in-ms: 2000
-#     defaultZone: http://eureka7002.com:7002/eureka # 集群<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> eureka7001.com  <span class="token comment"># Eureka 服务端的实例名称</span>
+    <span class="token key atrule">instance-id</span><span class="token punctuation">:</span> eureka<span class="token punctuation">-</span>server7001
+    <span class="token key atrule">prefer-ip-address</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> 
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>  
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka <span class="token comment"># 单机</span>
+  <span class="token key atrule">server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enable-self-preservation</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 关闭自我保护, 保证失联的服务实例被及时注销</span>
+    <span class="token key atrule">eviction-interval-timer-in-ms</span><span class="token punctuation">:</span> <span class="token number">2000</span>
+<span class="token comment">#     defaultZone: http://eureka7002.com:7002/eureka # 集群</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后修改支付服务 payment8001 配置：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">eureka:
-  client:
-    # 表示是否将自己注册到 EurekaSever, 默认为 true
-    register-with-eureka: true
-    # 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡
-    fetch-registry: true
-    # 下面配置的就是 EurekaServer 的地址
-    service-url:
-#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
-      defaultZone: http://eureka7001.com:7001/eureka # 切换为单机注册中心模式
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token comment"># 表示是否将自己注册到 EurekaSever, 默认为 true</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># 下面配置的就是 EurekaServer 的地址</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+<span class="token comment">#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka <span class="token comment"># 切换为单机注册中心模式</span>
       
-  instance:
-    instance-id: payment8001
-    prefer-ip-address: true
-    # Eureka 客户端向服务端发送心跳的时间间隔, 单位为秒(默认 30 秒)
-    lease-renewal-interval-in-seconds: 1
-    # Eureka 服务端在收到最后一次心跳后等待时间上限, 单位为秒(默认 90 秒), 超时则剔除服务
-    lease-expiration-duration-in-seconds: 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">instance-id</span><span class="token punctuation">:</span> payment8001
+    <span class="token key atrule">prefer-ip-address</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># Eureka 客户端向服务端发送心跳的时间间隔, 单位为秒(默认 30 秒)</span>
+    <span class="token key atrule">lease-renewal-interval-in-seconds</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token comment"># Eureka 服务端在收到最后一次心跳后等待时间上限, 单位为秒(默认 90 秒), 超时则剔除服务</span>
+    <span class="token key atrule">lease-expiration-duration-in-seconds</span><span class="token punctuation">:</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>测试</p>
@@ -1230,29 +1230,28 @@ eureka:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/04/26/spring-cloud-study-er-learning-eureka/">
+                <a href="/2022/04/28/spring-cloud-study-san-use-zookeeper/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221537.jpg" class="responsive-img" alt="Spring Cloud Study (二) Learning Eureka">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221552.jpg" class="responsive-img" alt="Spring Cloud Study (三) Use Zookeeper">
                         
-                        <span class="card-title">Spring Cloud Study (二) Learning Eureka</span>
+                        <span class="card-title">Spring Cloud Study (三) Use Zookeeper</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring Cloud 学习(二): Eureka 服务注册与发现
+                            Spring Cloud 学习(三): Zookeeper 注册中心
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1265,7 +1264,6 @@ eureka:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
