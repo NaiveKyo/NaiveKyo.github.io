@@ -445,7 +445,7 @@ public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
 改成这样后重启订单消费者服务，调用接口会发现抛出异常，这是因为同一个服务名下面有多个服务实例，调用 api 时不能确定调用的究竟是哪一个。
 
-解决方法：开启 `RestTemplate` 的负载均衡功能（使用 `@LoaderBalance` 注解，使用是 `Ribbon`）。
+解决方法：开启 `RestTemplate` 的负载均衡功能（使用 `@LoaderBalance` 注解，具体原理则是通过调用 `Ribbon` 完成的）。
 
 ```java
 @Configuration
@@ -508,7 +508,7 @@ eureka:
 
 现在将鼠标悬停到对应的服务实例名称上，不会显示 ip 地址，可以增加以下配置：
 
-```xml
+```yaml
 eureka:
   client:
     register-with-eureka: true
