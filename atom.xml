@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-28T15:16:25.123Z</updated>
+  <updated>2022-04-29T15:24:40.601Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Study (五) Learning Ribbon</title>
+    <link href="https://naivekyo.github.io/2022/04/29/spring-cloud-study-wu-learning-ribbon/"/>
+    <id>https://naivekyo.github.io/2022/04/29/spring-cloud-study-wu-learning-ribbon/</id>
+    <published>2022-04-29T15:22:17.000Z</published>
+    <updated>2022-04-29T15:24:40.601Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Ribbon-负载均衡&quot;&gt;&lt;a href=&quot;#Ribbon-负载均衡&quot; class=&quot;headerlink&quot; title=&quot;Ribbon 负载均衡&quot;&gt;&lt;/a&gt;Ribbon 负载均衡&lt;/h1&gt;&lt;h1 id=&quot;一、测试环境&quot;&gt;&lt;a href=&quot;#一、测试环境&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
   
   <entry>
     <title>VMware Workstation Build CentOS 7 System</title>
@@ -491,31 +516,6 @@
     
     
     <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7 Install Oracle Database</title>
-    <link href="https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/"/>
-    <id>https://naivekyo.github.io/2022/04/12/centos7-install-oracle-database/</id>
-    <published>2022-04-12T15:09:41.000Z</published>
-    <updated>2022-04-14T15:39:15.005Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;CentOS7-安装-Oracle-19c&quot;&gt;&lt;a href=&quot;#CentOS7-安装-Oracle-19c&quot; class=&quot;headerlink&quot; title=&quot;CentOS7 安装 Oracle 19c&quot;&gt;&lt;/a&gt;CentOS7 安装 Oracle</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
   </entry>
   
