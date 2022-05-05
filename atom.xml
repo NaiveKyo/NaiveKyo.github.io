@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-04-29T15:24:40.601Z</updated>
+  <updated>2022-05-05T13:08:26.434Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Study (七) Learning Hystrix</title>
+    <link href="https://naivekyo.github.io/2022/05/05/spring-cloud-study-qi-learning-hystrix/"/>
+    <id>https://naivekyo.github.io/2022/05/05/spring-cloud-study-qi-learning-hystrix/</id>
+    <published>2022-05-05T13:07:22.000Z</published>
+    <updated>2022-05-05T13:08:26.434Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Hystrix&quot;&gt;&lt;a href=&quot;#Hystrix&quot; class=&quot;headerlink&quot; title=&quot;Hystrix&quot;&gt;&lt;/a&gt;Hystrix&lt;/h1&gt;&lt;p&gt;github：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Study (六) Learning Open Feign</title>
+    <link href="https://naivekyo.github.io/2022/05/05/spring-cloud-study-liu-learning-open-feign/"/>
+    <id>https://naivekyo.github.io/2022/05/05/spring-cloud-study-liu-learning-open-feign/</id>
+    <published>2022-05-05T13:04:40.000Z</published>
+    <updated>2022-05-05T13:06:41.766Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Open-Feign&quot;&gt;&lt;a href=&quot;#Open-Feign&quot; class=&quot;headerlink&quot; title=&quot;Open Feign&quot;&gt;&lt;/a&gt;Open Feign&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Study (五) Learning Ribbon</title>
@@ -457,56 +507,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;一、装饰器模式&quot;&gt;&lt;a href=&quot;#一、装饰器模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Adapter And Bridge</title>
-    <link href="https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/"/>
-    <id>https://naivekyo.github.io/2022/04/15/design-patterns-of-adapter-and-bridge/</id>
-    <published>2022-04-15T06:59:13.000Z</published>
-    <updated>2022-04-17T07:00:20.883Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、适配器模式&quot;&gt;&lt;a href=&quot;#一、适配器模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Prototype And Builder</title>
-    <link href="https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/"/>
-    <id>https://naivekyo.github.io/2022/04/14/design-patterns-of-prototype-and-builder/</id>
-    <published>2022-04-14T06:53:38.000Z</published>
-    <updated>2022-04-17T06:55:15.113Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、原型模式&quot;&gt;&lt;a href=&quot;#一、原型模式&quot; class=&quot;headerlink&quot;</summary>
         
       
     
