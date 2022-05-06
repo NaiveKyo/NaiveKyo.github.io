@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-05-05T13:08:26.434Z</updated>
+  <updated>2022-05-06T10:16:42.807Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Study (八) Learning Gateway</title>
+    <link href="https://naivekyo.github.io/2022/05/06/spring-cloud-study-ba-learning-gateway/"/>
+    <id>https://naivekyo.github.io/2022/05/06/spring-cloud-study-ba-learning-gateway/</id>
+    <published>2022-05-06T10:15:10.000Z</published>
+    <updated>2022-05-06T10:16:42.807Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Gateway&quot;&gt;&lt;a href=&quot;#Gateway&quot; class=&quot;headerlink&quot; title=&quot;Gateway&quot;&gt;&lt;/a&gt;Gateway&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
+    
+    
+    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Study (七) Learning Hystrix</title>
@@ -491,31 +516,6 @@
     <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
     
     <category term="SSM" scheme="https://naivekyo.github.io/tags/SSM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Decorator And Composite</title>
-    <link href="https://naivekyo.github.io/2022/04/17/design-patterns-of-decorator-and-composite/"/>
-    <id>https://naivekyo.github.io/2022/04/17/design-patterns-of-decorator-and-composite/</id>
-    <published>2022-04-17T07:06:56.000Z</published>
-    <updated>2022-04-17T07:08:02.679Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、装饰器模式&quot;&gt;&lt;a href=&quot;#一、装饰器模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
     
   </entry>
   
