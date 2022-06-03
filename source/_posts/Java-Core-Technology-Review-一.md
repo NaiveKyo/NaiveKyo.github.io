@@ -9,7 +9,7 @@ cover: false
 toc: true
 mathjax: false
 date: 2022-06-03 09:40:12
-summary: "Java 核心技术回顾（一）Java 平台、异常、引用"
+summary: "Java 核心技术回顾(一) Java 平台、异常、引用"
 categories: "Java"
 keywords: "Java"
 tags: "Java"
@@ -66,7 +66,9 @@ Java 在启动时，可以指定不同的参数对运行模式进行选择。比
 
 除了我们日常常见的 Java 编译模式，还有一种新的编译方式，就是所谓的 AOT（Ahead-of-Time Compilation）（提前编译），直接将字节码编码为机器码，这样就避免了 JIT 预热等各方面的开销。
 
-Oracle JDK 支持分层编译和 AOT 协作使用，可以参考 http://openjdk.java.net/jeps/295， AOT 也不仅仅是只有这一种方式，业界早就有第三方工具（如 GCJ、Excelsior JET）提供了相关功能。
+Oracle JDK 支持分层编译和 AOT 协作使用，可以参考 http://openjdk.java.net/jeps/295 
+
+AOT 也不仅仅是只有这一种方式，业界早就有第三方工具（如 GCJ、Excelsior JET）提供了相关功能。
 
 
 
