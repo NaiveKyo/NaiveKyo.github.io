@@ -1,0 +1,1646 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java Core Technology Review (一) | Miló&amp;Akoúo̱</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121105.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<!-- <script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script> -->
+
+<body>
+    <!-- 加载动画 -->
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Miló&amp;Akoúo̱</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Miló&amp;Akoúo̱</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221751.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java Core Technology Review (一)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-06-03
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-06-03
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    7.7k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>从五个方面来分析 Java：</p>
+<ul>
+<li>Java 基础：基本特性和机制；</li>
+<li>Java 并发：并发编程、Java 虚拟机；</li>
+<li>Java 框架：数据库框架、Spring 生态、分布式框架等等；</li>
+<li>Java 安全：常见的安全问题和处理方法；</li>
+<li>Java 性能：掌握工具、方法论。</li>
+</ul>
+<h1 id="Java-基础"><a href="#Java-基础" class="headerlink" title="Java 基础"></a>Java 基础</h1><h1 id="1、谈谈对-Java-平台的理解"><a href="#1、谈谈对-Java-平台的理解" class="headerlink" title="1、谈谈对 Java 平台的理解"></a>1、谈谈对 Java 平台的理解</h1><h2 id="Java-语言的显著特性"><a href="#Java-语言的显著特性" class="headerlink" title="Java 语言的显著特性"></a>Java 语言的显著特性</h2><p>Java 本身是一种面向对象的语言，最显著的特性表现在两个方面：</p>
+<ul>
+<li>“Write once, run anywhere”：也就是强大的跨平台能力；</li>
+<li>GC（Garbage Collection）垃圾回收：Java 通过垃圾回收器（Garbage Collector）回收内存，大部分情况下，程序员不需要自己操心内存的分配和回收。</li>
+</ul>
+<blockquote>
+<p>JDK 和 JRE</p>
+</blockquote>
+<p>JRE 就是 Java 运行环境，包含了 JVM 和 Java 类库，以及一些模块等等；</p>
+<p>JDK 是 Java 开发工具集，可以看作是 JRE 的一个超集，提供了更多工具，比如编译器、各种诊断工具等等。</p>
+<blockquote>
+<p>Java 是解释和编译共存的语言</p>
+</blockquote>
+<ul>
+<li>Java 代码被编译器 javac 编译成字节码，在运行时，通过 JVM 内嵌的解释器将字节码转换成为最终的机器码；</li>
+<li>我们大多数情况下使用的 JVM 是 Oracle JDK 提供的 Hotspot JVM，常见的 JVM 都提供了 JIT（Just-In-Time）编译器，也就是通常说的动态编译器，JIT 能够在运行时将热点代码编译成机器码，这种情况部分热点代码就属于编译执行，而不是解释执行。</li>
+</ul>
+<p>下面是一个相对宽泛的蓝图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220601155258.png"></p>
+<h2 id="Java-解释执行和编译执行"><a href="#Java-解释执行和编译执行" class="headerlink" title="Java 解释执行和编译执行"></a>Java 解释执行和编译执行</h2><p>从所周知，我们通常将 Java 分为编译器和运行时。</p>
+<p>这里的 Java 编译和 C/C++ 有着不同的含义，Javac 的编译，指将 .java 源代码文件进行编译生成 .class 文件（字节码文件），而不是可以直接执行的机器码。Java 通过字节码和 Java 虚拟机这种抽象，屏蔽了操作系统和硬件的细节，这也是实现 “一次编译，到处执行” 的基础。</p>
+<p>在运行时，JVM 会通过类加载器（Class-Loader）加载字节码，解释或者编译执行。</p>
+<ul>
+<li>主流 Java 版本中，如 JDK 8 实际是解释和编译混合的一种模式，即所谓的混合模式（-Xmixed）。通常运行在 server 模式的 JVM，会进行上万次调用和收集足够的信息进行高效的编译，client 模式这个门限是 1500 次。</li>
+<li>Oracle Hotspot JVM 内置了两种不同的 JIT compiler，C1 对应 client 模式，适用于对于启动速度敏感的应用，比如普通的 Java 桌面应用；C2 对应 server 模式，它的优化是为了长时间运行的服务器端应用设计的。默认采用所谓的分层编译（TieredCompilation）。</li>
+</ul>
+<p>Java 在启动时，可以指定不同的参数对运行模式进行选择。比如指定 <code>-Xint</code>，告诉 JVM 只进行解释执行，不对代码进行编译，这种模式抛弃了 JIT 可能带来的性能优势。毕竟解释器（Interpreter）是逐条读入，逐条解释的。与其对应的，还有一个 <code>-Xcomp</code> 参数，告诉 JVM 关闭解释器，不要进行解释执行，或者叫做最大优化级别。（注意并不意味着 -Xcomp 模式比前者要高效，它会导致 JVM 启动变慢，同时对有些 JIT 编译器优化方式造成影响。）</p>
+<p>除了我们日常常见的 Java 编译模式，还有一种新的编译方式，就是所谓的 AOT（Ahead-of-Time Compilation）（提前编译），直接将字节码编码为机器码，这样就避免了 JIT 预热等各方面的开销。</p>
+<p>Oracle JDK 支持分层编译和 AOT 协作使用，可以参考 <a target="_blank" rel="noopener" href="http://openjdk.java.net/jeps/295%E3%80%82AOT">http://openjdk.java.net/jeps/295。AOT</a> 也不仅仅是只有这一种方式，业界早就有第三方工具（如 GCJ、Excelsior JET）提供了相关功能。</p>
+<h1 id="2、Exception-和-Error-的区别"><a href="#2、Exception-和-Error-的区别" class="headerlink" title="2、Exception 和 Error 的区别"></a>2、Exception 和 Error 的区别</h1><p>错误是程序无法避免的，作为一个程序员，我们能做到的就是正确处理好意外的情况，才可以保证程序的可靠性。</p>
+<p>Java 在设计之初就提供了相对完善的异常处理机制。</p>
+<h2 id="对比-Exception-和-Error"><a href="#对比-Exception-和-Error" class="headerlink" title="对比 Exception 和 Error"></a>对比 Exception 和 Error</h2><p>Exception 和 Error 都继承自 Throwable 类，在 Java 中只有 Throwable 类型的实例可以被抛出（throw）或者捕获（catch），它是异常处理机制的基本组成类型。</p>
+<ul>
+<li>Exception：程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理；<ul>
+<li>Exception 又分为可检查（checked）异常和不可检查（unchecked）异常：<ul>
+<li>可检查：编译期异常，在编码时就应该显式地做捕获处理；</li>
+<li>不可检查：运行时异常，通常是程序的逻辑错误导致的异常，可以根据需要在编码时显式地捕获处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Error：在正常情况下，不大可能出现的情况（系统错误），绝大部分的 Error 都会导致程序（比如 JVM 自身）处于非正常的、不可恢复的状态。常见如 <code>OutOfMemoryError</code>。</li>
+</ul>
+<p>在日常编程中，可以从两个方面来掌握：</p>
+<p>（1）理解 Throwable、Exception、Error 的设计和分类。掌握那些应用最为广泛的子类，以及如何自定义异常等等</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220601193351.png"></p>
+<p>有些子类型，可以了解一下，比如 <code>NoClassDefFoundError</code> 和 <code>ClassNotFoundException</code> 的区别：</p>
+<ul>
+<li>前者是 Error 错误，是 JVM 或者类加载器尝试加载（可以是正常的方法调用，也可以是 new 对象）类的时候找不到类的定义。要查找的类在编译时期是存在的，但是运行的时候却找不到了，可能是在打包时漏掉了部分类，或者 jar 包出现损坏或者被篡改；</li>
+<li>后者是 Exception 运行时异常，在使用反射动态加载指定类的时候在类路径中找不到该类，此时会在运行时抛出异常，常见原因就是类名写错了；</li>
+<li>Java 在处理错误和异常是两种方式，我们可以从异常中恢复程序，但是不应该尝试从错误中恢复程序。</li>
+</ul>
+<p>（2）理解 Java 语言中操作 Throwable 的元素和实践。基本语法是必须的，如 <code>try-catch-finally</code> 块、throw、throws 关键字等等。同时，也要懂得如何处理典型场景。</p>
+<p>异常处理代码比较繁琐，我们需要写很多千篇一律的捕获代码，或者在 finally 块中做一些回收资源的工作。随着 Java 语言的发展，也出现了一些比较便利的特性，比如 <code>try-with-resources</code> 和 <code>multiple catch</code>，如下面的代码，在编译时期，会自动生成相应的处理逻辑，比如，自动 close 那些扩展了 <code>AutoCloseable</code> 或者 <code>Closeable</code> 的对象：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">BufferedReader</span> br <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">BufferedWriter</span> writer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedWriter</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// try-with-resources</span>
+    <span class="token comment">// do something</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> <span class="token class-name">XException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Multiple catch</span>
+    <span class="token comment">// Handle it</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><blockquote>
+<p>（1）尽量不要捕获类似 <code>Exception</code> 这样的通用异常，而是应该捕获特定异常。</p>
+</blockquote>
+<p>在日常开发中，我们可以通过异常获取信息，进而判断程序中那个地方出现了问题，但是应该确保程序不会捕获到我们不希望捕获的异常，捕获到的异常可以通过 RuntimeException 被扩散出来，而不是被捕获。</p>
+<blockquote>
+<p>（2）不要生吞（swallow）异常。这是异常处理中要特别注意的事情，因为很可能会导致非常难以诊断的诡异情况。</p>
+</blockquote>
+<p>生吞异常，往往是基于假设这段代码可能不会发生，或者感觉忽略异常是无所谓的，要注意在产品中千万不要做这种假设。</p>
+<blockquote>
+<p>（3）e.printStackTrace()</p>
+</blockquote>
+<p>调用打印异常堆栈信息时会默认输出到标准错误流，这其实是个不太合适的输出选项，在复杂的系统中，我们不能确定到底输出到哪里了。</p>
+<p>我们应该做到是将异常抛出去，或者输出到日志（Logger）。</p>
+<blockquote>
+<p>（4）Throw early, catch late 原则</p>
+</blockquote>
+<p>所谓 “throw early” 其实就是将可能出现的异常信息判断（比如参数校验）放到方法的开头，之后再进行业务处理，在发现问题的时候，第一时间抛出。</p>
+<p>至于 “catch late” 就涉及到捕获异常后，如何处理了？</p>
+<p>最差的方式就是 “生吞异常”，本质上是掩盖问题。如果实在不知道在何处处理，可以选择保留原有的 cause 信息，直接再次抛出去或者构建新的异常抛出去。在更高层面上，因为有了清晰的（业务）逻辑，往往会更清楚合适的处理方式。</p>
+<p>有的时候，需要自定义异常，这时除了保证提供足够的信息，还有两点需要考虑：</p>
+<ul>
+<li>是否需要定义为 Checked Exception，因为这种类型设计的初衷就是为了从异常情况恢复，作为异常设计者，我们往往有充足的信息进行分类。</li>
+<li>在保证诊断信息足够的同时，也要考虑避免包含敏感信息，因为那样可能会导致潜在的安全问题。比如，用户数据一般不可以输出到日志。</li>
+</ul>
+<p>需要注意的是 Checked Exception 一直饱受争议：</p>
+<ul>
+<li><p>大多数情况下，Checked Exception 出现后根本不可能恢复程序。</p>
+</li>
+<li><p>Checked Exception 不兼容 functional 编程。</p>
+</li>
+</ul>
+<blockquote>
+<p>（5）性能角度看 Java 异常处理机制</p>
+</blockquote>
+<p>两个地方：</p>
+<ul>
+<li>try-catch 代码段会产生额外的性能开销，换个角度说，它往往会影响 JVM 对代码进行优化，所以建议仅捕获必要的代码块，尽量不要一个大的 try 保住整段的代码；此外，不要利用异常来控制代码流程，比如出现了某个异常后走一条处理逻辑，它远比我们通常意义上的条件语句（if/else、switch）要低效；</li>
+<li>Java 每实例化一个 Exception，都会对当前的栈进行快照，这时一个相对比较重的操作，如果发生的非常频繁，这个开销就不能被忽略。</li>
+</ul>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>现在接触比较多的是同步程序，它的异常堆栈是垂直的结构，出现了问题可以一步步分析，找到原因。</p>
+<p>如果是异步、基于事件机制的，此时出现了异常，就决不能简单的抛出去，这里的异常处理和日志就需要更加小心，我们看到的往往是特定的 Executor 的堆栈，而不是业务方法调用关系。</p>
+<h1 id="3、浅谈-final、finally、finalize-的异同"><a href="#3、浅谈-final、finally、finalize-的异同" class="headerlink" title="3、浅谈 final、finally、finalize 的异同"></a>3、浅谈 final、finally、finalize 的异同</h1><h2 id="常规理解"><a href="#常规理解" class="headerlink" title="常规理解"></a>常规理解</h2><ul>
+<li>final 可以修饰类、方法、变量：<ul>
+<li> final 类不可继承；final 方法不可以重写；final 变量不可以更改（它的初始化且具有特殊的写-读内存语义）</li>
+</ul>
+</li>
+<li>finally 则是 Java 保证重点代码一定要被执行的一种机制。一般在这里做资源的回收处理，现在更推荐使用 Java 7 提供的 try-with-resources 语句；</li>
+<li>finalize 是基础类 <code>java.lang.Object</code> 的一个方法，它的设计目的是保证对象在被垃圾回收之前完成特定资源的回收。finalize 机制现在已经不推荐使用，并且在 JDK 9 开始被标记为 deprecated；</li>
+</ul>
+<h2 id="final-不等同于-immutable"><a href="#final-不等同于-immutable" class="headerlink" title="final 不等同于 immutable"></a>final 不等同于 immutable</h2><p>比如说 final 修饰的引用类型的变量，final 只能约束这个引用不可以指向其他内存地址，但是该引用指向的对象的行为不受影响。</p>
+<p>如果我们想要创建出不可变的 List 集合，Java 的工具包中也有相关的工具：<a target="_blank" rel="noopener" href="http://openjdk.java.net/jeps/269">http://openjdk.java.net/jeps/269</a></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">unmodifiableList</span><span class="token punctuation">(</span><span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 等价于 JDK 9 提供的新特性 List.of("a", "b", "c")</span>
+
+<span class="token comment">// 具体原理是该 List 的 add 方法被重写为抛出异常</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token class-name">E</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UnsupportedOperationException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Immutable 在很多场景下是非常有用的，但是从某种意义上讲，Java 目前没有原生的支持不可变，如果要实现 immutable 的类，我们需要做到：</p>
+<ul>
+<li>将 class 自身声明为 final，这样别人就不可以通过扩展来绕过限制了；</li>
+<li>将所有成员变量定义为 private 和 final，并且不要实现 setter 方法；</li>
+<li>通常构造对象时，成员变量使用深度拷贝来初始化，而不是直接赋值，这是一种防御措施，因为你无法确定输入对象不会被其他人修改；</li>
+<li>如果确实需要实现 getter 方法，或者其他可能会返回内部状态的方法，使用 <code>copy-on-write</code>（写入时复制策略），创建私有的 copy 暴露出去。</li>
+</ul>
+<h2 id="finalize-的劣势"><a href="#finalize-的劣势" class="headerlink" title="finalize 的劣势"></a>finalize 的劣势</h2><p>finalize 的执行是和垃圾回收绑定在一起的，一旦实现了非空的 finalize 方法，就会导致相应对象回收呈现数量级的变慢（资源是有限的，如果在回收上耗费大量时间和资源，很容易造成 OOM），</p>
+<p>而且 finalize 还会掩盖资源回收时的出错信息，在 JDK 的 <code>java.lang.ref.Finalizer</code> 中：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">runFinalizer</span><span class="token punctuation">(</span><span class="token class-name">JavaLangAccess</span> jla<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">hasBeenFinalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Object</span> finalizee <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>finalizee <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>finalizee <span class="token keyword">instanceof</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Enum</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            jla<span class="token punctuation">.</span><span class="token function">invokeFinalize</span><span class="token punctuation">(</span>finalizee<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">/* Clear stack slot containing this variable, to decrease
+               the chances of false retention with a conservative GC */</span>
+            finalizee <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span> <span class="token comment">// 这里的异常被生吞了</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="替换-finalize-的机制"><a href="#替换-finalize-的机制" class="headerlink" title="替换 finalize 的机制"></a>替换 finalize 的机制</h2><p>Java 平台提供了 <code>java.lang.ref.Cleaner</code> 来替换掉原有的 finalize 实现。Cleaner 的实现利用了幻象引用（PhantomReference），这是一种常见的 post-mortem 清理机制。</p>
+<p>利用幻象引用和引用队列，我们可以保证对象被彻底销毁之前做一些类似资源回收的工作，比如关闭文件描述符（操纵系统有限的资源），它比 finalize 更加轻量、更加可靠。</p>
+<p>此外，每个 Cleaner 的操作都是独立的，它有自己的运行线程，可以避免意外死锁等问题。</p>
+<p>实践中，我们可以为自己的模块构建一个 Cleaner，然后实现相应的清理逻辑，下面是 JDK 提供的样例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CleaningExample</span> <span class="token keyword">implements</span> <span class="token class-name">AutoCloseable</span> <span class="token punctuation">{</span>
+    <span class="token comment">// A cleaner, preferably one shared within a library</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Cleaner</span> cleaner <span class="token operator">=</span> <span class="token generics"><span class="token punctuation">&lt;</span>cleaner<span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">State</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">State</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// initialize State needed for cleaning action</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// cleanup action accessing State, executed at most once</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">State</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Cleaner<span class="token punctuation">.</span>Cleanable</span> cleanable
+
+        <span class="token keyword">public</span> <span class="token class-name">CleaningExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">State</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>cleanable <span class="token operator">=</span> cleaner<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cleanable<span class="token punctuation">.</span><span class="token function">clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：Cleaner 或者幻象引用改善的程度任然是有限的，如果由于种种原因导致幻象引用堆积，同样会出现问题，所以，Cleaner 适合作为一种最后的保证手段，而不是完全依赖 Cleaner 进行资源回收。</p>
+<p>很多第三方库喜欢自己直接利用幻象引用定制资源收集，比如广泛使用的 <code>MySQL JDBC Driver</code> 之一的 <code>mysql-connector-j</code>，就利用了幻象引用机制。幻象引用也可以进行类似链条式依赖关系的使用，比如，进行总量控制的场景，保证只有连接被关闭，相应资源被回收，连接池才能创建新的连接。</p>
+<p>但是也需要注意，如果代码稍有不慎添加了对资源的强引用关系，就会导致循环引用关系，前面提到的 MySQL JDBC 在特定模式下就有这个问题，导致内存泄漏。</p>
+<p>上面 JDK （9+）提供的示例代码，将 State 定义为 static，就是为了避免普通的内部类隐含对外部对象的强引用，因为那样会导致外部对象无法进行幻象可达的状态。</p>
+<h1 id="4、强引用、软引用、弱引用、幻象引用"><a href="#4、强引用、软引用、弱引用、幻象引用" class="headerlink" title="4、强引用、软引用、弱引用、幻象引用"></a>4、强引用、软引用、弱引用、幻象引用</h1><p>在 Java 中，除了原始数据雷系的变量，其他所有都是所谓的引用雷系，指向各种不同的对象，理解引用对于掌握 Java 对象生命周期和 JVM 内部相关机制非常有帮助。</p>
+<h2 id="常规理解-1"><a href="#常规理解-1" class="headerlink" title="常规理解"></a>常规理解</h2><p>Q：强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？</p>
+<p>A：不同的引用类型，主要体现的是对象不同的可达性（reachable）状态和对垃圾收集的影响。</p>
+<ul>
+<li>强引用（”Strong” Reference），就是我们最常见的普通对象引用，只要还有强引用指向一个对象，就能表明对象还 “活着”，垃圾收集器不会碰这类对象。对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显示地将相应（强）引用赋值为 null，就是可以被垃圾收集的，当然具体回收时机还是要看垃圾收集策略；</li>
+<li>软引用（SoftReference），是一种相对强引用弱化一些的引用，可以让对象豁免一些垃圾回收，只有当 JVM 认为内存不足时，才会去试图回收软引用指向的对。JVM 会确保在抛出 OutOfMemoryError 之前，清理软引用指向的对象。软引用通常用来实现内存敏感的缓存，如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存；</li>
+<li>弱引用（WeakReference）并不能使对象豁免垃圾收集，仅仅是提供一种访问在弱引用状态下对象的途径。这就可以用来构建一种没有特定约束的关系，比如，维护一种非强制性的映射关系，如果试图获取时对象还在，就使用它，否则重新实例化。它同样是很多缓存实现的选择；</li>
+<li>幻象引用（Phantom Reference），有时候也翻译成虚引用，你不能通过它访问对象。幻象引用仅仅是提供了一种确保对象被 finalize 之后，做某些事情的机制，比如，通常用来做所谓的 Post-Mortem 清理机制，Java 平台的 Cleaner 机制等等，也有人利用幻象引用监控对象的创建和销毁。</li>
+</ul>
+<p>充分理解这些引用，对于我们设计可靠的缓存等框架，或者诊断应用 OOM 等问题，会很有帮助。比如，诊断 MySQL connector-j 驱动在特定模式（useCompression=true）的内存泄露问题，就需要我们理解怎么排查幻象应用堆积的问题。</p>
+<h2 id="对象可达性状态流转"><a href="#对象可达性状态流转" class="headerlink" title="对象可达性状态流转"></a>对象可达性状态流转</h2><p>如下图所示，简单总结对象生命周期和不同可达性状态，以及不同状态可能的改变关系：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220602151102.png"></p>
+<p>上图中的具体状态是 Java 定义的不同可达性级别（reachability level），具体如下：</p>
+<ul>
+<li>强可达（Strongly Reachable），就是当一个对象可以有一个或者多个线程可以不通过各种引用访问到的情况。比如，我们创建了一个对象，那么创建它的线程对它就是强可达的。</li>
+<li>软可达（Softly Reachable），就是当我们只能通过软引用才能访问到对象的状态。</li>
+<li>弱可达（Weakly Reachable），类似前面提到的，就是无法通过强引用或者软引用访问，只能通过弱引用访问时的状态。这是十分临近 finalize 状态的时机，当弱引用被清楚的时候，就符合 finalize 的条件了。</li>
+<li>幻象可达（Phantom Reachable），就是没有强、软、弱引用关联，并且 finalize 过了，只有幻象引用指向这个对象的时候。</li>
+<li>当然，还有最后一个状态，就是不可达（Unreachable），意味着对象可以被清除了。</li>
+</ul>
+<p>判断对象可达性，是 JVM 垃圾收集器决定如何处理对象的一部分考虑。</p>
+<p>所有引用类型，都是抽象类 <code>java.lang.ref.Reference</code> 的子类，它提供了一个 get 方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@HotSpotIntrinsicCandidate</span>
+<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>referent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>除了幻象引用（get 永远返回 null），如果对象还没有被销毁，都可以通过 get 方法获取原有对象。这意味着，利用软引用和弱引用，我们可以访问到的对象，重新指向强引用，也就是人为的改变了对象的可达性！这就是为什么上图中状态转换存在双向箭头。</p>
+<p>所以，对于软引用、弱引用之类，垃圾收集器可能会存在二次确认的问题，以保证处于弱引用状态的对象，没有被改变为强引用。</p>
+<p>但是，这里可能会存在一些问题：比如我们错误的保持了强引用（比如，赋值给 static 变量），那么对象可能没有机会变回类似弱引用的可达性状态了，就会产生内存泄漏。所以，检查弱引用指向对象是否被垃圾回收，也是诊断是否有特定内存泄漏的一个思路，如果我们的框架使用到弱引用又怀疑有内存泄漏，就可以从这个角度检查。</p>
+<h2 id="引用队列（ReferenceQueue）使用"><a href="#引用队列（ReferenceQueue）使用" class="headerlink" title="引用队列（ReferenceQueue）使用"></a>引用队列（ReferenceQueue）使用</h2><p>谈到各种引用的编程，就必然提到引用队列。我们在创建各种引用并关联到响应对象的时候，可以选择是否需要关联引用队列，JVM 会在特定时机将引用 enqueue 到队列里，我们可以从队列中获取引用（remove 方法这里实际是有获取的意思的）进行相关后续操作。尤其是幻象引用，get 方法只返回 null，如果再不指定引用队列，基本就没有意义了。</p>
+<p>比如下面的代码，利用引用队列，我们可以在对象处于相应状态的时候（对于幻象引用，就是前面说的被 finalize 了，处于幻象可达状态），执行后期处理逻辑：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> counter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ReferenceQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> refQueue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">PhantomReference</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> pRef <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PhantomReference</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>counter<span class="token punctuation">,</span> refQueue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    counter <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Reference</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> ref <span class="token operator">=</span> refQueue<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ref <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// do something</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Handle it</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="显式地影响软引用垃圾收集"><a href="#显式地影响软引用垃圾收集" class="headerlink" title="显式地影响软引用垃圾收集"></a>显式地影响软引用垃圾收集</h2><p>前面提到引用对垃圾收集的影响，尤其是软引用，到底 JVM 内部是怎么处理它的，其实并不是非常明确。那么我们是否可以用什么方法来影响软引用的垃圾收集呢？</p>
+<p>答案是有的：软引用通常会在最后一次引用后，还能保持一段时间，默认值是根据堆剩余空间计算的（以 M bytes 为单位）。从 Java 1.3.1 开始，提供了 <code>-XX:SoftRefLRUPolicyMSPerMB</code> 参数，我们可以以毫秒（milliseconds）为单位设置。比如，下面这个示例就是设置为 3 秒：</p>
+<pre class="line-numbers language-none"><code class="language-none">-XX:SoftRefLRUPolicyMSPerMB=3000<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个剩余空间，其实会受不同 JVM 模式影响，对于 Client 模式，比如通常的 Window 32 bit JDK，剩余空间是计算当前堆里空闲的大小，所以更加倾向于回收；而对于 Server 模式 JVM，则是根据 -Xmx 指定的最大值来计算。</p>
+<p>本质上，这个行为还是个黑盒，取绝于 JVM 的实现，即使是上面的参数，在新版的 JDK 也未必有效。</p>
+<h2 id="诊断-JVM-引用情况"><a href="#诊断-JVM-引用情况" class="headerlink" title="诊断 JVM 引用情况"></a>诊断 JVM 引用情况</h2><p>如果怀疑应用存在引用（或 finalize）导致的回收问题，可以有很多工具或者选项可供选择，比如 HotSpot JVM 自身提供了明确的选项（PrintReferenceGC）去获取相关信息，比如在 JDK 8 应用可以在启动参数中加入：</p>
+<pre class="line-numbers language-none"><code class="language-none">-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintReferenceGC<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这是 JDK 8 使用的 ParrallelGC 收集的垃圾收集日志，各种引用参数非常清晰：</p>
+<pre class="line-numbers language-none"><code class="language-none">0.403: [GC (Allocation Failure) 0.871: [SoftReference, 0 refs, 0.0000393 secs]0.871: [WeakReference, 8 refs, 0.0000138 secs]0.871: [FinalReference, 4 refs, 0.0000094 secs]0.871:
+[PhantomReference, 0 refs, 0 refs, 0.0000085 secs]0.871: [JNI Weak Reference, 0.0000071 secs][PSYoungGen: 76272K-&gt;10720K(141824K)] 128286K-&gt;128422K(316928K), 0.4683919 secs] [Times:
+user=1.17 sys=0.03, real=0.47 secs]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：JDK 9 对 JVM 和垃圾收集日志进行了广泛的重构，类似 PrintGCTimeStamps 和 PrintReferenceGC 已经不再存在。</p>
+<h2 id="Reacheaility-Fence"><a href="#Reacheaility-Fence" class="headerlink" title="Reacheaility Fence"></a>Reacheaility Fence</h2><p>除了前面介绍的几种基本引用类型，我们也可以通过底层的 API 来达到强引用的效果，这就是所谓的设置 reachability fence。</p>
+<p>为什么需要使用这种机制？考虑存在这样一种场景，如果一个对象没有指向强引用，就符合垃圾收集的标准，有些时候，对象本身并没有强引用，但是也许它的部分属性还在被使用，这样就导致诡异的问题，所以我们需要一个方法，在没有强引用的情况下，通知 JVM 该对象是正在被使用的。</p>
+<p>具体参见 JDK 9+ 中 <code>Refenerce.reachabilityFence</code> 方法上提供的示例程序：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Resource</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">ExternalResource</span><span class="token punctuation">[</span><span class="token punctuation">]</span> externalResourceArray <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token keyword">int</span> myIndex<span class="token punctuation">;</span>
+    
+    <span class="token class-name">Resource</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        myIndex <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+            externalResourceArray<span class="token punctuation">[</span>myIndex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">finalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        externalResourceArray<span class="token punctuation">[</span>myIndex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// ...</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> myIndex<span class="token punctuation">;</span>
+            <span class="token class-name">Resource</span><span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>externalResourceArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Reference</span><span class="token punctuation">.</span><span class="token function">reachabilityFence</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token class-name">ExternalResource</span> ext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ext<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方法 action 的执行，依赖于对象的部分属性，所以被特定保护了起来。否则，如果我们在代码中像下面这样调用，那么就可能会出现困扰，因为没有强引用指向我们创建出来的 Resource 对象，JVM 对它进行 finalize 操作是完全合法的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">Resource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">action</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>类似的书写结构，在异步编程中似乎很是普遍的，因为异步编程中往往不会用传统的 “执行 -&gt; 返回 -&gt; 使用” 的结构。</p>
+<p>在 Java 9 之前，实现类似功能相对比较繁琐，有的时候需要采取一些比较隐晦的小技巧。幸好，<code>java.lang.ref.Reference</code> 给我们提供了新的方法，它是 JEP 193: Variable Handles 的一部分，将 Java 平台底层的一些能力暴露出来：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ForceInline</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">reachabilityFence</span><span class="token punctuation">(</span><span class="token class-name">Object</span> ref<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Does nothing. This method is annotated with @ForceInline to eliminate</span>
+    <span class="token comment">// most of the overhead that using @DontInline would cause with the</span>
+    <span class="token comment">// HotSpot JVM, when this fence is used in a wide variety of situations.</span>
+    <span class="token comment">// HotSpot JVM retains the ref and does not GC it before a call to</span>
+    <span class="token comment">// this method, because the JIT-compilers do not have GC-only safepoints.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 JDK 源码中，<code>reachabilityFence</code> 大多使用在 Executors 或者类似新的 HTTP/2 客户端代码中，大部分都是异步调用的情况。编程中，可以参考上面的例子，将需要 reachability 保证的代码段使用 try-finally 包裹起来，在 finally 中明确声明对象强可达。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在 Java 语言中，除了基本的数据类型，其他的都是指向各类对象的对象引用；Java 中根据其生命周期的长短，将引用分为 4 类。</p>
+<p>（1）强引用</p>
+<p>特点：我们平常编程使用的 <code>Object obj = new Object()</code> 中的 obj 就是强引用。通过关键字 new 创建的对象所关联的引用就是强引用。</p>
+<p>当 JVM 内存空间不足，JVM 宁愿抛出 <code>OutOfMemoryError</code> 错误使程序异常终止，也不会随意回收具有强引用的 “存活” 的对象来解决内存不足的问题。对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显式地将相应（强）引用赋值为 null，就是可以被垃圾收集的了，具体回收时机还是要看垃圾收集策略（gc 线程优先级不高，且需要耗费性能，所以这个时机由相关策略决定）。</p>
+<p>此外可能会遇到这样的情况：<code>new Resource().action()</code>，创建的对象没有和引用关联，但是调用的方法却依赖对象属性，此时可以在该方法中使用 <code>try...finally</code> 语句，在 <code>finally</code> 中通过 <code>Reference.reachabilityFence</code> （JDK 9+）方法将指定的对象声明为强可达，这样 GC 就不会收集该对象，这种方式在异步编程中常用。</p>
+<p>（2）软引用</p>
+<p>特点：软引用通过 <code>SoftReference</code> 类实现。软引用的生命周期比强引用要短一些。只有当 JVM 认为内存不足时，才会去试图回收软引用指向的对象，即 JVM 会确保在抛出 <code>OutOfMemoryError</code> 之前，清理软引用指向的对象。软引用可以和一个引用队列（<code>ReferenceQueue</code>）联合使用，如果软引用所引用的对象被垃圾回收器回收，Java 虚拟机就会把这个软引用加入到与之关联的引用队列中，后续，我们可以调用 <code>ReferenceQueue.poll()</code> 方法来检查是否有它所关心的对象被回收。如果队列为空，将返回一个 null，否则该方法返回队列中前面的一个 Reference 对象。</p>
+<p>应用场景：软引用常用来实现内存敏感的缓存。如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。</p>
+<p>（3）弱引用</p>
+<p>弱引用通过 <code>WeakReference</code> 类实现。弱引用的生命周期比软引用短。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了具有弱引用的对象，不管当前内存控制是否充足，都会回收它的内存。由于垃圾回收器是一个优先级很低的线程，因此不一定很快回收弱引用的对象。弱引用可以和一个引用队列（<code>ReferenceQueue</code>）联合使用，如果弱引用所引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用队列中。</p>
+<p>应用场景：弱引用同样可以用于内存敏感的缓存。</p>
+<p>（4）虚引用</p>
+<p>特点：虚引用也叫幻象引用，通过 <code>PhantomReference</code> 类来实现。无法通过虚引用访问对象的任何属性或方法。幻象引用仅仅是提供了一种确保对象被 finalize 后，做某些事情的机制。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。虚引用必须和引用队列（<code>ReferenceQueue</code>）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ReferenceQueue</span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">PhantomReference</span> pr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PhantomReference</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>程序可以判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。如果程序发现某个虚引用已经加入到引用队列中，那么就可以在所引用的对象的内存被回收之前采取一些处理措施。</p>
+<p>应用场景：可用来跟踪对象被垃圾回收器回收的活动，当一个虚引用关联的对象被垃圾收集器回收之前会收到一条系统通知。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/">https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/';
+        this.page.identifier = '/2022/06/03/java-core-technology-review-yi/';
+        this.page.title = 'Java Core Technology Review (一)';
+    };
+    let disqus_shortname = 'https-naivekyo-github-io';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/06/03/java-core-technology-review-yi/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221751.jpg" class="responsive-img" alt="Java Core Technology Review (一)">
+                        
+                        <span class="card-title">Java Core Technology Review (一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java 核心技术回顾（一）Java 平台、异常、引用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/06/spring-cloud-study-ba-learning-gateway/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221741.jpg" class="responsive-img" alt="Spring Cloud Study (八) Learning Gateway">
+                        
+                        <span class="card-title">Spring Cloud Study (八) Learning Gateway</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Spring Cloud 学习(八) API 网关 Gateway
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-Cloud/" class="post-category">
+                                    Spring Cloud
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring-Cloud/">
+                        <span class="chip bg-color">Spring Cloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="27969834"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:https://naivekyore@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

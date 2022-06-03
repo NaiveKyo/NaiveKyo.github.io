@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-04-28
                 </div>
                 
 
@@ -585,23 +585,23 @@
 <ul>
 <li>剩下的就是改配置、创建数据库、controller、service、mapper 的创建了，不做过多赘述</li>
 </ul>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 8001
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8001</span>
   
-spring:
-  application:
-    name: cloud-payment-service
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/cloud_db_1?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> cloud<span class="token punctuation">-</span>payment<span class="token punctuation">-</span>service
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> com.alibaba.druid.pool.DruidDataSource
+    <span class="token key atrule">druid</span><span class="token punctuation">:</span>
+      <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.jdbc.Driver
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/cloud_db_1<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai</span>
+      <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+      <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
       
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: io.naivekyo.springcloud.entity<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mapper/<span class="token important">*.xml</span>
+  <span class="token key atrule">type-aliases-package</span><span class="token punctuation">:</span> io.naivekyo.springcloud.entity<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="2、REST-API"><a href="#2、REST-API" class="headerlink" title="2、REST API"></a>2、REST API</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@Slf4j</span>

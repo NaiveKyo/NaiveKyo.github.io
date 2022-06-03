@@ -599,16 +599,16 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>配置类：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 7001
-eureka:
-  instance:
-    hostname: localhost  # Eureka 服务端的实例名称
-  client:
-    register-with-eureka: false  # false 表示不向注册中心注册自己
-    fetch-registry: false  # false 表示当前服务就是注册中心, 主要职责是维护服务实例, 不需要去检索服务
-    service-url: # 该属性是一个 map, 设置与 Eureka Server 交互的地址查询服务和注册服务都需要依赖这个地址
-     defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">7001</span>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> localhost  <span class="token comment"># Eureka 服务端的实例名称</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>  <span class="token comment"># false 表示不向注册中心注册自己</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>  <span class="token comment"># false 表示当前服务就是注册中心, 主要职责是维护服务实例, 不需要去检索服务</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span> <span class="token comment"># 该属性是一个 map, 设置与 Eureka Server 交互的地址查询服务和注册服务都需要依赖这个地址</span>
+     <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>eureka.instance.hostname<span class="token punctuation">}</span><span class="token punctuation">:</span>$<span class="token punctuation">{</span>server.port<span class="token punctuation">}</span>/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>主启动类：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableEurekaServer</span>
@@ -635,35 +635,35 @@ eureka:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在配置文件中也需要为当前服务模块配置一个名称，同时也需要增加一些 Eureka 客户端的配置信息：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 8001
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8001</span>
   
-spring:
-  application:
-    name: cloud-payment-service # 服务名称
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/cloud_db_1?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai
-      username: root
-      password: 123456
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> cloud<span class="token punctuation">-</span>payment<span class="token punctuation">-</span>service <span class="token comment"># 服务名称</span>
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> com.alibaba.druid.pool.DruidDataSource
+    <span class="token key atrule">druid</span><span class="token punctuation">:</span>
+      <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.jdbc.Driver
+      <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/cloud_db_1<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai</span>
+      <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+      <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
             
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: io.naivekyo.springcloud.entity
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mapper/<span class="token important">*.xml</span>
+  <span class="token key atrule">type-aliases-package</span><span class="token punctuation">:</span> io.naivekyo.springcloud.entity
+  <span class="token key atrule">configuration</span><span class="token punctuation">:</span>
+    <span class="token key atrule">log-impl</span><span class="token punctuation">:</span> org.apache.ibatis.logging.stdout.StdOutImpl
     
-eureka:
-  client:
-    # 表示是否将自己注册到 EurekaSever, 默认为 true
-    register-with-eureka: true 
-    # 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡
-    fetch-registry: true
-    # 下面配置的就是 EurekaServer 的地址
-    service-url: 
-      defaultZone: http://localhost:7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token comment"># 表示是否将自己注册到 EurekaSever, 默认为 true</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> 
+    <span class="token comment"># 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># 下面配置的就是 EurekaServer 的地址</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>主启动类上添加 <code>@EnableEurekaClient</code> 注解表明自己是 Eureka Client：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableEurekaClient</span>
@@ -685,19 +685,19 @@ eureka:
 <p>以同样的方式将客户消费服务模块注册到 Eureka Server。</p>
 <p>导入依赖；</p>
 <p>配置文件：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 80
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
   
-spring:
-  application:
-    name: cloud-order-service
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> cloud<span class="token punctuation">-</span>order<span class="token punctuation">-</span>service
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>主启动类上添加注解。</p>
 <h1 id="四、Eureka-集群构建"><a href="#四、Eureka-集群构建" class="headerlink" title="四、Eureka 集群构建"></a>四、Eureka 集群构建</h1><h2 id="1、Eureka-集群原理说明"><a href="#1、Eureka-集群原理说明" class="headerlink" title="1、Eureka 集群原理说明"></a>1、Eureka 集群原理说明</h2><p>前面已经了解了 Eureka 的架构，主要分为三部分：Eureka Server、Service Provider、Service Consumer</p>
@@ -746,35 +746,35 @@ eureka:
 <li>最后修改两个 Eureka Server 模块的配置文件</li>
 </ul>
 <p>eureka7001 server:</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 7001
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">7001</span>
   
-eureka:
-  instance:
-    hostname: eureka7001.com  # Eureka 服务端的实例名称
-  client:
-    register-with-eureka: false 
-    fetch-registry: false  
-    service-url: 
-     defaultZone: http://eureka7002.com:7002/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> eureka7001.com  <span class="token comment"># Eureka 服务端的实例名称</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> 
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>  
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span> 
+     <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7002.com<span class="token punctuation">:</span>7002/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>eureka7002 server:</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 7002
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">7002</span>
   
-eureka:
-  instance:
-    hostname: eureka7002.com 
-  client:
-    register-with-eureka: fals
-    fetch-registry: false 
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> eureka7002.com 
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> fals
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> 
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以看到 hostname 和 defaultZone 的变化，这就是相互注册。</p>
 <p>那么如果部署的三台 Eureka Server 注册中心又该如何配置的，注意 <code>defaultZone</code> 是一个 Map 类型的数据，查看源码可以看到它绑定的属性上面的注释，注释中提示我们该值可以使用一个 URL 或者使用逗号分割的可选位置列表：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">service-url:
- defaultZone: http://xxx1:xxx/eureka, http://xxx1:xxx/eureka, http://xxx1:xxx/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+ <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//xxx1<span class="token punctuation">:</span>xxx/eureka<span class="token punctuation">,</span> http<span class="token punctuation">:</span>//xxx1<span class="token punctuation">:</span>xxx/eureka<span class="token punctuation">,</span> http<span class="token punctuation">:</span>//xxx1<span class="token punctuation">:</span>xxx/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>最后，关闭所有服务，然后依次启动 Eureka7001、Eureka7002 模块，在浏览器中通过：</p>
 <ul>
@@ -785,15 +785,15 @@ eureka:
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220426175913.png"></p>
 <p>可以看到 <code>DS Replicas</code>显示的是 7002 的信息，而且之前的红色警告也消失了。</p>
 <h2 id="3、注册服务"><a href="#3、注册服务" class="headerlink" title="3、注册服务"></a>3、注册服务</h2><p>如果想要将我们的其他服务注册到集群的注册中心，需要对配置文件进行修改，比如之前的订单支付服务模块：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">eureka:
-  client:
-    # 表示是否将自己注册到 EurekaSever, 默认为 true
-    register-with-eureka: true 
-    # 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡
-    fetch-registry: true
-    # 下面配置的就是 EurekaServer 集群注册中心的地址
-    service-url: 
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token comment"># 表示是否将自己注册到 EurekaSever, 默认为 true</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> 
+    <span class="token comment"># 是否从 EurekaServer 中抓取已有的注册信息, 默认为 true。单节点无所谓, 集群必须设置为 true 才能配置 ribbon 使用负载均衡</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># 下面配置的就是 EurekaServer 集群注册中心的地址</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka<span class="token punctuation">,</span>http<span class="token punctuation">:</span>//eureka7002.com<span class="token punctuation">:</span>7002/eureka<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>客户订单模块也是一样的。</p>
 <h2 id="4、测试"><a href="#4、测试" class="headerlink" title="4、测试"></a>4、测试</h2><p>集群（模拟）搭建完成后，先启动注册中心集群，然后启动服务提供者，最后启动服务消费者。</p>
@@ -829,15 +829,15 @@ eureka:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以 payment8001 为例，在配置文件中添加以下配置：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">eureka</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">register-with-eureka</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">fetch-registry</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">service-url</span><span class="token punctuation">:</span>
+      <span class="token key atrule">defaultZone</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//eureka7001.com<span class="token punctuation">:</span>7001/eureka<span class="token punctuation">,</span>http<span class="token punctuation">:</span>//eureka7002.com<span class="token punctuation">:</span>7002/eureka
 
-  instance:
-    instance-id: payment8002<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token key atrule">instance</span><span class="token punctuation">:</span>
+    <span class="token key atrule">instance-id</span><span class="token punctuation">:</span> payment8002<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>instance-id</code> 配置。</p>
 <p>重启服务，此时 Eureka 注册中心显示的信息为：<code>CLOUD-PAYMENT-SERVICE   payment8002,payment8001</code>。</p>

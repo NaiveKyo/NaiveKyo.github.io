@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-05-20
                 </div>
                 
 
@@ -725,7 +725,7 @@
         <span class="token punctuation">}</span>
         
         <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">PrintWriter</span> pw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintWriter</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">// 适用模板引擎生成静态 html 页面</span>
+            <span class="token comment">// 使用模板引擎生成静态 html 页面</span>
             <span class="token comment">// 从上下文中获取数据填充到模板文件中, 最终输出到目标文件</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span>templateEngine<span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> context<span class="token punctuation">,</span> pw<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FileNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>

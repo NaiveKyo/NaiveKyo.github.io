@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-05-06T10:22:28.933Z</updated>
+  <updated>2022-06-03T01:42:03.600Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Core Technology Review (一)</title>
+    <link href="https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/"/>
+    <id>https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/</id>
+    <published>2022-06-03T01:40:12.000Z</published>
+    <updated>2022-06-03T01:42:03.600Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;从五个方面来分析 Java：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 基础：基本特性和机制；&lt;/li&gt;
+&lt;li&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Study (八) Learning Gateway</title>
@@ -246,7 +274,7 @@
     <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/"/>
     <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-yi-service-provider-and-consumer/</id>
     <published>2022-04-26T14:44:27.000Z</published>
-    <updated>2022-04-26T15:30:31.533Z</updated>
+    <updated>2022-04-28T10:00:08.785Z</updated>
     
     
       
@@ -347,7 +375,7 @@
     <link href="https://naivekyo.github.io/2022/04/25/nginx-page-statics/"/>
     <id>https://naivekyo.github.io/2022/04/25/nginx-page-statics/</id>
     <published>2022-04-25T02:23:00.000Z</published>
-    <updated>2022-04-26T08:59:26.970Z</updated>
+    <updated>2022-05-20T15:20:34.360Z</updated>
     
     
       
@@ -489,33 +517,6 @@
     
     
     <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web Integration SSM With Tomcat</title>
-    <link href="https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/"/>
-    <id>https://naivekyo.github.io/2022/04/18/java-web-integration-ssm-with-tomcat/</id>
-    <published>2022-04-18T02:13:51.000Z</published>
-    <updated>2022-04-19T07:15:27.946Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;整合-SSM-框架&quot;&gt;&lt;a href=&quot;#整合-SSM-框架&quot; class=&quot;headerlink&quot; title=&quot;整合 SSM 框架&quot;&gt;&lt;/a&gt;整合 SSM 框架&lt;/h1&gt;&lt;h1 id=&quot;一、技术选型&quot;&gt;&lt;a href=&quot;#一、技术选型&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java Web" scheme="https://naivekyo.github.io/categories/Java-Web/"/>
-    
-    
-    <category term="Java Web" scheme="https://naivekyo.github.io/tags/Java-Web/"/>
-    
-    <category term="SSM" scheme="https://naivekyo.github.io/tags/SSM/"/>
     
   </entry>
   
