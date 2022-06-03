@@ -548,7 +548,8 @@
 </ul>
 <p>Java 在启动时，可以指定不同的参数对运行模式进行选择。比如指定 <code>-Xint</code>，告诉 JVM 只进行解释执行，不对代码进行编译，这种模式抛弃了 JIT 可能带来的性能优势。毕竟解释器（Interpreter）是逐条读入，逐条解释的。与其对应的，还有一个 <code>-Xcomp</code> 参数，告诉 JVM 关闭解释器，不要进行解释执行，或者叫做最大优化级别。（注意并不意味着 -Xcomp 模式比前者要高效，它会导致 JVM 启动变慢，同时对有些 JIT 编译器优化方式造成影响。）</p>
 <p>除了我们日常常见的 Java 编译模式，还有一种新的编译方式，就是所谓的 AOT（Ahead-of-Time Compilation）（提前编译），直接将字节码编码为机器码，这样就避免了 JIT 预热等各方面的开销。</p>
-<p>Oracle JDK 支持分层编译和 AOT 协作使用，可以参考 <a target="_blank" rel="noopener" href="http://openjdk.java.net/jeps/295%EF%BC%8C">http://openjdk.java.net/jeps/295，</a> AOT 也不仅仅是只有这一种方式，业界早就有第三方工具（如 GCJ、Excelsior JET）提供了相关功能。</p>
+<p>Oracle JDK 支持分层编译和 AOT 协作使用，可以参考 <a target="_blank" rel="noopener" href="http://openjdk.java.net/jeps/295">http://openjdk.java.net/jeps/295</a> </p>
+<p>AOT 也不仅仅是只有这一种方式，业界早就有第三方工具（如 GCJ、Excelsior JET）提供了相关功能。</p>
 <h1 id="2、Exception-和-Error-的区别"><a href="#2、Exception-和-Error-的区别" class="headerlink" title="2、Exception 和 Error 的区别"></a>2、Exception 和 Error 的区别</h1><p>错误是程序无法避免的，作为一个程序员，我们能做到的就是正确处理好意外的情况，才可以保证程序的可靠性。</p>
 <p>Java 在设计之初就提供了相对完善的异常处理机制。</p>
 <h2 id="对比-Exception-和-Error"><a href="#对比-Exception-和-Error" class="headerlink" title="对比 Exception 和 Error"></a>对比 Exception 和 Error</h2><p>Exception 和 Error 都继承自 Throwable 类，在 Java 中只有 Throwable 类型的实例可以被抛出（throw）或者捕获（catch），它是异常处理机制的基本组成类型。</p>
@@ -1090,29 +1091,28 @@ user=1.17 sys=0.03, real=0.47 secs]<span aria-hidden="true" class="line-numbers-
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/03/java-core-technology-review-yi/">
+                <a href="/2022/06/03/java-core-technology-review-er/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221751.jpg" class="responsive-img" alt="Java Core Technology Review (一)">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220225221803.jpg" class="responsive-img" alt="Java Core Technology Review (二)">
                         
-                        <span class="card-title">Java Core Technology Review (一)</span>
+                        <span class="card-title">Java Core Technology Review (二)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 核心技术回顾（一）Java 平台、异常、引用
+                            Java 核心技术回顾(二) 字符串、动态代理、原始数据类型、集合
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1125,7 +1125,6 @@ user=1.17 sys=0.03, real=0.47 secs]<span aria-hidden="true" class="line-numbers-
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
