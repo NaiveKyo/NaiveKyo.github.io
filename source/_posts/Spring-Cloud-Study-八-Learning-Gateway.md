@@ -94,7 +94,7 @@ Spring Cloud 中集成的 Zuul 版本，采用的是 Tomcat 容器，使用的�
 
 <mark>上述模式的缺点：</mark>
 
-Servelt 上一个简单的网络 IO 模型，当请求进入 Servlet Container 时，Servlet Container 就会为其绑定一个线程，在 <font style="color:red">并发不高的场景下</font> 这种模型是适用的。但是一旦高并发，线程数量就会向上涨，而线程资源代价是昂贵的（上下文切换，内存消耗大）严重影响请求的处理时间。
+Servelt 是一个简单的网络 IO 模型，当请求进入 Servlet Container 时，Servlet Container 就会为其绑定一个线程，在 <font style="color:red">并发不高的场景下</font> 这种模型是适用的。但是一旦高并发，线程数量就会向上涨，而线程资源代价是昂贵的（上下文切换，内存消耗大）严重影响请求的处理时间。
 
 在一些简单的业务场景下，不希望为每个 Request 分配一个线程，只需要 1 个或几个线程就能应对极大并发的请求，这种业务场景下 Servlet 模型没有优势。
 

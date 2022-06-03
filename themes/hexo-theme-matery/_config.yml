@@ -272,13 +272,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20220225221751.jpg
     - /img/20220225221803.jpg
     - /img/20220225221812.jpg
     - /img/20220225221826.jpg
     - /img/20220425110320.jpg
     - /img/20220425110354.jpg
-#   - /img/20220425110410.jpg
+    - /img/20220425110410.jpg
 #   - /img/20220425110432.jpg
 #   - /img/20220425110504.jpg
 #   - /img/20220425110519.jpg
@@ -613,8 +612,8 @@ subtitle:
   startDelay: 300 # 开始延迟
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
-  sub1: 就算曾经停止不前进，那也终将成为回忆，明天会绽放出花朵，绽放出希望。
-  sub2: Parsley, sage, rosemary and thyme.
+  sub1: The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart.
+  sub2: The greatest glory in living lies not in never falling, but in rising every time we fall.
 
 # 手机二级菜单.
 navMenu:

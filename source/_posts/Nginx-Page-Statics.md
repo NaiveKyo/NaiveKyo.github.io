@@ -282,7 +282,7 @@ public class IndexController {
         }
         
         try (PrintWriter pw = new PrintWriter(file)) {
-            // 适用模板引擎生成静态 html 页面
+            // 使用模板引擎生成静态 html 页面
             // 从上下文中获取数据填充到模板文件中, 最终输出到目标文件
             this.templateEngine.process(template, context, pw);
         } catch (FileNotFoundException e) {
