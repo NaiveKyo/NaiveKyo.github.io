@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-06-03T14:21:08.803Z</updated>
+  <updated>2022-06-05T10:30:14.598Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Core Technology Review (三)</title>
+    <link href="https://naivekyo.github.io/2022/06/05/java-core-technology-review-san/"/>
+    <id>https://naivekyo.github.io/2022/06/05/java-core-technology-review-san/</id>
+    <published>2022-06-05T10:29:01.000Z</published>
+    <updated>2022-06-05T10:30:14.598Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;从五个方面来分析 Java：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 基础：基本特性和机制；&lt;/li&gt;
+&lt;li&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Core Technology Review (二)</title>
@@ -486,31 +514,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;一、命令模式&quot;&gt;&lt;a href=&quot;#一、命令模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Proxy And Template Method</title>
-    <link href="https://naivekyo.github.io/2022/04/21/design-patterns-of-proxy-and-template-method/"/>
-    <id>https://naivekyo.github.io/2022/04/21/design-patterns-of-proxy-and-template-method/</id>
-    <published>2022-04-21T02:34:09.000Z</published>
-    <updated>2022-04-25T02:37:24.830Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、代理模式&quot;&gt;&lt;a href=&quot;#一、代理模式&quot; class=&quot;headerlink&quot;</summary>
         
       
     
