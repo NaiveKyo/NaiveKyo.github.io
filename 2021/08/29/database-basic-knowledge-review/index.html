@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-06
+                    2022-06-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.6k
+                    4.7k
                 </div>
                 
 
@@ -1125,7 +1125,7 @@
 <ul>
 <li>脏读：一个事务读取到另一个事务中没有提交的数据</li>
 <li>不可重复读（虚读）：在同一个事务中两次读取到的数据不一样</li>
-<li>幻读：一个事务操作（DML）数据表中所有记录，另一个事务添加了一条数据，则第一条事务查询不到自己的修改</li>
+<li>幻读：一个事务操作（DML）数据表中所有记录，另一个事务添加了一条数据，则第一条事务查询不到自己的修改（比如，系统管理员 A 将数据库中所有学生的成绩从具体分数改为 ABCDE 等级，但是系统管理员 B 就在这个时候插入了一条具体分数的记录，当系统管理员 A 改结束后发现还有一条记录没有改过来，就好像发生了幻觉一样，这就叫幻读。）</li>
 <li>注：幻读很难通过命令行界面去复现，前两个都可以复现</li>
 </ul>
 <p>隔离级别：</p>

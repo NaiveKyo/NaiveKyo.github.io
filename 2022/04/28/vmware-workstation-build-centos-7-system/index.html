@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-04-28
+                    2022-06-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    909
+                    1.1k
                 </div>
                 
 
@@ -512,7 +512,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="在-VMware-中安装-CentOS-7-系统"><a href="#在-VMware-中安装-CentOS-7-系统" class="headerlink" title="在 VMware 中安装 CentOS 7 系统"></a>在 VMware 中安装 CentOS 7 系统</h1><p>资源：</p>
+                <h1 id="在-VMware-中安装-CentOS-7-系统"><a href="#在-VMware-中安装-CentOS-7-系统" class="headerlink" title="在 VMware 中安装 CentOS 7 系统"></a>在 VMware 中安装 CentOS 7 系统</h1><h2 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h2><p>资源：</p>
 <ul>
 <li>VMware Workstation 15 +</li>
 <li>CentOS 7 x86_64.iso</li>
@@ -522,7 +522,7 @@
 <span class="token builtin class-name">echo</span> <span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes <span class="token operator">&gt;&gt;</span> /etc/sysconfig/network-scriptes/ifcfg-ens32
 
 <span class="token comment"># 修改时区</span>
-timedatectl -set-timezone Asia/Shanghi
+timedatectl set-timezone Asia/Shanghai
 
 <span class="token comment"># 更改主机名</span>
 hostnamectl set-hostname xxx
@@ -554,6 +554,9 @@ PermitRootLogin <span class="token function">yes</span> <span class="token comme
 PremitEmptyPasswords no <span class="token comment"># 不允许空密码登录</span>
 GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="虚拟机和主机互-ping"><a href="#虚拟机和主机互-ping" class="headerlink" title="虚拟机和主机互 ping"></a>虚拟机和主机互 ping</h2><p>虚拟机使用 NAT 网络连接模式，共享主机 IP 地址，此时会使用 VMNet 8 网卡。</p>
+<p>比如 Windows 和 CentOS 7，在 win 端使用 ipconfig 查看本机地址以及 VMNet 8 网卡使用的地址，注意虚拟机配置的静态 IP 要和 VMNet 8 在同一网段，大部分情况下虚拟机都可以 ping 通物理机，物理机可以 ping 通 VMNet 8，但是有时 ping 不同虚拟机，此时需要在高级网络配置中开启相应的配置属性：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220619172246.png"></p>
 <h2 id="虚拟机快照和克隆"><a href="#虚拟机快照和克隆" class="headerlink" title="虚拟机快照和克隆"></a>虚拟机快照和克隆</h2><h2 id="1、快照"><a href="#1、快照" class="headerlink" title="1、快照"></a>1、快照</h2><p>虚拟机中的快照就是对 <code>VMDK</code> 文件（虚拟机磁盘文件）某个时间点的 “拷贝”，这个 “拷贝” 并不是对 VMDK 文件的复制，而是保持磁盘文件和系统内存在该时间点的状态，并且快照是一个具有只读属性的镜像。</p>
 <p>快照的作用类似于一个系统还原点，可以把虚拟机还原到创建快照时的状态</p>
 <h2 id="2、虚拟机克隆"><a href="#2、虚拟机克隆" class="headerlink" title="2、虚拟机克隆"></a>2、虚拟机克隆</h2><p>虚拟机克隆分为 “完整克隆”（Full Clone）和 “链接克隆”（Linked Clone）两种方式。</p>
