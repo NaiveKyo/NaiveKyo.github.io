@@ -23,7 +23,7 @@ CORS（Cross-Origin Resource Sharing）是由 W3C 制定的一种跨域资源共
 
 在 JavaEE 开发中，最常见的前端跨域请求解决方案就是 JSONP，但是 JSONP 只支持 GET 请求，这是一个很大的缺陷，而 CORS 则支持多种 HTTP 请求方法，也是目前主流的跨域解决方案。
 
-CORS 中新增了一组 HTTP 请求头字段，通过这些字段，服务器告诉浏览器，哪些网站通过浏览器有权限访问哪些资源，同时规定，对那些可能修改服务器数据的 HTTP 请求方法（如 GET 以外的 HTTP 请求等等），浏览器必须首先事宜 OPTIONS 方法发起一个预检请求（preflight request），预检请求的目的是查看服务端是否支持即将发起的跨域请求，如果服务端允许，才能发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（如 Cookies、HTTP 认证信息等等）。
+CORS 中新增了一组 HTTP 请求头字段，通过这些字段，服务器告诉浏览器，哪些网站通过浏览器有权限访问哪些资源，同时规定，对那些可能修改服务器数据的 HTTP 请求方法（如 GET 以外的 HTTP 请求等等），浏览器必须首先使用 OPTIONS 方法发起一个预检请求（preflight request），预检请求的目的是查看服务端是否支持即将发起的跨域请求，如果服务端允许，才能发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（如 Cookies、HTTP 认证信息等等）。
 
 以 GET 请求为例，如果需要发起一个跨域请求，则请求头如下：
 
@@ -76,6 +76,32 @@ Access-Control-Max-Age: 3600
 这是关于 CORS 的一个简单介绍。
 
 
+
+# Web 原生过滤器处理方案
+
+```java
+@WebFilter(filterName = "CorsFilter", urlPatterns = {"/*"})
+public class CorsFilter implements Filter {
+    public void init(FilterConfig config) throws ServletException {
+    }
+
+    public void destroy() {
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
+        httpServletResponse.setHeader("Access-Control-Max-Age", "4200");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
+
+        chain.doFilter(request, response);
+    }
+}
+```
 
 # Spring 处理方案
 

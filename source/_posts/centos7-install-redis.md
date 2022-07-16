@@ -136,7 +136,7 @@ vim redis.conf
 
 # 2. 将 bind 127.0.0.1 这一行注释掉，如果不需要远程连接服务器，这个可以不用注释，它的意思是只允许本机访问
 
-# 3. 将 protect-mode yes 改为 protect-mode no，如果不远程连接则不需要注释
+# 3. 将 protect-mode yes 改为 protect-mode no，如果不进行远程连接则采用默认的 yes
 
 # 4. 添加 requirepass 123456 设置密码(默认密码为空)，如果只是在本机测试，也不需要设置密码
 ```
@@ -161,17 +161,23 @@ set name naivekyo
 get name
 ```
 
+### 6、补充：线上问题
 
+mark 一下：如果第一次在服务器上安装 Redis 后，编写 Java 程序访问可能会出错，大概率是没有修改 Redis 的持久化配置，因为 Redis 默认的策略是缓存命中指定次数后会写入到磁盘中，但是默认写入的位置是 `dir ./`，如果出错可以指定一个目录，例如在配置文件中这样修改：
 
+```
+# The working directory.
+#
+# The DB will be written inside this directory, with the filename specified
+# above using the 'dbfilename' configuration directive.
+#
+# The Append Only File will also be created inside this directory.
+#
+# Note that you must specify a directory here, not a file name.
+# dir ./
 
-
-
-
-
-
-
-
-
+dir /usr/local/deploy_software/redis-6.2.3/dbfiles
+```
 
 
 

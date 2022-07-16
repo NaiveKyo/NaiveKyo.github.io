@@ -17,6 +17,8 @@ tags: "Linux"
 
 # 在 VMware 中安装 CentOS 7 系统
 
+## 配置网络
+
 资源：
 
 - VMware Workstation 15 +
@@ -29,7 +31,7 @@ tags: "Linux"
 echo ONBOOT=yes >> /etc/sysconfig/network-scriptes/ifcfg-ens32
 
 # 修改时区
-timedatectl -set-timezone Asia/Shanghi
+timedatectl set-timezone Asia/Shanghai
 
 # 更改主机名
 hostnamectl set-hostname xxx
@@ -61,6 +63,16 @@ PermitRootLogin yes # 运行 root 用户远程登录
 PremitEmptyPasswords no # 不允许空密码登录
 GSSAPIAuthentication no
 ```
+
+## 虚拟机和主机互 ping
+
+虚拟机使用 NAT 网络连接模式，共享主机 IP 地址，此时会使用 VMNet 8 网卡。
+
+比如 Windows 和 CentOS 7，在 win 端使用 ipconfig 查看本机地址以及 VMNet 8 网卡使用的地址，注意虚拟机配置的静态 IP 要和 VMNet 8 在同一网段，大部分情况下虚拟机都可以 ping 通物理机，物理机可以 ping 通 VMNet 8，但是有时 ping 不同虚拟机，此时需要在高级网络配置中开启相应的配置属性：
+
+![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220619172246.png)
+
+
 
 ## 虚拟机快照和克隆
 
