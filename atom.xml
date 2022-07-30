@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-07-16T09:55:38.085Z</updated>
+  <updated>2022-07-30T09:09:47.705Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7 Deploy FTP Server</title>
+    <link href="https://naivekyo.github.io/2022/07/30/centos7-deploy-ftp-server/"/>
+    <id>https://naivekyo.github.io/2022/07/30/centos7-deploy-ftp-server/</id>
+    <published>2022-07-30T09:08:16.000Z</published>
+    <updated>2022-07-30T09:09:47.705Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;FTP（File Transfer Protocol），主要用于传输数据，但是使用 FTP</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Elasticsearch (一) es introducation</title>
@@ -501,31 +526,6 @@
     
     
     <category term="Nginx" scheme="https://naivekyo.github.io/tags/Nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Mediator And Memento</title>
-    <link href="https://naivekyo.github.io/2022/04/24/design-patterns-of-mediator-and-memento/"/>
-    <id>https://naivekyo.github.io/2022/04/24/design-patterns-of-mediator-and-memento/</id>
-    <published>2022-04-24T02:46:26.000Z</published>
-    <updated>2022-04-25T02:49:02.439Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、中介者模式&quot;&gt;&lt;a href=&quot;#一、中介者模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
     
   </entry>
   
