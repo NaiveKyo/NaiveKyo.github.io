@@ -140,6 +140,7 @@ mysql> SELECT DATE_ADD('1992-12-31 23:59:59.000002',
   - 可以在配置文件中配置好 Jackson 的日期格式
   - 也可以在字段上使用 `@JsonFormat` 注解指定格式和时区
   - 该注解也可以作用于 `@ReqeustBody`  接收的参数对象中的日期属性
+  - `FastJson` 环境使用 `@JsonField`
 
 ```yaml
 jackson:
