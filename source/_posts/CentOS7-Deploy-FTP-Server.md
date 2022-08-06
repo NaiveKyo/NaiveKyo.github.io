@@ -50,7 +50,7 @@ systemctl status vsftpd
 参考：
 
 - https://help.aliyun.com/document_detail/60152.html#section-wx4-1bx-kln
-- https://docs.openeuler.org/zh/docs/21.03/docs/Administration/%E6%90%AD%E5%BB%BAFTP%E6%9C%8D%E5%8A%A1%E5%99%A8.html‘
+- https://docs.openeuler.org/zh/docs/21.03/docs/Administration/%E6%90%AD%E5%BB%BAFTP%E6%9C%8D%E5%8A%A1%E5%99%A8.html
 
 更多信息请参考上述文档。
 
