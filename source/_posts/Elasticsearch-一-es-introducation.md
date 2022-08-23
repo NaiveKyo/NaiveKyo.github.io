@@ -782,7 +782,7 @@ GET http://127.0.0.1:9200/shopping/_search
 
 - `size`：每页查询的数据条数。
 
-  此处需要注意的是，上面的响应参数中表示共有 5 条数据，现在我们查询的是第一页第一条和第二条共两条数据，如果要查询第二页的数据，此时有一个计算公式：**（页码 - 1）* 每页数据条数**。
+  此处需要注意的是，上面的响应参数中表示共有 5 条数据，现在我们查询的是第一页第一条和第二条共两条数据，如果要查询第二页的数据，此时有一个计算公式：<strong>（页码 - 1）*  每页数据条数</strong>。
 
 第一页：`{ 'from' : 0, 'size' : 2 }`
 
@@ -1886,4 +1886,13 @@ for (Aggregation aggregation : response.getAggregations()) {
 }
 ```
 
-进度：[集群概念](https://www.bilibili.com/video/BV1hh411D7sb?p=29&spm_id_from=pageDriver&vd_source=ae48b583780c8d5999def7f5416875a9)
+
+
+# 四、补充
+
+## 1、term 和 match
+
+ES 中的 term 和 match 两种查询方式涉及到分词器、mapping、倒排索引等等。
+
+- `term` 查询直接将查询参数同倒排索引进行比对；
+- `match` 查询首先将查询参数进行分词，然后将分词后的结果同倒排索引比对。`_source` 高的优先匹配 。
