@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-16
+                    2022-08-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    8.7k
+                    8.8k
                 </div>
                 
 
@@ -1248,7 +1248,7 @@ PUT http://127.0.0.1:9200/shopping/_doc/1001
 <li><p><code>from</code>：当前页的起始位置，默认从 0 开始；</p>
 </li>
 <li><p><code>size</code>：每页查询的数据条数。</p>
-<p>此处需要注意的是，上面的响应参数中表示共有 5 条数据，现在我们查询的是第一页第一条和第二条共两条数据，如果要查询第二页的数据，此时有一个计算公式：<em><em>（页码 - 1）</em> 每页数据条数</em>*。</p>
+<p>此处需要注意的是，上面的响应参数中表示共有 5 条数据，现在我们查询的是第一页第一条和第二条共两条数据，如果要查询第二页的数据，此时有一个计算公式：<strong>（页码 - 1）*&nbsp; 每页数据条数</strong>。</p>
 </li>
 </ul>
 <p>第一页：<code>{ 'from' : 0, 'size' : 2 }</code></p>
@@ -2184,7 +2184,13 @@ response<span class="token punctuation">.</span><span class="token function">get
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>进度：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hh411D7sb?p=29&amp;spm_id_from=pageDriver&amp;vd_source=ae48b583780c8d5999def7f5416875a9">集群概念</a></p>
+
+
+<h1 id="四、补充"><a href="#四、补充" class="headerlink" title="四、补充"></a>四、补充</h1><h2 id="1、term-和-match"><a href="#1、term-和-match" class="headerlink" title="1、term 和 match"></a>1、term 和 match</h2><p>ES 中的 term 和 match 两种查询方式涉及到分词器、mapping、倒排索引等等。</p>
+<ul>
+<li><code>term</code> 查询直接将查询参数同倒排索引进行比对；</li>
+<li><code>match</code> 查询首先将查询参数进行分词，然后将分词后的结果同倒排索引比对。<code>_source</code> 高的优先匹配 。</li>
+</ul>
 
                 
             </div>
