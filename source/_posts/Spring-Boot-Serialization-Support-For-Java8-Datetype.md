@@ -931,3 +931,16 @@ public class JacksonConfiguration {
 ```
 
 注意该类在 `JacksonAutoConfiguration` 之前装配，因为后者会自动查询 Module 进行注册，我们要在其之前注入自己的 Module，另外提供了一个 Customizer 用于解决 jsr310 中默认以 ISO 作为格式化器不符合我们日常使用的时间字符串格式的问题（此处只针对 LocalDateTime 类型做处理）。
+
+补充配置 application.yml：
+
+```yml
+server:
+  port: 8080
+spring:
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: GMT+8
+    locale: zh_CN
+```
+
