@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-08-23T15:45:54.714Z</updated>
+  <updated>2022-10-05T16:36:58.232Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Boot Serialization Support For Java8 Datetype</title>
+    <link href="https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/"/>
+    <id>https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/</id>
+    <published>2022-10-05T16:35:26.000Z</published>
+    <updated>2022-10-05T16:36:58.232Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;在 Java 中对时间的抽象：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 1.0 引入了</summary>
+        
+      
+    
+    
+    
+    <category term="Spring Boot" scheme="https://naivekyo.github.io/categories/Spring-Boot/"/>
+    
+    
+    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring support for Bean Validation</title>
@@ -501,31 +528,6 @@
     
     
     <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Design Patterns Of Strategy And Chain Of Responsibility</title>
-    <link href="https://naivekyo.github.io/2022/04/25/design-patterns-of-strategy-and-chain-of-responsibility/"/>
-    <id>https://naivekyo.github.io/2022/04/25/design-patterns-of-strategy-and-chain-of-responsibility/</id>
-    <published>2022-04-25T02:59:56.000Z</published>
-    <updated>2022-04-25T03:02:08.698Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、策略模式&quot;&gt;&lt;a href=&quot;#一、策略模式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/categories/Design-Patterns/"/>
-    
-    
-    <category term="Design Patterns" scheme="https://naivekyo.github.io/tags/Design-Patterns/"/>
     
   </entry>
   
