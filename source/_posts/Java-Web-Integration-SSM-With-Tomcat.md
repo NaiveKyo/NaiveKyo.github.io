@@ -466,6 +466,96 @@ jdbc_url = jdbc:mysql://localhost:3306/xxx?useUnicode=true&useSSL=false&characte
 
 
 
+## 5、web.xml 配置
+
+注：配置中的 `${}` 形式不具有意义，仅做说明使用；
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <!-- web 名称 -->
+    <display-name>${项目名称}</display-name>
+    
+    <!-- 将 Spring 容器信息配置到 ServletContext -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-context.xml</param-value>
+    </context-param>
+
+    <!--<listener>-->
+    <!--    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>-->
+    <!--</listener>-->
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <!-- 注册 DispatcherServlet 并加载 Spring 配置 -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- Druid 监控 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 编码过滤器 -->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <!--<init-param>-->
+        <!--    <param-name>forceEncoding</param-name>-->
+        <!--    <param-value>true</param-value>-->
+        <!--</init-param>-->
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- 设置 Session 过期时间 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+</web-app>
+```
+
+
+
+
+
 # 四、项目结构
 
 ![](https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220418120204.png)

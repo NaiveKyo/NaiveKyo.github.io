@@ -52,6 +52,8 @@ tags: "Design Patterns"
 
 类的单例设计模式，就是采取一定的方法保证在整个软件系统中，对某个类 **只能存在一个对象实例**，并且该类只提供一个取得其对象实例的方法。
 
+单例的设计考察很多知识：线程安全、序列化攻击、反射、懒加载、继承等等。
+
 > 分类
 
 - **饿汉式（静态常量）**
@@ -62,6 +64,7 @@ tags: "Design Patterns"
 - **双重检查**
 - **静态内部类**
 - **枚举**
+- **原子引用**
 
 
 
@@ -223,8 +226,6 @@ public class Singleton {
 ```java
 public class Singleton {
 
-    private static volatile Singleton instance = null;
-
     private Singleton() {
     }
 
@@ -232,7 +233,7 @@ public class Singleton {
         private static final Singleton INSTANCE = new Singleton();
     }
 
-    public static synchronized Singleton getInstance() {
+    public static Singleton getInstance() {
         return SingletonInstance.INSTANCE;
     }
 }
@@ -272,7 +273,34 @@ public enum Singleton {
   - 但是如果单例必须扩展一个超类，而不是扩展 Enum 的时候，就不适合使用这种方法（虽然可以声明枚举去实现接口）
 - 结论：推荐使用
 
-## 8、总结
+## 8、原子引用
+
+利用 JUC 提供的 `java.util.concurrent.atomic.AtomicReference` 原子引用类来确保单例：
+
+```java
+public class Instance {
+    
+    private static final AtomicReference<Instance> INSTANCE = new AtomicReference<>();
+
+    private Instance() {
+    }
+    
+    public static final Instance getInstance() {
+        // 循环 CAS 确保对单例的引用唯一
+        for (;;) {
+            Instance instance = INSTANCE.get();
+            if (null != instance)
+                return instance;
+            INSTANCE.compareAndSet(null, new Instance());
+            return INSTANCE.get();
+        }
+    }
+}
+```
+
+ 
+
+## 9、总结
 
 单例模式的实现方法有很多种，可以这样去选择使用：
 

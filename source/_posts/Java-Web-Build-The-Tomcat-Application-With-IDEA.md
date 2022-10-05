@@ -121,9 +121,16 @@ tags: "Java Web"
 
 剩下的步骤和方式一一样，先创建 `Artifact`，然后将其添加到 Tomcat 中。
 
+## 4、乱码问题
 
+IDEA 启动 Tomcat 后偶尔会出现中文乱码问题，解决思路如下：
 
-## 4、补充: 查看端口号
+- IDEA 的 .vmoption 文件末尾追加 `-Dfile.encoding = UTF-8`；
+  - 注意该文件的位置，在 idea 安装目录的 bin 下，或者用户家目录的 .intelliJIdeaxx.xx 隐藏目录下的，也或者是安装 idea 时自定义的位置；
+- Tomcat 配置中添加 VM 启动参数：`-Dfile.encoding = UTF-8`；
+- 还是不行，就考虑修改 Tomcat 的配置文件中关于编码的部分，日志打印使用的 log4j，也可以提供 log4j 的配置文件并指定编码为 UTF-8；
+
+## 5、补充: 查看端口号
 
 Windows 查看端口占用及应用名：
 

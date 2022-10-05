@@ -166,3 +166,19 @@ WHERE c.delete_flag = 0;
 - where 是对数据库指定表的字段进行条件筛选；
 - having 是对 select 中选中的字段的数据进行条件筛选。
 
+## 9、多表联合更新
+
+参考：https://stackoverflow.com/questions/4361774/mysql-update-multiple-tables-with-one-query
+
+使用 inner join：
+
+```sql
+UPDATE t1
+INNER JOIN t2 ON t2.t1_id = t1.id
+INNER JOIN t3 ON t2.t3_id = t3.id
+SET t1.a = 'something',
+    t2.b = 42,
+    t3.c = t2.c
+WHERE t1.a = 'blah';
+```
+

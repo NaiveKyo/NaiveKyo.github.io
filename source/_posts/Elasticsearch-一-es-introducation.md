@@ -17,6 +17,11 @@ tags: "Elasticsearch"
 
 # 一、Elasticsearch 概述
 
+官方文档：
+
+- ES 各种 api，参见：https://www.elastic.co/guide/en/elasticsearch/reference/index.html
+- ES 提供的各种语言 API，参见：https://www.elastic.co/guide/en/elasticsearch/client/index.html
+
 数据分类：
 
 - 结构化数据（有关系的数据，可以抽象出来用关系型数据库存储，缺点：当现有的结构固定后，不容易扩展）；
