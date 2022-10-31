@@ -497,7 +497,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-10-30
+                    2022-10-31
                 </div>
                 
 
@@ -979,7 +979,7 @@ com.xyz.foo.level = SEVERE<span aria-hidden="true" class="line-numbers-rows"><sp
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.19.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>log4j-slf4j-impl 基础 log4j 2 实现了 SLF4J 的 API，用于桥接 slf4j-api 和 log4j2-core。当然 log4j-slf4j-impl 和 log4j-to-slf4j 是不能同时存在的，否则的话日志请求事件将会在 SLF4J 和 Log4j 2 之前返回路由，谁都无法处理请求。</p>
+<p>log4j-slf4j-impl 基础 log4j 2 实现了 SLF4J 的 API，用于桥接 slf4j-api 和 log4j2-core。当然 log4j-slf4j-impl 和 log4j-to-slf4j 是不能同时存在的，否则的话日志请求事件将会在 SLF4J 和 Log4j 2 之间来回转发，谁都无法处理请求。</p>
 <h2 id="将-Logging-API-和日志实现绑定"><a href="#将-Logging-API-和日志实现绑定" class="headerlink" title="将 Logging API 和日志实现绑定"></a>将 Logging API 和日志实现绑定</h2><p>slf4j-api 还是 log4j2-api 都属于 API，都不提供具体的实现，理论上讲，通过这两个 API 生成的日志可以绑定到很多日志实现库上，SLF4J 和 Log4j 2 也提供了很多 binders，下面的列表展示了可能的几种组合方式：</p>
 <ul>
 <li>SLF4J – Logback</li>
