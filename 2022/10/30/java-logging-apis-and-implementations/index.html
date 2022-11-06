@@ -497,14 +497,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-10-31
+                    2022-11-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.8k
+                    8.2k
                 </div>
                 
 
@@ -759,6 +759,7 @@ com.xyz.foo.level = SEVERE<span aria-hidden="true" class="line-numbers-rows"><sp
 <p>（2）log4j-core：提供具体的日志实现；</p>
 <p>Log4j 2 提供了一种可拔插的架构，可以让开发者更加灵活的制定或扩展 appenders、loggers 和 filters。要提一点 Log4j 2 修改配置后不会丢失以前的日志文件，这也是和其他日志框架不一样的地方。</p>
 <p>下面展示了 Log4j 2 的架构：</p>
+<p>图片地址：<a target="_blank" rel="noopener" href="https://yqintl.alicdn.com/97a6da07af7069bbce57944270a5a8b87ab29986.png">https://yqintl.alicdn.com/97a6da07af7069bbce57944270a5a8b87ab29986.png</a></p>
 <p><img src="https://yqintl.alicdn.com/97a6da07af7069bbce57944270a5a8b87ab29986.png"> </p>
 <h1 id="三、示例代码"><a href="#三、示例代码" class="headerlink" title="三、示例代码"></a>三、示例代码</h1><p>JUL 和 JCL 前面已经有例子了，下面看看其他的日志组合。</p>
 <h2 id="JCL-amp-Log4j"><a href="#JCL-amp-Log4j" class="headerlink" title="JCL &amp; Log4j"></a>JCL &amp; Log4j</h2><p>需要引入 Apache Commons Logging 和 Log4j 包，依赖如下：</p>
@@ -992,6 +993,75 @@ com.xyz.foo.level = SEVERE<span aria-hidden="true" class="line-numbers-rows"><sp
 <li>log4j2-api – log4j2-core</li>
 <li>log4j2-api – log4j-to-slf4j – SLF4J</li>
 </ul>
+<h1 id="四、实践补充"><a href="#四、实践补充" class="headerlink" title="四、实践补充"></a>四、实践补充</h1><h2 id="1、项目业务处理方案"><a href="#1、项目业务处理方案" class="headerlink" title="1、项目业务处理方案"></a>1、项目业务处理方案</h2><p>据统计项目中处理日志的代码量可以占到总代码数的 4%（OvO），可见日志处理的重要性。</p>
+<p>经过前面日志相关知识的学习和扩展，笔者在项目中也做了一些尝试，借鉴了阿里的开发手册中关于<a target="_blank" rel="noopener" href="https://developer.aliyun.com/special/tech-java">日志相关的知识</a>，以及 Stackoverflow 上的一些问答，可以得出以下几个总结：</p>
+<p>（1）对于传统的业务，比如常规单表处理，从 Controller 到 Service 最后到 DAO，这种业务处理流程中，一般在 Controller 层做参数校验，Service 结合 DAO 做具体的数据操作，需要结合异常和事务控制来保障数据一致性，抛出的异常则交给 ControllerAdvice，在此处返回用户操作结果以及日志记录；</p>
+<p>（2）对于复杂的业务处理，比如涉及到上下游系统协同、多线程处理、RPC 调用，此时业务流水线将会很复杂，开发者要考虑的东西也会更多，特别是异常对业务的影响，编译期异常可以在 coding 期间解决，但是运行时异常就需要我们自己注意了，调用某些方法时一定要查看其方法声明上有没有可能抛出的异常，仔细考虑在某个环节是否要捕捉异常，记录有用的日志信息。如果某个环节出现了问题，它是否会影响后续的处理，如果整条业务流水线崩了，是否有补偿机制或者重试机制。</p>
+<h2 id="2、项目日志记录"><a href="#2、项目日志记录" class="headerlink" title="2、项目日志记录"></a>2、项目日志记录</h2><p>编译期异常必须捕获，运行时异常则需要开发者结合业务判断是否需要捕获，捕获后是否需要打印日志，是吞下异常还是继续抛出，对于日志的打印我们期望打印出有用的信息以及调用堆栈，常见的日志 API 都会提供类似方法：</p>
+<p>以 Log4j2 为例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">LogManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogExceptionTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Logger</span> log <span class="token operator">=</span> <span class="token class-name">LogManager</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">LogExceptionTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 测试日志输出异常信息    </span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// do something</span>
+            <span class="token comment">// 注意此处, 方法的最后一个参数是异常本身, 前面的参数都是通过 {} 占位符填充的信息</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"异常: {}"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"非法参数"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>打印信息：</p>
+<pre class="line-numbers language-none"><code class="language-none">11:46:26.781 [main] ERROR io.naivekyo.LogExceptionTest - 异常: java.lang.IllegalArgumentException: 非法参数
+java.lang.RuntimeException: java.lang.IllegalArgumentException: 非法参数
+	at io.naivekyo.LogExceptionTest.test1(LogExceptionTest.java:30) ~[classes/:?]
+	at io.naivekyo.LogExceptionTest.main(LogExceptionTest.java:20) ~[classes/:?]
+Caused by: java.lang.IllegalArgumentException: 非法参数
+	at io.naivekyo.LogExceptionTest.test1(LogExceptionTest.java:28) ~[classes/:?]
+	... 1 more<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><font style="color:green">要注意以下情况：</font></p>
+<p>当程序大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2411487/nullpointerexception-in-java-with-no-stacktrace">https://stackoverflow.com/questions/2411487/nullpointerexception-in-java-with-no-stacktrace</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4659151/recurring-exception-without-a-stack-trace-how-to-reset">https://stackoverflow.com/questions/4659151/recurring-exception-without-a-stack-trace-how-to-reset</a></li>
+</ul>
+<p>（注：Oracle 文档确实不好找到这一段描述，可能是版本太久远了，1.5 相关的信息没有搜到，还好上面第二篇文章中有人给了出处：）</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/release-notes-introduction.html#vm">https://www.oracle.com/java/technologies/javase/release-notes-introduction.html#vm</a></li>
+<li><a target="_blank" rel="noopener" href="https://bugs.openjdk.org/browse/JDK-8046503">https://bugs.openjdk.org/browse/JDK-8046503</a></li>
+<li><a target="_blank" rel="noopener" href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=5098422">https://bugs.java.com/bugdatabase/view_bug.do?bug_id=5098422</a></li>
+</ul>
+<p>这是从 JDK 1.5 加入的特性，我们知道在发生异常时 JVM 会对线程做一次快照处理，记录异常调用堆栈（这也是相对耗费性能的一点），在 Server 模式下，当程序中某段代码运行时大量抛出同种异常，比如 NPE，此时 JIT 则会对其进行重新编译并进行优化，采用一种预先分配的异常信息并不做堆栈信息记录（至于 JVM 是如何知道异常抛出的地方，可能是它会记录这种堆栈信息或者异常抛出的代码地点）。</p>
+<p>这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 增强参数：<code>-XX:-OmitStackTraceInFastThrow</code> 来关闭这个功能。</p>
+<h2 id="3、补充-JVM-启动参数"><a href="#3、补充-JVM-启动参数" class="headerlink" title="3、补充 JVM 启动参数"></a>3、补充 JVM 启动参数</h2><p>参考 Oracle 官方文档中关于 Java 8 JVM 启动参数的配置：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC">https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC</a></p>
+<p>简单描述一下，在 Java 中对于项目启动参数大致分为以下几类：</p>
+<p>（1）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABDJJFI">标准选项（Standard Optionas）</a>；</p>
+<p>所有 JVM 实现都应该支持标准选项中的所有参数，因为这里面定义的都是一些常规的操作，比如 JRE 版本的检查，设置 class path、开启详细的输出等等；</p>
+<p>（2）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABHDABI">非标准选项（No-Standard Options）</a>；</p>
+<p>非标准选项主要适用于 Java HotSpot Virtual Machine，并非所有 JVM 都会支持非标准参数，不同的 JVM 实现可能支持的程度不一样，这类参数往往以 <code>-X</code> 开头；</p>
+<p>（3）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABCBGHF">高级运行时选项（Advanced Runtime Options）</a>；</p>
+<p>（4）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABDDFII">高级 JIT 编译选项（Advanced JIT Compiler Options）</a>；</p>
+<p>（5）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFJDIC">高级服务选项（Advanced Serviceability Options）</a>；</p>
+<p>（6）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFAFAE">高级垃圾回收选项（Advanced Garbage Collection Options）</a>；</p>
+<p>Oracle 不建议部署项目时随意修改高级选项，因为这些参数涉及到 Java HotSpot 虚拟机在运行时进行的某些操作，往往涉及到 JVM 调优的时候，开发人员可以根据项目实际情况来进行配置。每个参数会涉及到 JVM 不同的领域。</p>
+<p>同样不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 <code>-XX</code> 开头。</p>
 
                 
             </div>
