@@ -12,11 +12,11 @@ date: 2022-10-30 23:24:38
 summary: "Java 日志框架的发展和使用"
 categories: 
  - Java
- - ["Java", "logging"]
-keywords: ["java", "Logging"]
+ - [Logging, Java]
+keywords: [java, Logging]
 tags: 
  - Java
- - ["Java", "logging"]
+ - Logging
 ---
 
 # 一、前言
@@ -335,6 +335,8 @@ Log4j 2 是 Logback 和 Log4j 1.x 的增强版本。它使用了一些新的技�
 Log4j 2 提供了一种可拔插的架构，可以让开发者更加灵活的制定或扩展 appenders、loggers 和 filters。要提一点 Log4j 2 修改配置后不会丢失以前的日志文件，这也是和其他日志框架不一样的地方。
 
 下面展示了 Log4j 2 的架构：
+
+图片地址：https://yqintl.alicdn.com/97a6da07af7069bbce57944270a5a8b87ab29986.png
 
 ![](https://yqintl.alicdn.com/97a6da07af7069bbce57944270a5a8b87ab29986.png) 
 
@@ -671,7 +673,7 @@ Log4J 2 要集成 SLF4J 的日志，就需要引入下列依赖：
 </dependency>
 ```
 
-log4j-slf4j-impl 基础 log4j 2 实现了 SLF4J 的 API，用于桥接 slf4j-api 和 log4j2-core。当然 log4j-slf4j-impl 和 log4j-to-slf4j 是不能同时存在的，否则的话日志请求事件将会在 SLF4J 和 Log4j 2 之前返回路由，谁都无法处理请求。
+log4j-slf4j-impl 基础 log4j 2 实现了 SLF4J 的 API，用于桥接 slf4j-api 和 log4j2-core。当然 log4j-slf4j-impl 和 log4j-to-slf4j 是不能同时存在的，否则的话日志请求事件将会在 SLF4J 和 Log4j 2 之间来回转发，谁都无法处理请求。
 
  
 
@@ -688,4 +690,112 @@ slf4j-api 还是 log4j2-api 都属于 API，都不提供具体的实现，理论
 - JCL -- Log4j
 - log4j2-api -- log4j2-core
 - log4j2-api -- log4j-to-slf4j -- SLF4J
+
+
+
+# 四、实践补充
+
+## 1、项目业务处理方案
+
+据统计项目中处理日志的代码量可以占到总代码数的 4%（OvO），可见日志处理的重要性。
+
+经过前面日志相关知识的学习和扩展，笔者在项目中也做了一些尝试，借鉴了阿里的开发手册中关于[日志相关的知识](https://developer.aliyun.com/special/tech-java)，以及 Stackoverflow 上的一些问答，可以得出以下几个总结：
+
+（1）对于传统的业务，比如常规单表处理，从 Controller 到 Service 最后到 DAO，这种业务处理流程中，一般在 Controller 层做参数校验，Service 结合 DAO 做具体的数据操作，需要结合异常和事务控制来保障数据一致性，抛出的异常则交给 ControllerAdvice，在此处返回用户操作结果以及日志记录；
+
+（2）对于复杂的业务处理，比如涉及到上下游系统协同、多线程处理、RPC 调用，此时业务流水线将会很复杂，开发者要考虑的东西也会更多，特别是异常对业务的影响，编译期异常可以在 coding 期间解决，但是运行时异常就需要我们自己注意了，调用某些方法时一定要查看其方法声明上有没有可能抛出的异常，仔细考虑在某个环节是否要捕捉异常，记录有用的日志信息。如果某个环节出现了问题，它是否会影响后续的处理，如果整条业务流水线崩了，是否有补偿机制或者重试机制。
+
+
+
+## 2、项目日志记录
+
+编译期异常必须捕获，运行时异常则需要开发者结合业务判断是否需要捕获，捕获后是否需要打印日志，是吞下异常还是继续抛出，对于日志的打印我们期望打印出有用的信息以及调用堆栈，常见的日志 API 都会提供类似方法：
+
+以 Log4j2 为例：
+
+```java
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class LogExceptionTest {
+
+    private static final Logger log = LogManager.getLogger(LogExceptionTest.class);
+    
+    public static void main(String[] args) {
+        // 测试日志输出异常信息    
+        try {
+            test1();
+        } catch (Exception e) {
+            // do something
+            // 注意此处, 方法的最后一个参数是异常本身, 前面的参数都是通过 {} 占位符填充的信息
+            log.error("异常: {}", e.getMessage(), e);
+        }
+    }
+    
+    private static void test1() {
+        try {
+            throw new IllegalArgumentException("非法参数");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+打印信息：
+
+```
+11:46:26.781 [main] ERROR io.naivekyo.LogExceptionTest - 异常: java.lang.IllegalArgumentException: 非法参数
+java.lang.RuntimeException: java.lang.IllegalArgumentException: 非法参数
+	at io.naivekyo.LogExceptionTest.test1(LogExceptionTest.java:30) ~[classes/:?]
+	at io.naivekyo.LogExceptionTest.main(LogExceptionTest.java:20) ~[classes/:?]
+Caused by: java.lang.IllegalArgumentException: 非法参数
+	at io.naivekyo.LogExceptionTest.test1(LogExceptionTest.java:28) ~[classes/:?]
+	... 1 more
+```
+
+<font style='color:green'>要注意以下情况：</font>
+
+当程序大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。
+
+参考：
+
+- https://stackoverflow.com/questions/2411487/nullpointerexception-in-java-with-no-stacktrace
+- https://stackoverflow.com/questions/4659151/recurring-exception-without-a-stack-trace-how-to-reset
+
+（注：Oracle 文档确实不好找到这一段描述，可能是版本太久远了，1.5 相关的信息没有搜到，还好上面第二篇文章中有人给了出处：）
+
+- https://www.oracle.com/java/technologies/javase/release-notes-introduction.html#vm
+- https://bugs.openjdk.org/browse/JDK-8046503
+- https://bugs.java.com/bugdatabase/view_bug.do?bug_id=5098422
+
+这是从 JDK 1.5 加入的特性，我们知道在发生异常时 JVM 会对线程做一次快照处理，记录异常调用堆栈（这也是相对耗费性能的一点），在 Server 模式下，当程序中某段代码运行时大量抛出同种异常，比如 NPE，此时 JIT 则会对其进行重新编译并进行优化，采用一种预先分配的异常信息并不做堆栈信息记录（至于 JVM 是如何知道异常抛出的地方，可能是它会记录这种堆栈信息或者异常抛出的代码地点）。
+
+这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 增强参数：`-XX:-OmitStackTraceInFastThrow` 来关闭这个功能。
+
+## 3、补充 JVM 启动参数
+
+参考 Oracle 官方文档中关于 Java 8 JVM 启动参数的配置：https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC
+
+简单描述一下，在 Java 中对于项目启动参数大致分为以下几类：
+
+（1）[标准选项（Standard Optionas）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABDJJFI)；
+
+所有 JVM 实现都应该支持标准选项中的所有参数，因为这里面定义的都是一些常规的操作，比如 JRE 版本的检查，设置 class path、开启详细的输出等等；
+
+（2）[非标准选项（No-Standard Options）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABHDABI)；
+
+非标准选项主要适用于 Java HotSpot Virtual Machine，并非所有 JVM 都会支持非标准参数，不同的 JVM 实现可能支持的程度不一样，这类参数往往以 `-X` 开头；
+
+（3）[高级运行时选项（Advanced Runtime Options）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABCBGHF)；
+
+（4）[高级 JIT 编译选项（Advanced JIT Compiler Options）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABDDFII)；
+
+（5）[高级服务选项（Advanced Serviceability Options）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFJDIC)；
+
+（6）[高级垃圾回收选项（Advanced Garbage Collection Options）](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFAFAE)；
+
+Oracle 不建议部署项目时随意修改高级选项，因为这些参数涉及到 Java HotSpot 虚拟机在运行时进行的某些操作，往往涉及到 JVM 调优的时候，开发人员可以根据项目实际情况来进行配置。每个参数会涉及到 JVM 不同的领域。
+
+同样不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 `-XX` 开头。
 
