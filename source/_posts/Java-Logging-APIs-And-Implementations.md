@@ -756,7 +756,7 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 
 <font style='color:green'>要注意以下情况：</font>
 
-当程序大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。
+当程序在某个地方大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。
 
 参考：
 
@@ -771,7 +771,7 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 
 这是从 JDK 1.5 加入的特性，我们知道在发生异常时 JVM 会对线程做一次快照处理，记录异常调用堆栈（这也是相对耗费性能的一点），在 Server 模式下，当程序中某段代码运行时大量抛出同种异常，比如 NPE，此时 JIT 则会对其进行重新编译并进行优化，采用一种预先分配的异常信息并不做堆栈信息记录（至于 JVM 是如何知道异常抛出的地方，可能是它会记录这种堆栈信息或者异常抛出的代码地点）。
 
-这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 增强参数：`-XX:-OmitStackTraceInFastThrow` 来关闭这个功能。
+这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 高级启动参数：`-XX:-OmitStackTraceInFastThrow` 来关闭这个功能。
 
 ## 3、补充 JVM 启动参数
 
@@ -797,5 +797,5 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 
 Oracle 不建议部署项目时随意修改高级选项，因为这些参数涉及到 Java HotSpot 虚拟机在运行时进行的某些操作，往往涉及到 JVM 调优的时候，开发人员可以根据项目实际情况来进行配置。每个参数会涉及到 JVM 不同的领域。
 
-同样不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 `-XX` 开头。
+要注意不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 `-XX` 开头。
 
