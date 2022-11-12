@@ -497,14 +497,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-11-06
+                    2022-11-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    8.2k
+                    8.3k
                 </div>
                 
 
@@ -1036,7 +1036,7 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 	... 1 more<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><font style="color:green">要注意以下情况：</font></p>
-<p>当程序大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。</p>
+<p>当程序在某个地方大量抛出同种异常时，日志 API 无法打印出异常调用堆栈信息。</p>
 <p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2411487/nullpointerexception-in-java-with-no-stacktrace">https://stackoverflow.com/questions/2411487/nullpointerexception-in-java-with-no-stacktrace</a></li>
@@ -1049,7 +1049,7 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 <li><a target="_blank" rel="noopener" href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=5098422">https://bugs.java.com/bugdatabase/view_bug.do?bug_id=5098422</a></li>
 </ul>
 <p>这是从 JDK 1.5 加入的特性，我们知道在发生异常时 JVM 会对线程做一次快照处理，记录异常调用堆栈（这也是相对耗费性能的一点），在 Server 模式下，当程序中某段代码运行时大量抛出同种异常，比如 NPE，此时 JIT 则会对其进行重新编译并进行优化，采用一种预先分配的异常信息并不做堆栈信息记录（至于 JVM 是如何知道异常抛出的地方，可能是它会记录这种堆栈信息或者异常抛出的代码地点）。</p>
-<p>这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 增强参数：<code>-XX:-OmitStackTraceInFastThrow</code> 来关闭这个功能。</p>
+<p>这种策略的初衷是好的，在 production 环境下能够优化性能，但是对于 debug 环境就不太友好了，到目前为止解决方法只有重启项目然后添加 JVM 高级启动参数：<code>-XX:-OmitStackTraceInFastThrow</code> 来关闭这个功能。</p>
 <h2 id="3、补充-JVM-启动参数"><a href="#3、补充-JVM-启动参数" class="headerlink" title="3、补充 JVM 启动参数"></a>3、补充 JVM 启动参数</h2><p>参考 Oracle 官方文档中关于 Java 8 JVM 启动参数的配置：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC">https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC</a></p>
 <p>简单描述一下，在 Java 中对于项目启动参数大致分为以下几类：</p>
 <p>（1）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABDJJFI">标准选项（Standard Optionas）</a>；</p>
@@ -1061,7 +1061,7 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 <p>（5）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFJDIC">高级服务选项（Advanced Serviceability Options）</a>；</p>
 <p>（6）<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BABFAFAE">高级垃圾回收选项（Advanced Garbage Collection Options）</a>；</p>
 <p>Oracle 不建议部署项目时随意修改高级选项，因为这些参数涉及到 Java HotSpot 虚拟机在运行时进行的某些操作，往往涉及到 JVM 调优的时候，开发人员可以根据项目实际情况来进行配置。每个参数会涉及到 JVM 不同的领域。</p>
-<p>同样不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 <code>-XX</code> 开头。</p>
+<p>要注意不同的 JVM 实现对于高级参数的支持也不同，支持的参数范围和具体的实现都可能会变化。此类参数往往以 <code>-XX</code> 开头。</p>
 
                 
             </div>
@@ -1324,59 +1324,45 @@ Caused by: java.lang.IllegalArgumentException: 非法参数
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/10/30/java-logging-apis-and-implementations/">
+                <a href="/2022/11/12/jms-concept-and-introduction/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110534.jpg" class="responsive-img" alt="Java Logging APIs And Implementations">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110549.jpg" class="responsive-img" alt="JMS Concept And Introduction">
                         
-                        <span class="card-title">Java Logging APIs And Implementations</span>
+                        <span class="card-title">JMS Concept And Introduction</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java 日志框架的发展和使用
+                            JMS 简介及核心概念学习
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
-                            <a href="/categories/Logging/" class="post-category">
-                                    Logging
-                                </a>
-                            
-                            <a href="/categories/Logging/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/JMS/" class="post-category">
+                                    JMS
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                    <a href="/tags/Logging/">
-                        <span class="chip bg-color">Logging</span>
+                    <a href="/tags/JMS/">
+                        <span class="chip bg-color">JMS</span>
                     </a>
                     
                 </div>

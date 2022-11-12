@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-11-06T08:08:31.745Z</updated>
+  <updated>2022-11-12T09:38:30.790Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JMS Concept And Introduction</title>
+    <link href="https://naivekyo.github.io/2022/11/12/jms-concept-and-introduction/"/>
+    <id>https://naivekyo.github.io/2022/11/12/jms-concept-and-introduction/</id>
+    <published>2022-11-12T09:35:24.000Z</published>
+    <updated>2022-11-12T09:38:30.790Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JMS&quot;&gt;&lt;a href=&quot;#JMS&quot; class=&quot;headerlink&quot; title=&quot;JMS&quot;&gt;&lt;/a&gt;JMS&lt;/h1&gt;&lt;p&gt;参考文章：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="JMS" scheme="https://naivekyo.github.io/categories/JMS/"/>
+    
+    
+    <category term="JMS" scheme="https://naivekyo.github.io/tags/JMS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java Logging APIs And Implementations</title>
     <link href="https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/"/>
     <id>https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/</id>
     <published>2022-10-30T15:24:38.000Z</published>
-    <updated>2022-11-06T08:08:31.745Z</updated>
+    <updated>2022-11-07T01:44:31.536Z</updated>
     
     
       
@@ -499,31 +526,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Zookeeper-作为注册中心&quot;&gt;&lt;a href=&quot;#Zookeeper-作为注册中心&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper 作为注册中心&quot;&gt;&lt;/a&gt;Zookeeper 作为注册中心&lt;/h1&gt;&lt;p&gt;zookeeper</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Study (二) Learning Eureka</title>
-    <link href="https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/"/>
-    <id>https://naivekyo.github.io/2022/04/26/spring-cloud-study-er-learning-eureka/</id>
-    <published>2022-04-26T15:30:16.000Z</published>
-    <updated>2022-04-28T09:59:50.871Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Eureka&quot;&gt;&lt;a href=&quot;#Eureka&quot; class=&quot;headerlink&quot; title=&quot;Eureka&quot;&gt;&lt;/a&gt;Eureka&lt;/h1&gt;&lt;h1 id=&quot;一、什么是服务治理&quot;&gt;&lt;a href=&quot;#一、什么是服务治理&quot;</summary>
         
       
     
