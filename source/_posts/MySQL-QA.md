@@ -182,3 +182,30 @@ SET t1.a = 'something',
 WHERE t1.a = 'blah';
 ```
 
+
+
+## 10、MySQL 的 CHAR 和 VARCHAR
+
+char 和 varchar 非常相似，但是在存储和检索上有很大的差异，在最大长度和是否保留尾随空间也有所不同；
+
+创建表时给 char 或者 varchar 指定的长度表示的是希望存储的最大字符数，比如 CHAR(30) 可以存储 30 个字符；
+
+CHAR 类型字段的长度在创建表的时候已经指定了，取值范围在 0 - 255。当存储了一个 char 字段，实际长度没有达到最大的长度，此时不足的字符用空格右填充。而在检索的时候又会去掉这些填充的字符（除非指定 SQL Mode 为 `PAD CHAR TO FULL LENGTH`：https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html#sqlmode_pad_char_to_full_length）；
+
+VARCHAR 类型的字段表示变长字符串，可以声明的长度取值范围为 0 - 65535，VARCHAR 的最大有效长度受制于 maximum row size（所有列共享 65545 个字节）以及字符集，参考：https://dev.mysql.com/doc/refman/8.0/en/column-count-limit.html
+
+和 CHAR 相反，VARCHAR 存储 1 字节或者 2 字节的前缀和实际数据，前缀存储的值表明该字符串的字节数。如果值的字符数不超过 255 个字节，则前缀只需使用一个字节，否则使用两个字节。
+
+如果没有启用严格 SQL 模式，并且为 CHAR 或 VARCHAR 列分配的值超过了该列的最大长度，则就生成警告信息并截断该值。如果对于此种情况想要生成错误而非警告则可以参考 [Server SQL Mode](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)。
+
+例子：
+
+比如 char(4) 和 varchar(4)，要存储的字符串值不足 4 字符，则 char 在实际值后面补空白字符（有后缀），检索的时候去掉后缀；
+
+varchar 则判断要存储的字符占用字节是否在 0 - 255 之内，在范围内则取一字节前缀 + 实际字符串占用空间作为最终存储空间，在检索的时候也不会去掉前缀。（注：大于 255 字节则使用两字节前缀）
+
+更多信息参考：
+
+- https://dev.mysql.com/doc/refman/8.0/en/char.html
+
+注意：字符串长度和字符串实际存储占用字节数，前者有开发者创建表时声明，后者由数据库存储引擎以及字符集决定。
