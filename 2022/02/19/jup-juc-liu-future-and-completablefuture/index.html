@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-02-22
+                    2022-12-07
                 </div>
                 
 
@@ -593,7 +593,7 @@
 <li>调用无参 <code>get()</code> 方法获取操作的结果，如果操作已经完成，该方法会立即返回操作的结果，否则它会阻塞调用线程，直到操作完成，返回相应的结果；</li>
 <li>考虑这种情况，一旦异步任务执行出现了问题，长时间无法返回结果，会造成线程一直阻塞，为了处理这种可能性，我们应该使用重载的 <code>get</code> 方法，它接受一个超时的参数，通过它，可以定义线程等待 <code>Future</code> 结果的最长时间，这样就不会永远等下去。</li>
 </ul>
-<h2 id="3、Future-接口的局限性"><a href="#3、Future-接口的局限性" class="headerlink" title="3、Future 接口的局限性"></a>3、Future 接口的局限性</h2><p><code>Future</code> 接口提供方法并不足以让我们编写出简介的并发代码，比如说，我们很难描述 <code>Future</code> 结果之间的依赖性。</p>
+<h2 id="3、Future-接口的局限性"><a href="#3、Future-接口的局限性" class="headerlink" title="3、Future 接口的局限性"></a>3、Future 接口的局限性</h2><p><code>Future</code> 接口提供方法并不足以让我们编写出简洁的并发代码，比如说，我们很难描述 <code>Future</code> 结果之间的依赖性。</p>
 <p>像下面这些需求：</p>
 <ul>
 <li>将两个异步计算合并为一个 —— 这两个异步计算之间相互独立，同时第二个又依赖于第一个的结果；</li>

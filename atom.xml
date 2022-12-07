@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-11-12T09:38:30.790Z</updated>
+  <updated>2022-12-07T15:57:37.930Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Relearn Reflection And Dynamic Proxy</title>
+    <link href="https://naivekyo.github.io/2022/12/07/java-relearn-reflection-and-dynamic-proxy/"/>
+    <id>https://naivekyo.github.io/2022/12/07/java-relearn-reflection-and-dynamic-proxy/</id>
+    <published>2022-12-07T15:55:40.000Z</published>
+    <updated>2022-12-07T15:57:37.930Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>JMS Concept And Introduction</title>
@@ -501,31 +528,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Consul&quot;&gt;&lt;a href=&quot;#Consul&quot; class=&quot;headerlink&quot; title=&quot;Consul&quot;&gt;&lt;/a&gt;Consul&lt;/h1&gt;&lt;h1 id=&quot;一、Consul-简介&quot;&gt;&lt;a href=&quot;#一、Consul-简介&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Study (三) Use Zookeeper</title>
-    <link href="https://naivekyo.github.io/2022/04/28/spring-cloud-study-san-use-zookeeper/"/>
-    <id>https://naivekyo.github.io/2022/04/28/spring-cloud-study-san-use-zookeeper/</id>
-    <published>2022-04-28T15:06:06.000Z</published>
-    <updated>2022-04-28T15:08:23.470Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Zookeeper-作为注册中心&quot;&gt;&lt;a href=&quot;#Zookeeper-作为注册中心&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper 作为注册中心&quot;&gt;&lt;/a&gt;Zookeeper 作为注册中心&lt;/h1&gt;&lt;p&gt;zookeeper</summary>
         
       
     
