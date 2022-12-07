@@ -182,7 +182,7 @@ public class DispatcherServlet {
 
 > 模式的扩展
 
-适配器模式（Adapter）可扩展为双向适配器模式，双向适配器类既可以把适配者接口转换成目标接口，也可以把目标接口转换成适配者接扣
+适配器模式（Adapter）可扩展为双向适配器模式，双向适配器类既可以把适配者接口转换成目标接口，也可以把目标接口转换成适配者接口
 
 http://c.biancheng.net/view/1361.html
 
