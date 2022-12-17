@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-12-07T15:57:37.930Z</updated>
+  <updated>2022-12-17T15:45:32.225Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux Basic Knowledge Review (一)</title>
+    <link href="https://naivekyo.github.io/2022/12/17/linux-basic-knowledge-review-yi/"/>
+    <id>https://naivekyo.github.io/2022/12/17/linux-basic-knowledge-review-yi/</id>
+    <published>2022-12-17T15:44:30.000Z</published>
+    <updated>2022-12-17T15:45:32.225Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;书籍：鸟哥的 Linux 私房菜：基础学习篇（第四版）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka Deployment And Quick Start</title>
+    <link href="https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/"/>
+    <id>https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/</id>
+    <published>2022-12-17T15:40:12.000Z</published>
+    <updated>2022-12-17T16:03:43.832Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Apache-Kafka&quot;&gt;&lt;a href=&quot;#Apache-Kafka&quot; class=&quot;headerlink&quot; title=&quot;Apache Kafka&quot;&gt;&lt;/a&gt;Apache Kafka&lt;/h1&gt;&lt;p&gt;website：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Kafka" scheme="https://naivekyo.github.io/categories/Kafka/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+    <category term="Kafka" scheme="https://naivekyo.github.io/tags/Kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Relearn Reflection And Dynamic Proxy</title>
@@ -75,7 +130,7 @@
     <link href="https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/"/>
     <id>https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/</id>
     <published>2022-10-30T15:24:38.000Z</published>
-    <updated>2022-11-07T01:44:31.536Z</updated>
+    <updated>2022-12-17T16:04:02.204Z</updated>
     
     
       
@@ -88,11 +143,7 @@
     
     
     
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
     <category term="Logging" scheme="https://naivekyo.github.io/categories/Logging/"/>
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Logging/Java/"/>
     
     
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
@@ -487,56 +538,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7 Deploy Zookeeper Server</title>
-    <link href="https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server/"/>
-    <id>https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server/</id>
-    <published>2022-04-28T15:13:18.000Z</published>
-    <updated>2022-04-28T15:14:18.126Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Zookeeper&quot;&gt;&lt;a href=&quot;#Zookeeper&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper&quot;&gt;&lt;/a&gt;Zookeeper&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Study (四) Learning Consul And Cap</title>
-    <link href="https://naivekyo.github.io/2022/04/28/spring-cloud-study-si-learning-consul-and-cap/"/>
-    <id>https://naivekyo.github.io/2022/04/28/spring-cloud-study-si-learning-consul-and-cap/</id>
-    <published>2022-04-28T15:10:44.000Z</published>
-    <updated>2022-04-28T15:11:51.589Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Consul&quot;&gt;&lt;a href=&quot;#Consul&quot; class=&quot;headerlink&quot; title=&quot;Consul&quot;&gt;&lt;/a&gt;Consul&lt;/h1&gt;&lt;h1 id=&quot;一、Consul-简介&quot;&gt;&lt;a href=&quot;#一、Consul-简介&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
     
   </entry>
   

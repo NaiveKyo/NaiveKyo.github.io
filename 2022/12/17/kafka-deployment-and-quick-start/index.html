@@ -1,0 +1,1621 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Kafka,Linux">
+    <meta name="description" content="This is a blog in order to record my learning and growth.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Kafka Deployment And Quick Start | Miló&amp;Akoúo̱</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
+</head>
+
+
+<!-- 加载动画 -->
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20221208182717.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<!-- <script type="text/javascript">
+	var OriginTitile=document.title,st;
+	document.addEventListener("visibilitychange",function(){
+			document.hidden?(document.title="Σ(っ °Д °;)っ喔哟，不见了哦！",
+			clearTimeout(st)):(document.title="(๑•̀ㅂ•́) ✧被发现了～",st=setTimeout(function(){document.title=OriginTitile},3e3))
+		}
+	)
+</script> -->
+
+<body>
+    <!-- 加载动画 -->
+	
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Miló&amp;Akoúo̱</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/series" class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Series</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220215211225.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Miló&amp;Akoúo̱</div>
+        <div class="logo-desc">
+            
+            This is a blog in order to record my learning and growth.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/series" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-list"></i>
+			
+			Series
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="http://github.com/NaiveKyo" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="http://github.com/NaiveKyo" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110625.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Kafka Deployment And Quick Start</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+		/* 简陋的滚动条 */
+		height: calc(100vh - 250px);
+		overflow: scroll; 
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/Kafka/">
+                                <span class="chip bg-color">Kafka</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Kafka/" class="post-category">
+                                Kafka
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-12-17
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-12-18
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    5.9k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Apache-Kafka"><a href="#Apache-Kafka" class="headerlink" title="Apache Kafka"></a>Apache Kafka</h1><p>website：<a target="_blank" rel="noopener" href="https://kafka.apache.org/">https://kafka.apache.org/</a></p>
+<p>笔者在接触 kafka 之前已经使用过其他的消息队列，比如 activemq，它是标准的 JMS 实现，至于 kafka，看网上经常将它和其他消息队列放在一起讲，但是 kafka 究竟和 JMS 是什么关系呢？可以参考这位大佬的文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.kai-waehner.de/blog/2022/05/12/comparison-jms-api-message-broker-mq-vs-apache-kafka/">https://www.kai-waehner.de/blog/2022/05/12/comparison-jms-api-message-broker-mq-vs-apache-kafka/</a></li>
+</ul>
+<p>该文从十个方面对消息队列和 kafka 进行了比较：</p>
+<ol>
+<li>Message broker vs. data streaming platform（消息代理者 vs 数据流平台）</li>
+<li>API Specification vs. open-source protocol implementation（JMS API 实现 vs 开源数据流协议实现）</li>
+<li>Transactional vs. analytical workloads（事务 vs 工作负载分析）</li>
+<li>Push vs. pull message consumption</li>
+<li>Simple vs. powerful and complex API</li>
+<li>Storage for durability vs. true decoupling</li>
+<li>Server-side data-processing vs. decoupled continuous stream processing（服务端数据处理 vs 解耦的持续数据流处理）</li>
+<li>Complex operations vs. serverless cloud（复杂的操作 vs 无服务云函数）</li>
+<li>Java/JVM vs. any programming language</li>
+<li>Single deployment vs. multi-region (including hybrid and multi-cloud) replication</li>
+</ol>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="What-is-event-streaming"><a href="#What-is-event-streaming" class="headerlink" title="What is event streaming?"></a>What is event streaming?</h2><p>Event streaming 类似于人体的中央神经处理系统。</p>
+<p>从技术角度看，Event streaming 就是以事件流的形式实时地从数据源中捕获数据的一种实践。</p>
+<ul>
+<li><p>这些数据源有数据库、传感器、移动设备、云服务或者应用程序。</p>
+</li>
+<li><p>捕获到的事件流将会被持久化以供后续的检索；</p>
+</li>
+<li><p>实时或者回顾性的去操作、处理甚至是相应数据流；</p>
+</li>
+<li><p>根据需要将事件流路由到不同的目的地。</p>
+</li>
+</ul>
+<p>数据在事件流中不断地流动，并根据需要对数据进行解析，最后，在任何时间、任何地点，我们都可以实时地获取到正确的信息。</p>
+<h2 id="What-can-I-use-event-streaming-for"><a href="#What-can-I-use-event-streaming-for" class="headerlink" title="What can I use event streaming for?"></a>What can I use event streaming for?</h2><p>事件流的应用范围非常广泛。比如下列情形：</p>
+<ul>
+<li>实时处理订单或者金融事务。比如证券交易所、银行和保险公司；</li>
+<li>实时跟踪和监控汽车、卡车、车队和货物，比如物流和汽车制造业；</li>
+<li>持续捕捉和分析从物联网设备或其他设备传感器上传的数据，比如说工厂或者风电场；</li>
+<li>收集客户信息或者订单信息并迅速做出响应，比如在零售业、酒店、旅游行业以及移动应用程序；</li>
+<li>检测医院中病人的情况，预测病情变化，以确保能够及时处理突发状况；</li>
+<li>存储并协同处理公司各个部门产生的数据；</li>
+<li>作为数据平台、事件驱动架构和微服务的基础。</li>
+</ul>
+<h2 id="Apache-kafka-is-an-event-streaming-platform"><a href="#Apache-kafka-is-an-event-streaming-platform" class="headerlink" title="Apache kafka is an event streaming platform"></a>Apache kafka is an event streaming platform</h2><p>Kafka 结合了三个关键的功能，基于它们就可以利用事件流实现端到端的一站式解决方案：</p>
+<ol>
+<li>To <strong>publish</strong> (write) and <strong>subscribe to</strong> (read) streams of events, including continuous import/export of your data from other systems.（发布/订阅事件流）</li>
+<li>To <strong>store</strong> streams of events durably and reliably for as long as you want.（持久、可靠的存储事件流）</li>
+<li>To <strong>process</strong> streams of events as they occur or retrospectively.（在发生或者回顾事件时处理事件流）</li>
+</ol>
+<p>所有这些功能都以分布式、高度可伸缩、弹性、容错和安全的方式提供。Kafka 可以部署在裸机、虚拟机和容器上，也可以部署在本地和云中。可以选择自己管理 Kafka 环境，也可以选择使用各种供应商提供的托管服务。</p>
+<h2 id="How-does-Kafka-work-in-a-nutshell"><a href="#How-does-Kafka-work-in-a-nutshell" class="headerlink" title="How does Kafka work in a nutshell?"></a>How does Kafka work in a nutshell?</h2><p>Kafka 是如何工作的？</p>
+<p>Kafka 是一个分布式系统，主要包括客户端和服务端，它们彼此通过高性能的 <a target="_blank" rel="noopener" href="https://kafka.apache.org/protocol.html">TCP network protocol</a> 进行通信。并且 Kafka 也可以部署在各种环境中，比如裸机、虚拟机、本地、云。</p>
+<h3 id="Servers"><a href="#Servers" class="headerlink" title="Servers"></a>Servers</h3><p><strong>Servers</strong>：Kafka 以集群形式运行，包括一个或者多个服务器。这些服务器可以跨多个数据中心或者云。</p>
+<ul>
+<li>其中有一些服务器用于存储数据，构成了 storage layer，可以称它们为 brokers（代理者）；</li>
+<li>还有一些服务器运行 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#connect">Kafka Connect</a>，这些 Connect 是 Kafka 和其他系统沟通的桥梁，可以将数据以事件流的形式持续导入和导出。这样 Kafka 就可以和现有系统（比如关系型数据库和其他 Kafka 集群）继承；</li>
+</ul>
+<p>最后，Kafka 集群是高度可伸缩和容错的：如果集群中任何一个服务出现了故障，其他服务器将接管它们的工作，以确保集群在没有任何数据丢失的情况下持续运行下去。</p>
+<h3 id="Clients"><a href="#Clients" class="headerlink" title="Clients"></a>Clients</h3><p><strong>Clients</strong>：它们允许开发者编写分布式应用程序和微服务，这些应用程序和微服务可以并行的、大规模地读取、写入和处理事件流，即使出现了网络问题或者机器故障的情况下也能以容错的方式进行。</p>
+<p>Kafka 社区提供了一些增强型的 <a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/KAFKA/Clients">clients</a>：这些客户端能够用于 Java 和 Scala，包括更高级别的 Kafka Streams 库，还适用于 Go、Python、C/C++ 和其他很多编程语言，甚至是 REST API。</p>
+<h2 id="Main-Concepts-and-Terminology"><a href="#Main-Concepts-and-Terminology" class="headerlink" title="Main Concepts and Terminology"></a>Main Concepts and Terminology</h2><h3 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h3><p><strong>Event</strong> 记录的是世界上或者应用程序中 “something happened” 的事物。在文档中也可以叫做记录或者消息。我们以事件的形式读取或者写入数据到 Kafka。从概念上讲，事件具有键、值、时间戳和可选的元数据头（metadata header）下面是一个例子：</p>
+<ul>
+<li>Event key：”Alice”</li>
+<li>Event value：”Made a payment of $200 to Bob”</li>
+<li>Event timestamp：”Jun.25, 2020 at 2:06 p.m.”</li>
+</ul>
+<h3 id="Producers"><a href="#Producers" class="headerlink" title="Producers"></a>Producers</h3><p><strong>Producers</strong> 就是客户端应用程序：publish (write) events to Kafka, and <strong>consumers</strong> are those that subscribe to (read and process) these events.</p>
+<p>在 Kafka 中，生产者和消费者是高度解耦的，并且彼此不可见，这种特性也是 Kafka 实现高可伸缩性的关键点。比如说，生产者无需等待消费者。Kafka 提供了各种 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#semantics">guarantees</a>，比如确保事件只会被处理一次。</p>
+<h3 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h3><p><strong>Topics</strong> 中结构化并持久地存储事件。topic 就像是文件系统中的目录，Event 就是目录下的文件。Kafka 中的 Topic 总是关联多个生产者和多个消费者：比如 0 个、1 个、或者多个生产者，消费者也是一样。</p>
+<p>（这里提到 Topic，也许我们会想到传统消息系统中的主题，不过 Kafka 中的主题有些不太一样，因为我们可以根据需要一次或者多次阅读 Topic 中的 Event，传统消息系统中消息被消费后就删除了。）</p>
+<p>我们可以为 Kafka 中每个 Topic 做配置，定义 Topic 保存 Event 的最长时间，超过了这个时间，Event 就会被丢弃。Kafka 的性能和数据的大小有关，因此长时间存储大量数据是完全没问题的。</p>
+<h3 id="Partitions"><a href="#Partitions" class="headerlink" title="Partitions"></a>Partitions</h3><p><strong>Partitioned</strong>：Topics 是分区的（<strong>partitioned</strong>），这就意味着一个 Topic 将被分成几块区域，每个区域有可能分散到不同的 Kafka broker 中。数据的分布式布局对可伸缩性非常重要，因为它允许客户端程序同时从/向多个代理读取和写入数据。</p>
+<p>当一个事件发布到 Topic 中，它实际上是被分配到 Topic 的某个 partition 中。如果是具有相同 key 的事件（比如说 key 是某个汽车制造商的 ID）将会被写入到相同的 partition 中。并且 Kafka 保证给定 topic-patition 的消费者将始终以和写入事件完全相同的数据读取分区的事件 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#semantics">guarantees</a>。</p>
+<h3 id="Replications"><a href="#Replications" class="headerlink" title="Replications"></a>Replications</h3><p><strong>Replicated</strong>：为了确保数据具备容错性和高可用性，每个 Topic 都可以被复制（即使是跨区域、跨多个机房），这样就总会有多个 brokers 拥有相同的数据副本，以防出现错误、维护 broker 或者其他情况。</p>
+<p>在生产环境中常规的配置是将复制体设置为 3 个，这就意味者有 3 份备份的数据 + 一个原始数据。同时复制是发生在 Topic 的 Partition 级别上的。</p>
+<p>到此为止，我们就了解了 Kafka 中通用的概念和术语，如果想更深入的了解 Kakfa 的设计，可以阅读文档中关于 Design 的部分：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#design">https://kafka.apache.org/documentation/#design</a></li>
+</ul>
+<h2 id="Kafka-APIs"><a href="#Kafka-APIs" class="headerlink" title="Kafka APIs"></a>Kafka APIs</h2><p>In addition to command line tooling for management and administration tasks, Kafka has five core APIs for Java and Scala:</p>
+<ul>
+<li>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#adminapi">Admin API</a> to manage and inspect topics, brokers, and other Kafka objects.</li>
+<li>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#producerapi">Producer API</a> to publish (write) a stream of events to one or more Kafka topics.</li>
+<li>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#consumerapi">Consumer API</a> to subscribe to (read) one or more topics and to process the stream of events produced to them.</li>
+<li>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/streams">Kafka Streams API</a> to implement stream processing applications and microservices. It provides higher-level functions to process event streams, including transformations, stateful operations like aggregations and joins, windowing, processing based on event-time, and more. Input is read from one or more topics in order to generate output to one or more topics, effectively transforming the input streams to output streams.</li>
+<li>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#connect">Kafka Connect API</a> to build and run reusable data import/export connectors that consume (read) or produce (write) streams of events from and to external systems and applications so they can integrate with Kafka. For example, a connector to a relational database like PostgreSQL might capture every change to a set of tables. However, in practice, you typically don’t need to implement your own connectors because the Kafka community already provides hundreds of ready-to-use connectors.</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><p>下面是 Kafka 的一些经典使用场景：</p>
+<h3 id="（1）Messaging"><a href="#（1）Messaging" class="headerlink" title="（1）Messaging"></a>（1）Messaging</h3><p>Kafka 可以用来替代传统的消息代理，比如 ActiveMQ、RabbitMQ。</p>
+<p>与大多数消息传递系统相比，Kafka 具有更好的吞吐量、内置分区、结点复制、高容错，这些特性使得 Kafka 称为大规模消息处理程序的一个很好的解决方案。</p>
+<h3 id="（2）Website-Activity-Tracking"><a href="#（2）Website-Activity-Tracking" class="headerlink" title="（2）Website Activity Tracking"></a>（2）Website Activity Tracking</h3><p>Kafka 最初的一个应用方向就是跟踪网站用户的活动，在该活动捕捉流的基础上构建一组实时的发布/订阅机制。</p>
+<p>这意味着网站的活动（page views、searches or other actions user may take）可以发布到中央主题中，并且每一种活动对应一个 topic。然后订阅这些 topic 的系统就可以做各种处理。</p>
+<h3 id="（3）Metrics"><a href="#（3）Metrics" class="headerlink" title="（3）Metrics"></a>（3）Metrics</h3><p>Kafka 也可以操作监控数据，用来生成统计数据。</p>
+<h3 id="（4）Log-Aggregation"><a href="#（4）Log-Aggregation" class="headerlink" title="（4）Log Aggregation"></a>（4）Log Aggregation</h3><p>许多开发者将 Kafka 作为日志聚合解决方案的替代品。Log Aggregation 操作通常指从服务器上收集物理日志文件，将它们放置某个中心位置，比如文件服务器或者 HDFS，从而做进一步处理。</p>
+<h3 id="（5）Stream-Processing"><a href="#（5）Stream-Processing" class="headerlink" title="（5）Stream Processing"></a>（5）Stream Processing</h3><p>Kafka 的很多用户将数据处理管道（processing pipeline）中的数据分为多个阶段进行处理。首先从 Kafka Topic 中获取原始输入数据，然后做进一步操作，比如 aggregated、enriched 或者转换为新的 Topic 供后续的处理。</p>
+<p>比如说存在这样一种 processing pipeline：</p>
+<ul>
+<li>处理推荐新闻的处理管道首先可能会从 RSS 中抓取文章内容，并将其发布到 “articles” topic；</li>
+<li>进一步的处理可能是规范化获取的文章信息，并将处理后的文章内容发布到新的主题中；</li>
+<li>最终阶段可能就算尝试向用户推荐这些内容；</li>
+</ul>
+<p>上面的这种处理管道会基于单个 topic 创建实时的数据流图。</p>
+<p>针对此种场景，Kafka 提供了一种轻量级的强大的流处理库，叫做 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/streams">Kafka Streams</a>，它处理数据的方式和上面的例子流程差不多。除了 Kafka Streams 之外，其他的开源的流处理工具有 <a target="_blank" rel="noopener" href="https://storm.apache.org/">Apache Storm</a>、和 <a target="_blank" rel="noopener" href="https://samza.apache.org/">Apache Samza</a>。</p>
+<h3 id="（6）Event-Sourcing"><a href="#（6）Event-Sourcing" class="headerlink" title="（6）Event Sourcing"></a>（6）Event Sourcing</h3><p><a target="_blank" rel="noopener" href="https://martinfowler.com/eaaDev/EventSourcing.html">Event Sourcing</a> 是一种应用程序设计风格，其中状态更改被记录为按照时间排序的记录序列。Kafka 支持大量日志数据存储的特性使得它非常适合作为这个设计风格的应用程序的后端。</p>
+<h3 id="（7）Commit-Log"><a href="#（7）Commit-Log" class="headerlink" title="（7）Commit Log"></a>（7）Commit Log</h3><p>Kafka 可以作为分布式系统的外部 commit-log 工具。这种日志有助于分布式系统不同节点之间的数据同步，并且在节点发生故障时也可以用来恢复节点。</p>
+<p>Kafka 的 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation.html#compaction">日志压缩</a> 特性非常适合这种应用场景。这种用法也类似于 <a target="_blank" rel="noopener" href="https://bookkeeper.apache.org/">Apache BookKeeper</a> 项目。</p>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>首先需要下载最新的稳定版本的 Kafka。</p>
+<p>Kafka 下载地址：<a target="_blank" rel="noopener" href="https://kafka.apache.org/downloads">https://kafka.apache.org/downloads</a></p>
+<p>其次 Kafka 需要 Java 8+ 的环境，启动 Kafka 则需要结合 ZooKeeper 或者 KRaft（Apache Kafka Raft）。</p>
+<ul>
+<li>Kafka 将元数据托管给 ZooKeeper；</li>
+<li>当 Kafka 3.3.1 版本公布后，Apache 为了解耦 Kafka 和 ZooKeeper，提供了一种一致性协议 Kafka Raft，当然还是预览版本，Kafka 结合 KRaft 就可以自己管理元数据了。<ul>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.com/news/2022/10/apache-kafka-kraft/">https://www.infoq.com/news/2022/10/apache-kafka-kraft/</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.confluent.io/learn/kraft/">https://developer.confluent.io/learn/kraft/</a></li>
+</ul>
+</li>
+</ul>
+<p>本文我们以 Kafka 结合 ZooKeeper 为例，所以还需要下载 LST 版本的 ZooKeeper。</p>
+<p>ZK 下载地址：<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/releases.html">https://zookeeper.apache.org/releases.html</a></p>
+<p>ZK 学习文章：<a href="https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server">https://naivekyo.github.io/2022/04/28/centos7-deploy-zookeeper-server</a></p>
+<h2 id="（1）下载-ZooKeeper-和-Kafka"><a href="#（1）下载-ZooKeeper-和-Kafka" class="headerlink" title="（1）下载 ZooKeeper 和 Kafka"></a>（1）下载 ZooKeeper 和 Kafka</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 解压</span>
+<span class="token function">tar</span> -zxf apache-zookeeper-3.7.1-bin.tar.gz
+<span class="token function">tar</span> -zxf kafka_2.13-3.3.1.tgz
+
+<span class="token comment"># 修改 zk 权限</span>
+<span class="token function">chown</span> root:root -R apache-zookeeper-3.7.1-bin/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="（2）ZK-启动-Standalone-模式"><a href="#（2）ZK-启动-Standalone-模式" class="headerlink" title="（2）ZK 启动 Standalone 模式"></a>（2）ZK 启动 Standalone 模式</h2><p>默认的配置文件例子在：apache-zookeeper-3.7.1-bin/conf/zoo_sample.cfg</p>
+<p>先把默认的配置文件名字改了，然后创建一个新的简单的配置文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ./conf
+<span class="token comment"># 先备份默认的样例配置文件</span>
+<span class="token function">mv</span> ./zoo_sample.cfg ./zoo_sample.cfg_bak
+<span class="token comment"># 然后创建新的，注意 ZK 对配置文件只有后缀要求, 名字可以随意，这里为了方便所以叫 zoo.cfg</span>
+<span class="token function">vim</span> zoo.cfg
+
+<span class="token comment"># 文件内容</span>
+<span class="token assign-left variable">tickTime</span><span class="token operator">=</span><span class="token number">2000</span>
+<span class="token assign-left variable">dataDir</span><span class="token operator">=</span>/var/lib/zookeeper
+<span class="token assign-left variable">clientPort</span><span class="token operator">=</span><span class="token number">2181</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>属性说明：</p>
+<ul>
+<li>tickTime：ZooKeeper 将毫秒作为基本的时间单位。该属性决定默认的心跳时间周期，而会话超时的最小时间是 tickTime 的两倍；</li>
+<li>dataDir：存储内存中数据库快照的目录，如果没有特别说明，这个数据库将会记录数据更新的事务日志；</li>
+<li>clientPort：监听客户端连接的端口号。</li>
+</ul>
+<p>注意配置信息中的 dataDir 属性，配置样例中说这个目录是存放 ZK 快照数据的，根据 FHS，我们可以将其放到 /var/lib 下面，并且新建一个 ZK 专有的目录（需要手动创建这个目录）。</p>
+<p>tip：/var 是记录 Linux 程序运行时产生的数据的，而 Linux 硬件即文件，即使是内存也是可以直接以文件方式访问的。/var 目录可以使用内存模拟磁盘，速度快一些。</p>
+<p>配置文件创建好了，就可以以单机模式启动 ZK 了：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动 Server, 默认 standalone mode</span>
+bin/zkServer.sh start
+<span class="token comment"># 启动 Client 连接 Server</span>
+bin/zkCli.sh -server <span class="token number">127.0</span>.0.1:2181<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>连接成功后，就可以进入 ZK 的 shell 环境了。之前也了解过，ZK 存储结点的数据结构类似于文件树，树的根结点就叫做 zookeeper。</p>
+<p>更多操作参考官方文档。</p>
+<h2 id="（3）启动-Kafka"><a href="#（3）启动-Kafka" class="headerlink" title="（3）启动 Kafka"></a>（3）启动 Kafka</h2><p>Kafka 压缩文件解压后，可以自行了解具体的目录含义。</p>
+<p>下面首先关掉前面启动的 ZK 服务：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./apache-zookeeper-3.7.1-bin/bin/zkServer.sh stop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>因为 Kafka 的启动脚本中已经包含了启动 ZK 的指令，并且也提供有默认的 ZK 配置文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 为了方便演示，这里仅仅改动 dataDir 属性</span>
+<span class="token function">vim</span> /usr/local/software/kafka_2.13-3.3.1/config/zookeeper.properties
+
+<span class="token comment"># 修改一行就可以了 </span>
+<span class="token assign-left variable">dataDir</span><span class="token operator">=</span>/var/lib/zookeeper<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>启动 ZK：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动</span>
+/kafka_2.13-3.3.1/bin/zookeeper-server-start.sh <span class="token punctuation">..</span>/config/zookeeper.properties
+
+<span class="token comment"># 挂后台</span>
+ctrl + z
+<span class="token function">bg</span> %1
+<span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>启动 Kafka：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动</span>
+/kafka_2.13-3.3.1/kafka-server-start.sh <span class="token punctuation">..</span>/config/server.properties
+
+<span class="token comment"># 挂后台</span>
+ctrl + z
+<span class="token function">bg</span> %2
+<span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果这两个服务都正常启动了，那么我们的 Kafka 单机运行环境算是准备成功了。</p>
+<h2 id="（4）创建存储-Event-的-Topic"><a href="#（4）创建存储-Event-的-Topic" class="headerlink" title="（4）创建存储 Event 的 Topic"></a>（4）创建存储 Event 的 Topic</h2><p>Kafka 是分布式的事件流处理平台，它允许你跨越多台机器进行读、写、存储以及处理 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#messages">Event</a>（也可以叫做 records 或者 messages）。</p>
+<p>比如说这些 Event：交易订单、移动设备的地理位置、运输订单、物联网设备或者医疗设备的传感器测量数据等等。这些事件将被组织起来发送到不同的 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#intro_concepts_and_terms">Topics</a> 中。一个非常形象的比喻：Topic 就类似于文件系统中的目录，Events 就是目录中的文件。</p>
+<p>所以如果要写入 Event 就得先创建 Topic。</p>
+<p>进入 kafka 的 bin 目录，输入以下指令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建一个 topic</span>
+<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092</span>
+Created topic quickstart-events.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>Kafka 提供的的 bin 目录下的所有命令行工具都有一些附加参数：直接输入脚本的名称比如 kafka-topics.sh，就可以看到提示信息，包含所有的参数。</p>
+<p>比如说使用以下参数可以查看指定的 Topic 的信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092</span>
+Topic: quickstart-events        TopicId: LreFQyR3SNKB3hlfdQR1Tw PartitionCount: <span class="token number">1</span>       ReplicationFactor: <span class="token number">1</span>    Configs:
+        Topic: quickstart-events        Partition: <span class="token number">0</span>    Leader: <span class="token number">0</span>       Replicas: <span class="token number">0</span>     Isr: <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="（5）向-Topic-中写入-Event"><a href="#（5）向-Topic-中写入-Event" class="headerlink" title="（5）向 Topic 中写入 Event"></a>（5）向 Topic 中写入 Event</h2><p>Kafka 的 clients 通过网络向 Kafka brokers 中读/写 events，brokers 一旦接收到 event，就会以持久且容错的方式存储事件，直到我们需要处理这些事件为止，甚至可以永远存储下去。</p>
+<p>下面运行 kafka 的 producer client 去写一些事件到 broker 中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092</span>
+<span class="token operator">&gt;</span>This is my first event
+<span class="token operator">&gt;</span>This is my second event
+<span class="token operator">&gt;</span>^C
+<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输入命令后，每行数据都是一个 event，按下 Ctrl + C 退出。</p>
+<h2 id="（6）读取-events"><a href="#（6）读取-events" class="headerlink" title="（6）读取 events"></a>（6）读取 events</h2><p>使用 kafka 的 consumer client 去读取 events：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./kafka-console-consumer.sh --topic quickstart-events --from-beginning  --bootstrap-server localhost:9092</span>
+This is my first event
+This is my second event
+^CProcessed a total of <span class="token number">2</span> messages
+<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个例子中我们使用 –from-beginning 读取指定 topic 中的所有 event，当然也可以指定 offset，更多信息可以直接输入脚本 kafka-console-consumer.sh 查看可用参数。</p>
+<p>一样也是按下 Ctrl + C 退出。</p>
+<p>跟多尝试：开两个 terminal，一个 kafka producer、一个 kafka consumer，然后实时写 event，就可以看到 consumer 端实时的显示出刚写入的 event。</p>
+<p>因为 Events 在 Kafka 中是持久存储的，所以 Events 可以被任意多个消费端在任意时间点读取。</p>
+<h2 id="（7）使用-Kafka-Connect-以事件流方式导入-导出数据"><a href="#（7）使用-Kafka-Connect-以事件流方式导入-导出数据" class="headerlink" title="（7）使用 Kafka Connect 以事件流方式导入/导出数据"></a>（7）使用 Kafka Connect 以事件流方式导入/导出数据</h2><p>你也许会有大量的数据在关系型数据库或者消息系统中，同时还有很多应用程序在使用这些数据。<a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#connect">Kafka Connect</a> 允许你持续不断地从外部系统中抽取数据传递给 Kafka，反之亦然。</p>
+<p>Kakfa Connect 是可以扩展的，这就意味着你可以自定义 Connect 的实现用于连接自己的数据应用，从而将数据传递个给 Kafka。同时 Kakfa 社区也提供了很多已经实现的 Connect。</p>
+<p>本文将展示最简单的一种用法：从文件中读取数据然后通过 Connect 将数据传递给 Kafka，或者从 Kafka 中导出数据到文件。</p>
+<p>首先我们需要修改 connect 的配置文件，为它添加一个 jar 包，更多信息可以参考 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#configuration">Kafka Configuration</a> 中关于 Connection 的配置说明，其中有个 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#connectconfigs_plugin.path">plugin.path</a> 属性用来指定 connect 的插件。</p>
+<p>虽然官方说这里可以用相对路径，但是也是建议我们在生产环境下使用绝对路径会更好，为了养成良好习惯，直接使用绝对路径：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 编辑配置文件, 在 kafka 的 config 目录下面</span>
+<span class="token function">vim</span> /<span class="token punctuation">..</span>./kafka_2.13-3.3.1/config/connect-standalone.properties
+
+<span class="token comment"># 添加或者修改 plugin.path 属性</span>
+plugin.path<span class="token operator">=</span>/usr/local/software/kafka_2.13-3.3.1/libs/connect-file-3.3.1.jar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建测试文件（这个测试文件的名称是有意义的，具体可以查看 /config/connect-file-source.properties 配置文件）：</p>
+<p><code>echo -e "foo\nbar" &gt; test.txt</code></p>
+<p>然后我们将以 standalone 模式开启两个 connector，这意味着它俩是作为本机的两个单独的进程启动的。</p>
+<p>然后提供三个配置文件作为参数，第一个配置文件是 Kakfa Connect 处理相关的配置，包括一些公共信息比如 Kafka brokers 的连接信息，数据的序列化格式等等。</p>
+<p>剩下的配置文件用于创建不同的 connector，这些文件中必须包含一个唯一的连接器名称以及其他配置信息，这样就可以实例化相关的 Connector。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 开启两个 Connector 进程</span>
+./bin/connect-standalone.sh ./config/connect-standalone.properties ./config/connect-file-source.properties ./config/connect-file-sink.properties<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后新开一个 terminal 或者将这个作为后台任务运行。</p>
+<p>Kafka 附带的这些样例配置文件使用了前面我们启动 Kakfa 的默认本地集群配置，并创建了两个 Connector 实例。</p>
+<p>第一个连接器实例是 source connector，用于从输入文件中按行读取数据然后一条一条的发布到 Kafka Topic 中；</p>
+<p>第二个连接器实例是 sink connector，用于从 Kafka Topic 中读取数据然后将它们一行一行的输出到目标文件中。</p>
+<p>上面的命令启动后控制台会打印一些日志信息，一旦 Kafka Connect 开始处理数据，source connector 就会从 <code>test.txt</code> 文件中读取数据发布到名为 <code>connect-test</code> 的 Topic 中（在配置文件中定义的 Topic 名字），同时 sink connector 就会开始从 <code>connect-test</code> Topic 中读取数据并将其写入到 <code>test.sink.txt</code> 文件中。</p>
+<p>我们可以检查以下文件的内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment"># ll</span>
+总用量 <span class="token number">76</span>
+drwxr-xr-x. <span class="token number">3</span> root root  <span class="token number">4096</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:06 bin
+drwxr-xr-x. <span class="token number">3</span> root root  <span class="token number">4096</span> <span class="token number">12</span>月 <span class="token number">17</span> <span class="token number">23</span>:13 config
+drwxr-xr-x. <span class="token number">2</span> root root  <span class="token number">8192</span> <span class="token number">12</span>月 <span class="token number">17</span> <span class="token number">20</span>:26 libs
+-rw-rw-r--. <span class="token number">1</span> root root <span class="token number">14842</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:03 LICENSE
+drwxr-xr-x. <span class="token number">2</span> root root   <span class="token number">284</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:06 licenses
+drwxr-xr-x. <span class="token number">2</span> root root  <span class="token number">4096</span> <span class="token number">12</span>月 <span class="token number">17</span> <span class="token number">23</span>:13 logs
+-rw-rw-r--. <span class="token number">1</span> root root <span class="token number">28184</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:03 NOTICE
+drwxr-xr-x. <span class="token number">2</span> root root    <span class="token number">44</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:06 site-docs
+-rw-r--r--. <span class="token number">1</span> root root     <span class="token number">8</span> <span class="token number">12</span>月 <span class="token number">17</span> <span class="token number">23</span>:13 test.sink.txt
+-rw-r--r--. <span class="token number">1</span> root root     <span class="token number">8</span> <span class="token number">12</span>月 <span class="token number">17</span> <span class="token number">22</span>:54 test.txt
+<span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment"># more test.sink.txt</span>
+foo
+bar
+<span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>此时数据已经存储到 Kafka 的对应的 Topic 中了，可以看一下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment"># ./bin/kafka-console-consumer.sh --topic connect-test --from-beginning --bootstrap-server localhost:9092</span>
+<span class="token punctuation">{</span><span class="token string">"schema"</span>:<span class="token punctuation">{</span><span class="token string">"type"</span><span class="token builtin class-name">:</span><span class="token string">"string"</span>,<span class="token string">"optional"</span>:false<span class="token punctuation">}</span>,<span class="token string">"payload"</span><span class="token builtin class-name">:</span><span class="token string">"foo"</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token string">"schema"</span>:<span class="token punctuation">{</span><span class="token string">"type"</span><span class="token builtin class-name">:</span><span class="token string">"string"</span>,<span class="token string">"optional"</span>:false<span class="token punctuation">}</span>,<span class="token string">"payload"</span><span class="token builtin class-name">:</span><span class="token string">"bar"</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>现在刚刚创建的 connectors 还在正常工作，我们可以向源文件写入数据看看有什么效果：</p>
+<p>tip：新开一个 terminal 向文件追加写入数据</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment"># echo Anther line &gt;&gt; test.txt</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后就可以实时的看到刚刚的消费者终端打印了新写入的数据：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">{</span><span class="token string">"schema"</span>:<span class="token punctuation">{</span><span class="token string">"type"</span><span class="token builtin class-name">:</span><span class="token string">"string"</span>,<span class="token string">"optional"</span>:false<span class="token punctuation">}</span>,<span class="token string">"payload"</span><span class="token builtin class-name">:</span><span class="token string">"Anther line"</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="（8）使用-Kafka-Streams-处理-Events"><a href="#（8）使用-Kafka-Streams-处理-Events" class="headerlink" title="（8）使用 Kafka Streams 处理 Events"></a>（8）使用 Kafka Streams 处理 Events</h2><p>一旦数据作为 events 存储到 Kafka 中，我们就可以通过 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/streams">Kafka Streams</a> 结合 Java/Scala 客户端来处理这些数据</p>
+<p>The library supports exactly-once processing, stateful operations and aggregations, windowing, joins, processing based on event-time, and much more.</p>
+<p>The <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/streams/quickstart">Kafka Streams demo</a> and the <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/streams/tutorial">app development tutorial</a> demonstrate how to code and run such a streaming application from start to finish.</p>
+<h2 id="（9）关闭-Kafka-环境"><a href="#（9）关闭-Kafka-环境" class="headerlink" title="（9）关闭 Kafka 环境"></a>（9）关闭 Kafka 环境</h2><p>最后我们看一下如何关闭 Kafka：</p>
+<ul>
+<li>关闭正在运行的 producer 和 consumer，只需要输入 Ctrl + C 就可以了（如果是后台任务就先切到前台，然后关闭）；</li>
+<li>关闭 broker 也是和上面一样，Ctrl + C；</li>
+<li>最后，如果第一步开启的 Zookeeper 和 Kafak 正在前台运行，输入 Ctrl + C 就可以了。</li>
+</ul>
+<p>如果 Kafka 相关的进程在后台运行且不方便转到前台进行关闭，可以使用：</p>
+<p>ZK 和 Kafka 可以使用下面两个命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost kafka_2.13-3.3.1<span class="token punctuation">]</span><span class="token comment"># ll ./bin/ | grep stop</span>
+-rwxrwxr-x. <span class="token number">1</span> root root  <span class="token number">1361</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:03 kafka-server-stop.sh
+-rwxrwxr-x. <span class="token number">1</span> root root  <span class="token number">1366</span> <span class="token number">9</span>月  <span class="token number">30</span> 03:03 zookeeper-server-stop.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>其他的可以根据 PID kill 掉。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于 Kafka 的更多信息可以参考文档或者查阅资料、书籍。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">NaiveKyo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/">https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">NaiveKyo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/Kafka/">
+                                    <span class="chip bg-color">Kafka</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">OvO</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/';
+        this.page.identifier = '/2022/12/17/kafka-deployment-and-quick-start/';
+        this.page.title = 'Kafka Deployment And Quick Start';
+    };
+    let disqus_shortname = 'https-naivekyo-github-io';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/12/17/linux-basic-knowledge-review-yi/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110644.jpg" class="responsive-img" alt="Linux Basic Knowledge Review (一)">
+                        
+                        <span class="card-title">Linux Basic Knowledge Review (一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Linux 基础知识回顾 (一)
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/12/07/java-relearn-reflection-and-dynamic-proxy/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110606.jpg" class="responsive-img" alt="Java Relearn Reflection And Dynamic Proxy">
+                        
+                        <span class="card-title">Java Relearn Reflection And Dynamic Proxy</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            重新学习 Java 反射 API 及动态代理
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('4'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="27969834"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <!-- <span id="year">2021</span> -->
+            <a href="/about" target="_blank">NaiveKyo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+		
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "7";
+                    var startDate = "6";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/NaiveKyo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:https://naivekyore@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2086589645" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2086589645" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
