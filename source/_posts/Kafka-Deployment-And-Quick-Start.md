@@ -10,10 +10,10 @@ toc: true
 mathjax: false
 date: 2022-12-17 23:40:12
 summary: "Linux 部署 Kafka 环境以及 Quick Start"
-categories:
+categories: Kafka
+keywords: 
  - Kafka
  - Linux
-keywords: [Linux, Kafka]
 tags:
  - Kafka
  - Linux

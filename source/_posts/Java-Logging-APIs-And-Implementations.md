@@ -10,9 +10,7 @@ toc: true
 mathjax: false
 date: 2022-10-30 23:24:38
 summary: "Java 日志框架的发展和使用"
-categories: 
- - Java
- - [Logging, Java]
+categories: Logging
 keywords: [java, Logging]
 tags: 
  - Java

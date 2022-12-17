@@ -9,9 +9,7 @@ date: 2021-08-08 17:52:55
 top: false
 cover: false
 summary: Java I/O 体系浅析。
-categories:
- - Java
- - [Java, IO]
+categories: IO
 keywords:
  - Java
  - IO
