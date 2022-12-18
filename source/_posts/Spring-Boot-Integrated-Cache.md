@@ -9,9 +9,7 @@ date: 2021-08-12 16:20:38
 top: false
 cover: false
 summary: 浅析 SpringBoot 集成缓存。
-categories:
- - "Spring Boot"
- - ["Spring Boot", Cache]
+categories: "Spring Boot"
 keywords: ["Spring Boot", Cache]
 tags: ["Spring Boot", Cache]
 ---

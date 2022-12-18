@@ -130,7 +130,7 @@ Kafka 社区提供了一些增强型的 [clients](https://cwiki.apache.org/confl
 
 **Partitioned**：Topics 是分区的（**partitioned**），这就意味着一个 Topic 将被分成几块区域，每个区域有可能分散到不同的 Kafka broker 中。数据的分布式布局对可伸缩性非常重要，因为它允许客户端程序同时从/向多个代理读取和写入数据。
 
-当一个事件发布到 Topic 中，它实际上是被分配到 Topic 的某个 partition 中。如果是具有相同 key 的事件（比如说 key 是某个汽车制造商的 ID）将会被写入到相同的 partition 中。并且 Kafka 保证给定 topic-patition 的消费者将始终以和写入事件完全相同的数据读取分区的事件 [guarantees](https://kafka.apache.org/documentation/#semantics)。
+当一个事件发布到 Topic 中，它实际上是被分配到 Topic 的某个 partition 中。如果是具有相同 key 的事件（比如说 key 是某个汽车制造商的 ID）将会被写入到相同的 partition 中。并且 Kafka 保证给定 topic-patition 的消费者将始终以和写入事件完全相同的顺序读取分区的事件 [guarantees](https://kafka.apache.org/documentation/#semantics)。
 
 ### Replications
 
@@ -276,13 +276,13 @@ bin/zkCli.sh -server 127.0.0.1:2181
 
 Kafka 压缩文件解压后，可以自行了解具体的目录含义。
 
-下面首先关掉前面启动的 ZK 服务：
+下面首先关掉前面启动的 ZK 服务（前面只是回顾了如何快速构建 ZooKeeper 环境）：
 
 ```bash
 ./apache-zookeeper-3.7.1-bin/bin/zkServer.sh stop
 ```
 
-因为 Kafka 的启动脚本中已经包含了启动 ZK 的指令，并且也提供有默认的 ZK 配置文件：
+因为 Kafka 的启动脚本中已经包含了启动 ZK 的指令，并且也提供有默认的 ZK 配置文件以及在 libs 中也提供了 ZooKeeper 的 jar 包：
 
 ```bash
 # 为了方便演示，这里仅仅改动 dataDir 属性
@@ -317,6 +317,30 @@ jobs
 ```
 
 如果这两个服务都正常启动了，那么我们的 Kafka 单机运行环境算是准备成功了。
+
+<font style='color:red'>注意 ：如果要从外界连接服务器上的 Kafka 单机/集群，则需要开放端口同时修改 Kafka Broker 的一些配置，比如说 Socket Server 配置中的 listeners。</font>
+
+默认配置是这样的：
+
+```properties
+# The address the socket server listens on. If not configured, the host name will be equal to the value of
+# java.net.InetAddress.getCanonicalHostName(), with PLAINTEXT listener name, and port 9092.
+#   FORMAT:
+#     listeners = listener_name://host_name:port
+#   EXAMPLE:
+#     listeners = PLAINTEXT://your.host.name:9092
+#listeners=PLAINTEXT://:9092
+```
+
+取消注释并改为 IP/host + 端口，更多信息参考官方文档，注意这里如果写成 host，那么服务器 hosts 文件中一定要有配置，即使是 localhost 也是一样，否则会出现程序连接不上 Kafka Broker 的情况。
+
+例如：
+
+```properties
+listeners=PLAINTEXT://192.168.154.3:9092
+```
+
+
 
 ## （4）创建存储 Event 的 Topic
 
