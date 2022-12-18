@@ -496,7 +496,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.9k
+                    6.1k
                 </div>
                 
 
@@ -586,7 +586,7 @@
 <p>（这里提到 Topic，也许我们会想到传统消息系统中的主题，不过 Kafka 中的主题有些不太一样，因为我们可以根据需要一次或者多次阅读 Topic 中的 Event，传统消息系统中消息被消费后就删除了。）</p>
 <p>我们可以为 Kafka 中每个 Topic 做配置，定义 Topic 保存 Event 的最长时间，超过了这个时间，Event 就会被丢弃。Kafka 的性能和数据的大小有关，因此长时间存储大量数据是完全没问题的。</p>
 <h3 id="Partitions"><a href="#Partitions" class="headerlink" title="Partitions"></a>Partitions</h3><p><strong>Partitioned</strong>：Topics 是分区的（<strong>partitioned</strong>），这就意味着一个 Topic 将被分成几块区域，每个区域有可能分散到不同的 Kafka broker 中。数据的分布式布局对可伸缩性非常重要，因为它允许客户端程序同时从/向多个代理读取和写入数据。</p>
-<p>当一个事件发布到 Topic 中，它实际上是被分配到 Topic 的某个 partition 中。如果是具有相同 key 的事件（比如说 key 是某个汽车制造商的 ID）将会被写入到相同的 partition 中。并且 Kafka 保证给定 topic-patition 的消费者将始终以和写入事件完全相同的数据读取分区的事件 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#semantics">guarantees</a>。</p>
+<p>当一个事件发布到 Topic 中，它实际上是被分配到 Topic 的某个 partition 中。如果是具有相同 key 的事件（比如说 key 是某个汽车制造商的 ID）将会被写入到相同的 partition 中。并且 Kafka 保证给定 topic-patition 的消费者将始终以和写入事件完全相同的顺序读取分区的事件 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#semantics">guarantees</a>。</p>
 <h3 id="Replications"><a href="#Replications" class="headerlink" title="Replications"></a>Replications</h3><p><strong>Replicated</strong>：为了确保数据具备容错性和高可用性，每个 Topic 都可以被复制（即使是跨区域、跨多个机房），这样就总会有多个 brokers 拥有相同的数据副本，以防出现错误、维护 broker 或者其他情况。</p>
 <p>在生产环境中常规的配置是将复制体设置为 3 个，这就意味者有 3 份备份的数据 + 一个原始数据。同时复制是发生在 Topic 的 Partition 级别上的。</p>
 <p>到此为止，我们就了解了 Kafka 中通用的概念和术语，如果想更深入的了解 Kakfa 的设计，可以阅读文档中关于 Design 的部分：</p>
@@ -671,10 +671,10 @@ bin/zkCli.sh -server <span class="token number">127.0</span>.0.1:2181<span aria-
 <p>连接成功后，就可以进入 ZK 的 shell 环境了。之前也了解过，ZK 存储结点的数据结构类似于文件树，树的根结点就叫做 zookeeper。</p>
 <p>更多操作参考官方文档。</p>
 <h2 id="（3）启动-Kafka"><a href="#（3）启动-Kafka" class="headerlink" title="（3）启动 Kafka"></a>（3）启动 Kafka</h2><p>Kafka 压缩文件解压后，可以自行了解具体的目录含义。</p>
-<p>下面首先关掉前面启动的 ZK 服务：</p>
+<p>下面首先关掉前面启动的 ZK 服务（前面只是回顾了如何快速构建 ZooKeeper 环境）：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./apache-zookeeper-3.7.1-bin/bin/zkServer.sh stop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>因为 Kafka 的启动脚本中已经包含了启动 ZK 的指令，并且也提供有默认的 ZK 配置文件：</p>
+<p>因为 Kafka 的启动脚本中已经包含了启动 ZK 的指令，并且也提供有默认的 ZK 配置文件以及在 libs 中也提供了 ZooKeeper 的 jar 包：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 为了方便演示，这里仅仅改动 dataDir 属性</span>
 <span class="token function">vim</span> /usr/local/software/kafka_2.13-3.3.1/config/zookeeper.properties
 
@@ -700,6 +700,22 @@ ctrl + z
 <span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如果这两个服务都正常启动了，那么我们的 Kafka 单机运行环境算是准备成功了。</p>
+<p><font style="color:red">注意 ：如果要从外界连接服务器上的 Kafka 单机/集群，则需要开放端口同时修改 Kafka Broker 的一些配置，比如说 Socket Server 配置中的 listeners。</font></p>
+<p>默认配置是这样的：</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># The address the socket server listens on. If not configured, the host name will be equal to the value of</span>
+<span class="token comment"># java.net.InetAddress.getCanonicalHostName(), with PLAINTEXT listener name, and port 9092.</span>
+<span class="token comment">#   FORMAT:</span>
+<span class="token comment">#     listeners = listener_name://host_name:port</span>
+<span class="token comment">#   EXAMPLE:</span>
+<span class="token comment">#     listeners = PLAINTEXT://your.host.name:9092</span>
+<span class="token comment">#listeners=PLAINTEXT://:9092</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>取消注释并改为 IP/host + 端口，更多信息参考官方文档，注意这里如果写成 host，那么服务器 hosts 文件中一定要有配置，即使是 localhost 也是一样，否则会出现程序连接不上 Kafka Broker 的情况。</p>
+<p>例如：</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">listeners</span><span class="token punctuation">=</span><span class="token attr-value">PLAINTEXT://192.168.154.3:9092</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 <h2 id="（4）创建存储-Event-的-Topic"><a href="#（4）创建存储-Event-的-Topic" class="headerlink" title="（4）创建存储 Event 的 Topic"></a>（4）创建存储 Event 的 Topic</h2><p>Kafka 是分布式的事件流处理平台，它允许你跨越多台机器进行读、写、存储以及处理 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#messages">Event</a>（也可以叫做 records 或者 messages）。</p>
 <p>比如说这些 Event：交易订单、移动设备的地理位置、运输订单、物联网设备或者医疗设备的传感器测量数据等等。这些事件将被组织起来发送到不同的 <a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#intro_concepts_and_terms">Topics</a> 中。一个非常形象的比喻：Topic 就类似于文件系统中的目录，Events 就是目录中的文件。</p>
 <p>所以如果要写入 Event 就得先创建 Topic。</p>
