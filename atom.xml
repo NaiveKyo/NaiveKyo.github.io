@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-12-18T15:05:31.287Z</updated>
+  <updated>2022-12-28T15:08:07.137Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Security Mechanism Summary</title>
+    <link href="https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/"/>
+    <id>https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/</id>
+    <published>2022-12-28T15:06:43.000Z</published>
+    <updated>2022-12-28T15:08:07.137Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaSecurity&quot;&gt;&lt;a href=&quot;#JavaSecurity&quot; class=&quot;headerlink&quot; title=&quot;JavaSecurity&quot;&gt;&lt;/a&gt;JavaSecurity&lt;/h1&gt;&lt;p&gt;参考：（JDK 8）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+    <category term="Security" scheme="https://naivekyo.github.io/tags/Security/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Boot Integrate Kafka</title>
@@ -506,31 +535,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Open-Feign&quot;&gt;&lt;a href=&quot;#Open-Feign&quot; class=&quot;headerlink&quot; title=&quot;Open Feign&quot;&gt;&lt;/a&gt;Open Feign&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Study (五) Learning Ribbon</title>
-    <link href="https://naivekyo.github.io/2022/04/29/spring-cloud-study-wu-learning-ribbon/"/>
-    <id>https://naivekyo.github.io/2022/04/29/spring-cloud-study-wu-learning-ribbon/</id>
-    <published>2022-04-29T15:22:17.000Z</published>
-    <updated>2022-04-29T15:24:40.601Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Ribbon-负载均衡&quot;&gt;&lt;a href=&quot;#Ribbon-负载均衡&quot; class=&quot;headerlink&quot; title=&quot;Ribbon 负载均衡&quot;&gt;&lt;/a&gt;Ribbon 负载均衡&lt;/h1&gt;&lt;h1 id=&quot;一、测试环境&quot;&gt;&lt;a href=&quot;#一、测试环境&quot;</summary>
         
       
     
