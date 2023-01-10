@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2022-12-28T15:08:07.137Z</updated>
+  <updated>2023-01-10T15:35:15.059Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Project Experiment: Http RequestBody Repeatable Read</title>
+    <link href="https://naivekyo.github.io/2023/01/10/project-experiment-http-requestbody-repeatable-read/"/>
+    <id>https://naivekyo.github.io/2023/01/10/project-experiment-http-requestbody-repeatable-read/</id>
+    <published>2023-01-10T15:32:54.000Z</published>
+    <updated>2023-01-10T15:35:15.059Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;需求分析&quot;&gt;&lt;a href=&quot;#需求分析&quot; class=&quot;headerlink&quot; title=&quot;需求分析&quot;&gt;&lt;/a&gt;需求分析&lt;/h1&gt;&lt;p&gt;项目中如果有这样的需求：针对 POST 请求，需要对请求体中的 JSON</summary>
+        
+      
+    
+    
+    
+    <category term="Project Experiment" scheme="https://naivekyo.github.io/categories/Project-Experiment/"/>
+    
+    
+    <category term="Project Experiment" scheme="https://naivekyo.github.io/tags/Project-Experiment/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java Security Mechanism Summary</title>
     <link href="https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/"/>
     <id>https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/</id>
     <published>2022-12-28T15:06:43.000Z</published>
-    <updated>2022-12-28T15:08:07.137Z</updated>
+    <updated>2023-01-10T03:48:05.888Z</updated>
     
     
       
@@ -510,31 +535,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Hystrix&quot;&gt;&lt;a href=&quot;#Hystrix&quot; class=&quot;headerlink&quot; title=&quot;Hystrix&quot;&gt;&lt;/a&gt;Hystrix&lt;/h1&gt;&lt;p&gt;github：&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/categories/Spring-Cloud/"/>
-    
-    
-    <category term="Spring Cloud" scheme="https://naivekyo.github.io/tags/Spring-Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Study (六) Learning Open Feign</title>
-    <link href="https://naivekyo.github.io/2022/05/05/spring-cloud-study-liu-learning-open-feign/"/>
-    <id>https://naivekyo.github.io/2022/05/05/spring-cloud-study-liu-learning-open-feign/</id>
-    <published>2022-05-05T13:04:40.000Z</published>
-    <updated>2022-05-05T13:06:41.766Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Open-Feign&quot;&gt;&lt;a href=&quot;#Open-Feign&quot; class=&quot;headerlink&quot; title=&quot;Open Feign&quot;&gt;&lt;/a&gt;Open Feign&lt;/h1&gt;&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot;</summary>
         
       
     
