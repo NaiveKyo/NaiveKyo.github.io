@@ -11,7 +11,6 @@ toc: true
 summary: 学习 Spring 中的 AOP 使用方法，以及了解 AspectJ
 categories: 
   - Spring
-  - [Spring, AOP]
 keywords: [Spring, Aop, AspectJ]
 tags:
   - Spring

@@ -1,5 +1,5 @@
 ---
-title: 'Project Summary One: DRP Web Application'
+title: 'Project Experiment: DRP Web Application'
 author: NaiveKyo
 top: false
 hide: false
@@ -10,9 +10,9 @@ toc: true
 mathjax: false
 date: 2022-02-05 14:33:13
 summary: '项目总结: 小型进销存系统'
-categories: 'Project Summary'
-keywords: 'Project Summary'
-tags: 'Project Summary'
+categories: 'Project Experiment'
+keywords: 'Project Experiment'
+tags: 'Project Experiment'
 ---
 
 
