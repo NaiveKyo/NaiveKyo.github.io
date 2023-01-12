@@ -29,9 +29,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
 </head>
 
 
@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-06
+                    2023-01-12
                 </div>
                 
 
@@ -791,7 +791,7 @@ serverSock<span class="token punctuation">.</span><span class="token function">a
 <li>Direct Buffer 对垃圾回收等方面的影响与实际选择。</li>
 </ul>
 <h2 id="拷贝实现机制分析"><a href="#拷贝实现机制分析" class="headerlink" title="拷贝实现机制分析"></a>拷贝实现机制分析</h2><p>先来理解一下，前面实现的不同拷贝方法，本质上有什么明显的区别。</p>
-<p>首先，你需要理解用户态空间（User Space）和内核态空间（Kernel Space），这是操作系统层面的基本概念，操作系统内核、硬件驱动等运行在内核态空间，具有相对高的特权；而用户态空间，则是给普通应用和服务使用。你可以参考：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/User_space%E3%80%82">https://en.wikipedia.org/wiki/User_space。</a></p>
+<p>首先，你需要理解用户态空间（User Space）和内核态空间（Kernel Space），这是操作系统层面的基本概念，操作系统内核、硬件驱动等运行在内核态空间，具有相对高的特权；而用户态空间，则是给普通应用和服务使用。你可以参考：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/User_space">https://en.wikipedia.org/wiki/User_space</a></p>
 <p>当我们使用输入输出流进行读写时，实际上是进行了多次上下文切换，比如应用读取数据时，先在内核态将数据从磁盘读取到内核缓存，再切换到用户态将数据从内核缓存读取到用 户缓存。</p>
 <p>写入操作也是类似，仅仅是步骤相反，可以参考下面这张图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220606132523.png"></p>
