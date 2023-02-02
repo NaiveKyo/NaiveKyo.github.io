@@ -29,9 +29,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Miló&Akoúo̱" type="application/atom+xml">
 </head>
 
 
@@ -485,7 +485,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2021-11-21
+                    2023-01-31
                 </div>
                 
 
@@ -861,7 +861,7 @@
 <ul>
 <li>三点中值法（用的多）<ul>
 <li>在双向扫描分区法的基础上进行改进，我们选取数组下标：左、中、右，对这三个下标指向的元素进行比较，选取中间值作为主元，然后进行双向分区扫描（这个算法极端情况下和普通双向扫描是一样的）</li>
-<li>想要是快排的时间复杂度一直为 n log n 可以使用绝对中值法。</li>
+<li>如果要使快排的时间复杂度一直为 n log n 可以使用绝对中值法。</li>
 </ul>
 </li>
 <li><font style="color:red">绝对中值法</font>（万无一失）<ul>
@@ -876,7 +876,7 @@
 <h4 id="三分中值法"><a href="#三分中值法" class="headerlink" title="三分中值法"></a>三分中值法</h4><ul>
 <li>思路：对传入的数组，我们取数组第一个元素、中间元素、最后一个元素，从中选取一个中位数作为我们的主元</li>
 <li>缺点：正常时间复杂度会是 O(nlogn) ，但是极端情况下会退化为普通双向扫描分区快排。</li>
-<li>注意：其实我们经常用的 Arrays.sort() 就是采用 三分中值 法定的主元，如果采用 绝对中值法，那么时间复杂度就只会是 O(nlogn)， 但是和 三分中值法 对比，绝对中值法在常量时间里要高一些，具体的取舍就看个人怎么想的了。</li>
+<li>注意：其实我们经常用的 <code>Arrays.sort()</code> 就是采用 三分中值 法定的主元，如果采用 绝对中值法，那么时间复杂度就只会是 O(nlogn)， 但是和 三分中值法 对比，绝对中值法在常量时间里要高一些，具体的取舍就看个人怎么想的了。</li>
 </ul>
 <p>代码：在双向扫描分区法的基础上进行改进：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">pratition</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> lo<span class="token punctuation">,</span> <span class="token keyword">int</span> hi<span class="token punctuation">)</span> <span class="token punctuation">{</span>
