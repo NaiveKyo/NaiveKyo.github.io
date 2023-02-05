@@ -3,8 +3,8 @@ title: 'Java Basic IO: File IO (NIO)'
 author: NaiveKyo
 top: false
 hide: false
-img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/img/20220425110815.jpg'
-coverImg: /img/img/20220425110815.jpg
+img: 'https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425110815.jpg'
+coverImg: /img/20220425110815.jpg
 cover: false
 toc: true
 mathjax: false
