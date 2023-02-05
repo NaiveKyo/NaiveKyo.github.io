@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-02-05T13:58:45.750Z</updated>
+  <updated>2023-02-05T14:11:11.354Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Networking Overview</title>
+    <link href="https://naivekyo.github.io/2023/02/05/java-networking-overview/"/>
+    <id>https://naivekyo.github.io/2023/02/05/java-networking-overview/</id>
+    <published>2023-02-05T14:09:38.000Z</published>
+    <updated>2023-02-05T14:11:11.354Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java-Networking&quot;&gt;&lt;a href=&quot;#Java-Networking&quot; class=&quot;headerlink&quot; title=&quot;Java Networking&quot;&gt;&lt;/a&gt;Java Networking&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+    <category term="Network" scheme="https://naivekyo.github.io/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Basic IO: File IO (NIO)</title>
@@ -503,34 +530,6 @@
     <id>https://naivekyo.github.io/2022/06/03/java-core-technology-review-er/</id>
     <published>2022-06-03T14:18:06.000Z</published>
     <updated>2022-06-03T14:21:08.803Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;从五个方面来分析 Java：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Java 基础：基本特性和机制；&lt;/li&gt;
-&lt;li&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Core Technology Review (一)</title>
-    <link href="https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/"/>
-    <id>https://naivekyo.github.io/2022/06/03/java-core-technology-review-yi/</id>
-    <published>2022-06-03T01:40:12.000Z</published>
-    <updated>2022-06-03T14:21:34.327Z</updated>
     
     
       
