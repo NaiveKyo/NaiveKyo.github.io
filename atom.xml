@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-02-15T14:26:56.265Z</updated>
+  <updated>2023-02-15T14:31:27.246Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Project Experiment: Common Utils</title>
+    <link href="https://naivekyo.github.io/2023/02/15/project-experiment-common-utils/"/>
+    <id>https://naivekyo.github.io/2023/02/15/project-experiment-common-utils/</id>
+    <published>2023-02-15T14:30:22.000Z</published>
+    <updated>2023-02-15T14:31:27.246Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h1&gt;&lt;p&gt;工具类中使用的日志根据实际情况自行选择；&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="Project Experiment" scheme="https://naivekyo.github.io/categories/Project-Experiment/"/>
+    
+    
+    <category term="Project Experiment" scheme="https://naivekyo.github.io/tags/Project-Experiment/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Collection Framework Overview</title>
@@ -499,34 +525,6 @@
     <id>https://naivekyo.github.io/2022/06/06/java-core-technology-review-si/</id>
     <published>2022-06-06T14:26:34.000Z</published>
     <updated>2023-01-12T14:50:36.173Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;从五个方面来分析 Java：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Java 基础：基本特性和机制；&lt;/li&gt;
-&lt;li&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Core Technology Review (三)</title>
-    <link href="https://naivekyo.github.io/2022/06/05/java-core-technology-review-san/"/>
-    <id>https://naivekyo.github.io/2022/06/05/java-core-technology-review-san/</id>
-    <published>2022-06-05T10:29:01.000Z</published>
-    <updated>2022-06-05T10:30:14.598Z</updated>
     
     
       
