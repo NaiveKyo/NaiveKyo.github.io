@@ -243,7 +243,9 @@ public void test2() {
 
 ## 4、时区时间
 
-互联网编码分配管理机构（Internet Assigned Numbers Authority，IANA）保存着一个数据库，里面存储着世界上所有已知的时区（www.iana.org/time-zoned），它每年会更新数次，Java 使用了 IANA 数据库。
+互联网编码分配管理机构（Internet Assigned Numbers Authority，IANA）保存着一个数据库，里面存储着世界上所有已知的时区，它每年会更新数次，Java 使用了 IANA 数据库。
+
+IANA 网址：www.iana.org/time-zoned
 
 每个时区都有一个 ID，例如 America/New_Yord 和 Europe/Berlin。要想找出所有的时区，可以使用：
 
