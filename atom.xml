@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-02-05T14:11:11.354Z</updated>
+  <updated>2023-02-15T14:26:56.265Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Collection Framework Overview</title>
+    <link href="https://naivekyo.github.io/2023/02/15/java-collection-framework-overview/"/>
+    <id>https://naivekyo.github.io/2023/02/15/java-collection-framework-overview/</id>
+    <published>2023-02-15T14:25:48.000Z</published>
+    <updated>2023-02-15T14:26:56.265Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;The-Collection-Framework&quot;&gt;&lt;a href=&quot;#The-Collection-Framework&quot; class=&quot;headerlink&quot; title=&quot;The Collection Framework&quot;&gt;&lt;/a&gt;The</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Networking Overview</title>
@@ -346,7 +371,7 @@
     <link href="https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/"/>
     <id>https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/</id>
     <published>2022-10-05T16:35:26.000Z</published>
-    <updated>2022-10-05T16:46:15.639Z</updated>
+    <updated>2023-02-08T13:44:52.534Z</updated>
     
     
       
@@ -502,34 +527,6 @@
     <id>https://naivekyo.github.io/2022/06/05/java-core-technology-review-san/</id>
     <published>2022-06-05T10:29:01.000Z</published>
     <updated>2022-06-05T10:30:14.598Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;从五个方面来分析 Java：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Java 基础：基本特性和机制；&lt;/li&gt;
-&lt;li&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Core Technology Review (二)</title>
-    <link href="https://naivekyo.github.io/2022/06/03/java-core-technology-review-er/"/>
-    <id>https://naivekyo.github.io/2022/06/03/java-core-technology-review-er/</id>
-    <published>2022-06-03T14:18:06.000Z</published>
-    <updated>2022-06-03T14:21:08.803Z</updated>
     
     
       
