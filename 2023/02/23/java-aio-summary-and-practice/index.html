@@ -489,14 +489,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2023-02-23
+                    2023-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5k
+                    4.9k
                 </div>
                 
 
@@ -516,7 +516,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="New-I-O-In-JDK-7"><a href="#New-I-O-In-JDK-7" class="headerlink" title="New I/O In JDK 7"></a>New I/O In JDK 7</h1><p>参考地址：</p>
+                <h1 id="New-I-O-In-JDK-7"><a href="#New-I-O-In-JDK-7" class="headerlink" title="New I/O In JDK 7"></a>New I/O In JDK 7</h1><p>参考网站：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://openjdk.org/projects/nio/">https://openjdk.org/projects/nio/</a></li>
 <li><a target="_blank" rel="noopener" href="https://openjdk.org/projects/nio/presentations/TS-5686.pdf">https://openjdk.org/projects/nio/presentations/TS-5686.pdf</a></li>
@@ -1338,7 +1338,7 @@ afc<span class="token punctuation">.</span><span class="token function">write</s
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="异步非阻塞"><a href="#异步非阻塞" class="headerlink" title="异步非阻塞"></a>异步非阻塞</h2><p>下面展示了 AIO 版的客户端代码，有几个注意点：</p>
+<h2 id="异步非阻塞"><a href="#异步非阻塞" class="headerlink" title="异步非阻塞"></a>异步非阻塞</h2><p>下面展示了 AIO 版的服务端代码，有几个注意点：</p>
 <ul>
 <li>在 CompletionHandler 中 attachement 非常重要；</li>
 <li>流程和上面的类似，先等待 connection accept，然后等到 ready 状态，可以读取了才开始读数据，读取的时候一次 CompletionHandler 不一定能够读完，要分几次读取，读完了 read = -1，最后清理资源；</li>
@@ -1442,6 +1442,7 @@ afc<span class="token punctuation">.</span><span class="token function">write</s
         <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">completed</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> result<span class="token punctuation">,</span> <span class="token class-name">Attachment</span> attachment<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    attachment<span class="token punctuation">.</span>isRead <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
                     attachment<span class="token punctuation">.</span>client<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token class-name">String</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>attachment<span class="token punctuation">.</span>baos<span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Charset</span><span class="token punctuation">.</span><span class="token function">defaultCharset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Server accept data: "</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1466,12 +1467,8 @@ afc<span class="token punctuation">.</span><span class="token function">write</s
                 <span class="token punctuation">}</span>
                 attachment<span class="token punctuation">.</span>buffer<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token comment">// continue read</span>
-                attachment<span class="token punctuation">.</span>isRead <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                attachment<span class="token punctuation">.</span>isRead <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-                attachment<span class="token punctuation">.</span>buffer<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            attachment<span class="token punctuation">.</span>client<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>attachment<span class="token punctuation">.</span>buffer<span class="token punctuation">,</span> attachment<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                attachment<span class="token punctuation">.</span>client<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>attachment<span class="token punctuation">.</span>buffer<span class="token punctuation">,</span> attachment<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
         <span class="token punctuation">}</span>
 
         <span class="token annotation punctuation">@Override</span>
@@ -1479,7 +1476,7 @@ afc<span class="token punctuation">.</span><span class="token function">write</s
             exc<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
