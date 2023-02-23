@@ -1626,7 +1626,7 @@ min 和 max 算法分别返回指定集合中包含的最小和最大元素。�
 - Convenience：您可能需要提供比 Java 平台提供的更方便的其他实现。例如，您可能经常需要表示连续整数范围的 List 实例；
 - Adapter：假设您正在使用一个遗留API，它有自己的临时集合API。您可以编写一个适配器实现，允许这些集合在 Java collections Framework 中操作。
 
-#### How to Write a Custom Implementation
+### How to Write a Custom Implementation
 
 编写自定义实现非常简单。Java Collections Framework 提供了专门为方便自定义实现而设计的抽象实现。我们将从下面的 Arrays.asList 实现示例开始。
 

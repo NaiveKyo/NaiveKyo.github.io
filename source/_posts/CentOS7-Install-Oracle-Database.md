@@ -74,7 +74,7 @@ sudo vim /etc/hosts
 
 ```bash
 # 进入 yum 的本地仓库文件夹
-cd /etc/yum/yum.repos.d
+cd /etc/yum.repos.d
 # 备份默认的 yum 仓库
 tar -cvf yum_repos.bak ./
 # 使用 sed 工具配合正则表达式批量修改 yum 配置文件

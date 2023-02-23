@@ -31,25 +31,11 @@ Jenkins是一个开源的、提供友好操作界面的持续集成(CI)工具，
 
  `CI(Continuous integration)`，中文意思是持续集成。它强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。借用网络图片对 CI 加以理解。
 
-
-
-![](https://naivekyo.oss-cn-hangzhou.aliyuncs.com/blog%27image/ci.png)
-
-
-
 `CD(Continuous Delivery)`， 中文意思持续交付。它是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境(类生产环境)中。比如，我们完成单元测试后，可以把代码部署到连接数据库的 Staging 环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境。下图反应的是 CI/CD 的大概工作模式。
-
-
-
-![](https://naivekyo.oss-cn-hangzhou.aliyuncs.com/blog%27image/cd.png)
-
-
 
 # 二、安装 Jenkins
 
 环境：CentOS7
-
-
 
 ## 1、前置
 
