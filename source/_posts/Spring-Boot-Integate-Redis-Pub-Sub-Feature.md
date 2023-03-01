@@ -55,12 +55,15 @@ dir /data/redis # 注意 redis-stack 镜像中 Redis 数据存放的位置是 /d
 appendonly yes # 允许数据持久化
 ```
 
-将配置文件上传到服务器，存放到自己喜欢的位置，同时再某个地方创建一个目录用于存放 Redis 持久化的数据；
+将配置文件上传到服务器，存放到自己喜欢的位置，同时在某个地方创建一个目录用于存放 Redis 持久化的数据；
 
 启动 redis-stack：
 
 ```bash
-docker run -d -p 6379:6379 -p 8001:8001 -v /usr/local/docker_data/redis/local_data/:/data -v /usr/local/docker_data/redis/redis-stack.conf:/redis-stack.conf --name redis redis/redis-stack:latest
+docker run -d -p 6379:6379 -p 8001:8001 \ 
+-v /usr/local/docker_data/redis/local_data/:/data \
+-v /usr/local/docker_data/redis/redis-stack.conf:/redis-stack.conf \ 
+--name redis redis/redis-stack:latest
 ```
 
 参数说明：
@@ -130,7 +133,7 @@ public class RedisAutoConfiguration {
 }
 ```
 
-可以看到它向容器中注入了两个 RedisTemplate（注：`StringRedisTemplate extends RedisTemplate<String, String>`），并且在类上方的 `@Import` 注解中引入了 Lettuce 或 Jedis 相关依赖（这两个依赖都可以提供连接 Redis 服务的能力）；
+可以看到它向容器中注入了两个 RedisTemplate（注：`StringRedisTemplate extends RedisTemplate<String, String>`），并且在类上方的 `@Import` 注解中引入了 Lettuce 或 Jedis 相关依赖（这两个依赖都可以提供连接 Redis 的能力，并管理相关资源）；
 
 一般情况下我们会对 RedisTemplate 进行某个定制化处理，比如序列化操作。
 
@@ -202,7 +205,7 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 }
 ```
 
-看 `afterPropertiesSet` 方法，可以看到默认的序列化器是使用 JDK 提供的序列化机制（基于两个接口 ObjectInput 和 ObjectOutput），有时候 JDK 序列化并不是一个很好的选择，尤其是在分布式微服务系统中，主要有以下几点原因：
+看 `afterPropertiesSet` 方法（涉及到 Spring Bean 的 Lifecycle 相关接口，具体参见 BeanFactory 注释），可以看到默认的序列化器是使用 JDK 提供的序列化机制（基于两个接口 ObjectInput 和 ObjectOutput），有时候 JDK 序列化并不是一个很好的选择，尤其是在分布式微服务系统中，主要有以下几点原因：
 
 （1）无法跨语言，微服务系统中，不同服务节点可能采用不同的语言开发，而网络数据传输是基于序列化二进制流的；
 
@@ -392,7 +395,7 @@ public class RedisConfiguration {
     static class MessageProcessor {
         public void handleMessage(String message) {
             // do something ...
-            log.info("handle received message...");
+            log.info("Received message: {}", message);
         }
     }
 }
@@ -434,6 +437,8 @@ spring:
     database: 0
 ```
 
+这里的 redis 服务地址填的是 Linux 虚拟机地址，端口已经映射到 Docker 容器中了。
+
 TestController：
 
 ```java
@@ -450,7 +455,7 @@ public class TestController {
     
     @GetMapping("/publish-message")
     public String publishMessage() {
-        this.redisTemplate.convertAndSend(RedisConfiguration.SPECIAL_CHANNEL_NAME, "hello world!");
+        this.redisTemplate.convertAndSend(RedisConfiguration.SPECIAL_CHANNEL_NAME, "hello world! 你好, Redis");
         return "ok";
     }
     
@@ -466,6 +471,6 @@ public class TestController {
 程序打印：
 
 ```
-2023-03-01 23:02:26.953  INFO 8004 --- [enerContainer-1] i.n.r.config.RedisConfiguration          : handle received message...
+2023-03-01 23:38:31.977  INFO 16796 --- [enerContainer-1] i.n.r.config.RedisConfiguration          : Received message: hello world! 你好, Redis
 ```
 
