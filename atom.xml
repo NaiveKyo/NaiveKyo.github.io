@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-02-23T16:01:02.879Z</updated>
+  <updated>2023-03-01T15:24:38.142Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Boot Integate Redis Pub/Sub Feature</title>
+    <link href="https://naivekyo.github.io/2023/03/01/spring-boot-integate-redis-pub-sub-feature/"/>
+    <id>https://naivekyo.github.io/2023/03/01/spring-boot-integate-redis-pub-sub-feature/</id>
+    <published>2023-03-01T15:23:18.000Z</published>
+    <updated>2023-03-01T15:24:38.142Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Prerequirement&quot;&gt;&lt;a href=&quot;#Prerequirement&quot; class=&quot;headerlink&quot; title=&quot;Prerequirement&quot;&gt;&lt;/a&gt;Prerequirement&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Docker</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="https://naivekyo.github.io/categories/Redis/"/>
+    
+    
+    <category term="Redis" scheme="https://naivekyo.github.io/tags/Redis/"/>
+    
+    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
+    
+  </entry>
   
   <entry>
     <title>Java AIO summary and practice</title>
@@ -518,31 +546,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Elasticsearch (一) es introducation</title>
-    <link href="https://naivekyo.github.io/2022/07/16/elasticsearch-yi-es-introducation/"/>
-    <id>https://naivekyo.github.io/2022/07/16/elasticsearch-yi-es-introducation/</id>
-    <published>2022-07-16T09:53:32.000Z</published>
-    <updated>2022-09-23T03:41:53.850Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、Elasticsearch-概述&quot;&gt;&lt;a href=&quot;#一、Elasticsearch-概述&quot; class=&quot;headerlink&quot; title=&quot;一、Elasticsearch 概述&quot;&gt;&lt;/a&gt;一、Elasticsearch</summary>
-        
-      
-    
-    
-    
-    <category term="Elasticsearch" scheme="https://naivekyo.github.io/categories/Elasticsearch/"/>
-    
-    
-    <category term="Elasticsearch" scheme="https://naivekyo.github.io/tags/Elasticsearch/"/>
     
   </entry>
   
