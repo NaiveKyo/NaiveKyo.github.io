@@ -17,7 +17,7 @@ tags: ["Java", "AIO"]
 
 # New I/O In JDK 7
 
-参考地址：
+参考网站：
 
 - https://openjdk.org/projects/nio/
 - https://openjdk.org/projects/nio/presentations/TS-5686.pdf
@@ -888,7 +888,7 @@ public class SyncServer {
 
 ## 异步非阻塞
 
-下面展示了 AIO 版的客户端代码，有几个注意点：
+下面展示了 AIO 版的服务端代码，有几个注意点：
 
 - 在 CompletionHandler 中 attachement 非常重要；
 - 流程和上面的类似，先等待 connection accept，然后等到 ready 状态，可以读取了才开始读数据，读取的时候一次 CompletionHandler 不一定能够读完，要分几次读取，读完了 read = -1，最后清理资源；
@@ -993,6 +993,7 @@ public class AsyncServer {
         public void completed(Integer result, Attachment attachment) {
             if (result == -1) {
                 try {
+                    attachment.isRead = false;
                     attachment.client.close();
                     String data = new String(attachment.baos.toByteArray(), Charset.defaultCharset());
                     System.out.println("Server accept data: " + data);
@@ -1017,12 +1018,8 @@ public class AsyncServer {
                 }
                 attachment.buffer.clear();
                 // continue read
-                attachment.isRead = false;
-            } else {
-                attachment.isRead = true;
-                attachment.buffer.clear();
-            }
-            attachment.client.read(attachment.buffer, attachment, this);
+                attachment.client.read(attachment.buffer, attachment, this);
+            } 
         }
 
         @Override
