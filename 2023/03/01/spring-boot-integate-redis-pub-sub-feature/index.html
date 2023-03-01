@@ -544,9 +544,12 @@ requirepass <span class="token number">123456</span> <span class="token comment"
 <span class="token function">dir</span> /data/redis <span class="token comment"># 注意 redis-stack 镜像中 Redis 数据存放的位置是 /data/redis</span>
 appendonly <span class="token function">yes</span> <span class="token comment"># 允许数据持久化</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>将配置文件上传到服务器，存放到自己喜欢的位置，同时再某个地方创建一个目录用于存放 Redis 持久化的数据；</p>
+<p>将配置文件上传到服务器，存放到自己喜欢的位置，同时在某个地方创建一个目录用于存放 Redis 持久化的数据；</p>
 <p>启动 redis-stack：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker run -d -p <span class="token number">6379</span>:6379 -p <span class="token number">8001</span>:8001 -v /usr/local/docker_data/redis/local_data/:/data -v /usr/local/docker_data/redis/redis-stack.conf:/redis-stack.conf --name redis redis/redis-stack:latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">docker run -d -p <span class="token number">6379</span>:6379 -p <span class="token number">8001</span>:8001 <span class="token punctuation">\</span> 
+-v /usr/local/docker_data/redis/local_data/:/data <span class="token punctuation">\</span>
+-v /usr/local/docker_data/redis/redis-stack.conf:/redis-stack.conf <span class="token punctuation">\</span> 
+--name redis redis/redis-stack:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>参数说明：</p>
 <p>（1）-d 以后台进程运行；</p>
@@ -595,7 +598,7 @@ appendonly <span class="token function">yes</span> <span class="token comment">#
 
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>可以看到它向容器中注入了两个 RedisTemplate（注：<code>StringRedisTemplate extends RedisTemplate&lt;String, String&gt;</code>），并且在类上方的 <code>@Import</code> 注解中引入了 Lettuce 或 Jedis 相关依赖（这两个依赖都可以提供连接 Redis 服务的能力）；</p>
+<p>可以看到它向容器中注入了两个 RedisTemplate（注：<code>StringRedisTemplate extends RedisTemplate&lt;String, String&gt;</code>），并且在类上方的 <code>@Import</code> 注解中引入了 Lettuce 或 Jedis 相关依赖（这两个依赖都可以提供连接 Redis 的能力，并管理相关资源）；</p>
 <p>一般情况下我们会对 RedisTemplate 进行某个定制化处理，比如序列化操作。</p>
 <h3 id="RedisTemplate"><a href="#RedisTemplate" class="headerlink" title="RedisTemplate"></a>RedisTemplate</h3><p>查看 RedisTemplate 源码：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">extends</span> <span class="token class-name">RedisAccessor</span> <span class="token keyword">implements</span> <span class="token class-name">RedisOperations</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">,</span> <span class="token class-name">BeanClassLoaderAware</span> <span class="token punctuation">{</span>
@@ -660,7 +663,7 @@ appendonly <span class="token function">yes</span> <span class="token comment">#
     <span class="token comment">// 。。。。。。</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>看 <code>afterPropertiesSet</code> 方法，可以看到默认的序列化器是使用 JDK 提供的序列化机制（基于两个接口 ObjectInput 和 ObjectOutput），有时候 JDK 序列化并不是一个很好的选择，尤其是在分布式微服务系统中，主要有以下几点原因：</p>
+<p>看 <code>afterPropertiesSet</code> 方法（涉及到 Spring Bean 的 Lifecycle 相关接口，具体参见 BeanFactory 注释），可以看到默认的序列化器是使用 JDK 提供的序列化机制（基于两个接口 ObjectInput 和 ObjectOutput），有时候 JDK 序列化并不是一个很好的选择，尤其是在分布式微服务系统中，主要有以下几点原因：</p>
 <p>（1）无法跨语言，微服务系统中，不同服务节点可能采用不同的语言开发，而网络数据传输是基于序列化二进制流的；</p>
 <p>（2）容易被攻击，对于不信任数据的反序列化，往往是非常危险的，应该尽量避免。Java 序列化机制中并没有提供很好的安全机制；</p>
 <p>（3）序列化数据字节流太大，和其他序列化机制相比（比如使用 ByteBuffer、Jackson、Protobuf 等等），JDK 序列化后的字节数量太多；</p>
@@ -808,7 +811,7 @@ appendonly <span class="token function">yes</span> <span class="token comment">#
     <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MessageProcessor</span> <span class="token punctuation">{</span>
         <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handleMessage</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment">// do something ...</span>
-            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"handle received message..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Received message: {}"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -836,6 +839,7 @@ spring:
     host: 192.168.154.3
     database: 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>这里的 redis 服务地址填的是 Linux 虚拟机地址，端口已经映射到 Docker 容器中了。</p>
 <p>TestController：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestController</span> <span class="token punctuation">{</span>
@@ -850,7 +854,7 @@ spring:
     
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/publish-message"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">publishMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token class-name">RedisConfiguration</span><span class="token punctuation">.</span>SPECIAL_CHANNEL_NAME<span class="token punctuation">,</span> <span class="token string">"hello world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>redisTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token class-name">RedisConfiguration</span><span class="token punctuation">.</span>SPECIAL_CHANNEL_NAME<span class="token punctuation">,</span> <span class="token string">"hello world! 你好, Redis"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token string">"ok"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     
@@ -860,7 +864,7 @@ spring:
 <p>如果使用 <code>@Autowire</code> 注解，导入的就可能是 <code>StringRedisTemplate</code> 实例了，因为这里做了编译期泛型擦除，运行时类型和 <code>StringRedisTemplate</code> 一致，会影响消息的序列化和反序列化。</p>
 <p>运行 SpringBoot 服务，浏览器访问：<code>http://localhost:10000/publish-message</code></p>
 <p>程序打印：</p>
-<pre class="line-numbers language-none"><code class="language-none">2023-03-01 23:02:26.953  INFO 8004 --- [enerContainer-1] i.n.r.config.RedisConfiguration          : handle received message...<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">2023-03-01 23:38:31.977  INFO 16796 --- [enerContainer-1] i.n.r.config.RedisConfiguration          : Received message: hello world! 你好, Redis<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
                 
