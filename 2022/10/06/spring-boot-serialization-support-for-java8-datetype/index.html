@@ -1326,13 +1326,13 @@ temporal <span class="token operator">=</span> temporal<span class="token punctu
 
 <p>注意该类在 <code>JacksonAutoConfiguration</code> 之前装配，因为后者会自动查询 Module 进行注册，我们要在其之前注入自己的 Module，另外提供了一个 Customizer 用于解决 jsr310 中默认以 ISO 作为格式化器不符合我们日常使用的时间字符串格式的问题（此处只针对 LocalDateTime 类型做处理）。</p>
 <p>补充配置 application.yml：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 8080
-spring:
-  jackson:
-    date-format: "yyyy-MM-dd HH:mm:ss"
-    time-zone: GMT+8
-    locale: zh_CN<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">jackson</span><span class="token punctuation">:</span>
+    <span class="token key atrule">date-format</span><span class="token punctuation">:</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span>
+    <span class="token key atrule">time-zone</span><span class="token punctuation">:</span> GMT+8
+    <span class="token key atrule">locale</span><span class="token punctuation">:</span> zh_CN<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 

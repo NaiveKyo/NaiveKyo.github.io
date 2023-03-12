@@ -825,19 +825,19 @@ appendonly <span class="token function">yes</span> <span class="token comment">#
 <p>本例中我们定义了 <code>MessageProcessor</code> 作为消息的处理器，adapter 对 container 传递过来的消息做反序列化处理，然后反射调用该处理器的特定方法来处理消息；</p>
 <p>更多信息请参见相关类的源码注释；</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>Spring 配置：application.yml</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
-  port: 10000
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">10000</span>
   
-spring:
-  mvc:
-    servlet:
-      load-on-startup: 1
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mvc</span><span class="token punctuation">:</span>
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+      <span class="token key atrule">load-on-startup</span><span class="token punctuation">:</span> <span class="token number">1</span>
 
-  redis:
-    password: 123456
-    port: 6379
-    host: 192.168.154.3
-    database: 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.154.3
+    <span class="token key atrule">database</span><span class="token punctuation">:</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这里的 redis 服务地址填的是 Linux 虚拟机地址，端口已经映射到 Docker 容器中了。</p>
 <p>TestController：</p>

@@ -1295,7 +1295,7 @@ buf<span class="token punctuation">.</span><span class="token function">flip</sp
 
 <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/examples/Xdd.java">Xdd</a> 代码示例展示了如何 get、set、delete 用户自定义属性。</p>
 <p>注意：在 Linux 中，您可能必须为用户定义的属性启用扩展属性才能工作。如果在尝试访问用户定义属性视图时收到 UnsupportedOperationException 异常，则需要重新挂载文件系统。下面的命令为 ext3 文件系统重新挂载具有扩展属性的根分区：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ sudo mount -o remount,user_xattr /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">mount</span> -o remount,user_xattr /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>如果上述命令不适用当前使用的 Linux 系统，请参考相关文档。注意上述命令不是永久性的，要想永久生效，需要添加条目：<code>/etc/fstab</code></p>
 <h3 id="File-Store-Attributes"><a href="#File-Store-Attributes" class="headerlink" title="File Store Attributes"></a>File Store Attributes</h3><p>可以使用 <code>java.nio.file.FileStore</code> 学习关于 file store 的更多信息，比如还有多少空间是可用的，<code>getFileStore(Path)</code> 方法获取指定文件的存储空间。</p>
@@ -1910,7 +1910,7 @@ I was here!<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java"><code>WatchDir</code></a> – Demonstrates the mechanism that watches a directory for files that have been created, deleted or modified. Calling this program with the <code>-r</code> option watches an entire tree for changes. For more information about the file notification service, see <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/notification.html">Watching a Directory for Changes</a>.</li>
 </ul>
 <h2 id="Finding-Files"><a href="#Finding-Files" class="headerlink" title="Finding Files"></a>Finding Files</h2><p>如果用过 shell 脚本，你很有可能使用过模式匹配来定位文件。模式匹配使用特殊字符来创建模式，然后文件名可以与该模式进行比较。比如 <code>*</code> 匹配任何数量的字符，比如下面的脚本展示所有后缀为 .html 的文件：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ls *.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ls</span> *.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>java.nio.file</code> 包提供了该功能的编程式支持，每个文件系统的实现都会提供一个 <code>PathMatcher</code>，可以通过 FileSystem 类的 <code>getPathMatcher(String)</code> 来获取文件系统的 PathMatcher。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
