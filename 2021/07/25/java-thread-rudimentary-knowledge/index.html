@@ -41,7 +41,7 @@
 
    <style>
     body{
-       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20221208182717.jpg);
+       background-image: url(https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230327221418.jpg);
        background-repeat:no-repeat;
        background-size:cover;
        background-attachment:fixed;
@@ -485,14 +485,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-03-04
+                    2023-03-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    8.2k
+                    8.3k
                 </div>
                 
 
@@ -1811,6 +1811,7 @@
 <li>消费者：负责处理数据的模块（可能是方法、对象、线程、进程）</li>
 <li>缓冲区：消费者不能直接使用生产者的数据，他们之间有一个”缓冲区“：<strong>生产者将生产好的数据放入缓冲区，消费者从缓冲区拿出数据</strong></li>
 </ul>
+<p>（<font style="color:red">注意：此版本使用 if 做条件判断外加外层循环调用 synchronized 方法，并不是解决了线程虚假唤醒的版本，解决虚假唤醒可以使用循环内调用通知方法的方式。</font>）</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 测试生产者消费者模型 --&gt; 利用缓冲区解决问题（管程法）</span>
 <span class="token comment">// 生产者、消费者、产品、缓冲区</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestPC</span> <span class="token punctuation">{</span>
@@ -1930,6 +1931,7 @@
 <p>并发协作模型：”生产者/消费者模式“  –&gt; 信号灯法</p>
 </blockquote>
 <p>定义一个标志位</p>
+<p>（<font style="color:red">注意：此版本使用 if 做条件判断外加外层循环调用 synchronized 方法，并不是解决了线程虚假唤醒的版本，解决虚假唤醒可以使用循环内调用通知方法的方式。</font>）</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 信号灯法，设置标志位</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestPC2</span> <span class="token punctuation">{</span>
 
