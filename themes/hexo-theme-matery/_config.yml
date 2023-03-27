@@ -272,13 +272,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20220425111412.jpg
     - /img/20220425111445.jpg
     - /img/20220425111500.jpg
     - /img/20220425111527.jpg
     - /img/20220425111542.jpg
     - /img/20220425111600.jpg
-#   - /img/20220425111615.jpg
+    - /img/20220425111615.jpg
 #   - /img/20220425111634.jpg
 #   - /img/20220425121012.jpg
 #   - /img/20220425121105.jpg
@@ -636,7 +635,8 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20221208182717.jpg"
+  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230327221418.jpg"
+
 
 # 说说 https://artitalk.js.org/
 artitalk:
