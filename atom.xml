@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-03-27T14:12:16.379Z</updated>
+  <updated>2023-04-22T13:00:35.748Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java JBDC API Review</title>
+    <link href="https://naivekyo.github.io/2023/04/22/java-jbdc-api-review/"/>
+    <id>https://naivekyo.github.io/2023/04/22/java-jbdc-api-review/</id>
+    <published>2023-04-22T12:57:35.000Z</published>
+    <updated>2023-04-22T13:00:35.748Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/&quot;&gt;Java API</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
+    
+    <category term="JDBC" scheme="https://naivekyo.github.io/tags/JDBC/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Concurrency Utilities Review</title>
@@ -521,31 +548,6 @@
     
     
     <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring support for Bean Validation</title>
-    <link href="https://naivekyo.github.io/2022/08/23/spring-support-for-bean-validation/"/>
-    <id>https://naivekyo.github.io/2022/08/23/spring-support-for-bean-validation/</id>
-    <published>2022-08-23T15:44:27.000Z</published>
-    <updated>2022-08-23T15:45:54.714Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;在日常开发中，对参数的校验需要前后端一起协作完成，前端是对用户输入数据进行校验，后端主要针对某些未经过浏览器而直接通过 HTTP</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
-    
-    
-    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
     
   </entry>
   
