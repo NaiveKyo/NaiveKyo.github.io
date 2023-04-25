@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-04-22T13:00:35.748Z</updated>
+  <updated>2023-04-25T14:50:18.113Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NodeJS Introduction</title>
+    <link href="https://naivekyo.github.io/2023/04/25/nodejs-introduction/"/>
+    <id>https://naivekyo.github.io/2023/04/25/nodejs-introduction/</id>
+    <published>2023-04-25T14:48:54.000Z</published>
+    <updated>2023-04-25T14:50:18.113Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Node-js&quot;&gt;&lt;a href=&quot;#Node-js&quot; class=&quot;headerlink&quot; title=&quot;Node.js&quot;&gt;&lt;/a&gt;Node.js&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/categories/NodeJS/"/>
+    
+    
+    <category term="NodeJS" scheme="https://naivekyo.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Java JBDC API Review</title>
@@ -521,33 +546,6 @@
     
     
     <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot Serialization Support For Java8 Datetype</title>
-    <link href="https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/"/>
-    <id>https://naivekyo.github.io/2022/10/06/spring-boot-serialization-support-for-java8-datetype/</id>
-    <published>2022-10-05T16:35:26.000Z</published>
-    <updated>2023-02-08T13:44:52.534Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;在 Java 中对时间的抽象：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Java 1.0 引入了</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
     
   </entry>
   
