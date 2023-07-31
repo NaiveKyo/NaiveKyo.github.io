@@ -42,9 +42,26 @@
     #toc-content {
         padding-bottom: 30px;
         overflow: auto;
-		/* 简陋的滚动条 */
-		height: calc(100vh - 250px);
-		overflow: scroll; 
+		/* 设置目录滚动条 */
+		max-height: calc(100vh - 200px);
+		overflow: auto;
+        overscroll-behavior: none;
+    }
+
+    /* 定制目录滚动条样式 */
+    #toc-content::-webkit-scrollbar {
+        width: 0.625rem;
+        height: 0.625rem;
+    }
+
+    #toc-content::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .15);
+        border-radius: 0.625rem;
+    }
+
+    #toc-content::-webkit-scrollbar-track {	
+        border-radius: 0.625rem;
+        background-color: white;
     }
 
     #toc-content ol {
