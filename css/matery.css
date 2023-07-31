@@ -42,6 +42,22 @@ body {
     overflow-y: auto;
 }
 
+/* 定制滚动条样式 */
+body::-webkit-scrollbar {
+	width: 0.625rem;
+	height: 0.625rem;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, .15);
+	border-radius: 0.625rem;
+}
+
+body::-webkit-scrollbar-track {	
+	border-radius: 0.625rem;
+	background-color: white;
+}
+
 h1 {
     margin: 48px 0 22px -5px;
     font-size: 2.0rem;
