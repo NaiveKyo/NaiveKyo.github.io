@@ -285,6 +285,8 @@ myGallery:
 #   - /img/20221003170514.jpg
 #   - /img/20221005152622.png
 #   - /img/20221005152948.jpg
+#   - /img/20230327221418.jpg
+#   - /img/20221208182455.png
 
 
 
@@ -609,7 +611,7 @@ banner:
   enable: false
   index: 7  # 当 enable 为 flase 时, 默认的 banner 号
   flag: true # 开启后可以使用下面的网络图片作为 banner
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20221208182455.png   # 指定 jsdlivr 地址的图片
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230918235819.jpg   # 指定 jsdlivr 地址的图片
 
 
 #ICP备案信息尾部显示
@@ -637,8 +639,7 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: "https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230327221418.jpg"
-
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230918235929.jpg
 
 # 说说 https://artitalk.js.org/
 artitalk:
