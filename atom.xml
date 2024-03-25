@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2023-04-25T14:50:18.113Z</updated>
+  <updated>2024-03-25T14:13:26.894Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NPM Brief Introduction</title>
+    <link href="https://naivekyo.github.io/2024/03/25/npm-brief-introduction/"/>
+    <id>https://naivekyo.github.io/2024/03/25/npm-brief-introduction/</id>
+    <published>2024-03-25T14:06:54.000Z</published>
+    <updated>2024-03-25T14:13:26.894Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NPM&quot;&gt;&lt;a href=&quot;#NPM&quot; class=&quot;headerlink&quot; title=&quot;NPM&quot;&gt;&lt;/a&gt;NPM&lt;/h1&gt;&lt;p&gt;官网：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="NPM" scheme="https://naivekyo.github.io/categories/NPM/"/>
+    
+    
+    <category term="NPM" scheme="https://naivekyo.github.io/tags/NPM/"/>
+    
+  </entry>
   
   <entry>
     <title>NodeJS Introduction</title>
@@ -521,31 +546,6 @@
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
     <category term="Logging" scheme="https://naivekyo.github.io/tags/Logging/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Query Optimizer Of Explain And Execution Plan</title>
-    <link href="https://naivekyo.github.io/2022/10/25/mysql-query-optimizer-of-explain-and-execution-plan/"/>
-    <id>https://naivekyo.github.io/2022/10/25/mysql-query-optimizer-of-explain-and-execution-plan/</id>
-    <published>2022-10-25T13:46:04.000Z</published>
-    <updated>2022-10-25T13:47:42.895Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;MySQL 提供了 &lt;code&gt;Explain&lt;/code&gt; 关键字用于查看一条 sql</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://naivekyo.github.io/tags/MySQL/"/>
     
   </entry>
   
