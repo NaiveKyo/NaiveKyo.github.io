@@ -286,6 +286,7 @@ myGallery:
 #   - /img/20221005152948.jpg
 #   - /img/20230327221418.jpg
 #   - /img/20221208182455.png
+#   - /img/20240611230151.jpg
 
 
 
@@ -638,7 +639,9 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230918235929.jpg
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20240611230151.jpg
+
+# 备份前一个网站背景图：https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230918235929.jpg
 
 # 说说 https://artitalk.js.org/
 artitalk:
