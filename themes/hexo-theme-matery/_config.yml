@@ -272,13 +272,12 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /img/20220425111600.jpg
     - /img/20220425111615.jpg
     - /img/20220425111634.jpg
     - /img/20220425121012.jpg
     - /img/20220425121105.jpg
     - /img/20220918190852.jpg
-#   - /img/20220918190943.jpg
+    - /img/20220918190943.jpg
 #   - /img/20221003170443.png
 #   - /img/20221003170514.jpg
 #   - /img/20221005152622.png
@@ -638,7 +637,8 @@ jsDelivr:
 # 网站背景图
 background:
   enable: true
-  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20240611230151.jpg
+  url: https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/background20241121002638.png
+  
 
 # 备份前一个网站背景图：https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20230918235929.jpg
 
