@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2024-11-20T15:00:17.739Z</updated>
+  <updated>2024-11-20T16:05:51.759Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,18 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://naivekyo.github.io/2024/11/21/spring-framework-module-analysis/"/>
+    <id>https://naivekyo.github.io/2024/11/21/spring-framework-module-analysis/</id>
+    <published>2024-11-20T16:04:42.908Z</published>
+    <updated>2024-11-20T16:05:51.759Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;title: Spring Framework Module Analysis
+author: NaiveKyo
+top:</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Gradle Quick Start</title>
     <link href="https://naivekyo.github.io/2024/11/20/gradle-quick-start/"/>
     <id>https://naivekyo.github.io/2024/11/20/gradle-quick-start/</id>
     <published>2024-11-20T14:55:41.000Z</published>
-    <updated>2024-11-20T15:00:17.739Z</updated>
+    <updated>2024-11-20T15:59:10.249Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Gradle-Quick-Start&quot;&gt;&lt;a href=&quot;#Gradle-Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Gradle Quick Start&quot;&gt;&lt;/a&gt;Gradle Quick Start&lt;/h1&gt;&lt;h2</summary>
+    <summary type="html">&lt;h2 id=&quot;Gradle-Quick-Start&quot;&gt;&lt;a href=&quot;#Gradle-Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Gradle Quick Start&quot;&gt;&lt;/a&gt;Gradle Quick Start&lt;/h2&gt;&lt;h2</summary>
         
       
     
@@ -519,33 +542,6 @@
     
     
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JMS Concept And Introduction</title>
-    <link href="https://naivekyo.github.io/2022/11/12/jms-concept-and-introduction/"/>
-    <id>https://naivekyo.github.io/2022/11/12/jms-concept-and-introduction/</id>
-    <published>2022-11-12T09:35:24.000Z</published>
-    <updated>2022-11-12T09:38:30.790Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JMS&quot;&gt;&lt;a href=&quot;#JMS&quot; class=&quot;headerlink&quot; title=&quot;JMS&quot;&gt;&lt;/a&gt;JMS&lt;/h1&gt;&lt;p&gt;参考文章：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="JMS" scheme="https://naivekyo.github.io/categories/JMS/"/>
-    
-    
-    <category term="JMS" scheme="https://naivekyo.github.io/tags/JMS/"/>
     
   </entry>
   
