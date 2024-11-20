@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2024-11-20T16:05:51.759Z</updated>
+  <updated>2024-11-20T16:08:52.384Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,25 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Spring Framework Module Analysis</title>
     <link href="https://naivekyo.github.io/2024/11/21/spring-framework-module-analysis/"/>
     <id>https://naivekyo.github.io/2024/11/21/spring-framework-module-analysis/</id>
-    <published>2024-11-20T16:04:42.908Z</published>
-    <updated>2024-11-20T16:05:51.759Z</updated>
+    <published>2024-11-20T16:04:42.000Z</published>
+    <updated>2024-11-20T16:08:52.384Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;title: Spring Framework Module Analysis
-author: NaiveKyo
-top:</summary>
+    <summary type="html">&lt;h1 id=&quot;Spring-Framework&quot;&gt;&lt;a href=&quot;#Spring-Framework&quot; class=&quot;headerlink&quot; title=&quot;Spring Framework&quot;&gt;&lt;/a&gt;Spring Framework&lt;/h1&gt;&lt;h2</summary>
         
       
     
     
     
+    <category term="Spring" scheme="https://naivekyo.github.io/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="https://naivekyo.github.io/tags/Spring/"/>
     
   </entry>
   
