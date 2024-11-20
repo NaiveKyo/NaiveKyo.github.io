@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2024-03-25T14:13:26.894Z</updated>
+  <updated>2024-11-20T15:00:17.739Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gradle Quick Start</title>
+    <link href="https://naivekyo.github.io/2024/11/20/gradle-quick-start/"/>
+    <id>https://naivekyo.github.io/2024/11/20/gradle-quick-start/</id>
+    <published>2024-11-20T14:55:41.000Z</published>
+    <updated>2024-11-20T15:00:17.739Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Gradle-Quick-Start&quot;&gt;&lt;a href=&quot;#Gradle-Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Gradle Quick Start&quot;&gt;&lt;/a&gt;Gradle Quick Start&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Build Tools" scheme="https://naivekyo.github.io/categories/Build-Tools/"/>
+    
+    <category term="Gradle" scheme="https://naivekyo.github.io/categories/Build-Tools/Gradle/"/>
+    
+    
+    <category term="Gradle" scheme="https://naivekyo.github.io/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>NPM Brief Introduction</title>
@@ -519,33 +546,6 @@
     
     
     <category term="JMS" scheme="https://naivekyo.github.io/tags/JMS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Logging APIs And Implementations</title>
-    <link href="https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/"/>
-    <id>https://naivekyo.github.io/2022/10/30/java-logging-apis-and-implementations/</id>
-    <published>2022-10-30T15:24:38.000Z</published>
-    <updated>2022-12-17T16:04:02.204Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h1&gt;&lt;p&gt;本文旨在了解 Java</summary>
-        
-      
-    
-    
-    
-    <category term="Logging" scheme="https://naivekyo.github.io/categories/Logging/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-    <category term="Logging" scheme="https://naivekyo.github.io/tags/Logging/"/>
     
   </entry>
   
