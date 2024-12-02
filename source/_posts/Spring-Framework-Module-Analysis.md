@@ -15,8 +15,6 @@ keywords: Spring
 tags: Spring
 ---
 
-
-
 # Spring Framework
 
 ## Preface
@@ -33,17 +31,26 @@ tags: Spring
 
 
 
-## Spring Beans 模块
+## Spring Core 模块
 
-Spring Beans 模块内部包含 Spring-Core 模块：
+Spring-Core 模块是整个 Spring Framework 的基石，提供了诸多基础能力，其他模块大都是基于 core 模块开发的；
 
 * spring-core 模块包含 asm 和 cglib 依赖，同时鉴于 cglib 本身也是依赖 asm 实现的，因此借助 ShardJar task（Gradle Task） 将 asm 的完整依赖转移到 org.springframework.asm 包下，避免最终打包的 jar 包中包含重复的 asm 源码；
 * spring-core 也提供日志功能，日志门面使用 slf4j、默认日志实现使用 jcl（i.e. apache common logging）；
-* 此外，core 模块也提供 spring 框架的诸多基础能力，比如 IO 抽象、消息转换器、日志、环境容器、编解码、反射及注解、并发工具以及各类常用工具类，等等
+* 此外，core 模块也提供 spring 框架的诸多基础能力，比如
+  * IO 抽象
+  * 消息转换器
+  * 日志
+  * 环境容器
+  * 编解码
+  * 反射及注解
+  * 并发工具以及各类常用工具类，等等
 
 
 
-Spring Beans 模块则是在 core 模块提供的各类基础能力上构建 Spring 的 Bean 体系，主要包括：
+## Spring Beans 模块
+
+Spring Beans 模块在 core 模块提供的各类基础能力上构建 Spring 的 Bean 体系，主要包括：
 
 * Spring 的轻量级 Inversion Of Control（IoC）container 实现；
 
@@ -51,7 +58,7 @@ BeanFactory 借助各类 parser 从 configuration source（e.g. xml、Java Confi
 
 这里面有几个关键点：BeanDefinition 体系、BeanFactory 体系、bean 的 parser、依赖注入以及 lifecycle hook。
 
-补充：除了 BeanFactory 的抽象体系外，spring-context 模块也提供了 application context 抽象，它是对 BeanFactory 的扩展，当程序位于特定的 content 时，可以使用 ApplicationContext 抽象。
+补充：除了 BeanFactory 的抽象体系外，spring-context 模块也提供了 application context 抽象，它是对 BeanFactory 的扩展，当程序位于特定的 context 时（比如 web application），可以使用 ApplicationContext 抽象。
 
 * 操作 Bean 的工具：BeanWrapper；
 
@@ -74,7 +81,7 @@ Spring Context 模块主要包含以下功能：
 * Spring 通用缓存抽象体系；
 * 对 EJB（Enterprise JavaBeans）的支持，EJB 是 Java EE（现在叫 Jakarta EE）规范的一部分，主要定义了一系列企业级应用程序组件，比如事务管理、远程方法调用等等，Spring 提供多种方式集成 EJB，比如 JNDI 引用、代理工厂、依赖注入等等；
 
-注意 Spring 的许多模块起始也具备集成功能组件的能力，比如 Spring AOP、声明式事务，各类 xxxTemplate 实例，大多数情况下可以直接使用 Spring 提供的工具，尽量减少直接依赖 EJB。
+注意 Spring 的许多模块其实也具备集成功能组件的能力，比如 Spring AOP、声明式事务，各类 xxxTemplate 实例，大多数情况下可以直接使用 Spring 提供的工具，尽量减少直接依赖 EJB。
 
 * 格式化功能，比如数字、日期格式化；
 * 基于 class loaders 的 LTW （Load-time weaving）机制；
@@ -90,4 +97,17 @@ Spring Context 模块主要包含以下功能：
 
 
 
-TODO
+## Spring Context Support 模块
+
+该模块是对 context 模块的扩展，提供以下功能：
+
+* Context 模块缓存抽取体系的实现，比如 caffeine、encache、jcache 等等；
+* Spring 通用邮件体系抽象，以及相关的实现；
+* Context Scheduling 实现：比如 quartz；
+* Context ui 模块支持：提供 freemarker 实现；
+
+
+
+## Spring JCL 模块
+
+该模块是 Spring 日志系统的辅助模块，Spring 默认使用 Slf4J 作为日志门面， Apache Common Logging 作为日志实现，同时 Spring 集成的其他三方库可能内部会使用其他日志实现，此时需要为 JCL 提供 Bridge 或者 Adapter 功能，将其他日志实现输出的日志路由到日志门面，最后统一交给 JCL 输出。
