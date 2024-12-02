@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2024-11-24T05:35:54.445Z</updated>
+  <updated>2024-12-02T15:05:33.884Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Concurrent Programming overview</title>
+    <link href="https://naivekyo.github.io/2024/12/02/java-concurrent-programming-overview/"/>
+    <id>https://naivekyo.github.io/2024/12/02/java-concurrent-programming-overview/</id>
+    <published>2024-12-02T15:03:53.000Z</published>
+    <updated>2024-12-02T15:05:33.884Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;JDK-并发模块概览&quot;&gt;&lt;a href=&quot;#JDK-并发模块概览&quot; class=&quot;headerlink&quot; title=&quot;JDK 并发模块概览&quot;&gt;&lt;/a&gt;JDK 并发模块概览&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/categories/Java-Concurrent/"/>
+    
+    
+    <category term="Java Concurrent" scheme="https://naivekyo.github.io/tags/Java-Concurrent/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Framework Module Analysis</title>
@@ -517,33 +542,6 @@
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
     <category term="Kafka" scheme="https://naivekyo.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Relearn Reflection And Dynamic Proxy</title>
-    <link href="https://naivekyo.github.io/2022/12/07/java-relearn-reflection-and-dynamic-proxy/"/>
-    <id>https://naivekyo.github.io/2022/12/07/java-relearn-reflection-and-dynamic-proxy/</id>
-    <published>2022-12-07T15:55:40.000Z</published>
-    <updated>2022-12-07T15:57:37.930Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h1&gt;&lt;p&gt;参考：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
   </entry>
   
