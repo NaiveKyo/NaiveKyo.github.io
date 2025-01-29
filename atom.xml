@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2025-01-29T08:29:58.172Z</updated>
+  <updated>2025-01-29T09:06:44.201Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker quick start</title>
+    <link href="https://naivekyo.github.io/2025/01/29/docker-quick-start/"/>
+    <id>https://naivekyo.github.io/2025/01/29/docker-quick-start/</id>
+    <published>2025-01-29T09:04:58.000Z</published>
+    <updated>2025-01-29T09:06:44.201Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker-Runtime&quot;&gt;&lt;a href=&quot;#Docker-Runtime&quot; class=&quot;headerlink&quot; title=&quot;Docker Runtime&quot;&gt;&lt;/a&gt;Docker Runtime&lt;/h1&gt;&lt;h1 id=&quot;官方文档&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://naivekyo.github.io/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://naivekyo.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Build virtualized environment with Virtual-Box</title>
@@ -512,34 +537,6 @@
     <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
     
     <category term="Kafka" scheme="https://naivekyo.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux Basic Knowledge Review (一)</title>
-    <link href="https://naivekyo.github.io/2022/12/17/linux-basic-knowledge-review-yi/"/>
-    <id>https://naivekyo.github.io/2022/12/17/linux-basic-knowledge-review-yi/</id>
-    <published>2022-12-17T15:44:30.000Z</published>
-    <updated>2022-12-17T15:45:32.225Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;书籍：鸟哥的 Linux 私房菜：基础学习篇（第四版）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
     
   </entry>
   

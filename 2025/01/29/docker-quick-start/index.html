@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Virtual Box">
+    <meta name="keywords" content="Docker">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Build virtualized environment with Virtual-Box | Miló&amp;Akoúo̱</title>
+    <title>Docker quick start | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -329,12 +329,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425111634.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121012.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Build virtualized environment with Virtual-Box</h1>
+                    <h1 class="description center-align post-title">Docker quick start</h1>
                 </div>
             </div>
         </div>
@@ -478,8 +478,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Virtual-Box/">
-                                <span class="chip bg-color">Virtual Box</span>
+                            <a href="/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
                             </a>
                         
                     </div>
@@ -490,8 +490,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Virtual-Box/" class="post-category">
-                                Virtual Box
+                            <a href="/categories/Docker/" class="post-category">
+                                Docker
                             </a>
                         
                     </div>
@@ -517,7 +517,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    1.7k
                 </div>
                 
 
@@ -537,127 +537,158 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="虚拟化环境"><a href="#虚拟化环境" class="headerlink" title="虚拟化环境"></a>虚拟化环境</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>软件：VirtualBox 7.1.4</p>
-<p>镜像：CentOS-7-x86_64-DVD-2009.iso</p>
-<p>网络环境：Host-only mode + NAT 双网卡</p>
-<h2 id="关于虚拟机网络"><a href="#关于虚拟机网络" class="headerlink" title="关于虚拟机网络"></a>关于虚拟机网络</h2><p>Vitrual Box 用户手册中提到不同网络模式支持的功能：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/2025/01/20250129162937.png"></p>
-<p>Vitrual Box 和宿主机使用 Host-only 模式时，只支持虚拟机和宿主机、虚拟机和虚拟机之间的双向通信，并不支持访问外部网络，如果需要虚拟机连接网络，可以另外配置一块 NAT 网卡，双网卡（Host-Only + NAT）可以支持所有功能；</p>
-<p>在 Vitrual Box 工具 -&gt; 网络模块下配置双网卡</p>
-<blockquote>
-<p>Host-Only 网络</p>
-</blockquote>
-<p>点击新建创建网卡，选择手动配置网卡（根据需要也可以选择自动分配）：</p>
-<p>网卡 ip：192.168.200.100，掩码：255.255.0.0</p>
-<p>启用 DHCP 功能：</p>
-<p>DHCP 地址：192.168.200.1</p>
-<p>设置各虚拟机自动分配 ip 地址范围：192.168.200.100 - 192.168.200.200</p>
-<blockquote>
-<p>NAT 网络</p>
-</blockquote>
-<p>创建一个 NAT 网卡即可，无需额外配置，如果要实现宿主机同网络内的其他机器需要访问宿主机内的虚拟机，则可以选择配置端口转发。</p>
-<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>新建虚拟机，挂载系统光驱，修改网络配置，网卡 1 选择刚刚配置的 Host-Only 网络，网卡 2 选择刚刚配置的 NAT 网络，移除无用的硬件配置，比如 usb，为虚拟机分配系统资源，如内存、CPU 核、硬盘资源，最后启动虚拟机进入安装页面安装光驱对应的系统，按照步骤安装即可；</p>
-<p>（Note：安装 CentOS7 系统时，可以选择安装特定模板安装系统及相关依赖，这里选择使用最小安装，后面需要什么工具再装什么工具）</p>
-<p>安装系统时会配置 root 用户密码，也可以选择创建新的用户，这里启动系统后使用 root 账户登录：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 输入命令查看网卡
-ip addr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h1 id="Docker-Runtime"><a href="#Docker-Runtime" class="headerlink" title="Docker Runtime"></a>Docker Runtime</h1><h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/">https://docs.docker.com/get-started/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/manuals/">https://docs.docker.com/manuals/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/reference/">https://docs.docker.com/reference/</a></li>
+</ul>
+<p>Docker Hub：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>在 Maunals 页面中找到 Docker Engine 的安装文档，由于虚拟机系统使用的是 CentOS 7，因此可以参考这个：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/rhel/">https://docs.docker.com/engine/install/rhel/</a></li>
+</ul>
+<p>有些版本的 Linux 发行版系统会内置 docker 服务，如果要装新的可以先卸载默认的服务，文档里用的是 CentOS 8+ 提供的 dnf 命令去处理的，之前的版本也可以安装 dnf：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">sudo dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine \
+                  podman \
+                  runc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>可以看到 lo、enp0s3、enp0s8 （或其他标识符，不一定是 s3、s8）三块网卡，分别对应本地回环网络、Host-Only、NAT。</p>
-<h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><p>现在网络功能还是不可用的，根据需要可以选择使用 DHCP 自动分配网址，也可以静态配置，因为前面我们使用的是手动配置的 Host-Only 网络，这里也选择配置静态 ip，方便后续使用 ssh 工具连接虚拟机；</p>
-<p>根据系统类型找到网络配置文件，以 CentOS7 为例：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 进入网卡文件目录
-cd /etc/systemconfig/network-scripts/
-# 编辑相关网卡
-vi ifcfg-enp0s3
-vi ifcfg-enp0s8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>CentOS 7 可以使用 yum，记得先停止服务，另外我们使用的是最小安装版本，默认不会安装 docker 服务：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>enp0s3 配置如下：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 修改部分配置，新增 ip 配置
-# 由 dhcp 切换为 static
-BOOTPROTO=static
-# 系统启动时自动启用网络服务
-ONBOOT=yes
+<p>虽然之前已经将系统 yum 仓库替换成阿里云的，但是没法获取到最新的 docker 软件，可以添加国内单独的 docker 镜像仓库：</p>
+<ul>
+<li>阿里云镜像网站：<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a></li>
+<li>添加镜像的操作，可以参考 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/docker-ce">https://developer.aliyun.com/mirror/docker-ce</a></li>
+</ul>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 安装 yum-utils, 它是用于 yum 包管理的一系列工具
+yum install -y yum-utils
+yum info yum-utils
 
-# 新增 ip 配置，记得和 virtual box 的host-only 网络手动配置的网段一致
-IPADDR=192.168.200.101
-# 掩码使用 18 位, 方便同网段虚拟机通信
-NETMASK=255.255.255.0 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 使用 yum-utils 提供的 yum-config-manager 工具管理仓库
+man yum-config-manager
+# 添加仓库
+yum-config-manager --add-repo=https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# 参考 docker 官网给出的安装命令
+yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>如果没有发现其他网卡文件，比如 enp0s8，则可以创建一个文件，使用 nmcli 命令管理网络：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 生成新的网卡文件, 名字要和我们在 ip addr 中看到的网卡名一致, 比如这里应该写 enp0s8
-nmcli connection add type ethernet ifname enp0s8 con-name enp0s8
+<p>先了解一下 docker 的架构，再解释上面安装的各项服务的功能：</p>
+<p>docker 使用 client-server 架构</p>
+<p><img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/2025/01/20250129170631.png"></p>
+<p>我们常用的 docker 命令就是 client，docker daemon 属于 server 端，用于管理 image 和运行 container，发挥着非常重要的作用；</p>
+<p>client 和 server 通过 REST APi 或 UNIX sockets 或 network interface 进行通信，这意味着 client 既可以和本机上的 server 通信，也可以和远程 server 通信；</p>
+<p>client 除了常规的 docker 命令外，还有一个 docker compose，它允许连接有一组 container 构成的应用程序；</p>
+<p>docker server 中含有不少 objects，包括 images、containers、networks、volumes、plugins 等等；</p>
+<p>存放 docker images 的地方叫做 docker registry，默认情况下使用的是公共的 Docker Hub 作为 registry，当然也可以根据需要配置私有的仓库；</p>
+<p>再看一下上面使用 yum 安装的各个软件：</p>
+<ul>
+<li>docker-ce：由 Docker 社区开源的容器引擎，提供 dockerd 和 docker 工具（i.e. client + server），允许用户创建、运行和管理容器，是 Docker 的核心组件；</li>
+<li>docker-ce-cli：Docker 命令行接口工具，提供与 docker 守护进程交互的命令行工具，通过 docker 命令可以管理 container、image、network、volume 等等；</li>
+<li>containerd.io：遵循行业标准的容器运行时环境，Docker 在其基础上构建各项功能，实现容器的整个生命周期（创建、启动、停止、删除等等）；</li>
+<li>docker-buildx-plugin：Docker Buildx 是 Docker CLI 的插件，用于扩展 docker 的构建功能；</li>
+<li>docker-compose-plugin：Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工具，通过 docker-compose.yml 定义多个容器的配置、网络、卷等等，再使用 docker compose 命令一键启动、停止和管理多容器应用；</li>
+</ul>
+<h1 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h1><p>前面安装了 docker 软件后，可以使用 systemctl 来管理 docker 服务：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 立即启动 docker 服务并设置为允许开机自启
+systemctl enable --now docker
 
-# 查看所有网络
-nmcli connection show
+# 查看服务状态
+systemctl status docker
 
-# 修改新的网卡配置, 由于我们的 enp0s8 对应 NAT 网络, 所以改为 dhcp 就行
-vim ifcfg-enp0s8
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; vendor preset: disabled)
+   Active: active (running) since 一 2025-01-20 19:14:15 CST; 6s ago
+     Docs: https://docs.docker.com
+ Main PID: 3963 (dockerd)
+    Tasks: 10
+   Memory: 31.1M
+   CGroup: /system.slice/docker.service
+           └─3963 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-# 修改内容
-BOOTPROTO=dhcp
-
-# 最后重启网络服务
-systemctl restart network
-# 查看网络状态
-systemctl status network<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>测试虚拟机和宿主机能否双向通信，虚拟机能否连接互联网。</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 使用 ping 命令测试
-# 虚拟机中
-ping ${宿主机 id: 例如 windows 中使用 ipconfig 看 ip}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>如果无法实现虚拟机、宿主机双向通信，则可以先关机，检查 Virtual Box 中目标虚拟机的网络配置中是否使用了双网卡，比如网卡 1 使用 Host-Only 网络，网卡 2 使用 NAT 网络，相关的网络名称和 Virtual Box 网络配置下的一致。</p>
-<h3 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h3><p>默认的 yum 的 repo 使用的是官网的，可能会无法解析域名或无法访问，可以选择使用国内的镜像：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 进入 yum 配置目录
-cd /etc/yum.repos.d
-
-# 备份默认的配置, 下载阿里云提供的配置文件
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-
-# 清除 yum 缓存
-yum clean all
-yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>下载软件，比如 vim，net-tools</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">yum install -y vim
-yum install -y net-tools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+1月 20 19:14:15 localhost.localdomain systemd[1]: Starting Docker Application Container Engine...
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.269367052+08:00" level=info msg="Starting up"
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.355832762+08:00" level=info msg="Loading containers: start."
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.724097801+08:00" level=info msg="Firewalld: interface docker0 already part of docker zone, returning"
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.772381247+08:00" level=info msg="Loading containers: done."
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.788289251+08:00" level=info msg="Docker daemon" commit=de5c9cf containerd-snapshotter=false stor...sion=26.1.4
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.788450469+08:00" level=info msg="Daemon has completed initialization"
+1月 20 19:14:15 localhost.localdomain dockerd[3963]: time="2025-01-20T19:14:15.817713456+08:00" level=info msg="API listen on /run/docker.sock"
+1月 20 19:14:15 localhost.localdomain systemd[1]: Started Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="SSH-连接"><a href="#SSH-连接" class="headerlink" title="SSH 连接"></a>SSH 连接</h3><p>在宿主机上可以使用相关工具通过 ssh 连接虚拟机，比如使用 Tabby；</p>
-<p>虚拟机中需开启 ssh 配置：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 查看系统是否安装有 ssh 服务
-systemctl status sshd
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>国内从 docker hub 下载镜像速度很慢，参考官方文档配置 proxy：<a target="_blank" rel="noopener" href="https://docs.docker.com/reference/cli/dockerd/#proxy-configuration">https://docs.docker.com/reference/cli/dockerd/#proxy-configuration</a></p>
+<p>三种方式：</p>
+<ul>
+<li>系统变量中配置 HTTP_PROXY、HTTPS_PROXY 和 NO_PROXY 三个变量；</li>
+<li>docker 的 daemon configuration file 中配置三个变量；（要求 docker engine version 23.0 +）</li>
+<li>使用 –http-proxy、–https-proxy、–no-proxy 命令行参数；（要求 docker engine version 23.0 +）</li>
+</ul>
+<p>命令行和 daemon 配置文件的优先级要比环境变量高。</p>
+<p>其中 daemon.json 配置文件中完整的选项可以参考：<a target="_blank" rel="noopener" href="https://docs.docker.com/reference/cli/dockerd/#daemon-configuration-file">https://docs.docker.com/reference/cli/dockerd/#daemon-configuration-file</a></p>
+<p>这三种都需要有代理服务器，而且一旦配置了 docker 服务的网络都会走代理，不能按需启用，比较麻烦，配置的都是 daemon.json 中的 proxies 对象；</p>
+<p>看大家常用的方式是配置国内的镜像源，但是有很多源都不能用了，相关配置是 daemon.json 的 registry-mirrors 数组：</p>
+<p>列出几个，2025-01-21 测试有效：</p>
+<p>（感谢大佬收集：<a target="_blank" rel="noopener" href="https://www.coderjia.cn/archives/dba3f94c-a021-468a-8ac6-e840f85867ea%EF%BC%89">https://www.coderjia.cn/archives/dba3f94c-a021-468a-8ac6-e840f85867ea）</a></p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"registry-mirrors"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"https://docker-0.unsee.tech"</span><span class="token punctuation">,</span>
+        <span class="token string">"https://docker-cf.registry.cyou"</span><span class="token punctuation">,</span>
+        <span class="token string">"https://docker.1panel.live"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-# 如果没有可以下载
-yum install openssh-server
-systemctl start sshd
+<p>填写相关网址后执行以下命令重启服务：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">systemctl daemon-reload &amp;&amp; systemctl restart docker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-# 如果已经安装了，则进入配置目录
-cd /etc/ssh/
-# 备份原始配置文件，修改相关配置
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
-vim /etc/ssh/sshd_config
-# 打开注释, 允许 root 用户登录
-PermitRootLogin yes
+<p>运行 docker 官方给的 hello world 实例：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">&gt; docker run hello-world
 
-# ssh 默认占用端口 22, 如果要改可以加配置
-Port 22<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+c1ec31eb5944: Pull complete 
+Digest: sha256:1b7a37f2a0e26e55ba2916e0c53bfbe60d9bd43e390e31aacd25cb3581ed74e6
+Status: Downloaded newer image for hello-world:latest
 
-<p>如果宿主机使用 ssh 连接虚拟机非常慢，则可以禁用 ssh 服务的特定功能，修改 sshd_config 配置文件：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 禁用反向解析宿主机主机名
-UseDNS no
-# 不禁用 dns 的话可以配置国内常用的 dns, 比如阿里云的
-vim /etc/resolv.conf
-# 注释掉其中两个, 换成
-nameserver 223.5.5.5
-nameserver 223.6.6.6
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
-# 禁用 GSSAPI 认证
-GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
 
-<p>最后注意：之前配置网卡时没有配 DNS 地址，可以考虑在 /etc/resolve.conf 中加入常用的 DNS 服务器地址，根据需要调整 SELinux 配置。ssh 连接也可以使用密钥认证。如果需要暴露端口可以通过防火墙命令处理。</p>
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>定制 proxy 和 registry-mirrors 适合云端 Linux 系统，我们本地使用的是虚拟机环境，可以改 registry-mirrors，也可以使用宿主机的代理工具，比如用 clash 的 TUN 虚拟网卡模式，代理所有流量，这样从虚拟机中执行 docker 客户端命令，流量被宿主机的 clash 网卡拦截，能正常访问 docker hub 服务。</p>
 
                 
             </div>
@@ -684,7 +715,7 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2025/01/29/build-virtualized-environment-with-virtual-box/">https://naivekyo.github.io/2025/01/29/build-virtualized-environment-with-virtual-box/</a>
+                    <a href="https://naivekyo.github.io/2025/01/29/docker-quick-start/">https://naivekyo.github.io/2025/01/29/docker-quick-start/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -722,8 +753,8 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Virtual-Box/">
-                                    <span class="chip bg-color">Virtual Box</span>
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -886,9 +917,9 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2025/01/29/build-virtualized-environment-with-virtual-box/';
-        this.page.identifier = '/2025/01/29/build-virtualized-environment-with-virtual-box/';
-        this.page.title = 'Build virtualized environment with Virtual-Box';
+        this.page.url = 'https://naivekyo.github.io/2025/01/29/docker-quick-start/';
+        this.page.identifier = '/2025/01/29/docker-quick-start/';
+        this.page.title = 'Docker quick start';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -916,9 +947,10 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/01/29/docker-quick-start/">
                     <div class="card-image">
@@ -935,9 +967,9 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-01-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -950,6 +982,7 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -968,30 +1001,30 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/12/02/java-concurrent-programming-overview/">
+                <a href="/2025/01/29/build-virtualized-environment-with-virtual-box/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425111615.jpg" class="responsive-img" alt="Java Concurrent Programming overview">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425111634.jpg" class="responsive-img" alt="Build virtualized environment with Virtual-Box">
                         
-                        <span class="card-title">Java Concurrent Programming overview</span>
+                        <span class="card-title">Build virtualized environment with Virtual-Box</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java concurrent programming overview.
+                            build virtualized environment with Virtual-Box.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java-Concurrent/" class="post-category">
-                                    Java Concurrent
+                            <a href="/categories/Virtual-Box/" class="post-category">
+                                    Virtual Box
                                 </a>
                             
                             
@@ -1001,8 +1034,8 @@ GSSAPIAuthentication no<span aria-hidden="true" class="line-numbers-rows"><span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java-Concurrent/">
-                        <span class="chip bg-color">Java Concurrent</span>
+                    <a href="/tags/Virtual-Box/">
+                        <span class="chip bg-color">Virtual Box</span>
                     </a>
                     
                 </div>
