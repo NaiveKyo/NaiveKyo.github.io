@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2024-12-02T15:05:33.884Z</updated>
+  <updated>2025-01-29T08:29:58.172Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Build virtualized environment with Virtual-Box</title>
+    <link href="https://naivekyo.github.io/2025/01/29/build-virtualized-environment-with-virtual-box/"/>
+    <id>https://naivekyo.github.io/2025/01/29/build-virtualized-environment-with-virtual-box/</id>
+    <published>2025-01-29T08:23:36.000Z</published>
+    <updated>2025-01-29T08:29:58.172Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;虚拟化环境&quot;&gt;&lt;a href=&quot;#虚拟化环境&quot; class=&quot;headerlink&quot; title=&quot;虚拟化环境&quot;&gt;&lt;/a&gt;虚拟化环境&lt;/h1&gt;&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Virtual Box" scheme="https://naivekyo.github.io/categories/Virtual-Box/"/>
+    
+    
+    <category term="Virtual Box" scheme="https://naivekyo.github.io/tags/Virtual-Box/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Concurrent Programming overview</title>
@@ -515,33 +540,6 @@
     
     
     <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kafka Deployment And Quick Start</title>
-    <link href="https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/"/>
-    <id>https://naivekyo.github.io/2022/12/17/kafka-deployment-and-quick-start/</id>
-    <published>2022-12-17T15:40:12.000Z</published>
-    <updated>2022-12-18T14:51:15.508Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Apache-Kafka&quot;&gt;&lt;a href=&quot;#Apache-Kafka&quot; class=&quot;headerlink&quot; title=&quot;Apache Kafka&quot;&gt;&lt;/a&gt;Apache Kafka&lt;/h1&gt;&lt;p&gt;website：&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Kafka" scheme="https://naivekyo.github.io/categories/Kafka/"/>
-    
-    
-    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
-    
-    <category term="Kafka" scheme="https://naivekyo.github.io/tags/Kafka/"/>
     
   </entry>
   
