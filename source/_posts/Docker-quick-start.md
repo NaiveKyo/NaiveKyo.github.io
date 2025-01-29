@@ -186,7 +186,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 systemctl daemon-reload && systemctl restart docker
 ```
 
-运行 docker 官方给的 hello world 实例：
+运行 docker 官方给的 hello world 示例：
 
 ```shellscript
 > docker run hello-world
