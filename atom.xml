@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2025-01-29T10:43:10.811Z</updated>
+  <updated>2025-01-31T03:52:31.977Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang quick start</title>
+    <link href="https://naivekyo.github.io/2025/01/31/golang-quick-start/"/>
+    <id>https://naivekyo.github.io/2025/01/31/golang-quick-start/</id>
+    <published>2025-01-31T03:45:25.000Z</published>
+    <updated>2025-01-31T03:52:31.977Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;配置-Go-开发环境&quot;&gt;&lt;a href=&quot;#配置-Go-开发环境&quot; class=&quot;headerlink&quot; title=&quot;配置 Go 开发环境&quot;&gt;&lt;/a&gt;配置 Go 开发环境&lt;/h1&gt;&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://naivekyo.github.io/categories/Golang/"/>
+    
+    
+    <category term="Golang" scheme="https://naivekyo.github.io/tags/Golang/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker quick start</title>
@@ -510,33 +535,6 @@
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
     <category term="Security" scheme="https://naivekyo.github.io/tags/Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot Integrate Kafka</title>
-    <link href="https://naivekyo.github.io/2022/12/18/spring-boot-integrate-kafka/"/>
-    <id>https://naivekyo.github.io/2022/12/18/spring-boot-integrate-kafka/</id>
-    <published>2022-12-18T15:04:20.000Z</published>
-    <updated>2022-12-18T15:05:31.287Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Spring-Boot-Integration-Kafka&quot;&gt;&lt;a href=&quot;#Spring-Boot-Integration-Kafka&quot; class=&quot;headerlink&quot; title=&quot;Spring Boot Integration</summary>
-        
-      
-    
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/categories/Spring-Boot/"/>
-    
-    
-    <category term="Spring Boot" scheme="https://naivekyo.github.io/tags/Spring-Boot/"/>
-    
-    <category term="Kafka" scheme="https://naivekyo.github.io/tags/Kafka/"/>
     
   </entry>
   
