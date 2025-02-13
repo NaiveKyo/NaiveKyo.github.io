@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2025-01-31T03:52:31.977Z</updated>
+  <updated>2025-02-13T15:02:06.486Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Install And Deploy GitLab CE</title>
+    <link href="https://naivekyo.github.io/2025/02/13/install-and-deploy-gitlab-ce/"/>
+    <id>https://naivekyo.github.io/2025/02/13/install-and-deploy-gitlab-ce/</id>
+    <published>2025-02-13T15:00:18.000Z</published>
+    <updated>2025-02-13T15:02:06.486Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;GitLab-CE&quot;&gt;&lt;a href=&quot;#GitLab-CE&quot; class=&quot;headerlink&quot; title=&quot;GitLab CE&quot;&gt;&lt;/a&gt;GitLab CE&lt;/h1&gt;&lt;h2 id=&quot;安装软件&quot;&gt;&lt;a href=&quot;#安装软件&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Golang quick start</title>
     <link href="https://naivekyo.github.io/2025/01/31/golang-quick-start/"/>
     <id>https://naivekyo.github.io/2025/01/31/golang-quick-start/</id>
     <published>2025-01-31T03:45:25.000Z</published>
-    <updated>2025-01-31T03:52:31.977Z</updated>
+    <updated>2025-02-04T07:02:20.016Z</updated>
     
     
       
@@ -506,35 +531,6 @@
     
     
     <category term="Project Experiment" scheme="https://naivekyo.github.io/tags/Project-Experiment/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Security Mechanism Summary</title>
-    <link href="https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/"/>
-    <id>https://naivekyo.github.io/2022/12/28/java-security-mechanism-summary/</id>
-    <published>2022-12-28T15:06:43.000Z</published>
-    <updated>2023-01-10T03:48:05.888Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JavaSecurity&quot;&gt;&lt;a href=&quot;#JavaSecurity&quot; class=&quot;headerlink&quot; title=&quot;JavaSecurity&quot;&gt;&lt;/a&gt;JavaSecurity&lt;/h1&gt;&lt;p&gt;参考：（JDK 8）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-    <category term="Security" scheme="https://naivekyo.github.io/tags/Security/"/>
     
   </entry>
   

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Golang">
+    <meta name="keywords" content="Linux,GitLab">
     <meta name="description" content="This is a blog in order to record my learning and growth.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Golang quick start | Miló&amp;Akoúo̱</title>
+    <title>Install And Deploy GitLab CE | Miló&amp;Akoúo̱</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/libs/awesome/css/all.css">
@@ -329,12 +329,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121105.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220918190852.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Golang quick start</h1>
+                    <h1 class="description center-align post-title">Install And Deploy GitLab CE</h1>
                 </div>
             </div>
         </div>
@@ -478,8 +478,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Golang/">
-                                <span class="chip bg-color">Golang</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -490,8 +490,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Golang/" class="post-category">
-                                Golang
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -503,21 +503,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-01-31
+                    2025-02-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2025-02-04
+                    2025-02-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.6k
                 </div>
                 
 
@@ -537,143 +537,181 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="配置-Go-开发环境"><a href="#配置-Go-开发环境" class="headerlink" title="配置 Go 开发环境"></a>配置 Go 开发环境</h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>官网：<a target="_blank" rel="noopener" href="https://go.dev/">https://go.dev/</a></p>
-<p>package repository：<a target="_blank" rel="noopener" href="https://pkg.go.dev/">https://pkg.go.dev/</a></p>
-<p>编辑器：Visual Studio Code</p>
-<h2 id="配置开发环境"><a href="#配置开发环境" class="headerlink" title="配置开发环境"></a>配置开发环境</h2><p>在官网下载 latest stable 版本的 go 进行安装后，安装成功后执行以下脚本进行验证：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 安装成功后输出版本
-go version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>VsCode 安装 Go 官方提供的 plugin，需要注意的是该插件需要下载一些 tools 才可以正常使用，但是在国内没法直接下载，用代理好像也不太行，不过国内有相关的镜像：</p>
+                <h1 id="GitLab-CE"><a href="#GitLab-CE" class="headerlink" title="GitLab CE"></a>GitLab CE</h1><h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>虚拟机安装开源社区版本的 gitlab 服务，相关系统支持参考：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/goproxy">https://github.com/goproxy</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/goproxy/goproxy.cn?tab=readme-ov-file">https://github.com/goproxy/goproxy.cn?tab=readme-ov-file</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/administration/package_information/supported_os.html">https://docs.gitlab.com/ee/administration/package_information/supported_os.html</a></li>
 </ul>
-<p>更多信息可以参考 Go 中文社区：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 查看 go 相关的所有环境变量
-go env
-
-# 查看 env command 的说明
-go help env
-# 查看环境变量的具体含义
-go help environment
-
-# 下面是要使用到的环境变量           
-# GO111MODULE 用于控制 go 的 command 是使用 module-aware 模式还是 GOPAT 模式
-# GOPROXY, Go module 使用的代理, 是一个 URL, 具体可以参考官方文档
-
-# windows 系统设置 go 的环境变量
-go env -w GO111MODULE=on # 使用 module-aware 模式来运行 go 的命令
-go env -w GOPROXY=https://goproxy.cn,direct # 直接从 version control repositories 下载，而不是使用 module proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>GOProxy：<a target="_blank" rel="noopener" href="https://go.dev/ref/mod#environment-variables">https://go.dev/ref/mod#environment-variables</a></p>
-<h2 id="安装-tools"><a href="#安装-tools" class="headerlink" title="安装 tools"></a>安装 tools</h2><p>VsCode 中 Go 官方的 plugin 需要的相关 module 可以参考插件的 GitHub 仓库源码：</p>
+<p>虚拟机使用的是 CentOS 7，可以在文档的 “OS versions that are no longer supported” 标题下看到相关信息， CentOS 7 系统最后的 lst 版本是 GitLabCE 17.7，在 2024 年六月就 eof 了。</p>
+<p>点击链接跳转到 GitLab CE 的资源地址：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/golang/vscode-go/blob/master/extension/tools/allTools.ts.in">https://github.com/golang/vscode-go/blob/master/extension/tools/allTools.ts.in</a></li>
+<li><a target="_blank" rel="noopener" href="https://packages.gitlab.com/app/gitlab/gitlab-ce/search?q=17.7&amp;filter=all&amp;filter=all&amp;dist=el/7">https://packages.gitlab.com/app/gitlab/gitlab-ce/search?q=17.7&amp;filter=all&amp;filter=all&amp;dist=el%2F7</a></li>
 </ul>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">go install -v golang.org/x/tools/gopls@latest
-
-go install -v github.com/fatih/gomodifytags@latest
-
-go install -v github.com/haya14busa/goplay/cmd/goplay@latest
-
-go install -v github.com/josharian/impl@latest
-
-go install -v mvdan.cc/gofumpt@latest
-
-go install -v golang.org/x/tools/cmd/goimports@latest
-
-go install -v github.com/cweill/gotests/gotests@latest
-
-go install -v golang.org/x/lint/golint@latest
-
-go install -v honnef.co/go/tools/cmd/staticcheck@latest
-
-go install -v github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-
-go install -v github.com/mgechev/revive@latest
-
-go install -v github.com/go-delve/delve/cmd/dlv@latest
-
-go install -v github.com/golang/vscode-go/vscgo@latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以 windows 系统为例，默认情况下这些 module 会被下载到 <code>C:\User\${用户名}\go\bin</code> 目录下。</p>
-<h2 id="Hello-Go-World"><a href="#Hello-Go-World" class="headerlink" title="Hello Go World"></a>Hello Go World</h2><p>开发环境准备完毕后，在特定目录下打开 vscode，使用命令：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 初始化一个 module
-go mode init io.naivekyo/hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>执行完上述脚本后，会在当前目录下生成一个 go.mod 文件，内部声明了当前模块的信息，然后新建 hello.go 文件：</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token string">"fmt"</span>
-
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"hello Golang world!"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>上述 code 的含义：</p>
+<p>可以直接下载 rpm 文件上传到虚拟机中安装，也可以参考安装教程：</p>
 <ul>
-<li>声明了一个叫做 main 的 package（package 是对 functions 分组的一种方式，它由同目录下的所有文件组成）；</li>
-<li>引入了名为 fmt 的公共 package，内部包含一些 functions，主要用于格式化文本内容，也可以把信息输出到控制台，fmt 是 go 内置的 package 之一；</li>
-<li>实现了一个叫做 main 的 function，通常按照约定当我们执行 package 的时候，默认就会去找包中的 main 函数来执行，比如上面的例子，在 execute main package 的时候默认执行 main function。</li>
+<li><a target="_blank" rel="noopener" href="https://packages.gitlab.com/gitlab/gitlab-ce/install">https://packages.gitlab.com/gitlab/gitlab-ce/install</a></li>
 </ul>
-<p>运行 package：</p>
-<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 在当前目录下执行以下命令，会自动执行 main function
-go run .
+<p>下载安装脚本，将 GitLab 的软件仓库添加到系统的 yum 源中。</p>
+<p>成功加进来后，执行命令安装：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 添加软件源
+curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
 
-# 输出
-hello Golang world!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 先搜索看看是否能搜出来
+yum search gitlab
 
-<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><ul>
-<li><p>一些 go 代码示例：<a target="_blank" rel="noopener" href="https://gobyexample.com/">https://gobyexample.com/</a></p>
-</li>
-<li><p>go 的 package 仓库，可以查看相关库的说明和示例：</p>
+# 能搜索到就直接安装
+yum install -y gitlable-ce.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>安装完成后会有一些提示信息：</p>
+<pre class="line-numbers language-none"><code class="language-none">It looks like GitLab has not been configured yet; skipping the upgrade script.
+
+       *.                  *.
+      ***                 ***
+     *****               *****
+    .******             *******
+    ********            ********
+   ,,,,,,,,,***********,,,,,,,,,
+  ,,,,,,,,,,,*********,,,,,,,,,,,
+  .,,,,,,,,,,,*******,,,,,,,,,,,,
+      ,,,,,,,,,*****,,,,,,,,,.
+         ,,,,,,,****,,,,,,
+            .,,,***,,,,
+                ,*,.
+  
+
+
+     _______ __  __          __
+    / ____(_) /_/ /   ____ _/ /_
+   / / __/ / __/ /   / __ `/ __ \
+  / /_/ / / /_/ /___/ /_/ / /_/ /
+  \____/_/\__/_____/\__,_/_.___/
+  
+
+Thank you for installing GitLab!
+GitLab was unable to detect a valid hostname for your instance.
+Please configure a URL for your GitLab instance by setting `external_url`
+configuration in /etc/gitlab/gitlab.rb file.
+Then, you can start your GitLab instance by running the following command:
+  sudo gitlab-ctl reconfigure
+
+For a comprehensive list of configuration options please see the Omnibus GitLab readme
+https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md
+
+Help us improve the installation experience, let us know how we did with a 1 minute survey:
+https://gitlab.fra1.qualtrics.com/jfe/form/SV_6kVqZANThUQ1bZb?installation=omnibus&amp;release=17-7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到我们缺少一些必要的配置，需要先配一个有效的 hostname，再修改 <code>/etc/gitlab/gitlab.rb</code> 文件中的 external_url 配置，这样就可以通过特定的 url 访问 gitlab 服务。配置好后需要执行 <code>sudo gitlab-ctl reconfigure</code> 命令启动服务。</p>
+<p>关于 GitLab 的诸多配置和使用方法可以参考官方文档：<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md">https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md</a> </p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 修改主机名
+&gt; hostnamectl set-hostname test.gitlab.com
+# 不重启的情况下，执行以下命令使当前会话生效
+&gt; exec bash
+# 修改 hosts 文件
+&gt; vim /etc/hosts
+# 添加
+127.0.0.1 test.gitlab.com
+
+# 重启网络服务
+&gt; systemctl restart network
+
+# 确保 openSSH 服务正常
+&gt; systemctl status sshd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改 gitlab.rb 文件，修改 external_url 为虚拟机 ip：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">&gt; vim /etc/gitlab/gitlab.rb
+external_url 'http://192.168.200.101'
+
+# 使配置生效并启动服务
+gitlab-ctl reconfigure
+# 输出很多东西，需要一段时间，最后会提示
+[2025-02-11T19:53:13+08:00] INFO: Report handlers complete
+Infra Phase complete, 585/1613 resources updated in 03 minutes 50 seconds
+
+Deprecations:
+Your OS, centos-7.9.2009, will be deprecated soon.
+Starting with GitLab 17.8, packages will not be built for it.
+Switch or upgrade to a supported OS, see https://docs.gitlab.com/ee/administration/package_information/supported_os.html for more information.
+
+Update the configuration in your gitlab.rb file or GITLAB_OMNIBUS_CONFIG environment.
+
+
+Notes:
+Default admin account has been configured with following details:
+Username: root
+Password: You didn't opt-in to print initial root password to STDOUT.
+Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+
+NOTE: Because these credentials might be present in your log files in plain text, it is highly recommended to reset the password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+
+gitlab Reconfigured!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查看 GitLab 所有 Component 运行状态：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">&gt; gitlab-ctl status
+
+run: alertmanager: (pid 1828) 1594s; run: log: (pid 1821) 1594s
+run: gitaly: (pid 1804) 1594s; run: log: (pid 1803) 1594s
+run: gitlab-exporter: (pid 1818) 1594s; run: log: (pid 1817) 1594s
+run: gitlab-kas: (pid 1834) 1594s; run: log: (pid 1830) 1594s
+run: gitlab-workhorse: (pid 1842) 1594s; run: log: (pid 1841) 1594s
+run: logrotate: (pid 1815) 1594s; run: log: (pid 1813) 1594s
+run: nginx: (pid 1819) 1594s; run: log: (pid 1808) 1594s
+run: node-exporter: (pid 1825) 1594s; run: log: (pid 1823) 1594s
+run: postgres-exporter: (pid 1829) 1594s; run: log: (pid 1822) 1594s
+run: postgresql: (pid 1831) 1594s; run: log: (pid 1824) 1594s
+run: prometheus: (pid 1838) 1594s; run: log: (pid 1837) 1594s
+run: puma: (pid 1833) 1594s; run: log: (pid 1832) 1594s
+run: redis: (pid 1816) 1594s; run: log: (pid 1814) 1594s
+run: redis-exporter: (pid 1827) 1594s; run: log: (pid 1826) 1594s
+run: sidekiq: (pid 1836) 1594s; run: log: (pid 1835) 1594s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>GitLab 内嵌了很多服务，比如 nginx、redis、postgresql 等，官方文档中也有关于使用非内嵌组件的方式，进行相关配置后可以使用其他服务部署的 nginx 等软件。</p>
+<p>防火墙放开 80 端口，用于访问 gitlab 服务：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">&gt; firewall-cmd --zone=public --add-port=80/tcp --permanent
+&gt; firewall-cmd --reload
+&gt; firewall-cmd --list-port<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>GitLab 服务安装完成后会自动注册到 systemd 单元服务，可以通过命令找到对应服务：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript">$ systemctl -a | grep gitlab
+gitlab-runsvdir.service
+
+# 查看服务运行状态
+$ systemctl status gitlab-runsvdir.service
+
+# 通过 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在宿主机浏览器上通过虚拟机 ip 访问虚拟机中的 GitLab 服务，默认情况下 GitLab 占用 80 端口；</p>
+<p>在安装完 gitlab 后，输出的提示中有 root 账户的初始密码会存在 <code>/etc/gitlab/initial_root_password</code> 文件中，但是会在初次执行 gitlab-ctl reconfigure 命令 20h 后清除，我们可以通过 Rake task 执行：</p>
+<pre class="line-numbers language-shellscript" data-language="shellscript"><code class="language-shellscript"># 如果是使用 linux package(omnibus) 安装的，可以使用 gitlab-rake 命令
+# 输入以下命令进行交互式修改密码逻辑
+sudo gitlab-rake "gitlab:password:reset"
+Enter username: root
+Enter password: 
+Confirm password: 
+Password successfully updated for user with username root.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/security/reset_user_password.html">https://docs.gitlab.com/ee/security/reset_user_password.html</a></p>
+<h2 id="GitLab-软件目录结构"><a href="#GitLab-软件目录结构" class="headerlink" title="GitLab 软件目录结构"></a>GitLab 软件目录结构</h2><p>参考：<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md">https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md</a></p>
+<p>Omnibus-gitlab 使用四个不同的目录：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://pkg.go.dev/">https://pkg.go.dev/</a></li>
+<li><code>/opt/gitlab</code> ：保存 GitLab 的源代码及其依赖；</li>
+<li><code>/var/opt/gitlab</code> ：保存 GitLab 的程序数据以及通过 gitlab-ctl reconfigure 写入的配置文件；</li>
+<li><code>/etc/gitlab</code> ：保存 omnibus-gitlab 的配置文件，通过手动修改这些配置文件来调整程序；</li>
+<li><code>/var/log/gitlab</code> ：保存 omnibus-gitlab 所有组件产生的运行时日志；</li>
 </ul>
-</li>
-<li><p>go 的官方文档，资源全面且丰富：<a target="_blank" rel="noopener" href="https://go.dev/doc/">https://go.dev/doc/</a></p>
-</li>
-<li><p>go 的语言声明：<a target="_blank" rel="noopener" href="https://go.dev/ref/spec">https://go.dev/ref/spec</a></p>
-</li>
-<li><p>如何编写 go code：<a target="_blank" rel="noopener" href="https://go.dev/doc/code">https://go.dev/doc/code</a></p>
-</li>
-<li><p>如何编写清晰、规范、高效的 go 代码：</p>
-<p><a target="_blank" rel="noopener" href="https://go.dev/doc/effective_go">https://go.dev/doc/effective_go</a></p>
+<p>补充：omnibus-gitlab 和 SELinux，虽然它运行在启用了 SELinux 的系统上，但是它并不受 SELinux 的限制规则，比如：</p>
 <ul>
-<li>需要注意的是 effective go 的文档从 go 2009 年发布之后就没怎么更新了，但是文档中关于 go 核心的概念一直没改变，这是一份介绍 go 语言的文档，更全面详细的知识可以参考其他文档。</li>
+<li>omnibus-gitlab 会创建一些不受限制的系统用户；</li>
+<li>omnibus-gitlab 程序会运行在一个不受限制的上下文中；</li>
 </ul>
-</li>
-<li><p>go 的 web 开发框架 Gin：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://go.dev/ref/spec">https://go.dev/ref/spec</a></li>
-<li><a target="_blank" rel="noopener" href="https://gin-gonic.com/">https://gin-gonic.com/</a></li>
+<p>如果 monibus-gitlab 因为 SELinux 的限制导致安装失败，也可以通过调整 SELinux 限制级别来解决问题。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>参考：<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/maintenance/_index.md">https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/maintenance/_index.md</a></p>
+<h2 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h2><p>这里只是简单的在虚拟机中部署 GitLab 服务，如果是真实的环境需要考虑安全问题，比如防火墙、用户登录限制等等。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@srghimire061/how-to-install-and-configure-gitlab-ce-on-centos-8-7-dcc5da807e0f">https://medium.com/@srghimire061/how-to-install-and-configure-gitlab-ce-on-centos-8-7-dcc5da807e0f</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/">https://docs.gitlab.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/install/requirements.html">https://docs.gitlab.com/ee/install/requirements.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/settings/configuration.md">https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/settings/configuration.md</a></li>
 </ul>
-</li>
-</ul>
-<h1 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h1><p>简单列一些常用的命令：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 进入特定目录中
-# 初始化一个 go module
-# 具体的模块命名规则可以参考官方文档
-$&gt; go mod init example.com/greetings
-go: creating new go.mod: module example.com/greetings
-
-# 当前目录下创建新的子目录
-# 进入子目录后, 执行 go mod 命令初始化新的模块
-$&gt; go mod init example.com/hello
-go: creating new go.mod: module example.com/hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果特定目录已经发布到公共或私有仓库，go tools 可以根据相关路径下载目标模块，如果需要在没有发布模块的情况下在其他模块引入特定模块的代码，则需要修改 go.mod，比如这样：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># main 方法所在 moduel 的 go.mod 文件需要定位引入的本地模块的位置, 可以使用 replace 指令
-go mod edit -replace example.com/greetings=../greetings
-
-# 同步依赖关系
-go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
+<p>如果要考虑使用源码编译安装，可以参考：<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/install/installation.html">https://docs.gitlab.com/ee/install/installation.html</a></p>
 
                 
             </div>
@@ -700,7 +738,7 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://naivekyo.github.io/2025/01/31/golang-quick-start/">https://naivekyo.github.io/2025/01/31/golang-quick-start/</a>
+                    <a href="https://naivekyo.github.io/2025/02/13/install-and-deploy-gitlab-ce/">https://naivekyo.github.io/2025/02/13/install-and-deploy-gitlab-ce/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -738,8 +776,8 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Golang/">
-                                    <span class="chip bg-color">Golang</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -902,9 +940,9 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://naivekyo.github.io/2025/01/31/golang-quick-start/';
-        this.page.identifier = '/2025/01/31/golang-quick-start/';
-        this.page.title = 'Golang quick start';
+        this.page.url = 'https://naivekyo.github.io/2025/02/13/install-and-deploy-gitlab-ce/';
+        this.page.identifier = '/2025/02/13/install-and-deploy-gitlab-ce/';
+        this.page.title = 'Install And Deploy GitLab CE';
     };
     let disqus_shortname = 'https-naivekyo-github-io';
 
@@ -932,9 +970,10 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/02/13/install-and-deploy-gitlab-ce/">
                     <div class="card-image">
@@ -951,9 +990,9 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-02-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -966,6 +1005,7 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -984,30 +1024,30 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/01/29/docker-quick-start/">
+                <a href="/2025/01/31/golang-quick-start/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121012.jpg" class="responsive-img" alt="Docker quick start">
+                        <img src="https://cdn.jsdelivr.net/gh/NaiveKyo/CDN/img/20220425121105.jpg" class="responsive-img" alt="Golang quick start">
                         
-                        <span class="card-title">Docker quick start</span>
+                        <span class="card-title">Golang quick start</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Docker quick start.
+                            Golang quick start.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Docker/" class="post-category">
-                                    Docker
+                            <a href="/categories/Golang/" class="post-category">
+                                    Golang
                                 </a>
                             
                             
@@ -1017,8 +1057,8 @@ go mod <span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Docker/">
-                        <span class="chip bg-color">Docker</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
