@@ -161,3 +161,36 @@ hello Golang world!
   - https://go.dev/ref/spec
   - https://gin-gonic.com/
 
+
+
+# Go Module
+
+简单列一些常用的命令：
+
+```shell
+# 进入特定目录中
+# 初始化一个 go module
+# 具体的模块命名规则可以参考官方文档
+$> go mod init example.com/greetings
+go: creating new go.mod: module example.com/greetings
+
+# 当前目录下创建新的子目录
+# 进入子目录后, 执行 go mod 命令初始化新的模块
+$> go mod init example.com/hello
+go: creating new go.mod: module example.com/hello
+```
+
+如果特定目录已经发布到公共或私有仓库，go tools 可以根据相关路径下载目标模块，如果需要在没有发布模块的情况下在其他模块引入特定模块的代码，则需要修改 go.mod，比如这样：
+
+```shell
+# main 方法所在 moduel 的 go.mod 文件需要定位引入的本地模块的位置, 可以使用 replace 指令
+go mod edit -replace example.com/greetings=../greetings
+
+# 同步依赖关系
+go mod 
+```
+
+
+
+
+
