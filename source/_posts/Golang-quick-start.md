@@ -187,7 +187,7 @@ go: creating new go.mod: module example.com/hello
 go mod edit -replace example.com/greetings=../greetings
 
 # 同步依赖关系
-go mod 
+go mod tidy
 ```
 
 
