@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2025-02-13T15:02:06.486Z</updated>
+  <updated>2025-02-18T14:24:57.968Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Deploy Jenkins software on CentOS7.</title>
+    <link href="https://naivekyo.github.io/2025/02/18/deploy-jenkins-software-on-centos7/"/>
+    <id>https://naivekyo.github.io/2025/02/18/deploy-jenkins-software-on-centos7/</id>
+    <published>2025-02-18T14:23:03.000Z</published>
+    <updated>2025-02-18T14:24:57.968Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Jenkins&quot;&gt;&lt;a href=&quot;#Jenkins&quot; class=&quot;headerlink&quot; title=&quot;Jenkins&quot;&gt;&lt;/a&gt;Jenkins&lt;/h1&gt;&lt;h1 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#环境配置&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://naivekyo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Install And Deploy GitLab CE</title>
@@ -46,7 +71,7 @@
     <link href="https://naivekyo.github.io/2025/01/31/golang-quick-start/"/>
     <id>https://naivekyo.github.io/2025/01/31/golang-quick-start/</id>
     <published>2025-01-31T03:45:25.000Z</published>
-    <updated>2025-02-04T07:02:20.016Z</updated>
+    <updated>2025-02-15T09:44:37.547Z</updated>
     
     
       
@@ -506,31 +531,6 @@
     <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
     
     <category term="IO" scheme="https://naivekyo.github.io/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Project Experiment: Http RequestBody Repeatable Read</title>
-    <link href="https://naivekyo.github.io/2023/01/10/project-experiment-http-requestbody-repeatable-read/"/>
-    <id>https://naivekyo.github.io/2023/01/10/project-experiment-http-requestbody-repeatable-read/</id>
-    <published>2023-01-10T15:32:54.000Z</published>
-    <updated>2023-01-10T15:35:15.059Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;需求分析&quot;&gt;&lt;a href=&quot;#需求分析&quot; class=&quot;headerlink&quot; title=&quot;需求分析&quot;&gt;&lt;/a&gt;需求分析&lt;/h1&gt;&lt;p&gt;项目中如果有这样的需求：针对 POST 请求，需要对请求体中的 JSON</summary>
-        
-      
-    
-    
-    
-    <category term="Project Experiment" scheme="https://naivekyo.github.io/categories/Project-Experiment/"/>
-    
-    
-    <category term="Project Experiment" scheme="https://naivekyo.github.io/tags/Project-Experiment/"/>
     
   </entry>
   
