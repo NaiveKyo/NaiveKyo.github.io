@@ -6,7 +6,7 @@
   <link href="https://naivekyo.github.io/atom.xml" rel="self"/>
   
   <link href="https://naivekyo.github.io/"/>
-  <updated>2025-02-18T14:24:57.968Z</updated>
+  <updated>2025-02-22T06:06:27.105Z</updated>
   <id>https://naivekyo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Deploy k8s cluster on CentOS7</title>
+    <link href="https://naivekyo.github.io/2025/02/22/deploy-k8s-cluster-on-centos7/"/>
+    <id>https://naivekyo.github.io/2025/02/22/deploy-k8s-cluster-on-centos7/</id>
+    <published>2025-02-22T06:05:11.000Z</published>
+    <updated>2025-02-22T06:06:27.105Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;K8S-Cluster&quot;&gt;&lt;a href=&quot;#K8S-Cluster&quot; class=&quot;headerlink&quot; title=&quot;K8S Cluster&quot;&gt;&lt;/a&gt;K8S Cluster&lt;/h1&gt;&lt;h1 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="https://naivekyo.github.io/categories/k8s/"/>
+    
+    
+    <category term="k8s" scheme="https://naivekyo.github.io/tags/k8s/"/>
+    
+  </entry>
   
   <entry>
     <title>Deploy Jenkins software on CentOS7.</title>
@@ -96,7 +121,7 @@
     <link href="https://naivekyo.github.io/2025/01/29/docker-quick-start/"/>
     <id>https://naivekyo.github.io/2025/01/29/docker-quick-start/</id>
     <published>2025-01-29T09:04:58.000Z</published>
-    <updated>2025-01-29T10:43:10.811Z</updated>
+    <updated>2025-02-22T06:08:56.858Z</updated>
     
     
       
@@ -484,34 +509,6 @@
     <id>https://naivekyo.github.io/2023/02/05/java-basic-io-file-io-nio/</id>
     <published>2023-02-05T12:28:53.000Z</published>
     <updated>2023-02-05T13:58:45.750Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;本文涉及到的内容：Java I/O、NIO，and</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://naivekyo.github.io/tags/Java/"/>
-    
-    <category term="IO" scheme="https://naivekyo.github.io/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java Basic IO: Stream IO</title>
-    <link href="https://naivekyo.github.io/2023/02/02/java-basic-io-stream-io/"/>
-    <id>https://naivekyo.github.io/2023/02/02/java-basic-io-stream-io/</id>
-    <published>2023-02-02T15:00:38.000Z</published>
-    <updated>2023-02-02T15:02:30.959Z</updated>
     
     
       
