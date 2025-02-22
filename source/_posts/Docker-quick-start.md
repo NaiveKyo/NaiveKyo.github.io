@@ -168,7 +168,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 
 列出几个，2025-01-21 测试有效：
 
-（感谢大佬收集：https://www.coderjia.cn/archives/dba3f94c-a021-468a-8ac6-e840f85867ea）
+感谢大佬收集：https://www.coderjia.cn/archives/dba3f94c-a021-468a-8ac6-e840f85867ea
 
 ```json
 {
