@@ -3,7 +3,7 @@ title: Deploy Jenkins software on CentOS7
 published: 2025-02-18
 description: "Deploy Jenkins software on CentOS7."
 image: './20220918190943.jpg'
-tags: ["Jenkins", "CI/CD"]
+tags: ["Jenkins", "CICD"]
 category: "Jenkins"
 draft: false
 lang: 'zh'
