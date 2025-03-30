@@ -1,6 +1,6 @@
 ---
 title: Windows use VirtualBox build virtualized environment
-published: 2025-03-30
+published: 2025-01-29
 description: 'build virtualized environment with Virtual-Box.'
 image: './20220425111634.jpg'
 tags: ['Virtual Box']
