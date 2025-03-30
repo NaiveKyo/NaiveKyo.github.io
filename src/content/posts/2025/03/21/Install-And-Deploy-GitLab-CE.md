@@ -1,11 +1,12 @@
 ---
 title: Install And Deploy GitLab CE
-published: 2025-03-22 00:00:00
-image: './20220918190852.jpg'
+published: 2025-03-22
 description: "Install and deploy GitLab CE on CentOS7"
-category: "Linux"
+image: './20220918190852.jpg'
 tags: ["Linux"]
+category: "Linux"
 draft: false
+lang: 'zh'
 ---
 
 # GitLab CE
