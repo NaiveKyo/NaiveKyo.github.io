@@ -43,10 +43,10 @@ description: ''
 image: ''
 tags: []
 category: ''
-draft: false 
+draft: false
 lang: ''
 ---
-Cover image source: [Source](write post cover link here.)
+> Cover image source: <a href="write post cover link here." target="_blank">Source</a>
 `
 
 fs.writeFileSync(path.join(targetDir, fileName), content)
