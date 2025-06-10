@@ -185,6 +185,21 @@ go mod tidy
 ```
 
 
+# 补充
+
+## Mac 安装 GO
+
+从官网下载最新的 arm64 LST 的 go 安装包，然后打开刚刚下载的 package file，默认情况会将 go 安装到 `/usr/local/go` 目录下，然后将 `/usr/local/go/bin` 目录添加到 PATH 系统变量中。
+
+安装完成后打开终端执行以下命令：
+
+```shell
+% go version
+go version go1.24.4 darwin/arm64
+```
+
+如果对安装多个不同版本的 go 感兴趣，也可以参考官方的文档：
+[Managing Go installations](https://go.dev/doc/manage-install)
 
 
 

@@ -148,7 +148,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 
 三种方式：
 
-* 系统变量中配置 HTTP_PROXY、HTTPS_PROXY 和 NO_PROXY 三个变量（毕竟是用 Go 开发的）；
+* 系统变量中配置 HTTP_PROXY、HTTPS_PROXY 和 NO_PROXY 三个变量
 * docker 的 daemon configuration file 中配置三个变量；（要求 docker engine version 23.0 +）
 * 使用 --http-proxy、--https-proxy、--no-proxy 命令行参数；（要求 docker engine version 23.0 +）
 
@@ -214,4 +214,17 @@ For more examples and ideas, visit:
 ```
 
 定制 proxy 和 registry-mirrors 适合云端 Linux 系统，我们本地使用的是虚拟机环境，可以改 registry-mirrors，也可以使用宿主机的代理工具，比如用 clash 的 TUN 虚拟网卡模式，代理所有流量，这样从虚拟机中执行 docker 客户端命令，流量被宿主机的 clash 网卡拦截，能正常访问 docker hub 服务。
+
+
+# Mac 系统安装 Docker
+
+直接安装 [Docker Desktop](https://docs.docker.com/desktop/setup/install/mac-install/) 即可。
+
+根据系统芯片下载对应的安装包，比如 M 系芯片就下载 Docker Desktop for Mac with Apple silicon.
+
+> System requirements
+
+- 一般 Docker Desktop 最多支持当前 mac os 及前两个大版本;
+- 至少 4G 内存;
+- 如果要获得最好的体验，建议安装 Rosetta 2，因为有一些命令行工具需要这个（可能是因为某些命令需要 x86 的运行环境，没有对 mac 做适配）;
 
