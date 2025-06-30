@@ -26,7 +26,7 @@ export default defineConfig({
   trailingSlash: 'always',
   server: {
     // allow lan access, set lan ip address
-    host: '192.168.3.14',
+    host: '127.0.0.1',
   },
   integrations: [
     tailwind({
