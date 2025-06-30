@@ -53,7 +53,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
   avatar: 'assets/images/azusa-mew.jpg',  // Relative to the /src directory. Relative to the /public directory if it starts with '/'
   name: 'Kyo Naive',
-  bio: 'The best time to plant a tree was 20 years ago. The second best time is now.',
+  bio: 'Though the future is a product of every present that precedes it, tomorrow does not belong to today.',
   links: [
     // {
     //   name: 'Twitter',
