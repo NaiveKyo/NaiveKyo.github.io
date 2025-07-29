@@ -29,9 +29,6 @@ export default defineConfig({
 	site: "https://naivekyo.github.io",
 	base: "/",
 	trailingSlash: "always",
-	server: {
-		host: "127.0.0.1"
-	},
 	integrations: [
 		tailwind({
 			nesting: true,
